@@ -6,3 +6,4 @@ The premise is: save "the Village" from the (progressively larger) dino attacks 
 ### Developers:
 - Paul Martin
 - Nick Avery
+- James Young
