@@ -7,3 +7,4 @@ The premise is: save "the Village" from the (progressively larger) dino attacks 
 - Paul Martin
 - Nick Avery
 - James Young
+- Tim Sonnen
