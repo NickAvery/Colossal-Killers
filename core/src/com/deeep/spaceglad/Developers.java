@@ -6,11 +6,13 @@ public class Developers {
         "sonn6508@vandals.uidaho.edu",
         "dors7905@vandals.uidaho.edu",
         "barn1255@vandals.uidaho.edu",
+        "mart2659@vandals.uidaho.edu",
     };
     private static String[] names = new String[] {
         "Jackson Taylor",
         "Tim Sonnen",
         "Kevin Dorscher",
         "Hunter Barnett",
+        "Paul Martin",
     };
 }
