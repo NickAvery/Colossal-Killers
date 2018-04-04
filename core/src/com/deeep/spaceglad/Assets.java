@@ -31,14 +31,14 @@ public class Assets {
 		FileHandle tvPath = Gdx.files.internal("data/tv.g3db");
 		FileHandle chairPath = Gdx.files.internal("data/chair.g3db");
 		FileHandle enemyPath = Gdx.files.internal("data/enemy.g3db");
-		FileHandle playerPath = Gdx.files.internal("data/player.g3db");
+		//FileHandle playerPath = Gdx.files.internal("data/player.g3db");
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 		
 		tvModel = modelLoader.loadModel(tvPath);
 		chairModel = modelLoader.loadModel(chairPath);
 		enemyModel = modelLoader.loadModel(enemyPath);
-		playerModel = modelLoader.loadModel(playerPath);
+		//playerModel = modelLoader.loadModel(playerPath);
     }
 
     public static void dispose() {

@@ -17,6 +17,8 @@ import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.physics.bullet.Bullet;
+import com.badlogic.gdx.physics.bullet.DebugDrawer;
+import com.badlogic.gdx.physics.bullet.linearmath.btIDebugDraw;
 import com.deeep.spaceglad.UI.GameUI;
 import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.managers.EntityFactory;
@@ -52,6 +54,10 @@ class Room {
 public class GameWorld {
     private static final float FOV = 67F;
     private ModelBatch modelBatch;
+	
+	private DebugDrawer debugDrawer;
+	private static final boolean debug = false;
+	
     private Environment environment;
     private PerspectiveCamera perspectiveCamera;
 	private Json json = new Json();
@@ -80,8 +86,10 @@ public class GameWorld {
 	*/
 	
     private Engine engine;
-    private Entity character;
+    private Entity character, gun;
     public BulletSystem bulletSystem;
+	public PlayerSystem playerSystem;
+	private RenderSystem renderSystem;
     public ModelBuilder modelBuilder = new ModelBuilder();
 	
 	/*old chap3 code
@@ -93,39 +101,53 @@ public class GameWorld {
 	
     public GameWorld(GameUI gameUI) {
         Bullet.init();
-        initEnvironment();
-        initModelBatch();
-        initPersCamera();
+		setDebug();
+        //initEnvironment();
+        //initModelBatch();
+        //initPersCamera();
         addSystems(gameUI);
         addEntities();
     }
+	
+	private void setDebug()
+	{
+		if (debug)
+		{
+			debugDrawer = new DebugDrawer();
+			debugDrawer.setDebugMode(btIDebugDraw.DebugDrawModes.DBG_MAX_DEBUG_DRAW_MODE);
+		}
+	}
 
-    private void initEnvironment() {
-        environment = new Environment();
-        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1.0f, 1.0f, 1.0f, 1.f));
-    }
+//    private void initEnvironment() {
+//        environment = new Environment();
+//        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 1.0f, 1.0f, 1.0f, 1.f));
+//    }
 
-    private void initPersCamera() {
-        perspectiveCamera = new PerspectiveCamera(FOV, Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
+//    private void initPersCamera() {
+//        perspectiveCamera = new PerspectiveCamera(FOV, Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
 //        perspectiveCamera.position.set(30f, 40f, 30f);
 //        perspectiveCamera.lookAt(0, 0, 0);
 //        perspectiveCamera.near = 1f;
-        perspectiveCamera.far = 300f;
+//        perspectiveCamera.far = 300f;
 //        perspectiveCamera.update();
-    }
+//   }
 
-    private void initModelBatch() {
-        modelBatch = new ModelBatch();
-    }
+//    private void initModelBatch() {
+//        modelBatch = new ModelBatch();
+//    }
 
     private void addEntities() {
         createGround();
         createPlayer(0, 3, 0);
+		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 0, 3, 0));
     }
 
     private void createPlayer(float x, float y, float z) {
         character = EntityFactory.createPlayer(bulletSystem, x, y, z);
         engine.addEntity(character);
+		engine.addEntity(gun = EntityFactory.loadGun(2.5f, -1.9f, -4));
+		playerSystem.gun = gun;
+		renderSystem.gun = gun;
     }
 
     private void createGround() {
@@ -254,11 +276,22 @@ public class GameWorld {
 
     private void addSystems(GameUI gameUI) {
         engine = new Engine();
-        engine.addSystem(new RenderSystem(modelBatch, environment));
+		
+        //engine.addSystem(new RenderSystem(modelBatch, environment));1
+		
+		engine.addSystem(renderSystem = new RenderSystem());
         engine.addSystem(bulletSystem = new BulletSystem());
-        engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
+		engine.addSystem(playerSystem = new PlayerSystem(this, gameUI, renderSystem.perspectiveCamera));
+		
+		//engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
+		
         engine.addSystem(new EnemySystem(this));
         engine.addSystem(new StatusSystem(this));
+		
+		if (debug)
+		{
+			bulletSystem.collisionWorld.setDebugDrawer(this.debugDrawer);
+		}
     }
 
     public void render(float delta) {
@@ -281,26 +314,37 @@ public class GameWorld {
     }
 
     protected void renderWorld(float delta) {
-        modelBatch.begin(perspectiveCamera);
-        engine.update(delta);
-        modelBatch.end();
+       //modelBatch.begin(perspectiveCamera);
+        //engine.update(delta);
+       //modelBatch.end();
+	   
+	   engine.update(delta);
+	   
+	   if (debug)
+	   {
+			debugDrawer.begin(renderSystem.perspectiveCamera);
+			bulletSystem.collisionWorld.debugDrawWorld();
+			debugDrawer.end();
+	   }
     }
 
     public void resize(int width, int height) {
-        perspectiveCamera.viewportHeight = height;
-        perspectiveCamera.viewportWidth = width;
+		renderSystem.resize(width, height);
+        //perspectiveCamera.viewportHeight = height;
+        //perspectiveCamera.viewportWidth = width;
     }
 
     public void dispose() {
         bulletSystem.collisionWorld.removeAction(character.getComponent(CharacterComponent.class).characterController);
         bulletSystem.collisionWorld.removeCollisionObject(character.getComponent(CharacterComponent.class).ghostObject);
         bulletSystem.dispose();
-
         bulletSystem = null;
+		renderSystem.dispose();
+		
 		
 		/*
         wallHorizontal.dispose();
-        wallVertical.dispose();
+        w allVertical.dispose();
         groundModel.dispose();
         modelBatch.dispose();
 		*/ 

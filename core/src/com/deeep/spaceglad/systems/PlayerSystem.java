@@ -1,6 +1,7 @@
 package com.deeep.spaceglad.systems;
 
 import com.badlogic.ashley.core.*;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
@@ -22,6 +23,9 @@ import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 public class PlayerSystem extends EntitySystem implements EntityListener {
     private Entity player;
     private PlayerComponent playerComponent;
+	
+	public Entity gun;
+	
     private CharacterComponent characterComponent;
     private ModelComponent modelComponent;
     private GameUI gameUI;
@@ -117,12 +121,14 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                 PlayerComponent.score += 100;
             }
         }
+		
+		gun.getComponent(AnimationComponent.class).animate("Armature|shoot", 1, 3);
     }
 	
 	private void useDoor(float delta) {
 		Ray ray = camera.getPickRay(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         rayFrom.set(ray.origin);
-        rayTo.set(ray.direction).scl(5f).add(rayFrom);
+        rayTo.set(ray.direction).scl(50f).add(rayFrom);
         rayTestCB.setCollisionObject(null);
         rayTestCB.setClosestHitFraction(1f);
         rayTestCB.setRayFromWorld(rayFrom);
