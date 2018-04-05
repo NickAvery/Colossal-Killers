@@ -16,6 +16,7 @@ import com.deeep.spaceglad.UI.GameUI;
 import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
+import com.badlogic.gdx.audio.Sound;
 
 /**
  * Created by Elmar on 8-8-2015.
@@ -33,6 +34,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     private final Camera camera;
     private final Vector3 tempVector = new Vector3();
     private GameWorld gameWorld;
+    private Sound gunShot;
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
     ClosestRayResultCallback rayTestCB;
@@ -42,6 +44,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         this.gameWorld = gameWorld;
         this.gameUI = gameUI;
         rayTestCB = new ClosestRayResultCallback(Vector3.Zero, Vector3.Z);
+        gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
     }
 
     @Override
@@ -123,6 +126,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         }
 		
 		gun.getComponent(AnimationComponent.class).animate("Armature|shoot", 1, 3);
+        gunShot.play(.25f);
     }
 	
 	private void useDoor(float delta) {
