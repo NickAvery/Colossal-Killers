@@ -19,7 +19,7 @@ public class MainMenuScreen implements Screen {
     Core game;
     Stage stage;
     Image backgroundImage, titleImage;
-    TextButton playButton, leaderboardsButton, quitButton;
+    TextButton playButton, leaderboardsButton, quitButton, avatarButton, joeButton;
 
     public MainMenuScreen(Core game) {
         this.game = game;
@@ -32,29 +32,36 @@ public class MainMenuScreen implements Screen {
     }
 
     private void setWidgets() {
-        backgroundImage = new Image(new Texture(Gdx.files.internal("data/backgroundMN.png")));
+        //background image is royalty free -Paul
+        //source: https://pixabay.com/en/tyrannosaurus-rex-dinosaur-reptile-284554/
+        backgroundImage = new Image(new Texture(Gdx.files.internal("data/splash.jpg")));
         titleImage = new Image(new Texture(Gdx.files.internal("data/title.png")));
         playButton = new TextButton("Play", Assets.skin);
         leaderboardsButton = new TextButton("Leaderboards", Assets.skin);
         quitButton = new TextButton("Quit", Assets.skin);
+        avatarButton = new TextButton("Account", Assets.skin); //TODO: must have an account with name and avatar data to hit "Play" button -Paul
     }
 
     private void configureWidgers() {
         backgroundImage.setSize(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
-        titleImage.setSize(1000, 100);
-        titleImage.setPosition(Core.VIRTUAL_WIDTH / 2 - titleImage.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2);
+        titleImage.setSize(1000, 100); // new title image has a 10:1 aspect ratio -Paul
+        titleImage.setPosition(Core.VIRTUAL_WIDTH / 2 - titleImage.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 + titleImage.getWidth() / 7);
         playButton.setSize(128, 64);
-        playButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - 100);
+        playButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() * 2.5f, Core.VIRTUAL_HEIGHT / 2 - 145);
         leaderboardsButton.setSize(128, 64);
-        leaderboardsButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - 170);
+        leaderboardsButton.setPosition(Core.VIRTUAL_WIDTH / 2 + playButton.getWidth() * 1.5f, Core.VIRTUAL_HEIGHT / 2 - 145);
         quitButton.setSize(128, 64);
-        quitButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - 240);
+        quitButton.setPosition(Core.VIRTUAL_WIDTH / 2 + playButton.getWidth() * 1.5f, Core.VIRTUAL_HEIGHT / 2 - 220);
+        avatarButton.setSize(128, 64);
+        avatarButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() * 2.5f, Core.VIRTUAL_HEIGHT / 2 - 220);
+
 
         stage.addActor(backgroundImage);
         stage.addActor(titleImage);
         stage.addActor(playButton);
         stage.addActor(leaderboardsButton);
         stage.addActor(quitButton);
+        stage.addActor(avatarButton);
     }
 
     private void setListeners() {

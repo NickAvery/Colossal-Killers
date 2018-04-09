@@ -38,7 +38,7 @@ public class Assets {
 		tvModel = modelLoader.loadModel(tvPath);
 		chairModel = modelLoader.loadModel(chairPath);
 		enemyModel = modelLoader.loadModel(enemyPath);
-		playerModel = modelLoader.loadModel(playerPath);
+		playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
     }
 
     public static void dispose() {

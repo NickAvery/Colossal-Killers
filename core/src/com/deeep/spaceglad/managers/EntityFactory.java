@@ -93,7 +93,7 @@ public class EntityFactory {
         Entity entity = new Entity();
 		ModelComponent modelComponent = null;
 		switch(type) {
-			case 0: //player
+			case 0: //player with avatar -Paul
 				modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
 				modelComponent.instance.transform.rotate(0, 1, 0, 180);
                 for (Node node : modelComponent.instance.nodes) node.scale.scl(0.03f); // scale the model, wayyyy too big -Paul

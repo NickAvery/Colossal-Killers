@@ -45,7 +45,7 @@ project(":desktop") {
         compile "com.badlogicgames.ashley:ashley:1.5.0"
     }
 }
-
+//commented out the android rubbish, as it's not needed and was causing errors building on my machine -Paul
 /*
 project(":android") {
     apply plugin: "android"
