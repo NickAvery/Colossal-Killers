@@ -41,7 +41,7 @@ public class MainMenuScreen implements Screen {
 
     private void configureWidgers() {
         backgroundImage.setSize(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
-        titleImage.setSize(620, 200);
+        titleImage.setSize(620, 150);
         titleImage.setPosition(Core.VIRTUAL_WIDTH / 2 - titleImage.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2);
         playButton.setSize(128, 64);
         playButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - 100);
