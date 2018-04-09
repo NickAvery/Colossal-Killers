@@ -46,6 +46,7 @@ project(":desktop") {
     }
 }
 
+/*
 project(":android") {
     apply plugin: "android"
 
@@ -66,6 +67,7 @@ project(":android") {
         compile "com.badlogicgames.ashley:ashley:1.5.0"
     }
 }
+*/
 
 project(":ios") {
     apply plugin: "java"
