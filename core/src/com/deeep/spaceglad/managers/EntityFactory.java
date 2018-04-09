@@ -94,12 +94,13 @@ public class EntityFactory {
 		ModelComponent modelComponent = null;
 		switch(type) {
 			case 0: //player
-				modelComponent = new ModelComponent(playerModel, x, y, z);	
-				modelComponent.instance.transform.rotate(0, 1, 0, 180);		
-				modelComponent.instance.calculateTransforms();				
+				modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
+				modelComponent.instance.transform.rotate(0, 1, 0, 180);
+                for (Node node : modelComponent.instance.nodes) node.scale.scl(0.03f); // scale the model, wayyyy too big -Paul
+                modelComponent.instance.calculateTransforms();
 			break;
 			case 1: //enemy
-				modelComponent = new ModelComponent(Assets.enemyModel, x, y, z);
+                modelComponent = new ModelComponent(Assets.enemyModel, x, y, z); //-working
 			break;
 		}
 		if (modelComponent != null) {
