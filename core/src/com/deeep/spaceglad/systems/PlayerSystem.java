@@ -17,6 +17,10 @@ import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
+import com.badlogic.gdx.graphics.g3d.particles.emitters.RegularEmitter;
 
 /**
  * Created by Elmar on 8-8-2015.
@@ -38,6 +42,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
     ClosestRayResultCallback rayTestCB;
+    // ParticleSystem is a singleton class, we get the instance instead of creating a new object:
 
     public PlayerSystem(GameWorld gameWorld, GameUI gameUI, Camera camera) {
         this.camera = camera;
@@ -121,6 +126,16 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
             final btCollisionObject obj = rayTestCB.getCollisionObject();
             if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
                 ((Entity) obj.userData).getComponent(StatusComponent.class).alive = false;
+                if( !((Entity) obj.userData).getComponent(DieParticleComponent.class).used) {
+                    ((Entity) obj.userData).getComponent(DieParticleComponent.class).used = true;
+                    ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
+                    ((RegularEmitter)effect.getControllers().first().emitter).setEmissionMode(RegularEmitter.EmissionMode.EnabledUntilCycleEnd);
+                    effect.setTransform(((Entity) obj.userData).getComponent(ModelComponent.class).instance.transform);
+                    effect.scale(3.25f, 1, 1.5f);
+                    effect.init();
+                    effect.start();
+                    RenderSystem.particleSystem.add(effect);
+                }
                 PlayerComponent.score += 100;
             }
         }

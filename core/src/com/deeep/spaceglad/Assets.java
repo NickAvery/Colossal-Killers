@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.utils.UBJsonReader;
 import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
+import com.badlogic.gdx.assets.AssetManager;
 
 /**
  * Created by scanevaro on 01/08/2015.
@@ -17,7 +18,8 @@ public class Assets {
 	public static Model chairModel;
 	public static Model enemyModel;
 	public static Model playerModel;
-	
+
+	public static AssetManager assetManager;	
 	
     public Assets() {
         skin = new Skin();
@@ -34,6 +36,7 @@ public class Assets {
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
+		assetManager = new AssetManager();
 		
 		tvModel = modelLoader.loadModel(tvPath);
 		chairModel = modelLoader.loadModel(chairPath);
@@ -43,5 +46,6 @@ public class Assets {
 
     public static void dispose() {
         skin.dispose();
+        assetManager.dispose();
     }
 }

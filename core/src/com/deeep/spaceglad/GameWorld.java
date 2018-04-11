@@ -285,6 +285,8 @@ public class GameWorld {
 		
 		//engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
 		
+		EntityFactory.renderSystem = renderSystem;
+
         engine.addSystem(new EnemySystem(this));
         engine.addSystem(new StatusSystem(this));
 		

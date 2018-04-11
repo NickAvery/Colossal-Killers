@@ -27,6 +27,7 @@ import com.badlogic.gdx.utils.UBJsonReader;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.systems.BulletSystem;
+import com.deeep.spaceglad.systems.RenderSystem;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.Assets;
 /**
@@ -37,6 +38,7 @@ public class EntityFactory {
     private static Texture playerTexture;
     private static ModelBuilder modelBuilder;
     private static Model boxModel;
+    public static RenderSystem renderSystem;
 
     static {
         modelBuilder = new ModelBuilder();
@@ -132,6 +134,7 @@ public class EntityFactory {
         Entity entity = createCharacter(bulletSystem, x, y, z, 1);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING));
         entity.add(new StatusComponent());
+        entity.add(new DieParticleComponent(renderSystem.particleSystem));
         return entity;
     }
 	

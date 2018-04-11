@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleSystem;
+import com.badlogic.gdx.graphics.g3d.particles.batches.BillboardParticleBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.Core;
 import com.deeep.spaceglad.Settings;
@@ -29,6 +31,7 @@ public class RenderSystem extends EntitySystem {
     private Environment environment;
 	public PerspectiveCamera perspectiveCamera, gunCamera;
 	public Entity gun;
+	public static ParticleSystem particleSystem;
 
     public RenderSystem() {
         //this.batch = batch;
@@ -41,6 +44,12 @@ public class RenderSystem extends EntitySystem {
 		batch = new ModelBatch();
 		gunCamera = new PerspectiveCamera(FOV, Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
 		gunCamera.far = 100f;
+
+		particleSystem = ParticleSystem.get();
+		BillboardParticleBatch billboardParticleBatch = new
+		BillboardParticleBatch();
+		billboardParticleBatch.setCamera(perspectiveCamera);
+		particleSystem.add(billboardParticleBatch);
     }
 
     // Event called when an entity is added to the engine
@@ -69,6 +78,7 @@ public class RenderSystem extends EntitySystem {
 			}
 		}
 		batch.end();
+		renderParticleEffects();
 		drawGun();
 	}
 	
@@ -78,6 +88,17 @@ public class RenderSystem extends EntitySystem {
 		batch.begin(gunCamera);
 		batch.render(gun.getComponent(ModelComponent.class).instance);
 		gun.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime());
+		batch.end();
+	}
+
+	private void renderParticleEffects() {
+		batch.begin(perspectiveCamera);
+		particleSystem.update(); /* technically not necessary for
+		rendering*/
+		particleSystem.begin();
+		particleSystem.draw();
+		particleSystem.end();
+		batch.render(particleSystem);
 		batch.end();
 	}
 	
