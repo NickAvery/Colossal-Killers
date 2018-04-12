@@ -18,84 +18,93 @@ import com.deeep.spaceglad.screens.GameScreen;
  * Created by scanevaro on 04/08/2015.
  */
 public class PauseWidget extends Actor {
-    private Core game;
-    private Window window;
-    private TextButton closeDialog, restartButton, quitButton;
-    private Stage stage;
+	private Core game;
+	private Window window;
+	private TextButton closeDialog, restartButton, quitButton;
+	private Stage stage;
 
-    public PauseWidget(Core game, Stage stage) {
-        this.game = game;
-        this.stage = stage;
-        setWidgets();
-        configureWidgets();
-        setListeners();
-    }
+	public PauseWidget(Core game, Stage stage) {
+		this.game = game;
+		this.stage = stage;
+		setWidgets();
+		configureWidgets();
+		setListeners();
+	}
 
-    private void setWidgets() {
-        window = new Window("Pause", Assets.skin);
-        closeDialog = new TextButton("X", Assets.skin);
-        restartButton = new TextButton("Restart", Assets.skin);
-        quitButton = new TextButton("Quit", Assets.skin);
-    }
+	private void setWidgets() {
+		window = new Window("Pause", Assets.skin);
+		closeDialog = new TextButton("X", Assets.skin);
+		restartButton = new TextButton("Restart", Assets.skin);
+		quitButton = new TextButton("Quit", Assets.skin);
+	}
 
-    private void configureWidgets() {
-        window.getTitleTable().add(closeDialog).height(window.getPadTop());
-        window.add(restartButton);
-        window.add(quitButton);
-    }
+	private void configureWidgets() {
+		window.getTitleTable().add(closeDialog).height(window.getPadTop());
+		window.add(restartButton);
+		window.add(quitButton);
+	}
 
-    private void setListeners() {
-        super.addListener(new InputListener() {
-            @Override
-            public boolean keyDown(InputEvent event, int keycode) {
-                if (keycode == Input.Keys.ESCAPE) {
-                    handleUpdates();
-                    return true;
-                }
-                return false;
-            }
-        });
-        closeDialog.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent inputEvent, float x, float y) {
-                handleUpdates();
-            }
-        });
-        restartButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent inputEvent, float x, float y) {
-                game.setScreen(new GameScreen(game));
-            }
-        });
-        quitButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent inputEvent, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
-    }
+	private void setListeners() {
+		super.addListener(new InputListener() {
+			@Override
+			public boolean keyDown(InputEvent event, int keycode) {
+				if (keycode == Input.Keys.ESCAPE) {
+					handleUpdates();
+					return true;
+				}
+				return false;
+			}
+		});
+		closeDialog.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent inputEvent, float x, float y) {
+				handleUpdates();
+			}
+		});
+		restartButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent inputEvent, float x, float y) {
+				game.setScreen(new GameScreen(game));
+			}
+		});
+		quitButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent inputEvent, float x, float y) {
+				if (Core.client != null) {
+					Core.client.close();
+					try {
+						Core.clientThread.join();
+					} catch (Exception e) {
+						// Can't actually error
+					}
+				}
+				Gdx.app.exit();
+			}
+		});
+	}
 
-    private void handleUpdates() {
-        if (window.getStage() == null) {
-            stage.addActor(window);
-            Gdx.input.setCursorCatched(false);
-            Settings.Paused = true;
-        } else {
-            window.remove();
-            Gdx.input.setCursorCatched(true);
-            Settings.Paused = false;
-        }
-    }
+	private void handleUpdates() {
+		if (window.getStage() == null) {
+			stage.addActor(window);
+			Gdx.input.setCursorCatched(false);
+			Settings.Paused = true;
+		} else {
+			window.remove();
+			Gdx.input.setCursorCatched(true);
+			Settings.Paused = false;
+		}
+	}
 
-    @Override
-    public void setPosition(float x, float y) {
-        super.setPosition(x, y);
-        window.setPosition(Core.VIRTUAL_WIDTH / 2 - window.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - window.getHeight() / 2);
-    }
+	@Override
+	public void setPosition(float x, float y) {
+		super.setPosition(x, y);
+		window.setPosition(Core.VIRTUAL_WIDTH / 2 - window.getWidth() / 2,
+				Core.VIRTUAL_HEIGHT / 2 - window.getHeight() / 2);
+	}
 
-    @Override
-    public void setSize(float width, float height) {
-        super.setSize(width, height);
-        window.setSize(width * 2, height * 2);
-    }
+	@Override
+	public void setSize(float width, float height) {
+		super.setSize(width, height);
+		window.setSize(width * 2, height * 2);
+	}
 }
