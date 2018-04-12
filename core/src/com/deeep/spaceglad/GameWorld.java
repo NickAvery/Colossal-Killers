@@ -139,7 +139,7 @@ public class GameWorld {
     private void addEntities() {
         createGround();
         createPlayer(0, 3, 0);
-		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 0, 3, 0));
+		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
     }
 
     private void createPlayer(float x, float y, float z) {
