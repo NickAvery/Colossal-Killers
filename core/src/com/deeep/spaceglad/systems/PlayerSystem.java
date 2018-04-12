@@ -125,7 +125,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         if (rayTestCB.hasHit()) {
             final btCollisionObject obj = rayTestCB.getCollisionObject();
             if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
-                ((Entity) obj.userData).getComponent(StatusComponent.class).alive = false;
                 if( !((Entity) obj.userData).getComponent(DieParticleComponent.class).used) {
                     ((Entity) obj.userData).getComponent(DieParticleComponent.class).used = true;
                     ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
@@ -137,8 +136,8 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                     RenderSystem.particleSystem.add(effect);
                 }
                 ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
-		if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
-			PlayerComponent.score += 100;
+		        if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
+			       PlayerComponent.score += 100;
             }
         }
 		
