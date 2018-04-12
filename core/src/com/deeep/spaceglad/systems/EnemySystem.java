@@ -40,8 +40,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     public void update(float delta) {
         if (entities.size() < 1) {
             Random random = new Random();
-            engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, random.nextInt(40) - 20, 10, random.nextInt(40) - 20));
-        }
+            engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));        }
         for (Entity e : entities) {
             ModelComponent mod = e.getComponent(ModelComponent.class);
             ModelComponent playerModel = player.getComponent(ModelComponent.class);
@@ -72,6 +71,10 @@ public class EnemySystem extends EntitySystem implements EntityListener {
             ghost.getTranslation(translation);
 
             mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
+            if (e.getComponent(EnemyComponent.class).health <= 0)
+			{
+				e.getComponent(StatusComponent.class).alive = false;
+			}
         }
     }
 
