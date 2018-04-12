@@ -105,6 +105,8 @@ public class EntityFactory {
 			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
 		break;
 	}
+	if(modelComponent != null)
+		entity.add(modelComponent);
         CharacterComponent characterComponent = new CharacterComponent();
         characterComponent.ghostObject = new btPairCachingGhostObject();
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
