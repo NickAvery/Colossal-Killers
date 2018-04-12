@@ -17,6 +17,8 @@ public class Assets {
 	public static Model chairModel;
 	public static Model enemyModel;
 	public static Model playerModel;
+	public static Model level1groundModel;
+	public static Model level1skymodel;
 	
 	
     public Assets() {
@@ -32,6 +34,8 @@ public class Assets {
 		FileHandle chairPath = Gdx.files.internal("data/chair.g3db");
 		FileHandle enemyPath = Gdx.files.internal("data/enemy.g3db");
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
+		FileHandle level1groundPath = Gdx.files.internal("data/level1ground.g3db");//level 1 groundmodel JT
+		FileHandle level1skyPath = Gdx.files.internal("data/level1sky.g3db");	//level1 sky model JT
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 		
@@ -39,6 +43,8 @@ public class Assets {
 		chairModel = modelLoader.loadModel(chairPath);
 		enemyModel = modelLoader.loadModel(enemyPath);
 		playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
+		level1groundModel = modelLoader.loadModel(level1groundPath);	//level1ground JT
+		level1skymodel = modelLoader.loadModel(level1skyPath);	//level1skyjt
     }
 
     public static void dispose() {

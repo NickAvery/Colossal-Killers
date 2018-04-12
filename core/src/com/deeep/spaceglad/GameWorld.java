@@ -151,7 +151,7 @@ public class GameWorld {
     }
 
     private void createGround() {
-		boolean frontDoor = false;
+		/*boolean frontDoor = false;
 		boolean backDoor = false;
 		boolean leftDoor = false;
 		boolean rightDoor = false;
@@ -268,9 +268,11 @@ public class GameWorld {
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, -20f, 180f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, 20f, 0f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, 20f, 10f, 0f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));
+        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));	*/
 		engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 4f, 0.25f, 0f, 0f));
 		engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 0f, 0f));
+		engine.addEntity(EntityFactory.createStaticEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
+		engine.addEntity(EntityFactory.createStaticEntity(Assets.level1groundModel, -2f, -2f, -2f, 0f));
 		//engine.addEntity(EntityFactory.createStaticEntity(Assets.playerModel, -4f, 0.25f, 0f, 0f));
     }
 
