@@ -7,9 +7,7 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.components.CharacterComponent;
-import com.deeep.spaceglad.components.EnemyComponent;
-import com.deeep.spaceglad.components.ModelComponent;
-import com.deeep.spaceglad.components.PlayerComponent;
+import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.managers.EntityFactory;
 
 import java.util.Random;
