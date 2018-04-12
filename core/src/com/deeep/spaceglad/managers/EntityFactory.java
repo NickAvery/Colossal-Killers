@@ -91,21 +91,19 @@ public class EntityFactory {
 
     private static Entity createCharacter(BulletSystem bulletSystem, float x, float y, float z, int type) {
         Entity entity = new Entity();
-		ModelComponent modelComponent = null;
-		switch(type) {
-			case 0: //player with avatar -Paul
-				modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
-				modelComponent.instance.transform.rotate(0, 1, 0, 180);
-                for (Node node : modelComponent.instance.nodes) node.scale.scl(0.03f); // scale the model, wayyyy too big -Paul
-                modelComponent.instance.calculateTransforms();
-			break;
-			case 1: //enemy
-                modelComponent = new ModelComponent(Assets.enemyModel, x, y, z); //-working
-			break;
-		}
-		if (modelComponent != null) {
-			entity.add(modelComponent);
-		}
+	switch(type) {
+		case 0: //player
+			modelComponent = new ModelComponent(playerModel, x, y, z);	
+			modelComponent.instance.transform.rotate(0, 1, 0, 180);		
+			modelComponent.instance.calculateTransforms();				
+		break;
+		case 1: //anklyo model
+		modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
+		break;
+		case 2: //raptor model	
+			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
+		break;
+	}
         CharacterComponent characterComponent = new CharacterComponent();
         characterComponent.ghostObject = new btPairCachingGhostObject();
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
@@ -128,8 +126,9 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z) {
-        Entity entity = createCharacter(bulletSystem, x, y, z, 1);
+    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
+        if (type != 1 && type != 2)
+		type = 1;
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING));
         entity.add(new StatusComponent());
         return entity;
