@@ -12,10 +12,21 @@ public class EnemyComponent extends Component {
         FLEEING,
         HUNTING
     }
-
+    public float health;
     public STATE state = STATE.IDLE;
 
-    public EnemyComponent(STATE state){
+     public EnemyComponent(STATE state, int type){
         this.state = state;
+		switch(type) {
+			case 1: //ankylo
+				health = 100;
+			break;
+			case 2: //raptor
+				health = 50;
+			break;
+			default:
+				health = 10;
+			break;
+		}
     }
 }
