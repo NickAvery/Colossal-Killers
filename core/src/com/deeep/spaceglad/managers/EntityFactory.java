@@ -133,7 +133,7 @@ public class EntityFactory {
         if (type != 1 && type != 2)
 		type = 1;
 	Entity entity = createCharacter(bulletSystem, x,y,z, type);
-        entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING),type);
+        entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
         return entity;
     }
