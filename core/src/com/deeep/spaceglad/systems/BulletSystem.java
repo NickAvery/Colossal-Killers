@@ -25,18 +25,18 @@ public class BulletSystem extends EntitySystem implements EntityListener {
     public class MyContactListener extends ContactListener {
         @Override
         public void onContactStarted(btCollisionObject colObj0, btCollisionObject colObj1) {
-            if (colObj0.userData instanceof Entity && colObj0.userData instanceof Entity) {
+            if (colObj0.userData instanceof Entity && colObj1.userData instanceof Entity) {
                 Entity entity0 = (Entity) colObj0.userData;
                 Entity entity1 = (Entity) colObj1.userData;
                 if (entity0.getComponent(CharacterComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null) {
-                    if (entity0.getComponent(EnemyComponent.class) != null) {
-                        if (entity0.getComponent(StatusComponent.class).alive)
+                    if (entity0.getComponent(EnemyComponent.class) != null) { //entity0 is monster
+                        if (entity0.getComponent(StatusComponent.class).alive) 
                             entity1.getComponent(PlayerComponent.class).health -= 10;
-                        entity0.getComponent(StatusComponent.class).alive = false;
-                    } else {
+                        //entity0.getComponent(StatusComponent.class).alive = false;
+                    } else {                                                  //entity1 is monster
                         if (entity1.getComponent(StatusComponent.class).alive)
                             entity0.getComponent(PlayerComponent.class).health -= 10;
-                        entity1.getComponent(StatusComponent.class).alive = false;
+                        //entity1.getComponent(StatusComponent.class).alive = false;
                     }
                 }
             }

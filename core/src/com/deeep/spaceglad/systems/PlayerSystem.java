@@ -136,7 +136,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                     effect.start();
                     RenderSystem.particleSystem.add(effect);
                 }
-                PlayerComponent.score += 100;
+                ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
+		if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
+			PlayerComponent.score += 100;
             }
         }
 		

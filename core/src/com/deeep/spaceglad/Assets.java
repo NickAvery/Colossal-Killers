@@ -16,7 +16,8 @@ public class Assets {
     public static Skin skin;
 	public static Model tvModel;
 	public static Model chairModel;
-	public static Model enemyModel;
+	public static Model anklyoModel;
+	public static Model raptorModel;
 	public static Model playerModel;
 
 	public static AssetManager assetManager;	
@@ -32,7 +33,8 @@ public class Assets {
 		
 		FileHandle tvPath = Gdx.files.internal("data/tv.g3db");
 		FileHandle chairPath = Gdx.files.internal("data/chair.g3db");
-		FileHandle enemyPath = Gdx.files.internal("data/enemy.g3db");
+		FileHandle anklyoPath = Gdx.files.internal("data/anklyo.g3db");
+		FileHandle raptorPath = Gdx.files.internal("data/raptor.g3db");
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
@@ -40,7 +42,8 @@ public class Assets {
 		
 		tvModel = modelLoader.loadModel(tvPath);
 		chairModel = modelLoader.loadModel(chairPath);
-		enemyModel = modelLoader.loadModel(enemyPath);
+		anklyoModel = modelLoader.loadModel(anklyoPath);
+		raptorModel = modelLoader.loadModel(raptorPath);
 		playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
     }
 
