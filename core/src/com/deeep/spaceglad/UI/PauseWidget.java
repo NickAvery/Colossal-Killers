@@ -72,11 +72,6 @@ public class PauseWidget extends Actor {
 			public void clicked(InputEvent inputEvent, float x, float y) {
 				if (Core.client != null) {
 					Core.client.close();
-					try {
-						Core.clientThread.join();
-					} catch (Exception e) {
-						// Can't actually error
-					}
 				}
 				Gdx.app.exit();
 			}

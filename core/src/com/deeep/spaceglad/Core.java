@@ -11,8 +11,8 @@ public class Core extends ApplicationAdapter {
 	public static final float VIRTUAL_HEIGHT = 540;
 	Screen screen;
 
+    // TODO not static
 	public static Client client = null;
-	public static Thread clientThread;
 
 	@Override
 	public void create() {

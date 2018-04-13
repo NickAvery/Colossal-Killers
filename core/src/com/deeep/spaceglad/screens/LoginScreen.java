@@ -117,8 +117,6 @@ public class LoginScreen implements Screen {
 				}
 				Core.client = client;
 
-				Core.clientThread = new Thread(client);
-				Core.clientThread.start();
 				game.setScreen(new GameScreen(game));
 			}
 
