@@ -18,6 +18,7 @@ public class Assets {
 	public static Model anklyoModel;
 	public static Model raptorModel;
 	public static Model playerModel;
+	public static Model healthPackModel;
 	
 	
     public Assets() {
@@ -34,6 +35,7 @@ public class Assets {
 		FileHandle anklyoPath = Gdx.files.internal("data/anklyo.g3db");
 		FileHandle raptorPath = Gdx.files.internal("data/raptor.g3db");
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
+		FileHandle healthPackPath = Gdx.files.internal("data/health_pack.g3db");// health pack - James
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 		
@@ -42,6 +44,7 @@ public class Assets {
 		anklyoModel = modelLoader.loadModel(anklyoPath);
 		raptorModel = modelLoader.loadModel(raptorPath);
 		playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
+		healthPackModel = modelLoader.loadModel(healthPackPath); // health pack - James
     }
 
     public static void dispose() {
