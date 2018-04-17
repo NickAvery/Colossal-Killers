@@ -61,12 +61,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     }
 
     private void updateMovement(float delta) {
-        float deltaX = 0f;
-        float deltaY = 0f;
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !(Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT))) deltaX = 2f;
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !(Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT))) deltaX = -2f;
-		if (Gdx.input.isKeyPressed(Input.Keys.PAGE_DOWN)) deltaY = -1.5f;
-        if (Gdx.input.isKeyPressed(Input.Keys.PAGE_UP)) deltaY = 1.5f;
+        //Updated to mouse controls -Paul
+        float deltaX = -Gdx.input.getDeltaX() * 0.5f;
+        float deltaY = -Gdx.input.getDeltaY() * 0.5f;
         tmp.set(0, 0, 0);
         camera.rotate(camera.up, deltaX);
         tmp.set(camera.direction).crs(camera.up).nor();
@@ -74,15 +71,10 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         tmp.set(0, 0, 0);
         characterComponent.characterDirection.set(-1, 0, 0).rot(modelComponent.instance.transform).nor();
         characterComponent.walkDirection.set(0, 0, 0);
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) characterComponent.walkDirection.add(camera.direction);
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) characterComponent.walkDirection.sub(camera.direction);
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-			if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT))
-				tmp.set(camera.direction).crs(camera.up).nor().scl(-1); 
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-			if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.ALT_RIGHT))
-				tmp.set(camera.direction).crs(camera.up).nor().scl(1); 
-		characterComponent.walkDirection.add(tmp);
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) characterComponent.walkDirection.add(camera.direction);
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) characterComponent.walkDirection.sub(camera.direction);
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) tmp.set(camera.direction).crs(camera.up).scl(-1);
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) tmp.set(camera.direction).crs(camera.up);
         characterComponent.walkDirection.add(tmp);
         characterComponent.walkDirection.scl(10f * delta);
         characterComponent.characterController.setWalkDirection(characterComponent.walkDirection);
@@ -91,8 +83,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         characterComponent.ghostObject.getWorldTransform(ghost);   //TODO export this
         ghost.getTranslation(translation);
         modelComponent.instance.transform.set(translation.x, translation.y, translation.z, camera.direction.x, camera.direction.y, camera.direction.z, 0);
-		modelComponent.instance.transform.rotate(0,1,0,180);
-		modelComponent.instance.transform.rotate(1,0,0,180);
         camera.position.set(translation.x, translation.y, translation.z);
         camera.update(true);
 
@@ -100,8 +90,10 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
             characterComponent.characterController.setJumpSpeed(25);
             characterComponent.characterController.jump();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) fire();
-		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);
+
+        if (Gdx.input.justTouched()) fire();  //mouse fire -Paul
+
+		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);  //should we change this? -Paul
     }
 
     private void updateStatus() {
