@@ -268,11 +268,19 @@ public class GameWorld {
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, -20f, 180f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, 20f, 0f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, 20f, 10f, 0f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));	*/
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 4f, 0.25f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.level1groundModel, -2f, -2f, -2f, 0f));
+		//engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));	*/
+		
+		//Create Floo from primitive
+		Texture	tempTexture = new Texture(Gdx.files.internal("data/snow_ground.png"));
+		Material tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
+		Model tempModel = modelBuilder.createBox(800, 2, 800, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+		engine.addEntity(EntityFactory.createStaticEntity(tempModel, 0, 0, 0, 0f));
+		
+		//skybox and left over models
+		engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 8f, 0.25f, 0f, 0f));
+		engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 8f, 0f));
+		engine.addEntity(EntityFactory.createVisualEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
+		//engine.addEntity(EntityFactory.createStaticEntity(Assets.level1groundModel, -2f, -2f, -2f, 0f));
 		//engine.addEntity(EntityFactory.createStaticEntity(Assets.playerModel, -4f, 0.25f, 0f, 0f));
     }
 

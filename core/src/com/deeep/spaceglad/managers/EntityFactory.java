@@ -67,7 +67,15 @@ public class EntityFactory {
         entity.add(bulletComponent);
         return entity;
     }
-	
+    
+    public static Entity createVisualEntity(Model model, float x, float y, float z, float rotateDeg){
+        Entity entity = new Entity();
+        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+        modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+        modelComponent.instance.calculateTransforms();
+        entity.add(modelComponent);
+        return entity;
+    }
 	public static Entity createDoorEntity(Model model, float x, float y, float z, float rotateDeg, Door d) {
 		final BoundingBox boundingBox = new BoundingBox();
         model.calculateBoundingBox(boundingBox);
