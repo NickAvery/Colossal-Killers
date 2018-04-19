@@ -70,9 +70,6 @@ public class PauseWidget extends Actor {
 		quitButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent inputEvent, float x, float y) {
-				if (Core.client != null) {
-					Core.client.close();
-				}
 				Gdx.app.exit();
 			}
 		});

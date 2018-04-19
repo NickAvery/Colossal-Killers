@@ -11,8 +11,7 @@ public class Core extends ApplicationAdapter {
 	public static final float VIRTUAL_HEIGHT = 540;
 	Screen screen;
 
-    // TODO not static
-	public static Client client = null;
+	public Client client = null;
 
 	@Override
 	public void create() {
@@ -53,5 +52,9 @@ public class Core extends ApplicationAdapter {
 	public void dispose() {
 		Settings.save();
 		Assets.dispose();
+		if (client != null) {
+			client.close();
+			client = null;
+		}
 	}
 }

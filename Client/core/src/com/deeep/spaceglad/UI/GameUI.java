@@ -21,6 +21,8 @@ public class GameUI {
     private CrosshairWidget crosshairWidget;
     public GameOverWidget gameOverWidget;
     private Label fpsLabel;
+    
+    public MessageWidget messageWidget;
 
     public GameUI(Core game) {
         this.game = game;
@@ -38,6 +40,8 @@ public class GameUI {
         gameOverWidget = new GameOverWidget(game, stage);
         crosshairWidget = new CrosshairWidget();
         fpsLabel = new Label("", Assets.skin);
+        
+        messageWidget = new MessageWidget( );
     }
 
     public void configureWidgets() {
@@ -57,6 +61,9 @@ public class GameUI {
         crosshairWidget.setSize(32, 32);
 
         fpsLabel.setPosition(0, 10);
+        
+        messageWidget.setSize( Core.VIRTUAL_WIDTH / 2, Core.VIRTUAL_HEIGHT / 2);
+        messageWidget.setPosition( 0, 0 );
 
         stage.addActor(healthWidget);
 //      stage.addActor(oxygenWidget);
@@ -65,6 +72,8 @@ public class GameUI {
         stage.addActor(crosshairWidget);
         stage.setKeyboardFocus(pauseWidget);
         stage.addActor(fpsLabel);
+        
+        stage.addActor(messageWidget);
     }
 
     public void update(float delta) {

@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net.Protocol;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class Client implements Runnable {
 	private static final Charset ascii = Charset.forName("ASCII");
@@ -17,7 +18,7 @@ public class Client implements Runnable {
 	private static final String host = "cveworld.com";
 	private static final int port = 4500;
 
-	private final Socket socket;
+	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
     private Thread thread;
@@ -65,7 +66,13 @@ public class Client implements Runnable {
 		setState(ClientState.STARTING);
 		SocketHints hints = new SocketHints();
 		hints.connectTimeout = 2000;
-		socket = Gdx.net.newClientSocket(Protocol.TCP, host, port, hints);
+		try {
+			socket = Gdx.net.newClientSocket(Protocol.TCP, host, port, hints);
+		} catch (GdxRuntimeException e) {
+			setState(ClientState.STOPPED);
+			return;
+		}
+		
 		if (!socket.isConnected()) {
 			setState(ClientState.STOPPED);
 			return;
@@ -157,13 +164,7 @@ public class Client implements Runnable {
 		}
 	}
 
-    // TODO where to handle message loop
-    // for (String msg : client.getMessageQueue()) { ... }
-
     // TODO where to send messages
     // Core.client.sendMessage(msg + "\n");
-
-    // TODO close when we exit without using the pause menu
-    // Core.client.close();
 }
 

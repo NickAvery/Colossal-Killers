@@ -1,11 +1,8 @@
 package com.deeep.spaceglad.screens;
 
-import java.io.BufferedReader;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -25,9 +22,6 @@ public class LoginScreen implements Screen {
 	private TextButton loginButton, playButton, backButton;
 	private Label usernameLabel, passwordLabel;
 	private TextArea usernameArea, passwordArea;
-	private Socket socket;
-	private BufferedReader buffer;
-	private String temp, tempBuffer;
 
 	public LoginScreen(Core game) {
 		this.game = game;
@@ -48,7 +42,10 @@ public class LoginScreen implements Screen {
 		usernameLabel = new Label("Username", Assets.skin);
 		passwordLabel = new Label("Password", Assets.skin);
 		usernameArea = new TextArea("", Assets.skin);
+		// TODO disallow newline in usernameArea
 		passwordArea = new TextArea("", Assets.skin);
+		passwordArea.setPasswordMode(true);
+		// TODO disallow newline in passwordArea
 
 	}
 
@@ -112,10 +109,10 @@ public class LoginScreen implements Screen {
 
 			if (client.isRunning()) {
 
-				if (Core.client != null) {
-					Core.client.close();
+				if (game.client != null) {
+					game.client.close();
 				}
-				Core.client = client;
+				game.client = client;
 
 				game.setScreen(new GameScreen(game));
 			}
