@@ -37,6 +37,12 @@ public class Client implements Runnable {
 		return q;
 	}
 
+	//Added for use in new user function.
+	//Spamming of create account button would cause crash if using getMessage Queue
+	public ArrayList<String> getQueue() {
+		return queue;
+	}
+
 	public void sendMessage(String msg) {
 		sendMessage(msg.getBytes(ascii));
 	}
@@ -156,13 +162,18 @@ public class Client implements Runnable {
 
 	@Override
 	public void run() {
-		while (getState() == ClientState.RUNNING) {
+		while (isRunning()) {
 			String msg = recvMessage();
 			if (!msg.equals("")) {
 				queue.add(msg);
+				//System.out.println(msg);
 			}
 		}
 	}
+
+
+    // TODO where to handle message loop
+    // for (String msg : client.getMessageQueue()) { ... }
 
     // TODO where to send messages
     // Core.client.sendMessage(msg + "\n");

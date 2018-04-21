@@ -37,7 +37,7 @@ public class LoginScreen implements Screen {
 	private void setWidgets() {
 		backgroundImage = new Image(new Texture(Gdx.files.internal("data/splash.jpg")));
 		loginButton = new TextButton("Login", Assets.skin);
-		playButton = new TextButton("Play (use this until login works)", Assets.skin);
+		playButton = new TextButton("Play(No server)", Assets.skin);
 		backButton = new TextButton("Back", Assets.skin);
 		usernameLabel = new Label("Username", Assets.skin);
 		passwordLabel = new Label("Password", Assets.skin);
@@ -46,30 +46,38 @@ public class LoginScreen implements Screen {
 		passwordArea = new TextArea("", Assets.skin);
 		passwordArea.setPasswordMode(true);
 		// TODO disallow newline in passwordArea
+		messageLabel = new Label("", Assets.skin);
+		newUserButton = new TextButton("New User?", Assets.skin);
 
 	}
 
 	private void configureWidgets() {
 		backgroundImage.setSize(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
 		loginButton.setSize(128, 64);
-		loginButton.setPosition(Core.VIRTUAL_WIDTH / 2 - loginButton.getWidth() / 2 - 250,
+		loginButton.setPosition(Core.VIRTUAL_WIDTH / 2 - loginButton.getWidth() - 10,
 				Core.VIRTUAL_HEIGHT / 2 - 200);
-		playButton.setSize(256, 64);
-		playButton.setPosition(Core.VIRTUAL_WIDTH / 2 - playButton.getWidth() / 2, Core.VIRTUAL_HEIGHT / 2 - 200);
+		playButton.setSize(128, 64);
+		playButton.setPosition(Core.VIRTUAL_WIDTH / 2 + 10, Core.VIRTUAL_HEIGHT / 2 - 200);
 		backButton.setSize(128, 64);
-		backButton.setPosition(Core.VIRTUAL_WIDTH / 2 - backButton.getWidth() / 2 + 250, Core.VIRTUAL_HEIGHT / 2 - 200);
+		backButton.setPosition(Core.VIRTUAL_WIDTH / 2 + backButton.getWidth() + 20, Core.VIRTUAL_HEIGHT / 2 - 200);
 		usernameLabel.setSize(128, 32);
 		usernameLabel.setPosition(Core.VIRTUAL_WIDTH / 2 - usernameLabel.getWidth() / 2 - 14,
-				Core.VIRTUAL_HEIGHT / 2 + 150);
+				Core.VIRTUAL_HEIGHT / 2 + 75);
 		usernameArea.setSize(150, 28);
 		usernameArea.setPosition(Core.VIRTUAL_WIDTH / 2 - usernameArea.getWidth() / 2,
-				Core.VIRTUAL_HEIGHT / 2 + 150 - 20);
+				Core.VIRTUAL_HEIGHT / 2 + 75 - 20);
 		passwordLabel.setSize(128, 32);
 		passwordLabel.setPosition(Core.VIRTUAL_WIDTH / 2 - passwordLabel.getWidth() / 2 - 14,
-				Core.VIRTUAL_HEIGHT / 2 + 75);
+				Core.VIRTUAL_HEIGHT / 2 );
 		passwordArea.setSize(150, 28);
 		passwordArea.setPosition(Core.VIRTUAL_WIDTH / 2 - passwordArea.getWidth() / 2,
-				Core.VIRTUAL_HEIGHT / 2 + 75 - 20);
+				Core.VIRTUAL_HEIGHT / 2 - 20);
+		messageLabel.setSize(128, 32);
+        messageLabel.setPosition(Core.VIRTUAL_WIDTH / 2 - messageLabel.getWidth() / 2 - 14,
+                Core.VIRTUAL_HEIGHT / 2 + 130);
+        newUserButton.setSize(128, 64);
+        newUserButton.setPosition(Core.VIRTUAL_WIDTH / 2 - newUserButton.getWidth()*2 - 20,
+                Core.VIRTUAL_HEIGHT / 2 - 200);
 
 		stage.addActor(backgroundImage);
 		stage.addActor(loginButton);
@@ -79,6 +87,8 @@ public class LoginScreen implements Screen {
 		stage.addActor(usernameArea);
 		stage.addActor(passwordLabel);
 		stage.addActor(passwordArea);
+		stage.addActor(messageLabel);
+		stage.addActor(newUserButton);
 	}
 
 	private void setListeners() {
@@ -100,6 +110,13 @@ public class LoginScreen implements Screen {
 				login();
 			}
 		});
+        newUserButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new NewUserScreen(game));
+            }
+        });
+
 	}
 
 	private void login() {
@@ -116,8 +133,11 @@ public class LoginScreen implements Screen {
 
 				game.setScreen(new GameScreen(game));
 			}
-
+			else
+                messageLabel.setText("Invalid username or password!\n If you haven't already create a new account.\n");
 		}
+		else
+		    messageLabel.setText("Please enter a username \nand password.");
 	}
 
 	@Override
