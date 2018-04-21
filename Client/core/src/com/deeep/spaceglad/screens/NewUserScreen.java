@@ -3,7 +3,6 @@ package com.deeep.spaceglad.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -16,9 +15,6 @@ import com.deeep.spaceglad.Assets;
 import com.deeep.spaceglad.Client;
 import com.deeep.spaceglad.Core;
 
-import java.io.BufferedReader;
-import java.security.acl.LastOwnerException;
-
 public class NewUserScreen implements Screen{
     private Core game;
     private Stage stage;
@@ -30,12 +26,12 @@ public class NewUserScreen implements Screen{
     public NewUserScreen(Core game) {
         this.game = game;
         stage = new Stage(new FitViewport(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT));
+        this.game.client = new Client("system", "unicron");
         setWidgets();
         configureWidgets();
         setListeners();
 
         Gdx.input.setInputProcessor(stage);
-
     }
 
     private void setWidgets() {
@@ -108,8 +104,6 @@ public class NewUserScreen implements Screen{
                 Core.VIRTUAL_HEIGHT / 2 - 75 - 20);
 
 
-
-
         stage.addActor(backgroundImage);
         stage.addActor(backButton);
         stage.addActor(usernameLabel);
@@ -133,6 +127,8 @@ public class NewUserScreen implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new LoginScreen(game));
+                if(game.client.isRunning())
+                    game.client.sendMessage("\\logout\n");
             }
         });
         createButton.addListener(new ClickListener() {
@@ -148,36 +144,27 @@ public class NewUserScreen implements Screen{
                 emailArea.getText().length() != 0 && firstNameArea.getText().length() != 0 &&
                 lastNameArea.getText().length() != 0 && affiliationArea.getText().length() != 0) {
 
-            Client client = new Client("system", "unicron");
-
-            if (client.isRunning()) {
-
-                if (Core.client != null) {
-                    Core.client.close();
-                }
-                Core.client = client;
-                client.sendMessage("\\newuser " + usernameArea.getText() + " " +
+            if (game.client.isRunning()) {
+                game.client.sendMessage("\\newuser " + usernameArea.getText() + " " +
                         passwordArea.getText() + " " + firstNameArea.getText() + " " +
-                        lastNameArea.getText() + " " + emailArea.getText() +  " " +
+                        lastNameArea.getText() + " " + emailArea.getText() + " " +
                         affiliationArea.getText() + "\n");
-               while (client.isRunning()) {
-                    String msg = client.recvMessage();
-                    if(msg.equals("")) {}
-                    else if (msg.equals("\\success new user creation succeeded\n")) {
-                        messageLabel.setText("New account created!");
-                        break;
-                    }
-                    else if (msg.equals("\\failure new user creation failed\n")) {
-                        messageLabel.setText("Account creation failed!");
-                        break;
+                while (game.client.isRunning()) {
+                    if (game.client.getQueue().size() > 0) {
+                        String msg = game.client.getQueue().get(0);
+                        if (msg.equals("")) {
+                        } else if (msg.equals("\\success new user creation succeeded\n")) {
+                            messageLabel.setText("New account created!");
+                            break;
+                        } else if (msg.equals("\\failure new user creation failed\n")) {
+                            messageLabel.setText("Account creation failed!");
+                            break;
+                        }
+                        game.client.getQueue().remove(0);
                     }
                 }
-
-
-
             }
-        }
-        else
+        } else
             messageLabel.setText("Please make sure all\nfields are not empty.");
     }
 

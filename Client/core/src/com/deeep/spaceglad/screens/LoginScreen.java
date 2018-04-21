@@ -19,8 +19,8 @@ public class LoginScreen implements Screen {
 	private Core game;
 	private Stage stage;
 	private Image backgroundImage;
-	private TextButton loginButton, playButton, backButton;
-	private Label usernameLabel, passwordLabel;
+	private TextButton loginButton, playButton, backButton, newUserButton;
+	private Label usernameLabel, passwordLabel, messageLabel;
 	private TextArea usernameArea, passwordArea;
 
 	public LoginScreen(Core game) {

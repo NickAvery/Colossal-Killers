@@ -166,7 +166,7 @@ public class Client implements Runnable {
 			String msg = recvMessage();
 			if (!msg.equals("")) {
 				queue.add(msg);
-				//System.out.println(msg);
+				System.out.println(msg);
 			}
 		}
 	}
