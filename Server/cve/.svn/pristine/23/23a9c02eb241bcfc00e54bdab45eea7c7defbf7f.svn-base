@@ -1,0 +1,395 @@
+#
+# Chair.icn
+#
+# In class declaration I am taking the variables from T1 to T4
+# (including the variables in between them) as reference to
+# the operations performed on different parts of the chair.
+# I am going to use these variables in rotation,moving functions.
+
+class Chair : Obstacle(
+   x, y, z,		# x,y,z coordinates of chair position
+   color,		# color of the chair
+   position_cube,	# position of the cube
+   type,
+   dle1,
+   dle2,
+   dle3,
+   movable,		# Tells whether the chair is movable or not
+   minx,maxx,miny,maxz,minz,maxy,collide,   #variables which restricts the
+                                            # movement through the chair
+   name,
+   # these variables are used for accessing the various graphical operations
+   # of the render method in remaining methods.
+   T1,T2,R1,R2,Tleg1,Tleg2,Tleg3,Tleg4,Tdisk,Tstand,Trod,Tbottom,Tscube,
+   Ts1,Ts2,Ts3,Ts4,T3,T4
+   )
+
+   method  render(render_level)
+#      local i,flag,k,l,xtrans,ztrans, win3d
+
+      if \dle3 then {
+         case render_level of {
+         0: {
+            dle1.skip := 1
+            fail
+            }
+         1: {
+            dle1.skip := 0
+            dle2.skip := 1
+            fail
+            }
+         2: {
+            dle1.skip := dle2.skip := 0
+            dle3.skip := 1
+            fail
+	    }
+         3: {
+            dle1.skip := dle2.skip := dle3.skip := 0
+            fail
+	    }
+	    }
+	 }
+      else full_detail_draw()
+   end
+    
+   method full_detail_draw()
+      local i,flag,k,l,xtrans,ztrans, win3d
+
+      WAttrib("dim=3", "texmode=off")
+  
+      win3d := !gui::dispatcher.subwins
+      
+      dle1 := WSection(win3d, "Chain")
+        PushMatrix()
+          Translate(0,0.65,0)
+          # Upper Cube
+          PushMatrix()
+            Draw_Parts("cube",position_cube)                
+            Rotate(-10,1,0,0)
+            Scale(3.5,2.25,1)
+            Fg("diffuse"||" " || color )
+            DrawCube(0,0,0,0.16)
+          PopMatrix()
+      
+          # Disk
+          PushMatrix()
+            Tdisk := Translate(x,y,z)
+            Rotate(90,1.0,0,0)
+            DrawDisk(0,0,0,0,0.32)
+          PopMatrix()
+
+          #Cylinder rod  below stand
+          PushMatrix()
+            Trod := Translate(0,-0.56,0)
+            DrawCylinder(x,y,z,0.48,0.055,0.055)
+          PopMatrix()
+
+    dle2 := WSection(win3d, "Chair2")
+      # Cube at the bottom of stand (It connects all the legs)
+      PushMatrix()
+        Tscube := Translate(x,y+(y/2)+0.12,z)
+        Scale(2.8,1.75,1)
+        Fg("diffuse black")
+        DrawCube(0,0,0,0.05)
+      PopMatrix()
+
+      #Connector to Disk and back Cube
+      PushMatrix()
+        Draw_Parts("connector",position_cube)   
+        Rotate(-10,1,0,0)
+        Scale(2.5,6.5,1.75)
+        DrawCube(0,0,0,0.05)
+      PopMatrix()
+
+      # Cylinder at the bottom of stand
+      PushMatrix()
+        Translate(0,-0.56,0)
+        Tbottom := DrawCylinder(x,y,z,0.1,0.065,0.065)
+      PopMatrix()
+      # dle2
+#    WSection(win3d)
+
+    dle3 := WSection(win3d, "Chair3")
+      # the legs  below to the chair.
+      flag := 0
+      i := 1
+      while i <= 2 do {
+       PushMatrix()
+         if flag == 0 then {
+          Tleg1:= Translate(x,y+0.09,z-0.155)
+          Rotate(80, 0.5,0,0)
+         }
+         else {
+          Tleg2 := Translate(x,y+0.09,z+0.155)
+          Rotate(-80,0.5,0,0)
+         }
+         Rotate(90,0,0.65,0)
+         Scale(1,4.25,0.7)
+         Fg("diffuse black")
+         DrawCube(0,0,0,0.05)
+         flag := 1
+         i +:= 1
+       PopMatrix()
+      }
+      flag := 0
+      i := 1
+      while i <= 2 do {
+       PushMatrix()
+         if flag == 0 then {
+          Tleg3 := Translate(x+0.155,y+0.09,z)
+          Rotate(-10,0,0,0.06)
+         }
+         else {
+          Tleg4 := Translate(x-0.155,y+0.09,z)
+          Rotate(10,0,0,0.06)
+         }
+         Scale(4.25,1,0.7)
+         DrawCube(0,0,0,0.05)
+        PopMatrix()
+        i +:= 1
+        flag := 1
+      }
+
+      # Cylinder above Stand and below disk
+      PushMatrix()
+        Tstand := Translate(0,-0.1,0)
+        DrawCylinder(x,y,z,0.1,0.32,0.32)
+      PopMatrix()
+      Fg("diffuse black")
+
+      # Spheres             
+      Drawsphere(-0.275,0,0,1)  
+      Drawsphere(0.275,0,0,2)  
+      Drawsphere(0,0,-0.275,3)  
+      Drawsphere(0,0,0.275,4)                  
+      WAttrib("texmode=on")
+      #dle3
+      WSection(win3d)
+
+      #dle2
+      WSection(win3d)
+
+      PopMatrix()
+      # dle1
+      WSection(win3d)
+   end   
+
+
+   method  Draw_Parts(component,angle)
+   local ang_rad,x_trans,z_trans
+      if component == "cube" then {
+        ang_rad := dtor(angle)
+        x_trans := (-0.32) * sin(ang_rad)
+        z_trans  := (-0.32) * cos(ang_rad)
+        T2 := Translate(x_trans,0,z_trans)
+        T4 := Translate(x+0,y+0.48,z)
+        R2 := Rotate(angle,0.0,1.2,0.0)
+	 }
+    else
+    if component == "connector" then {
+        ang_rad := dtor(angle)
+        x_trans :=  (-0.32) * sin(ang_rad)
+        z_trans :=  (-0.32) * cos(ang_rad)
+        T1 := Translate(x_trans,0,z_trans)
+        T3 := Translate(x,y+0.15,z)
+        R1 := Rotate(angle,0.0,1.2,0.0)
+	 }
+    end
+
+   method Drawsphere(x1,y1,z1,s)  
+   PushMatrix()
+      case s of {   
+      1: { Ts1 := Translate(x1,y1,z1) }
+      2: { Ts2 := Translate(x1,y1,z1) }
+      3: { Ts3:= Translate(x1,y1,z1) }
+      4: { Ts4:= Translate(x1,y1,z1) } 
+      }
+     DrawSphere(x,y+0.04,z,0.035)
+   PopMatrix()
+   end
+
+   method  draw_support(anglez,angles)
+   local xtrans,ztrans,ang_rad
+
+   ang_rad := dtor(position_cube + angles)
+   xtrans := 0.28 * sin(ang_rad)
+   ztrans := 0.28 * cos(ang_rad)
+   PushMatrix()
+      Translate(xtrans,0,ztrans)
+      Rotate(position_cube,0,1,0)
+      Rotate(anglez,0,0,1)
+      DrawCylinder(0,0,0,0.32,0.02,0.015)
+   PopMatrix()
+   end
+
+   method  draw_leg(anglex,anglel)
+   local xtrans,ztrans,rads
+
+      rads := dtor(position_cube + anglel)
+      xtrans := 0.25 * sin(rads)
+      ztrans := 0.25 * cos(rads)
+      PushMatrix()
+	 Translate(xtrans,-0.52,ztrans)
+	 Rotate(position_cube,0,1,0)
+	 Rotate(anglex,1,0,0)
+	 DrawCylinder(0,0,0,0.55,0.02,0.02)
+      PopMatrix()
+   end
+
+   # Here I am taking the parametric equation of a line in 3D.
+   # By using which I am tracking the all points lies between the
+   # given point and the point of location of the chair.
+   method   move_chair(x_dest,y_dest,z_dest)
+   local distance, i := 0, j := 1, flag := 0, incr
+
+      if movable == "true" then {
+	 distance := sqrt( ((x-x_dest)*(x-x_dest))+
+			  ((y-y_dest)*(y-y_dest)) + ((z-z_dest)*(z-z_dest))  )
+	 incr := 0
+
+	 # repeating until 'incr'(parameter in line equation)
+	 # becomes equal to 1.
+
+	 while incr <= 1 do {
+	    while j <= 2 do {
+	       if flag == 0 then {
+		  # parametric equation x := x1 + t (x2-x1)
+		  Tleg1.x +:=  incr * (x_dest-x)
+		  # parametric equation z:= z1 + t (z2-z1)
+		  Tleg1.z +:=  incr * (z_dest-z)
+	          }
+	       else {
+		  Tleg2.x +:= incr * (x_dest-x)
+		  Tleg2.z +:= incr * (z_dest-z)
+	          }
+	       flag := 1
+	       j +:= 1
+               }
+
+	    flag := 0
+	    j := 1
+            while j <= 2 do {
+	       if flag == 0 then {
+		  Tleg3.x +:= incr * (x_dest-x)
+		  Tleg3.z +:= incr * (z_dest-z)
+	          }
+	       else {
+		  Tleg4.x +:= incr * (x_dest-x)
+		  Tleg4.z +:= incr * (z_dest-z)
+	          }
+	       j +:= 1
+	       flag := 1
+               }
+            j := 1
+            flag := 0
+
+            T3.x +:= incr * (x_dest-x)
+            T3.z +:= incr * (z_dest-z)
+
+            T4.x +:= incr * (x_dest-x)
+            T4.z +:= incr * (z_dest-z)
+
+            Tdisk.x +:= incr * (x_dest-x)
+            Tdisk.z +:= incr * (z_dest-z)
+
+            Tstand.x +:= incr * (x_dest-x)
+            Tstand.z +:= incr * (z_dest-z)
+
+            Trod.x +:= incr * (x_dest-x)
+            Trod.z +:= incr * (z_dest-z)
+
+            Tbottom.x +:= incr * (x_dest-x)
+            Tbottom.z +:= incr * (z_dest-z)
+
+            Tscube.x +:= incr * (x_dest-x)
+            Tscube.z +:= incr * (z_dest-z)
+
+            Ts1.x +:= incr * (x_dest-x)
+            Ts1.z +:= incr * (z_dest-z)
+
+            Ts2.x +:= incr * (x_dest-x)
+            Ts2.z +:= incr * (z_dest-z)
+
+            Ts3.x +:= incr * (x_dest-x)
+            Ts3.z +:= incr * (z_dest-z)
+
+            Ts4.x +:= incr * (x_dest-x)
+            Ts4.z +:= incr * (z_dest-z)
+
+            if distance < 1 then
+               incr +:= (1/(6*distance))
+            else
+               incr +:=  (1/(5*distance))
+
+            delay(250)
+            Refresh()
+            }
+	 }
+      else {
+	 write("the chair cannot move")
+      }
+   end
+
+   method Rotate_Chair(dir)
+   local theta := position_cube, x_trans, z_trans, ang_rad, i := 0
+      if \dir then {
+	 every i:= 1 to 35 do {
+	    Refresh()
+            if dir == "positive" then
+                theta +:= 20
+            else if dir == "negative" then
+                theta -:= 20
+            ang_rad := dtor(theta)
+            x_trans :=   (-0.16) * sin(ang_rad)
+            z_trans :=   (-0.16) * cos(ang_rad)
+
+            T1.x := x_trans
+            T1.z := z_trans
+            R1.angle := theta
+
+            T2.x := x_trans
+            T2.z := z_trans
+            R2.angle := theta
+
+            delay(50)
+            Refresh()
+	    }
+	 }
+   end
+
+   method disallows(x,z)  ## Box
+      #calc_boundbox_chair()
+      if minx-collide <= x <= maxx+collide &
+	 minz-collide <= z <= maxz+collide then {
+         return
+         }
+      fail
+   end
+
+
+initially(coords,pos,col,kind,mov)
+    x := coords[1]
+    y := coords[2]
+    z := coords[3]
+
+    movable := mov
+    position_cube := pos
+    color := col
+    type := kind
+    # default values
+    /x := 0
+    /y := 0
+    /z := 0
+    /movable := "true"
+    /position_cube := "-z"
+    /color :=  "blue"
+    /type := "office"
+      /minx := x - 0.7
+      /miny := y
+      /minz := z - 0.7
+      /maxx := x + 0.7
+      /maxy := y
+      /maxz := z + 0.7
+      /collide := 0.1
+      /name := "Chair"
+end

@@ -1,0 +1,57 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>newFile quest</title>
+
+</head><body><dl>
+<dt> Name
+</dt><dd> newfile
+</dd><dt> Summary
+</dt><dd> Learn how to create a new file/program.
+<dt> Requires
+<dd> .....
+</dd><dt> Steps
+</dt><dd>
+<ol>
+Follow the following steps to create a new file:
+<li>First, click on the "File" menu.
+<li>Second, choose "New File" menu item.
+<li>A new dialog box will appear.
+<li>Then, enter the path where you want to save your program in the directory field.
+<li>Also, enter a name for your new program in the File field.
+<li>Finally click OK to create the new file.
+A blank text area will open for you to enter your program.
+</ol>
+</dd>
+</dd><dt> Rewards
+</dt><dd> IDE:2, Java:1 
+</dd><dt> Reading
+</dt>
+<ol>
+<li>Create a new file
+<li>Type this simple program into your text editor
+
+<table>
+<TR><TD><pre>
+public class HelloWorld {
+   public static void main(String[] args) {
+      System.out.println("Hello, World");
+   }
+}
+</pre></td></tr>
+</table>
+<li>Save it as HelloWorld.java.
+</ol>
+<dt> Chat Session
+</dt><dd>
+<dl>
+<dt> newfile:
+<dd>
+<pre>
+HelloWorld.java saved.
+</pre>
+</dd>
+</dl>
+
+</dt>
+</dl>
+</dd></dl>
+</body></html>

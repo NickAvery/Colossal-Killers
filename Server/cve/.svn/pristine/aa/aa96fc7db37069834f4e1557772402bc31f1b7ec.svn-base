@@ -1,0 +1,37 @@
+README file for CVE
+
+The CVE Project on Source Forge is free and open source, licensed under
+the GNU public license (GPL).  This readme was last edited 10/15/2011.
+
+* What it is:
+
+CVE is a collaborative virtual environment for education, especially
+computer science. It is a combination of a Multiuser Online 3D world
+and a collaborative integrated development environment.
+
+* Requirements:
+
+ - ANSI C compiler and "make" tool.
+   -- Unix: cc or gcc. Windows: MinGW gcc
+ - Unicon, from unicon.org
+ - OpenGL libraries, headers, and drivers
+
+* How to compile:
+
+- Windows: You can get the binaries from sourceforge:
+  
+  http://sourceforge.net/projects/cve/files/
+
+- You can grab the source from sourceforge:
+
+  svn checkout https://cve.svn.sourceforge.net/svnroot/cve/trunk/cve
+
+  Given a working installation of C and unicon on your path,
+  CVE builds from its sources by saying: make.  That builds both a
+  client and a server, but you probably mainly want the client, it
+  lives in the cve/bin directory and is named "cve".
+
+* Questions ?
+
+  Questions and Comments can be posted to the cve-group mailing list,
+  cve-group@lists.sf.net.

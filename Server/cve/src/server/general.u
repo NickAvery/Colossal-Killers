@@ -1,0 +1,100 @@
+version	U12.1.00
+uid	general.u1-1523917589-0
+impl	error
+global	2
+	0,000005,open_db,2
+	1,000005,close_db,1
+
+proc open_db
+	local	0,001000,name
+	local	1,001000,mode
+	local	2,000020,f
+	local	3,000000,open
+	local	4,000000,write
+	local	5,000000,image
+	con	0,010000,19,072,040,144,142,040,144,157,145,163,040,156,157,164,040,145,170,151,163,164
+	declend
+	filen	general.icn
+	line	12
+	colm	11
+	synt	any
+	mark	L1
+	line	14
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	3
+	var	0
+	var	1
+	line	14
+	colm	16
+	synt	any
+	invoke	2
+	line	14
+	colm	9
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	2
+	line	14
+	colm	34
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	14
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	var	4
+	line	15
+	colm	10
+	synt	any
+	keywd	errout
+	var	5
+	var	0
+	line	15
+	colm	24
+	synt	any
+	invoke	1
+	str	0
+	line	15
+	colm	9
+	synt	any
+	invoke	3
+	unmark
+lab L3
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc close_db
+	local	0,001000,fd
+	local	1,000000,close
+	declend
+	line	21
+	colm	12
+	synt	any
+	mark	L1
+	var	1
+	var	0
+	line	22
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	pnull
+	line	23
+	colm	1
+	synt	any
+	pfail
+	end

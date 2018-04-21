@@ -1,0 +1,10917 @@
+version	U12.1.00
+uid	jproject.u1-1523917887-0
+record	JProject__state,142
+	0,__s
+	1,__m
+	2,JProjectTabSet
+	3,comp_tab
+	4,debug_tab
+	5,files_tab
+	6,interp_tab
+	7,main_tab
+	8,panel_2
+	9,ObjDir
+	10,srcDir
+	11,appletHTML
+	12,classpath
+	13,mainFile
+	14,addToCompList_btn
+	15,addToInterpList_btn
+	16,compOptsPool
+	17,compilerName
+	18,debugName
+	19,interpName
+	20,interpOptsPool
+	21,usedcompOptsPool
+	22,usedinterpOptsPool
+	23,addcompiler_btn
+	24,addinterpreter_btn
+	25,delcompiler_btn
+	26,delinterpreter_btn
+	27,editcompiler_btn
+	28,editinterpreter_btn
+	29,label_10
+	30,label_11
+	31,label_12
+	32,label_9
+	33,text_button_12
+	34,text_field_7
+	35,text_list_4
+	36,text_list_5
+	37,label_4
+	38,label_5
+	39,label_6
+	40,label_7
+	41,label_8
+	42,text_button_10
+	43,text_button_11
+	44,text_button_8
+	45,text_button_9
+	46,text_list_1
+	47,text_list_3
+	48,cancel_btn
+	49,ok_btn
+	50,Compiler
+	51,Debugger
+	52,Files
+	53,Interpreter
+	54,JProjTabSet
+	55,Main
+	56,compiler_btn
+	57,debugger_btn
+	58,files_btn
+	59,interpreter_btn
+	60,label_1
+	61,label_2
+	62,label_3
+	63,main_btn
+	64,text_button_6
+	65,projectname
+	66,projecttype
+	67,interpOpts
+	68,compOptsPoolList
+	69,interpOptsPoolList
+	70,win
+	71,is_open
+	72,owning_dialog
+	73,child_dialogs
+	74,focus
+	75,unique_flag
+	76,re_process_flag
+	77,buffer_win
+	78,min_width
+	79,min_height
+	80,click_count
+	81,double_click_delay
+	82,repeat_delay
+	83,repeat_rate
+	84,prev_x
+	85,prev_y
+	86,prev_time
+	87,prev_event
+	88,is_blocked_flag
+	89,resize_attrib
+	90,drag_gesture_x
+	91,drag_gesture_y
+	92,curr_drag
+	93,tried_drag
+	94,pointer_component
+	95,pointer_stack
+	96,invokes
+	97,all_valid
+	98,tooltip_ticker
+	99,tooltip_last_obj
+	100,tooltip_state
+	101,tooltip_start_time
+	102,tooltip_end_time
+	103,tooltip_start_delay
+	104,tooltip_end_delay
+	105,tooltip_continue_time
+	106,tooltip_continue_delay
+	107,tooltip_win
+	108,tooltip_x
+	109,tooltip_y
+	110,tooltip_w
+	111,tooltip_h
+	112,x_spec
+	113,y_spec
+	114,w_spec
+	115,h_spec
+	116,x_align
+	117,y_align
+	118,x
+	119,y
+	120,w
+	121,h
+	122,parent_dialog
+	123,attribs
+	124,has_focus
+	125,is_shaded_flag
+	126,cwin
+	127,cbwin
+	128,accepts_focus_flag
+	129,draw_border_flag
+	130,tooltip
+	131,parent
+	132,children
+	133,valid
+	134,accel
+	135,allow_drag_flag
+	136,allow_drop_flag
+	137,pointer
+	138,ticker
+	139,transparent
+	140,auto_refresh
+	141,listeners
+record	JProject__methods,189
+	0,component_setup
+	1,end_dialog
+	2,init_dialog
+	3,on_cancel_btn
+	4,on_ok_btn
+	5,saveJProject
+	6,CompileJava
+	7,RunJava
+	8,on_addToCompList
+	9,on_addToInterpList
+	10,setup
+	11,initially
+	12,invoke_validate
+	13,needs_validate
+	14,is_shaded
+	15,is_unshaded
+	16,is_hidden
+	17,is_unhidden
+	18,block
+	19,unblock
+	20,raise
+	21,get_click_count
+	22,compute_absolutes
+	23,change_pointer
+	24,restore_pointer
+	25,show_child
+	26,show_modeless
+	27,show_modal
+	28,get_win
+	29,resize_win
+	30,init
+	31,open_win
+	32,close_win
+	33,set_min_size
+	34,get_buffer_win
+	35,set_unique
+	36,clear_unique
+	37,set_focus
+	38,clear_focus
+	39,display
+	40,show
+	41,bevel_dispose
+	42,dispose
+	43,consume_same
+	44,process_event
+	45,process_normal
+	46,tooltip_init
+	47,tooltip_dispose
+	48,set_tooltip_start_delay
+	49,set_tooltip_end_delay
+	50,set_tooltip_continue_delay
+	51,show_tooltip
+	52,hide_tooltip
+	53,process_tooltip
+	54,find_tooltip
+	55,synch_pointer
+	56,find_pointer_component
+	57,process_dnd
+	58,process_unique
+	59,check_dnd
+	60,handle_resize
+	61,check_click_count
+	62,get_focus_list
+	63,find_next_focus
+	64,find_previous_focus
+	65,set_double_click_delay
+	66,set_repeat_delay
+	67,set_repeat_rate
+	68,invoke_later
+	69,do_invoke
+	70,set_one
+	71,set_tooltip
+	72,get_tooltip
+	73,set_pointer
+	74,get_pointer
+	75,get_x_reference
+	76,get_y_reference
+	77,get_w_reference
+	78,get_h_reference
+	79,get_cwin_reference
+	80,get_cbwin_reference
+	81,get_parent_dialog_reference
+	82,fatal
+	83,keeps
+	84,do_shading
+	85,accepts_focus
+	86,unique_start
+	87,unique_end
+	88,handle_accel
+	89,handle_event
+	90,do_handle_event
+	91,fire_icon_events_on_mouse
+	92,toggle_is_shaded
+	93,set_auto_refresh
+	94,clear_auto_refresh
+	95,set_transparent
+	96,clear_transparent
+	97,set_is_shaded
+	98,clear_is_shaded
+	99,toggle_draw_border
+	100,set_draw_border
+	101,clear_draw_border
+	102,set_accepts_focus
+	103,clear_accepts_focus
+	104,attrib
+	105,set_attribs
+	106,set_attribs_list
+	107,in_region
+	108,got_focus
+	109,get_parent_win
+	110,get_parent_buffer_win
+	111,lost_focus
+	112,set_pos
+	113,set_size
+	114,set_align
+	115,set_abs_coords
+	116,set_abs_size
+	117,set_accel
+	118,get_accel
+	119,get_parent
+	120,set_parent
+	121,get_parent_dialog
+	122,set_parent_dialog
+	123,firstly
+	124,finally
+	125,parse_pos
+	126,resize
+	127,generate_components
+	128,find_focus
+	129,find_accel
+	130,invalidate
+	131,all_components_valid
+	132,validate
+	133,child_validated
+	134,add
+	135,remove
+	136,is_dialog_open
+	137,get_children
+	138,create_event_and_fire
+	139,set_ticker
+	140,stop_ticker
+	141,retime_ticker
+	142,is_ticking
+	143,tick
+	144,invoke_can_drag
+	145,invoke_drag_event
+	146,invoke_can_drop
+	147,invoke_end_drag
+	148,invoke_drag_reset
+	149,can_drag
+	150,drag_event
+	151,can_drop
+	152,end_drag
+	153,drag_reset
+	154,set_allow_drag
+	155,clear_allow_drag
+	156,set_allow_drop
+	157,clear_allow_drop
+	158,is_attrib
+	159,clone
+	160,to_string
+	161,equals
+	162,hash_code
+	163,get_class_name
+	164,get_id
+	165,get_class
+	166,is_instance
+	167,test_flag
+	168,as_attrib
+	169,int_val
+	170,int_vals
+	171,numeric_val
+	172,numeric_vals
+	173,cset_val
+	174,string_val
+	175,string_vals
+	176,set_fields
+	177,field_error
+	178,genlisteners
+	179,fire
+	180,connect
+	181,disconnect_fromlist
+	182,disconnect_all
+	183,disconnect
+	184,gui__Dialog
+	185,gui__Component
+	186,lang__Object
+	187,util__SetFields
+	188,util__Connectable
+impl	error
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/setfields.u
+link	c:/unicon/uni/lib/connectable.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	32
+	0,000001,mFile,0
+	1,000001,obj_dir,0
+	2,000001,src_dir,0
+	3,000001,comp_name,0
+	4,000001,cpath,0
+	5,000001,compOpts,0
+	6,000001,needConsole,0
+	7,000001,interp_name,0
+	8,000001,applet_html,0
+	9,000001,class_path,0
+	10,000005,JProject_component_setup,1
+	11,000005,JProject_end_dialog,1
+	12,000005,JProject_init_dialog,1
+	13,000005,JProject_on_cancel_btn,2
+	14,000005,JProject_on_ok_btn,2
+	15,000005,JProject_saveJProject,2
+	16,000005,JProject_CompileJava,1
+	17,000005,JProject_RunJava,2
+	18,000005,JProject_on_addToCompList,2
+	19,000005,JProject_on_addToInterpList,2
+	20,000005,JProject_setup,1
+	21,000005,JProject_initially,3
+	22,000011,JProject__state,142
+	23,000011,JProject__methods,189
+	24,000001,JProject__oprec,0
+	25,000001,gui__Dialog__oprec,0
+	26,000001,gui__Component__oprec,0
+	27,000001,lang__Object__oprec,0
+	28,000001,util__SetFields__oprec,0
+	29,000001,util__Connectable__oprec,0
+	30,000005,JProject,2
+	31,000005,JProjectinitialize,0
+
+proc JProject_component_setup
+	local	0,001000,self
+	declend
+	filen	jproject.icn
+	line	28
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	29
+	colm	11
+	synt	any
+	field	setup
+	line	29
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	30
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_end_dialog
+	local	0,001000,self
+	declend
+	line	32
+	colm	11
+	synt	any
+	line	34
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_init_dialog
+	local	0,001000,self
+	local	1,000020,pname
+	local	2,000020,pext
+	local	3,000000,find
+	local	4,000000,tab
+	local	5,000000,move
+	local	6,000000,gui__file_name
+	local	7,000000,needConsole
+	local	8,000000,compOpts
+	con	0,010000,5,152,141,166,141,143
+	con	1,010000,4,152,141,166,141
+	con	2,010000,3,152,144,142
+	con	3,010000,5,056,165,160,162,152
+	con	4,010000,4,056,151,143,156
+	con	5,010000,5,056,152,141,166,141
+	con	6,010000,1,056
+	con	7,002000,1,1
+	con	8,002000,1,0
+	con	9,010000,6,074,156,157,156,145,076
+	con	10,010000,24,055,147,040,050,106,165,154,154,040,104,145,142,165,147,147,151,156,147,040,111,156,146,157,051
+	con	11,010000,27,055,147,072,156,157,156,145,040,050,116,157,040,104,145,142,165,147,147,151,156,147,040,111,156,146,157,051
+	con	12,010000,27,055,117,040,050,117,160,164,151,155,151,172,145,040,143,157,155,160,151,154,145,144,040,143,157,144,145,051
+	con	13,010000,21,055,156,157,167,141,162,156,040,050,116,157,040,167,141,162,156,151,156,147,163,051
+	con	14,010000,24,055,166,145,162,142,157,163,145,040,050,155,157,162,145,040,155,145,163,163,141,147,145,163,051
+	con	15,010000,29,055,144,145,160,162,145,143,141,164,151,157,156,040,050,104,145,160,162,145,143,141,164,145,144,040,101,120,111,051
+	con	16,010000,22,055,166,145,162,142,157,163,145,040,050,155,157,162,145,040,157,165,164,160,165,164,051
+	con	17,010000,6,141,160,160,154,145,164
+	con	18,010000,5,056,150,164,155,154
+	con	19,010000,12,141,160,160,154,145,164,166,151,145,167,145,162
+	con	20,010000,19,141,160,160,154,145,164,166,151,145,167,145,162,040,055,144,145,142,165,147
+	con	21,010000,6,167,151,156,101,160,160
+	con	22,010000,5,152,141,166,141,167
+	con	23,010000,10,143,157,156,163,157,154,145,101,160,160
+	con	24,010000,4,124,122,125,105
+	declend
+	line	35
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	38
+	colm	11
+	synt	any
+	field	compilerName
+	line	38
+	colm	24
+	synt	any
+	field	set_contents
+	str	0
+	line	38
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	39
+	colm	11
+	synt	any
+	field	interpName
+	line	39
+	colm	22
+	synt	any
+	field	set_contents
+	str	1
+	line	39
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	11
+	synt	any
+	field	debugName
+	line	40
+	colm	21
+	synt	any
+	field	set_contents
+	str	2
+	line	40
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	line	42
+	colm	7
+	synt	if
+	mark0
+	var	3
+	mark	L5
+	str	3
+	line	42
+	colm	22
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	mark	L7
+	str	4
+	line	42
+	colm	29
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	str	5
+lab L8
+lab L6
+	pnull
+	var	0
+	line	42
+	colm	43
+	synt	any
+	field	projectname
+	line	42
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	mark	L9
+	pnull
+	var	0
+	line	43
+	colm	14
+	synt	any
+	field	projectname
+	line	43
+	colm	26
+	synt	any
+	bscan
+	mark	L10
+	pnull
+	var	1
+	var	4
+	var	3
+	str	6
+	line	44
+	colm	30
+	synt	any
+	invoke	1
+	line	44
+	colm	25
+	synt	any
+	invoke	1
+	line	44
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	var	5
+	int	7
+	line	45
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	pnull
+	var	2
+	var	4
+	int	8
+	line	46
+	colm	24
+	synt	any
+	invoke	1
+	line	46
+	colm	18
+	synt	any
+	asgn
+	line	43
+	colm	26
+	synt	any
+	escan
+	unmark
+lab L9
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	14
+	synt	any
+	field	projectname
+	var	1
+	line	48
+	colm	26
+	synt	any
+	asgn
+	line	42
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	11
+	synt	any
+	field	mainFile
+	line	51
+	colm	20
+	synt	any
+	field	set_contents
+	var	6
+	pnull
+	var	0
+	line	51
+	colm	53
+	synt	any
+	field	projectname
+	line	51
+	colm	48
+	synt	any
+	invoke	1
+	line	51
+	colm	33
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	52
+	colm	11
+	synt	any
+	field	appletHTML
+	line	52
+	colm	22
+	synt	any
+	field	set_contents
+	str	9
+	line	52
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	11
+	synt	any
+	field	classpath
+	line	53
+	colm	21
+	synt	any
+	field	set_contents
+	str	9
+	line	53
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	11
+	synt	any
+	field	srcDir
+	line	54
+	colm	18
+	synt	any
+	field	set_contents
+	str	6
+	line	54
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	11
+	synt	any
+	field	ObjDir
+	line	55
+	colm	18
+	synt	any
+	field	set_contents
+	str	9
+	line	55
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	57
+	colm	11
+	synt	any
+	field	compOptsPoolList
+	pnull
+	str	10
+	str	11
+	str	12
+	str	13
+	str	14
+	str	15
+	line	57
+	colm	30
+	synt	any
+	llist	6
+	line	57
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	63
+	colm	11
+	synt	any
+	field	interpOptsPoolList
+	pnull
+	str	16
+	line	63
+	colm	32
+	synt	any
+	llist	1
+	line	63
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	64
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	64
+	colm	24
+	synt	any
+	field	set_contents
+	pnull
+	var	0
+	line	64
+	colm	42
+	synt	any
+	field	compOptsPoolList
+	line	64
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	65
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	65
+	colm	26
+	synt	any
+	field	set_contents
+	pnull
+	var	0
+	line	65
+	colm	44
+	synt	any
+	field	interpOptsPoolList
+	line	65
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	mark	L21
+	line	66
+	colm	7
+	synt	case
+	mark0
+	pnull
+	var	0
+	line	66
+	colm	17
+	synt	any
+	field	projecttype
+	eret
+	mark	L23
+	ccase
+	str	17
+	line	67
+	colm	18
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L24
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	17
+	synt	any
+	field	appletHTML
+	line	68
+	colm	28
+	synt	any
+	field	set_contents
+	pnull
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	46
+	synt	any
+	field	mainFile
+	line	68
+	colm	55
+	synt	any
+	field	get_contents
+	line	68
+	colm	68
+	synt	any
+	invoke	0
+	str	18
+	line	68
+	colm	70
+	synt	any
+	cat
+	line	68
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	17
+	synt	any
+	field	interpName
+	line	69
+	colm	28
+	synt	any
+	field	set_contents
+	str	19
+	line	69
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	17
+	synt	any
+	field	debugName
+	line	70
+	colm	27
+	synt	any
+	field	set_contents
+	str	20
+	line	70
+	colm	40
+	synt	any
+	invoke	1
+	goto	L22
+lab L23
+	mark	L26
+	ccase
+	str	21
+	line	72
+	colm	18
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	73
+	colm	17
+	synt	any
+	field	interpName
+	line	73
+	colm	28
+	synt	any
+	field	set_contents
+	str	22
+	line	73
+	colm	41
+	synt	any
+	invoke	1
+	goto	L22
+lab L26
+	mark	L27
+	ccase
+	str	23
+	line	76
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	7
+	str	24
+	line	77
+	colm	25
+	synt	any
+	asgn
+	goto	L22
+lab L27
+	efail
+lab L22
+	line	66
+	colm	7
+	synt	endcase
+	unmark
+lab L21
+	mark	L28
+	pnull
+	var	8
+	pnull
+	line	80
+	colm	18
+	synt	any
+	llist	0
+	line	80
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	11
+	synt	any
+	field	interpOpts
+	pnull
+	line	81
+	colm	24
+	synt	any
+	llist	0
+	line	81
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L29
+	pnull
+	line	82
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_on_cancel_btn
+	local	0,001000,self
+	local	1,001000,ev
+	declend
+	line	84
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	85
+	colm	11
+	synt	any
+	field	dispose
+	line	85
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	86
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_on_ok_btn
+	local	0,001000,self
+	local	1,001000,ev
+	local	2,000020,p_name
+	local	3,000020,p_ext
+	local	4,000020,pname
+	local	5,000000,gui__file_name
+	local	6,000000,find
+	local	7,000000,tab
+	local	8,000000,move
+	local	9,000000,ide
+	local	10,000000,filedirectory
+	local	11,000000,mFile
+	local	12,000000,interp_name
+	local	13,000000,applet_html
+	local	14,000000,class_path
+	local	15,000000,obj_dir
+	local	16,000000,src_dir
+	local	17,000000,comp_name
+	local	18,000000,cpath
+	con	0,010000,5,056,165,160,162,152
+	con	1,010000,4,056,151,143,156
+	con	2,010000,5,056,152,141,166,141
+	con	3,010000,1,056
+	con	4,002000,1,1
+	con	5,002000,1,0
+	con	6,010000,1,134
+	declend
+	line	88
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	var	5
+	pnull
+	var	0
+	line	91
+	colm	35
+	synt	any
+	field	projectname
+	line	91
+	colm	30
+	synt	any
+	invoke	1
+	line	91
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	92
+	colm	7
+	synt	if
+	mark0
+	var	6
+	mark	L3
+	str	0
+	line	92
+	colm	22
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	mark	L5
+	str	1
+	line	92
+	colm	29
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	str	2
+lab L6
+lab L4
+	pnull
+	var	0
+	line	92
+	colm	43
+	synt	any
+	field	projectname
+	line	92
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	mark	L7
+	var	4
+	line	93
+	colm	16
+	synt	any
+	bscan
+	mark	L8
+	pnull
+	var	2
+	var	7
+	var	6
+	str	3
+	line	94
+	colm	31
+	synt	any
+	invoke	1
+	line	94
+	colm	26
+	synt	any
+	invoke	1
+	line	94
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	var	8
+	int	4
+	line	95
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	pnull
+	var	3
+	var	7
+	int	5
+	line	96
+	colm	25
+	synt	any
+	invoke	1
+	line	96
+	colm	19
+	synt	any
+	asgn
+	line	93
+	colm	16
+	synt	any
+	escan
+	unmark
+lab L7
+	pnull
+	pnull
+	var	0
+	line	98
+	colm	14
+	synt	any
+	field	projectname
+	pnull
+	var	4
+	var	2
+	line	98
+	colm	33
+	synt	any
+	asgn
+	line	98
+	colm	26
+	synt	any
+	asgn
+	line	92
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L10
+	pnull
+	var	0
+	line	101
+	colm	11
+	synt	any
+	field	saveJProject
+	pnull
+	var	0
+	line	101
+	colm	29
+	synt	any
+	field	projectname
+	line	101
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	9
+	line	106
+	colm	10
+	synt	any
+	field	handle_openfile
+	var	1
+	pnull
+	pnull
+	pnull
+	var	10
+	str	6
+	line	106
+	colm	44
+	synt	any
+	cat
+	var	4
+	line	106
+	colm	50
+	synt	any
+	cat
+	str	0
+	line	106
+	colm	57
+	synt	any
+	cat
+	line	106
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	11
+	pnull
+	pnull
+	var	10
+	str	6
+	line	109
+	colm	29
+	synt	any
+	cat
+	pnull
+	pnull
+	var	0
+	line	109
+	colm	41
+	synt	any
+	field	mainFile
+	line	109
+	colm	50
+	synt	any
+	field	get_contents
+	line	109
+	colm	63
+	synt	any
+	invoke	0
+	line	109
+	colm	35
+	synt	any
+	cat
+	line	109
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	12
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	26
+	synt	any
+	field	interpName
+	line	110
+	colm	37
+	synt	any
+	field	get_contents
+	line	110
+	colm	50
+	synt	any
+	invoke	0
+	line	110
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	13
+	pnull
+	pnull
+	var	0
+	line	111
+	colm	26
+	synt	any
+	field	appletHTML
+	line	111
+	colm	37
+	synt	any
+	field	get_contents
+	line	111
+	colm	50
+	synt	any
+	invoke	0
+	line	111
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	14
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	25
+	synt	any
+	field	classpath
+	line	112
+	colm	35
+	synt	any
+	field	get_contents
+	line	112
+	colm	48
+	synt	any
+	invoke	0
+	line	112
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	15
+	pnull
+	pnull
+	var	0
+	line	113
+	colm	22
+	synt	any
+	field	ObjDir
+	line	113
+	colm	29
+	synt	any
+	field	get_contents
+	line	113
+	colm	42
+	synt	any
+	invoke	0
+	line	113
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	16
+	pnull
+	pnull
+	var	0
+	line	114
+	colm	22
+	synt	any
+	field	srcDir
+	line	114
+	colm	29
+	synt	any
+	field	get_contents
+	line	114
+	colm	42
+	synt	any
+	invoke	0
+	line	114
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	17
+	pnull
+	pnull
+	var	0
+	line	115
+	colm	24
+	synt	any
+	field	compilerName
+	line	115
+	colm	37
+	synt	any
+	field	get_contents
+	line	115
+	colm	50
+	synt	any
+	invoke	0
+	line	115
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	18
+	pnull
+	pnull
+	var	0
+	line	116
+	colm	20
+	synt	any
+	field	classpath
+	line	116
+	colm	30
+	synt	any
+	field	get_contents
+	line	116
+	colm	43
+	synt	any
+	invoke	0
+	line	116
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	0
+	line	117
+	colm	11
+	synt	any
+	field	dispose
+	line	117
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L20
+	pnull
+	line	118
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_saveJProject
+	local	0,001000,self
+	local	1,001000,pname
+	local	2,000020,i
+	local	3,000020,index
+	local	4,000020,s
+	local	5,000020,f
+	local	6,000000,projectCreated
+	local	7,000000,any
+	local	8,000000,open
+	local	9,000000,filedirectory
+	local	10,000000,gui__file_name
+	local	11,000000,write
+	local	12,000000,repl
+	local	13,000000,writes
+	local	14,000000,UIDE_VERS
+	local	15,000000,compOpts
+	local	16,000000,close
+	con	0,002000,1,0
+	con	1,010000,4,124,122,125,105
+	con	2,002000,1,1
+	con	3,020000,3,056,057,134
+	con	4,010000,1,056
+	con	5,010000,5,056,165,160,162,152
+	con	6,010000,1,134
+	con	7,010000,1,167
+	con	8,010000,1,043
+	con	9,010000,1,075
+	con	10,002000,2,55
+	con	11,010000,51,043,100,126,100,072,116,157,164,145,072,040,112,141,166,141,040,120,162,157,152,145,143,164,040,106,151,154,145,040,147,145,156,145,162,141,164,145,144,040,142,171,040,103,126,105,040,111,104,105,040,040
+	con	12,010000,2,040,050
+	con	13,010000,2,051,056
+	con	14,010000,12,043,040,107,145,156,145,162,141,164,145,144,040
+	con	15,010000,1,040
+	con	16,010000,19,012,120,162,157,152,145,143,164,040,116,141,155,145,040,040,040,040,072,040
+	con	17,010000,18,106,151,154,145,163,040,104,151,162,145,143,164,157,162,171,040,072,040
+	con	18,010000,25,012,057,057,045,040,123,145,143,164,151,157,156,040,061,040,055,040,103,117,115,120,111,114,105,122
+	con	19,010000,7,074,156,157,156,145,076,012
+	con	20,010000,1,012
+	con	21,010000,32,057,057,045,040,123,145,143,164,151,157,156,040,062,040,055,040,103,117,115,120,111,114,105,122,040,117,120,124,111,117,116,123
+	con	22,010000,25,057,057,045,143,157,155,160,151,154,145,162,055,157,160,164,163,055,160,157,157,154,055,145,156,144
+	con	23,010000,20,057,057,045,143,157,155,160,151,154,145,162,055,157,160,164,163,055,145,156,144
+	con	24,010000,27,057,057,045,040,123,145,143,164,151,157,156,040,063,040,055,040,111,116,124,105,122,120,122,105,124,105,122
+	con	25,010000,35,057,057,045,040,123,145,143,164,151,157,156,040,064,040,055,040,111,116,124,105,122,120,122,105,124,105,122,040,117,120,124,111,117,116,123
+	con	26,010000,23,057,057,045,151,156,164,145,162,160,055,157,160,164,163,055,160,157,157,154,055,145,156,144
+	con	27,010000,19,057,057,045,151,156,164,145,162,160,055,157,160,164,163,055,145,156,144,012
+	con	28,010000,24,057,057,045,040,123,145,143,164,151,157,156,040,065,040,055,040,104,105,102,125,107,107,105,122
+	con	29,010000,25,057,057,045,040,123,145,143,164,151,157,156,040,066,040,055,040,103,114,101,123,123,120,101,124,110
+	con	30,010000,34,057,057,045,040,123,145,143,164,151,157,156,040,067,040,055,040,101,120,120,114,105,124,040,110,124,115,114,040,123,117,122,125,103,105
+	con	31,010000,35,057,057,045,040,123,145,143,164,151,157,156,040,070,040,055,040,124,117,120,040,114,105,126,105,114,040,112,101,126,101,040,106,111,114,105
+	con	32,010000,32,057,057,045,040,123,145,143,164,151,157,156,040,071,040,055,040,123,117,125,122,103,105,040,104,111,122,105,103,124,117,122,131
+	con	33,010000,29,057,057,045,040,123,145,143,164,151,157,156,040,061,060,040,055,040,123,117,125,122,103,105,040,106,111,114,105,123
+	con	34,010000,16,057,057,045,163,162,143,055,146,151,154,145,163,055,145,156,144
+	con	35,010000,33,057,057,045,040,123,145,143,164,151,157,156,040,061,061,040,055,040,123,117,125,122,103,105,040,104,111,122,105,103,124,117,122,131
+	con	36,010000,6,141,160,160,154,145,164
+	con	37,010000,5,056,150,164,155,154
+	con	38,010000,34,074,141,160,160,154,145,164,040,167,151,144,164,150,075,063,060,060,040,150,145,151,147,150,164,075,063,060,060,040,143,157,144,145,075
+	con	39,010000,6,056,143,154,141,163,163
+	con	40,010000,11,076,040,074,057,141,160,160,154,145,164,076
+	declend
+	line	122
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	int	0
+	line	123
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	6
+	str	1
+	line	125
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	126
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	1
+	line	126
+	colm	18
+	synt	any
+	size
+	int	2
+	line	126
+	colm	24
+	synt	any
+	minus
+	int	0
+	push1
+	line	126
+	colm	27
+	synt	any
+	toby
+	line	126
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	line	127
+	colm	11
+	synt	if
+	mark0
+	var	7
+	cset	3
+	pnull
+	var	1
+	var	2
+	line	127
+	colm	31
+	synt	any
+	subsc
+	line	127
+	colm	17
+	synt	any
+	invoke	2
+	unmark
+	mark	L6
+	pnull
+	var	3
+	var	2
+	line	128
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L6
+	unmark
+	unmark
+	pnull
+	goto	L5
+	line	127
+	colm	11
+	synt	endif
+	unmark
+lab L4
+	efail
+lab L5
+	line	126
+	colm	7
+	synt	endevery
+	unmark
+lab L3
+	mark	L7
+	line	131
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	var	3
+	line	131
+	colm	15
+	synt	any
+	subsc
+	str	4
+	line	131
+	colm	23
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	1
+	dup
+	str	5
+	line	132
+	colm	20
+	synt	any
+	cat
+	asgn
+	line	131
+	colm	7
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	line	135
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	5
+	var	8
+	pnull
+	pnull
+	pnull
+	var	9
+	str	6
+	line	135
+	colm	33
+	synt	any
+	cat
+	var	10
+	var	1
+	line	135
+	colm	55
+	synt	any
+	invoke	1
+	line	135
+	colm	39
+	synt	any
+	cat
+	str	5
+	line	135
+	colm	62
+	synt	any
+	cat
+	str	7
+	line	135
+	colm	19
+	synt	any
+	invoke	2
+	line	135
+	colm	12
+	synt	any
+	asgn
+	unmark
+	mark	L9
+	var	11
+	var	5
+	pnull
+	var	4
+	pnull
+	str	8
+	var	12
+	str	9
+	int	10
+	line	136
+	colm	31
+	synt	any
+	invoke	2
+	line	136
+	colm	25
+	synt	any
+	cat
+	line	136
+	colm	20
+	synt	any
+	asgn
+	line	136
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	var	13
+	var	5
+	str	11
+	line	137
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	mark	L11
+	var	11
+	var	5
+	var	14
+	str	12
+	pnull
+	pnull
+	pnull
+	var	0
+	line	138
+	colm	41
+	synt	any
+	field	compilerName
+	line	138
+	colm	54
+	synt	any
+	field	get_contents
+	line	138
+	colm	67
+	synt	any
+	invoke	0
+	line	138
+	colm	36
+	synt	any
+	nonnull
+	str	13
+	line	138
+	colm	15
+	synt	any
+	invoke	5
+	unmark
+lab L11
+	mark	L12
+	var	11
+	var	5
+	str	14
+	line	139
+	colm	35
+	synt	any
+	keywd	clock
+	str	15
+	line	139
+	colm	48
+	synt	any
+	keywd	date
+	line	139
+	colm	15
+	synt	any
+	invoke	5
+	unmark
+lab L12
+	mark	L13
+	var	11
+	var	5
+	var	4
+	line	140
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L13
+	mark	L14
+	var	11
+	var	5
+	str	16
+	var	1
+	line	141
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L14
+	mark	L15
+	var	11
+	var	5
+	str	17
+	var	9
+	line	142
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L15
+	mark	L16
+	var	11
+	var	5
+	str	18
+	line	143
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L16
+	mark	L17
+	line	144
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	144
+	colm	19
+	synt	any
+	field	compilerName
+	line	144
+	colm	32
+	synt	any
+	field	get_contents
+	line	144
+	colm	45
+	synt	any
+	invoke	0
+	line	144
+	colm	14
+	synt	any
+	null
+	unmark
+	var	11
+	var	5
+	str	19
+	line	145
+	colm	18
+	synt	any
+	invoke	2
+	line	144
+	colm	10
+	synt	endif
+	unmark
+lab L17
+	mark	L18
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	146
+	colm	23
+	synt	any
+	field	compilerName
+	line	146
+	colm	36
+	synt	any
+	field	get_contents
+	line	146
+	colm	49
+	synt	any
+	invoke	0
+	str	20
+	line	146
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L18
+	mark	L19
+	var	11
+	var	5
+	str	21
+	line	148
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L19
+	mark	L20
+	line	149
+	colm	10
+	synt	every
+	mark0
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	149
+	colm	30
+	synt	any
+	field	compOptsPoolList
+	line	149
+	colm	25
+	synt	any
+	bang
+	line	149
+	colm	21
+	synt	any
+	invoke	2
+	pop
+lab L21
+	efail
+lab L22
+	line	149
+	colm	10
+	synt	endevery
+	unmark
+lab L20
+	mark	L23
+	var	11
+	var	5
+	str	22
+	line	151
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L23
+	mark	L24
+	line	152
+	colm	10
+	synt	every
+	mark0
+	var	11
+	var	5
+	pnull
+	var	15
+	line	152
+	colm	25
+	synt	any
+	bang
+	line	152
+	colm	21
+	synt	any
+	invoke	2
+	pop
+lab L25
+	efail
+lab L26
+	line	152
+	colm	10
+	synt	endevery
+	unmark
+lab L24
+	mark	L27
+	var	11
+	var	5
+	str	23
+	line	154
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	mark	L28
+	var	11
+	var	5
+	str	24
+	line	156
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L28
+	mark	L29
+	line	157
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	157
+	colm	18
+	synt	any
+	field	interpName
+	line	157
+	colm	29
+	synt	any
+	field	get_contents
+	line	157
+	colm	42
+	synt	any
+	invoke	0
+	line	157
+	colm	13
+	synt	any
+	null
+	unmark
+	var	11
+	var	5
+	str	19
+	line	158
+	colm	18
+	synt	any
+	invoke	2
+	line	157
+	colm	10
+	synt	endif
+	unmark
+lab L29
+	mark	L30
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	159
+	colm	23
+	synt	any
+	field	interpName
+	line	159
+	colm	34
+	synt	any
+	field	get_contents
+	line	159
+	colm	47
+	synt	any
+	invoke	0
+	str	20
+	line	159
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L30
+	mark	L31
+	var	11
+	var	5
+	str	25
+	line	161
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L31
+	mark	L32
+	line	162
+	colm	10
+	synt	every
+	mark0
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	162
+	colm	30
+	synt	any
+	field	interpOptsPoolList
+	line	162
+	colm	25
+	synt	any
+	bang
+	line	162
+	colm	21
+	synt	any
+	invoke	2
+	pop
+lab L33
+	efail
+lab L34
+	line	162
+	colm	10
+	synt	endevery
+	unmark
+lab L32
+	mark	L35
+	var	11
+	var	5
+	str	26
+	line	163
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L35
+	mark	L36
+	line	165
+	colm	10
+	synt	every
+	mark0
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	165
+	colm	30
+	synt	any
+	field	interpOpts
+	line	165
+	colm	25
+	synt	any
+	bang
+	line	165
+	colm	21
+	synt	any
+	invoke	2
+	pop
+lab L37
+	efail
+lab L38
+	line	165
+	colm	10
+	synt	endevery
+	unmark
+lab L36
+	mark	L39
+	var	11
+	var	5
+	str	27
+	line	167
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L39
+	mark	L40
+	var	11
+	var	5
+	str	28
+	line	169
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L40
+	mark	L41
+	line	170
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	170
+	colm	18
+	synt	any
+	field	debugName
+	line	170
+	colm	28
+	synt	any
+	field	get_contents
+	line	170
+	colm	41
+	synt	any
+	invoke	0
+	line	170
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	171
+	colm	18
+	synt	any
+	invoke	2
+	line	170
+	colm	10
+	synt	endif
+	unmark
+lab L41
+	mark	L42
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	23
+	synt	any
+	field	debugName
+	line	172
+	colm	33
+	synt	any
+	field	get_contents
+	line	172
+	colm	46
+	synt	any
+	invoke	0
+	str	20
+	line	172
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L42
+	mark	L43
+	var	11
+	var	5
+	str	29
+	line	174
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L43
+	mark	L44
+	line	175
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	175
+	colm	18
+	synt	any
+	field	classpath
+	line	175
+	colm	28
+	synt	any
+	field	get_contents
+	line	175
+	colm	41
+	synt	any
+	invoke	0
+	line	175
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	176
+	colm	18
+	synt	any
+	invoke	2
+	line	175
+	colm	10
+	synt	endif
+	unmark
+lab L44
+	mark	L45
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	177
+	colm	23
+	synt	any
+	field	classpath
+	line	177
+	colm	33
+	synt	any
+	field	get_contents
+	line	177
+	colm	46
+	synt	any
+	invoke	0
+	str	20
+	line	177
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L45
+	mark	L46
+	var	11
+	var	5
+	str	30
+	line	179
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L46
+	mark	L47
+	line	180
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	180
+	colm	18
+	synt	any
+	field	appletHTML
+	line	180
+	colm	29
+	synt	any
+	field	get_contents
+	line	180
+	colm	42
+	synt	any
+	invoke	0
+	line	180
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	181
+	colm	18
+	synt	any
+	invoke	2
+	line	180
+	colm	10
+	synt	endif
+	unmark
+lab L47
+	mark	L48
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	182
+	colm	23
+	synt	any
+	field	appletHTML
+	line	182
+	colm	34
+	synt	any
+	field	get_contents
+	line	182
+	colm	47
+	synt	any
+	invoke	0
+	str	20
+	line	182
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L48
+	mark	L49
+	var	11
+	var	5
+	str	31
+	line	184
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L49
+	mark	L50
+	line	185
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	185
+	colm	18
+	synt	any
+	field	mainFile
+	line	185
+	colm	27
+	synt	any
+	field	get_contents
+	line	185
+	colm	40
+	synt	any
+	invoke	0
+	line	185
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	186
+	colm	18
+	synt	any
+	invoke	2
+	line	185
+	colm	10
+	synt	endif
+	unmark
+lab L50
+	mark	L51
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	187
+	colm	23
+	synt	any
+	field	mainFile
+	line	187
+	colm	32
+	synt	any
+	field	get_contents
+	line	187
+	colm	45
+	synt	any
+	invoke	0
+	str	20
+	line	187
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L51
+	mark	L52
+	var	11
+	var	5
+	str	32
+	line	189
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L52
+	mark	L53
+	line	190
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	190
+	colm	18
+	synt	any
+	field	srcDir
+	line	190
+	colm	25
+	synt	any
+	field	get_contents
+	line	190
+	colm	38
+	synt	any
+	invoke	0
+	line	190
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	191
+	colm	18
+	synt	any
+	invoke	2
+	line	190
+	colm	10
+	synt	endif
+	unmark
+lab L53
+	mark	L54
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	192
+	colm	23
+	synt	any
+	field	srcDir
+	line	192
+	colm	30
+	synt	any
+	field	get_contents
+	line	192
+	colm	43
+	synt	any
+	invoke	0
+	str	20
+	line	192
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L54
+	mark	L55
+	var	11
+	var	5
+	str	33
+	line	194
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L55
+	mark	L56
+	var	11
+	var	5
+	str	34
+	line	197
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L56
+	mark	L57
+	var	11
+	var	5
+	str	35
+	line	199
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L57
+	mark	L58
+	line	200
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	200
+	colm	18
+	synt	any
+	field	ObjDir
+	line	200
+	colm	25
+	synt	any
+	field	get_contents
+	line	200
+	colm	38
+	synt	any
+	invoke	0
+	line	200
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	11
+	var	5
+	str	19
+	line	201
+	colm	18
+	synt	any
+	invoke	2
+	line	200
+	colm	10
+	synt	endif
+	unmark
+lab L58
+	mark	L59
+	var	11
+	var	5
+	pnull
+	pnull
+	var	0
+	line	202
+	colm	23
+	synt	any
+	field	ObjDir
+	line	202
+	colm	30
+	synt	any
+	field	get_contents
+	line	202
+	colm	43
+	synt	any
+	invoke	0
+	str	20
+	line	202
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L59
+	var	16
+	var	5
+	line	203
+	colm	15
+	synt	any
+	invoke	1
+	line	135
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	mark	L60
+	line	205
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	14
+	synt	any
+	field	projecttype
+	str	36
+	line	205
+	colm	26
+	synt	any
+	lexeq
+	unmark
+	line	206
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	5
+	var	8
+	pnull
+	pnull
+	pnull
+	var	9
+	str	6
+	line	206
+	colm	36
+	synt	any
+	cat
+	var	10
+	var	1
+	line	207
+	colm	27
+	synt	any
+	invoke	1
+	line	206
+	colm	42
+	synt	any
+	cat
+	str	37
+	line	207
+	colm	34
+	synt	any
+	cat
+	str	7
+	line	206
+	colm	22
+	synt	any
+	invoke	2
+	line	206
+	colm	15
+	synt	any
+	asgn
+	unmark
+	mark	L61
+	var	11
+	var	5
+	pnull
+	pnull
+	pnull
+	str	38
+	var	10
+	var	1
+	line	209
+	colm	37
+	synt	any
+	invoke	1
+	line	208
+	colm	58
+	synt	any
+	cat
+	str	39
+	line	209
+	colm	44
+	synt	any
+	cat
+	str	40
+	line	209
+	colm	54
+	synt	any
+	cat
+	line	208
+	colm	18
+	synt	any
+	invoke	2
+	unmark
+lab L61
+	var	16
+	var	5
+	line	210
+	colm	18
+	synt	any
+	invoke	1
+	line	206
+	colm	10
+	synt	endif
+	line	205
+	colm	7
+	synt	endif
+	unmark
+lab L60
+	pnull
+	line	213
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_CompileJava
+	local	0,001000,self
+	local	1,000020,cmd
+	local	2,000020,makeFile
+	local	3,000020,index
+	local	4,000020,sdLen
+	local	5,000020,cmdLen
+	local	6,000020,lst
+	local	7,000020,n
+	local	8,000020,nmakeFile
+	local	9,000020,n_ext
+	local	10,000020,pdir
+	local	11,000000,mkpath
+	local	12,000000,mFile
+	local	13,000000,tab_label
+	local	14,000000,tab
+	local	15,000000,find
+	local	16,000000,move
+	local	17,000000,chdir
+	local	18,000000,system
+	local	19,000000,nullfilename
+	local	20,000000,gui__Notice
+	local	21,000000,ix
+	local	22,000000,obj_dir
+	local	23,000000,src_dir
+	local	24,000000,filedirectory
+	local	25,000000,comp_name
+	local	26,000000,cpath
+	local	27,000000,compOpts
+	con	0,002000,1,0
+	con	1,010000,1,056
+	con	2,002000,1,1
+	con	3,010000,6,152,141,166,141,143,040
+	con	4,010000,5,056,152,141,166,141
+	con	5,010000,23,116,157,040,112,141,166,141,040,106,151,154,145,040,163,160,145,143,151,146,151,145,144,056
+	con	6,010000,1,134
+	con	7,010000,1,057
+	con	8,010000,3,162,155,040
+	con	9,010000,6,074,156,157,156,145,076
+	con	10,010000,3,055,162,040
+	con	11,010000,9,057,052,056,143,154,141,163,163,040
+	con	12,010000,8,057,052,056,143,154,141,163,163
+	con	13,010000,7,052,056,143,154,141,163,163
+	con	14,010000,12,040,055,143,154,141,163,163,160,141,164,150,040
+	con	15,010000,1,040
+	con	16,010000,3,055,144,040
+	con	17,010000,12,055,163,157,165,162,143,145,160,141,164,150,040
+	declend
+	line	217
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	int	0
+	line	218
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	6
+	pnull
+	line	218
+	colm	60
+	synt	any
+	llist	0
+	line	218
+	colm	58
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	11
+	var	12
+	line	221
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	223
+	colm	8
+	synt	ifelse
+	mark	L5
+	pnull
+	var	11
+	line	223
+	colm	11
+	synt	any
+	null
+	unmark
+	mark	L7
+	var	13
+	line	224
+	colm	21
+	synt	any
+	bscan
+	mark	L8
+	pnull
+	var	8
+	var	14
+	var	15
+	str	1
+	line	225
+	colm	35
+	synt	any
+	invoke	1
+	line	225
+	colm	30
+	synt	any
+	invoke	1
+	line	225
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	var	16
+	int	2
+	line	226
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	pnull
+	var	9
+	var	14
+	int	0
+	line	227
+	colm	26
+	synt	any
+	invoke	1
+	line	227
+	colm	20
+	synt	any
+	asgn
+	line	224
+	colm	21
+	synt	any
+	escan
+	unmark
+lab L7
+	mark	L10
+	pnull
+	var	1
+	pnull
+	pnull
+	str	3
+	var	8
+	line	230
+	colm	26
+	synt	any
+	cat
+	str	4
+	line	230
+	colm	38
+	synt	any
+	cat
+	line	230
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	10
+	var	17
+	line	232
+	colm	24
+	synt	any
+	invoke	0
+	line	232
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	var	17
+	var	10
+	line	234
+	colm	16
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	var	18
+	var	1
+	line	240
+	colm	17
+	synt	any
+	invoke	1
+	goto	L6
+lab L5
+	mark	L13
+	line	248
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	11
+	line	248
+	colm	13
+	synt	any
+	null
+	unmark
+	mark	L14
+	pnull
+	var	19
+	line	249
+	colm	29
+	synt	any
+	keywd	window
+	line	249
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	line	250
+	colm	13
+	synt	any
+	keywd	window
+	line	250
+	colm	25
+	synt	any
+	keywd	null
+	line	250
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	var	20
+	str	5
+	line	251
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	line	252
+	colm	13
+	synt	any
+	keywd	window
+	var	19
+	line	252
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L17
+	pnull
+	var	0
+	line	253
+	colm	17
+	synt	any
+	field	dispose
+	line	253
+	colm	25
+	synt	any
+	invoke	0
+	line	248
+	colm	10
+	synt	endif
+	unmark
+lab L13
+	mark	L18
+	line	256
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	15
+	str	4
+	var	11
+	line	256
+	colm	17
+	synt	any
+	invoke	2
+	line	256
+	colm	12
+	synt	any
+	null
+	unmark
+	pnull
+	var	11
+	pnull
+	var	11
+	str	4
+	line	257
+	colm	29
+	synt	any
+	cat
+	line	257
+	colm	19
+	synt	any
+	asgn
+	line	256
+	colm	9
+	synt	endif
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	1
+	var	11
+	line	260
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	7
+	pnull
+	var	1
+	line	261
+	colm	14
+	synt	any
+	size
+	line	261
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	line	262
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	21
+	pnull
+	int	2
+	var	7
+	push1
+	line	262
+	colm	23
+	synt	any
+	toby
+	line	262
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	line	263
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	var	21
+	line	263
+	colm	18
+	synt	any
+	subsc
+	mark	L24
+	str	6
+	line	263
+	colm	32
+	synt	any
+	esusp
+	goto	L25
+lab L24
+	str	7
+lab L25
+	line	263
+	colm	23
+	synt	any
+	lexeq
+	unmark
+	mark	L26
+	pnull
+	pnull
+	var	1
+	var	21
+	line	267
+	colm	18
+	synt	any
+	subsc
+	str	6
+	line	267
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	var	3
+	var	21
+	line	269
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L27
+	unmark
+	unmark
+	pnull
+	goto	L23
+	line	263
+	colm	12
+	synt	endif
+	unmark
+lab L22
+	efail
+lab L23
+	line	262
+	colm	9
+	synt	endevery
+	unmark
+lab L21
+	mark	L28
+	line	273
+	colm	9
+	synt	ifelse
+	mark	L29
+	pnull
+	var	3
+	int	2
+	line	273
+	colm	18
+	synt	any
+	numgt
+	unmark
+	mark	L31
+	pnull
+	var	2
+	pnull
+	var	1
+	int	2
+	pnull
+	pnull
+	var	1
+	line	274
+	colm	30
+	synt	any
+	size
+	int	2
+	line	274
+	colm	34
+	synt	any
+	plus
+	line	274
+	colm	29
+	synt	any
+	synt	any
+	sect
+	line	274
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L31
+	var	17
+	var	1
+	line	275
+	colm	17
+	synt	any
+	invoke	1
+	goto	L30
+lab L29
+	pnull
+	var	2
+	var	1
+	line	277
+	colm	23
+	synt	any
+	asgn
+lab L30
+	line	273
+	colm	9
+	synt	endifelse
+	unmark
+lab L28
+	mark	L32
+	pnull
+	var	1
+	str	8
+	line	286
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	line	287
+	colm	9
+	synt	ifelse
+	mark	L34
+	mark	L36
+	pnull
+	var	22
+	line	287
+	colm	13
+	synt	any
+	nonnull
+	pop
+	pnull
+	var	22
+	str	9
+	line	287
+	colm	33
+	synt	any
+	lexne
+	line	287
+	colm	47
+	synt	any
+	esusp
+	goto	L37
+lab L36
+	pnull
+	pnull
+	var	23
+	line	288
+	colm	14
+	synt	any
+	size
+	int	2
+	line	288
+	colm	23
+	synt	any
+	numgt
+	pop
+	pnull
+	var	23
+	str	9
+	line	288
+	colm	38
+	synt	any
+	lexne
+lab L37
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	pnull
+	str	10
+	var	22
+	line	289
+	colm	27
+	synt	any
+	cat
+	str	11
+	line	289
+	colm	38
+	synt	any
+	cat
+	line	289
+	colm	16
+	synt	any
+	cat
+	asgn
+	goto	L35
+lab L34
+	line	291
+	colm	14
+	synt	ifelse
+	mark	L38
+	pnull
+	pnull
+	var	23
+	line	291
+	colm	17
+	synt	any
+	size
+	int	2
+	line	291
+	colm	26
+	synt	any
+	numgt
+	pop
+	pnull
+	var	23
+	str	9
+	line	291
+	colm	40
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	pnull
+	str	10
+	var	22
+	line	292
+	colm	27
+	synt	any
+	cat
+	str	12
+	line	292
+	colm	38
+	synt	any
+	cat
+	line	292
+	colm	16
+	synt	any
+	cat
+	asgn
+	goto	L39
+lab L38
+	pnull
+	var	1
+	dup
+	pnull
+	pnull
+	var	24
+	str	6
+	line	294
+	colm	36
+	synt	any
+	cat
+	str	13
+	line	294
+	colm	42
+	synt	any
+	cat
+	line	294
+	colm	18
+	synt	any
+	cat
+	asgn
+lab L39
+	line	291
+	colm	14
+	synt	endifelse
+lab L35
+	line	287
+	colm	9
+	synt	endifelse
+	unmark
+lab L33
+	mark	L40
+	var	17
+	var	24
+	line	296
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L40
+	mark	L41
+	var	18
+	var	1
+	line	297
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L41
+	mark	L42
+	pnull
+	var	1
+	var	25
+	line	299
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+	line	301
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	26
+	line	301
+	colm	13
+	synt	any
+	nonnull
+	pop
+	pnull
+	var	26
+	str	9
+	line	302
+	colm	19
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	str	14
+	var	26
+	line	303
+	colm	36
+	synt	any
+	cat
+	line	303
+	colm	16
+	synt	any
+	cat
+	asgn
+	line	301
+	colm	9
+	synt	endif
+	unmark
+lab L43
+	mark	L44
+	line	306
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	1
+	dup
+	pnull
+	str	15
+	pnull
+	var	27
+	line	306
+	colm	31
+	synt	any
+	bang
+	line	306
+	colm	28
+	synt	any
+	cat
+	line	306
+	colm	19
+	synt	any
+	cat
+	asgn
+	pop
+lab L45
+	efail
+lab L46
+	line	306
+	colm	9
+	synt	endevery
+	unmark
+lab L44
+	mark	L47
+	pnull
+	var	1
+	dup
+	str	15
+	line	307
+	colm	13
+	synt	any
+	cat
+	asgn
+	unmark
+lab L47
+	mark	L48
+	line	309
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	22
+	line	309
+	colm	13
+	synt	any
+	nonnull
+	pop
+	pnull
+	var	22
+	str	9
+	line	309
+	colm	33
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	pnull
+	str	16
+	str	7
+	line	310
+	colm	27
+	synt	any
+	cat
+	str	15
+	line	310
+	colm	34
+	synt	any
+	cat
+	line	310
+	colm	16
+	synt	any
+	cat
+	asgn
+	line	309
+	colm	9
+	synt	endif
+	unmark
+lab L48
+	mark	L49
+	pnull
+	var	4
+	pnull
+	var	23
+	line	315
+	colm	18
+	synt	any
+	size
+	line	315
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L49
+	mark	L50
+	line	316
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	0
+	line	316
+	colm	19
+	synt	any
+	numgt
+	pop
+	pnull
+	var	23
+	str	1
+	line	316
+	colm	33
+	synt	any
+	lexne
+	pop
+	pnull
+	var	23
+	str	9
+	line	316
+	colm	52
+	synt	any
+	lexne
+	unmark
+	mark	L51
+	pnull
+	var	1
+	dup
+	pnull
+	pnull
+	pnull
+	str	17
+	var	23
+	line	317
+	colm	36
+	synt	any
+	cat
+	str	15
+	line	317
+	colm	47
+	synt	any
+	cat
+	var	23
+	line	317
+	colm	54
+	synt	any
+	cat
+	line	317
+	colm	16
+	synt	any
+	cat
+	asgn
+	unmark
+lab L51
+	line	318
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	23
+	pnull
+	var	4
+	int	2
+	line	318
+	colm	28
+	synt	any
+	minus
+	line	318
+	colm	22
+	synt	any
+	subsc
+	str	7
+	line	318
+	colm	32
+	synt	any
+	lexne
+	pop
+	pnull
+	pnull
+	var	23
+	pnull
+	var	4
+	int	2
+	line	318
+	colm	55
+	synt	any
+	minus
+	line	318
+	colm	49
+	synt	any
+	subsc
+	str	6
+	line	318
+	colm	59
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	1
+	dup
+	str	7
+	line	319
+	colm	23
+	synt	any
+	cat
+	asgn
+	line	318
+	colm	12
+	synt	endif
+	line	316
+	colm	9
+	synt	endif
+	unmark
+lab L50
+	mark	L52
+	var	13
+	line	322
+	colm	19
+	synt	any
+	bscan
+	mark	L53
+	pnull
+	var	8
+	var	14
+	var	15
+	str	1
+	line	323
+	colm	37
+	synt	any
+	invoke	1
+	line	323
+	colm	32
+	synt	any
+	invoke	1
+	line	323
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L53
+	mark	L54
+	var	16
+	int	2
+	line	324
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L54
+	pnull
+	var	9
+	var	14
+	int	0
+	line	325
+	colm	32
+	synt	any
+	invoke	1
+	line	325
+	colm	26
+	synt	any
+	asgn
+	line	322
+	colm	19
+	synt	any
+	escan
+	unmark
+lab L52
+	mark	L55
+	pnull
+	var	1
+	dup
+	pnull
+	var	8
+	str	4
+	line	328
+	colm	28
+	synt	any
+	cat
+	line	328
+	colm	13
+	synt	any
+	cat
+	asgn
+	unmark
+lab L55
+	mark	L56
+	var	17
+	var	10
+	line	330
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L56
+	var	18
+	var	1
+	line	336
+	colm	15
+	synt	any
+	invoke	1
+lab L6
+	line	223
+	colm	8
+	synt	endifelse
+	unmark
+lab L4
+	pnull
+	line	340
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_RunJava
+	local	0,001000,self
+	local	1,001000,javaprog
+	local	2,000020,runit
+	local	3,000020,path
+	local	4,000020,prog
+	local	5,000020,curPath
+	local	6,000020,buff
+	local	7,000020,lst
+	local	8,000020,cwd
+	local	9,000000,chdir
+	local	10,000000,needConsole
+	local	11,000000,JavaType
+	local	12,000000,tab_label
+	local	13,000000,openrunit
+	local	14,000000,applet_html
+	local	15,000000,UideShell
+	local	16,000000,system
+	local	17,000000,interp_name
+	local	18,000000,ix
+	local	19,000000,class_path
+	local	20,000000,gui__file_name
+	local	21,000000,obj_dir
+	local	22,000000,src_dir
+	con	0,010000,5,106,101,114,123,105
+	con	1,010000,10,103,157,156,163,157,154,145,101,160,160
+	con	2,002000,1,1
+	con	3,002000,1,4
+	con	4,010000,4,152,141,166,141
+	con	5,010000,1,040
+	con	6,010000,6,127,151,156,101,160,160
+	con	7,010000,5,152,141,166,141,167
+	con	8,010000,6,101,160,160,154,145,164
+	con	9,010000,5,056,150,164,155,154
+	con	10,010000,12,141,160,160,154,145,164,166,151,145,167,145,162
+	con	11,010000,4,124,122,125,105
+	con	12,010000,5,170,164,145,162,155
+	con	13,010000,6,074,156,157,156,145,076
+	con	14,010000,1,134
+	con	15,010000,1,057
+	con	16,002000,1,0
+	con	17,010000,5,040,055,143,160,040
+	declend
+	line	345
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	7
+	pnull
+	line	346
+	colm	51
+	synt	any
+	llist	0
+	line	346
+	colm	49
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	8
+	var	9
+	line	347
+	colm	18
+	synt	any
+	invoke	0
+	line	347
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	10
+	str	0
+	line	349
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	351
+	colm	6
+	synt	ifelse
+	mark	L5
+	pnull
+	var	2
+	line	351
+	colm	9
+	synt	any
+	null
+	unmark
+	mark	L7
+	line	352
+	colm	9
+	synt	ifelse
+	mark	L8
+	pnull
+	var	11
+	str	1
+	line	352
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	mark	L10
+	pnull
+	var	1
+	pnull
+	var	12
+	int	2
+	pnull
+	pnull
+	var	12
+	line	353
+	colm	36
+	synt	any
+	size
+	int	3
+	line	353
+	colm	46
+	synt	any
+	minus
+	line	353
+	colm	35
+	synt	any
+	synt	any
+	sect
+	line	353
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	2
+	str	4
+	line	354
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L11
+	pnull
+	var	13
+	pnull
+	pnull
+	str	4
+	str	5
+	line	355
+	colm	31
+	synt	any
+	cat
+	var	1
+	line	355
+	colm	36
+	synt	any
+	cat
+	line	355
+	colm	22
+	synt	any
+	asgn
+	goto	L9
+lab L8
+	line	357
+	colm	14
+	synt	ifelse
+	mark	L12
+	pnull
+	var	11
+	str	6
+	line	357
+	colm	26
+	synt	any
+	lexeq
+	unmark
+	mark	L14
+	pnull
+	var	1
+	pnull
+	var	12
+	int	2
+	pnull
+	pnull
+	var	12
+	line	358
+	colm	36
+	synt	any
+	size
+	int	3
+	line	358
+	colm	46
+	synt	any
+	minus
+	line	358
+	colm	35
+	synt	any
+	synt	any
+	sect
+	line	358
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	2
+	str	7
+	line	359
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L15
+	pnull
+	var	13
+	pnull
+	pnull
+	str	7
+	str	5
+	line	360
+	colm	32
+	synt	any
+	cat
+	var	1
+	line	360
+	colm	37
+	synt	any
+	cat
+	line	360
+	colm	22
+	synt	any
+	asgn
+	goto	L13
+lab L12
+	line	362
+	colm	14
+	synt	if
+	mark0
+	pnull
+	var	11
+	str	8
+	line	362
+	colm	26
+	synt	any
+	lexeq
+	unmark
+	mark	L16
+	pnull
+	var	14
+	pnull
+	pnull
+	var	12
+	int	2
+	pnull
+	pnull
+	var	12
+	line	363
+	colm	39
+	synt	any
+	size
+	int	3
+	line	363
+	colm	49
+	synt	any
+	minus
+	line	363
+	colm	38
+	synt	any
+	synt	any
+	sect
+	str	9
+	line	363
+	colm	52
+	synt	any
+	cat
+	line	363
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	2
+	str	10
+	line	364
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L17
+	pnull
+	var	13
+	pnull
+	pnull
+	str	10
+	str	5
+	line	365
+	colm	39
+	synt	any
+	cat
+	var	14
+	line	365
+	colm	44
+	synt	any
+	cat
+	line	365
+	colm	22
+	synt	any
+	asgn
+	line	362
+	colm	14
+	synt	endif
+lab L13
+	line	357
+	colm	14
+	synt	endifelse
+lab L9
+	line	352
+	colm	9
+	synt	endifelse
+	unmark
+lab L7
+	mark	L18
+	line	374
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	2
+	str	4
+	line	374
+	colm	18
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	10
+	str	11
+	line	375
+	colm	24
+	synt	any
+	asgn
+	line	374
+	colm	9
+	synt	endif
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	15
+	str	12
+	line	378
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L19
+	line	379
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	10
+	str	11
+	line	379
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	var	16
+	var	13
+	line	385
+	colm	18
+	synt	any
+	invoke	1
+	line	379
+	colm	9
+	synt	endif
+	goto	L6
+lab L5
+	mark	L20
+	pnull
+	var	2
+	var	17
+	line	391
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	line	398
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	2
+	str	4
+	line	398
+	colm	18
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	10
+	str	11
+	line	399
+	colm	24
+	synt	any
+	asgn
+	line	398
+	colm	9
+	synt	endif
+	unmark
+lab L21
+	mark	L22
+	line	407
+	colm	9
+	synt	ifelse
+	mark	L23
+	mark	L25
+	pnull
+	var	14
+	line	407
+	colm	13
+	synt	any
+	null
+	line	407
+	colm	27
+	synt	any
+	esusp
+	goto	L26
+lab L25
+	pnull
+	var	14
+	str	13
+	line	407
+	colm	42
+	synt	any
+	lexeq
+lab L26
+	unmark
+	pnull
+	var	4
+	var	1
+	line	408
+	colm	18
+	synt	any
+	asgn
+	goto	L24
+lab L23
+	mark	L27
+	pnull
+	var	2
+	str	10
+	line	410
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L27
+	pnull
+	var	4
+	var	14
+	line	411
+	colm	17
+	synt	any
+	asgn
+lab L24
+	line	407
+	colm	9
+	synt	endifelse
+	unmark
+lab L22
+	mark	L28
+	line	414
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	18
+	pnull
+	pnull
+	pnull
+	var	1
+	line	414
+	colm	20
+	synt	any
+	size
+	int	2
+	line	414
+	colm	29
+	synt	any
+	minus
+	int	2
+	push1
+	line	414
+	colm	32
+	synt	any
+	toby
+	line	414
+	colm	17
+	synt	any
+	asgn
+	pop
+	mark0
+	line	415
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	var	18
+	line	415
+	colm	23
+	synt	any
+	subsc
+	mark	L31
+	str	14
+	line	415
+	colm	37
+	synt	any
+	esusp
+	goto	L32
+lab L31
+	str	15
+lab L32
+	line	415
+	colm	28
+	synt	any
+	lexeq
+	unmark
+	mark	L33
+	pnull
+	var	3
+	var	1
+	line	416
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	var	4
+	pnull
+	var	3
+	pnull
+	var	18
+	int	2
+	line	417
+	colm	30
+	synt	any
+	plus
+	pnull
+	var	1
+	line	417
+	colm	35
+	synt	any
+	size
+	line	417
+	colm	33
+	synt	any
+	synt	any
+	sect
+	line	417
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	3
+	var	18
+	line	418
+	colm	19
+	synt	any
+	subsc
+	int	16
+	line	418
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L35
+	unmark
+	unmark
+	pnull
+	goto	L30
+	line	415
+	colm	12
+	synt	endif
+	unmark
+lab L29
+	efail
+lab L30
+	line	414
+	colm	9
+	synt	endevery
+	unmark
+lab L28
+	mark	L36
+	line	423
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	19
+	line	423
+	colm	13
+	synt	any
+	nonnull
+	pop
+	pnull
+	pnull
+	var	19
+	str	13
+	line	423
+	colm	42
+	synt	any
+	lexeq
+	line	423
+	colm	27
+	synt	any
+	nonnull
+	pop
+	pnull
+	pnull
+	var	2
+	str	10
+	line	424
+	colm	20
+	synt	any
+	lexeq
+	line	424
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	2
+	dup
+	pnull
+	str	17
+	var	19
+	line	425
+	colm	31
+	synt	any
+	cat
+	line	425
+	colm	18
+	synt	any
+	cat
+	asgn
+	line	423
+	colm	9
+	synt	endif
+	unmark
+lab L36
+	mark	L37
+	line	428
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	428
+	colm	17
+	synt	any
+	field	interpOpts
+	line	428
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	line	429
+	colm	12
+	synt	every
+	mark0
+	pnull
+	var	2
+	dup
+	pnull
+	str	5
+	pnull
+	pnull
+	var	0
+	line	429
+	colm	40
+	synt	any
+	field	interpOpts
+	line	429
+	colm	35
+	synt	any
+	bang
+	line	429
+	colm	32
+	synt	any
+	cat
+	line	429
+	colm	24
+	synt	any
+	cat
+	asgn
+	pop
+lab L38
+	efail
+lab L39
+	line	429
+	colm	12
+	synt	endevery
+	line	428
+	colm	9
+	synt	endif
+	unmark
+lab L37
+	mark	L40
+	pnull
+	var	2
+	dup
+	pnull
+	str	5
+	var	20
+	var	4
+	line	432
+	colm	41
+	synt	any
+	invoke	1
+	line	432
+	colm	24
+	synt	any
+	cat
+	line	432
+	colm	15
+	synt	any
+	cat
+	asgn
+	unmark
+lab L40
+	mark	L41
+	line	434
+	colm	9
+	synt	ifelse
+	mark	L42
+	pnull
+	var	21
+	line	434
+	colm	13
+	synt	any
+	nonnull
+	pop
+	pnull
+	var	21
+	str	13
+	line	434
+	colm	33
+	synt	any
+	lexne
+	unmark
+	var	9
+	var	21
+	line	435
+	colm	17
+	synt	any
+	invoke	1
+	goto	L43
+lab L42
+	line	437
+	colm	14
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	22
+	line	437
+	colm	18
+	synt	any
+	size
+	int	2
+	line	437
+	colm	29
+	synt	any
+	numgt
+	pop
+	pnull
+	var	22
+	str	13
+	line	437
+	colm	43
+	synt	any
+	lexne
+	unmark
+	var	9
+	var	22
+	line	438
+	colm	17
+	synt	any
+	invoke	1
+	line	437
+	colm	14
+	synt	endif
+lab L43
+	line	434
+	colm	9
+	synt	endifelse
+	unmark
+lab L41
+	mark	L44
+	pnull
+	var	15
+	str	12
+	line	441
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L44
+	line	442
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	10
+	str	11
+	line	442
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	var	16
+	var	13
+	line	448
+	colm	18
+	synt	any
+	invoke	1
+	line	442
+	colm	9
+	synt	endif
+lab L6
+	line	351
+	colm	6
+	synt	endifelse
+	unmark
+lab L4
+	mark	L45
+	var	9
+	var	8
+	line	453
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L45
+	pnull
+	line	454
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_on_addToCompList
+	local	0,001000,self
+	local	1,001000,ev
+	local	2,000020,L
+	local	3,000020,cop
+	local	4,000000,put
+	local	5,000000,compOpts
+	con	0,010000,24,055,147,040,050,106,165,154,154,040,104,145,142,165,147,147,151,156,147,040,111,156,146,157,051
+	con	1,010000,2,055,147
+	con	2,010000,27,055,147,072,156,157,156,145,040,050,116,157,040,104,145,142,165,147,147,151,156,147,040,111,156,146,157,051
+	con	3,010000,7,055,147,072,156,157,156,145
+	con	4,010000,27,055,117,040,050,117,160,164,151,155,151,172,145,040,143,157,155,160,151,154,145,144,040,143,157,144,145,051
+	con	5,010000,2,055,117
+	con	6,010000,21,055,156,157,167,141,162,156,040,050,116,157,040,167,141,162,156,151,156,147,163,051
+	con	7,010000,7,055,156,157,167,141,162,156
+	con	8,010000,24,055,166,145,162,142,157,163,145,040,050,155,157,162,145,040,155,145,163,163,141,147,145,163,051
+	con	9,010000,8,055,166,145,162,142,157,163,145
+	con	10,010000,29,055,144,145,160,162,145,143,141,164,151,157,156,040,050,104,145,160,162,145,143,141,164,145,144,040,101,120,111,051
+	con	11,010000,12,055,144,145,160,162,145,143,141,164,151,157,156
+	declend
+	line	456
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	457
+	colm	21
+	synt	any
+	field	compOptsPool
+	line	457
+	colm	34
+	synt	any
+	field	get_contents
+	line	457
+	colm	47
+	synt	any
+	invoke	0
+	line	457
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	458
+	colm	21
+	synt	any
+	field	compOptsPool
+	line	458
+	colm	34
+	synt	any
+	field	get_cursor
+	line	458
+	colm	45
+	synt	any
+	invoke	0
+	line	458
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	459
+	colm	6
+	synt	ifelse
+	mark	L4
+	pnull
+	pnull
+	var	2
+	var	3
+	line	459
+	colm	10
+	synt	any
+	subsc
+	str	0
+	line	459
+	colm	16
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	1
+	line	460
+	colm	12
+	synt	any
+	invoke	2
+	goto	L5
+lab L4
+	line	461
+	colm	11
+	synt	ifelse
+	mark	L6
+	pnull
+	pnull
+	var	2
+	var	3
+	line	461
+	colm	15
+	synt	any
+	subsc
+	str	2
+	line	461
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	3
+	line	462
+	colm	12
+	synt	any
+	invoke	2
+	goto	L7
+lab L6
+	line	463
+	colm	11
+	synt	ifelse
+	mark	L8
+	pnull
+	pnull
+	var	2
+	var	3
+	line	463
+	colm	15
+	synt	any
+	subsc
+	str	4
+	line	463
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	5
+	line	464
+	colm	12
+	synt	any
+	invoke	2
+	goto	L9
+lab L8
+	line	465
+	colm	11
+	synt	ifelse
+	mark	L10
+	pnull
+	pnull
+	var	2
+	var	3
+	line	465
+	colm	15
+	synt	any
+	subsc
+	str	6
+	line	465
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	7
+	line	466
+	colm	12
+	synt	any
+	invoke	2
+	goto	L11
+lab L10
+	line	467
+	colm	11
+	synt	ifelse
+	mark	L12
+	pnull
+	pnull
+	var	2
+	var	3
+	line	467
+	colm	15
+	synt	any
+	subsc
+	str	8
+	line	467
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	9
+	line	468
+	colm	12
+	synt	any
+	invoke	2
+	goto	L13
+lab L12
+	line	469
+	colm	11
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	var	3
+	line	469
+	colm	15
+	synt	any
+	subsc
+	str	10
+	line	469
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	4
+	var	5
+	str	11
+	line	470
+	colm	12
+	synt	any
+	invoke	2
+	line	469
+	colm	11
+	synt	endif
+lab L13
+	line	467
+	colm	11
+	synt	endifelse
+lab L11
+	line	465
+	colm	11
+	synt	endifelse
+lab L9
+	line	463
+	colm	11
+	synt	endifelse
+lab L7
+	line	461
+	colm	11
+	synt	endifelse
+lab L5
+	line	459
+	colm	6
+	synt	endifelse
+	unmark
+lab L3
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	471
+	colm	10
+	synt	any
+	field	usedcompOptsPool
+	line	471
+	colm	27
+	synt	any
+	field	set_contents
+	var	5
+	line	471
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	pnull
+	line	472
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_on_addToInterpList
+	local	0,001000,self
+	local	1,001000,ev
+	local	2,000020,L
+	local	3,000020,iop
+	local	4,000000,put
+	con	0,010000,22,055,166,145,162,142,157,163,145,040,050,155,157,162,145,040,157,165,164,160,165,164,051
+	con	1,010000,8,055,166,145,162,142,157,163,145
+	declend
+	line	474
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	475
+	colm	22
+	synt	any
+	field	interpOptsPool
+	line	475
+	colm	37
+	synt	any
+	field	get_contents
+	line	475
+	colm	50
+	synt	any
+	invoke	0
+	line	475
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	476
+	colm	21
+	synt	any
+	field	interpOptsPool
+	line	476
+	colm	36
+	synt	any
+	field	get_cursor
+	line	476
+	colm	47
+	synt	any
+	invoke	0
+	line	476
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	477
+	colm	7
+	synt	ifelse
+	mark	L4
+	pnull
+	pnull
+	var	2
+	var	3
+	line	477
+	colm	11
+	synt	any
+	subsc
+	str	0
+	line	477
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	var	4
+	pnull
+	var	0
+	line	478
+	colm	18
+	synt	any
+	field	interpOpts
+	str	1
+	line	478
+	colm	13
+	synt	any
+	invoke	2
+	goto	L5
+lab L4
+	var	4
+	pnull
+	var	0
+	line	479
+	colm	20
+	synt	any
+	field	interpOpts
+	pnull
+	var	2
+	var	3
+	line	479
+	colm	33
+	synt	any
+	subsc
+	line	479
+	colm	15
+	synt	any
+	invoke	2
+lab L5
+	line	477
+	colm	7
+	synt	endifelse
+	unmark
+lab L3
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	480
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	line	480
+	colm	30
+	synt	any
+	field	set_contents
+	pnull
+	var	0
+	line	480
+	colm	48
+	synt	any
+	field	interpOpts
+	line	480
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	pnull
+	line	481
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_setup
+	local	0,001000,self
+	local	1,000000,gui__TabSet
+	local	2,000000,gui__TabItem
+	local	3,000000,gui__Label
+	local	4,000000,gui__TextField
+	local	5,000000,gui__TextList
+	local	6,000000,gui__TextButton
+	con	0,010000,12,163,151,172,145,075,064,061,066,054,062,071,066
+	con	1,010000,22,154,141,142,145,154,075,116,145,167,040,112,141,166,141,040,120,162,157,152,145,143,164
+	con	2,010000,18,146,157,156,164,075,163,145,162,151,146,054,142,157,154,144,054,061,062
+	con	3,010000,13,142,147,075,154,151,147,150,164,040,147,162,141,171
+	con	4,010000,1,060
+	con	5,010000,3,064,061,067
+	con	6,010000,3,062,067,060
+	con	7,010000,4,115,141,151,156
+	con	8,002000,2,11
+	con	9,002000,3,131
+	con	10,002000,2,24
+	con	11,010000,1,154
+	con	12,010000,21,112,141,166,141,040,101,160,160,057,101,160,160,154,145,164,040,116,141,155,145,072
+	con	13,002000,3,153
+	con	14,002000,1,7
+	con	15,002000,3,246
+	con	16,002000,2,28
+	con	17,010000,0
+	con	18,002000,2,50
+	con	19,002000,3,123
+	con	20,010000,19,101,160,160,154,145,164,040,110,124,115,114,040,163,157,165,162,143,145,072
+	con	21,002000,2,89
+	con	22,002000,3,111
+	con	23,010000,10,103,114,101,123,123,120,101,124,110,072
+	con	24,002000,2,47
+	con	25,002000,3,247
+	con	26,002000,2,87
+	con	27,002000,3,248
+	con	28,002000,2,26
+	con	29,010000,5,106,151,154,145,163
+	con	30,002000,2,18
+	con	31,002000,2,22
+	con	32,002000,3,102
+	con	33,002000,2,23
+	con	34,010000,16,123,157,165,162,143,145,040,104,151,162,145,143,164,157,162,171
+	con	35,002000,3,138
+	con	36,002000,2,19
+	con	37,002000,3,255
+	con	38,002000,2,27
+	con	39,002000,2,57
+	con	40,010000,15,103,154,141,163,163,040,104,151,162,145,143,164,157,162,171
+	con	41,002000,2,53
+	con	42,010000,8,103,157,155,160,151,154,145,162
+	con	43,002000,2,14
+	con	44,002000,2,12
+	con	45,002000,3,109
+	con	46,002000,2,21
+	con	47,010000,14,112,141,166,141,040,103,157,155,160,151,154,145,162,072
+	con	48,002000,3,121
+	con	49,002000,3,282
+	con	50,002000,2,56
+	con	51,002000,3,155
+	con	52,010000,20,103,157,155,160,151,154,145,162,040,123,167,151,164,143,150,040,120,157,157,154
+	con	53,002000,2,81
+	con	54,002000,3,191
+	con	55,002000,3,134
+	con	56,002000,3,160
+	con	57,002000,3,130
+	con	58,002000,3,269
+	con	59,002000,2,54
+	con	60,002000,3,116
+	con	61,002000,2,17
+	con	62,010000,18,125,163,145,040,164,150,145,163,145,040,163,167,151,164,143,150,145,163
+	con	63,002000,3,210
+	con	64,002000,3,124
+	con	65,002000,2,25
+	con	66,010000,16,157,156,137,141,144,144,124,157,103,157,155,160,114,151,163,164
+	con	67,002000,2,60
+	con	68,010000,1,076
+	con	69,010000,1,143
+	con	70,002000,3,217
+	con	71,002000,2,41
+	con	72,010000,3,101,144,144
+	con	73,010000,3,104,145,154
+	con	74,002000,3,100
+	con	75,010000,4,105,144,151,164
+	con	76,010000,11,111,156,164,145,162,160,162,145,164,145,162
+	con	77,002000,2,13
+	con	78,010000,17,112,141,166,141,040,111,156,164,145,162,160,162,145,164,145,162,072
+	con	79,002000,3,127
+	con	80,002000,3,266
+	con	81,002000,1,8
+	con	82,002000,2,75
+	con	83,002000,3,167
+	con	84,002000,3,240
+	con	85,002000,3,195
+	con	86,002000,3,122
+	con	87,010000,18,157,156,137,141,144,144,124,157,111,156,164,145,162,160,114,151,163,164
+	con	88,002000,1,9
+	con	89,002000,2,55
+	con	90,010000,23,111,156,164,145,162,160,162,145,164,145,162,040,123,167,151,164,143,150,040,120,157,157,154
+	con	91,002000,3,242
+	con	92,002000,3,154
+	con	93,002000,3,213
+	con	94,002000,2,98
+	con	95,010000,8,104,145,142,165,147,147,145,162
+	con	96,002000,2,97
+	con	97,010000,14,112,141,166,141,040,104,145,142,165,147,147,145,162,072
+	con	98,002000,3,114
+	con	99,002000,3,290
+	con	100,002000,3,272
+	con	101,002000,2,65
+	con	102,010000,13,157,156,137,143,141,156,143,145,154,137,142,164,156
+	con	103,010000,6,103,141,156,143,145,154
+	con	104,010000,1,064
+	con	105,010000,3,062,067,062
+	con	106,010000,2,066,065
+	con	107,010000,2,062,064
+	con	108,010000,9,157,156,137,157,153,137,142,164,156
+	con	109,010000,2,117,113
+	declend
+	line	483
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	484
+	colm	11
+	synt	any
+	field	set_attribs
+	str	0
+	str	1
+	str	2
+	str	3
+	line	484
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	486
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	var	1
+	line	486
+	colm	39
+	synt	any
+	invoke	0
+	line	486
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	487
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	487
+	colm	26
+	synt	any
+	field	set_pos
+	str	4
+	str	4
+	line	487
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	488
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	488
+	colm	26
+	synt	any
+	field	set_size
+	str	5
+	str	6
+	line	488
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	489
+	colm	11
+	synt	any
+	field	main_tab
+	var	2
+	line	489
+	colm	34
+	synt	any
+	invoke	0
+	line	489
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	490
+	colm	11
+	synt	any
+	field	main_tab
+	line	490
+	colm	20
+	synt	any
+	field	set_label
+	str	7
+	line	490
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	491
+	colm	11
+	synt	any
+	field	label_1
+	var	3
+	line	491
+	colm	31
+	synt	any
+	invoke	0
+	line	491
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	492
+	colm	11
+	synt	any
+	field	label_1
+	line	492
+	colm	19
+	synt	any
+	field	set_pos
+	int	8
+	int	8
+	line	492
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	493
+	colm	11
+	synt	any
+	field	label_1
+	line	493
+	colm	19
+	synt	any
+	field	set_size
+	int	9
+	int	10
+	line	493
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	494
+	colm	11
+	synt	any
+	field	label_1
+	line	494
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	494
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	495
+	colm	11
+	synt	any
+	field	label_1
+	line	495
+	colm	19
+	synt	any
+	field	set_label
+	str	12
+	line	495
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	496
+	colm	11
+	synt	any
+	field	main_tab
+	line	496
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	496
+	colm	29
+	synt	any
+	field	label_1
+	line	496
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	497
+	colm	11
+	synt	any
+	field	mainFile
+	var	4
+	line	497
+	colm	36
+	synt	any
+	invoke	0
+	line	497
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	498
+	colm	11
+	synt	any
+	field	mainFile
+	line	498
+	colm	20
+	synt	any
+	field	set_pos
+	int	13
+	int	14
+	line	498
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	499
+	colm	11
+	synt	any
+	field	mainFile
+	line	499
+	colm	20
+	synt	any
+	field	set_size
+	int	15
+	int	16
+	line	499
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	500
+	colm	11
+	synt	any
+	field	mainFile
+	line	500
+	colm	20
+	synt	any
+	field	set_draw_border
+	line	500
+	colm	36
+	synt	any
+	invoke	0
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	501
+	colm	11
+	synt	any
+	field	mainFile
+	line	501
+	colm	20
+	synt	any
+	field	set_contents
+	str	17
+	line	501
+	colm	33
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	502
+	colm	11
+	synt	any
+	field	main_tab
+	line	502
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	502
+	colm	29
+	synt	any
+	field	mainFile
+	line	502
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	503
+	colm	11
+	synt	any
+	field	label_2
+	var	3
+	line	503
+	colm	31
+	synt	any
+	invoke	0
+	line	503
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	504
+	colm	11
+	synt	any
+	field	label_2
+	line	504
+	colm	19
+	synt	any
+	field	set_pos
+	int	8
+	int	18
+	line	504
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	0
+	line	505
+	colm	11
+	synt	any
+	field	label_2
+	line	505
+	colm	19
+	synt	any
+	field	set_size
+	int	19
+	int	10
+	line	505
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	var	0
+	line	506
+	colm	11
+	synt	any
+	field	label_2
+	line	506
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	506
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	var	0
+	line	507
+	colm	11
+	synt	any
+	field	label_2
+	line	507
+	colm	19
+	synt	any
+	field	set_label
+	str	20
+	line	507
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	var	0
+	line	508
+	colm	11
+	synt	any
+	field	main_tab
+	line	508
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	508
+	colm	29
+	synt	any
+	field	label_2
+	line	508
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	509
+	colm	11
+	synt	any
+	field	label_3
+	var	3
+	line	509
+	colm	31
+	synt	any
+	invoke	0
+	line	509
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	510
+	colm	11
+	synt	any
+	field	label_3
+	line	510
+	colm	19
+	synt	any
+	field	set_pos
+	int	8
+	int	21
+	line	510
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	511
+	colm	11
+	synt	any
+	field	label_3
+	line	511
+	colm	19
+	synt	any
+	field	set_size
+	int	22
+	int	10
+	line	511
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	512
+	colm	11
+	synt	any
+	field	label_3
+	line	512
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	512
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	513
+	colm	11
+	synt	any
+	field	label_3
+	line	513
+	colm	19
+	synt	any
+	field	set_label
+	str	23
+	line	513
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	0
+	line	514
+	colm	11
+	synt	any
+	field	main_tab
+	line	514
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	514
+	colm	29
+	synt	any
+	field	label_3
+	line	514
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L30
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	515
+	colm	11
+	synt	any
+	field	appletHTML
+	var	4
+	line	515
+	colm	38
+	synt	any
+	invoke	0
+	line	515
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	0
+	line	516
+	colm	11
+	synt	any
+	field	appletHTML
+	line	516
+	colm	22
+	synt	any
+	field	set_pos
+	int	13
+	int	24
+	line	516
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	var	0
+	line	517
+	colm	11
+	synt	any
+	field	appletHTML
+	line	517
+	colm	22
+	synt	any
+	field	set_size
+	int	25
+	int	16
+	line	517
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	0
+	line	518
+	colm	11
+	synt	any
+	field	appletHTML
+	line	518
+	colm	22
+	synt	any
+	field	set_draw_border
+	line	518
+	colm	38
+	synt	any
+	invoke	0
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	519
+	colm	11
+	synt	any
+	field	appletHTML
+	line	519
+	colm	22
+	synt	any
+	field	set_contents
+	str	17
+	line	519
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	520
+	colm	11
+	synt	any
+	field	main_tab
+	line	520
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	520
+	colm	29
+	synt	any
+	field	appletHTML
+	line	520
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	521
+	colm	11
+	synt	any
+	field	classpath
+	var	4
+	line	521
+	colm	37
+	synt	any
+	invoke	0
+	line	521
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	var	0
+	line	522
+	colm	11
+	synt	any
+	field	classpath
+	line	522
+	colm	21
+	synt	any
+	field	set_pos
+	int	13
+	int	26
+	line	522
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	523
+	colm	11
+	synt	any
+	field	classpath
+	line	523
+	colm	21
+	synt	any
+	field	set_size
+	int	27
+	int	28
+	line	523
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	524
+	colm	11
+	synt	any
+	field	classpath
+	line	524
+	colm	21
+	synt	any
+	field	set_draw_border
+	line	524
+	colm	37
+	synt	any
+	invoke	0
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	525
+	colm	11
+	synt	any
+	field	classpath
+	line	525
+	colm	21
+	synt	any
+	field	set_contents
+	str	17
+	line	525
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	526
+	colm	11
+	synt	any
+	field	main_tab
+	line	526
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	526
+	colm	29
+	synt	any
+	field	classpath
+	line	526
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	0
+	line	527
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	527
+	colm	26
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	527
+	colm	35
+	synt	any
+	field	main_tab
+	line	527
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	0
+	line	528
+	colm	11
+	synt	any
+	field	files_tab
+	var	2
+	line	528
+	colm	35
+	synt	any
+	invoke	0
+	line	528
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	pnull
+	var	0
+	line	529
+	colm	11
+	synt	any
+	field	files_tab
+	line	529
+	colm	21
+	synt	any
+	field	set_label
+	str	29
+	line	529
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L45
+	mark	L46
+	pnull
+	pnull
+	var	0
+	line	530
+	colm	11
+	synt	any
+	field	label_4
+	var	3
+	line	530
+	colm	31
+	synt	any
+	invoke	0
+	line	530
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L46
+	mark	L47
+	pnull
+	pnull
+	var	0
+	line	531
+	colm	11
+	synt	any
+	field	label_4
+	line	531
+	colm	19
+	synt	any
+	field	set_pos
+	int	30
+	int	31
+	line	531
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L47
+	mark	L48
+	pnull
+	pnull
+	var	0
+	line	532
+	colm	11
+	synt	any
+	field	label_4
+	line	532
+	colm	19
+	synt	any
+	field	set_size
+	int	32
+	int	33
+	line	532
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L48
+	mark	L49
+	pnull
+	pnull
+	var	0
+	line	533
+	colm	11
+	synt	any
+	field	label_4
+	line	533
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	533
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L49
+	mark	L50
+	pnull
+	pnull
+	var	0
+	line	534
+	colm	11
+	synt	any
+	field	label_4
+	line	534
+	colm	19
+	synt	any
+	field	set_label
+	str	34
+	line	534
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L50
+	mark	L51
+	pnull
+	pnull
+	var	0
+	line	535
+	colm	11
+	synt	any
+	field	files_tab
+	line	535
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	535
+	colm	30
+	synt	any
+	field	label_4
+	line	535
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L51
+	mark	L52
+	pnull
+	pnull
+	var	0
+	line	536
+	colm	11
+	synt	any
+	field	srcDir
+	var	4
+	line	536
+	colm	34
+	synt	any
+	invoke	0
+	line	536
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L52
+	mark	L53
+	pnull
+	pnull
+	var	0
+	line	537
+	colm	11
+	synt	any
+	field	srcDir
+	line	537
+	colm	18
+	synt	any
+	field	set_pos
+	int	35
+	int	36
+	line	537
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L53
+	mark	L54
+	pnull
+	pnull
+	var	0
+	line	538
+	colm	11
+	synt	any
+	field	srcDir
+	line	538
+	colm	18
+	synt	any
+	field	set_size
+	int	37
+	int	38
+	line	538
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L54
+	mark	L55
+	pnull
+	pnull
+	var	0
+	line	539
+	colm	11
+	synt	any
+	field	srcDir
+	line	539
+	colm	18
+	synt	any
+	field	set_draw_border
+	line	539
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L55
+	mark	L56
+	pnull
+	pnull
+	var	0
+	line	540
+	colm	11
+	synt	any
+	field	srcDir
+	line	540
+	colm	18
+	synt	any
+	field	set_contents
+	str	17
+	line	540
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L56
+	mark	L57
+	pnull
+	pnull
+	var	0
+	line	541
+	colm	11
+	synt	any
+	field	files_tab
+	line	541
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	541
+	colm	30
+	synt	any
+	field	srcDir
+	line	541
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L57
+	mark	L58
+	pnull
+	pnull
+	var	0
+	line	542
+	colm	11
+	synt	any
+	field	label_5
+	var	3
+	line	542
+	colm	31
+	synt	any
+	invoke	0
+	line	542
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L58
+	mark	L59
+	pnull
+	pnull
+	var	0
+	line	543
+	colm	11
+	synt	any
+	field	label_5
+	line	543
+	colm	19
+	synt	any
+	field	set_pos
+	int	30
+	int	39
+	line	543
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L59
+	mark	L60
+	pnull
+	pnull
+	var	0
+	line	544
+	colm	11
+	synt	any
+	field	label_5
+	line	544
+	colm	19
+	synt	any
+	field	set_size
+	int	32
+	int	33
+	line	544
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L60
+	mark	L61
+	pnull
+	pnull
+	var	0
+	line	545
+	colm	11
+	synt	any
+	field	label_5
+	line	545
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	545
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L61
+	mark	L62
+	pnull
+	pnull
+	var	0
+	line	546
+	colm	11
+	synt	any
+	field	label_5
+	line	546
+	colm	19
+	synt	any
+	field	set_label
+	str	40
+	line	546
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L62
+	mark	L63
+	pnull
+	pnull
+	var	0
+	line	547
+	colm	11
+	synt	any
+	field	files_tab
+	line	547
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	547
+	colm	30
+	synt	any
+	field	label_5
+	line	547
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L63
+	mark	L64
+	pnull
+	pnull
+	var	0
+	line	548
+	colm	11
+	synt	any
+	field	ObjDir
+	var	4
+	line	548
+	colm	34
+	synt	any
+	invoke	0
+	line	548
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L64
+	mark	L65
+	pnull
+	pnull
+	var	0
+	line	549
+	colm	11
+	synt	any
+	field	ObjDir
+	line	549
+	colm	18
+	synt	any
+	field	set_pos
+	int	35
+	int	41
+	line	549
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L65
+	mark	L66
+	pnull
+	pnull
+	var	0
+	line	550
+	colm	11
+	synt	any
+	field	ObjDir
+	line	550
+	colm	18
+	synt	any
+	field	set_size
+	int	37
+	int	38
+	line	550
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L66
+	mark	L67
+	pnull
+	pnull
+	var	0
+	line	551
+	colm	11
+	synt	any
+	field	ObjDir
+	line	551
+	colm	18
+	synt	any
+	field	set_draw_border
+	line	551
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L67
+	mark	L68
+	pnull
+	pnull
+	var	0
+	line	552
+	colm	11
+	synt	any
+	field	ObjDir
+	line	552
+	colm	18
+	synt	any
+	field	set_contents
+	str	17
+	line	552
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L68
+	mark	L69
+	pnull
+	pnull
+	var	0
+	line	553
+	colm	11
+	synt	any
+	field	files_tab
+	line	553
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	553
+	colm	30
+	synt	any
+	field	ObjDir
+	line	553
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L69
+	mark	L70
+	pnull
+	pnull
+	var	0
+	line	554
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	554
+	colm	26
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	554
+	colm	35
+	synt	any
+	field	files_tab
+	line	554
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L70
+	mark	L71
+	pnull
+	pnull
+	var	0
+	line	555
+	colm	11
+	synt	any
+	field	comp_tab
+	var	2
+	line	555
+	colm	34
+	synt	any
+	invoke	0
+	line	555
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L71
+	mark	L72
+	pnull
+	pnull
+	var	0
+	line	556
+	colm	11
+	synt	any
+	field	comp_tab
+	line	556
+	colm	20
+	synt	any
+	field	set_label
+	str	42
+	line	556
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L72
+	mark	L73
+	pnull
+	pnull
+	var	0
+	line	557
+	colm	11
+	synt	any
+	field	label_6
+	var	3
+	line	557
+	colm	31
+	synt	any
+	invoke	0
+	line	557
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L73
+	mark	L74
+	pnull
+	pnull
+	var	0
+	line	558
+	colm	11
+	synt	any
+	field	label_6
+	line	558
+	colm	19
+	synt	any
+	field	set_pos
+	int	43
+	int	44
+	line	558
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L74
+	mark	L75
+	pnull
+	pnull
+	var	0
+	line	559
+	colm	11
+	synt	any
+	field	label_6
+	line	559
+	colm	19
+	synt	any
+	field	set_size
+	int	45
+	int	46
+	line	559
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L75
+	mark	L76
+	pnull
+	pnull
+	var	0
+	line	560
+	colm	11
+	synt	any
+	field	label_6
+	line	560
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	560
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L76
+	mark	L77
+	pnull
+	pnull
+	var	0
+	line	561
+	colm	11
+	synt	any
+	field	label_6
+	line	561
+	colm	19
+	synt	any
+	field	set_label
+	str	47
+	line	561
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L77
+	mark	L78
+	pnull
+	pnull
+	var	0
+	line	562
+	colm	11
+	synt	any
+	field	comp_tab
+	line	562
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	562
+	colm	29
+	synt	any
+	field	label_6
+	line	562
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L78
+	mark	L79
+	pnull
+	pnull
+	var	0
+	line	563
+	colm	11
+	synt	any
+	field	compilerName
+	var	4
+	line	563
+	colm	40
+	synt	any
+	invoke	0
+	line	563
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L79
+	mark	L80
+	pnull
+	pnull
+	var	0
+	line	564
+	colm	11
+	synt	any
+	field	compilerName
+	line	564
+	colm	24
+	synt	any
+	field	set_pos
+	int	48
+	int	8
+	line	564
+	colm	32
+	synt	any
+	invoke	2
+	unmark
+lab L80
+	mark	L81
+	pnull
+	pnull
+	var	0
+	line	565
+	colm	11
+	synt	any
+	field	compilerName
+	line	565
+	colm	24
+	synt	any
+	field	set_size
+	int	49
+	int	10
+	line	565
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L81
+	mark	L82
+	pnull
+	pnull
+	var	0
+	line	566
+	colm	11
+	synt	any
+	field	compilerName
+	line	566
+	colm	24
+	synt	any
+	field	set_draw_border
+	line	566
+	colm	40
+	synt	any
+	invoke	0
+	unmark
+lab L82
+	mark	L83
+	pnull
+	pnull
+	var	0
+	line	567
+	colm	11
+	synt	any
+	field	compilerName
+	line	567
+	colm	24
+	synt	any
+	field	set_contents
+	str	17
+	line	567
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L83
+	mark	L84
+	pnull
+	pnull
+	var	0
+	line	568
+	colm	11
+	synt	any
+	field	comp_tab
+	line	568
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	568
+	colm	29
+	synt	any
+	field	compilerName
+	line	568
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L84
+	mark	L85
+	pnull
+	pnull
+	var	0
+	line	569
+	colm	11
+	synt	any
+	field	label_7
+	var	3
+	line	569
+	colm	31
+	synt	any
+	invoke	0
+	line	569
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L85
+	mark	L86
+	pnull
+	pnull
+	var	0
+	line	570
+	colm	11
+	synt	any
+	field	label_7
+	line	570
+	colm	19
+	synt	any
+	field	set_pos
+	int	8
+	int	50
+	line	570
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L86
+	mark	L87
+	pnull
+	pnull
+	var	0
+	line	571
+	colm	11
+	synt	any
+	field	label_7
+	line	571
+	colm	19
+	synt	any
+	field	set_size
+	int	51
+	int	30
+	line	571
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L87
+	mark	L88
+	pnull
+	pnull
+	var	0
+	line	572
+	colm	11
+	synt	any
+	field	label_7
+	line	572
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	572
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L88
+	mark	L89
+	pnull
+	pnull
+	var	0
+	line	573
+	colm	11
+	synt	any
+	field	label_7
+	line	573
+	colm	19
+	synt	any
+	field	set_label
+	str	52
+	line	573
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L89
+	mark	L90
+	pnull
+	pnull
+	var	0
+	line	574
+	colm	11
+	synt	any
+	field	comp_tab
+	line	574
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	574
+	colm	29
+	synt	any
+	field	label_7
+	line	574
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L90
+	mark	L91
+	pnull
+	pnull
+	var	0
+	line	575
+	colm	11
+	synt	any
+	field	compOptsPool
+	var	5
+	line	575
+	colm	39
+	synt	any
+	invoke	0
+	line	575
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L91
+	mark	L92
+	pnull
+	pnull
+	var	0
+	line	576
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	576
+	colm	24
+	synt	any
+	field	set_pos
+	int	8
+	int	53
+	line	576
+	colm	32
+	synt	any
+	invoke	2
+	unmark
+lab L92
+	mark	L93
+	pnull
+	pnull
+	var	0
+	line	577
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	577
+	colm	24
+	synt	any
+	field	set_size
+	int	54
+	int	55
+	line	577
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L93
+	mark	L94
+	pnull
+	pnull
+	var	0
+	line	578
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	578
+	colm	24
+	synt	any
+	field	set_draw_border
+	line	578
+	colm	40
+	synt	any
+	invoke	0
+	unmark
+lab L94
+	mark	L95
+	pnull
+	pnull
+	var	0
+	line	579
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	579
+	colm	24
+	synt	any
+	field	set_select_one
+	line	579
+	colm	39
+	synt	any
+	invoke	0
+	unmark
+lab L95
+	mark	L96
+	pnull
+	pnull
+	var	0
+	line	580
+	colm	11
+	synt	any
+	field	compOptsPool
+	line	580
+	colm	24
+	synt	any
+	field	set_contents
+	pnull
+	str	17
+	line	580
+	colm	38
+	synt	any
+	llist	1
+	line	580
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L96
+	mark	L97
+	pnull
+	pnull
+	var	0
+	line	581
+	colm	11
+	synt	any
+	field	comp_tab
+	line	581
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	581
+	colm	29
+	synt	any
+	field	compOptsPool
+	line	581
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L97
+	mark	L98
+	pnull
+	pnull
+	var	0
+	line	582
+	colm	11
+	synt	any
+	field	usedcompOptsPool
+	var	5
+	line	582
+	colm	43
+	synt	any
+	invoke	0
+	line	582
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L98
+	mark	L99
+	pnull
+	pnull
+	var	0
+	line	583
+	colm	11
+	synt	any
+	field	usedcompOptsPool
+	line	583
+	colm	28
+	synt	any
+	field	set_pos
+	int	25
+	int	53
+	line	583
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L99
+	mark	L100
+	pnull
+	pnull
+	var	0
+	line	584
+	colm	11
+	synt	any
+	field	usedcompOptsPool
+	line	584
+	colm	28
+	synt	any
+	field	set_size
+	int	56
+	int	57
+	line	584
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L100
+	mark	L101
+	pnull
+	pnull
+	var	0
+	line	585
+	colm	11
+	synt	any
+	field	usedcompOptsPool
+	line	585
+	colm	28
+	synt	any
+	field	set_draw_border
+	line	585
+	colm	44
+	synt	any
+	invoke	0
+	unmark
+lab L101
+	mark	L102
+	pnull
+	pnull
+	var	0
+	line	586
+	colm	11
+	synt	any
+	field	usedcompOptsPool
+	line	586
+	colm	28
+	synt	any
+	field	set_contents
+	pnull
+	str	17
+	line	586
+	colm	42
+	synt	any
+	llist	1
+	line	586
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L102
+	mark	L103
+	pnull
+	pnull
+	var	0
+	line	587
+	colm	11
+	synt	any
+	field	comp_tab
+	line	587
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	587
+	colm	29
+	synt	any
+	field	usedcompOptsPool
+	line	587
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L103
+	mark	L104
+	pnull
+	pnull
+	var	0
+	line	588
+	colm	11
+	synt	any
+	field	label_8
+	var	3
+	line	588
+	colm	31
+	synt	any
+	invoke	0
+	line	588
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L104
+	mark	L105
+	pnull
+	pnull
+	var	0
+	line	589
+	colm	11
+	synt	any
+	field	label_8
+	line	589
+	colm	19
+	synt	any
+	field	set_pos
+	int	58
+	int	59
+	line	589
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L105
+	mark	L106
+	pnull
+	pnull
+	var	0
+	line	590
+	colm	11
+	synt	any
+	field	label_8
+	line	590
+	colm	19
+	synt	any
+	field	set_size
+	int	60
+	int	61
+	line	590
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L106
+	mark	L107
+	pnull
+	pnull
+	var	0
+	line	591
+	colm	11
+	synt	any
+	field	label_8
+	line	591
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	591
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L107
+	mark	L108
+	pnull
+	pnull
+	var	0
+	line	592
+	colm	11
+	synt	any
+	field	label_8
+	line	592
+	colm	19
+	synt	any
+	field	set_label
+	str	62
+	line	592
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L108
+	mark	L109
+	pnull
+	pnull
+	var	0
+	line	593
+	colm	11
+	synt	any
+	field	comp_tab
+	line	593
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	593
+	colm	29
+	synt	any
+	field	label_8
+	line	593
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L109
+	mark	L110
+	pnull
+	pnull
+	var	0
+	line	594
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	var	6
+	line	594
+	colm	46
+	synt	any
+	invoke	0
+	line	594
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L110
+	mark	L111
+	pnull
+	pnull
+	var	0
+	line	595
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	595
+	colm	29
+	synt	any
+	field	set_pos
+	int	63
+	int	64
+	line	595
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L111
+	mark	L112
+	pnull
+	pnull
+	var	0
+	line	596
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	596
+	colm	29
+	synt	any
+	field	set_size
+	int	16
+	int	65
+	line	596
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L112
+	mark	L113
+	pnull
+	pnull
+	var	0
+	line	597
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	597
+	colm	29
+	synt	any
+	field	connect
+	var	0
+	str	66
+	int	67
+	line	597
+	colm	37
+	synt	any
+	invoke	3
+	unmark
+lab L113
+	mark	L114
+	pnull
+	pnull
+	var	0
+	line	598
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	598
+	colm	29
+	synt	any
+	field	clear_toggles
+	line	598
+	colm	43
+	synt	any
+	invoke	0
+	unmark
+lab L114
+	mark	L115
+	pnull
+	pnull
+	var	0
+	line	599
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	599
+	colm	29
+	synt	any
+	field	set_label
+	str	68
+	line	599
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L115
+	mark	L116
+	pnull
+	pnull
+	var	0
+	line	600
+	colm	11
+	synt	any
+	field	addToCompList_btn
+	line	600
+	colm	29
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	600
+	colm	52
+	synt	any
+	invoke	1
+	unmark
+lab L116
+	mark	L117
+	pnull
+	pnull
+	var	0
+	line	601
+	colm	11
+	synt	any
+	field	comp_tab
+	line	601
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	601
+	colm	29
+	synt	any
+	field	addToCompList_btn
+	line	601
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L117
+	mark	L118
+	pnull
+	pnull
+	var	0
+	line	602
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	var	6
+	line	602
+	colm	44
+	synt	any
+	invoke	0
+	line	602
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L118
+	mark	L119
+	pnull
+	pnull
+	var	0
+	line	603
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	line	603
+	colm	27
+	synt	any
+	field	set_pos
+	int	43
+	int	70
+	line	603
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L119
+	mark	L120
+	pnull
+	pnull
+	var	0
+	line	604
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	line	604
+	colm	27
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	604
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L120
+	mark	L121
+	pnull
+	pnull
+	var	0
+	line	605
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	line	605
+	colm	27
+	synt	any
+	field	clear_toggles
+	line	605
+	colm	41
+	synt	any
+	invoke	0
+	unmark
+lab L121
+	mark	L122
+	pnull
+	pnull
+	var	0
+	line	606
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	line	606
+	colm	27
+	synt	any
+	field	set_label
+	str	72
+	line	606
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L122
+	mark	L123
+	pnull
+	pnull
+	var	0
+	line	607
+	colm	11
+	synt	any
+	field	addcompiler_btn
+	line	607
+	colm	27
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	607
+	colm	50
+	synt	any
+	invoke	1
+	unmark
+lab L123
+	mark	L124
+	pnull
+	pnull
+	var	0
+	line	608
+	colm	11
+	synt	any
+	field	comp_tab
+	line	608
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	608
+	colm	29
+	synt	any
+	field	addcompiler_btn
+	line	608
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L124
+	mark	L125
+	pnull
+	pnull
+	var	0
+	line	609
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	var	6
+	line	609
+	colm	44
+	synt	any
+	invoke	0
+	line	609
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L125
+	mark	L126
+	pnull
+	pnull
+	var	0
+	line	610
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	line	610
+	colm	27
+	synt	any
+	field	set_pos
+	int	39
+	int	70
+	line	610
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L126
+	mark	L127
+	pnull
+	pnull
+	var	0
+	line	611
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	line	611
+	colm	27
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	611
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L127
+	mark	L128
+	pnull
+	pnull
+	var	0
+	line	612
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	line	612
+	colm	27
+	synt	any
+	field	clear_toggles
+	line	612
+	colm	41
+	synt	any
+	invoke	0
+	unmark
+lab L128
+	mark	L129
+	pnull
+	pnull
+	var	0
+	line	613
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	line	613
+	colm	27
+	synt	any
+	field	set_label
+	str	73
+	line	613
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L129
+	mark	L130
+	pnull
+	pnull
+	var	0
+	line	614
+	colm	11
+	synt	any
+	field	delcompiler_btn
+	line	614
+	colm	27
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	614
+	colm	50
+	synt	any
+	invoke	1
+	unmark
+lab L130
+	mark	L131
+	pnull
+	pnull
+	var	0
+	line	615
+	colm	11
+	synt	any
+	field	comp_tab
+	line	615
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	615
+	colm	29
+	synt	any
+	field	delcompiler_btn
+	line	615
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L131
+	mark	L132
+	pnull
+	pnull
+	var	0
+	line	616
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	var	6
+	line	616
+	colm	45
+	synt	any
+	invoke	0
+	line	616
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L132
+	mark	L133
+	pnull
+	pnull
+	var	0
+	line	617
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	line	617
+	colm	28
+	synt	any
+	field	set_pos
+	int	74
+	int	70
+	line	617
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L133
+	mark	L134
+	pnull
+	pnull
+	var	0
+	line	618
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	line	618
+	colm	28
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	618
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L134
+	mark	L135
+	pnull
+	pnull
+	var	0
+	line	619
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	line	619
+	colm	28
+	synt	any
+	field	clear_toggles
+	line	619
+	colm	42
+	synt	any
+	invoke	0
+	unmark
+lab L135
+	mark	L136
+	pnull
+	pnull
+	var	0
+	line	620
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	line	620
+	colm	28
+	synt	any
+	field	set_label
+	str	75
+	line	620
+	colm	38
+	synt	any
+	invoke	1
+	unmark
+lab L136
+	mark	L137
+	pnull
+	pnull
+	var	0
+	line	621
+	colm	11
+	synt	any
+	field	editcompiler_btn
+	line	621
+	colm	28
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	621
+	colm	51
+	synt	any
+	invoke	1
+	unmark
+lab L137
+	mark	L138
+	pnull
+	pnull
+	var	0
+	line	622
+	colm	11
+	synt	any
+	field	comp_tab
+	line	622
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	622
+	colm	29
+	synt	any
+	field	editcompiler_btn
+	line	622
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L138
+	mark	L139
+	pnull
+	pnull
+	var	0
+	line	623
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	623
+	colm	26
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	623
+	colm	35
+	synt	any
+	field	comp_tab
+	line	623
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L139
+	mark	L140
+	pnull
+	pnull
+	var	0
+	line	624
+	colm	11
+	synt	any
+	field	interp_tab
+	var	2
+	line	624
+	colm	36
+	synt	any
+	invoke	0
+	line	624
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L140
+	mark	L141
+	pnull
+	pnull
+	var	0
+	line	625
+	colm	11
+	synt	any
+	field	interp_tab
+	line	625
+	colm	22
+	synt	any
+	field	set_label
+	str	76
+	line	625
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L141
+	mark	L142
+	pnull
+	pnull
+	var	0
+	line	626
+	colm	11
+	synt	any
+	field	label_9
+	var	3
+	line	626
+	colm	31
+	synt	any
+	invoke	0
+	line	626
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L142
+	mark	L143
+	pnull
+	pnull
+	var	0
+	line	627
+	colm	11
+	synt	any
+	field	label_9
+	line	627
+	colm	19
+	synt	any
+	field	set_pos
+	int	43
+	int	77
+	line	627
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L143
+	mark	L144
+	pnull
+	pnull
+	var	0
+	line	628
+	colm	11
+	synt	any
+	field	label_9
+	line	628
+	colm	19
+	synt	any
+	field	set_size
+	int	45
+	int	46
+	line	628
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L144
+	mark	L145
+	pnull
+	pnull
+	var	0
+	line	629
+	colm	11
+	synt	any
+	field	label_9
+	line	629
+	colm	19
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	629
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L145
+	mark	L146
+	pnull
+	pnull
+	var	0
+	line	630
+	colm	11
+	synt	any
+	field	label_9
+	line	630
+	colm	19
+	synt	any
+	field	set_label
+	str	78
+	line	630
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L146
+	mark	L147
+	pnull
+	pnull
+	var	0
+	line	631
+	colm	11
+	synt	any
+	field	interp_tab
+	line	631
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	631
+	colm	31
+	synt	any
+	field	label_9
+	line	631
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L147
+	mark	L148
+	pnull
+	pnull
+	var	0
+	line	632
+	colm	11
+	synt	any
+	field	interpName
+	var	4
+	line	632
+	colm	38
+	synt	any
+	invoke	0
+	line	632
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L148
+	mark	L149
+	pnull
+	pnull
+	var	0
+	line	633
+	colm	11
+	synt	any
+	field	interpName
+	line	633
+	colm	22
+	synt	any
+	field	set_pos
+	int	79
+	int	77
+	line	633
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L149
+	mark	L150
+	pnull
+	pnull
+	var	0
+	line	634
+	colm	11
+	synt	any
+	field	interpName
+	line	634
+	colm	22
+	synt	any
+	field	set_size
+	int	80
+	int	33
+	line	634
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L150
+	mark	L151
+	pnull
+	pnull
+	var	0
+	line	635
+	colm	11
+	synt	any
+	field	interpName
+	line	635
+	colm	22
+	synt	any
+	field	set_draw_border
+	line	635
+	colm	38
+	synt	any
+	invoke	0
+	unmark
+lab L151
+	mark	L152
+	pnull
+	pnull
+	var	0
+	line	636
+	colm	11
+	synt	any
+	field	interpName
+	line	636
+	colm	22
+	synt	any
+	field	set_contents
+	str	17
+	line	636
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L152
+	mark	L153
+	pnull
+	pnull
+	var	0
+	line	637
+	colm	11
+	synt	any
+	field	interp_tab
+	line	637
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	637
+	colm	31
+	synt	any
+	field	interpName
+	line	637
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L153
+	mark	L154
+	pnull
+	pnull
+	var	0
+	line	638
+	colm	11
+	synt	any
+	field	interpOptsPool
+	var	5
+	line	638
+	colm	41
+	synt	any
+	invoke	0
+	line	638
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L154
+	mark	L155
+	pnull
+	pnull
+	var	0
+	line	639
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	639
+	colm	26
+	synt	any
+	field	set_pos
+	int	81
+	int	82
+	line	639
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L155
+	mark	L156
+	pnull
+	pnull
+	var	0
+	line	640
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	640
+	colm	26
+	synt	any
+	field	set_size
+	int	83
+	int	55
+	line	640
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L156
+	mark	L157
+	pnull
+	pnull
+	var	0
+	line	641
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	641
+	colm	26
+	synt	any
+	field	set_draw_border
+	line	641
+	colm	42
+	synt	any
+	invoke	0
+	unmark
+lab L157
+	mark	L158
+	pnull
+	pnull
+	var	0
+	line	642
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	642
+	colm	26
+	synt	any
+	field	set_select_one
+	line	642
+	colm	41
+	synt	any
+	invoke	0
+	unmark
+lab L158
+	mark	L159
+	pnull
+	pnull
+	var	0
+	line	643
+	colm	11
+	synt	any
+	field	interpOptsPool
+	line	643
+	colm	26
+	synt	any
+	field	set_contents
+	pnull
+	str	17
+	line	643
+	colm	40
+	synt	any
+	llist	1
+	line	643
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L159
+	mark	L160
+	pnull
+	pnull
+	var	0
+	line	644
+	colm	11
+	synt	any
+	field	interp_tab
+	line	644
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	644
+	colm	31
+	synt	any
+	field	interpOptsPool
+	line	644
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L160
+	mark	L161
+	pnull
+	pnull
+	var	0
+	line	645
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	var	5
+	line	645
+	colm	45
+	synt	any
+	invoke	0
+	line	645
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L161
+	mark	L162
+	pnull
+	pnull
+	var	0
+	line	646
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	line	646
+	colm	30
+	synt	any
+	field	set_pos
+	int	84
+	int	82
+	line	646
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L162
+	mark	L163
+	pnull
+	pnull
+	var	0
+	line	647
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	line	647
+	colm	30
+	synt	any
+	field	set_size
+	int	83
+	int	55
+	line	647
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L163
+	mark	L164
+	pnull
+	pnull
+	var	0
+	line	648
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	line	648
+	colm	30
+	synt	any
+	field	set_draw_border
+	line	648
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L164
+	mark	L165
+	pnull
+	pnull
+	var	0
+	line	649
+	colm	11
+	synt	any
+	field	usedinterpOptsPool
+	line	649
+	colm	30
+	synt	any
+	field	set_contents
+	pnull
+	str	17
+	line	649
+	colm	44
+	synt	any
+	llist	1
+	line	649
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L165
+	mark	L166
+	pnull
+	pnull
+	var	0
+	line	650
+	colm	11
+	synt	any
+	field	interp_tab
+	line	650
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	650
+	colm	31
+	synt	any
+	field	usedinterpOptsPool
+	line	650
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L166
+	mark	L167
+	pnull
+	pnull
+	var	0
+	line	651
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	var	6
+	line	651
+	colm	48
+	synt	any
+	invoke	0
+	line	651
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L167
+	mark	L168
+	pnull
+	pnull
+	var	0
+	line	652
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	652
+	colm	31
+	synt	any
+	field	set_pos
+	int	85
+	int	86
+	line	652
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L168
+	mark	L169
+	pnull
+	pnull
+	var	0
+	line	653
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	653
+	colm	31
+	synt	any
+	field	set_size
+	int	16
+	int	65
+	line	653
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L169
+	mark	L170
+	pnull
+	pnull
+	var	0
+	line	654
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	654
+	colm	31
+	synt	any
+	field	connect
+	var	0
+	str	87
+	int	67
+	line	654
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L170
+	mark	L171
+	pnull
+	pnull
+	var	0
+	line	655
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	655
+	colm	31
+	synt	any
+	field	clear_toggles
+	line	655
+	colm	45
+	synt	any
+	invoke	0
+	unmark
+lab L171
+	mark	L172
+	pnull
+	pnull
+	var	0
+	line	656
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	656
+	colm	31
+	synt	any
+	field	set_label
+	str	68
+	line	656
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L172
+	mark	L173
+	pnull
+	pnull
+	var	0
+	line	657
+	colm	11
+	synt	any
+	field	addToInterpList_btn
+	line	657
+	colm	31
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	657
+	colm	54
+	synt	any
+	invoke	1
+	unmark
+lab L173
+	mark	L174
+	pnull
+	pnull
+	var	0
+	line	658
+	colm	11
+	synt	any
+	field	interp_tab
+	line	658
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	658
+	colm	31
+	synt	any
+	field	addToInterpList_btn
+	line	658
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L174
+	mark	L175
+	pnull
+	pnull
+	var	0
+	line	659
+	colm	11
+	synt	any
+	field	label_11
+	var	3
+	line	659
+	colm	32
+	synt	any
+	invoke	0
+	line	659
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L175
+	mark	L176
+	pnull
+	pnull
+	var	0
+	line	660
+	colm	11
+	synt	any
+	field	label_11
+	line	660
+	colm	20
+	synt	any
+	field	set_pos
+	int	88
+	int	89
+	line	660
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L176
+	mark	L177
+	pnull
+	pnull
+	var	0
+	line	661
+	colm	11
+	synt	any
+	field	label_11
+	line	661
+	colm	20
+	synt	any
+	field	set_size
+	int	51
+	int	30
+	line	661
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L177
+	mark	L178
+	pnull
+	pnull
+	var	0
+	line	662
+	colm	11
+	synt	any
+	field	label_11
+	line	662
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	662
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L178
+	mark	L179
+	pnull
+	pnull
+	var	0
+	line	663
+	colm	11
+	synt	any
+	field	label_11
+	line	663
+	colm	20
+	synt	any
+	field	set_label
+	str	90
+	line	663
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L179
+	mark	L180
+	pnull
+	pnull
+	var	0
+	line	664
+	colm	11
+	synt	any
+	field	interp_tab
+	line	664
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	664
+	colm	31
+	synt	any
+	field	label_11
+	line	664
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L180
+	mark	L181
+	pnull
+	pnull
+	var	0
+	line	665
+	colm	11
+	synt	any
+	field	label_10
+	var	3
+	line	665
+	colm	32
+	synt	any
+	invoke	0
+	line	665
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L181
+	mark	L182
+	pnull
+	pnull
+	var	0
+	line	666
+	colm	11
+	synt	any
+	field	label_10
+	line	666
+	colm	20
+	synt	any
+	field	set_pos
+	int	91
+	int	89
+	line	666
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L182
+	mark	L183
+	pnull
+	pnull
+	var	0
+	line	667
+	colm	11
+	synt	any
+	field	label_10
+	line	667
+	colm	20
+	synt	any
+	field	set_size
+	int	92
+	int	30
+	line	667
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L183
+	mark	L184
+	pnull
+	pnull
+	var	0
+	line	668
+	colm	11
+	synt	any
+	field	label_10
+	line	668
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	668
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L184
+	mark	L185
+	pnull
+	pnull
+	var	0
+	line	669
+	colm	11
+	synt	any
+	field	label_10
+	line	669
+	colm	20
+	synt	any
+	field	set_label
+	str	62
+	line	669
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L185
+	mark	L186
+	pnull
+	pnull
+	var	0
+	line	670
+	colm	11
+	synt	any
+	field	interp_tab
+	line	670
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	670
+	colm	31
+	synt	any
+	field	label_10
+	line	670
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L186
+	mark	L187
+	pnull
+	pnull
+	var	0
+	line	671
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	var	6
+	line	671
+	colm	47
+	synt	any
+	invoke	0
+	line	671
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L187
+	mark	L188
+	pnull
+	pnull
+	var	0
+	line	672
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	line	672
+	colm	30
+	synt	any
+	field	set_pos
+	int	8
+	int	93
+	line	672
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L188
+	mark	L189
+	pnull
+	pnull
+	var	0
+	line	673
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	line	673
+	colm	30
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	673
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L189
+	mark	L190
+	pnull
+	pnull
+	var	0
+	line	674
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	line	674
+	colm	30
+	synt	any
+	field	clear_toggles
+	line	674
+	colm	44
+	synt	any
+	invoke	0
+	unmark
+lab L190
+	mark	L191
+	pnull
+	pnull
+	var	0
+	line	675
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	line	675
+	colm	30
+	synt	any
+	field	set_label
+	str	72
+	line	675
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L191
+	mark	L192
+	pnull
+	pnull
+	var	0
+	line	676
+	colm	11
+	synt	any
+	field	addinterpreter_btn
+	line	676
+	colm	30
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	676
+	colm	53
+	synt	any
+	invoke	1
+	unmark
+lab L192
+	mark	L193
+	pnull
+	pnull
+	var	0
+	line	677
+	colm	11
+	synt	any
+	field	interp_tab
+	line	677
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	677
+	colm	31
+	synt	any
+	field	addinterpreter_btn
+	line	677
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L193
+	mark	L194
+	pnull
+	pnull
+	var	0
+	line	678
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	var	6
+	line	678
+	colm	47
+	synt	any
+	invoke	0
+	line	678
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L194
+	mark	L195
+	pnull
+	pnull
+	var	0
+	line	679
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	line	679
+	colm	30
+	synt	any
+	field	set_pos
+	int	59
+	int	93
+	line	679
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L195
+	mark	L196
+	pnull
+	pnull
+	var	0
+	line	680
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	line	680
+	colm	30
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	680
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L196
+	mark	L197
+	pnull
+	pnull
+	var	0
+	line	681
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	line	681
+	colm	30
+	synt	any
+	field	clear_toggles
+	line	681
+	colm	44
+	synt	any
+	invoke	0
+	unmark
+lab L197
+	mark	L198
+	pnull
+	pnull
+	var	0
+	line	682
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	line	682
+	colm	30
+	synt	any
+	field	set_label
+	str	73
+	line	682
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L198
+	mark	L199
+	pnull
+	pnull
+	var	0
+	line	683
+	colm	11
+	synt	any
+	field	delinterpreter_btn
+	line	683
+	colm	30
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	683
+	colm	53
+	synt	any
+	invoke	1
+	unmark
+lab L199
+	mark	L200
+	pnull
+	pnull
+	var	0
+	line	684
+	colm	11
+	synt	any
+	field	interp_tab
+	line	684
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	684
+	colm	31
+	synt	any
+	field	delinterpreter_btn
+	line	684
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L200
+	mark	L201
+	pnull
+	pnull
+	var	0
+	line	685
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	var	6
+	line	685
+	colm	48
+	synt	any
+	invoke	0
+	line	685
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L201
+	mark	L202
+	pnull
+	pnull
+	var	0
+	line	686
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	line	686
+	colm	31
+	synt	any
+	field	set_pos
+	int	94
+	int	93
+	line	686
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L202
+	mark	L203
+	pnull
+	pnull
+	var	0
+	line	687
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	line	687
+	colm	31
+	synt	any
+	field	set_size
+	int	71
+	int	65
+	line	687
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L203
+	mark	L204
+	pnull
+	pnull
+	var	0
+	line	688
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	line	688
+	colm	31
+	synt	any
+	field	clear_toggles
+	line	688
+	colm	45
+	synt	any
+	invoke	0
+	unmark
+lab L204
+	mark	L205
+	pnull
+	pnull
+	var	0
+	line	689
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	line	689
+	colm	31
+	synt	any
+	field	set_label
+	str	75
+	line	689
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L205
+	mark	L206
+	pnull
+	pnull
+	var	0
+	line	690
+	colm	11
+	synt	any
+	field	editinterpreter_btn
+	line	690
+	colm	31
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	690
+	colm	54
+	synt	any
+	invoke	1
+	unmark
+lab L206
+	mark	L207
+	pnull
+	pnull
+	var	0
+	line	691
+	colm	11
+	synt	any
+	field	interp_tab
+	line	691
+	colm	22
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	691
+	colm	31
+	synt	any
+	field	editinterpreter_btn
+	line	691
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L207
+	mark	L208
+	pnull
+	pnull
+	var	0
+	line	692
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	692
+	colm	26
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	692
+	colm	35
+	synt	any
+	field	interp_tab
+	line	692
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L208
+	mark	L209
+	pnull
+	pnull
+	var	0
+	line	693
+	colm	11
+	synt	any
+	field	debug_tab
+	var	2
+	line	693
+	colm	35
+	synt	any
+	invoke	0
+	line	693
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L209
+	mark	L210
+	pnull
+	pnull
+	var	0
+	line	694
+	colm	11
+	synt	any
+	field	debug_tab
+	line	694
+	colm	21
+	synt	any
+	field	set_label
+	str	95
+	line	694
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L210
+	mark	L211
+	pnull
+	pnull
+	var	0
+	line	695
+	colm	11
+	synt	any
+	field	label_12
+	var	3
+	line	695
+	colm	32
+	synt	any
+	invoke	0
+	line	695
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L211
+	mark	L212
+	pnull
+	pnull
+	var	0
+	line	696
+	colm	11
+	synt	any
+	field	label_12
+	line	696
+	colm	20
+	synt	any
+	field	set_pos
+	int	61
+	int	65
+	line	696
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L212
+	mark	L213
+	pnull
+	pnull
+	var	0
+	line	697
+	colm	11
+	synt	any
+	field	label_12
+	line	697
+	colm	20
+	synt	any
+	field	set_size
+	int	96
+	int	65
+	line	697
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L213
+	mark	L214
+	pnull
+	pnull
+	var	0
+	line	698
+	colm	11
+	synt	any
+	field	label_12
+	line	698
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	698
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L214
+	mark	L215
+	pnull
+	pnull
+	var	0
+	line	699
+	colm	11
+	synt	any
+	field	label_12
+	line	699
+	colm	20
+	synt	any
+	field	set_label
+	str	97
+	line	699
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L215
+	mark	L216
+	pnull
+	pnull
+	var	0
+	line	700
+	colm	11
+	synt	any
+	field	debug_tab
+	line	700
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	700
+	colm	30
+	synt	any
+	field	label_12
+	line	700
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L216
+	mark	L217
+	pnull
+	pnull
+	var	0
+	line	701
+	colm	11
+	synt	any
+	field	debugName
+	var	4
+	line	701
+	colm	37
+	synt	any
+	invoke	0
+	line	701
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L217
+	mark	L218
+	pnull
+	pnull
+	var	0
+	line	702
+	colm	11
+	synt	any
+	field	debugName
+	line	702
+	colm	21
+	synt	any
+	field	set_pos
+	int	98
+	int	10
+	line	702
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L218
+	mark	L219
+	pnull
+	pnull
+	var	0
+	line	703
+	colm	11
+	synt	any
+	field	debugName
+	line	703
+	colm	21
+	synt	any
+	field	set_size
+	int	99
+	int	65
+	line	703
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L219
+	mark	L220
+	pnull
+	pnull
+	var	0
+	line	704
+	colm	11
+	synt	any
+	field	debugName
+	line	704
+	colm	21
+	synt	any
+	field	set_draw_border
+	line	704
+	colm	37
+	synt	any
+	invoke	0
+	unmark
+lab L220
+	mark	L221
+	pnull
+	pnull
+	var	0
+	line	705
+	colm	11
+	synt	any
+	field	debugName
+	line	705
+	colm	21
+	synt	any
+	field	set_contents
+	str	17
+	line	705
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L221
+	mark	L222
+	pnull
+	pnull
+	var	0
+	line	706
+	colm	11
+	synt	any
+	field	debug_tab
+	line	706
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	706
+	colm	30
+	synt	any
+	field	debugName
+	line	706
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L222
+	mark	L223
+	pnull
+	pnull
+	var	0
+	line	707
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	707
+	colm	26
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	707
+	colm	35
+	synt	any
+	field	debug_tab
+	line	707
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L223
+	mark	L224
+	pnull
+	pnull
+	var	0
+	line	708
+	colm	11
+	synt	any
+	field	JProjectTabSet
+	line	708
+	colm	26
+	synt	any
+	field	set_which_one
+	pnull
+	var	0
+	line	708
+	colm	45
+	synt	any
+	field	main_tab
+	line	708
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L224
+	mark	L225
+	pnull
+	var	0
+	line	709
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	709
+	colm	20
+	synt	any
+	field	JProjectTabSet
+	line	709
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L225
+	mark	L226
+	pnull
+	pnull
+	var	0
+	line	710
+	colm	11
+	synt	any
+	field	cancel_btn
+	var	6
+	line	710
+	colm	39
+	synt	any
+	invoke	0
+	line	710
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L226
+	mark	L227
+	pnull
+	pnull
+	var	0
+	line	711
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	711
+	colm	22
+	synt	any
+	field	set_pos
+	int	82
+	int	100
+	line	711
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L227
+	mark	L228
+	pnull
+	pnull
+	var	0
+	line	712
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	712
+	colm	22
+	synt	any
+	field	set_size
+	int	101
+	int	10
+	line	712
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L228
+	mark	L229
+	pnull
+	pnull
+	var	0
+	line	713
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	713
+	colm	22
+	synt	any
+	field	connect
+	var	0
+	str	102
+	int	67
+	line	713
+	colm	30
+	synt	any
+	invoke	3
+	unmark
+lab L229
+	mark	L230
+	pnull
+	pnull
+	var	0
+	line	714
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	714
+	colm	22
+	synt	any
+	field	clear_toggles
+	line	714
+	colm	36
+	synt	any
+	invoke	0
+	unmark
+lab L230
+	mark	L231
+	pnull
+	pnull
+	var	0
+	line	715
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	715
+	colm	22
+	synt	any
+	field	set_label
+	str	103
+	line	715
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L231
+	mark	L232
+	pnull
+	pnull
+	var	0
+	line	716
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	716
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	716
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L232
+	mark	L233
+	pnull
+	var	0
+	line	717
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	717
+	colm	20
+	synt	any
+	field	cancel_btn
+	line	717
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L233
+	mark	L234
+	pnull
+	pnull
+	var	0
+	line	718
+	colm	11
+	synt	any
+	field	ok_btn
+	var	6
+	line	718
+	colm	35
+	synt	any
+	invoke	0
+	line	718
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L234
+	mark	L235
+	pnull
+	pnull
+	var	0
+	line	719
+	colm	11
+	synt	any
+	field	ok_btn
+	line	719
+	colm	18
+	synt	any
+	field	set_pos
+	str	104
+	str	105
+	line	719
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L235
+	mark	L236
+	pnull
+	pnull
+	var	0
+	line	720
+	colm	11
+	synt	any
+	field	ok_btn
+	line	720
+	colm	18
+	synt	any
+	field	set_size
+	str	106
+	str	107
+	line	720
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L236
+	mark	L237
+	pnull
+	pnull
+	var	0
+	line	721
+	colm	11
+	synt	any
+	field	ok_btn
+	line	721
+	colm	18
+	synt	any
+	field	connect
+	var	0
+	str	108
+	int	67
+	line	721
+	colm	26
+	synt	any
+	invoke	3
+	unmark
+lab L237
+	mark	L238
+	pnull
+	pnull
+	var	0
+	line	722
+	colm	11
+	synt	any
+	field	ok_btn
+	line	722
+	colm	18
+	synt	any
+	field	clear_toggles
+	line	722
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L238
+	mark	L239
+	pnull
+	pnull
+	var	0
+	line	723
+	colm	11
+	synt	any
+	field	ok_btn
+	line	723
+	colm	18
+	synt	any
+	field	set_label
+	str	109
+	line	723
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L239
+	mark	L240
+	pnull
+	pnull
+	var	0
+	line	724
+	colm	11
+	synt	any
+	field	ok_btn
+	line	724
+	colm	18
+	synt	any
+	field	set_internal_alignment
+	str	69
+	line	724
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L240
+	mark	L241
+	pnull
+	var	0
+	line	725
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	725
+	colm	20
+	synt	any
+	field	ok_btn
+	line	725
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L241
+	pnull
+	line	726
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject_initially
+	local	0,001000,self
+	local	1,001000,pname
+	local	2,001000,ptype
+	declend
+	line	728
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	729
+	colm	11
+	synt	any
+	field	projectname
+	var	1
+	line	729
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	730
+	colm	11
+	synt	any
+	field	projecttype
+	var	2
+	line	730
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	731
+	colm	11
+	synt	any
+	field	gui__Dialog
+	line	731
+	colm	23
+	synt	any
+	field	initially
+	line	731
+	colm	33
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	mark	L5
+	pnull
+	line	732
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	733
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProject
+	local	0,001000,pname
+	local	1,001000,ptype
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,JProject__oprec
+	local	5,000000,JProjectinitialize
+	local	6,000000,gui__Dialog__oprec
+	local	7,000000,gui__Dialoginitialize
+	local	8,000000,gui__Component__oprec
+	local	9,000000,gui__Componentinitialize
+	local	10,000000,lang__Object__oprec
+	local	11,000000,lang__Objectinitialize
+	local	12,000000,util__SetFields__oprec
+	local	13,000000,util__SetFieldsinitialize
+	local	14,000000,util__Connectable__oprec
+	local	15,000000,util__Connectableinitialize
+	local	16,000000,JProject__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	46
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	7
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	4
+	line	10
+	colm	18
+	synt	any
+	field	gui__Dialog
+	var	6
+	line	10
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	11
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	8
+	line	11
+	colm	6
+	synt	any
+	null
+	unmark
+	var	9
+	line	11
+	colm	58
+	synt	any
+	invoke	0
+	line	11
+	colm	3
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	4
+	line	12
+	colm	18
+	synt	any
+	field	gui__Component
+	var	8
+	line	12
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	13
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	10
+	line	13
+	colm	6
+	synt	any
+	null
+	unmark
+	var	11
+	line	13
+	colm	54
+	synt	any
+	invoke	0
+	line	13
+	colm	3
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	4
+	line	14
+	colm	18
+	synt	any
+	field	lang__Object
+	var	10
+	line	14
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	15
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	12
+	line	15
+	colm	6
+	synt	any
+	null
+	unmark
+	var	13
+	line	15
+	colm	60
+	synt	any
+	invoke	0
+	line	15
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	4
+	line	16
+	colm	18
+	synt	any
+	field	util__SetFields
+	var	12
+	line	16
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	17
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	14
+	line	17
+	colm	6
+	synt	any
+	null
+	unmark
+	var	15
+	line	17
+	colm	64
+	synt	any
+	invoke	0
+	line	17
+	colm	3
+	synt	endif
+	unmark
+lab L13
+	pnull
+	pnull
+	var	4
+	line	18
+	colm	18
+	synt	any
+	field	util__Connectable
+	var	14
+	line	18
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L14
+	pnull
+	var	2
+	var	16
+	line	20
+	colm	27
+	synt	any
+	keywd	null
+	var	4
+	line	20
+	colm	26
+	synt	any
+	invoke	2
+	line	20
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	2
+	line	21
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	21
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	pnull
+	pnull
+	var	2
+	line	22
+	colm	7
+	synt	any
+	field	__m
+	line	22
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	22
+	colm	21
+	synt	any
+	invoke	3
+	line	22
+	colm	40
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	line	22
+	colm	42
+	synt	any
+	pfail
+lab L18
+	unmark
+lab L16
+	mark	L19
+	mark	L20
+	var	2
+	line	23
+	colm	3
+	synt	any
+	pret
+lab L20
+	synt	any
+	pfail
+	unmark
+lab L19
+	pnull
+	line	24
+	colm	1
+	synt	any
+	pfail
+	end
+proc JProjectinitialize
+	local	0,000000,JProject__oprec
+	local	1,000000,JProject__methods
+	local	2,000000,JProject_component_setup
+	local	3,000000,JProject_end_dialog
+	local	4,000000,JProject_init_dialog
+	local	5,000000,JProject_on_cancel_btn
+	local	6,000000,JProject_on_ok_btn
+	local	7,000000,JProject_saveJProject
+	local	8,000000,JProject_CompileJava
+	local	9,000000,JProject_RunJava
+	local	10,000000,JProject_on_addToCompList
+	local	11,000000,JProject_on_addToInterpList
+	local	12,000000,JProject_setup
+	local	13,000000,JProject_initially
+	local	14,000000,gui__Dialog_invoke_validate
+	local	15,000000,gui__Dialog_needs_validate
+	local	16,000000,gui__Dialog_is_shaded
+	local	17,000000,gui__Dialog_is_unshaded
+	local	18,000000,gui__Dialog_is_hidden
+	local	19,000000,gui__Dialog_is_unhidden
+	local	20,000000,gui__Dialog_block
+	local	21,000000,gui__Dialog_unblock
+	local	22,000000,gui__Dialog_raise
+	local	23,000000,gui__Dialog_get_click_count
+	local	24,000000,gui__Dialog_compute_absolutes
+	local	25,000000,gui__Dialog_change_pointer
+	local	26,000000,gui__Dialog_restore_pointer
+	local	27,000000,gui__Dialog_show_child
+	local	28,000000,gui__Dialog_show_modeless
+	local	29,000000,gui__Dialog_show_modal
+	local	30,000000,gui__Dialog_get_win
+	local	31,000000,gui__Dialog_resize_win
+	local	32,000000,gui__Dialog_init
+	local	33,000000,gui__Dialog_open_win
+	local	34,000000,gui__Dialog_close_win
+	local	35,000000,gui__Dialog_set_min_size
+	local	36,000000,gui__Dialog_get_buffer_win
+	local	37,000000,gui__Dialog_set_unique
+	local	38,000000,gui__Dialog_clear_unique
+	local	39,000000,gui__Dialog_set_focus
+	local	40,000000,gui__Dialog_clear_focus
+	local	41,000000,gui__Dialog_display
+	local	42,000000,gui__Dialog_show
+	local	43,000000,gui__Dialog_bevel_dispose
+	local	44,000000,gui__Dialog_dispose
+	local	45,000000,gui__Dialog_consume_same
+	local	46,000000,gui__Dialog_process_event
+	local	47,000000,gui__Dialog_process_normal
+	local	48,000000,gui__Dialog_tooltip_init
+	local	49,000000,gui__Dialog_tooltip_dispose
+	local	50,000000,gui__Dialog_set_tooltip_start_delay
+	local	51,000000,gui__Dialog_set_tooltip_end_delay
+	local	52,000000,gui__Dialog_set_tooltip_continue_delay
+	local	53,000000,gui__Dialog_show_tooltip
+	local	54,000000,gui__Dialog_hide_tooltip
+	local	55,000000,gui__Dialog_process_tooltip
+	local	56,000000,gui__Dialog_find_tooltip
+	local	57,000000,gui__Dialog_synch_pointer
+	local	58,000000,gui__Dialog_find_pointer_component
+	local	59,000000,gui__Dialog_process_dnd
+	local	60,000000,gui__Dialog_process_unique
+	local	61,000000,gui__Dialog_check_dnd
+	local	62,000000,gui__Dialog_handle_resize
+	local	63,000000,gui__Dialog_check_click_count
+	local	64,000000,gui__Dialog_get_focus_list
+	local	65,000000,gui__Dialog_find_next_focus
+	local	66,000000,gui__Dialog_find_previous_focus
+	local	67,000000,gui__Dialog_set_double_click_delay
+	local	68,000000,gui__Dialog_set_repeat_delay
+	local	69,000000,gui__Dialog_set_repeat_rate
+	local	70,000000,gui__Dialog_invoke_later
+	local	71,000000,gui__Dialog_do_invoke
+	local	72,000000,gui__Dialog_set_one
+	local	73,000000,gui__Component_set_tooltip
+	local	74,000000,gui__Component_get_tooltip
+	local	75,000000,gui__Component_set_pointer
+	local	76,000000,gui__Component_get_pointer
+	local	77,000000,gui__Component_get_x_reference
+	local	78,000000,gui__Component_get_y_reference
+	local	79,000000,gui__Component_get_w_reference
+	local	80,000000,gui__Component_get_h_reference
+	local	81,000000,gui__Component_get_cwin_reference
+	local	82,000000,gui__Component_get_cbwin_reference
+	local	83,000000,gui__Component_get_parent_dialog_reference
+	local	84,000000,gui__Component_fatal
+	local	85,000000,gui__Component_keeps
+	local	86,000000,gui__Component_do_shading
+	local	87,000000,gui__Component_accepts_focus
+	local	88,000000,gui__Component_unique_start
+	local	89,000000,gui__Component_unique_end
+	local	90,000000,gui__Component_handle_accel
+	local	91,000000,gui__Component_handle_event
+	local	92,000000,gui__Component_do_handle_event
+	local	93,000000,gui__Component_fire_icon_events_on_mouse
+	local	94,000000,gui__Component_toggle_is_shaded
+	local	95,000000,gui__Component_set_auto_refresh
+	local	96,000000,gui__Component_clear_auto_refresh
+	local	97,000000,gui__Component_set_transparent
+	local	98,000000,gui__Component_clear_transparent
+	local	99,000000,gui__Component_set_is_shaded
+	local	100,000000,gui__Component_clear_is_shaded
+	local	101,000000,gui__Component_toggle_draw_border
+	local	102,000000,gui__Component_set_draw_border
+	local	103,000000,gui__Component_clear_draw_border
+	local	104,000000,gui__Component_set_accepts_focus
+	local	105,000000,gui__Component_clear_accepts_focus
+	local	106,000000,gui__Component_attrib
+	local	107,000000,gui__Component_set_attribs
+	local	108,000000,gui__Component_set_attribs_list
+	local	109,000000,gui__Component_in_region
+	local	110,000000,gui__Component_got_focus
+	local	111,000000,gui__Component_get_parent_win
+	local	112,000000,gui__Component_get_parent_buffer_win
+	local	113,000000,gui__Component_lost_focus
+	local	114,000000,gui__Component_set_pos
+	local	115,000000,gui__Component_set_size
+	local	116,000000,gui__Component_set_align
+	local	117,000000,gui__Component_set_abs_coords
+	local	118,000000,gui__Component_set_abs_size
+	local	119,000000,gui__Component_set_accel
+	local	120,000000,gui__Component_get_accel
+	local	121,000000,gui__Component_get_parent
+	local	122,000000,gui__Component_set_parent
+	local	123,000000,gui__Component_get_parent_dialog
+	local	124,000000,gui__Component_set_parent_dialog
+	local	125,000000,gui__Component_firstly
+	local	126,000000,gui__Component_finally
+	local	127,000000,gui__Component_parse_pos
+	local	128,000000,gui__Component_resize
+	local	129,000000,gui__Component_generate_components
+	local	130,000000,gui__Component_find_focus
+	local	131,000000,gui__Component_find_accel
+	local	132,000000,gui__Component_invalidate
+	local	133,000000,gui__Component_all_components_valid
+	local	134,000000,gui__Component_validate
+	local	135,000000,gui__Component_child_validated
+	local	136,000000,gui__Component_add
+	local	137,000000,gui__Component_remove
+	local	138,000000,gui__Component_is_dialog_open
+	local	139,000000,gui__Component_get_children
+	local	140,000000,gui__Component_create_event_and_fire
+	local	141,000000,gui__Component_set_ticker
+	local	142,000000,gui__Component_stop_ticker
+	local	143,000000,gui__Component_retime_ticker
+	local	144,000000,gui__Component_is_ticking
+	local	145,000000,gui__Component_tick
+	local	146,000000,gui__Component_invoke_can_drag
+	local	147,000000,gui__Component_invoke_drag_event
+	local	148,000000,gui__Component_invoke_can_drop
+	local	149,000000,gui__Component_invoke_end_drag
+	local	150,000000,gui__Component_invoke_drag_reset
+	local	151,000000,gui__Component_can_drag
+	local	152,000000,gui__Component_drag_event
+	local	153,000000,gui__Component_can_drop
+	local	154,000000,gui__Component_end_drag
+	local	155,000000,gui__Component_drag_reset
+	local	156,000000,gui__Component_set_allow_drag
+	local	157,000000,gui__Component_clear_allow_drag
+	local	158,000000,gui__Component_set_allow_drop
+	local	159,000000,gui__Component_clear_allow_drop
+	local	160,000000,gui__Component_is_attrib
+	local	161,000000,lang__Object_clone
+	local	162,000000,lang__Object_to_string
+	local	163,000000,lang__Object_equals
+	local	164,000000,lang__Object_hash_code
+	local	165,000000,lang__Object_get_class_name
+	local	166,000000,lang__Object_get_id
+	local	167,000000,lang__Object_get_class
+	local	168,000000,lang__Object_is_instance
+	local	169,000000,util__SetFields_test_flag
+	local	170,000000,util__SetFields_as_attrib
+	local	171,000000,util__SetFields_int_val
+	local	172,000000,util__SetFields_int_vals
+	local	173,000000,util__SetFields_numeric_val
+	local	174,000000,util__SetFields_numeric_vals
+	local	175,000000,util__SetFields_cset_val
+	local	176,000000,util__SetFields_string_val
+	local	177,000000,util__SetFields_string_vals
+	local	178,000000,util__SetFields_set_fields
+	local	179,000000,util__SetFields_field_error
+	local	180,000000,util__Connectable_genlisteners
+	local	181,000000,util__Connectable_fire
+	local	182,000000,util__Connectable_connect
+	local	183,000000,util__Connectable_disconnect_fromlist
+	local	184,000000,util__Connectable_disconnect_all
+	local	185,000000,util__Connectable_disconnect
+	declend
+	line	26
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	var	127
+	var	128
+	var	129
+	var	130
+	var	131
+	var	132
+	var	133
+	var	134
+	var	135
+	var	136
+	var	137
+	var	138
+	var	139
+	var	140
+	var	141
+	var	142
+	var	143
+	var	144
+	var	145
+	var	146
+	var	147
+	var	148
+	var	149
+	var	150
+	var	151
+	var	152
+	var	153
+	var	154
+	var	155
+	var	156
+	var	157
+	var	158
+	var	159
+	var	160
+	var	161
+	var	162
+	var	163
+	var	164
+	var	165
+	var	166
+	var	167
+	var	168
+	var	169
+	var	170
+	var	171
+	var	172
+	var	173
+	var	174
+	var	175
+	var	176
+	var	177
+	var	178
+	var	179
+	var	180
+	var	181
+	var	182
+	var	183
+	var	184
+	var	185
+	line	27
+	colm	47
+	synt	any
+	invoke	184
+	line	27
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end

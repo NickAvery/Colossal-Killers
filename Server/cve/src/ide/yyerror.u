@@ -1,0 +1,2564 @@
+version	U12.1.00
+uid	yyerror.u1-1523917885-0
+record	UniconPackage__ParseError__state,4
+	0,__s
+	1,__m
+	2,lineNumber
+	3,errorMessage
+record	UniconPackage__ParseError__methods,1
+	0,initially
+impl	error
+global	7
+	0,000005,UniconPackage__yyerror,1
+	1,000005,UniconPackage__ParseError_initially,1
+	2,000011,UniconPackage__ParseError__state,4
+	3,000011,UniconPackage__ParseError__methods,1
+	4,000001,UniconPackage__ParseError__oprec,0
+	5,000005,UniconPackage__ParseError,2
+	6,000005,UniconPackage__ParseErrorinitialize,0
+
+proc UniconPackage__yyerror
+	local	0,001000,s
+	local	1,000020,errorObject
+	local	2,000040,t
+	local	3,000040,__merr_errors
+	local	4,000000,table
+	local	5,000000,UniconPackage__iwrite
+	local	6,000000,map
+	local	7,000000,UniconPackage__istop
+	local	8,000000,UniconPackage__iwrites
+	local	9,000000,UniconPackage__fName
+	local	10,000000,UniconPackage__statestk
+	local	11,000000,UniconPackage__yychar
+	local	12,000000,UniconPackage__merrflag
+	local	13,000000,UniconPackage__yylineno
+	local	14,000000,UniconPackage__yytext
+	local	15,000000,ferr2
+	local	16,000000,open
+	local	17,000000,UniconPackage__merraddress
+	local	18,000000,ferr
+	local	19,000000,read
+	local	20,000000,close
+	local	21,000000,UniconPackage__parsingErrors
+	local	22,000000,UniconPackage__ParseError
+	local	23,000000,push
+	con	0,010000,12,163,171,156,164,141,170,040,145,162,162,157,162
+	con	1,002000,1,0
+	con	2,010000,19,151,156,166,141,154,151,144,040,144,145,143,154,141,162,141,164,151,157,156
+	con	3,002000,2,26
+	con	4,010000,50,154,145,146,164,040,160,141,162,145,156,164,150,145,163,151,163,040,145,170,160,145,143,164,145,144,040,164,157,040,163,164,141,162,164,040,143,154,141,163,163,040,146,151,145,154,144,154,151,163,164
+	con	5,002000,3,257
+	con	6,002000,3,372
+	con	7,010000,58,146,151,145,154,144,154,151,163,164,040,163,164,141,162,164,163,040,167,151,164,150,040,154,145,146,164,040,052,160,141,162,145,156,164,150,145,163,151,163,052,054,040,156,157,164,040,143,165,162,154,171,040,142,162,141,143,145,041
+	con	8,002000,2,47
+	con	9,010000,18,155,151,163,163,151,156,147,040,151,144,145,156,164,151,146,151,145,162
+	con	10,002000,2,73
+	con	11,010000,32,151,156,166,141,154,151,144,040,167,150,151,154,145,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	12,002000,3,246
+	con	13,010000,25,155,151,163,163,151,156,147,040,157,160,145,162,141,156,144,040,141,146,164,145,162,040,174,174,174
+	con	14,002000,3,307
+	con	15,002000,3,317
+	con	16,010000,26,151,154,154,145,147,141,154,040,163,160,141,143,145,040,151,156,163,151,144,145,040,174,174,174,072,075
+	con	17,002000,2,10
+	con	18,010000,18,154,151,156,153,040,154,151,163,164,040,145,170,160,145,143,164,145,144
+	con	19,002000,3,188
+	con	20,010000,20,165,156,143,154,157,163,145,144,040,160,141,162,145,156,164,150,145,163,151,163
+	con	21,002000,2,41
+	con	22,010000,15,155,145,164,150,157,144,040,145,170,160,145,143,164,145,144
+	con	23,002000,2,62
+	con	24,010000,31,151,156,166,141,154,151,144,040,143,141,163,145,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	25,002000,3,130
+	con	26,010000,38,155,151,163,163,151,156,147,040,146,151,145,154,144,156,141,155,145,040,157,162,040,162,151,147,150,164,040,160,141,162,145,156,164,150,145,163,151,163
+	con	27,002000,3,151
+	con	28,010000,31,155,151,163,163,151,156,147,040,042,157,146,042,040,151,156,040,143,141,163,145,040,145,170,160,162,145,163,163,151,157,156
+	con	29,002000,2,72
+	con	30,010000,32,151,156,166,141,154,151,144,040,165,156,164,151,154,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	31,002000,3,135
+	con	32,010000,47,155,151,163,163,151,156,147,040,143,157,155,155,141,040,157,162,040,165,156,143,154,157,163,145,144,040,143,154,141,163,163,040,146,151,145,154,144,040,141,162,147,165,155,145,156,164,163
+	con	33,002000,3,282
+	con	34,010000,30,165,156,143,154,157,163,145,144,040,143,154,141,163,163,040,146,151,145,154,144,040,141,162,147,165,155,145,156,164,163
+	con	35,002000,3,245
+	con	36,010000,24,155,151,163,163,151,156,147,040,157,160,145,162,141,156,144,040,141,146,164,145,162,040,174,174
+	con	37,010000,25,151,154,154,145,147,141,154,040,163,160,141,143,145,040,151,156,163,151,144,145,040,174,174,072,075
+	con	38,002000,3,376
+	con	39,010000,45,160,141,162,145,156,164,150,145,163,151,163,040,151,163,040,162,145,161,165,151,162,145,144,040,146,157,162,040,155,145,164,150,157,144,040,151,156,166,157,143,141,164,151,157,156
+	con	40,002000,3,444
+	con	41,002000,1,9
+	con	42,010000,23,151,156,166,157,143,141,142,154,145,040,154,151,163,164,040,145,170,160,145,143,164,145,144
+	con	43,002000,2,51
+	con	44,010000,23,160,141,162,141,155,145,164,145,162,040,156,141,155,145,040,145,170,160,145,143,164,145,144
+	con	45,002000,2,56
+	con	46,010000,36,165,156,143,154,157,163,145,144,040,154,151,164,145,162,141,154,040,157,162,040,155,151,163,163,151,156,147,040,157,160,145,162,141,164,157,162
+	con	47,002000,3,255
+	con	48,010000,39,155,151,163,163,151,156,147,040,157,162,040,151,156,166,141,154,151,144,040,163,145,143,157,156,144,040,141,162,147,165,155,145,156,164,040,164,157,040,041
+	con	49,002000,3,276
+	con	50,010000,60,160,141,162,141,155,145,164,145,162,040,155,157,144,151,146,151,145,162,040,155,165,163,164,040,142,145,040,141,040,050,141,164,157,155,151,143,051,040,154,151,164,145,162,141,154,040,157,162,040,141,040,143,157,156,166,145,162,164,157,162
+	con	51,002000,3,370
+	con	52,002000,1,3
+	con	53,010000,31,147,154,157,142,141,154,054,040,143,154,141,163,163,054,040,157,162,040,154,151,156,153,040,145,170,160,145,143,164,145,144
+	con	54,002000,3,306
+	con	55,010000,36,155,145,164,150,157,144,040,144,145,143,154,141,162,141,164,151,157,156,040,157,165,164,163,151,144,145,040,141,156,171,040,143,154,141,163,163
+	con	56,002000,2,24
+	con	57,010000,17,155,151,163,163,151,156,147,040,163,145,155,151,143,157,154,157,156
+	con	58,002000,3,274
+	con	59,010000,18,163,145,155,151,143,157,154,157,156,040,145,170,160,145,143,164,145,144
+	con	60,002000,3,271
+	con	61,002000,2,66
+	con	62,010000,29,151,156,166,141,154,151,144,040,151,146,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	63,002000,3,265
+	con	64,010000,25,151,156,166,141,154,151,144,040,154,157,143,141,154,040,144,145,143,154,141,162,141,164,151,157,156
+	con	65,002000,3,375
+	con	66,010000,82,155,151,163,163,151,156,147,040,042,144,157,042,040,157,162,040,163,157,155,145,040,163,165,143,150,040,153,145,171,167,157,162,144,040,145,141,162,154,151,145,162,054,040,157,162,040,145,170,160,145,143,164,145,144,040,141,040,143,157,155,155,141,040,157,162,040,162,151,147,150,164,040,142,162,141,143,145,040,150,145,162,145
+	con	67,002000,3,118
+	con	68,010000,32,155,151,163,163,151,156,147,040,157,160,145,162,141,164,157,162,040,157,162,040,042,144,157,042,040,153,145,171,167,157,162,144
+	con	69,002000,2,39
+	con	70,010000,47,155,151,163,163,151,156,147,040,160,141,162,141,155,145,164,145,162,040,154,151,163,164,040,151,156,040,160,162,157,143,145,144,165,162,145,040,144,145,143,154,141,162,141,164,151,157,156
+	con	71,002000,3,191
+	con	72,010000,50,155,151,163,163,151,156,147,040,157,160,145,162,141,164,157,162,040,157,162,040,165,156,142,141,154,141,156,143,145,144,040,160,141,162,145,156,164,150,145,163,151,163,057,142,162,141,143,153,145,164
+	con	73,002000,3,259
+	con	74,010000,19,146,151,145,154,144,040,156,141,155,145,040,145,170,160,145,143,164,145,144
+	con	75,002000,3,301
+	con	76,010000,32,155,151,163,163,151,156,147,040,175,040,163,157,155,145,167,150,145,162,145,040,142,145,146,157,162,145,040,042,145,156,144,042
+	con	77,002000,2,23
+	con	78,010000,36,160,162,157,143,145,144,165,162,145,040,156,157,164,040,141,154,154,157,167,145,144,040,167,151,164,150,151,156,040,141,040,143,154,141,163,163
+	con	79,002000,3,107
+	con	80,010000,29,164,157,157,040,155,141,156,171,040,143,154,157,163,151,156,147,040,143,165,162,154,171,040,142,162,141,143,145,163
+	con	81,002000,3,365
+	con	82,010000,30,163,145,155,151,143,157,154,157,156,040,157,162,040,157,160,145,162,141,164,157,162,040,145,170,160,145,143,164,145,144
+	con	83,002000,3,373
+	con	84,002000,3,154
+	con	85,010000,12,155,151,163,163,151,156,147,040,164,150,145,156
+	con	86,002000,3,369
+	con	87,002000,3,363
+	con	88,010000,26,163,160,165,162,151,157,165,163,040,143,154,157,163,145,055,160,141,162,145,156,164,150,145,163,151,163
+	con	89,002000,3,264
+	con	90,010000,26,151,156,166,141,154,151,144,040,151,156,151,164,151,141,154,040,145,170,160,162,145,163,163,151,157,156
+	con	91,002000,1,7
+	con	92,010000,22,165,156,145,170,160,145,143,164,145,144,040,145,156,144,040,157,146,040,146,151,154,145
+	con	93,002000,2,28
+	con	94,010000,26,151,156,166,141,154,151,144,040,147,154,157,142,141,154,040,144,145,143,154,141,162,141,164,151,157,156
+	con	95,002000,2,75
+	con	96,010000,47,142,141,144,040,153,145,171,167,157,162,144,040,156,141,155,145,040,157,162,040,142,157,147,165,163,040,046,040,160,162,145,143,145,144,145,163,040,164,150,151,163,040,164,157,153,145,156
+	con	97,002000,2,12
+	con	98,010000,23,160,162,157,143,145,144,165,162,145,040,156,141,155,145,040,145,170,160,145,143,164,145,144
+	con	99,002000,3,101
+	con	100,010000,27,151,156,166,141,154,151,144,040,143,157,155,160,157,165,156,144,040,145,170,160,162,145,163,163,151,157,156
+	con	101,010000,35,141,163,163,151,147,156,155,145,156,164,040,155,151,163,163,151,156,147,040,151,164,163,040,154,145,146,164,040,157,160,145,162,141,156,144
+	con	102,002000,3,127
+	con	103,010000,22,151,156,166,141,154,151,144,040,160,162,157,143,145,144,165,162,145,040,142,157,144,171
+	con	104,002000,3,148
+	con	105,010000,51,141,040,073,040,157,162,040,134,156,040,151,163,040,155,151,163,163,151,156,147,040,142,145,164,167,145,145,156,040,155,145,164,150,157,144,040,150,145,141,144,145,162,040,141,156,144,040,142,157,144,171
+	con	106,002000,3,190
+	con	107,010000,13,165,156,143,154,157,163,145,144,040,154,151,163,164
+	con	108,010000,35,155,151,163,163,151,156,147,040,157,160,145,162,141,164,157,162,040,157,162,040,143,154,157,163,151,156,147,040,142,162,141,143,153,145,164
+	con	109,002000,2,64
+	con	110,010000,32,151,156,166,141,154,151,144,040,145,166,145,162,171,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	111,002000,3,195
+	con	112,010000,78,145,170,160,162,145,163,163,151,157,156,040,145,170,160,145,143,164,145,144,054,040,157,162,040,156,145,145,144,040,164,157,040,155,157,166,145,040,144,145,143,154,141,162,141,164,151,157,156,040,164,157,040,164,157,160,040,157,146,040,160,162,157,143,145,144,165,162,145,040,157,162,040,155,145,164,150,157,144
+	con	113,002000,2,69
+	con	114,010000,33,151,156,166,141,154,151,144,040,162,145,160,145,141,164,040,143,157,156,164,162,157,154,040,145,170,160,162,145,163,163,151,157,156
+	con	115,002000,2,74
+	con	116,010000,27,151,156,166,141,154,151,144,040,141,162,147,165,155,145,156,164,040,164,157,040,165,156,141,162,171,040,041
+	con	117,002000,3,247
+	con	118,010000,39,155,151,163,163,151,156,147,040,157,162,040,151,156,166,141,154,151,144,040,163,145,143,157,156,144,040,141,162,147,165,155,145,156,164,040,164,157,040,053
+	con	119,002000,3,252
+	con	120,010000,39,155,151,163,163,151,156,147,040,157,162,040,151,156,166,141,154,151,144,040,163,145,143,157,156,144,040,141,162,147,165,155,145,156,164,040,164,157,040,052
+	con	121,002000,3,294
+	con	122,010000,17,155,151,163,163,151,156,147,040,164,150,145,156,055,160,141,162,164
+	con	123,002000,2,37
+	con	124,010000,24,151,156,166,141,154,151,144,040,154,151,156,153,040,144,145,143,154,141,162,141,164,151,157,156
+	con	125,002000,3,100
+	con	126,002000,3,147
+	con	127,002000,3,278
+	con	128,002000,3,435
+	con	129,010000,25,155,141,154,146,157,162,155,145,144,040,143,141,163,145,040,145,170,160,162,145,163,163,151,157,156
+	con	130,002000,2,63
+	con	131,010000,25,151,156,166,141,154,151,144,040,143,162,145,141,164,145,040,145,170,160,162,145,163,163,151,157,156
+	con	132,010000,23,162,145,151,156,151,164,151,154,151,172,145,040,155,145,162,162,040,145,162,162,157,162,163
+	con	133,010000,28,163,164,141,143,153,040,165,156,144,145,162,146,154,157,167,056,040,141,142,157,162,164,151,156,147,056,056,056
+	con	134,002000,1,1
+	con	135,010000,25,164,157,157,040,155,141,156,171,040,145,162,162,157,162,163,054,040,141,142,157,162,164,151,156,147
+	con	136,010000,1,072
+	con	137,010000,2,040,050
+	con	138,010000,1,073
+	con	139,010000,1,051
+	con	140,010000,40,012,050,165,163,145,040,055,115,040,146,157,162,040,141,163,163,151,163,164,141,156,143,145,040,167,151,164,150,040,164,150,151,163,040,145,162,162,157,162,051
+	con	141,010000,5,072,040,043,040,042
+	con	142,010000,3,042,072,040
+	con	143,010000,41,122,145,160,157,162,164,151,156,147,040,050,055,115,051,040,171,157,165,162,040,145,162,162,157,162,040,164,157,040,164,150,145,040,117,162,141,143,154,145,040,050
+	con	144,010000,17,051,040,146,157,162,040,141,163,163,151,163,164,141,156,143,145,056
+	con	145,010000,46,124,171,160,145,040,141,156,171,040,161,165,145,163,164,151,157,156,040,171,157,165,040,150,141,166,145,040,157,156,040,164,150,145,040,154,151,156,145,163,040,142,145,154,157,167,056
+	con	146,010000,29,040,124,171,160,145,040,141,040,142,154,141,156,153,040,154,151,156,145,040,164,157,040,146,151,156,151,163,150,056
+	con	147,010000,5,155,141,151,154,040
+	con	148,010000,2,160,167
+	con	149,010000,0
+	declend
+	filen	yyerror.icn
+	line	3
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	pnull
+	var	2
+	var	4
+	var	4
+	str	0
+	line	9
+	colm	20
+	synt	any
+	invoke	1
+	line	9
+	colm	14
+	synt	any
+	invoke	1
+	line	9
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	2
+	int	1
+	line	10
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	2
+	line	10
+	colm	17
+	synt	any
+	invoke	1
+	line	10
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	2
+	int	3
+	line	11
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	4
+	line	11
+	colm	18
+	synt	any
+	invoke	1
+	line	11
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	pnull
+	var	2
+	int	3
+	line	12
+	colm	5
+	synt	any
+	subsc
+	int	5
+	synt	any
+	subsc
+	str	4
+	line	12
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	var	2
+	int	3
+	line	13
+	colm	5
+	synt	any
+	subsc
+	int	6
+	synt	any
+	subsc
+	str	7
+	line	13
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	2
+	int	8
+	line	14
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	9
+	line	14
+	colm	18
+	synt	any
+	invoke	1
+	line	14
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	2
+	int	10
+	line	15
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	11
+	line	15
+	colm	18
+	synt	any
+	invoke	1
+	line	15
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	2
+	int	12
+	line	16
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	13
+	line	16
+	colm	19
+	synt	any
+	invoke	1
+	line	16
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	pnull
+	var	2
+	int	12
+	line	17
+	colm	5
+	synt	any
+	subsc
+	int	14
+	synt	any
+	subsc
+	str	13
+	line	17
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	pnull
+	var	2
+	int	12
+	line	18
+	colm	5
+	synt	any
+	subsc
+	int	15
+	synt	any
+	subsc
+	str	16
+	line	18
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	2
+	int	17
+	line	19
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	18
+	line	19
+	colm	18
+	synt	any
+	invoke	1
+	line	19
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	2
+	int	19
+	line	20
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	20
+	line	20
+	colm	19
+	synt	any
+	invoke	1
+	line	20
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	2
+	int	21
+	line	21
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	22
+	line	21
+	colm	18
+	synt	any
+	invoke	1
+	line	21
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	2
+	int	23
+	line	22
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	24
+	line	22
+	colm	18
+	synt	any
+	invoke	1
+	line	22
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	2
+	int	25
+	line	23
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	26
+	line	23
+	colm	19
+	synt	any
+	invoke	1
+	line	23
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	2
+	int	27
+	line	24
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	28
+	line	24
+	colm	19
+	synt	any
+	invoke	1
+	line	24
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	2
+	int	29
+	line	25
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	30
+	line	25
+	colm	18
+	synt	any
+	invoke	1
+	line	25
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	2
+	int	31
+	line	26
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	32
+	line	26
+	colm	19
+	synt	any
+	invoke	1
+	line	26
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	pnull
+	var	2
+	int	31
+	line	27
+	colm	5
+	synt	any
+	subsc
+	int	33
+	synt	any
+	subsc
+	str	34
+	line	27
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	pnull
+	var	2
+	int	31
+	line	28
+	colm	5
+	synt	any
+	subsc
+	int	5
+	synt	any
+	subsc
+	str	32
+	line	28
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	var	2
+	int	35
+	line	29
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	36
+	line	29
+	colm	19
+	synt	any
+	invoke	1
+	line	29
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	pnull
+	var	2
+	int	35
+	line	30
+	colm	5
+	synt	any
+	subsc
+	int	14
+	synt	any
+	subsc
+	str	36
+	line	30
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	pnull
+	var	2
+	int	35
+	line	31
+	colm	5
+	synt	any
+	subsc
+	int	15
+	synt	any
+	subsc
+	str	37
+	line	31
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	2
+	int	38
+	line	32
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	39
+	line	32
+	colm	19
+	synt	any
+	invoke	1
+	line	32
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	2
+	int	40
+	line	33
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	20
+	line	33
+	colm	19
+	synt	any
+	invoke	1
+	line	33
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	2
+	int	41
+	line	34
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	42
+	line	34
+	colm	17
+	synt	any
+	invoke	1
+	line	34
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	2
+	int	43
+	line	35
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	44
+	line	35
+	colm	18
+	synt	any
+	invoke	1
+	line	35
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	pnull
+	pnull
+	var	2
+	int	45
+	line	36
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	46
+	line	36
+	colm	18
+	synt	any
+	invoke	1
+	line	36
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	2
+	int	47
+	line	37
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	48
+	line	37
+	colm	19
+	synt	any
+	invoke	1
+	line	37
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	var	2
+	int	49
+	line	38
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	50
+	line	38
+	colm	19
+	synt	any
+	invoke	1
+	line	38
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	2
+	int	51
+	line	39
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	20
+	line	39
+	colm	19
+	synt	any
+	invoke	1
+	line	39
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	2
+	int	52
+	line	40
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	53
+	line	40
+	colm	17
+	synt	any
+	invoke	1
+	line	40
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	pnull
+	var	2
+	int	52
+	line	41
+	colm	5
+	synt	any
+	subsc
+	int	54
+	synt	any
+	subsc
+	str	53
+	line	41
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	pnull
+	var	2
+	int	52
+	line	42
+	colm	5
+	synt	any
+	subsc
+	int	33
+	synt	any
+	subsc
+	str	55
+	line	42
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	var	2
+	int	56
+	line	43
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	57
+	line	43
+	colm	18
+	synt	any
+	invoke	1
+	line	43
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	pnull
+	var	2
+	int	56
+	line	44
+	colm	5
+	synt	any
+	subsc
+	int	58
+	synt	any
+	subsc
+	str	59
+	line	44
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	pnull
+	var	2
+	int	56
+	line	45
+	colm	5
+	synt	any
+	subsc
+	int	60
+	synt	any
+	subsc
+	str	57
+	line	45
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	2
+	int	61
+	line	46
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	62
+	line	46
+	colm	18
+	synt	any
+	invoke	1
+	line	46
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	2
+	int	63
+	line	47
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	64
+	line	47
+	colm	19
+	synt	any
+	invoke	1
+	line	47
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	2
+	int	65
+	line	48
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	66
+	line	48
+	colm	19
+	synt	any
+	invoke	1
+	line	48
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	2
+	int	67
+	line	49
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	68
+	line	49
+	colm	19
+	synt	any
+	invoke	1
+	line	49
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	pnull
+	var	2
+	int	69
+	line	50
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	70
+	line	50
+	colm	18
+	synt	any
+	invoke	1
+	line	50
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L45
+	mark	L46
+	pnull
+	pnull
+	var	2
+	int	71
+	line	51
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	72
+	line	51
+	colm	19
+	synt	any
+	invoke	1
+	line	51
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L46
+	mark	L47
+	pnull
+	pnull
+	var	2
+	int	73
+	line	52
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	74
+	line	52
+	colm	19
+	synt	any
+	invoke	1
+	line	52
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L47
+	mark	L48
+	pnull
+	pnull
+	var	2
+	int	75
+	line	53
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	76
+	line	53
+	colm	19
+	synt	any
+	invoke	1
+	line	53
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L48
+	mark	L49
+	pnull
+	pnull
+	var	2
+	int	77
+	line	54
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	78
+	line	54
+	colm	18
+	synt	any
+	invoke	1
+	line	54
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L49
+	mark	L50
+	pnull
+	pnull
+	var	2
+	int	79
+	line	55
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	80
+	line	55
+	colm	19
+	synt	any
+	invoke	1
+	line	55
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L50
+	mark	L51
+	pnull
+	pnull
+	pnull
+	var	2
+	int	79
+	line	56
+	colm	5
+	synt	any
+	subsc
+	int	81
+	synt	any
+	subsc
+	str	82
+	line	56
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L51
+	mark	L52
+	pnull
+	pnull
+	pnull
+	var	2
+	int	79
+	line	57
+	colm	5
+	synt	any
+	subsc
+	int	83
+	synt	any
+	subsc
+	str	80
+	line	57
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L52
+	mark	L53
+	pnull
+	pnull
+	var	2
+	int	84
+	line	58
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	85
+	line	58
+	colm	19
+	synt	any
+	invoke	1
+	line	58
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L53
+	mark	L54
+	pnull
+	pnull
+	pnull
+	var	2
+	int	84
+	line	59
+	colm	5
+	synt	any
+	subsc
+	int	86
+	synt	any
+	subsc
+	str	85
+	line	59
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L54
+	mark	L55
+	pnull
+	pnull
+	pnull
+	var	2
+	int	84
+	line	60
+	colm	5
+	synt	any
+	subsc
+	int	87
+	synt	any
+	subsc
+	str	88
+	line	60
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L55
+	mark	L56
+	pnull
+	pnull
+	var	2
+	int	89
+	line	61
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	90
+	line	61
+	colm	19
+	synt	any
+	invoke	1
+	line	61
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L56
+	mark	L57
+	pnull
+	pnull
+	var	2
+	int	91
+	line	62
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	92
+	line	62
+	colm	17
+	synt	any
+	invoke	1
+	line	62
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L57
+	mark	L58
+	pnull
+	pnull
+	var	2
+	int	93
+	line	63
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	94
+	line	63
+	colm	18
+	synt	any
+	invoke	1
+	line	63
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L58
+	mark	L59
+	pnull
+	pnull
+	var	2
+	int	95
+	line	64
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	96
+	line	64
+	colm	18
+	synt	any
+	invoke	1
+	line	64
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L59
+	mark	L60
+	pnull
+	pnull
+	var	2
+	int	97
+	line	65
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	98
+	line	65
+	colm	18
+	synt	any
+	invoke	1
+	line	65
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L60
+	mark	L61
+	pnull
+	pnull
+	var	2
+	int	99
+	line	66
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	100
+	line	66
+	colm	19
+	synt	any
+	invoke	1
+	line	66
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L61
+	mark	L62
+	pnull
+	pnull
+	pnull
+	var	2
+	int	99
+	line	67
+	colm	5
+	synt	any
+	subsc
+	int	60
+	synt	any
+	subsc
+	str	100
+	line	67
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L62
+	mark	L63
+	pnull
+	pnull
+	pnull
+	var	2
+	int	99
+	line	68
+	colm	5
+	synt	any
+	subsc
+	int	15
+	synt	any
+	subsc
+	str	101
+	line	68
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L63
+	mark	L64
+	pnull
+	pnull
+	var	2
+	int	102
+	line	69
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	103
+	line	69
+	colm	19
+	synt	any
+	invoke	1
+	line	69
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L64
+	mark	L65
+	pnull
+	pnull
+	var	2
+	int	104
+	line	70
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	105
+	line	70
+	colm	19
+	synt	any
+	invoke	1
+	line	70
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L65
+	mark	L66
+	pnull
+	pnull
+	var	2
+	int	106
+	line	71
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	107
+	line	71
+	colm	19
+	synt	any
+	invoke	1
+	line	71
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L66
+	mark	L67
+	pnull
+	pnull
+	pnull
+	var	2
+	int	106
+	line	72
+	colm	5
+	synt	any
+	subsc
+	int	86
+	synt	any
+	subsc
+	str	107
+	line	72
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L67
+	mark	L68
+	pnull
+	pnull
+	pnull
+	var	2
+	int	106
+	line	73
+	colm	5
+	synt	any
+	subsc
+	int	60
+	synt	any
+	subsc
+	str	108
+	line	73
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L68
+	mark	L69
+	pnull
+	pnull
+	var	2
+	int	109
+	line	74
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	110
+	line	74
+	colm	18
+	synt	any
+	invoke	1
+	line	74
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L69
+	mark	L70
+	pnull
+	pnull
+	var	2
+	int	111
+	line	75
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	112
+	line	75
+	colm	19
+	synt	any
+	invoke	1
+	line	75
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L70
+	mark	L71
+	pnull
+	pnull
+	var	2
+	int	113
+	line	76
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	114
+	line	76
+	colm	18
+	synt	any
+	invoke	1
+	line	76
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L71
+	mark	L72
+	pnull
+	pnull
+	var	2
+	int	115
+	line	77
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	116
+	line	77
+	colm	18
+	synt	any
+	invoke	1
+	line	77
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L72
+	mark	L73
+	pnull
+	pnull
+	var	2
+	int	117
+	line	78
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	118
+	line	78
+	colm	19
+	synt	any
+	invoke	1
+	line	78
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L73
+	mark	L74
+	pnull
+	pnull
+	var	2
+	int	119
+	line	79
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	120
+	line	79
+	colm	19
+	synt	any
+	invoke	1
+	line	79
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L74
+	mark	L75
+	pnull
+	pnull
+	var	2
+	int	121
+	line	80
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	122
+	line	80
+	colm	19
+	synt	any
+	invoke	1
+	line	80
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L75
+	mark	L76
+	pnull
+	pnull
+	var	2
+	int	123
+	line	81
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	124
+	line	81
+	colm	18
+	synt	any
+	invoke	1
+	line	81
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L76
+	mark	L77
+	pnull
+	pnull
+	var	2
+	int	125
+	line	82
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	107
+	line	82
+	colm	19
+	synt	any
+	invoke	1
+	line	82
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L77
+	mark	L78
+	pnull
+	pnull
+	var	2
+	int	126
+	line	83
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	78
+	line	83
+	colm	19
+	synt	any
+	invoke	1
+	line	83
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L78
+	mark	L79
+	pnull
+	pnull
+	var	2
+	int	127
+	line	84
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	44
+	line	84
+	colm	19
+	synt	any
+	invoke	1
+	line	84
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L79
+	mark	L80
+	pnull
+	pnull
+	var	2
+	int	128
+	line	85
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	129
+	line	85
+	colm	19
+	synt	any
+	invoke	1
+	line	85
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L80
+	mark	L81
+	pnull
+	pnull
+	var	2
+	int	130
+	line	86
+	colm	5
+	synt	any
+	subsc
+	var	4
+	str	131
+	line	86
+	colm	18
+	synt	any
+	invoke	1
+	line	86
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L81
+	pnull
+	var	3
+	int	1
+	line	87
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L82
+	line	91
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	0
+	str	132
+	line	91
+	colm	9
+	synt	any
+	lexeq
+	unmark
+	mark	L83
+	pnull
+	var	3
+	int	1
+	line	93
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L83
+	mark	L84
+	pnull
+	line	94
+	colm	9
+	synt	any
+	pret
+lab L84
+	synt	any
+	pfail
+	line	91
+	colm	4
+	synt	endif
+	unmark
+lab L82
+	mark	L85
+	line	98
+	colm	4
+	synt	ifelse
+	mark	L86
+	pnull
+	var	3
+	int	1
+	line	98
+	colm	21
+	synt	any
+	numeq
+	unmark
+	var	5
+	line	98
+	colm	52
+	synt	any
+	keywd	errout
+	line	98
+	colm	51
+	synt	any
+	invoke	1
+	goto	L87
+lab L86
+	line	99
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	6
+	var	0
+	line	99
+	colm	15
+	synt	any
+	invoke	1
+	str	133
+	line	99
+	colm	18
+	synt	any
+	lexeq
+	unmark
+	mark	L88
+	pnull
+	line	99
+	colm	57
+	synt	any
+	pret
+lab L88
+	synt	any
+	pfail
+	line	99
+	colm	9
+	synt	endif
+lab L87
+	line	98
+	colm	4
+	synt	endifelse
+	unmark
+lab L85
+	mark	L89
+	pnull
+	var	3
+	dup
+	int	134
+	line	100
+	colm	18
+	synt	any
+	plus
+	asgn
+	unmark
+lab L89
+	mark	L90
+	line	101
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	3
+	int	17
+	line	101
+	colm	21
+	synt	any
+	numgt
+	unmark
+	var	7
+	str	135
+	line	102
+	colm	27
+	synt	any
+	invoke	1
+	line	101
+	colm	4
+	synt	endif
+	unmark
+lab L90
+	mark	L91
+	var	8
+	line	103
+	colm	27
+	synt	any
+	keywd	errout
+	pnull
+	var	9
+	line	103
+	colm	35
+	synt	any
+	nonnull
+	str	136
+	line	103
+	colm	26
+	synt	any
+	invoke	3
+	unmark
+lab L91
+	mark	L92
+	line	104
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	0
+	str	0
+	line	104
+	colm	9
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	0
+	pnull
+	pnull
+	var	2
+	pnull
+	var	10
+	int	134
+	line	105
+	colm	37
+	synt	any
+	subsc
+	line	105
+	colm	13
+	synt	any
+	subsc
+	var	11
+	synt	any
+	subsc
+	line	105
+	colm	9
+	synt	any
+	asgn
+	line	104
+	colm	4
+	synt	endif
+	unmark
+lab L92
+	mark	L93
+	line	106
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	0
+	str	0
+	line	106
+	colm	9
+	synt	any
+	lexeq
+	unmark
+	mark	L94
+	pnull
+	var	0
+	dup
+	pnull
+	pnull
+	pnull
+	pnull
+	str	137
+	pnull
+	var	10
+	int	134
+	line	107
+	colm	45
+	synt	any
+	subsc
+	line	107
+	colm	19
+	synt	any
+	cat
+	str	138
+	line	107
+	colm	48
+	synt	any
+	cat
+	var	11
+	line	107
+	colm	53
+	synt	any
+	cat
+	str	139
+	line	107
+	colm	76
+	synt	any
+	cat
+	line	107
+	colm	9
+	synt	any
+	cat
+	asgn
+	unmark
+lab L94
+	line	108
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	12
+	line	108
+	colm	10
+	synt	any
+	null
+	unmark
+	pnull
+	var	0
+	dup
+	str	140
+	line	108
+	colm	41
+	synt	any
+	cat
+	asgn
+	line	108
+	colm	7
+	synt	endif
+	line	106
+	colm	4
+	synt	endif
+	unmark
+lab L93
+	mark	L95
+	var	5
+	line	110
+	colm	26
+	synt	any
+	keywd	errout
+	var	13
+	str	141
+	var	14
+	str	142
+	var	0
+	line	110
+	colm	25
+	synt	any
+	invoke	6
+	unmark
+lab L95
+	mark	L96
+	line	111
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	12
+	line	111
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	line	112
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	15
+	var	16
+	pnull
+	var	9
+	line	112
+	colm	24
+	synt	any
+	nonnull
+	line	112
+	colm	23
+	synt	any
+	invoke	1
+	line	112
+	colm	16
+	synt	any
+	asgn
+	unmark
+	mark	L97
+	var	5
+	line	113
+	colm	32
+	synt	any
+	keywd	errout
+	str	143
+	var	17
+	str	144
+	line	113
+	colm	31
+	synt	any
+	invoke	4
+	unmark
+lab L97
+	mark	L98
+	var	5
+	line	115
+	colm	32
+	synt	any
+	keywd	errout
+	str	145
+	str	146
+	line	115
+	colm	31
+	synt	any
+	invoke	3
+	unmark
+lab L98
+	mark	L99
+	pnull
+	var	18
+	var	16
+	pnull
+	str	147
+	var	17
+	line	117
+	colm	31
+	synt	any
+	cat
+	str	148
+	line	117
+	colm	22
+	synt	any
+	invoke	2
+	line	117
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L99
+	mark	L100
+lab L101
+	line	118
+	colm	10
+	synt	while
+	mark0
+	var	5
+	var	18
+	pnull
+	str	149
+	var	19
+	line	118
+	colm	52
+	synt	any
+	invoke	0
+	line	118
+	colm	45
+	synt	any
+	lexne
+	line	118
+	colm	37
+	synt	any
+	invoke	2
+lab L102
+	unmark
+	goto	L101
+lab L103
+	line	118
+	colm	10
+	synt	endwhile
+	unmark
+lab L100
+	mark	L104
+	var	5
+	var	18
+	line	119
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L104
+	mark	L105
+	var	5
+	var	18
+	var	13
+	str	141
+	var	14
+	str	142
+	var	0
+	line	120
+	colm	31
+	synt	any
+	invoke	6
+	unmark
+lab L105
+	mark	L106
+	var	5
+	var	18
+	line	121
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L106
+	mark	L107
+lab L108
+	line	122
+	colm	10
+	synt	while
+	mark0
+	var	5
+	var	18
+	var	19
+	var	15
+	line	122
+	colm	47
+	synt	any
+	invoke	1
+	line	122
+	colm	37
+	synt	any
+	invoke	2
+lab L109
+	unmark
+	goto	L108
+lab L110
+	line	122
+	colm	10
+	synt	endwhile
+	unmark
+lab L107
+	mark	L111
+	var	20
+	var	15
+	line	123
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L111
+	var	20
+	var	18
+	line	124
+	colm	15
+	synt	any
+	invoke	1
+	line	112
+	colm	7
+	synt	endif
+	line	111
+	colm	4
+	synt	endif
+	unmark
+lab L96
+	mark	L112
+	pnull
+	pnull
+	var	21
+	line	128
+	colm	4
+	synt	any
+	null
+	pnull
+	line	128
+	colm	35
+	synt	any
+	llist	0
+	line	128
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L112
+	mark	L113
+	pnull
+	var	1
+	var	22
+	var	13
+	var	0
+	line	129
+	colm	44
+	synt	any
+	invoke	2
+	line	129
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L113
+	mark	L114
+	var	23
+	var	21
+	var	1
+	line	130
+	colm	8
+	synt	any
+	invoke	2
+	unmark
+lab L114
+	mark	L115
+	mark	L116
+	pnull
+	line	133
+	colm	4
+	synt	any
+	pret
+lab L116
+	synt	any
+	pfail
+	unmark
+lab L115
+	pnull
+	line	134
+	colm	2
+	synt	any
+	pfail
+	end
+proc UniconPackage__ParseError_initially
+	local	0,001000,self
+	declend
+	line	139
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	141
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	142
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__ParseError
+	local	0,001000,lineNumber
+	local	1,001000,errorMessage
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,UniconPackage__ParseError__oprec
+	local	5,000000,UniconPackage__ParseErrorinitialize
+	local	6,000000,UniconPackage__ParseError__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	80
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	2
+	var	6
+	line	10
+	colm	44
+	synt	any
+	keywd	null
+	var	4
+	var	0
+	var	1
+	line	10
+	colm	43
+	synt	any
+	invoke	4
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	2
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	line	12
+	colm	21
+	synt	any
+	invoke	1
+	line	12
+	colm	28
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	30
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	2
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__ParseErrorinitialize
+	local	0,000000,UniconPackage__ParseError__oprec
+	local	1,000000,UniconPackage__ParseError__methods
+	local	2,000000,UniconPackage__ParseError_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	line	17
+	colm	81
+	synt	any
+	invoke	1
+	line	17
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

@@ -1,0 +1,2977 @@
+version	U12.1.00
+uid	sSceneGr.u1-1523917618-0
+record	ServerCVESceneGraph__state,13
+	0,__s
+	1,__m
+	2,is_server
+	3,services
+	4,nodesTable
+	5,edgesTable
+	6,directionTable
+	7,avatarTable
+	8,nodeRPath
+	9,edgeRPath
+	10,logHandler
+	11,genDyn
+	12,cveBuilder
+record	ServerCVESceneGraph__methods,47
+	0,getRoom
+	1,getAvatarState
+	2,updateAvatarState
+	3,updateEdgeState
+	4,updateBlackboardState
+	5,handleAvatarNodeChanges
+	6,getAvatarsForEdgeMove
+	7,getAvatarsForAvtMove
+	8,populateAvtTblFrmNode
+	9,pulse_actors
+	10,notify_actors_of_arrival
+	11,rssify
+	12,initially
+	13,generateSceneGraph
+	14,constructStaticData
+	15,constructStaticNodeData
+	16,constructStaticEdgeData
+	17,constructDynamicData
+	18,constructDynamicNodeData
+	19,constructAvatarStates
+	20,constructDynamicEdgeData
+	21,printGraph
+	22,createEdgeName
+	23,determineCurrRoom
+	24,getAdjacencyList
+	25,getAdjacency
+	26,clearVisited
+	27,storeToDisk
+	28,storeDynamicNodeData
+	29,storeDynamicEdgeData
+	30,populateEdgeTblFrmNode
+	31,getAdjDynamicStateForNode
+	32,getDynStateForNode
+	33,getEdgeStates
+	34,getAvatarStates
+	35,getRoomByName
+	36,putRoomInWorld
+	37,assignCurrRoom
+	38,updateDynamicState
+	39,handleNodeState
+	40,printRenderedNodes
+	41,deRenderNodes
+	42,getAvtRoom
+	43,getAvtInRoom
+	44,constructStaticDirectionNodes
+	45,checkForDirection
+	46,CVESceneGraph
+impl	error
+link	C:/Users/Kevin/cve/src/server/../common/SceneGraph.u
+global	19
+	0,000005,ServerCVESceneGraph_getRoom,2
+	1,000005,ServerCVESceneGraph_getAvatarState,2
+	2,000005,ServerCVESceneGraph_updateAvatarState,9
+	3,000005,ServerCVESceneGraph_updateEdgeState,5
+	4,000005,ServerCVESceneGraph_updateBlackboardState,1
+	5,000005,ServerCVESceneGraph_handleAvatarNodeChanges,5
+	6,000005,ServerCVESceneGraph_getAvatarsForEdgeMove,2
+	7,000005,ServerCVESceneGraph_getAvatarsForAvtMove,2
+	8,000005,ServerCVESceneGraph_populateAvtTblFrmNode,3
+	9,000005,ServerCVESceneGraph_pulse_actors,1
+	10,000005,ServerCVESceneGraph_notify_actors_of_arrival,3
+	11,000005,ServerCVESceneGraph_rssify,3
+	12,000005,ServerCVESceneGraph_initially,3
+	13,000011,ServerCVESceneGraph__state,13
+	14,000011,ServerCVESceneGraph__methods,47
+	15,000001,ServerCVESceneGraph__oprec,0
+	16,000001,CVESceneGraph__oprec,0
+	17,000005,ServerCVESceneGraph,2
+	18,000005,ServerCVESceneGraphinitialize,0
+
+proc ServerCVESceneGraph_getRoom
+	local	0,001000,self
+	local	1,001000,r
+	declend
+	filen	sSceneGr.icn
+	line	71
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	1
+	line	72
+	colm	17
+	synt	any
+	field	name
+	line	72
+	colm	9
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	73
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_getAvatarState
+	local	0,001000,self
+	local	1,001000,avatarName
+	local	2,000020,avtState
+	local	3,000020,state
+	local	4,000000,table
+	con	0,010000,1,170
+	con	1,010000,1,171
+	con	2,010000,1,172
+	con	3,010000,5,141,156,147,154,145
+	con	4,010000,4,156,157,144,145
+	declend
+	line	80
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	line	81
+	colm	25
+	synt	any
+	llist	0
+	line	81
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	var	4
+	line	81
+	colm	43
+	synt	any
+	invoke	0
+	line	81
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	83
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	25
+	synt	any
+	field	avatarTable
+	var	1
+	line	83
+	colm	37
+	synt	any
+	subsc
+	line	83
+	colm	18
+	synt	any
+	asgn
+	line	83
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	2
+	pnull
+	pnull
+	var	3
+	str	0
+	line	84
+	colm	28
+	synt	any
+	subsc
+	pnull
+	var	3
+	str	1
+	line	84
+	colm	39
+	synt	any
+	subsc
+	pnull
+	var	3
+	str	2
+	line	84
+	colm	50
+	synt	any
+	subsc
+	pnull
+	var	3
+	str	3
+	line	84
+	colm	61
+	synt	any
+	subsc
+	pnull
+	var	3
+	str	4
+	line	85
+	colm	28
+	synt	any
+	subsc
+	line	84
+	colm	22
+	synt	any
+	llist	5
+	line	84
+	colm	19
+	synt	any
+	asgn
+	line	83
+	colm	7
+	synt	endif
+	unmark
+lab L3
+	mark	L4
+	mark	L5
+	var	2
+	line	87
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	88
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_updateAvatarState
+	local	0,001000,self
+	local	1,001000,avatarName
+	local	2,001000,x
+	local	3,001000,y
+	local	4,001000,z
+	local	5,001000,angle
+	local	6,001000,node
+	local	7,001000,TonlineUsers
+	local	8,001000,moveCounter
+	local	9,000020,currNodeName
+	local	10,000020,i
+	local	11,000020,j
+	local	12,000000,integer
+	local	13,000000,runerr
+	local	14,000000,table
+	con	0,002000,3,400
+	con	1,002000,3,101
+	con	2,002000,1,0
+	con	3,010000,4,156,141,155,145
+	con	4,010000,4,156,157,144,145
+	con	5,010000,1,170
+	con	6,010000,1,171
+	con	7,010000,1,172
+	con	8,010000,5,141,156,147,154,145
+	con	9,002000,1,2
+	con	10,010000,29,165,160,144,141,164,145,101,166,141,164,141,162,123,164,141,164,145,050,051,072,040,125,160,144,141,164,145,144,040
+	con	11,010000,15,047,163,040,163,164,141,164,145,072,040,156,157,144,145,075
+	con	12,010000,3,040,170,075
+	con	13,010000,3,040,171,075
+	con	14,010000,3,040,172,075
+	con	15,010000,7,040,141,156,147,154,145,075
+	declend
+	line	97
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	8
+	line	100
+	colm	1
+	synt	any
+	null
+	int	0
+	line	100
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	8
+	mark	L3
+	var	12
+	var	8
+	line	101
+	colm	23
+	synt	any
+	invoke	1
+	line	101
+	colm	37
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	var	13
+	int	1
+	var	8
+	line	101
+	colm	45
+	synt	any
+	invoke	2
+lab L4
+	line	101
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L5
+	pnull
+	var	10
+	int	2
+	line	99
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	11
+	int	2
+	line	99
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	9
+	pnull
+	var	0
+	line	111
+	colm	27
+	synt	any
+	field	determineCurrRoom
+	pnull
+	var	2
+	var	10
+	line	111
+	colm	47
+	synt	any
+	minus
+	pnull
+	var	4
+	var	11
+	line	111
+	colm	51
+	synt	any
+	minus
+	var	3
+	line	111
+	colm	45
+	synt	any
+	invoke	3
+	line	111
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	112
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	16
+	synt	any
+	field	nodesTable
+	var	9
+	line	112
+	colm	27
+	synt	any
+	subsc
+	line	112
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L9
+	pnull
+	line	112
+	colm	48
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	line	112
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	mark	L10
+	pnull
+	pnull
+	pnull
+	var	0
+	line	119
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	119
+	colm	23
+	synt	any
+	subsc
+	var	14
+	line	119
+	colm	44
+	synt	any
+	invoke	0
+	line	119
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	120
+	colm	23
+	synt	any
+	subsc
+	str	3
+	line	120
+	colm	35
+	synt	any
+	subsc
+	var	1
+	line	120
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	121
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	121
+	colm	23
+	synt	any
+	subsc
+	str	4
+	line	121
+	colm	35
+	synt	any
+	subsc
+	var	9
+	line	121
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	122
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	122
+	colm	23
+	synt	any
+	subsc
+	str	5
+	line	122
+	colm	35
+	synt	any
+	subsc
+	pnull
+	var	2
+	var	10
+	line	122
+	colm	45
+	synt	any
+	minus
+	line	122
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	123
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	123
+	colm	23
+	synt	any
+	subsc
+	str	6
+	line	123
+	colm	35
+	synt	any
+	subsc
+	var	3
+	line	123
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	124
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	124
+	colm	23
+	synt	any
+	subsc
+	str	7
+	line	124
+	colm	35
+	synt	any
+	subsc
+	pnull
+	var	4
+	var	11
+	line	124
+	colm	45
+	synt	any
+	minus
+	line	124
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	125
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	125
+	colm	23
+	synt	any
+	subsc
+	str	8
+	line	125
+	colm	35
+	synt	any
+	subsc
+	var	5
+	line	125
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	131
+	colm	11
+	synt	any
+	field	nodesTable
+	var	9
+	line	131
+	colm	22
+	synt	any
+	subsc
+	line	131
+	colm	36
+	synt	any
+	field	Tavatars
+	var	1
+	line	131
+	colm	45
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	15
+	synt	any
+	field	avatarTable
+	var	1
+	line	132
+	colm	27
+	synt	any
+	subsc
+	line	131
+	colm	58
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	line	138
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	8
+	int	0
+	line	138
+	colm	22
+	synt	any
+	numge
+	unmark
+	mark	L19
+	pnull
+	var	0
+	line	142
+	colm	14
+	synt	any
+	field	storeToDisk
+	int	9
+	pnull
+	var	9
+	line	142
+	colm	29
+	synt	any
+	llist	1
+	pnull
+	line	142
+	colm	44
+	synt	any
+	llist	0
+	var	7
+	line	142
+	colm	26
+	synt	any
+	invoke	4
+	unmark
+lab L19
+	pnull
+	pnull
+	var	0
+	line	143
+	colm	14
+	synt	any
+	field	logHandler
+	line	143
+	colm	25
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	10
+	var	1
+	line	143
+	colm	63
+	synt	any
+	cat
+	str	11
+	line	143
+	colm	75
+	synt	any
+	cat
+	var	9
+	line	144
+	colm	44
+	synt	any
+	cat
+	str	12
+	line	144
+	colm	58
+	synt	any
+	cat
+	var	2
+	line	145
+	colm	32
+	synt	any
+	cat
+	str	13
+	line	145
+	colm	35
+	synt	any
+	cat
+	var	3
+	line	145
+	colm	42
+	synt	any
+	cat
+	str	14
+	line	145
+	colm	45
+	synt	any
+	cat
+	var	4
+	line	145
+	colm	52
+	synt	any
+	cat
+	str	15
+	line	145
+	colm	55
+	synt	any
+	cat
+	var	5
+	line	145
+	colm	67
+	synt	any
+	cat
+	line	143
+	colm	31
+	synt	any
+	invoke	1
+	line	138
+	colm	7
+	synt	endif
+	unmark
+lab L18
+	pnull
+	line	147
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_updateEdgeState
+	local	0,001000,self
+	local	1,001000,edgeName
+	local	2,001000,openness
+	local	3,001000,delta
+	local	4,001000,direction
+	local	5,000020,currNodeName
+	local	6,000000,write
+	local	7,000000,image
+	local	8,000000,type
+	local	9,000000,table
+	con	0,010000,13,156,165,154,154,040,145,144,147,163,164,141,164,040
+	con	1,010000,14,117,160,145,156,151,156,147,137,137,163,164,141,164,145
+	con	2,004000,0.0
+	con	3,004000,1.0
+	con	4,002000,1,3
+	declend
+	line	158
+	colm	11
+	synt	any
+	mark	L1
+	line	161
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	161
+	colm	17
+	synt	any
+	field	edgesTable
+	var	1
+	line	161
+	colm	28
+	synt	any
+	subsc
+	line	161
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L2
+	var	6
+	line	162
+	colm	16
+	synt	any
+	keywd	errout
+	str	0
+	var	7
+	var	1
+	line	162
+	colm	47
+	synt	any
+	invoke	1
+	line	162
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L2
+	line	163
+	colm	10
+	synt	any
+	pfail
+	line	161
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	line	169
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	8
+	pnull
+	pnull
+	var	0
+	line	169
+	colm	19
+	synt	any
+	field	edgesTable
+	var	1
+	line	169
+	colm	30
+	synt	any
+	subsc
+	line	169
+	colm	14
+	synt	any
+	invoke	1
+	str	1
+	line	169
+	colm	42
+	synt	any
+	lexeq
+	unmark
+	mark	L4
+	pnull
+	line	170
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	line	169
+	colm	7
+	synt	endif
+	unmark
+lab L3
+	mark	L5
+	line	172
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	real	2
+	line	172
+	colm	19
+	synt	any
+	numgt
+	pop
+	pnull
+	var	3
+	real	2
+	line	172
+	colm	33
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	2
+	real	3
+	line	172
+	colm	53
+	synt	any
+	asgn
+	line	172
+	colm	7
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	11
+	synt	any
+	field	edgesTable
+	var	1
+	line	174
+	colm	22
+	synt	any
+	subsc
+	line	174
+	colm	32
+	synt	any
+	field	openness
+	var	2
+	line	174
+	colm	42
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	175
+	colm	11
+	synt	any
+	field	edgesTable
+	var	1
+	line	175
+	colm	22
+	synt	any
+	subsc
+	line	175
+	colm	32
+	synt	any
+	field	delt
+	var	3
+	line	175
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	176
+	colm	11
+	synt	any
+	field	edgesTable
+	var	1
+	line	176
+	colm	22
+	synt	any
+	subsc
+	line	176
+	colm	32
+	synt	any
+	field	direction
+	var	4
+	line	176
+	colm	43
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	0
+	line	181
+	colm	11
+	synt	any
+	field	storeToDisk
+	int	4
+	pnull
+	line	181
+	colm	26
+	synt	any
+	llist	0
+	pnull
+	var	1
+	line	181
+	colm	29
+	synt	any
+	llist	1
+	var	9
+	line	181
+	colm	45
+	synt	any
+	invoke	0
+	line	181
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L9
+	pnull
+	line	182
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_updateBlackboardState
+	local	0,001000,self
+	declend
+	line	186
+	colm	11
+	synt	any
+	line	188
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_handleAvatarNodeChanges
+	local	0,001000,self
+	local	1,001000,avatarName
+	local	2,001000,oldNodeName
+	local	3,001000,newNodeName
+	local	4,001000,TonlineUsers
+	local	5,000020,avatarState
+	local	6,000020,oldNode
+	local	7,000020,oNodeName
+	local	8,000020,nNodeName
+	local	9,000000,write
+	local	10,000000,find
+	local	11,000000,map
+	local	12,000000,delete
+	local	13,000000,image
+	local	14,000000,system
+	con	0,010000,4,156,157,144,145
+	con	1,010000,23,157,150,040,156,157,054,040,156,157,164,040,141,040,164,150,151,162,144,040,164,151,155,145
+	con	2,010000,1,040
+	con	3,010000,1,055
+	con	4,010000,2,040,055
+	con	5,010000,2,137,137
+	con	6,002000,1,2
+	con	7,010000,21,156,157,156,145,170,151,163,164,141,156,164,040,156,145,167,040,156,157,144,145,040
+	con	8,010000,30,155,141,151,154,040,152,145,146,146,145,162,171,100,143,163,056,165,151,144,141,150,157,056,145,144,165,040,055,163,040
+	con	9,010000,18,042,156,157,156,145,170,151,163,164,145,156,164,040,156,157,144,145,040
+	con	10,010000,12,042,040,074,057,144,145,166,057,156,165,154,154
+	declend
+	line	198
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	11
+	synt	any
+	field	avatarTable
+	var	1
+	line	205
+	colm	23
+	synt	any
+	subsc
+	str	0
+	line	205
+	colm	35
+	synt	any
+	subsc
+	var	3
+	line	205
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	211
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	3
+	line	211
+	colm	22
+	synt	any
+	lexne
+	unmark
+	mark	L3
+	pnull
+	var	6
+	pnull
+	pnull
+	var	0
+	line	215
+	colm	25
+	synt	any
+	field	nodesTable
+	var	2
+	line	215
+	colm	36
+	synt	any
+	subsc
+	line	215
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	216
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	216
+	colm	13
+	synt	any
+	null
+	unmark
+	mark	L5
+	var	9
+	line	217
+	colm	19
+	synt	any
+	keywd	errout
+	str	1
+	line	217
+	colm	18
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	line	218
+	colm	13
+	synt	if
+	mark0
+	var	10
+	mark	L6
+	str	2
+	line	218
+	colm	25
+	synt	any
+	esusp
+	goto	L7
+lab L6
+	str	3
+lab L7
+	var	2
+	line	218
+	colm	20
+	synt	any
+	invoke	2
+	pop
+	pnull
+	pnull
+	pnull
+	var	0
+	line	219
+	colm	23
+	synt	any
+	field	nodesTable
+	pnull
+	var	7
+	var	11
+	var	2
+	str	4
+	str	5
+	line	219
+	colm	49
+	synt	any
+	invoke	3
+	line	219
+	colm	44
+	synt	any
+	asgn
+	line	219
+	colm	34
+	synt	any
+	subsc
+	line	219
+	colm	16
+	synt	any
+	nonnull
+	unmark
+	mark	L8
+	pnull
+	var	2
+	var	7
+	line	220
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	var	6
+	pnull
+	pnull
+	var	0
+	line	221
+	colm	31
+	synt	any
+	field	nodesTable
+	var	2
+	line	221
+	colm	42
+	synt	any
+	subsc
+	line	221
+	colm	24
+	synt	any
+	asgn
+	line	218
+	colm	13
+	synt	endif
+	line	216
+	colm	10
+	synt	endif
+	unmark
+lab L4
+	mark	L9
+	var	12
+	pnull
+	pnull
+	pnull
+	var	0
+	line	224
+	colm	21
+	synt	any
+	field	nodesTable
+	var	2
+	line	224
+	colm	32
+	synt	any
+	subsc
+	line	224
+	colm	45
+	synt	any
+	field	Tavatars
+	var	1
+	line	224
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	pnull
+	var	0
+	line	225
+	colm	14
+	synt	any
+	field	storeToDisk
+	int	6
+	pnull
+	var	2
+	line	225
+	colm	29
+	synt	any
+	llist	1
+	pnull
+	line	225
+	colm	43
+	synt	any
+	llist	0
+	var	4
+	line	225
+	colm	26
+	synt	any
+	invoke	4
+	line	211
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L10
+	line	231
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	231
+	colm	17
+	synt	any
+	field	nodesTable
+	var	3
+	line	231
+	colm	28
+	synt	any
+	subsc
+	line	231
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L11
+	var	9
+	line	232
+	colm	16
+	synt	any
+	keywd	errout
+	str	7
+	var	13
+	var	3
+	line	232
+	colm	55
+	synt	any
+	invoke	1
+	line	232
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L11
+	line	233
+	colm	10
+	synt	ifelse
+	mark	L12
+	var	10
+	mark	L14
+	str	2
+	line	233
+	colm	22
+	synt	any
+	esusp
+	goto	L15
+lab L14
+	str	3
+lab L15
+	var	3
+	line	233
+	colm	17
+	synt	any
+	invoke	2
+	pop
+	pnull
+	pnull
+	pnull
+	var	0
+	line	234
+	colm	20
+	synt	any
+	field	nodesTable
+	pnull
+	var	8
+	var	11
+	var	3
+	str	4
+	str	5
+	line	234
+	colm	46
+	synt	any
+	invoke	3
+	line	234
+	colm	41
+	synt	any
+	asgn
+	line	234
+	colm	31
+	synt	any
+	subsc
+	line	234
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	3
+	var	8
+	line	235
+	colm	25
+	synt	any
+	asgn
+	goto	L13
+lab L12
+	mark	L16
+	var	14
+	pnull
+	pnull
+	pnull
+	str	8
+	str	9
+	line	238
+	colm	53
+	synt	any
+	cat
+	var	3
+	line	239
+	colm	42
+	synt	any
+	cat
+	str	10
+	line	239
+	colm	57
+	synt	any
+	cat
+	line	238
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	line	240
+	colm	13
+	synt	any
+	pret
+lab L17
+	synt	any
+	pfail
+lab L13
+	line	233
+	colm	10
+	synt	endifelse
+	line	231
+	colm	7
+	synt	endif
+	unmark
+lab L10
+	mark	L18
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	244
+	colm	11
+	synt	any
+	field	nodesTable
+	var	3
+	line	244
+	colm	22
+	synt	any
+	subsc
+	line	244
+	colm	35
+	synt	any
+	field	Tavatars
+	var	1
+	line	244
+	colm	44
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	0
+	line	244
+	colm	62
+	synt	any
+	field	avatarTable
+	var	1
+	line	244
+	colm	74
+	synt	any
+	subsc
+	line	244
+	colm	56
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	0
+	line	245
+	colm	11
+	synt	any
+	field	storeToDisk
+	int	6
+	pnull
+	var	3
+	line	245
+	colm	26
+	synt	any
+	llist	1
+	pnull
+	line	245
+	colm	40
+	synt	any
+	llist	0
+	var	4
+	line	245
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L19
+	pnull
+	line	246
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_getAvatarsForEdgeMove
+	local	0,001000,self
+	local	1,001000,edgeName
+	local	2,000020,avtTbl
+	local	3,000020,avtName
+	local	4,000020,nodeEdge
+	local	5,000020,currNode
+	local	6,000020,nextNode
+	local	7,000000,table
+	local	8,000000,write
+	local	9,000000,image
+	con	0,010000,20,156,165,154,154,040,145,144,147,145,163,124,141,142,154,145,040,146,157,162,040
+	con	1,004000,0.0
+	declend
+	line	263
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	var	7
+	line	264
+	colm	28
+	synt	any
+	invoke	0
+	line	264
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	266
+	colm	7
+	synt	ifelse
+	mark	L3
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	266
+	colm	20
+	synt	any
+	field	edgesTable
+	var	1
+	line	266
+	colm	31
+	synt	any
+	subsc
+	line	266
+	colm	14
+	synt	any
+	nonnull
+	line	266
+	colm	10
+	synt	any
+	null
+	unmark
+	var	8
+	line	267
+	colm	17
+	synt	any
+	keywd	errout
+	str	0
+	var	9
+	var	1
+	line	267
+	colm	55
+	synt	any
+	invoke	1
+	line	267
+	colm	16
+	synt	any
+	invoke	3
+	goto	L4
+lab L3
+	line	270
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	270
+	colm	34
+	synt	any
+	field	edgesTable
+	var	1
+	line	270
+	colm	45
+	synt	any
+	subsc
+	line	270
+	colm	29
+	synt	any
+	nonnull
+	line	270
+	colm	56
+	synt	any
+	field	rooms
+	line	270
+	colm	27
+	synt	any
+	nonnull
+	line	270
+	colm	25
+	synt	any
+	bang
+	line	270
+	colm	22
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L7
+	pnull
+	var	0
+	line	275
+	colm	14
+	synt	any
+	field	populateAvtTblFrmNode
+	var	2
+	var	5
+	line	275
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	line	283
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	5
+	line	283
+	colm	37
+	synt	any
+	field	exits
+	line	283
+	colm	28
+	synt	any
+	bang
+	line	283
+	colm	25
+	synt	any
+	asgn
+	pop
+	mark0
+	line	287
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	287
+	colm	24
+	synt	any
+	field	openness
+	real	1
+	line	287
+	colm	34
+	synt	any
+	numgt
+	unmark
+	mark	L10
+	pnull
+	var	6
+	pnull
+	var	4
+	line	292
+	colm	37
+	synt	any
+	field	other
+	var	5
+	line	292
+	colm	43
+	synt	any
+	invoke	1
+	line	292
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L10
+	pnull
+	var	0
+	line	301
+	colm	20
+	synt	any
+	field	populateAvtTblFrmNode
+	var	2
+	var	6
+	line	301
+	colm	42
+	synt	any
+	invoke	2
+	line	287
+	colm	13
+	synt	endif
+	unmark
+lab L8
+	efail
+lab L9
+	line	283
+	colm	10
+	synt	endevery
+	unmark
+lab L5
+	efail
+lab L6
+	line	270
+	colm	7
+	synt	endevery
+lab L4
+	line	266
+	colm	7
+	synt	endifelse
+	unmark
+lab L2
+	mark	L11
+	mark	L12
+	var	2
+	line	305
+	colm	7
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	306
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_getAvatarsForAvtMove
+	local	0,001000,self
+	local	1,001000,avatarName
+	local	2,000020,avtTbl
+	local	3,000020,avtName
+	local	4,000020,nodeEdge
+	local	5,000020,currNodeName
+	local	6,000020,cnn
+	local	7,000020,currNode
+	local	8,000020,nextNode
+	local	9,000000,table
+	local	10,000000,write
+	local	11,000000,find
+	local	12,000000,map
+	con	0,010000,4,156,157,144,145
+	con	1,010000,16,157,150,040,156,157,054,040,156,157,164,040,141,147,141,151,156
+	con	2,010000,1,040
+	con	3,010000,1,055
+	con	4,010000,2,040,055
+	con	5,010000,2,137,137
+	con	6,004000,0.0
+	declend
+	line	315
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	var	9
+	line	316
+	colm	26
+	synt	any
+	invoke	0
+	line	316
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	var	0
+	line	319
+	colm	27
+	synt	any
+	field	avatarTable
+	var	1
+	line	319
+	colm	39
+	synt	any
+	subsc
+	str	0
+	line	319
+	colm	51
+	synt	any
+	subsc
+	line	319
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	7
+	pnull
+	pnull
+	var	0
+	line	320
+	colm	23
+	synt	any
+	field	nodesTable
+	var	5
+	line	320
+	colm	34
+	synt	any
+	subsc
+	line	320
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	321
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	7
+	line	321
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L5
+	var	10
+	line	322
+	colm	16
+	synt	any
+	keywd	errout
+	str	1
+	line	322
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	line	323
+	colm	10
+	synt	if
+	mark0
+	var	11
+	mark	L6
+	str	2
+	line	323
+	colm	22
+	synt	any
+	esusp
+	goto	L7
+lab L6
+	str	3
+lab L7
+	var	5
+	line	323
+	colm	17
+	synt	any
+	invoke	2
+	pop
+	pnull
+	pnull
+	var	7
+	pnull
+	pnull
+	var	0
+	line	324
+	colm	32
+	synt	any
+	field	nodesTable
+	pnull
+	var	6
+	var	12
+	var	5
+	str	4
+	str	5
+	line	324
+	colm	52
+	synt	any
+	invoke	3
+	line	324
+	colm	47
+	synt	any
+	asgn
+	line	324
+	colm	43
+	synt	any
+	subsc
+	line	324
+	colm	25
+	synt	any
+	asgn
+	line	324
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	325
+	colm	33
+	synt	any
+	field	avatarTable
+	var	1
+	line	325
+	colm	45
+	synt	any
+	subsc
+	str	0
+	line	325
+	colm	57
+	synt	any
+	subsc
+	var	6
+	line	325
+	colm	65
+	synt	any
+	asgn
+	line	325
+	colm	26
+	synt	any
+	asgn
+	line	323
+	colm	10
+	synt	endif
+	line	321
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L8
+	pnull
+	var	0
+	line	332
+	colm	11
+	synt	any
+	field	populateAvtTblFrmNode
+	var	2
+	var	7
+	line	332
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	mark	L9
+	line	340
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	7
+	line	340
+	colm	34
+	synt	any
+	field	exits
+	line	340
+	colm	25
+	synt	any
+	bang
+	line	340
+	colm	22
+	synt	any
+	asgn
+	pop
+	mark0
+	line	344
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	344
+	colm	21
+	synt	any
+	field	openness
+	real	6
+	line	344
+	colm	31
+	synt	any
+	numgt
+	unmark
+	mark	L12
+	pnull
+	var	8
+	pnull
+	var	4
+	line	348
+	colm	34
+	synt	any
+	field	other
+	var	7
+	line	348
+	colm	40
+	synt	any
+	invoke	1
+	line	348
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L12
+	pnull
+	var	0
+	line	353
+	colm	17
+	synt	any
+	field	populateAvtTblFrmNode
+	var	2
+	var	8
+	line	353
+	colm	39
+	synt	any
+	invoke	2
+	line	344
+	colm	10
+	synt	endif
+	unmark
+lab L10
+	efail
+lab L11
+	line	340
+	colm	7
+	synt	endevery
+	unmark
+lab L9
+	mark	L13
+	mark	L14
+	var	2
+	line	356
+	colm	9
+	synt	any
+	pret
+lab L14
+	synt	any
+	pfail
+	unmark
+lab L13
+	pnull
+	line	357
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_populateAvtTblFrmNode
+	local	0,001000,self
+	local	1,001000,avtTbl
+	local	2,001000,node
+	local	3,000020,avtName
+	local	4,000000,key
+	con	0,010000,0
+	con	1,010000,6,163,171,163,164,145,155
+	declend
+	line	366
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	str	0
+	line	367
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	373
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	3
+	var	4
+	pnull
+	var	2
+	line	373
+	colm	34
+	synt	any
+	field	Tavatars
+	line	373
+	colm	29
+	synt	any
+	invoke	1
+	line	373
+	colm	23
+	synt	any
+	asgn
+	pop
+	mark0
+	line	374
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	3
+	line	374
+	colm	16
+	synt	any
+	nonnull
+	str	1
+	line	374
+	colm	25
+	synt	any
+	lexne
+	unmark
+	pnull
+	pnull
+	var	1
+	var	3
+	line	375
+	colm	23
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	2
+	line	375
+	colm	40
+	synt	any
+	field	Tavatars
+	var	3
+	line	375
+	colm	49
+	synt	any
+	subsc
+	line	375
+	colm	33
+	synt	any
+	asgn
+	line	374
+	colm	13
+	synt	endif
+	unmark
+lab L3
+	efail
+lab L4
+	line	373
+	colm	9
+	synt	endevery
+	unmark
+lab L2
+	pnull
+	line	378
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_pulse_actors
+	local	0,001000,self
+	local	1,000020,room
+	local	2,000020,actor
+	declend
+	line	381
+	colm	11
+	synt	any
+	mark	L1
+	line	384
+	colm	8
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	384
+	colm	28
+	synt	any
+	field	nodesTable
+	line	384
+	colm	23
+	synt	any
+	nonnull
+	line	384
+	colm	22
+	synt	any
+	bang
+	line	384
+	colm	19
+	synt	any
+	asgn
+	pop
+	mark0
+	line	385
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	var	1
+	line	385
+	colm	30
+	synt	any
+	field	actors
+	line	385
+	colm	25
+	synt	any
+	bang
+	line	385
+	colm	22
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	2
+	line	386
+	colm	18
+	synt	any
+	field	heartbeat
+	line	386
+	colm	28
+	synt	any
+	invoke	0
+	unmark
+lab L4
+	efail
+lab L5
+	line	385
+	colm	10
+	synt	endevery
+	unmark
+lab L2
+	efail
+lab L3
+	line	384
+	colm	8
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	389
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_notify_actors_of_arrival
+	local	0,001000,self
+	local	1,001000,nodeName
+	local	2,001000,uid
+	local	3,000020,node
+	local	4,000020,actor
+	local	5,000000,member
+	local	6,000000,write
+	con	0,010000,15,124,150,145,040,156,157,144,145,040,156,141,155,145,144,040
+	con	1,010000,31,040,151,163,040,165,156,153,156,157,167,156,040,164,157,040,164,150,145,040,163,143,145,156,145,040,147,162,141,160,150,041
+	declend
+	line	395
+	colm	11
+	synt	any
+	mark	L1
+	line	398
+	colm	8
+	synt	if
+	mark0
+	mark	L2
+	var	5
+	pnull
+	var	0
+	line	398
+	colm	26
+	synt	any
+	field	nodesTable
+	var	1
+	line	398
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L2
+	pnull
+	unmark
+	mark	L3
+	var	6
+	pnull
+	pnull
+	str	0
+	var	1
+	line	399
+	colm	35
+	synt	any
+	cat
+	str	1
+	line	399
+	colm	47
+	synt	any
+	cat
+	line	399
+	colm	16
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	line	400
+	colm	11
+	synt	any
+	pfail
+	line	398
+	colm	8
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	403
+	colm	20
+	synt	any
+	field	nodesTable
+	var	1
+	line	403
+	colm	31
+	synt	any
+	subsc
+	line	403
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	404
+	colm	8
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	3
+	line	404
+	colm	28
+	synt	any
+	field	actors
+	line	404
+	colm	23
+	synt	any
+	bang
+	line	404
+	colm	20
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	4
+	line	405
+	colm	16
+	synt	any
+	field	spotted
+	var	2
+	line	405
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	efail
+lab L7
+	line	404
+	colm	8
+	synt	endevery
+	unmark
+lab L5
+	pnull
+	line	407
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_rssify
+	local	0,001000,self
+	local	1,001000,sock
+	local	2,001000,name
+	local	3,000020,node
+	local	4,000000,write
+	con	0,010000,12,125,156,153,156,157,167,156,040,162,157,157,155
+	con	1,010000,19,163,157,155,145,164,150,151,147,156,040,167,151,164,150,040,156,157,144,145
+	declend
+	line	409
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	410
+	colm	26
+	synt	any
+	field	nodesTable
+	var	2
+	line	410
+	colm	37
+	synt	any
+	subsc
+	line	410
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	411
+	colm	8
+	synt	ifelse
+	mark	L3
+	pnull
+	var	3
+	line	411
+	colm	11
+	synt	any
+	null
+	unmark
+	var	4
+	str	0
+	line	412
+	colm	16
+	synt	any
+	invoke	1
+	goto	L4
+lab L3
+	var	4
+	str	1
+	line	414
+	colm	16
+	synt	any
+	invoke	1
+lab L4
+	line	411
+	colm	8
+	synt	endifelse
+	unmark
+lab L2
+	pnull
+	line	416
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph_initially
+	local	0,001000,self
+	local	1,001000,dyn
+	local	2,001000,logging
+	local	3,000000,CVEBuilder
+	local	4,000000,Services
+	con	0,002000,1,1
+	con	1,010000,1,163
+	declend
+	line	418
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	419
+	colm	14
+	synt	any
+	field	__m
+	line	419
+	colm	18
+	synt	any
+	field	CVESceneGraph
+	line	419
+	colm	32
+	synt	any
+	field	initially
+	var	0
+	line	419
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	420
+	colm	13
+	synt	any
+	field	is_server
+	int	0
+	line	420
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	421
+	colm	13
+	synt	any
+	field	genDyn
+	var	1
+	line	421
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	422
+	colm	13
+	synt	any
+	field	logHandler
+	var	2
+	line	422
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	423
+	colm	13
+	synt	any
+	field	cveBuilder
+	var	3
+	str	1
+	var	0
+	line	423
+	colm	38
+	synt	any
+	invoke	2
+	line	423
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	424
+	colm	13
+	synt	any
+	field	services
+	var	4
+	line	424
+	colm	34
+	synt	any
+	invoke	0
+	line	424
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	0
+	line	425
+	colm	13
+	synt	any
+	field	generateSceneGraph
+	line	425
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	line	426
+	colm	7
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	427
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraph
+	local	0,001000,dyn
+	local	1,001000,logging
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,ServerCVESceneGraph__oprec
+	local	5,000000,ServerCVESceneGraphinitialize
+	local	6,000000,CVESceneGraph__oprec
+	local	7,000000,CVESceneGraphinitialize
+	local	8,000000,ServerCVESceneGraph__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	68
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	7
+	line	9
+	colm	56
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	4
+	line	10
+	colm	29
+	synt	any
+	field	CVESceneGraph
+	var	6
+	line	10
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	2
+	var	8
+	line	12
+	colm	38
+	synt	any
+	keywd	null
+	var	4
+	line	12
+	colm	37
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	2
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	14
+	colm	21
+	synt	any
+	invoke	3
+	line	14
+	colm	40
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	42
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	2
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc ServerCVESceneGraphinitialize
+	local	0,000000,ServerCVESceneGraph__oprec
+	local	1,000000,ServerCVESceneGraph__methods
+	local	2,000000,ServerCVESceneGraph_getRoom
+	local	3,000000,ServerCVESceneGraph_getAvatarState
+	local	4,000000,ServerCVESceneGraph_updateAvatarState
+	local	5,000000,ServerCVESceneGraph_updateEdgeState
+	local	6,000000,ServerCVESceneGraph_updateBlackboardState
+	local	7,000000,ServerCVESceneGraph_handleAvatarNodeChanges
+	local	8,000000,ServerCVESceneGraph_getAvatarsForEdgeMove
+	local	9,000000,ServerCVESceneGraph_getAvatarsForAvtMove
+	local	10,000000,ServerCVESceneGraph_populateAvtTblFrmNode
+	local	11,000000,ServerCVESceneGraph_pulse_actors
+	local	12,000000,ServerCVESceneGraph_notify_actors_of_arrival
+	local	13,000000,ServerCVESceneGraph_rssify
+	local	14,000000,ServerCVESceneGraph_initially
+	local	15,000000,CVESceneGraph_generateSceneGraph
+	local	16,000000,CVESceneGraph_constructStaticData
+	local	17,000000,CVESceneGraph_constructStaticNodeData
+	local	18,000000,CVESceneGraph_constructStaticEdgeData
+	local	19,000000,CVESceneGraph_constructDynamicData
+	local	20,000000,CVESceneGraph_constructDynamicNodeData
+	local	21,000000,CVESceneGraph_constructAvatarStates
+	local	22,000000,CVESceneGraph_constructDynamicEdgeData
+	local	23,000000,CVESceneGraph_printGraph
+	local	24,000000,CVESceneGraph_createEdgeName
+	local	25,000000,CVESceneGraph_determineCurrRoom
+	local	26,000000,CVESceneGraph_getAdjacencyList
+	local	27,000000,CVESceneGraph_getAdjacency
+	local	28,000000,CVESceneGraph_clearVisited
+	local	29,000000,CVESceneGraph_storeToDisk
+	local	30,000000,CVESceneGraph_storeDynamicNodeData
+	local	31,000000,CVESceneGraph_storeDynamicEdgeData
+	local	32,000000,CVESceneGraph_populateEdgeTblFrmNode
+	local	33,000000,CVESceneGraph_getAdjDynamicStateForNode
+	local	34,000000,CVESceneGraph_getDynStateForNode
+	local	35,000000,CVESceneGraph_getEdgeStates
+	local	36,000000,CVESceneGraph_getAvatarStates
+	local	37,000000,CVESceneGraph_getRoomByName
+	local	38,000000,CVESceneGraph_putRoomInWorld
+	local	39,000000,CVESceneGraph_assignCurrRoom
+	local	40,000000,CVESceneGraph_updateDynamicState
+	local	41,000000,CVESceneGraph_handleNodeState
+	local	42,000000,CVESceneGraph_printRenderedNodes
+	local	43,000000,CVESceneGraph_deRenderNodes
+	local	44,000000,CVESceneGraph_getAvtRoom
+	local	45,000000,CVESceneGraph_getAvtInRoom
+	local	46,000000,CVESceneGraph_constructStaticDirectionNodes
+	local	47,000000,CVESceneGraph_checkForDirection
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	line	19
+	colm	69
+	synt	any
+	invoke	46
+	line	19
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end

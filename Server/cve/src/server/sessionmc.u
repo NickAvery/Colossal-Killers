@@ -1,0 +1,315 @@
+version	U12.1.00
+uid	sessionmc.u1-1523917615-0
+record	SessionMC__state,7
+	0,__s
+	1,__m
+	2,IDEOwner
+	3,IDEFile
+	4,CIDE
+	5,PtyOwner
+	6,Lusers
+record	SessionMC__methods,2
+	0,add
+	1,initially
+impl	error
+global	7
+	0,000005,SessionMC_add,2
+	1,000005,SessionMC_initially,4
+	2,000011,SessionMC__state,7
+	3,000011,SessionMC__methods,2
+	4,000001,SessionMC__oprec,0
+	5,000005,SessionMC,3
+	6,000005,SessionMCinitialize,0
+
+proc SessionMC_add
+	local	0,001000,self
+	local	1,001000,user
+	local	2,000000,put
+	declend
+	filen	sessionmc.icn
+	line	2
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	3
+	colm	15
+	synt	any
+	field	Lusers
+	var	1
+	line	3
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	4
+	colm	1
+	synt	any
+	pfail
+	end
+proc SessionMC_initially
+	local	0,001000,self
+	local	1,001000,own
+	local	2,001000,filen
+	local	3,001000,collab
+	declend
+	line	5
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	6
+	colm	9
+	synt	any
+	field	IDEOwner
+	pnull
+	pnull
+	var	0
+	line	6
+	colm	24
+	synt	any
+	field	PtyOwner
+	var	1
+	line	6
+	colm	33
+	synt	any
+	asgn
+	line	6
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	7
+	colm	9
+	synt	any
+	field	IDEFile
+	var	2
+	line	7
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	8
+	colm	9
+	synt	any
+	field	CIDE
+	var	3
+	line	8
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	9
+	colm	9
+	synt	any
+	field	Lusers
+	pnull
+	line	9
+	colm	18
+	synt	any
+	llist	0
+	line	9
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	mark	L6
+	pnull
+	line	10
+	colm	7
+	synt	any
+	pret
+lab L6
+	synt	any
+	pfail
+	unmark
+lab L5
+	pnull
+	line	11
+	colm	1
+	synt	any
+	pfail
+	end
+proc SessionMC
+	local	0,001000,own
+	local	1,001000,filen
+	local	2,001000,collab
+	local	3,000020,self
+	local	4,000020,clone
+	local	5,000000,SessionMC__oprec
+	local	6,000000,SessionMCinitialize
+	local	7,000000,SessionMC__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	5
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	6
+	line	8
+	colm	48
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	3
+	var	7
+	line	10
+	colm	28
+	synt	any
+	keywd	null
+	var	5
+	line	10
+	colm	27
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	3
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	3
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	3
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	3
+	var	0
+	var	1
+	var	2
+	line	12
+	colm	21
+	synt	any
+	invoke	4
+	line	12
+	colm	45
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	47
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	3
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc SessionMCinitialize
+	local	0,000000,SessionMC__oprec
+	local	1,000000,SessionMC__methods
+	local	2,000000,SessionMC_add
+	local	3,000000,SessionMC_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	line	17
+	colm	49
+	synt	any
+	invoke	2
+	line	17
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

@@ -1,0 +1,49 @@
+<TITLE>Design</TITLE> <!--1 page-->
+
+<font size=7><b>Chapter 3: Design</b></font>
+<p>
+
+CVE's object-oriented design evolved gradually.  Numerous people,
+primarily graduate students, contributed key elements. The potential
+for anarchy is tremendous.  This chapter describes aspects of the
+design of the system.
+
+<p>
+
+<font size=5><b>Sessions</b></font>
+
+<p>
+
+A session is a temporary relationship between a set of users that are
+connected by a server with some common purpose.  Sessions are physically
+represented in the client GUI by a tab in the main window area.
+All sessions have a session name or identification used in the
+network protocol, a list of members with associated management methods
+to add or remove members, and a session manager object on the server.
+<p>
+
+
+<table border>
+<tr>
+<th> Session
+<tr>
+<td>
+     name : string<br>
+     members : list
+</table>
+
+<p>
+
+There are several distinct types of sessions, at least: login sessions, chat
+sessions, voip sessions, browse sessions, edit sessions, and whiteboard
+sessions.
+<p>
+
+<table border>
+<tr>
+<th> LoginSession <th> ChatSession <th> VoipSession <th> BrowseSession <th> EditSession <th> WhiteboardSession
+<tr>
+<td>
+     name : string<br>
+     members : list
+</table>

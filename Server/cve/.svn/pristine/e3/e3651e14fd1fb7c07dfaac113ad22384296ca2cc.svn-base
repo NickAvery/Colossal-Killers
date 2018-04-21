@@ -1,0 +1,1635 @@
+################################################################
+#
+# File:       ProjectMenubar.icn
+#
+# Subject:    Main CVE Client Menubar
+#
+# Description: Class ProjectMenubar is where the overall main
+# menubar GUI and its functionality are implemented and added into
+# the CVE. It contains a call to all of the ide commands; such as
+# new/existing files/projects editing and creation.
+#
+################################################################
+
+import gui
+$include "guih.icn"
+$include "../common/defaults.icn"
+link graphics
+link io
+link font_dlg
+#link printdlg
+
+$ifdef _UNIX
+   $define PATHSEP "/"
+$else # implies Windows for now
+   $define PATHSEP "\\"
+$endif
+
+#$define lpr "enscript -b \" \" -1 "#-Plexnormal"
+
+global tablabel, lst
+global chat_filter_flag, voipdlg, JavaType
+
+#
+# Class ProjectMenubar needs description.
+# If this class is a GUI class, it normally should be a subclass of
+# Component or some other GUI class.
+#
+class ProjectMenubar(new_Project,
+		     new_CProject, new_JavaProject, new_UniconProject,
+		     open_Project, openCProj, openJProj, openUProj,
+		     menu_1, exit_menu_item,
+		     openAppletHtml, openWinApp, openConsoleApp,
+		     classbrowser_100, classbrowser_50, classbrowser_normal,
+		     classbrowser_submenu, close_file, compile_only,
+		     compile_options, copy, cut, findv, fontItem, gotoline,
+		     insert_class, insert_method, insert_proc,
+		     ivib, make_exe, run_makefile, match_parenthesis, menu_20,
+		     menu_11, menu_12, menu_2, menu_6, menu_7, menu_9,
+		     menu_net, menu_separator_1, msgs_100, msgs_50,
+		     msgs_normal, msgs_submenu, new_file, online_courses,
+		     open_file, open_web, hide_toolbar,
+		     paste, print_file, replace, run_arguments, run_program,
+		     save_file, saveas_file, select_all, users_guide_menu,
+		     command_reference_menu, about_menu, text_menu_item_3,
+		     text_menu_item_4,undo,redo,
+		     view_window_all, view_window_files,
+		     view_window_filesclassbrowser, view_window_filesmsgs,
+		     window_submenu,menu_bar_1, uide, projectname, projecttype,
+		     javaProject, cppProject, uniconProject,
+		     makeCPP_compileJava, runProject, AppletHtml, WinApp,
+		     ConsoleApp, makeClean, makeCleanAll, menu_separator,
+		     menu_separator2, connect_menu, disconnect_menu,
+		     menu_act, pswd_menu, avt_menu, face_menu, reg_menu,
+                     cppProjectEditor, first_x, second_x, replacestr,
+		     findnext, ui_programming_envi, tutorial_overview,
+		     ivib_interface_builder, debugging, debuggIt,
+                     activity_summary_menu, chat_submenu, chat_low, chat_high,
+                     VoiceDisabled_menu, VoiceLocal_menu, VoicePhone_menu,
+                     Voice_End_menu, Voice_Talk_menu, Voice_Dial_menu,
+                     myfont, fontname, fgcolor)
+
+   method on_close_file(ev)
+      view.FileBrowser.nodereplace(tab_label)
+      view.uide.handle_closefile()
+      view.VCSC_tab.set_which_one(view.view_3d)
+      view.resize()
+      if(view.VCSC_tab.get_which_one()).label ===MODEL_NAME then
+         view.restore_3DView()
+   end
+
+   #not used, but keeped here for possible future use
+   method on_ivib(ev)
+   local L := [], cwd := chdir()
+   if view.editor_tab()==="yes" then {
+      if view.uide.CurrentTabItem().label==="Untitled" then {
+         view.uide.CurrentTabItem().label:="untitled_ivibsession.icn"
+         view.tab_label:="untitled_ivibsession.icn"
+         system("ivib " || tab_label, L) | view.MsgBox.set_contents(L)
+         view.uide.handle_closefile()
+         view.uide.handle_openfile( , tab_label)
+         }
+      else {
+         chdir(filedirectory)
+         system("ivib " || view.uide.CurrentTabItem().label, L) |
+	        view.write_to_chat_win("system failed")
+       }
+     }
+    else view.write_to_chat_win("operation not allowed...")
+    chdir(cwd)
+   end
+
+   method system(s, lst, apnd)
+      local rv
+      if /s then fail
+      /lst := []
+      if /apnd then while pop(lst)
+      put(lst,s)
+      WAttrib("pointer=wait")
+      rv := proc("system", 0)(s)
+      WAttrib("pointer=arrow")
+      if \rv then return rv
+   end
+
+   method on_new_file(ev)
+     local cwd := chdir()
+
+      projMenu.clear_isShaded()
+      if \profile_subwin2d then
+         profile_subwin2d.set_size("1", "1")
+      view.uide.new_tabitem(,0,"","")
+      chdir(cwd)
+   end
+
+   method on_open_file(ev)
+     local cwd := chdir()
+
+      projMenu.clear_isShaded()
+      if \profile_subwin2d then
+         profile_subwin2d.set_size("1", "1")
+      view.uide.handle_openfile(ev)
+      chdir(cwd)
+   end
+
+   method on_print_file(ev)
+      local f, L, line, d, lpr
+      L := ide.CurrentEditBox().get_contents() | []
+$ifdef _UNIX
+      d := PrintDialog()
+      d.show_modal()
+      if /copies_num then fail			# Cancel
+
+      lpr := d.printcmd.get_contents()
+      if match("enscript"|"lpr", lpr) then {
+	  lpr ||:= " -P" || \prn_name
+	  lpr ||:= " -#" || \copies_num
+	  }
+      else if match("lp", lpr) then {
+	  lpr ||:= " -d " || \prn_name
+	  lpr ||:= " -n " || \copies_num
+	  }
+$else
+     #a test case.
+     lpr := "enscript -b \" \" -1 "
+     view.write_to_chat_win("Sorry, no printing yet.")
+$endif
+
+$ifdef _UNIX
+      if f := open(lpr, "pw") then {
+	 every line := !L do {
+	    line := trim(line, '\^m')
+	    write(f, line)
+	    }
+         close(f)
+         }
+$else
+      # windows, for now
+      if f := open("output.prn", "w") then {
+	 every line := !L do {
+	    line := trim(line, '\^m')
+	    write(f, line)
+	    }
+         close(f)
+	 system( lpr || " output.prn" )
+         }
+$endif
+      else {
+         MsgBox.set_contents(["Sorry, no printing yet."])
+         }
+   end
+
+   method on_save_file(ev)
+      local cwd
+      cwd := chdir()
+
+      if view.editor_tab()==="yes" then
+	 view.uide.save()
+      chdir(cwd)
+   end
+
+   method on_saveas_file(ev)
+      local cwd
+      cwd := chdir()
+
+      if view.editor_tab()==="yes" then
+	 view.uide.saveas()
+      chdir(cwd)
+   end
+
+   method on_copy(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_copy(ev)
+   end
+
+   method on_cut(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_cut(ev)
+   end
+
+   method on_find(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.handle_files()
+   end
+
+   method on_find_next(ev)
+     local ceb := view.uide.CurrentEditBox()
+     view.uide.findstring(findstr)
+     first_x := (ceb.cursor_x-*dialog_value[1])
+     second_x := ceb.cursor_x
+     ceb.handle_select_str(ev, first_x, second_x, ceb.cursor_y)
+   end
+
+   method on_goto_line(ev)
+   local oldwindow
+      if view.editor_tab()==="yes" then {
+	/findstr := ""
+	oldwindow := &window
+	&window := view.win
+	if TextDialog("Go to line: ",,"",6)=="Okay" then {
+	   view.uide.goto_line(integer(dialog_value[1]),1)
+	}
+      &window := oldwindow
+      }
+   end
+
+   method on_match_parenthesis(ev)
+       local L:=[],i,pos1:=0,pos2:=1, line_contents:="", FileBuffer, mparens
+       FileBuffer := ide.CurrentEditBox().get_contents()
+       file_contents := ""
+
+       every file_contents ||:= !FileBuffer
+
+       mparens := MatchParen()
+       mparens.test(file_contents)
+
+   end
+
+   method on_paste(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_paste(ev)
+   end
+
+   method on_replace(ev)
+      local oldwindow, ceb
+      ceb := view.uide.CurrentEditBox()
+      ceb.cursor_x := ceb.cursor_y := 1
+
+      /findstr := ""
+      /replacestr := ""
+
+      oldwindow := &window
+      &window := view.win
+       if TextDialog("Replace what with what: ",,
+          [((\findstr | "") \ 1),""],60) == "Okay" then {
+          &window := oldwindow
+          findstr := dialog_value[1]
+          if view.uide.findstring(findstr) then {
+	      first_x := ceb.cursor_x-*findstr
+	      second_x := ceb.cursor_x
+	      wu_replace(ev, first_x, second_x, dialog_value[2])
+	     }
+	  else write(&errout, "findstring() failed")
+          }
+       &window := oldwindow
+   end
+
+   method wu_replace(e, first_x, second_x, replace_str)
+      local ceb := view.uide.CurrentEditBox()
+      ceb.start_handle(e)
+      ceb.mark_x := first_x
+      ceb.mark_y := ceb.cursor_y
+      ceb.cursor_x := second_x
+      ceb.end_handle(e)
+
+      ceb.handle_select_str(e, first_x, second_x, ceb.cursor_y)
+      ceb.handle_cut(e)
+      InsertString(first_x, second_x, replace_str)
+   end
+
+   method InsertString(first_x, second_x, replace_str)
+      local l, oldy , m, e, p1, p2
+      l := view.uide.CurrentEditBox().get_contents()
+      oldy := view.uide.CurrentEditBox().cursor_y
+
+      m := l[oldy]
+      e := *m
+      p1 := m[1:\first_x]
+      p2 := m[\first_x+1 : e+1]
+      m := [p1 || replace_str || " " ||\p2]
+
+      l := l[1: oldy] ||| m ||| l[oldy+1:0]
+      view.uide.CurrentEditBox().set_contents(l)
+      view.uide.goto_line(oldy,1)
+   end
+
+   method on_select_all(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_select_all()
+   end
+
+   method on_undo(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_undo()
+   end
+
+   method on_redo(ev)
+      if view.editor_tab()==="yes" then
+	 view.uide.CurrentEditBox().handle_redo()
+   end
+
+   method on_font()
+      local c, fL, eb, ts, ea, attr
+
+      ea := view.VCSC_tab.get_which_one().get_children()[1].attribs
+      attr := ea[1]
+ 
+      if find("light yellow",attr) then {
+         compfontdlg := compFontDialog()
+         compfontdlg.show_modal()        
+         }
+      else {
+         # suspicious that font is mixed-use as 
+         # string font name and as an object
+         /myfont := Font()
+      
+         fL := []
+      
+         every put(fL, fontdialog(myfont))
+
+         if *fL > 0 then {
+	    fontname := fL[1]
+	    fgcolor := fL[2]
+	    set_font(fontname, fgcolor)
+            }
+         }
+   end
+
+   method set_font(fname, fcolor)
+      local eb, ts
+      /fontname := "sans,15"
+      /fgcolor := "black"
+
+      if not (/fname := fontname) then fontname := fname
+      if not (/fcolor := fgcolor) then fgcolor := fcolor
+
+      if MsgBox.set_attribs("font=" || fontname) then
+         MsgBox.set_attribs("fg=" || fgcolor)
+
+      eb := view.uide.CurrentEditBox()
+
+      if (eb).set_attribs("font=" || fontname) then
+ 	 (eb).set_attribs("fg=" || fgcolor)
+      ts := view.VCSC_tab
+      ts.init()
+      ts.resize()
+      ts.display()
+   end
+
+   method on_view_window_all(ev)
+      if view.editor_tab()==="yes" & fileOpened ==="TRUE" then
+         view.uide.on_viewall_btn(ev)
+   end
+
+   method on_view_window_files(ev)
+      if view.editor_tab()==="yes" & fileOpened ==="TRUE" then
+         view.uide.on_viewfiles_btn(ev)
+   end
+
+   method on_view_window_filesmsgs(ev)
+      if view.editor_tab()==="yes" & fileOpened ==="TRUE" then
+         view.uide.on_viewfilesmsgs_btn(ev)
+   end
+
+   method on_hide_toolbar(ev)
+      if hide_toolbar.get_label() == "Hide Toolbar" then {
+         hide_toolbar.set_label("Show Toolbar")
+         view.uide.htoolbar.set_pos(0, "110%")
+         EditBox.set_pos("0.6%", "0.6%")
+         EditBox.set_size("100%-4", "88%")
+         }
+      else {
+         hide_toolbar.set_label("Hide Toolbar")
+	 view.uide.htoolbar.set_pos("1%","1%")
+	 EditBox.set_pos("2", "8.5%")
+	 EditBox.set_size("100%-4", "80%")
+	 }
+      view.resize() #self.resize()
+   end
+
+   method on_msgs_100(ev)
+      local m := 100
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         EditBox.set_pos("2", "8.5%")
+         EditBox.set_size("100%-4", "80%-"||m)
+         MsgBox.set_pos("2", "88.5%-"||m)
+         MsgBox.set_size("100%-4", "12%+"||m)
+         view.resize()
+         }
+   end
+
+   method on_msgs_50(ev)
+      local m := 50
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         EditBox.set_pos("2", "8.5%")
+         EditBox.set_size("100%-4", "80%-"||m)
+         MsgBox.set_pos("2", "88.5%-"||m)
+         MsgBox.set_size("100%-4", "12%+"||m)
+         view.resize()
+         }
+   end
+
+   method on_msgs_normal(ev)
+      local m := 0
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         EditBox.set_pos("2", "8.5%")
+         EditBox.set_size("100%-4", "80%")
+         MsgBox.set_pos("2", "88.5%-"||m)
+         MsgBox.set_size("100%-4", "12%+"||m)
+         view.resize()
+         }
+   end
+
+   method on_view_window_filesclassbrowser(ev)
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         view.editarea.set_pos("23%", "4%")
+         view.editarea.set_size("77%", "71%")
+         EditBox.set_pos("1", "1%")
+         EditBox.set_size("100%-2", "88%")
+         MsgBox.set_pos("1", "88%")
+         MsgBox.set_size("100%-2", "12%")
+         view.browser.set_pos("0", "4%")
+         view.browser.set_size("23%", "71%-4")
+         view.resize()
+         }
+   end
+
+   method on_classbrowser_100(ev)
+      local m := 100
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         view.editarea.set_pos("23%"||m, "4%")
+         view.editarea.set_size("77%"||m, "71%")
+         view.browser.set_pos("0", "4%")
+         view.browser.set_size("23%"||m, "71%-4")
+         view.resize()
+         }
+   end
+
+   method on_classbrowser_50(ev)
+      local m := 50
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         view.editarea.set_pos("23%"||m, "4%")
+         view.editarea.set_size("77%"||m, "71%")
+         view.browser.set_pos("0", "4%")
+         view.browser.set_size("23%"||m, "71%-4")
+         view.resize()
+         }
+   end
+
+   method on_classbrowser_normal(ev)
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         view.editarea.set_pos("23%", "4%")
+         view.editarea.set_size("77%", "71%")
+         view.browser.set_pos("0", "4%")
+         view.browser.set_size("23%", "71%-4")
+         view.resize()
+         }
+   end
+
+   method on_chat_low(ev)
+      chat_filter_flag := "low"
+   end
+
+   method on_chat_high(ev)
+      chat_filter_flag := "high"
+   end
+
+   method on_compile_only(ev)
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         view.uide.compile()
+         }
+      on_msgs_50(ev)
+   end
+
+   method on_compile_options(ev)
+      if view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+         configdlg := ConfigureOptions()
+         configdlg.show_modal()
+         }
+      on_msgs_50(ev)
+   end
+
+   method on_make_exe(ev)
+      local lab, fn, pn
+      if \ view.editor_tab()==="yes" & fileOpened === "TRUE" then {
+
+         lab := view.uide.CurrentTabItem().label
+
+         if \find("(PF)", lab) then {
+            lab ? {
+               fn := tab(find("(PF):"))
+               move(5)
+               pn := tab(0)
+               }
+            lab := fn
+            sdp_flag := 1
+            }
+
+         view.uide.save_file(lab)
+	 view.uide.complink()
+         }
+      on_msgs_50(ev)
+   end
+
+   method on_run_makefile(ev)
+      local f, fn, fd, lst, eS := 0, isMake := &null, lst_sz
+
+      MsgBox.set_contents("Compiling...")
+
+      fn := (ide.CurrentTabItem()).label
+      fd := trim(opened_files_locs[fn], "\\", 0)
+      lst := []
+    
+      every f  := !open(fd) do {
+	 if find("makefile", f) then isMake := 1
+	 }
+      if \isMake then {
+	 eS := view.uide.system("make > "||wiconlog||" 2>&1",lst,1)
+	 on_msgs_50(ev)
+	 #view.uide.system("make",lst,1)
+	 view.uide.showanyerror(wiconlog, lst, eS)
+	 }
+      lst_sz := *(MsgBox.contents)
+      MsgBox.goto_line(lst_sz,1)
+   end
+
+   method on_run_arguments(ev)
+   local oldwindow
+      if view.editor_tab()==="yes" & fileOpened ==="TRUE" then {
+         oldwindow := &window
+         &window := view.win
+         if TextDialog("Enter command line arguments: ",,xargs,60)=="Okay" then
+            xargs := dialog_value[1]
+         &window :=oldwindow
+         view.uide.run()
+	 }
+      on_msgs_50(ev)
+   end
+
+   method on_run_program(ev)
+      if view.editor_tab()==="yes" & fileOpened ==="TRUE" then
+	 view.uide.run()
+      on_msgs_50(ev)
+   end
+
+   method on_insert_class(ev)
+   if view.editor_tab()==="yes" then
+      view.uide.InsertCode( templates("class"), definitions("class") )
+   end
+
+   method on_insert_method(ev)
+   if view.editor_tab()==="yes" then
+      view.uide.InsertCode( templates("method"), definitions("method") )
+   end
+
+   method on_insert_proc(ev)
+   if view.editor_tab()==="yes" then
+	view.uide.InsertCode( templates("procedure"), definitions("procedure"))
+   end
+
+   method on_save_screenshot(ev)
+   local filename, fd
+
+$ifdef _UNIX
+      fd := HFileDialog()|
+	 (view.write_to_chat_win("can't save screenshot") & fail)
+      fd.show_modal()
+      fd.set_attribs("label=Save Screenshot ...")
+      filename := fd.get_result() | fail
+      filedirectory := fd.get_directory()
+$else
+      filename := WinSaveDialog(&window, "Save Screenshot ...", "", 50) | fail
+$endif
+      ###WriteImage(self.cwin, filename)
+   end
+
+   method on_save_transcript(ev)
+   local filename, f, L, fd
+
+$ifdef _UNIX
+      fd := HFileDialog()|
+	 (view.write_to_chat_win("can't save transcript") & fail)
+      fd.show_modal()
+      fd.set_attribs("label=Save Transcript ...")
+      filename := fd.get_result() | fail
+      filedirectory := fd.get_directory()
+$else
+      filename := WinSaveDialog(&window, "Save Transcript ...",
+                                "", 50) | fail
+$endif
+
+      L := view.chat_output.get_contents()
+      if not (f := datopen(filename,"w")) then {
+         view.write_to_chat_win("can't save transcript to " || filename)
+         fail
+         }
+      every write(f, !L)
+      close(f)
+   end
+
+   method on_exit(ev)
+      local sqlstmt, s, s2, row, row1, s1, fout, lst := [],
+         ts, u, i, projName, fileName, ct, out_mode := ""
+
+
+      world.nsh_dialog.ide_autosave(1)
+
+      s2 := 0
+      #s := view.courseslist.get_contents()
+      / (view.clientIP) := "0.0.0.0"
+
+      ct := view.uide.CurrentTabItem().label
+     
+      if ct === MODEL_NAME | "Map" then out_mode := "3D"
+      else if find(".c"|".cpp"|".java"|".icn"|".uprj"|
+         "Untitled"|"(PF):", ct) then out_mode := "Editor"
+      else if find("Profile", ct) then out_mode := "Profile"
+      else if find("Group:"|"Project:", ct) then out_mode := "Wall"
+
+     if \view.user_me then {
+        session.Write("\\updateMode "||view.user_me||" "||out_mode)
+        }
+
+     ts := view.VCSC_tab
+     every i := 1 to *(ts.children) do {
+        if find("(PF)", ((ts.children)[i]).label) then {
+           every u := !sdprojfilesSet do {
+
+              if u ~== "" then {
+              u ? {
+                 projName := tab(find(":"))
+                 move(1)
+                 fileName := tab(0)
+                 }
+              session.Write("\\projfileClose "||projName||" "||fileName||
+                               " "||view.user_me)
+                 }
+              }
+           }
+        }
+
+      if \world.moodle.return_moodle_conn() then {
+	 sqlstmt := "select id from mdl_course where shortname='" || s || "'"
+	 world.moodle.WritetoDB(sqlstmt)
+	 while row := fetch(world.moodle.return_moodle_conn()) do {
+	    s := row.id
+	    s2 := s
+	    }
+	 sqlstmt := "select id from mdl_user where username='"||
+	     world.moodle.uid||"' and password=MD5('"|| world.moodle.pwd ||"')"
+	 world.moodle.WritetoDB(sqlstmt)
+	 while row1 := fetch(world.moodle.return_moodle_conn()) do {
+	    s1 := row1.id
+	    }
+	 sqlstmt := "insert into mdl_log(userid,course,ip,time,action) " ||
+                    " values(" || s1 || "," || s2 || ",'" ||
+		    view.clientIP ||"'," || &now || ",'Logged Out')"
+	 world.moodle.WritetoDB(sqlstmt)
+	 }
+
+      if fout := datopen("dat"||PS||"last_session.ini", "w") then{
+	 write(fout, WAttrib(view.win, "posx"))
+	 write(fout, WAttrib(view.win, "posy"))
+	 write(fout, WAttrib(view.win, "width"))
+	 write(fout, WAttrib(view.win, "height"))
+	 close(fout)
+      }
+      exit(0)
+   end
+
+   method on_debuggIt(ev)
+      on_msgs_50(ev)
+      ide.debuggIt()
+   end
+
+   method on_about(ev)
+   local sav, ven, ver, ren
+   sav := &window
+   ver := "   version : " || WAttrib("glversion")
+   ven := "   vendor  : " || WAttrib("glvendor")
+   ren := "   renderer: " || WAttrib("glrenderer")
+
+   &window  := &null
+   Notice("          CVE, an educational virtual environment       ",
+	  "                           by                           ",
+	  "                    Clinton Jeffery                     ",
+	  "         Hani Bani Salameh, Jafar Al Gharaibeh,         ",
+	  "                          and                           ",
+	  "               dozens of CS students from               ",
+	  "              University of Idaho and NMSU              ", 
+	  " ",
+	  "3D graphics info:",
+	  ver,
+	  ven,
+	  ren)
+   &window := sav
+   end
+
+   method on_project_check()
+   local sav
+   sav := &window
+   &window  := &null
+      Notice("Project Path Unknown")
+   &window := sav
+   end
+
+   #
+   # handle_help is supposed to use a local copy unless newer is available
+   # via a remote URL.  At the moment, it just uses a local copy.
+   #
+   method handle_help(filename, URL)
+      local URL2 := "", f
+
+      URL := "file://" || chdir() || map("/" || filename,"/",PATHSEP)
+$ifdef _UNIX
+      if find("netscape", \browser) then
+         URL2 := " -remote 'openURL(" || URL || ")'"
+      else URL2 := " " || URL
+      proc("system",0)(\browser || " " || URL2 || " &>ui.err &")
+      delay(800)
+      if f := open("ui.err") then {
+         if find("not running", read(f)) then
+            proc("system",0)(\browser || " " || URL || " &>ui.err &")
+         close(f)
+         remove("ui.err")
+      }
+$else
+         proc("system",0)(\browser || " " || URL) # || " &")
+      #      s := \browser[2:-1] || " " || URL
+      #      proc("system",0)(s,,,,1)
+$endif
+   end
+
+   method on_VoiceDisabled_menu(ev)
+      #view.Voice.on_VoiceDisabled_btn(ev)
+   end
+
+   method on_VoiceLocal_menu(ev)
+      #view.Voice.on_VoiceLocal_btn(ev)
+   end
+
+   method on_VoicePhone_menu(ev)
+      #view.Voice.on_VoicePhone_btn(ev)
+   end
+
+   method on_Voice_Dial_menu(ev)
+      voipdlg.show_modal()
+   end
+
+   method on_users_guide(ev)
+      handle_help("dat/help/userguid.pdf",
+                  "http://cve.sourceforge.net/doc/userguid.pdf")
+   end
+
+   method on_command_reference(ev)
+      handle_help("dat/help/commands.html",
+                  "http://cve.sourceforge.net/doc/commands.html")
+   end
+
+   method on_open_web(ev)
+      view.opened_files_num:=0
+      view.new_browsing_tabitem(,"",1)
+   end
+
+   method on_new_CProject(ev)
+      local newProject, pname, p_name, cwd
+
+      cwd := chdir()
+
+      projectname := view.uide.ProjectSave()
+      if \projectname then {
+         newProject := CProject(projectname)
+         newProject.show_modal()
+         p_name := file_name(projectname)
+         chdir(filedirectory)
+         if find(".icn"|".uprj", p_name) then {
+            p_name ? {
+               pname := tab(find("."))
+               }
+            }
+         else pname := p_name
+         view.uide.handle_openfile(ev,filedirectory||PS||pname||".uprj")
+         }
+      projecttype :="CPP"
+      makeCPP_compileJava.set_label("Make C++")
+      chdir(cwd)
+   end
+
+   method on_open_Applet(ev)
+      local pname
+      projectname := view.uide.ProjectSave()
+      projectOpened := "TRUE"
+      if \projectname then {
+         pname:=file_name(projectname)
+         view.uide.handle_openfile(ev, projectname)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "Applet"
+   end
+
+   method on_open_WinApp(ev)
+      local pname
+      projectname := view.uide.ProjectSave()
+      projectOpened := "TRUE"
+      if \projectname then {
+         pname:=file_name(projectname)
+         view.uide.handle_openfile(ev, projectname)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "WinApp"
+   end
+
+   method on_open_ConsoleApp(ev)
+      local pname
+      projectname := view.uide.ProjectSave()
+      projectOpened := "TRUE"
+      if \projectname then {
+         pname:=file_name(projectname)
+         view.uide.handle_openfile(ev, projectname)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "ConsoleApp"
+   end
+
+   method on_new_Applet(ev)
+      local newJPro, pname, cwd
+      cwd := chdir()
+
+      projectname := view.uide.ProjectSave()
+      if \projectname then {
+         newJPro := JProject(projectname,"applet")
+         newJPro.show_modal()
+         pname:=file_name(projectname)
+         chdir(filedirectory)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "Applet"
+      chdir(cwd)
+   end
+
+   method on_new_WinApp(ev)
+      local newJPro, pname, cwd
+      cwd := chdir()
+
+      projectname := view.uide.ProjectSave()
+      if \projectname then {
+         newJPro := JProject(projectname,"winApp")
+         newJPro.show_modal()
+         pname:=file_name(projectname)
+         chdir(filedirectory)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "WinApp"
+      chdir(cwd)
+   end
+
+   method on_new_ConsoleApp(ev)
+      local newJPro, pname, cwd
+      cwd := chdir()
+
+      projectname := view.uide.ProjectSave()
+      if \projectname then {
+         newJPro := JProject(projectname,"consoleApp")
+         newJPro.show_modal()
+         pname:=file_name(projectname)
+         chdir(filedirectory)
+         }
+      projecttype :="Java"
+      makeCPP_compileJava.set_label("Compile Java")
+      JavaType := "ConsoleApp"
+      chdir(cwd)
+   end
+
+   method on_new_UniconProject(ev)
+      local newUPro, pname, p_name,
+      projectname := view.uide.ProjectSave()
+
+      if \projectname then {
+         newUPro := UProject(projectname)
+         newUPro.show_modal()
+         p_name := file_name(projectname)
+         if find(".icn", p_name) then {
+            p_name ? {
+               pname := tab(find("."))
+               }
+            }
+         else pname := p_name
+         view.uide.handle_openfile(ev,filedirectory||PS||pname||".uprj")
+         }
+      projecttype :="Unicon"
+      makeCPP_compileJava.set_label("Make Unicon")
+   end
+
+   method on_open_cppProject(ev)
+      local pname
+      pname := view.uide.handle_openproject(ev)
+      if \pname then {
+         pname := file_name(pname)
+         }
+      projecttype :="CPP"
+      makeCPP_compileJava.set_label("Make C++")
+   end
+
+   method on_open_uniconProject(ev)
+      local pname
+      projectname := view.uide.handle_openfile(ev)
+      projectOpened := "TRUE"
+      if \projectname then {
+         pname := file_name(projectname)
+         }
+      projecttype :="Unicon"
+      makeCPP_compileJava.set_label("Make Unicon")
+   end
+
+   method on_open_Project(ev)
+      view.uide.handle_openfile(ev)
+      projectOpened := "TRUE"
+   end
+
+   method on_network_connect()
+      local usrid, avat
+
+      #if /session.reconnecting then
+      if session.isUp() then {	# already connected! should disconnect fisrt
+	 world.nsh_dialog.write_to_user_chat_win(" You are already connected!")
+         world.nsh_dialog.chat_input.clear_is_shaded()
+          world.nsh_dialog.write_to_user_chat_win( "Server is Up...")
+         session.reconnecting := &null
+         }
+      else if \world & \world.userId_backup & \world.password_backup then {
+	 session.reconnecting := 1
+	 if session.connect_server(world.userId_backup,
+				   world.password_backup) then {
+            session.reconnecting := &null
+            world.nsh_dialog.chat_input.clear_is_shaded()
+
+            every usrid := key(world.all_registered_users) do {
+               if member(old_onlineusers_set, usrid) then
+                  if \(avat := world.get_avatar(usrid)) then {
+                     avat.set_activity_status("Online") 
+                     }
+               }
+            every usrid := key(world.all_other_users) do {
+               if member(old_onlineusers_set, usrid) then
+                  if \(avat := world.get_avatar(usrid)) then {
+                     avat.set_activity_status("Online")
+                     }
+               }
+            }
+         view.all_users()
+	 }
+   end
+
+   method on_network_disconnect()
+      if session.disconnect() then
+         world.nsh_dialog.write_to_user_chat_win("Disconnected, you are offline now")
+      else
+         world.nsh_dialog.write_to_user_chat_win("You are disconnected Already!")
+   end
+
+   method on_activity_summary()
+      local usr
+      if \usr := view.user_me then
+         session.Write("\\history "||usr)
+   end
+   #
+   # Method on_make_compile_Project; it allows making
+   # or compiling the project depending of its type(C/C++,
+   # Java or Unicon)
+   #
+   method on_make_compile_Project()
+      local console, pname, pname2, fdir,
+         cwd, scmd #shell command
+      cwd := chdir()
+
+      lst := []
+      pname := view.uide.CurrentTabItem().label
+      pname2 := pname[1:*pname-4]
+
+$ifdef _UNIX
+      console := "konsole --vt_sz 70x18 "
+$else # implies Windows for now
+      console := "cmd "
+$endif
+
+      if \projecttype == "Java" then {
+         fdir := chdir(filedirectory)
+         javaProject.CompileJava()
+         }
+      else if \projecttype == "CPP" then {
+         fdir := chdir(filedirectory)
+$ifdef _UNIX
+        scmd := "make -f "||pname2||"_uprjMakefile"||" > "||wiconlog||" 2>&1"
+        system(scmd, lst, 1)
+         ide.showanyerror(wiconlog, lst)
+$else # implies Windows for now
+
+        scmd := "make -f "||pname2||"_uprjMakefile > output.txt 2>&1"
+
+        system(scmd, lst, 1)
+        ide.showanyerror(fdir||PS||"output.txt", lst)
+$endif
+         }
+      else if \projecttype == "Unicon" then {
+         fdir := chdir(filedirectory)
+$ifdef _UNIX
+         scmd := "make -f "||pname2||"_uprjMakefile"
+         system(scmd||" deps")
+         system(scmd||" > "||wiconlog||" 2>&1", lst, 1)
+$else # implies Windows for now
+         scmd := "make -f "||pname2||"_uprjMakefile"
+         #||" > "||wiconlog||" 2>&1"
+         system(scmd, lst, 1)
+$endif
+         ide.showanyerror(wiconlog, lst)
+         }
+      fileCompiled := "TRUE"
+      chdir(cwd)
+   end
+   #
+   # Running a project and showing the output
+   #
+   method on_run_project()
+      local console, cmd, pname, pname2, cwd
+      cwd := chdir()
+
+      lst :=[]
+      pname := view.uide.CurrentTabItem().label
+
+$ifdef _UNIX
+      console:="konsole --vt_sz 70x18 "
+      pname2 := pname[1:*pname-4]
+$else # implies Windows for now
+      console:="cmd "
+      pname2 := pname[1:*pname-4]||".exe"
+$endif
+      if \projecttype == "Java" then {   #run java projects
+         chdir(filedirectory)
+         javaProject.RunJava(mFile)
+         }
+      else if \projecttype == "CPP" then { #run cpp projects
+         chdir(filedirectory)
+         if \needConsole == "TRUE" then {
+$ifdef _UNIX
+            # path search, see if xterm exists on path, use it
+            if pathfind("xterm", getenv("PATH")) then {
+               console :="xterm -hold -e "
+               system(console||"./"||pname2)
+               }
+            else #just run without "console || ..."
+               system("./"||pname2)
+$else
+            system("./"||pname2)
+$endif
+            }
+         else
+            system(pname2||" > "||wiconlog||" 2>&1",lst,1)
+         }
+      else if \projecttype == "Unicon" then { #run unicon projects
+         chdir(filedirectory)
+$ifdef _UNIX
+         # path search, see if xterm exists on path, use it
+         if pathfind("xterm", getenv("PATH")) then {
+            console :="xterm -hold -e "
+            system(console||" ./"||"UProject")
+            }
+         else #just run without "console || ..."
+            system("./UProject")
+$else
+         #system("UProject.exe > "||"output.txt 2>&1",lst,1)
+         system("./UProject.exe")
+         ide.showanyerror(filedirectory||"output.txt", lst)
+$endif
+      }
+      chdir(cwd)
+   end
+   #
+   #
+   #
+   method on_make_clean()
+      local pname, pname2, cwd
+      cwd := chdir()
+
+      lst :=[]
+      pname := view.uide.CurrentTabItem().label
+      pname2 := pname[1:*pname-4] #||".exe"
+
+      if (projectCreated | projectOpened) == "TRUE" then {
+         if \projecttype == "Java" then {
+            chdir(filedirectory)
+            system("rm *.class"||" &> "||"output.txt"||" 2>&1",lst,1)
+            wiconlog:="output.txt"
+            }
+         else if \projecttype == "CPP" then {
+            chdir(filedirectory)
+            system("make -f "||pname2||"_uprjMakefile clean"||" > "||
+                   wiconlog||" 2>&1",lst,1)
+            }
+         else if \projecttype == "Unicon" then {
+            chdir(filedirectory)
+            system("make -f "||pname2||"_uprjMakefile clean"||" > "||
+                   wiconlog||" 2>&1",lst,1)
+            }
+         ide.showanyerror(wiconlog, lst)
+         }
+      else on_project_check()
+      chdir(cwd)
+   end
+
+   method on_make_clean_all()
+      local pname, pname2, cwd
+      cwd := chdir()
+
+      lst :=[]
+      pname := view.uide.CurrentTabItem().label
+      pname2 := pname[1:*pname-4] #|| ".exe"
+
+      if (projectCreated | projectOpened) == "TRUE" then {
+         if \projecttype == "Java" then {
+            chdir(filedirectory)
+            system("rm *.class"|" &> "||"output.txt"||" 2>&1",lst,1)
+            wiconlog:="output.txt"
+            }
+         else if \projecttype == "CPP" then {
+            chdir(filedirectory)
+            system("make -f "||pname2||"_uprjMakefile cleanall"||" > "||
+                   wiconlog||" 2>&1",lst,1)
+            }
+         else if \projecttype == "Unicon" then {
+            chdir(filedirectory)
+            system("make -f "||pname2||"_uprjMakefile clean"||" > "||
+                    wiconlog||" 2>&1",lst,1)
+            }
+         ide.showanyerror(wiconlog, lst)
+         }
+      else on_project_check()
+      chdir(cwd)
+   end
+
+   ########## Avatar Creation Methods ##########
+
+   # This is the place to edit avatar information.  Unfinished.
+   method on_pswd_change()
+      local pc
+      pc := passchange()
+      pc.show_modal()
+   end
+
+   method on_avt_change()
+
+   end
+
+   method on_face_change()
+
+   end
+
+   method on_reg_change()
+      regchange().show_modal()
+   end
+
+   method set_isShaded()
+      menu_6.set_is_shaded()
+      menu_7.set_is_shaded()
+      menu_9.set_is_shaded()
+      menu_11.set_is_shaded()
+      hide_toolbar.set_is_shaded()
+      close_file.set_is_shaded()
+   end
+
+   method clear_isShaded()
+      menu_6.clear_is_shaded()
+      menu_7.clear_is_shaded()
+      menu_9.clear_is_shaded()
+      menu_11.clear_is_shaded()
+      hide_toolbar.clear_is_shaded()
+      close_file.clear_is_shaded()
+   end
+
+   method Menu_Bar()
+      menu_bar_1 := MenuBar()
+      menu_bar_1.set_pos("0", "0")
+      menu_bar_1.set_size("60%", "4.5%")
+      menu_bar_1.set_attribs("bg=very light whitish gray",
+			   "font=sans,bold,10", "resize=on")
+      menu_1 := Menu()
+      menu_1.set_label("File")
+      new_file := TextMenuItem()
+      new_file.set_label("New")
+      new_file.connect(self, "on_new_file", ACTION_EVENT)
+      new_file.set_img_left("16,c1,~~~~~~~~~~~~~~~~~~>>>>>>>>>~~~~~~~>6666666>>~~~~~~>6666666>`>~~~~~>6666666>>>>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>6666666666>~~~~>>>>>>>>>>>>~~~~~~~~~~~~~~~~~~")
+      menu_1.add(new_file)
+      open_file := TextMenuItem()
+      open_file.set_label("Open")
+      open_file.connect(self, "on_open_file", ACTION_EVENT)
+      open_file.set_label_right("Ctrl + O")
+      open_file.set_img_left("16,c1,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>>>~~~~~~~~~~~~>~~~>~>~~~~~~~~~~~~~~>>~~>>>~~~~~~~~>>>~>`6`>>>>>>>~~~~~>6`6`6`6`6>~~~~~>`6`6`6`6`>~~~~~>6`6`>>>>>>>>>>>>`6`><<<<<<<<<>~>6`><<<<<<<<<>~~>`><<<<<<<<<>~~~>><<<<<<<<<>~~~~>>>>>>>>>>>~~~~~~~~~~~~~~~~~~~~~")
+      menu_1.add(open_file)
+      #open_web := TextMenuItem()
+      #open_web.set_label("Open Web")
+      #open_web.connect(self, "on_open_web", ACTION_EVENT)
+      #menu_1.add(open_web)
+      close_file := TextMenuItem()
+      close_file.set_label("Close")
+      close_file.connect(self, "on_close_file", ACTION_EVENT)
+      close_file.set_img_left("16,c1,~~~~~~~~~~~~~~~~~~>>>>>>>>>~~~~~~AA6666666>>~A~~~AAAA66666>AA~~~~~AAAA6666AA>>~~~~>6AAA66AA66>~~~~>66AAAAA666>~~~~>666AAA6666>~~~~>66AAAAA666>~~~~>6AAA66AA66>~~~~>AAA6666AA6>~~~~AAA666666A6>~~~~AAA6666666A>~~~~>A666666666>~~~~>>>>>>>>>>>A~~~~~~~~~~~~~~~~~~")
+      menu_1.add(close_file)
+      print_file := TextMenuItem()
+      print_file.set_label("Print")
+      print_file.connect(self, "on_print_file", ACTION_EVENT)
+      print_file.set_img_left("16,c1,666<111111111<66666<122222221<66666<255555552<66666<2<<<<<<<2<66666<133333<<2<66666<133333<<2<66666<255555552<66666<255555552<66666<133333<52<66<<<22555555522<<12333<<<<<<<333212<<<2222222<<<212<<<<<<<<<<<<<212<<<<<<<<<<<<<2223<<<<<<<<<<432<<2222222222222<")
+      menu_1.add(print_file)
+      save_file := TextMenuItem()
+      save_file.set_label("Save")
+      save_file.connect(self, "on_save_file", ACTION_EVENT)
+      save_file.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>>>>>>>~~>`>66666666>6>~~>`>66666666>>>~~>`>66666666>`>~~>`>66666666>`>~~>`>66666666>`>~~>`>66666666>`>~~>``>>>>>>>>``>~~>````````````>~~>```>>>>>>>``>~~>``>>>>>>66>`>~~>``>>>>>>66>`>~~>``>>>>>>66>`>~~~>>>>>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      menu_1.add(save_file)
+      saveas_file := TextMenuItem()
+      saveas_file.set_label("Save As")
+      saveas_file.connect(self, "on_saveas_file", ACTION_EVENT)
+      saveas_file.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>~~~~~~~~>666666>>~~~~~~~>666666>>>~~~~~~>66666666>~~~~~~>666>>>>>>>>>>~~>666>`>6666>6>~~>666>`>6666>>>~~>666>`>6666>`>~~>666>``>>>>``>~~>666>````````>~~>666>``>>>>``>~~>>>>>`>>>>6>`>~~~~~~>`>>>>6>`>~~~~~~~>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      menu_1.add(saveas_file)
+      text_menu_item_3 := TextMenuItem()
+      text_menu_item_3.set_label("Save Chat")
+      text_menu_item_3.connect(self, "on_save_transcript", ACTION_EVENT)
+      text_menu_item_3.set_img_left("15,c1,iiiiiiiiii66666i66666666iii666i66666666iii666i66iiii66iiii66i66666666666i<<i66666666666i<<i66iiiiiii66i<<i66666666666i<<i66666666666i<<i66iiiiiii66i<<i66666666666i<<i66666666666i<<i66iiiiiii66i<<i66666666666i<<i66666666666i<<iiiiiiiiiiiii<<6<<<<<<<<<<<<<<6<<<<<<<<<<<<<<")
+      menu_1.add(text_menu_item_3)
+      #text_menu_item_4 := TextMenuItem()
+      #text_menu_item_4.set_label("3D Screenshot")
+      #text_menu_item_4.connect(self, "on_save_screenshot", ACTION_EVENT)
+      #text_menu_item_4.set_img_left("16,c1,5555555555555555555555555555555555555530035555555500530660350055500000000000000550666000000666055066003333006605503303653330330550330353333033055033033333303305503300333300330553000000000000355555553003555555555555555555555555555555555555555555555555555555")
+      #menu_1.add(text_menu_item_4)
+      exit_menu_item := TextMenuItem()
+      exit_menu_item.set_label("Exit")
+      exit_menu_item.connect(self, "on_exit", ACTION_EVENT)
+      menu_1.add(exit_menu_item)
+      menu_bar_1.add(menu_1)
+
+      menu_12 := Menu()
+      menu_12.set_label("Project")
+      open_Project := Menu()
+      open_Project.set_label("Open")
+      openCProj := TextMenuItem()
+      openCProj.set_label("C++/C Project")
+      openCProj.connect(self, "on_open_cppProject", ACTION_EVENT)
+      open_Project.add(openCProj)
+
+      openJProj := Menu()
+      openJProj.set_label("Java Project")
+
+      openAppletHtml := TextMenuItem()
+	  openAppletHtml.set_label("Applet")
+	  openAppletHtml.connect(self, "on_open_Applet", ACTION_EVENT)
+	  openJProj.add(openAppletHtml)
+	  openWinApp := TextMenuItem()
+	  openWinApp.set_label("Windows App.")
+	  openWinApp.connect(self, "on_open_WinApp", ACTION_EVENT)
+	  openJProj.add(openWinApp)
+	  openConsoleApp := TextMenuItem()
+	  openConsoleApp.set_label("Console App.")
+	  openConsoleApp.connect(self, "on_open_ConsoleApp", ACTION_EVENT)
+	  openJProj.add(openConsoleApp)
+      open_Project.add(openJProj)
+
+      openUProj := TextMenuItem()
+      openUProj.set_label("Unicon Project")
+      openUProj.connect(self, "on_open_uniconProject", ACTION_EVENT)
+      open_Project.add(openUProj)
+      menu_12.add(open_Project)
+
+      new_Project := Menu()
+      new_Project.set_label("New")
+      menu_12.add(new_Project)
+
+      new_CProject := TextMenuItem()
+      new_CProject.set_label("C++/C Project")
+      new_CProject.connect(self, "on_new_CProject", ACTION_EVENT)
+      new_Project.add(new_CProject)
+
+      new_JavaProject := Menu()
+      new_JavaProject.set_label("Java Project")
+      AppletHtml := TextMenuItem()
+      AppletHtml.set_label("Applet")
+      AppletHtml.connect(self, "on_new_Applet", ACTION_EVENT)
+      new_JavaProject.add(AppletHtml)
+      WinApp := TextMenuItem()
+      WinApp.set_label("Windows App.")
+      WinApp.connect(self, "on_new_WinApp", ACTION_EVENT)
+      new_JavaProject.add(WinApp)
+      ConsoleApp := TextMenuItem()
+      ConsoleApp.set_label("Console App.")
+      ConsoleApp.connect(self, "on_new_ConsoleApp", ACTION_EVENT)
+      new_JavaProject.add(ConsoleApp)
+      new_Project.add(new_JavaProject)
+      new_UniconProject := TextMenuItem()
+      new_UniconProject.set_label("Unicon Project")
+      new_UniconProject.connect(self, "on_new_UniconProject", ACTION_EVENT)
+      new_Project.add(new_UniconProject)
+      menu_separator := MenuSeparator()
+      menu_separator.set_is_shaded()
+      menu_12.add(menu_separator)
+
+      makeCPP_compileJava := TextMenuItem()
+      makeCPP_compileJava.set_label("Compile Project")
+      makeCPP_compileJava.connect(self, "on_make_compile_Project", ACTION_EVENT)
+      menu_12.add(makeCPP_compileJava)
+      makeClean := TextMenuItem()
+      makeClean.set_label("Make Clean")
+      makeClean.connect(self, "on_make_clean", ACTION_EVENT)
+      menu_12.add(makeClean)
+      makeCleanAll := TextMenuItem()
+      makeCleanAll.set_label("Make Clean All")
+      makeCleanAll.connect(self, "on_make_clean_all", ACTION_EVENT)
+      menu_12.add(makeCleanAll)
+
+      menu_separator2 := MenuSeparator()
+      menu_separator2.set_is_shaded()
+      menu_12.add(menu_separator2)
+
+      runProject := TextMenuItem()
+      runProject.set_label("Run Project")
+      runProject.connect(self, "on_run_project", ACTION_EVENT)
+      menu_12.add(runProject)
+      menu_bar_1.add(menu_12)
+
+      menu_act := Menu()
+      menu_act.set_label("Account")
+      pswd_menu := TextMenuItem()
+      pswd_menu.set_label("Change Password")
+      pswd_menu.connect(self, "on_pswd_change", ACTION_EVENT)
+      menu_act.add(pswd_menu)
+      avt_menu := TextMenuItem()
+      reg_menu := TextMenuItem()
+      reg_menu.set_label("Edit Registration")
+      reg_menu.connect(self, "on_reg_change", ACTION_EVENT)
+      menu_act.add(reg_menu)
+      menu_separator := MenuSeparator()
+      menu_separator.set_is_shaded()
+      menu_act.add(menu_separator)
+      connect_menu := TextMenuItem()
+      connect_menu.set_label("Connect")
+      connect_menu.connect(self, "on_network_connect", ACTION_EVENT)
+      menu_act.add(connect_menu)
+      disconnect_menu := TextMenuItem()
+      disconnect_menu.set_label("Disconnect")
+      disconnect_menu.connect(self, "on_network_disconnect", ACTION_EVENT)
+      menu_act.add(disconnect_menu)
+      menu_separator := MenuSeparator()
+      menu_separator.set_is_shaded()
+      menu_act.add(menu_separator)
+      activity_summary_menu := TextMenuItem()
+      activity_summary_menu.set_label("Activity Summary")
+      activity_summary_menu.connect(self, "on_activity_summary", ACTION_EVENT)
+      menu_act.add(activity_summary_menu)
+
+      menu_separator_1 := MenuSeparator()
+      menu_separator_1.set_is_shaded()
+      menu_act.add(menu_separator_1)
+      Voice_Dial_menu := TextMenuItem()
+      Voice_Dial_menu.set_label("Dial (Talk/End)")
+      Voice_Dial_menu.connect(self, "on_Voice_Dial_menu", ACTION_EVENT)
+      menu_act.add(Voice_Dial_menu)
+      VoiceDisabled_menu := TextMenuItem()
+      VoiceDisabled_menu.set_label("Disable VoIP")
+      VoiceDisabled_menu.connect(self, "on_VoiceDisabled_menu", ACTION_EVENT)
+      #VoiceDisabled_menu.set_img_left("32,c1,66666666666666666666666666666666666666666666600066666666666366666666666666660i505366666663366666666666666660i505653666633666666666666666660i550666366333666666666666666660i6<3366663666666666666666666660i6<6056666366666666666666666660i6<6505666636666666666366666660i6<<<50566663666666633366000000i6<6<6035666633666333666660iiiii6<6<66000666663663666666660i<55i<6666603306666366666666666i<<<i666666603330666366666666666i<66i666666603330666366666666666i<6<i<6<6<6<03330666366666666666i<<6i6<6<6<603330666366333333333i<5<i<5<5<5<03330666366666666666i<<5i5<5<5<5033306663666666666660ii<i<5<5<55033056663666666666660iiiii<5<55503335666366666666666000000i<<<<<033566663663666666666666660iiii<0356666636663333666666666660iiii30566663666666663366666666660iii505666636666666666366666666660iii056666366666666666666666666660ii3366663666666666666666666666660ii0666366336666666666666666666660i05653666633666666666666666666660i03366666663366666666666666666660666666666666366666666666666666666666666666666666666666666666666666666666666666666", "32,c1,6666666666666AAAAA66666666666666666666666AAAAAAAAAAAAA666663666666666666AAAAAi5053AAAAA663366666666666AAAA66i505653666AAA666666666666AAA666i55066636633AAA6666666666AAA666i6<3366663666AAAA66666666AAA666i6<6056666366AAA6AA6666666AA666i6<6505666636AAAA6AA663666AA666i6<<<50566663AAAA666AA3666AAA66i6<6<60356666AAAA63336AA666AAiii6<6<66035666AAAA636666AA666AA55i<6666603566AAAA6666666AA66iAA<i66666660033AAAA36666666AA66AA66i6666666036AAAA6366666666AA6AA6<i<6<6<6<03AAAA66366666666AA6AA<6i6<6<6<603AAA666366333333AA3AA5<i<5<5<5<0AAA0666366666666AA6AA<5i5<5<5<5AAAA0666366666666AA6iAA<i<5<5<5AAAA0566636666666AA666AAiii<5<5AAAA33566636666666AA666AA000i<5AAAA335666636636666AA666AAA660iAAAA0356666636663336AA6666AA666AAAAi305666636666666AA366666AA6AAAAii50566663666666AA6636666AAAAAA0iii0566663666666AA66666666AAAA660ii33666636666AAA6666666666AAA6660ii066636633AAA666666666666AAAA660i0565366AAAA666666666666666AAAAA0i053AAAAA663366666666666666AAAAAAAAAAAAA66666366666666666666666AAAAA6666666666666666666666666666666666666666666666")
+      menu_act.add(VoiceDisabled_menu)
+      VoiceLocal_menu := TextMenuItem()
+      VoiceLocal_menu.set_label("Local Mode")
+      VoiceLocal_menu.connect(self, "on_VoiceLocal_menu", ACTION_EVENT)
+      #VoiceLocal_menu.set_img_left("32,c1,6666666666666666666S--r66666666666666666666666666rRRRRRR-66666666666666666666666RRRRRRRRR-666666666666666666666S+RRRRRRRRRS66666666666666666666R/RRRRRRRR/Rs666666666666666666sSRRRRRRRRRRSs666666666666>>>>V6sSSRRRRRRRRSSs6666666666><`````(uSSRRRRRRRRRSs666666666><```````<uSRRRRRRRRRRr66666666V<<<<5<<<<<iTRRRRRRRRRSr66666666><<<<<<<<<<i>fRRRRRRRRR666666666ii<<<<<<<<<ii-RRRRRRRR0666666666iii<<<<<<iiii-RRRRRRRs6666666666iiii<<<<i<iii'4::::44Rs666666666i<<<<<<<<<iii'++4++++:S666666666><<<<<<<<<<<>:::::::::RS66666666vi<<<``<<<<iTfffffffffRRr66666666v<``````<(TRRRRRRRRRRRRS666666666><<```<<>RRRRRRRRRRRSRR66666666><5<<<<<<<>RRRRRRRRRRRSRr666666>i<<<<<<<<<i>RREEEERRRRRRR66666vi<<<<<<<<<<<i-EEEEEERRRRRR66666>i<<<<<<<<<<<i>EEEEEEERR::R66666iii<<<<<<<<<iii:eeeeEeeeeRr6666Vi<<<<<<<<<<<i<i'eeeeeeRRr666666i<<<<<<<<<<<<<<iirrrrr!666666666i<<<<<<<<<<<<<<<i66666666666666V<<<<<<<<<<<<<<<<<)6666666666666v<<<<<<`````<<<<<<266666666666666vi<<``````````<<)66666666666666666v>4<<<<<<<(>216666666666666666666666111116666666666666666666")
+      menu_act.add(VoiceLocal_menu)
+      VoicePhone_menu := TextMenuItem()
+      VoicePhone_menu.set_label("Phone Mode")
+      VoicePhone_menu.connect(self, "on_VoicePhone_menu", ACTION_EVENT)
+      #VoicePhone_menu.set_img_left("17,c1,6666455444444566666644555334333566665355554443324666654555534443336666445554444433366664455444444333566644:-444432233566642//ttttt'/2356664t`*******`r256664r`````````r256664t,,,,,,,,,t246664s`````````s346664t*```**``'23466643t/--t--/t33466644443343333334666454434454433246665554444445433466655554444554334666455555444443346664445554444433466645445444444434666454554444433346664444544444443466645445444444335666444455444443356664544544444443566654445444443335666544444444443366665455544444433666664454444433246666654333333334666")
+      menu_act.add(VoicePhone_menu)
+      menu_bar_1.add(menu_act)
+
+      menu_2 := Menu()
+      menu_2.set_label("Help")
+      users_guide_menu := TextMenuItem()
+      users_guide_menu.set_label("User's Guide")
+      users_guide_menu.connect(self, "on_users_guide", ACTION_EVENT)
+      menu_2.add(users_guide_menu)
+      command_reference_menu := TextMenuItem()
+      command_reference_menu.set_label("Commands")
+      command_reference_menu.connect(self, "on_command_reference", ACTION_EVENT)
+      menu_2.add(command_reference_menu)
+      about_menu:= TextMenuItem()
+      about_menu.set_label("About")
+      about_menu.connect(self, "on_about", ACTION_EVENT)
+      menu_2.add(about_menu)
+      menu_bar_1.add(menu_2)
+
+      menu_6 := Menu()
+      menu_6.set_label("View")
+      window_submenu := Menu()
+      window_submenu.set_label("Window")
+      view_window_all := TextMenuItem()
+      view_window_all.set_label("All")
+      view_window_all.connect(self, "on_view_window_all", ACTION_EVENT)
+      view_window_all.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>>>>>>>~~><<<<<<<<<<<<>~~>>>>>>>>>>>>>>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>>>>>>>>>>>>>>~~>666666666666>~~>666666666666>~~>>>>>>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      window_submenu.add(view_window_all)
+      view_window_files := TextMenuItem()
+      view_window_files.set_label("Files")
+      view_window_files.connect(self, "on_view_window_files", ACTION_EVENT)
+      view_window_files.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>>>>>>>~~><<<<<<<<<<<<>~~>>>>>>>>>>>>>>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>>>>>>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      window_submenu.add(view_window_files)
+      view_window_filesmsgs := TextMenuItem()
+      view_window_filesmsgs.set_label("Files/Messages")
+      view_window_filesmsgs.connect(self, "on_view_window_filesmsgs", ACTION_EVENT)
+      view_window_filesmsgs.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>>>>>>>~~><<<<<<<<<<<<>~~>>>>>>>>>>>>>>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>````````````>~~>>>>>>>>>>>>>>~~>666666666666>~~>666666666666>~~>>>>>>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      window_submenu.add(view_window_filesmsgs)
+      view_window_filesclassbrowser := TextMenuItem()
+      view_window_filesclassbrowser.set_label("Files/Class Browser")
+      view_window_filesclassbrowser.connect(self, "on_view_window_filesclassbrowser", ACTION_EVENT)
+      view_window_filesclassbrowser.set_img_left("16,c1,~~~~~~~~~~~~~~~~~>>>>>>>>>>>>>>~~><<<<<<<<<<<<>~~>>>>>>>>>>>>>>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>66>`````````>~~>>>>>>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      window_submenu.add(view_window_filesclassbrowser)
+      menu_6.add(window_submenu)
+      hide_toolbar := TextMenuItem()
+      hide_toolbar.set_label("Hide Toolbar")
+      hide_toolbar.connect(self, "on_hide_toolbar", ACTION_EVENT)
+      menu_6.add(hide_toolbar)
+      msgs_submenu := Menu()
+      msgs_submenu.set_label("Messages")
+      msgs_normal := TextMenuItem()
+      msgs_normal.set_label("Normal")
+      msgs_normal.connect(self, "on_msgs_normal", ACTION_EVENT)
+      msgs_submenu.add(msgs_normal)
+      msgs_50 := TextMenuItem()
+      msgs_50.set_label("+50")
+      msgs_50.connect(self, "on_msgs_50", ACTION_EVENT)
+      msgs_submenu.add(msgs_50)
+      msgs_100 := TextMenuItem()
+      msgs_100.set_label("+100")
+      msgs_100.connect(self, "on_msgs_100", ACTION_EVENT)
+      msgs_submenu.add(msgs_100)
+      menu_6.add(msgs_submenu)
+      classbrowser_submenu := Menu()
+      classbrowser_submenu.set_label("Class Browser")
+      classbrowser_normal := TextMenuItem()
+      classbrowser_normal.set_label("Normal")
+      classbrowser_normal.connect(self, "on_classbrowser_normal", ACTION_EVENT)
+      classbrowser_submenu.add(classbrowser_normal)
+      classbrowser_50 := TextMenuItem()
+      classbrowser_50.set_label("+50")
+      classbrowser_50.connect(self, "on_classbrowser_50", ACTION_EVENT)
+      classbrowser_submenu.add(classbrowser_50)
+      classbrowser_100 := TextMenuItem()
+      classbrowser_100.set_label("+100")
+      classbrowser_100.connect(self, "on_classbrowser_100", ACTION_EVENT)
+      classbrowser_submenu.add(classbrowser_100)
+      menu_6.add(classbrowser_submenu)
+
+      chat_submenu := Menu()
+      chat_submenu.set_label("Chat Filter")
+      chat_low := TextMenuItem()
+      chat_low.set_label("Low")
+      chat_low.connect(self, "on_chat_low", ACTION_EVENT)
+      chat_submenu.add(chat_low)
+      chat_high := TextMenuItem()
+      chat_high.set_label("High")
+      chat_high.connect(self, "on_chat_high", ACTION_EVENT)
+      chat_submenu.add(chat_high)
+      menu_6.add(chat_submenu)
+      menu_bar_1.add(menu_6)
+
+      menu_11 := Menu()
+      menu_11.set_label("Edit")
+      undo := TextMenuItem()
+      undo.set_label("Undo")
+      undo.set_label_right("Ctrl + Z")
+      undo.connect(self, "on_undo", ACTION_EVENT)
+      undo.set_img_left("16,c1,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>>>>>~~~~~~~~~~>>>>>>>~~~~~~~~>>>~~~>>>~~~~~~>>>~~~~~>>>~~~~~>>~~~~~~~>>~~~>~>>~>~~~~~>>~~~~>>>>~~~~~~>>~~~~~>>~~~~~~>>>~~~~~~~~~~~~>>>~~~~~~~~~>>>>>>~~~~~~~~~~>>>>>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+      menu_11.add(undo)
+      redo := TextMenuItem()
+      redo.set_label("redo")
+      redo.set_label_right("Ctrl + Y")
+      redo.connect(self, "on_redo", ACTION_EVENT)
+      redo.set_img_left("16,c1,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>>>>>~~~~~~~~~~>>>>>>>~~~~~~~~>>>~~~>>>~~~~~~>>>~~~~~>>>~~~~~>>~~~~~~~>>~~~~~>>~~~~~>~>>~>~~~>>~~~~~~>>>>~~~~>>>~~~~~~>>~~~~~~>>>~~~~~~~~~~~~~~>>>>>>~~~~~~~~~~~~>>>>>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+      menu_11.add(redo)
+      menu_separator_1 := MenuSeparator()
+      menu_separator_1.set_is_shaded()
+      menu_11.add(menu_separator_1)
+      cut := TextMenuItem()
+      cut.set_label("Cut")
+      cut.set_label_right("Ctrl + X")
+      cut.connect(self, "on_cut", ACTION_EVENT)
+      cut.set_img_left("16,c1,~~~~v~~~~~v~~~~~~~~~v~~~~~v~~~~~~~~~~v~~~v~~~~~~~~~~~v~~~v~~~~~~~~~~~v~~~v~~~~~~~~~~~~v~v~~~~~~~~~~~~~v~v~~~~~~~~~~~~~~I~~~~~~~~~~~~~~VVV~~~~~~~~~~~~~V~VVV~~~~~~~~~VVV~V~~V~~~~~~~V~~V~V~~V~~~~~~~V~~V~V~~V~~~~~~~V~~V~~VV~~~~~~~~~VV~~~~~~~~~~~~~~~~~~~~~~~~~~")
+      menu_11.add(cut)
+      copy := TextMenuItem()
+      copy.set_label("Copy")
+      copy.set_label_right("Ctrl + C")
+      copy.connect(self, "on_copy", ACTION_EVENT)
+      copy.set_img_left("16,c1,~~~~~~~~~~~~~~~~vvvvvv~~~~~~~~~~v6666vv~~~~~~~~~v6<<6v6v~~~~~~~~v6666v>>>>>>~~~~v6<<<6>6666>>~~~v66666>6``6>6>~~v6<<<<>6666>>>>~v66666>6```666>~v6<<<<>6666666>~v66666>6`````6>~vvvvvv>6666666>~~~~~~~>6`````6>~~~~~~~>6666666>~~~~~~~>>>>>>>>>~~~~~~~~~~~~~~~~~")
+      menu_11.add(copy)
+      paste := TextMenuItem()
+      paste.set_label("Paste")
+      paste.set_label_right("Ctrl + V")
+      paste.connect(self, "on_paste", ACTION_EVENT)
+      paste.set_img_left("18,c1,~~~~~~~~~~~~~~~~~~~~~~~~~~~~>>>>>>~~~~~~~~~~~~>4565>~~~~~~~~~~~>>>>>>>>~~~~~~~~~>56566665>~~~~~~~~>55555654>~~~~~>>>>55555655>~~~~>566G05555654>~~~>>>>4650555655>~~~>4440J6G455654>~~~>5505045>55655>~~~>4>60>>6>55654>~~~~>60>5>5455655>~~~>60>65>>555654>~~>60~>>>>5555655>~4>0~~~~>44444444>>>~~~~~~~>>>>>>>>~ii<i<<~~~~~~~~~~~~")
+      menu_11.add(paste)
+      select_all := TextMenuItem()
+      select_all.set_label("Select All")
+      select_all.set_label_right("Ctrl + A")
+      select_all.connect(self, "on_select_all", ACTION_EVENT)
+      menu_11.add(select_all)
+      findv := TextMenuItem()
+      findv.set_label("Find")
+      findv.set_label_right("Ctrl + F")
+      findv.connect(self, "on_find", ACTION_EVENT)
+      findv.set_img_left("16,c1,5554>>5554>>5555555>6V555>6V55555544>))544>))5555546<>V546<4V555554>>))>>>>)V55554665>V)>665>V55<>654>V(>554>V454>>))VVV>>))Vv)546554V555>55<>)54654>V555>55<>)54654>V555>55<>)54654>V555>554>V5>>)))V555>>>))v5555555555555555555555555555555555555555555555555")
+      menu_11.add(findv)
+      findnext := TextMenuItem()
+      findnext.set_label("Find Next")
+      findnext.set_label_right("Ctrl + N")
+      findnext.connect(self, "on_find_next", ACTION_EVENT)
+      findnext.set_img_left("16,c1,554>>54>>555555555464546)555555555454446)<555555544>4>>4>>555555546<>V)6<)555555546<)v)6<)5555554>>>>v>4>>)55555>56<>5><54v55555>56<>5)(54v55555>vvvv5vvvvv5555555555555555555555555555555ii555555555555555ij>55555)5)5VV>>>V))555555555555V))555555555555>>5555")
+      menu_11.add(findnext)
+      replace := TextMenuItem()
+      replace.set_label("Replace")
+      replace.set_label_right("Ctrl + P")
+      replace.connect(self, "on_replace", ACTION_EVENT)
+      replace.set_img_left("16,c1,55555<4<55555555555555445555555555<4<5445555555554222544<455555554532544544555555533154454455555525515445445555552221<4444555555555555555555555555555555555555555)55555522254SS'5)55)5555314S/'T55>))>553314S/555555>5525514s-'S5555555222154ST'5555555555555555")
+      menu_11.add(replace)
+      gotoline := TextMenuItem()
+      gotoline.set_label("Go To Line ...")
+      gotoline.set_label_right("Ctrl + G")
+      gotoline.connect(self, "on_goto_line", ACTION_EVENT)
+      menu_11.add(gotoline)
+      match_parenthesis := TextMenuItem()
+      match_parenthesis.set_label("Match Parenthesis")
+      match_parenthesis.connect(self, "on_match_parenthesis", ACTION_EVENT)
+      menu_11.add(match_parenthesis)
+      menu_bar_1.add(menu_11)
+
+      menu_7 := Menu()
+      menu_7.set_label("Config")
+      fontItem := TextMenuItem()
+      fontItem.set_label("Font ...")
+      fontItem.connect(self, "on_font", ACTION_EVENT)
+      menu_7.add(fontItem)
+      menu_bar_1.add(menu_7)
+
+      menu_9 := Menu()
+      menu_9.set_label("Build")
+      make_exe := TextMenuItem()
+      make_exe.set_label("Make executable")
+      make_exe.connect(self, "on_make_exe", ACTION_EVENT)
+      make_exe.set_label_right("Ctrl + B")
+      make_exe.set_img_left("18,c1,~~~~~~~~~~~~~~~~~~~3333333333333333~~3444444444444430~~34JJJJJJJJJJJJ30~~34JJJJJJ60606030~~3433333333333330~~3466666666666630~~3466666666666630~~3460060606006630~~3460660606066630~~3460066066006630~~3460660606066630~~3460060606006630~~3466666666666630~~3466666666666630~~3333333333333330~~0000000000000000~~~~~~~~~~~~~~~~~~~")
+      menu_9.add(make_exe)
+
+      run_makefile := TextMenuItem()
+      run_makefile.set_label("Run makefile")
+      run_makefile.connect(self, "on_run_makefile", ACTION_EVENT)
+      #run_makefile.set_label_right(" ")
+      menu_9.add(run_makefile)
+
+      compile_only := TextMenuItem()
+      compile_only.set_label("Compile only")
+      compile_only.connect(self, "on_compile_only", ACTION_EVENT)
+      menu_9.add(compile_only)
+      compile_options := TextMenuItem()
+      compile_options.set_label("Compile options")
+      compile_options.connect(self, "on_compile_options", ACTION_EVENT)
+      menu_9.add(compile_options)
+      run_program := TextMenuItem()
+      run_program.set_label("Run program")
+      run_program.connect(self, "on_run_program", ACTION_EVENT)
+      run_program.set_label_right("Ctrl + R")
+      run_program.set_img_left("18,c1,~~~~~~~~~~~~~~~~~~~3333333333333333~SS444444444444430~S+SJJJJJJJJJJJJ30~S++SJJJJJ60606030~S+*+S333333333330~S+**+S66666666630~S+***+S6666666630~S+****+S666666630~SF*G*G*FS66666630~S+G*G*G+S66666630~SF*G*GFS666666630~SFGGGFS6666666630~SFGGFS66666666630~SFGFS666666666630~SFFS3333333333330~SFS00000000000000~SS~~~~~~~~~~~~~~~~")
+      menu_9.add(run_program)
+      debuggIt := TextMenuItem()
+      debuggIt.set_label("Debug program")
+      debuggIt.connect(self, "on_debuggIt", ACTION_EVENT)
+      menu_9.add(debuggIt)
+      run_arguments := TextMenuItem()
+      run_arguments.set_label("Run arguments")
+      run_arguments.connect(self, "on_run_arguments", ACTION_EVENT)
+      menu_9.add(run_arguments)
+      menu_bar_1.add(menu_9)
+
+      view.add(menu_bar_1)
+      menu_bar_1.init()
+      menu_bar_1.resize()
+   end
+
+initially(newJavaProject, newCppProject, newUniconProject)
+   cppProject     := newCppProject
+   javaProject    := newJavaProject
+   uniconProject  := newUniconProject
+   projectCreated := "FALSE"
+   fileOpened     := "FALSE"
+   chat_filter_flag := "low"
+   voipdlg := VoIPDlg()
+end #Class ProjectMenubar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

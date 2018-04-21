@@ -1,0 +1,345 @@
+#
+# fileTranfer: this class deals with everything that
+#              has to do with trasfering files from
+#              the server to the client and vice versa.
+#
+
+$include "defaults.icn"
+$include "posix.icn"
+
+class fileTransfer(commander, log, xm_ports, connection)
+
+   #
+   # setConnection(): set the connection object to be used
+   #
+   method setConnection(new_conn)
+      connection := new_conn
+   end
+
+   #
+   # getAvatarFaceFilename(): peeks into the .avt file and returns the
+   #                      filename along with path of the avatar's
+   #                      face picture. If it does not find it it fails.
+   #
+   method getAvatarFaceFilename(avatar_def, username)
+      local ftmp, line, temp
+
+      if ftmp := open(avatar_def) then {
+         while (line := read(ftmp)) do
+            if (find(".gif", line) | find(".jpg", line)) then {
+               line ? { 
+	          if ="FACE PICTURE=" then 
+                     temp := "dat" ||PS||"users" || PS || username || PS || tab(0)
+               }
+            }
+      close(ftmp)
+      return temp
+      }
+   end
+
+   #
+   # ackonTransfer: this method is executed when the client has requested
+   #                to send a file and the necessary
+   #                checks for existence of that file have been performed
+   #                in which case the participating party acks by issuing
+   #                a transfer command
+   #
+   method ackonTransfer( filename, filesize, ip )
+      local port
+      
+      if /(port := xm_ports.getNextPort()) then {
+         connection.Write("\\failure no available ports to transfer file " ||
+			  filename)
+         log.logit("ackonTransfer(): no available ports to tranfer file " ||
+		   filename)
+         fail
+         }
+
+      # check to see if I already have the file
+      if /(filesize := fileExists(filename)) then {
+         # permissions checks should go here
+         
+         connection.Write("\\failure server already has file " || filename)
+         log.logit("ackonTransfer(): server already had file " || filename)
+         fail
+         }
+      connection.Write("\\request " || filename || " " || filesize ||
+		       " " || ip || " " || port)
+      log.logit("ackonTransfer(): initiating file transmission")
+      return port
+   end
+
+   #
+   # listenOn(): open up a listener on the given port and read a
+   #             predetermined amount of data.
+   #		 This is synchronous when it should be asynchronous!
+   #
+   method listenOn( port, amount_of_data )
+      local listen, ready_when, ready_now, data ,destcont
+      
+      log.logit("listenOn("||port||"): opening listener and waiting for data")
+      if listen := open(":" || port, "nl") then {
+	 write(&errout, "opened listener for file transfer.")
+	 }
+      else {
+	 write(&errout, "Open failed for file transfer: ", sys_errstr(&errno))
+	 fail
+	 }
+
+      if not (ready_when := select ( listen )) then {
+	 write(&errout, "select failed for file transfer: ",
+	       sys_errstr(&errno))
+      }
+
+      if *ready_when > 0 then {
+	 data := reads(ready_when[1], amount_of_data)
+	 close(ready_when[1])
+	 }
+      else {
+	 write(&errout, "select returned empty for file transfer ",
+	       sys_errstr(&errno))
+	 }
+          # destcont:=select(listen)
+          # data := reads(destcontent,amount_of_data)
+
+      # port not needed any more so release it
+      # this might have to get threaded at one point
+      xm_ports.releasePort( port )
+
+      return data
+   end
+
+   #
+   # listenAndWrite(): open up a listener on the given port and when (someone)
+   #             connects, write a predetermined amount of data.
+   #
+   method listenAndWrite( port, data )
+      local listen, ready_when, ready_now, destcont
+      
+      log.logit("listenAndWrite("||port||"): opening listener and sending data")
+      listen := open(":" || port, "nl") | {
+	 write(&errout, "Open failed for file transfer: ", sys_errstr(&errno))
+	 fail
+	 }
+
+      ready_when := select( listen )
+      every ready_now := !ready_when do
+         writes(ready_now, data)
+      close(ready_now)
+
+      # port not needed any more so release it.
+      # this might have to get threaded at one point
+      xm_ports.releasePort( port )
+   end
+
+   #
+   # connectTo: open up a TCP connection to ip and port and 
+   #            prepare for file transfer. return the connID
+   #
+   method connectTo(ip, port)
+      return open( (ip || ":" || port), "n" ) | fail
+   end
+
+   #
+   # disconnect: close the given connection
+   #
+   method disconnect( conn )
+      close(conn)
+   end
+
+   #
+   # receiveTransfer(): complete a file transfer
+   #
+   method receiveFile( args )
+      local parsed_result, packet, tolisten, filename, filesize, sname, receiveFrom
+            
+      log.logit("handleFileTransfer(): trying to download, " || args )
+      if parsed_result := commander.SplitArgs( args ) then {
+         filename := parsed_result[1]
+         filesize := parsed_result[2]
+         sname := parsed_result[3]
+                    
+	 if *parsed_result < 4 then {
+	    # if I am server, I do this protocol.
+
+	    # fix this getIP needs an argument
+	    if tolisten := ackonTransfer( filename, filesize, sname) then {
+	       if not (packet := listenOn( tolisten, filesize )) then fail
+               if createFile( filename, packet ) then
+		  log.logit("receiveFile(): file " || filename ||
+			    " received successfully")
+	       }
+	    }
+	 else {
+	    #if I am client, I need to go ahead and connect and read()
+	    receiveFrom := connectTo(parsed_result[3], parsed_result[4])
+	    packet := reads(receiveFrom, filesize)
+	    if *packet ~= filesize then
+	       write(&errout, "warning, ", image(filename), " size ", *packet, " does not match ", filesize)
+	    close(receiveFrom)
+	    createFile(filename, packet)
+	    }
+         return         
+	 }
+      connection.Write( "\\failure syntax error in transfer command" )
+      fail
+   end
+
+
+   #
+   # createFile(): passed a filename and raw data
+   #               this method creates a new file
+   #
+   method createFile( filename, data )
+      local new_file
+
+      if \(new_file := open(filename, "w")) then {
+         writes(new_file, data)
+         close(new_file)
+         return
+         }
+
+      log.logit("fileXfer(): could not open the file for writing "|| filename)
+      fail
+   end
+
+   #
+   # sendTransfer: issues a \transfer filename filesize
+   #
+   method sendTransfer( filename, srv)
+      local filesize, port, data, xferstring
+                       
+      if filesize := fileExists(filename) then {
+	 log.logit("sendTransfer(): the size of " || filename ||
+		   " is " || filesize || " bytes.")
+	 xferstring := "\\transfer " || filename || " " || filesize || " " ||srv
+	 connection.Write(xferstring)
+	 }
+      if type(variable("server")) == ("Server"|"Server__state") then {
+         port := xm_ports.getNextPort()
+         if \filesize then {
+	    data := loadFile(filename, filesize)
+	    return listenAndWrite(port, data)
+	    }
+	 log.logit("sendTransfer(): file " || filename || " is missing!")
+	 }
+      else {
+         if \filesize then {
+	    return
+	    }
+	 connection.Write("\\failure file doesn't exist. aborting transfer")
+	 log.logit("sendTransfer(): file " || filename || " is missing!")
+	 }
+      fail
+   end
+
+
+
+   #
+   # sendFile(): grab the arguments and initiate a file transfer
+   #
+   method sendFile( file_request )
+      local file_to_send, size_to_send, srvr_to_send, port_to_send,
+	  parsed_request
+
+      if parsed_request := commander.commandIs(file_request, "request") then {
+         file_to_send := parsed_request[1]
+         size_to_send := parsed_request[2]
+         srvr_to_send := parsed_request[3]
+         port_to_send := parsed_request[4]
+         
+         log.logit("newuser(): sending with params " || file_to_send || " " ||
+		  size_to_send || " @ " || srvr_to_send || ":" ||port_to_send)
+         
+         if not transmitFile(file_to_send, size_to_send, srvr_to_send,
+			     port_to_send) then {
+            log.logit("newuser(): file " || file_to_send ||
+		      " did not transmit successfully.")
+            fail
+	    }
+         return 
+	 }
+
+      log.logit("newuser(): transfer rejected, error " || file_request)
+      fail
+   end
+
+   #
+   # transmitFile(): with everything known send the darn file
+   #
+   method transmitFile( filename, filesize, new_server, new_port )
+      local data, sendto
+      local i := 0 ,j,chunk,flen,remainder
+      log.logit("sendFile(): args " || filename || " " || filesize || " " ||
+		new_server || " " || new_port)
+      if \(data := loadFile(filename, filesize)) then {# suck the file in 
+         log.logit("sendFile(): connecting for transfer to, " || new_server ||
+	     ":" || new_port)
+
+	 #sending actual contents
+	 flen := filesize
+
+	 j := chunk := 1024*6
+	 if flen/chunk == 0 then {
+	    j := chunk := flen
+	    }
+	 else {
+	    remainder := flen % chunk
+	    write("the remainder is :" || remainder)
+	    }
+
+	 sendto := connectTo(new_server, new_port) | fail 
+	 while j <= flen do {
+	    delay(3)
+	    writes(sendto, data[i+1:j+1]) |
+		write("unable to send file contents")
+	    i +:= chunk
+	    if i >= flen then
+	       break
+	    j +:= chunk
+	    if j>flen then 
+	       j := j-chunk + remainder
+	    }
+
+	 log.logit("sendFile(): disconnecting ")
+	 xm_ports.releasePort( new_port )
+	 disconnect( sendto )
+
+	 log.logit("sendFile(): file "||filename||" transmitted successfully")
+	 return
+	 }
+      fail
+   end
+
+   #
+   # loadFile: this method opens the file specified and
+   #           sucks it into a string untranslated. Admittedly
+   #           it assumes that the whole file can fit in memory.
+   #
+   method loadFile(filename, filesize)
+   local handle, data
+
+      log.logit("loadFile(): attempting to suck in file, " || filename ||
+		" of size, " || filesize)
+      handle := open(filename, "ru") |
+	 { log.logit("loadFile(): could not load file " || filename); fail }
+
+      data := reads(handle, filesize)
+      close(handle)
+      return data
+   end
+
+   #
+   # fileExists(): checks to see if a file exist. If it does
+   #               returns the file's size else it fails
+   method fileExists(filename)
+      local attribs
+      if \(attribs := stat(filename)) then 
+         return attribs.size
+   end
+
+initially(logging)
+   commander := Commands()
+   log       := logging
+   xm_ports  := portHandler() # tracks ports available for xmission
+end

@@ -1,0 +1,18 @@
+Room {
+	name  axelslanding
+	x 14.59
+	y 14.35
+	z 18.23
+	w 3.31
+	h 3.53
+	l 3.4
+	texture dat/uidaho/textures/wall.gif
+	floor Wall { texture dat/uidaho/textures/floor.gif }
+	ceiling Wall { texture dat/uidaho/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

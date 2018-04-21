@@ -1,0 +1,18 @@
+Room {
+	name  entry_124w
+	x 39.6
+	y 0
+	z 22.4
+	w 1.5
+	h 3.05
+	l 0.9
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

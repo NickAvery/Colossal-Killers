@@ -1,0 +1,11 @@
+Opening {
+	id 36
+	x 14.28
+	y 6.15
+	z 19
+	w 1.38
+	height 2.75
+	collide_in 1.2
+	plane 1
+	rooms [JEB1r_stairs, JEBEntryHall]
+}

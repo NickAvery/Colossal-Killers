@@ -1,0 +1,67 @@
+#
+# isup.icn - tell whether the virtual environment servers are up
+# based on timeout.icn from unicon/tests/posix.
+#
+procedure main()
+    name2server := table()
+    if n := open("virtual.cs.uidaho.edu:80","n",500) then {
+	write("CVE web server is up, reading")
+	write(n, "GET /cve/servers.html HTTP/1.1\r\nHost: virtual.cs.uidaho.edu\r\n\r")
+	servers := []
+	t1 := &now
+	until &now > t1+2 do {
+		while *(x := ready(n)) > 0 do {
+		    x ? {
+			while tab(find("<dt>")+4) do {
+			    nam := trim(tab(upto('\n')),,0)
+			    move(1)
+			    tab(find("<dd>")+4)
+			    machine := trim(tab(upto('\n')),,0)
+			    put(servers, machine)
+			    name2server [nam] := machine
+			    name2server [machine] := nam
+			}
+			if *servers > 0 then break break
+		    }
+
+		}
+		delay(100)
+	    }
+	if *servers = 0 then stop("no servers")
+    } else {
+	write("CVE web server is down, defaulting")
+	servers := ["virtual.cs.uidaho.edu:4500","virtual.cs.uidaho.edu:4600"]
+	name2server ["UIdaho"] := "virtual.cs.uidaho.edu:4500"
+	name2server ["NMSU"] := "virtual.cs.uidaho.edu:4600"
+	name2server ["virtual.cs.uidaho.edu:4500"] := "UIdaho"
+	name2server ["virtual.cs.uidaho.edu:4600"] := "NMSU"
+    }
+
+    write("Checking servers...")
+    every server := !servers do
+	if isup(server) then write(name2server[server]," is up")
+	else write(name2server[server], " is down")
+end
+
+procedure isup(server)
+
+    every i := 100 to 1600 by 200 do {
+	if n := open(server, "n", i) then {
+	    write(n, "\\login system unicron")
+#	    write(n, "\\uptime")
+	    t1 := &now
+	    until &now > t1+1 do {
+		if *(x := ready(n)) > 0 then {
+		    if x === "Valid" then {
+			write(n, "\logout")
+			return
+		    }
+		}
+		delay(100)
+	    }
+	    close(n)
+	    fail
+	}
+    }
+    write("connection timeout > 1.5s")
+end

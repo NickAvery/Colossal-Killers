@@ -1,0 +1,34 @@
+<title>unix components</title>
+
+<dl>
+<dt> Name
+<dd> UNIX components
+<dt> Summary
+<dd> Learn the main components of UNIX-based computing systems.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about UNIX components
+<li> Pass a quiz on UNIX components.
+</ol>
+<dt> Rewards
+<dd> UNIX: 1
+<dt> Reading
+<dd> UNIX consists of:
+<ul>
+<li> commands - programs and utilities that you run
+<li> shells - command line interpreters
+<li> file systems - data storage systems
+<li> programming interfaces - function libraries and system calls
+<li> kernel - the main control program that provides access to
+       computing resources
+</ul>
+<dt> Quiz (1/1)
+<dd>
+<dl>
+<dt> What are UNIX commands?
+<dd> Programs and utilities that you run.
+<dt> What program do you interact with in order to run a UNIX command?
+<dd> A shell.
+</dl>
+</dl>

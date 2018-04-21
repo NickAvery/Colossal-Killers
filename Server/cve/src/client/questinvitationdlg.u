@@ -1,0 +1,3218 @@
+version	U12.1.00
+uid	questinvitationdlg.u1-1523917895-0
+record	QuestInvitationDialog__state,83
+	0,__s
+	1,__m
+	2,quest
+	3,is_run_quest
+	4,border_1
+	5,cancelbtn
+	6,titlelbl
+	7,user_choice
+	8,takequestbtn
+	9,readinglbl
+	10,readingtl
+	11,win
+	12,is_open
+	13,owning_dialog
+	14,child_dialogs
+	15,focus
+	16,unique_flag
+	17,re_process_flag
+	18,buffer_win
+	19,min_width
+	20,min_height
+	21,click_count
+	22,double_click_delay
+	23,repeat_delay
+	24,repeat_rate
+	25,prev_x
+	26,prev_y
+	27,prev_time
+	28,prev_event
+	29,is_blocked_flag
+	30,resize_attrib
+	31,drag_gesture_x
+	32,drag_gesture_y
+	33,curr_drag
+	34,tried_drag
+	35,pointer_component
+	36,pointer_stack
+	37,invokes
+	38,all_valid
+	39,tooltip_ticker
+	40,tooltip_last_obj
+	41,tooltip_state
+	42,tooltip_start_time
+	43,tooltip_end_time
+	44,tooltip_start_delay
+	45,tooltip_end_delay
+	46,tooltip_continue_time
+	47,tooltip_continue_delay
+	48,tooltip_win
+	49,tooltip_x
+	50,tooltip_y
+	51,tooltip_w
+	52,tooltip_h
+	53,x_spec
+	54,y_spec
+	55,w_spec
+	56,h_spec
+	57,x_align
+	58,y_align
+	59,x
+	60,y
+	61,w
+	62,h
+	63,parent_dialog
+	64,attribs
+	65,has_focus
+	66,is_shaded_flag
+	67,cwin
+	68,cbwin
+	69,accepts_focus_flag
+	70,draw_border_flag
+	71,tooltip
+	72,parent
+	73,children
+	74,valid
+	75,accel
+	76,allow_drag_flag
+	77,allow_drop_flag
+	78,pointer
+	79,ticker
+	80,transparent
+	81,auto_refresh
+	82,listeners
+record	QuestInvitationDialog__methods,186
+	0,component_setup
+	1,end_dialog
+	2,init_dialog
+	3,on_cancelbtn
+	4,on_takequestbtn
+	5,set_label
+	6,init_quest
+	7,setup
+	8,initially
+	9,invoke_validate
+	10,needs_validate
+	11,is_shaded
+	12,is_unshaded
+	13,is_hidden
+	14,is_unhidden
+	15,block
+	16,unblock
+	17,raise
+	18,get_click_count
+	19,compute_absolutes
+	20,change_pointer
+	21,restore_pointer
+	22,show_child
+	23,show_modeless
+	24,show_modal
+	25,get_win
+	26,resize_win
+	27,init
+	28,open_win
+	29,close_win
+	30,set_min_size
+	31,get_buffer_win
+	32,set_unique
+	33,clear_unique
+	34,set_focus
+	35,clear_focus
+	36,display
+	37,show
+	38,bevel_dispose
+	39,dispose
+	40,consume_same
+	41,process_event
+	42,process_normal
+	43,tooltip_init
+	44,tooltip_dispose
+	45,set_tooltip_start_delay
+	46,set_tooltip_end_delay
+	47,set_tooltip_continue_delay
+	48,show_tooltip
+	49,hide_tooltip
+	50,process_tooltip
+	51,find_tooltip
+	52,synch_pointer
+	53,find_pointer_component
+	54,process_dnd
+	55,process_unique
+	56,check_dnd
+	57,handle_resize
+	58,check_click_count
+	59,get_focus_list
+	60,find_next_focus
+	61,find_previous_focus
+	62,set_double_click_delay
+	63,set_repeat_delay
+	64,set_repeat_rate
+	65,invoke_later
+	66,do_invoke
+	67,set_one
+	68,set_tooltip
+	69,get_tooltip
+	70,set_pointer
+	71,get_pointer
+	72,get_x_reference
+	73,get_y_reference
+	74,get_w_reference
+	75,get_h_reference
+	76,get_cwin_reference
+	77,get_cbwin_reference
+	78,get_parent_dialog_reference
+	79,fatal
+	80,keeps
+	81,do_shading
+	82,accepts_focus
+	83,unique_start
+	84,unique_end
+	85,handle_accel
+	86,handle_event
+	87,do_handle_event
+	88,fire_icon_events_on_mouse
+	89,toggle_is_shaded
+	90,set_auto_refresh
+	91,clear_auto_refresh
+	92,set_transparent
+	93,clear_transparent
+	94,set_is_shaded
+	95,clear_is_shaded
+	96,toggle_draw_border
+	97,set_draw_border
+	98,clear_draw_border
+	99,set_accepts_focus
+	100,clear_accepts_focus
+	101,attrib
+	102,set_attribs
+	103,set_attribs_list
+	104,in_region
+	105,got_focus
+	106,get_parent_win
+	107,get_parent_buffer_win
+	108,lost_focus
+	109,set_pos
+	110,set_size
+	111,set_align
+	112,set_abs_coords
+	113,set_abs_size
+	114,set_accel
+	115,get_accel
+	116,get_parent
+	117,set_parent
+	118,get_parent_dialog
+	119,set_parent_dialog
+	120,firstly
+	121,finally
+	122,parse_pos
+	123,resize
+	124,generate_components
+	125,find_focus
+	126,find_accel
+	127,invalidate
+	128,all_components_valid
+	129,validate
+	130,child_validated
+	131,add
+	132,remove
+	133,is_dialog_open
+	134,get_children
+	135,create_event_and_fire
+	136,set_ticker
+	137,stop_ticker
+	138,retime_ticker
+	139,is_ticking
+	140,tick
+	141,invoke_can_drag
+	142,invoke_drag_event
+	143,invoke_can_drop
+	144,invoke_end_drag
+	145,invoke_drag_reset
+	146,can_drag
+	147,drag_event
+	148,can_drop
+	149,end_drag
+	150,drag_reset
+	151,set_allow_drag
+	152,clear_allow_drag
+	153,set_allow_drop
+	154,clear_allow_drop
+	155,is_attrib
+	156,clone
+	157,to_string
+	158,equals
+	159,hash_code
+	160,get_class_name
+	161,get_id
+	162,get_class
+	163,is_instance
+	164,test_flag
+	165,as_attrib
+	166,int_val
+	167,int_vals
+	168,numeric_val
+	169,numeric_vals
+	170,cset_val
+	171,string_val
+	172,string_vals
+	173,set_fields
+	174,field_error
+	175,genlisteners
+	176,fire
+	177,connect
+	178,disconnect_fromlist
+	179,disconnect_all
+	180,disconnect
+	181,gui__Dialog
+	182,gui__Component
+	183,lang__Object
+	184,util__SetFields
+	185,util__Connectable
+impl	error
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/setfields.u
+link	c:/unicon/uni/lib/connectable.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	19
+	0,000005,QuestInvitationDialog_component_setup,1
+	1,000005,QuestInvitationDialog_end_dialog,1
+	2,000005,QuestInvitationDialog_init_dialog,1
+	3,000005,QuestInvitationDialog_on_cancelbtn,2
+	4,000005,QuestInvitationDialog_on_takequestbtn,2
+	5,000005,QuestInvitationDialog_set_label,2
+	6,000005,QuestInvitationDialog_init_quest,3
+	7,000005,QuestInvitationDialog_setup,1
+	8,000005,QuestInvitationDialog_initially,1
+	9,000011,QuestInvitationDialog__state,83
+	10,000011,QuestInvitationDialog__methods,186
+	11,000001,QuestInvitationDialog__oprec,0
+	12,000001,gui__Dialog__oprec,0
+	13,000001,gui__Component__oprec,0
+	14,000001,lang__Object__oprec,0
+	15,000001,util__SetFields__oprec,0
+	16,000001,util__Connectable__oprec,0
+	17,000005,QuestInvitationDialog,81
+	18,000005,QuestInvitationDialoginitialize,0
+
+proc QuestInvitationDialog_component_setup
+	local	0,001000,self
+	declend
+	filen	questinvitationdlg.icn
+	line	7
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	8
+	colm	11
+	synt	any
+	field	setup
+	line	8
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	9
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_end_dialog
+	local	0,001000,self
+	declend
+	line	11
+	colm	11
+	synt	any
+	line	13
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_init_dialog
+	local	0,001000,self
+	con	0,010000,6,143,141,156,143,145,154
+	declend
+	line	14
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	15
+	colm	11
+	synt	any
+	field	user_choice
+	str	0
+	line	15
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	16
+	colm	11
+	synt	any
+	field	init_quest
+	pnull
+	var	0
+	line	16
+	colm	27
+	synt	any
+	field	quest
+	pnull
+	var	0
+	line	16
+	colm	38
+	synt	any
+	field	is_run_quest
+	line	16
+	colm	22
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	pnull
+	line	17
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_on_cancelbtn
+	local	0,001000,self
+	local	1,001000,ev
+	con	0,010000,6,143,141,156,143,145,154
+	declend
+	line	19
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	20
+	colm	11
+	synt	any
+	field	user_choice
+	str	0
+	line	20
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	21
+	colm	11
+	synt	any
+	field	dispose
+	line	21
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	pnull
+	line	22
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_on_takequestbtn
+	local	0,001000,self
+	local	1,001000,ev
+	con	0,010000,10,164,141,153,145,040,161,165,145,163,164
+	declend
+	line	24
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	25
+	colm	11
+	synt	any
+	field	user_choice
+	str	0
+	line	25
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	26
+	colm	11
+	synt	any
+	field	dispose
+	line	26
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	pnull
+	line	27
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_set_label
+	local	0,001000,self
+	local	1,001000,s
+	local	2,000000,WAttrib
+	con	0,010000,6,154,141,142,145,154,075
+	declend
+	line	29
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	var	2
+	pnull
+	pnull
+	var	0
+	line	30
+	colm	27
+	synt	any
+	field	win
+	line	30
+	colm	22
+	synt	any
+	nonnull
+	pnull
+	str	0
+	pnull
+	var	1
+	line	30
+	colm	42
+	synt	any
+	nonnull
+	line	30
+	colm	40
+	synt	any
+	cat
+	line	30
+	colm	21
+	synt	any
+	invoke	2
+	line	30
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	31
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_init_quest
+	local	0,001000,self
+	local	1,001000,q
+	local	2,001000,isrunquest
+	local	3,000020,reward
+	local	4,000020,L
+	local	5,000020,i
+	local	6,000020,k
+	local	7,000020,questInfo
+	local	8,000000,trim
+	local	9,000000,put
+	local	10,000000,key
+	local	11,000000,string
+	con	0,010000,12,121,165,145,163,164,040,123,143,162,145,145,156
+	con	1,020000,2,040,011
+	con	2,010000,0
+	con	3,010000,9,122,145,161,165,151,162,145,163,072
+	con	4,010000,20,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055
+	con	5,010000,8,122,145,167,141,162,144,163,072
+	con	6,010000,4,040,040,040,040
+	con	7,010000,14,040,160,157,151,156,164,050,163,051,040,146,157,162,040
+	con	8,002000,1,1
+	con	9,002000,1,0
+	con	10,010000,8,122,145,141,144,151,156,147,072
+	con	11,010000,8,123,165,155,155,141,162,171,072
+	con	12,010000,6,123,164,145,160,163,072
+	con	13,010000,2,055,040
+	con	14,010000,7,104,145,143,154,151,156,145
+	con	15,010000,6,104,157,040,116,157,167
+	con	16,010000,14,103,157,156,164,151,156,165,145,040,114,141,164,145,162
+	declend
+	line	33
+	colm	11
+	synt	any
+	mark	L1
+	line	36
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	36
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	pnull
+	pnull
+	var	0
+	line	36
+	colm	22
+	synt	any
+	field	quest
+	var	1
+	line	36
+	colm	28
+	synt	any
+	asgn
+	line	36
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	38
+	colm	11
+	synt	any
+	field	titlelbl
+	line	38
+	colm	20
+	synt	any
+	field	set_label
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	38
+	colm	37
+	synt	any
+	field	quest
+	line	38
+	colm	43
+	synt	any
+	field	title
+	line	38
+	colm	31
+	synt	any
+	nonnull
+	line	38
+	colm	50
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	str	0
+lab L4
+	line	38
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L5
+	pnull
+	var	7
+	pnull
+	line	40
+	colm	20
+	synt	any
+	llist	0
+	line	40
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	42
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	42
+	colm	16
+	synt	any
+	field	quest
+	line	42
+	colm	22
+	synt	any
+	field	requires
+	line	42
+	colm	10
+	synt	any
+	nonnull
+	pop
+	pnull
+	var	8
+	pnull
+	pnull
+	var	0
+	line	42
+	colm	42
+	synt	any
+	field	quest
+	line	42
+	colm	48
+	synt	any
+	field	requires
+	cset	1
+	line	42
+	colm	37
+	synt	any
+	invoke	2
+	str	2
+	line	42
+	colm	64
+	synt	any
+	lexne
+	unmark
+	mark	L7
+	var	9
+	var	7
+	str	3
+	line	43
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	mark	L8
+	var	9
+	var	7
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	29
+	synt	any
+	field	quest
+	line	44
+	colm	35
+	synt	any
+	field	requires
+	line	44
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	var	9
+	var	7
+	str	4
+	line	45
+	colm	13
+	synt	any
+	invoke	2
+	line	42
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L9
+	pnull
+	var	3
+	pnull
+	str	5
+	line	49
+	colm	17
+	synt	any
+	llist	1
+	line	49
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	line	50
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	6
+	var	10
+	pnull
+	pnull
+	var	0
+	line	50
+	colm	26
+	synt	any
+	field	quest
+	line	50
+	colm	32
+	synt	any
+	field	Trewards
+	line	50
+	colm	21
+	synt	any
+	invoke	1
+	line	50
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	3
+	var	9
+	var	3
+	pnull
+	pnull
+	pnull
+	str	6
+	pnull
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	46
+	synt	any
+	field	quest
+	line	51
+	colm	52
+	synt	any
+	field	Trewards
+	var	6
+	line	51
+	colm	61
+	synt	any
+	subsc
+	line	51
+	colm	39
+	synt	any
+	cat
+	str	7
+	line	51
+	colm	64
+	synt	any
+	cat
+	var	6
+	line	51
+	colm	82
+	synt	any
+	cat
+	line	51
+	colm	23
+	synt	any
+	invoke	2
+	line	51
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L11
+	efail
+lab L12
+	line	50
+	colm	7
+	synt	endevery
+	unmark
+lab L10
+	mark	L13
+	line	53
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	3
+	line	53
+	colm	10
+	synt	any
+	size
+	int	8
+	line	53
+	colm	18
+	synt	any
+	numgt
+	unmark
+	mark	L14
+	pnull
+	var	7
+	pnull
+	var	7
+	var	3
+	line	54
+	colm	33
+	synt	any
+	lconcat
+	line	54
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L14
+	var	9
+	var	7
+	str	4
+	line	55
+	colm	13
+	synt	any
+	invoke	2
+	line	53
+	colm	7
+	synt	endif
+	unmark
+lab L13
+	mark	L15
+	line	59
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	16
+	synt	any
+	field	quest
+	line	59
+	colm	22
+	synt	any
+	field	reading
+	line	59
+	colm	10
+	synt	any
+	nonnull
+	pop
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	37
+	synt	any
+	field	quest
+	line	59
+	colm	43
+	synt	any
+	field	reading
+	line	59
+	colm	32
+	synt	any
+	size
+	int	9
+	line	59
+	colm	51
+	synt	any
+	numgt
+	unmark
+	mark	L16
+	var	9
+	var	7
+	str	10
+	line	60
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	7
+	pnull
+	var	7
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	41
+	synt	any
+	field	quest
+	line	61
+	colm	47
+	synt	any
+	field	reading
+	line	61
+	colm	33
+	synt	any
+	lconcat
+	line	61
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L17
+	var	9
+	var	7
+	str	4
+	line	62
+	colm	13
+	synt	any
+	invoke	2
+	line	59
+	colm	7
+	synt	endif
+	unmark
+lab L15
+	mark	L18
+	line	66
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	66
+	colm	16
+	synt	any
+	field	quest
+	line	66
+	colm	22
+	synt	any
+	field	summary
+	line	66
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L19
+	pnull
+	var	4
+	pnull
+	str	11
+	line	67
+	colm	13
+	synt	any
+	llist	1
+	line	67
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	var	9
+	var	4
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	21
+	synt	any
+	field	quest
+	line	68
+	colm	27
+	synt	any
+	field	summary
+	line	68
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L20
+	mark	L21
+	var	9
+	var	4
+	str	4
+	line	69
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L21
+	pnull
+	var	7
+	pnull
+	var	4
+	var	7
+	line	70
+	colm	25
+	synt	any
+	lconcat
+	line	70
+	colm	20
+	synt	any
+	asgn
+	line	66
+	colm	7
+	synt	endif
+	unmark
+lab L18
+	mark	L22
+	pnull
+	var	4
+	pnull
+	str	12
+	line	73
+	colm	11
+	synt	any
+	llist	1
+	line	73
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	line	74
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	74
+	colm	15
+	synt	any
+	field	quest
+	line	74
+	colm	21
+	synt	any
+	field	steps_list
+	line	74
+	colm	10
+	synt	any
+	size
+	int	9
+	line	74
+	colm	32
+	synt	any
+	numgt
+	unmark
+	line	75
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	int	8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	75
+	colm	29
+	synt	any
+	field	quest
+	line	75
+	colm	35
+	synt	any
+	field	steps_list
+	line	75
+	colm	24
+	synt	any
+	size
+	push1
+	line	75
+	colm	21
+	synt	any
+	toby
+	line	75
+	colm	17
+	synt	any
+	asgn
+	pop
+	mark0
+	var	9
+	var	4
+	pnull
+	pnull
+	var	11
+	var	5
+	line	76
+	colm	26
+	synt	any
+	invoke	1
+	str	13
+	line	76
+	colm	29
+	synt	any
+	cat
+	pnull
+	pnull
+	pnull
+	var	0
+	line	76
+	colm	44
+	synt	any
+	field	quest
+	line	76
+	colm	50
+	synt	any
+	field	steps_list
+	var	5
+	line	76
+	colm	61
+	synt	any
+	subsc
+	line	76
+	colm	37
+	synt	any
+	cat
+	line	76
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L24
+	efail
+lab L25
+	line	75
+	colm	10
+	synt	endevery
+	line	74
+	colm	7
+	synt	endif
+	unmark
+lab L23
+	mark	L26
+	line	78
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	78
+	colm	10
+	synt	any
+	size
+	int	8
+	line	78
+	colm	12
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	7
+	pnull
+	var	7
+	var	4
+	line	79
+	colm	33
+	synt	any
+	lconcat
+	line	79
+	colm	20
+	synt	any
+	asgn
+	line	78
+	colm	7
+	synt	endif
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	11
+	synt	any
+	field	readingtl
+	line	82
+	colm	21
+	synt	any
+	field	set_contents
+	var	7
+	line	82
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L27
+	mark	L28
+	line	84
+	colm	7
+	synt	ifelse
+	mark	L29
+	pnull
+	var	2
+	line	84
+	colm	10
+	synt	any
+	null
+	unmark
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	14
+	synt	any
+	field	cancelbtn
+	line	86
+	colm	24
+	synt	any
+	field	set_label
+	str	14
+	line	86
+	colm	34
+	synt	any
+	invoke	1
+	goto	L30
+lab L29
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	14
+	synt	any
+	field	takequestbtn
+	line	89
+	colm	27
+	synt	any
+	field	set_label
+	str	15
+	line	89
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L31
+	pnull
+	pnull
+	var	0
+	line	90
+	colm	14
+	synt	any
+	field	cancelbtn
+	line	90
+	colm	24
+	synt	any
+	field	set_label
+	str	16
+	line	90
+	colm	34
+	synt	any
+	invoke	1
+lab L30
+	line	84
+	colm	7
+	synt	endifelse
+	unmark
+lab L28
+	pnull
+	line	92
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_setup
+	local	0,001000,self
+	local	1,000000,gui__Border
+	local	2,000000,gui__Label
+	local	3,000000,gui__TextButton
+	local	4,000000,gui__TextList
+	con	0,010000,12,163,151,172,145,075,066,060,060,054,065,060,060
+	con	1,010000,11,154,141,142,145,154,075,121,165,145,163,164
+	con	2,010000,9,162,145,163,151,172,145,075,157,156
+	con	3,010000,12,142,147,075,160,141,154,145,040,142,154,165,145
+	con	4,002000,3,500
+	con	5,010000,1,060
+	con	6,010000,4,061,060,060,045
+	con	7,010000,1,154
+	con	8,010000,3,065,060,045
+	con	9,010000,2,061,065
+	con	10,010000,7,061,060,060,045,055,070,060
+	con	11,010000,2,064,071
+	con	12,010000,1,143
+	con	13,010000,1,164
+	con	14,010000,15,142,147,075,167,150,151,164,151,163,150,040,142,154,165,145
+	con	15,010000,18,146,157,156,164,075,163,145,162,151,146,054,142,157,154,144,054,062,062
+	con	16,010000,8,146,147,075,167,150,151,164,145
+	con	17,010000,12,121,165,145,163,164,040,123,143,162,145,145,156
+	con	18,010000,7,065,060,045,055,061,066,060
+	con	19,010000,7,061,060,060,045,055,065,065
+	con	20,010000,3,061,065,060
+	con	21,010000,2,064,064
+	con	22,010000,18,146,157,156,164,075,163,145,162,151,146,054,142,157,154,144,054,061,070
+	con	23,010000,15,157,156,137,164,141,153,145,161,165,145,163,164,142,164,156
+	con	24,002000,2,60
+	con	25,010000,6,101,143,143,145,160,164
+	con	26,010000,8,065,060,045,040,053,040,061,060
+	con	27,010000,12,157,156,137,143,141,156,143,145,154,142,164,156
+	con	28,010000,7,104,145,143,154,151,156,145
+	con	29,010000,2,070,065
+	con	30,010000,6,061,060,060,045,055,066
+	con	31,010000,8,061,060,060,045,055,061,065,060
+	con	32,010000,20,142,147,075,166,145,162,171,040,154,151,147,150,164,040,171,145,154,154,157,167
+	con	33,010000,14,146,157,156,164,075,163,145,162,151,146,054,040,061,070
+	con	34,010000,6,121,165,145,163,164,040
+	con	35,010000,15,111,156,146,157,040,163,150,157,165,154,144,040,142,145,040
+	con	36,010000,5,150,145,162,145,056
+	declend
+	line	94
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	95
+	colm	11
+	synt	any
+	field	set_attribs
+	str	0
+	str	1
+	str	2
+	str	3
+	line	95
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	96
+	colm	11
+	synt	any
+	field	set_min_size
+	int	4
+	int	4
+	line	96
+	colm	24
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	97
+	colm	11
+	synt	any
+	field	border_1
+	var	1
+	line	97
+	colm	33
+	synt	any
+	invoke	0
+	line	97
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	98
+	colm	11
+	synt	any
+	field	border_1
+	line	98
+	colm	20
+	synt	any
+	field	set_pos
+	str	5
+	str	5
+	line	98
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	99
+	colm	11
+	synt	any
+	field	border_1
+	line	99
+	colm	20
+	synt	any
+	field	set_size
+	str	6
+	str	6
+	line	99
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	100
+	colm	11
+	synt	any
+	field	border_1
+	line	100
+	colm	20
+	synt	any
+	field	set_attribs
+	str	3
+	line	100
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	101
+	colm	11
+	synt	any
+	field	border_1
+	line	101
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	7
+	line	101
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	102
+	colm	11
+	synt	any
+	field	titlelbl
+	var	2
+	line	102
+	colm	32
+	synt	any
+	invoke	0
+	line	102
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	103
+	colm	11
+	synt	any
+	field	titlelbl
+	line	103
+	colm	20
+	synt	any
+	field	set_pos
+	str	8
+	str	9
+	line	103
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	104
+	colm	11
+	synt	any
+	field	titlelbl
+	line	104
+	colm	20
+	synt	any
+	field	set_size
+	str	10
+	str	11
+	line	104
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	105
+	colm	11
+	synt	any
+	field	titlelbl
+	line	105
+	colm	20
+	synt	any
+	field	set_align
+	str	12
+	str	13
+	line	105
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	106
+	colm	11
+	synt	any
+	field	titlelbl
+	line	106
+	colm	20
+	synt	any
+	field	set_draw_border
+	line	106
+	colm	36
+	synt	any
+	invoke	0
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	107
+	colm	11
+	synt	any
+	field	titlelbl
+	line	107
+	colm	20
+	synt	any
+	field	set_attribs
+	str	14
+	str	15
+	str	16
+	line	107
+	colm	32
+	synt	any
+	invoke	3
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	108
+	colm	11
+	synt	any
+	field	titlelbl
+	line	108
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	12
+	line	108
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	109
+	colm	11
+	synt	any
+	field	titlelbl
+	line	109
+	colm	20
+	synt	any
+	field	set_label
+	str	17
+	line	109
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	11
+	synt	any
+	field	border_1
+	line	110
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	110
+	colm	29
+	synt	any
+	field	titlelbl
+	line	110
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	111
+	colm	11
+	synt	any
+	field	takequestbtn
+	var	3
+	line	111
+	colm	41
+	synt	any
+	invoke	0
+	line	111
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	112
+	colm	24
+	synt	any
+	field	set_pos
+	str	18
+	str	19
+	line	112
+	colm	32
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	113
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	113
+	colm	24
+	synt	any
+	field	set_size
+	str	20
+	str	21
+	line	113
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	114
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	114
+	colm	24
+	synt	any
+	field	set_attribs
+	str	22
+	line	114
+	colm	36
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	0
+	line	115
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	115
+	colm	24
+	synt	any
+	field	connect
+	var	0
+	str	23
+	int	24
+	line	115
+	colm	32
+	synt	any
+	invoke	3
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	var	0
+	line	116
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	116
+	colm	24
+	synt	any
+	field	clear_toggles
+	line	116
+	colm	38
+	synt	any
+	invoke	0
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	var	0
+	line	117
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	117
+	colm	24
+	synt	any
+	field	set_label
+	str	25
+	line	117
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	var	0
+	line	118
+	colm	11
+	synt	any
+	field	takequestbtn
+	line	118
+	colm	24
+	synt	any
+	field	set_internal_alignment
+	str	12
+	line	118
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	119
+	colm	11
+	synt	any
+	field	border_1
+	line	119
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	119
+	colm	29
+	synt	any
+	field	takequestbtn
+	line	119
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	11
+	synt	any
+	field	cancelbtn
+	var	3
+	line	120
+	colm	38
+	synt	any
+	invoke	0
+	line	120
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	121
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	121
+	colm	21
+	synt	any
+	field	set_pos
+	str	26
+	str	19
+	line	121
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	122
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	122
+	colm	21
+	synt	any
+	field	set_size
+	str	20
+	str	21
+	line	122
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	123
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	123
+	colm	21
+	synt	any
+	field	set_attribs
+	str	22
+	line	123
+	colm	33
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	0
+	line	124
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	124
+	colm	21
+	synt	any
+	field	connect
+	var	0
+	str	27
+	int	24
+	line	124
+	colm	29
+	synt	any
+	invoke	3
+	unmark
+lab L30
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	125
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	125
+	colm	21
+	synt	any
+	field	clear_toggles
+	line	125
+	colm	35
+	synt	any
+	invoke	0
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	0
+	line	126
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	126
+	colm	21
+	synt	any
+	field	set_label
+	str	28
+	line	126
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	var	0
+	line	127
+	colm	11
+	synt	any
+	field	cancelbtn
+	line	127
+	colm	21
+	synt	any
+	field	set_internal_alignment
+	str	12
+	line	127
+	colm	44
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	0
+	line	128
+	colm	11
+	synt	any
+	field	border_1
+	line	128
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	128
+	colm	29
+	synt	any
+	field	cancelbtn
+	line	128
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	129
+	colm	11
+	synt	any
+	field	readingtl
+	var	4
+	line	129
+	colm	36
+	synt	any
+	invoke	0
+	line	129
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	130
+	colm	11
+	synt	any
+	field	readingtl
+	line	130
+	colm	21
+	synt	any
+	field	set_pos
+	str	8
+	str	29
+	line	130
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	131
+	colm	11
+	synt	any
+	field	readingtl
+	line	131
+	colm	21
+	synt	any
+	field	set_size
+	str	30
+	str	31
+	line	131
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	11
+	synt	any
+	field	readingtl
+	line	132
+	colm	21
+	synt	any
+	field	set_align
+	str	12
+	str	13
+	line	132
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	133
+	colm	11
+	synt	any
+	field	readingtl
+	line	133
+	colm	21
+	synt	any
+	field	set_draw_border
+	line	133
+	colm	37
+	synt	any
+	invoke	0
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	134
+	colm	11
+	synt	any
+	field	readingtl
+	line	134
+	colm	21
+	synt	any
+	field	set_attribs
+	str	32
+	str	33
+	line	134
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	135
+	colm	11
+	synt	any
+	field	readingtl
+	line	135
+	colm	21
+	synt	any
+	field	set_contents
+	pnull
+	str	34
+	str	35
+	str	36
+	line	135
+	colm	35
+	synt	any
+	llist	3
+	line	135
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	136
+	colm	11
+	synt	any
+	field	border_1
+	line	136
+	colm	20
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	136
+	colm	29
+	synt	any
+	field	readingtl
+	line	136
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L42
+	mark	L43
+	pnull
+	var	0
+	line	137
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	137
+	colm	20
+	synt	any
+	field	border_1
+	line	137
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	pnull
+	line	138
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog_initially
+	local	0,001000,self
+	declend
+	line	140
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	141
+	colm	11
+	synt	any
+	field	gui__Dialog
+	line	141
+	colm	23
+	synt	any
+	field	initially
+	line	141
+	colm	33
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	142
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	143
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialog
+	local	0,001000,quest
+	local	1,001000,is_run_quest
+	local	2,001000,border_1
+	local	3,001000,cancelbtn
+	local	4,001000,titlelbl
+	local	5,001000,user_choice
+	local	6,001000,takequestbtn
+	local	7,001000,readinglbl
+	local	8,001000,readingtl
+	local	9,001000,win
+	local	10,001000,is_open
+	local	11,001000,owning_dialog
+	local	12,001000,child_dialogs
+	local	13,001000,focus
+	local	14,001000,unique_flag
+	local	15,001000,re_process_flag
+	local	16,001000,buffer_win
+	local	17,001000,min_width
+	local	18,001000,min_height
+	local	19,001000,click_count
+	local	20,001000,double_click_delay
+	local	21,001000,repeat_delay
+	local	22,001000,repeat_rate
+	local	23,001000,prev_x
+	local	24,001000,prev_y
+	local	25,001000,prev_time
+	local	26,001000,prev_event
+	local	27,001000,is_blocked_flag
+	local	28,001000,resize_attrib
+	local	29,001000,drag_gesture_x
+	local	30,001000,drag_gesture_y
+	local	31,001000,curr_drag
+	local	32,001000,tried_drag
+	local	33,001000,pointer_component
+	local	34,001000,pointer_stack
+	local	35,001000,invokes
+	local	36,001000,all_valid
+	local	37,001000,tooltip_ticker
+	local	38,001000,tooltip_last_obj
+	local	39,001000,tooltip_state
+	local	40,001000,tooltip_start_time
+	local	41,001000,tooltip_end_time
+	local	42,001000,tooltip_start_delay
+	local	43,001000,tooltip_end_delay
+	local	44,001000,tooltip_continue_time
+	local	45,001000,tooltip_continue_delay
+	local	46,001000,tooltip_win
+	local	47,001000,tooltip_x
+	local	48,001000,tooltip_y
+	local	49,001000,tooltip_w
+	local	50,001000,tooltip_h
+	local	51,001000,x_spec
+	local	52,001000,y_spec
+	local	53,001000,w_spec
+	local	54,001000,h_spec
+	local	55,001000,x_align
+	local	56,001000,y_align
+	local	57,001000,x
+	local	58,001000,y
+	local	59,001000,w
+	local	60,001000,h
+	local	61,001000,parent_dialog
+	local	62,001000,attribs
+	local	63,001000,has_focus
+	local	64,001000,is_shaded_flag
+	local	65,001000,cwin
+	local	66,001000,cbwin
+	local	67,001000,accepts_focus_flag
+	local	68,001000,draw_border_flag
+	local	69,001000,tooltip
+	local	70,001000,parent
+	local	71,001000,children
+	local	72,001000,valid
+	local	73,001000,accel
+	local	74,001000,allow_drag_flag
+	local	75,001000,allow_drop_flag
+	local	76,001000,pointer
+	local	77,001000,ticker
+	local	78,001000,transparent
+	local	79,001000,auto_refresh
+	local	80,001000,listeners
+	local	81,000020,self
+	local	82,000020,clone
+	local	83,000000,QuestInvitationDialog__oprec
+	local	84,000000,QuestInvitationDialoginitialize
+	local	85,000000,gui__Dialog__oprec
+	local	86,000000,gui__Dialoginitialize
+	local	87,000000,gui__Component__oprec
+	local	88,000000,gui__Componentinitialize
+	local	89,000000,lang__Object__oprec
+	local	90,000000,lang__Objectinitialize
+	local	91,000000,util__SetFields__oprec
+	local	92,000000,util__SetFieldsinitialize
+	local	93,000000,util__Connectable__oprec
+	local	94,000000,util__Connectableinitialize
+	local	95,000000,QuestInvitationDialog__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	83
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	84
+	line	8
+	colm	72
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	85
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	86
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	83
+	line	10
+	colm	31
+	synt	any
+	field	gui__Dialog
+	var	85
+	line	10
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	11
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	87
+	line	11
+	colm	6
+	synt	any
+	null
+	unmark
+	var	88
+	line	11
+	colm	58
+	synt	any
+	invoke	0
+	line	11
+	colm	3
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	83
+	line	12
+	colm	31
+	synt	any
+	field	gui__Component
+	var	87
+	line	12
+	colm	47
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	13
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	89
+	line	13
+	colm	6
+	synt	any
+	null
+	unmark
+	var	90
+	line	13
+	colm	54
+	synt	any
+	invoke	0
+	line	13
+	colm	3
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	83
+	line	14
+	colm	31
+	synt	any
+	field	lang__Object
+	var	89
+	line	14
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	15
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	91
+	line	15
+	colm	6
+	synt	any
+	null
+	unmark
+	var	92
+	line	15
+	colm	60
+	synt	any
+	invoke	0
+	line	15
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	83
+	line	16
+	colm	31
+	synt	any
+	field	util__SetFields
+	var	91
+	line	16
+	colm	48
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	17
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	93
+	line	17
+	colm	6
+	synt	any
+	null
+	unmark
+	var	94
+	line	17
+	colm	64
+	synt	any
+	invoke	0
+	line	17
+	colm	3
+	synt	endif
+	unmark
+lab L13
+	pnull
+	pnull
+	var	83
+	line	18
+	colm	31
+	synt	any
+	field	util__Connectable
+	var	93
+	line	18
+	colm	50
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L14
+	pnull
+	var	81
+	var	95
+	line	20
+	colm	40
+	synt	any
+	keywd	null
+	var	83
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	line	20
+	colm	39
+	synt	any
+	invoke	83
+	line	20
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	81
+	line	21
+	colm	7
+	synt	any
+	field	__s
+	var	81
+	line	21
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	pnull
+	pnull
+	var	81
+	line	22
+	colm	7
+	synt	any
+	field	__m
+	line	22
+	colm	11
+	synt	any
+	field	initially
+	var	81
+	line	22
+	colm	21
+	synt	any
+	invoke	1
+	line	22
+	colm	28
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	line	22
+	colm	30
+	synt	any
+	pfail
+lab L18
+	unmark
+lab L16
+	mark	L19
+	mark	L20
+	var	81
+	line	23
+	colm	3
+	synt	any
+	pret
+lab L20
+	synt	any
+	pfail
+	unmark
+lab L19
+	pnull
+	line	24
+	colm	1
+	synt	any
+	pfail
+	end
+proc QuestInvitationDialoginitialize
+	local	0,000000,QuestInvitationDialog__oprec
+	local	1,000000,QuestInvitationDialog__methods
+	local	2,000000,QuestInvitationDialog_component_setup
+	local	3,000000,QuestInvitationDialog_end_dialog
+	local	4,000000,QuestInvitationDialog_init_dialog
+	local	5,000000,QuestInvitationDialog_on_cancelbtn
+	local	6,000000,QuestInvitationDialog_on_takequestbtn
+	local	7,000000,QuestInvitationDialog_set_label
+	local	8,000000,QuestInvitationDialog_init_quest
+	local	9,000000,QuestInvitationDialog_setup
+	local	10,000000,QuestInvitationDialog_initially
+	local	11,000000,gui__Dialog_invoke_validate
+	local	12,000000,gui__Dialog_needs_validate
+	local	13,000000,gui__Dialog_is_shaded
+	local	14,000000,gui__Dialog_is_unshaded
+	local	15,000000,gui__Dialog_is_hidden
+	local	16,000000,gui__Dialog_is_unhidden
+	local	17,000000,gui__Dialog_block
+	local	18,000000,gui__Dialog_unblock
+	local	19,000000,gui__Dialog_raise
+	local	20,000000,gui__Dialog_get_click_count
+	local	21,000000,gui__Dialog_compute_absolutes
+	local	22,000000,gui__Dialog_change_pointer
+	local	23,000000,gui__Dialog_restore_pointer
+	local	24,000000,gui__Dialog_show_child
+	local	25,000000,gui__Dialog_show_modeless
+	local	26,000000,gui__Dialog_show_modal
+	local	27,000000,gui__Dialog_get_win
+	local	28,000000,gui__Dialog_resize_win
+	local	29,000000,gui__Dialog_init
+	local	30,000000,gui__Dialog_open_win
+	local	31,000000,gui__Dialog_close_win
+	local	32,000000,gui__Dialog_set_min_size
+	local	33,000000,gui__Dialog_get_buffer_win
+	local	34,000000,gui__Dialog_set_unique
+	local	35,000000,gui__Dialog_clear_unique
+	local	36,000000,gui__Dialog_set_focus
+	local	37,000000,gui__Dialog_clear_focus
+	local	38,000000,gui__Dialog_display
+	local	39,000000,gui__Dialog_show
+	local	40,000000,gui__Dialog_bevel_dispose
+	local	41,000000,gui__Dialog_dispose
+	local	42,000000,gui__Dialog_consume_same
+	local	43,000000,gui__Dialog_process_event
+	local	44,000000,gui__Dialog_process_normal
+	local	45,000000,gui__Dialog_tooltip_init
+	local	46,000000,gui__Dialog_tooltip_dispose
+	local	47,000000,gui__Dialog_set_tooltip_start_delay
+	local	48,000000,gui__Dialog_set_tooltip_end_delay
+	local	49,000000,gui__Dialog_set_tooltip_continue_delay
+	local	50,000000,gui__Dialog_show_tooltip
+	local	51,000000,gui__Dialog_hide_tooltip
+	local	52,000000,gui__Dialog_process_tooltip
+	local	53,000000,gui__Dialog_find_tooltip
+	local	54,000000,gui__Dialog_synch_pointer
+	local	55,000000,gui__Dialog_find_pointer_component
+	local	56,000000,gui__Dialog_process_dnd
+	local	57,000000,gui__Dialog_process_unique
+	local	58,000000,gui__Dialog_check_dnd
+	local	59,000000,gui__Dialog_handle_resize
+	local	60,000000,gui__Dialog_check_click_count
+	local	61,000000,gui__Dialog_get_focus_list
+	local	62,000000,gui__Dialog_find_next_focus
+	local	63,000000,gui__Dialog_find_previous_focus
+	local	64,000000,gui__Dialog_set_double_click_delay
+	local	65,000000,gui__Dialog_set_repeat_delay
+	local	66,000000,gui__Dialog_set_repeat_rate
+	local	67,000000,gui__Dialog_invoke_later
+	local	68,000000,gui__Dialog_do_invoke
+	local	69,000000,gui__Dialog_set_one
+	local	70,000000,gui__Component_set_tooltip
+	local	71,000000,gui__Component_get_tooltip
+	local	72,000000,gui__Component_set_pointer
+	local	73,000000,gui__Component_get_pointer
+	local	74,000000,gui__Component_get_x_reference
+	local	75,000000,gui__Component_get_y_reference
+	local	76,000000,gui__Component_get_w_reference
+	local	77,000000,gui__Component_get_h_reference
+	local	78,000000,gui__Component_get_cwin_reference
+	local	79,000000,gui__Component_get_cbwin_reference
+	local	80,000000,gui__Component_get_parent_dialog_reference
+	local	81,000000,gui__Component_fatal
+	local	82,000000,gui__Component_keeps
+	local	83,000000,gui__Component_do_shading
+	local	84,000000,gui__Component_accepts_focus
+	local	85,000000,gui__Component_unique_start
+	local	86,000000,gui__Component_unique_end
+	local	87,000000,gui__Component_handle_accel
+	local	88,000000,gui__Component_handle_event
+	local	89,000000,gui__Component_do_handle_event
+	local	90,000000,gui__Component_fire_icon_events_on_mouse
+	local	91,000000,gui__Component_toggle_is_shaded
+	local	92,000000,gui__Component_set_auto_refresh
+	local	93,000000,gui__Component_clear_auto_refresh
+	local	94,000000,gui__Component_set_transparent
+	local	95,000000,gui__Component_clear_transparent
+	local	96,000000,gui__Component_set_is_shaded
+	local	97,000000,gui__Component_clear_is_shaded
+	local	98,000000,gui__Component_toggle_draw_border
+	local	99,000000,gui__Component_set_draw_border
+	local	100,000000,gui__Component_clear_draw_border
+	local	101,000000,gui__Component_set_accepts_focus
+	local	102,000000,gui__Component_clear_accepts_focus
+	local	103,000000,gui__Component_attrib
+	local	104,000000,gui__Component_set_attribs
+	local	105,000000,gui__Component_set_attribs_list
+	local	106,000000,gui__Component_in_region
+	local	107,000000,gui__Component_got_focus
+	local	108,000000,gui__Component_get_parent_win
+	local	109,000000,gui__Component_get_parent_buffer_win
+	local	110,000000,gui__Component_lost_focus
+	local	111,000000,gui__Component_set_pos
+	local	112,000000,gui__Component_set_size
+	local	113,000000,gui__Component_set_align
+	local	114,000000,gui__Component_set_abs_coords
+	local	115,000000,gui__Component_set_abs_size
+	local	116,000000,gui__Component_set_accel
+	local	117,000000,gui__Component_get_accel
+	local	118,000000,gui__Component_get_parent
+	local	119,000000,gui__Component_set_parent
+	local	120,000000,gui__Component_get_parent_dialog
+	local	121,000000,gui__Component_set_parent_dialog
+	local	122,000000,gui__Component_firstly
+	local	123,000000,gui__Component_finally
+	local	124,000000,gui__Component_parse_pos
+	local	125,000000,gui__Component_resize
+	local	126,000000,gui__Component_generate_components
+	local	127,000000,gui__Component_find_focus
+	local	128,000000,gui__Component_find_accel
+	local	129,000000,gui__Component_invalidate
+	local	130,000000,gui__Component_all_components_valid
+	local	131,000000,gui__Component_validate
+	local	132,000000,gui__Component_child_validated
+	local	133,000000,gui__Component_add
+	local	134,000000,gui__Component_remove
+	local	135,000000,gui__Component_is_dialog_open
+	local	136,000000,gui__Component_get_children
+	local	137,000000,gui__Component_create_event_and_fire
+	local	138,000000,gui__Component_set_ticker
+	local	139,000000,gui__Component_stop_ticker
+	local	140,000000,gui__Component_retime_ticker
+	local	141,000000,gui__Component_is_ticking
+	local	142,000000,gui__Component_tick
+	local	143,000000,gui__Component_invoke_can_drag
+	local	144,000000,gui__Component_invoke_drag_event
+	local	145,000000,gui__Component_invoke_can_drop
+	local	146,000000,gui__Component_invoke_end_drag
+	local	147,000000,gui__Component_invoke_drag_reset
+	local	148,000000,gui__Component_can_drag
+	local	149,000000,gui__Component_drag_event
+	local	150,000000,gui__Component_can_drop
+	local	151,000000,gui__Component_end_drag
+	local	152,000000,gui__Component_drag_reset
+	local	153,000000,gui__Component_set_allow_drag
+	local	154,000000,gui__Component_clear_allow_drag
+	local	155,000000,gui__Component_set_allow_drop
+	local	156,000000,gui__Component_clear_allow_drop
+	local	157,000000,gui__Component_is_attrib
+	local	158,000000,lang__Object_clone
+	local	159,000000,lang__Object_to_string
+	local	160,000000,lang__Object_equals
+	local	161,000000,lang__Object_hash_code
+	local	162,000000,lang__Object_get_class_name
+	local	163,000000,lang__Object_get_id
+	local	164,000000,lang__Object_get_class
+	local	165,000000,lang__Object_is_instance
+	local	166,000000,util__SetFields_test_flag
+	local	167,000000,util__SetFields_as_attrib
+	local	168,000000,util__SetFields_int_val
+	local	169,000000,util__SetFields_int_vals
+	local	170,000000,util__SetFields_numeric_val
+	local	171,000000,util__SetFields_numeric_vals
+	local	172,000000,util__SetFields_cset_val
+	local	173,000000,util__SetFields_string_val
+	local	174,000000,util__SetFields_string_vals
+	local	175,000000,util__SetFields_set_fields
+	local	176,000000,util__SetFields_field_error
+	local	177,000000,util__Connectable_genlisteners
+	local	178,000000,util__Connectable_fire
+	local	179,000000,util__Connectable_connect
+	local	180,000000,util__Connectable_disconnect_fromlist
+	local	181,000000,util__Connectable_disconnect_all
+	local	182,000000,util__Connectable_disconnect
+	declend
+	line	26
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	var	127
+	var	128
+	var	129
+	var	130
+	var	131
+	var	132
+	var	133
+	var	134
+	var	135
+	var	136
+	var	137
+	var	138
+	var	139
+	var	140
+	var	141
+	var	142
+	var	143
+	var	144
+	var	145
+	var	146
+	var	147
+	var	148
+	var	149
+	var	150
+	var	151
+	var	152
+	var	153
+	var	154
+	var	155
+	var	156
+	var	157
+	var	158
+	var	159
+	var	160
+	var	161
+	var	162
+	var	163
+	var	164
+	var	165
+	var	166
+	var	167
+	var	168
+	var	169
+	var	170
+	var	171
+	var	172
+	var	173
+	var	174
+	var	175
+	var	176
+	var	177
+	var	178
+	var	179
+	var	180
+	var	181
+	var	182
+	line	27
+	colm	73
+	synt	any
+	invoke	181
+	line	27
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end

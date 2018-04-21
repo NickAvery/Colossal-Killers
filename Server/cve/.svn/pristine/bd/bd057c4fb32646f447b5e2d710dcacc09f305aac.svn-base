@@ -1,0 +1,59 @@
+Room {
+	name  SH_157
+	x 9.699999999999999
+	y 0
+	z 0.2
+	w 4.8
+	h 3.05
+	l 3.7
+	texture dat/nmsu/texsmall/walltest.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Table {
+			coords [12.5, 0, 1.55]
+			position 90
+			color brown
+			type office
+		}
+		Chair {
+			coords [11.7, 0, 1.95]
+			position 90
+			color very dark purplish red
+			type lab
+			movable true
+		}
+		Chair {
+			coords [11.7, 0, 1.15]
+			position 90
+			color very dark purplish red
+			type lab
+			movable true
+		}
+		Chair {
+			coords [13.3, 0, 1.55]
+			position 270
+			color very dark purplish red
+			type office
+			movable true
+		}
+	]
+	decorations [
+		Windowblinds {
+			coords [9.7, 1.5, 0.2]
+			angle 90
+			crod blue
+			cblinds very dark purplish brown
+			height 3.05
+			width 4.8
+		}
+	]
+	tools [
+		Pen {
+			Id 33
+			coords [12.3, 0.93, 1.95]
+			color blue
+			Angle 180
+		}
+	]
+}

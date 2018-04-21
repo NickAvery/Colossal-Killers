@@ -1,0 +1,67 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Stopping&nbsp; your program under GDB<dt> Summary
+<dd> Learn the basics of GDB's breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about stopping your program under GDB.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 8; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+The principal purposes of using a debugger are so that you can stop your 
+program before it terminates; or so that, if your program runs into trouble, you 
+can investigate and find out why.<br>
+<p>
+Inside GDB, your program may stop for any of several reasons, such as a signal, 
+a breakpoint, or reaching a new line after a GDB command such as step. You may 
+then examine and change variables, set new breakpoints or remove old ones, and 
+then continue execution. Usually, the messages shown by GDB provide ample 
+explanation of the status of your program--but you can also explicitly request 
+this information at any time using the "info program" command that displays 
+information about the status of your program: whether it is running or not, what 
+process it is, and why it stopped.
+<br>
+
+<dt> Quiz (8/10)
+<dd>
+<dl>
+<dt>Can you stop your program when it runs under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Are breakpoints one of the techniques used to stop your program under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Is step one of the commands used to stop your program under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you change your program variable values when it stopped under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you examine variable values when your program is stopped under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you set new breakpoints when the program is stopped under GDB?
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can delete breakpoints when the program is stopped under GDB? (Multiple Choice) 
+<dd> Yes (TRUE)
+<dd> No
+<dt>Does GDB provide any kind of messages after your program is stopped? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you check why your program is stopped? (Multiple Choice)
+<dd> Yes (TRUE) 
+<dd> No
+<dt>What command is used to check the status of the program while it is stopped under GDB? 
+<dd>info program 
+</dl>

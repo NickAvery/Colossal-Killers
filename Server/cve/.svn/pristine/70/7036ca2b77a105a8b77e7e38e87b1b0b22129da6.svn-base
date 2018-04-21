@@ -1,0 +1,11 @@
+Opening {
+	id 119
+	x 47.3
+	y 4.35
+	z 23
+	w 2.5
+	height 2.0
+	collide_in 0.8
+	plane 1
+	rooms [floor_2_corridor_main, floor_2_corridor_southwest]
+}

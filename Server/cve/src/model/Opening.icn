@@ -1,0 +1,86 @@
+#   --------------------------------
+#
+# class Opening is any cut-out in an instance of class Wall
+#  special case: class Door below which renders a moveable door
+#   in the opening.
+#
+class Opening (opMode,x, y, z, width, height, plane, rooms, collide,
+	       isRendered, delt, openness, open_angle, direction,id )
+   #(x,y,z, width, height, thickness, rooms, textures,
+   # rotator, openness, hinge_left, direction, delt, isRendered,
+   # plane, open_angle)
+
+   method name()
+   local nm, r
+      nm := id || ": "
+      every r := !rooms do {
+	 if not find("cooridoor", r.name ) then
+	     nm ||:= r.name || " "
+      }
+      return nm[1:-1]
+   end
+
+   method add_room(r)
+      put(rooms, r)
+   end
+
+   method other(room)  ## Opening
+      return room ~=== !rooms
+      write("(opening) other(",room.name,") failed")
+   end
+
+   method allows(px,pz)  ## Opening
+      if ( ( plane = 3 )            &        # z plane
+       ( x+0.06 < px < x + width-0.06 )   &
+       ( abs( z - pz ) < collide+ 0.10) ) then {
+	  return
+          }
+      if ( plane = 1 )            &        # x plane
+	 ( z+0.06 < pz < z + width-0.06 )   &
+	 ( abs( x - px ) < collide + 0.10) then
+	 return
+      fail
+   end
+
+   method render()  ## Opening
+   end
+
+   method print()
+      print_opening()
+   end
+
+   method print_opening()  ## Opening
+      local rm
+
+      printf(" opening  x,y,z,w,h,t  %6.2r  %6.2r  %6.2r  %6.2r  %6.2r  \n",
+                   x, y, z, width, height )
+ #     printf("        openness, direction delt  %6.2r %6.2r  %6.2r  \n",
+ #                                   openness, direction, delt )
+      write("        plane   ", plane )
+      write("        # rooms  ",*rooms)
+      every rm := !rooms do
+     write("                  room ", image(rm) )
+      write("  " )
+   end # method print_opening()
+
+initially(opMode, x_in, y_in, z_in, collide_in, wd_in)
+
+  # be sure x,y,z,w,h,t  are floats
+   self.opMode := opMode 
+   x   := x_in
+   y   := y_in
+   z   := z_in
+   width := wd_in
+
+   / width     := 1.0   # default = 1 meter
+   / height    := 2.0   # default = 2 meters
+   collide     := (\collide_in | 0.8)
+
+   rooms := []
+
+   plane := &null    # set to 1 for xplane 3 for zplane
+   delt := 0.0
+   openness := 1.0
+   direction := 999
+   open_angle := 999
+end # class Opening

@@ -1,0 +1,15 @@
+# makefile definitions for unicron
+
+# EXE the executable extension (.exe for windows)
+# COPY command to copy stuff (cp on *nix)
+# DEL command to delete stuff (rm on *nix)
+
+CC = @CC@
+CFLAGS = -Wall @CFLAGS@
+EXE = @EXE_FORMAT@
+COPY = @COPY_COMMAND@
+DEL = @DEL_COMMAND@
+
+# nothing to configure here yet
+UC=unicon
+UFLAGS=-c -u

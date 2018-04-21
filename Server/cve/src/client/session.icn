@@ -1,0 +1,1005 @@
+#
+#  session.icn - manage client sessions.
+#
+#  A "session" is a collaborative communication between 1 or more users.
+#  There are many types of sessions.
+#
+#  Global we assume: world (Model) and
+#  Global we provide: session (Login Session)
+#
+
+import gui
+import undo
+import lang
+
+$include "guih.icn"
+
+$include "../common/defaults.icn"
+
+global session, ide_file_contents, ide_msgbox_contents
+
+#has on and off values
+record IDE_Properties(IDEOwner,IDE_Tab,IDE_MsgBox,IDEFile,CIDE,PtyOwner,Lusers)
+
+#
+# The generic session class.  All sessions have a "name" (unique id).
+#
+class Session(name)
+end
+
+#
+#  Class LoginSession
+#
+#  In Model-View-Controller terms, this class is a Controller.
+#  Its role is to manage the network connection, and use that
+#  connection and the user interface (NSHDialog) to maintain
+#  the client Model (a subset of server's whole-CVE model) and
+#  update the View.
+#
+#  Note: this class manages a single primary TCP connection to
+#  the server directly; all traffic in our out on that primary
+#  connection is go to through this class.
+#
+#  Additional peer-to-peer or UDP connections may call for
+#  new classes, whose instances are managed by this one.
+class LoginSession:Session(uid, server, port, connID, commands, isP2P,
+			   listen_P2P_sock,
+	      p2pPort,
+              VoiceState,   # one of: Off, Local, or Private (or Groups?)
+              VoiceSession, # the Voice Session Handler
+	      WhoIsUpList,   # a list of those current avatars
+	      IDESession,
+              usersList,
+	      usersSet,
+	      reconnecting
+              )
+
+   method isuser(user)
+      return member(usersSet, user)
+   end
+
+   # check if u==s, is it that hard?
+   # "u" might be in the from of "name:status", that is the trick!
+   method sameuser(u,s)
+      u ? {
+	 =s
+	 if pos(0)| =":" then return
+	 }
+   end
+
+   method adduser(user)
+      if not member(usersSet, user) then {
+	 insert(usersSet, user)
+	 return
+	 }
+   end
+
+   method deluser(user)
+      if member(usersSet, user) then {
+	 delete(usersSet, user)
+	 return
+	 }
+   end
+
+   method get_list_of_users()
+      local L := []
+      every put(L, !usersSet)
+      return L
+   end
+
+   method get_users_status_list()
+      local L, u, av
+      L := []
+      every u := !usersSet do
+         if \(av := world.get_avatar(u)) then
+	    put(L, av.a_name||av.get_activity_status())
+	 else
+	    put(L, u)
+      return L
+   end
+
+
+
+   # should check for blanks in test_uid
+   method AssignUid( test_uid )
+      if *test_uid > 0 then {
+         uid := test_uid
+         return
+         }
+      else
+         fail
+   end
+
+   method NotLogged(usercmd)
+      if uid == "" & usercmd == "login" then
+         return
+      else
+         fail
+   end
+
+   method checkP2P(msg)
+      if find("P2P",msg) then {
+	 if find("don't",msg) then
+	    write("Your client is not P2P capable")
+	 else
+	    write("Your client is P2P capable")
+         }
+   end
+
+   #
+   # This is P2P handshake method.
+   #
+   method p2pHandshake(listen_P2P_sock)
+      local sock, p2p_sock, buffer, initTime
+      isP2P := "NO"
+      fail
+
+      if /listen_P2P_sock then {
+         listen_P2P_sock := open(":" || p2pPort, "nl") |
+          stop("localhost:", p2pPort, " ", image(listen_P2P_sock),
+          " P2P Open failed: ", sys_errstr(&errno))
+	 }
+   end
+
+   # connect to the server
+   method connect_server(userId, password)
+      local avat, message, message2, parsed, servStatus, userarglist,
+         listen_P2P_sock, session_connected
+
+      servStatus := ""
+      uid := userId
+
+      if *(\world).TAvatars > 1 & /reconnecting then {
+	 world.write_chat("System Error.  Multiple avatars.")
+	 fail
+	 }
+
+      if not (connect()) then {
+	 uid := ""
+	 (\ world).write_chat("Failed to connect to server " ||
+			      server || ":" || port)
+	 fail
+	 }
+
+      # get ACK or NAK from server. should block
+      if not (message := login(uid, password)) then {
+	 write("login failure for ", image(uid))
+	 fail
+	 }
+
+      (\ world).write_chat( message )
+
+      if parsed := commands.SplitArgs( message ) then {
+	 servStatus  := parsed[1] # ACK
+	 if servStatus == "Valid" then {
+	    (\ world).write_chat(  "Logged in as: "|| uid)
+	    userarglist := parsed[2:7] #Cmds.SplitArgs( userargs )
+	    p2pHandshake(listen_P2P_sock)
+
+            session_connected := 1
+	    # Now check versions with the server
+	    Write("\\version " || cve_version()) | {
+	       write("version write failed")
+	       fail
+	       }
+	    }
+	 else {
+	    while (\ world).write_chat(read(connID))
+	    disconnect()
+	    uid := ""
+	    fail
+	    }
+	 }
+      return
+   end
+
+   #
+   #  Are we connected to the network?  public method
+   #
+   method isUp()
+      if \connID then return "online"
+   end
+
+   method Read()
+   local s
+      if s := read(\connID) then return s
+   end
+
+   method Write(argv[])
+   local built := ""
+
+      case type(!argv) of {
+         "string": { while built ||:= pop(argv); built ||:= "\n" }
+         "list": {
+            argv := !argv
+            every built ||:= !argv || "\n"
+         }
+      }
+
+      #
+      # suffixing message(s) with \n explicitly, and using writes()
+      # for now, to make sure the \n is in the same packet as the msg.
+      #
+      return writes(\connID, built)
+   end
+
+   method connect()
+      (\ world).write_chat("connecting")
+      if connID := open( server || ":" || port, "n" ) then {
+	 (\ world).write_chat("connect OK")
+	 #
+	 # Successful connection. Add the network connection to
+	 # the client's list of "files" that select() reads from.
+	 #
+	 if find("N3Dispatcher", type(gui::dispatcher)) then
+	    gui::dispatcher.add_net(connID)
+	 return connID
+         }
+      (\ world).write_chat("connect failed")
+   end
+
+   method disconnect()
+      if \connID then {
+	 close( connID )
+	 if find("N3Dispatcher", type(gui::dispatcher)) then
+	    gui::dispatcher.del_net(connID)
+         connID := &null
+         return
+	 }
+   end
+
+   # this is for maintenance or for logging in
+   # using a hard coded mechanism so that you
+   # can create accounts etc.
+   method systemlogin()
+      local userid, passwd
+
+      userid := SYSTEM_ID
+      passwd := SYSTEM_PASS
+
+      return login( userid, passwd )
+   end
+
+   method login(userid, passwd)
+   local message, f, cauth
+      \userid | runerr(501, userid)
+      \passwd | runerr(501, passwd)
+
+      cauth := "-cvecypher" ||  cypher(userid) || " " || cypher(passwd)
+
+      if \connID then {
+	 (\ world).write_chat("logging in...")
+         Write("\\login " || cauth) |
+	    write("login write failed")
+
+	 (\ world).write_chat("waiting for reply...")
+         message := read(connID) | {
+	    write("login read failed")
+	    fail
+	    }
+
+	 (\ world).write_chat("server replied " || message)
+
+         if match("Valid", message) then {
+            if f := datopen(WDAT || PS || "lastlogin.dat", "w") then {
+               write(f, userid, "\n", server || ":" || port)
+               close(f)
+	       }
+            #rememberUser(userid)
+	    }
+         return message
+      }
+      else
+         return "Failed"
+   end
+
+   method logout()
+      uid := ""
+      if \connID then {
+         Write("\\logout ")
+         delay(200)
+         return "Success"
+	 }
+      else
+         return "Failed"
+   end
+
+initially(new_srv, new_port)
+   server := (\new_srv | SERVER)
+   port := (\new_port | DEFAULT_PORT)
+   commands := Commands()
+   uid := ""
+   session := self
+   isP2P := "NO"
+   p2pPort := P2P_LISTEN_PORT
+   VoiceState := "Off"
+   VoiceSession := &null
+   usersList := [ ]
+   usersSet:=set()
+end
+
+#
+# Collaborative IDESession Class
+#
+class IDESession(dialog ,
+   shift_pressed,
+   Tidesession,
+   ide_filename,
+   ide_new_filename,
+   counter,
+   Table_Index,
+   IDECounter,
+   Ownertab,
+   OwnerMsg,
+   index_counter
+   )
+
+   #
+   #Change TextList background to white (not collaborative)
+   #and unlock the keyboard
+   #
+   method White_Background_And_Unlock(T)
+      if \T then {
+         T.IDE_Tab.set_attribs("bg=white")
+         T.IDE_Tab.init()
+         T.IDE_Tab.display()
+         T.IDE_Tab.set_accepts_focus()
+         T.IDE_Tab.mouse_locked := T.IDE_Tab.scroll_locked := &null
+
+         T.IDE_MsgBox.set_attribs("bg=white")
+         T.IDE_MsgBox.init()
+         T.IDE_MsgBox.display()
+         T.IDE_MsgBox.set_accepts_focus()
+         T.IDE_MsgBox.mouse_locked := T.IDE_MsgBox.scroll_locked := &null
+         }
+   end
+
+   method Swap_User_Owner(index,user)
+      local Temp,j,found
+         if \Tidesession[index] then {
+            Temp := Tidesession[index].IDEOwner
+            Tidesession[index].IDEOwner := user
+            put(Tidesession[index].Lusers,Temp)
+            j := 1
+            found := 0
+            while (j<= *Tidesession[index].Lusers) & (found=0) do {
+               if Tidesession[index].Lusers[j]==user then found := 1
+               j +:= 1
+               }
+            if found = 1 then {
+               delete(Tidesession[index].Lusers,j-1)
+               }
+            }
+   end
+
+  method Transfer_IDE_Lock(args)
+     local pos,index,user,user_me
+
+     pos := find(" ",args)
+     index := integer(args[1:pos])
+     user := args[pos+1:0]
+     user_me := world.nsh_dialog.user_me
+     if user==user_me then {
+        Unlock_IDE(Tidesession[index].IDE_Tab, Tidesession[index].IDE_MsgBox)
+        world.nsh_dialog.Remove_Owner_In_Tree(Tidesession[index].IDEFile,
+                                              Tidesession[index].IDEOwner)
+        Swap_User_Owner(index,user)
+        if \Tidesession[index] then Tidesession[index].CIDE := "on"
+        }
+     else{
+        world.nsh_dialog.Remove_Owner_In_Tree(Tidesession[index].IDEFile,
+                                              Tidesession[index].IDEOwner)
+        world.nsh_dialog.Swap_User_Owner_In_Tree(Tidesession[index].IDEFile,
+						 user)
+        Swap_User_Owner(index,user)
+        }
+   end
+
+   #
+   #Ulock the IDE because this user is the owner now
+   #
+   method Unlock_IDE(T,M)
+
+   if \T then {
+      T.init()
+      T.display()
+      T.set_accepts_focus()
+      T.mouse_locked := &null
+      T.scroll_locked := &null
+      }
+   if \M then {
+      	M.init()
+      	M.display()
+      	M.set_accepts_focus()
+        M.mouse_locked := &null
+        M.scroll_locked := &null
+      }
+   end
+
+   #
+   #Lock IDE file
+   #
+   method Lock_IDE(Tab, Msg)
+
+     if \Tab then {
+       	Tab.init()
+        Tab.has_focus := &null
+        Tab.invalidate()
+       	Tab.clear_accepts_focus()
+        Tab.mouse_locked := 1
+        Tab.scroll_locked := 1
+      }
+     if \Msg then {
+       	Msg.init()
+        Msg.has_focus := &null
+        Msg.invalidate()
+       	Msg.clear_accepts_focus()
+        Msg.mouse_locked := 1
+        Msg.scroll_locked := 1
+      }
+   end
+
+   #
+   # Transfer file lock into another user
+   #
+   method Change_IDE_Owner(user,index)
+      local Temp,j,found
+
+      Lock_IDE(Tidesession[index].IDE_Tab, Tidesession[index].IDE_MsgBox)
+      Swap_User_Owner(index,user)
+      world.nsh_dialog.Swap_User_Owner_In_Tree(Tidesession[index].IDEFile,user)
+      if \Tidesession[index] then {
+	 Tidesession[index].CIDE := "off"
+	 }
+   end
+   #
+   #Swap IDE table elemnt i with the last element
+   #
+   method Swap(i)
+      local Temp
+
+      Temp := Tidesession[Table_Index]
+      Tidesession[Table_Index] := Tidesession[i]
+      Tidesession[i] := Temp
+   end
+
+   #
+   #remove user who closed the file from the IDE table
+   #
+   method Remove_User_From_List(args)
+   local pos,counter,user,j,found
+
+      pos := find(" ",args)
+       counter := integer(args[1:pos])
+       user := args[pos+1:0]
+       j := 1
+       found := 0
+       if \Tidesession[counter] then {
+       	while (j<= *Tidesession[counter].Lusers) & (found=0) do {
+           if Tidesession[counter].Lusers[j]==user then {
+              found := 1
+                }
+           j +:= 1
+       	} #end while
+      	if found = 1 then {
+           delete(Tidesession[counter].Lusers,j-1)
+	   world.nsh_dialog.Delete_Node_From_Tree(
+		idesession.Tidesession[counter].IDEFile, user, 2)
+         }
+        }
+   end
+
+   #
+   #Delete user entry from Tidesession table
+   #
+   method Delete_Tidesession_Entry(table_length,counter)
+       local target := 0
+
+       if (table_length>1)&(counter~=table_length) then { #No need to swap
+           Swap(counter)
+           target := 1
+      	   }
+       delete(Tidesession,Table_Index)
+       Table_Index := Table_Index-1
+   end
+
+#
+#Delete_File_IDESession
+# If user closed the collaborative file immediately remove his entry
+# from the Tidesession
+#
+  method Delete_File_IDESession(counter,user_me,remove_entry)
+    	local i,found,j,owner,table_length,target
+
+
+      	table_length := Table_Index
+      	if \Tidesession[counter] then {
+	    world.nsh_dialog.Delete_Node_From_Tree(
+		idesession.Tidesession[counter].IDEFile, user_me, 1)
+            if Tidesession[counter].IDEOwner==user_me then {
+		Delete_Tidesession_Entry(table_length,counter)
+             }
+           else{#the user who close the file is not the owner
+             if \remove_entry=1 then {
+                 Delete_Tidesession_Entry(table_length,counter)
+               }
+             else{
+                 j := 1
+                 found := 0
+                 while (j <= *Tidesession[counter].Lusers) & (found=0) do {
+           	    if Tidesession[counter].Lusers[j]==user_me then {
+              	        found := 1
+                      }
+                    j +:= 1
+                  } #end while
+                if found = 1 then {
+         	    delete(Tidesession[counter].Lusers,j-1)
+                    if  (*Tidesession[counter].Lusers =0) then {
+		       # if it's empty make background white
+                        Delete_Tidesession_Entry(table_length,counter)
+                      }
+                  }
+                }
+             }
+        }
+  end
+
+#
+# Closed_File_Delete_IDE_Session()
+# If Owner closed the file all slave users must end the collaboration
+# If the user was the only user in the collaboration and he closed the
+# file, we send to the owner to close the collaboration
+#
+method Closed_File_Delete_IDE_Session(args)
+     local i,found,j,owner,table_length,user,counter
+
+     counter := integer(args)
+     table_length := Table_Index
+     if \Tidesession[counter] then {
+        world.nsh_dialog.Delete_Node_From_Tree(
+		idesession.Tidesession[counter].IDEFile,,1)
+        White_Background_And_Unlock(Tidesession[counter])
+           if (table_length>1)&(counter~=table_length) then { #No need to do swap if
+               Swap(counter)
+      	     }
+        delete(Tidesession,Table_Index)
+        Table_Index := Table_Index-1
+       }
+end
+
+#
+#Delete_User_IDESession
+#If user logged out end the collaboration session
+#
+   method Delete_User_IDESession(args)
+   local i := 1,found,j,owner,table_length,user,target
+
+       user := args
+       while i<=Table_Index do {
+           found := 0
+           j := 1
+           target := 0
+           if \Tidesession[i] then {
+             if Tidesession[i].IDEOwner ~== user then {
+               while (j<= *Tidesession[i].Lusers) & (found=0) do {
+                   if Tidesession[i].Lusers[j]==user then {
+                     found := 1
+                   }
+                   j +:= 1
+               } #end while
+             if found = 1 then {
+               delete(Tidesession[i].Lusers,j-1)
+               if  \Tidesession[i] then {
+                  if  (*Tidesession[i].Lusers =0) then {
+		     # if it's empty make background white
+              	     world.nsh_dialog.Delete_Node_From_Tree(
+				   idesession.Tidesession[i].IDEFile,,1)
+                     White_Background_And_Unlock(Tidesession[i])
+                     if (Table_Index > 1)&(Table_Index ~= i) then {
+			  #No need to swap
+                          Swap(i)
+                         target := 1
+             	        }
+                     delete(Tidesession,Table_Index)
+                     Table_Index := Table_Index-1
+                }
+               else{#List of users not empty
+              	  world.nsh_dialog.Delete_Node_From_Tree(
+			idesession.Tidesession[i].IDEFile, user, 2)
+                 }
+                }
+               }
+              }
+              else{              # who logged out is the owner
+              if  \Tidesession[i] then {
+                  world.nsh_dialog.Delete_Node_From_Tree(
+			  idesession.Tidesession[i].IDEFile, , 1)
+                  White_Background_And_Unlock(Tidesession[i])
+                  if (Table_Index > 1)&(Table_Index ~= i) then {
+			 #No need to do swap if
+                         Swap(i)
+                        target := 1
+             	    }
+                  delete(Tidesession,Table_Index)
+                  Table_Index := Table_Index-1
+              }
+             }
+           }
+           if target ~= 1 then {
+             i +:= 1
+            }
+         }# end while
+  end
+
+#
+# Add_User_To_IDE_Session
+# add the new invited user to the user list of all the clients
+#
+  method Add_User_To_IDE_Session(args)
+      local user_to_add,table_index, pos
+
+      pos := find(" ",args)
+      user_to_add := args[1:pos]
+      table_index := integer(args[pos+1:0])
+      if find(hostuser, user_to_add) then {
+         user_to_add ||:= "owner"
+         }
+      put(Tidesession[table_index].Lusers,user_to_add)
+      world.nsh_dialog.Add_Node_To_Tree(Tidesession[table_index].IDEFile,
+					user_to_add)
+  end
+#
+#Create_New_IDESession
+#create new element in Tidesession table
+#
+method Create_New_IDESession(table_index,owner,user,Ownertab, OwnerMsg, fileName,
+   CETL,user_me,Luser)
+
+   local new_colored_tab,foundok,ide_prop, cnum, lnum
+
+   /lnum := 1
+   /cnum := 1
+
+   if \Ownertab then {
+      Ownertab.set_attribs("bg=light yellow")
+      OwnerMsg.set_attribs("bg=light yellow")
+      Ownertab.init()
+      OwnerMsg.init()
+      #Attributes get set only when init() is called
+      Ownertab.display()
+      OwnerMsg.display()
+      if owner ~== user_me then {
+	 Ownertab.clear_accepts_focus()
+         Ownertab.mouse_locked := 1
+         Ownertab.scroll_locked := 1
+         OwnerMsg.clear_accepts_focus()
+         OwnerMsg.mouse_locked := 1
+         OwnerMsg.scroll_locked := 1
+         }
+      if /Tidesession[table_index] then { #has on and
+	 ide_prop := IDE_Properties(owner,Ownertab,OwnerMsg,fileName,CETL,owner,[])
+	 Tidesession[table_index] := ide_prop
+         }
+       if *\Luser>0 then {#add user list
+            Tidesession[table_index].Lusers := Luser
+           }
+       Table_Index := table_index
+       put(Tidesession[table_index].Lusers,user)
+       foundok := *Tidesession[table_index].Lusers
+       if foundok>1 then {
+          foundok := foundok+10
+           }
+       return foundok
+    }
+end
+#
+#Check who is the owner of the collaborative IDE file
+#
+method Check_Owner(user_me,file_name,counter)
+      local is_owner,i
+
+      i := 1
+      is_owner := 0
+      while (i <= counter) & (is_owner = 0) do {
+         if \Tidesession[i] then {
+             if (Tidesession[i].IDEOwner==user_me)&
+	        (Tidesession[i].IDEFile==file_name) then {
+		 #search for user in the users list
+              	 is_owner := 1
+                }
+           } #end if
+          i +:= 1
+       }#end while
+      return is_owner
+end
+
+#
+#Check if session already exist between these users
+#
+method Check_Session(invited_user,file_name,counter,which)
+      local found,i,j
+      i := 1
+
+      found := 0
+      while (i<= counter) & (found=0) do {
+         j := 1
+         if \Tidesession[i] then {
+    	     while (j<= *Tidesession[i].Lusers) &(found=0) do {
+           	if (Tidesession[i].Lusers[j]==invited_user) &
+                   (Tidesession[i].IDEFile==file_name) then {
+			 #search for user in the users list
+              		 found := 1
+               		}
+                if which = 2 then {
+                    if Tidesession[i].IDEFile==file_name then {
+			#search for user in the users list
+              		    found := 2
+                     }
+                 }
+                j +:= 1
+               } #end while
+           } #end if
+         i +:= 1
+      }#end while
+
+      return found
+end
+
+#
+#Invite_to_IDE()
+#Called from nshdlg to invite user to IDE session
+#
+method Invite_to_IDE(user_name,file_name,hostuser, sdp_flag)
+   #save tab to use it later
+   local lst_ln, cnum, lnum
+
+   lst_ln := ide.CurrentEditBox().get_last_line()
+   lnum := ide.CurrentEditBox().cursor_y
+   cnum := ide.CurrentEditBox().cursor_x
+
+   Ownertab := world.nsh_dialog.VCSC_tab.get_which_one().get_children()
+   OwnerMsg := Ownertab[2]
+   Ownertab := Ownertab[1]
+
+   ide.Check_shared_file_contents(Ownertab, OwnerMsg) # check tab contents
+   # get the contents of the file, if it's empty file_contents will be " "
+   if ide_file_contents=="" then {
+      ide_file_contents := "Empty" # No contents in the tab
+      }
+   world.nsh_dialog.write_to_chat_win("An IDE session invitation "||
+      "has been sent to "||user_name||".")
+
+   session.Write("\\CETLOpen "||mycompfont||" "||user_name||" "||file_name||
+      "|"||ide_file_contents||"@@"||ide_msgbox_contents||"$$"||hostuser||
+      " "||sdp_flag||" "||lst_ln||" "||lnum||" "||cnum)
+end
+
+   #
+   # Receive_CETL_Event
+   # Handle Keyboard and mouse events for the user
+   #
+method Receive_CETL_Event(args,event_type,obj_type)
+      local mydest,s,pos,user,e,tmp,x_mouse,y_mouse,ev_type,ev_param,mouse_ev,
+         coord_value,new_scrol_event,scroll_only,L,scrol_type,table_index,
+         tab_obj, pos1, tindex
+
+   scroll_only := 0
+
+   args ? {
+      table_index := integer(tab(find(" ")))
+      move(1)
+      tmp := tab(0)
+      }
+
+   if \Tidesession[table_index] then {
+      if \Tidesession[table_index].IDE_Tab then {
+         if obj_type = 1 then mydest := Tidesession[table_index].IDE_Tab
+         else mydest := Tidesession[table_index].IDE_MsgBox
+         if event_type = 0 then {#event
+            if find("&", args) then {
+               pos1 := find("&",args)
+               e := args[pos1+1:0]
+               }
+            else {
+               args ? {
+                  tindex := tab(find(" "))
+                  move(1)
+                  e := tab(0)
+                  }
+               }
+            }
+         if event_type = 2 then {#keyboard
+            tmp ? {
+               e := tab(find(" "))
+               move(1)
+               shift_pressed := integer(tab(0))
+               }
+            }
+         else if event_type = 1 then { #mouse
+            tmp ? {
+               e := integer(tab(find(" ")))
+               move(1)
+               x_mouse := integer(tab(find(" ")))
+               move(1)
+               y_mouse := integer(tab(0))
+               }
+
+            Enqueue(dialog.parent_dialog.win,e ,
+                    x_mouse, y_mouse,"",0) #pending mouse to event queue
+            L := Pending(dialog.parent_dialog.win)
+            every 1 to 3 do
+               push(L, pull(L))
+            Event(dialog.parent_dialog.win)
+            }# end mouse else
+         else if event_type = 3 then { #scroll
+            tmp ? {
+               coord_value := tab(find(" "))
+               move(1)
+               ev_type := integer(tab(find(" ")))
+               move(1)
+               ev_param := integer(tab(find(" ")))
+               move(1)
+               scrol_type := tab(0)
+               }
+            if scrol_type =="v" then {
+               new_scrol_event := util::Event(s,ev_type,ev_param)
+               new_scrol_event.set_source(mydest.vsb)
+               mydest.on_vsb(new_scrol_event,coord_value,1)
+               }
+            else {
+               new_scrol_event := util::Event(s,ev_type,ev_param)
+               new_scrol_event.set_source(mydest.hsb)
+               mydest.on_hsb(new_scrol_event,coord_value,1)
+               }
+            scroll_only := 1
+            } # end scroll else
+         if scroll_only = 0 then {
+            e := integer(e)
+            if event_type = 2 then {#keyboard
+               if shift_pressed = 1 then {
+                  shift_pressed := 0
+                  Enqueue(dialog.parent_dialog.win,e ,0 ,0,"s",0)
+                  #unicon/ipl/gprocs/Enqueue.icn
+                  L := Pending(dialog.parent_dialog.win)
+                  every 1 to 3 do
+                     push(L, pull(L))
+                  Event(dialog.parent_dialog.win)
+                  }
+            else { #keyboard without shift_pressed
+               Enqueue(dialog.parent_dialog.win,e ,0 ,0,"",0)
+               L := Pending(dialog.parent_dialog.win)
+               every 1 to 3 do
+                  push(L, pull(L))
+               Event(dialog.parent_dialog.win)
+               }
+            }
+            
+         if e === (&lpress | &rpress | &mpress|-1) then#-1
+            mydest.handle_press(e,1)
+         else if e === (&ldrag | &rdrag | &mdrag|-12) then #-12
+            mydest.handle_drag(e,1)
+         else if e === (&lrelease | &rrelease | &mrelease|-4) then #-4
+            mydest.handle_release(e,1)
+         else if e =="^^" then #this is space
+            mydest.handle_default(" ")
+         else {
+            case e of {
+               Key_Home 		: mydest.handle_key_home(e)
+               Key_End 			: mydest.handle_key_end(e)
+               Key_PgUp 		: mydest.handle_key_page_up(e)
+               Key_PgDn 		: mydest.handle_key_page_down(e)
+               Key_Up 			: mydest.handle_key_up(e)
+               Key_Down 		: mydest.handle_key_down(e)
+               Key_Left 		: mydest.handle_key_left(e)
+               Key_Right 		: mydest.handle_key_right(e)
+               "\b" |"\\b"|"\"\\b\""	: mydest.handle_delete_left(e)
+               "\r" |"\\r"| "\"\\r\""|"\l"|"\\l": mydest.handle_return(e)
+               "delLine"|"\^k" |"\\^k"|"\"\\^k\""	: mydest.handle_delete_line(e)
+               "\^a"|"\\^a"|"\"\\^a\""|"\"\\x01\""|"\\x01":
+               mydest.handle_select_all(e)
+               "\^e"|"\\^e" 		: mydest.handle_end_of_line(e)
+               "\d" | "\^d" |"\"\\^d\""|"\"\\d\""|"\\^d"|"\\d":
+               mydest.handle_delete_right(e)
+               "\^x" |"\\^x"|"\"\\^x\""|"\"\\x18\""|"\\x18"  :
+               mydest.handle_cut(e)
+               "\^c"|"\\^c"|"\"\\^c\""|"\"\\x03\""|"\\x03"  :
+               mydest.handle_copy(e)
+               "\^v"|"\\^v"|"\"\\^v\""|"\"\\x16\""|"\\x16"  :
+               mydest.handle_paste(e)
+               "\^z"|"\\^z"|"\"\\^z\""|"\"\\x1a\""|"\\x1a"  :
+               mydest.handle_undo(e)
+               "\^y"|"\\^y"|"\"\\^y\""|"\"\\x19\""|"\\x19"  :
+               mydest.handle_redo(e)
+               default : {
+                  e := string(e)
+                  if e ~== "-162" &
+                     e ~== "-161" then #& e ~== "0" 
+                     mydest.handle_default(e)
+                  } # this will handle all other
+                    # things inclding keyboard typing
+                    # and movement of the mouse
+               } # end case
+            }# end then
+            }
+            }
+          }
+   end
+
+   #
+   # CETL_Received_Accept
+   # Other user accept to open CETL tab
+   #
+   method CETL_Received_Accept(args)
+      local pos,owner,oldwindow,file_name,ide_prop,slave,user_me,found,
+         idesession_node, fsize, lnum, cnum, lst_ln
+
+      args ? {
+         fsize := tab(find(" "))
+         move(1)
+         owner := tab(find(" "))
+         move(1)
+         index_counter := integer(tab(find(" ")))
+         move(1)
+         file_name := tab(find(" "))
+         move(1)
+         slave := tab(find(" ")) # the other partner, who accepted my invite
+         move(1)
+         sdp_flag := tab(find(" ")) # software development project
+         move(1)
+         lst_ln := integer(tab(find(" ")))
+         move(1)
+         lnum := integer(tab(find(" ")))
+         move(1)
+         cnum := integer(tab(0))
+         }
+      myide_sessions +:= 1
+      idesession_node := view.ide_session_tree.get_root_node()
+      idesession_node.label := "IDE Sessions("||myide_sessions||")"
+
+      user_me := world.nsh_dialog.user_me
+      found := Create_New_IDESession(index_counter, owner, slave, Ownertab,
+				   OwnerMsg, file_name, "on", user_me)
+      world.nsh_dialog.Create_Session_Tree(owner,slave,user_me,file_name,found)
+   end
+
+   # CETL_SetFileContents
+   # get the file contents to put them in the editableTextList
+   #
+   method CETL_SetFileContents(FileBuffer)#read file and save it in string
+       local L := [], line_contents := ""
+
+       ide_file_contents := []
+       FileBuffer ? {
+          while not(pos(0)) do {
+             line_contents := tab(find("X$~$X"))
+             put(L,line_contents)
+             move(5)
+             }
+          }
+       ide_file_contents := L
+   end
+
+   #read msgbox and save it in string
+   method CETL_SetMsgBoxContents(MsgBoxBuffer, flag)
+       local M := [],i := 0,pos1 := 0,pos2 := 1, line_contents := "",pos2str
+
+       ide_msgbox_contents := []
+       if flag = 0 then pos2str := "\x1e"
+       else pos2str := "^n"
+       pos1 := find(&ascii[31],MsgBoxBuffer)
+
+       every pos2:= find(pos2str, MsgBoxBuffer) do { #&ascii[31]
+          if flag = 0 then pos1 -:= 1
+          line_contents := MsgBoxBuffer[pos1+2:pos2]
+          if i>0 then put(M,line_contents)
+          pos1 := pos2
+          i +:= 1
+        }
+        ide_msgbox_contents := M
+   end
+
+initially()
+   counter := IDECounter := index_counter := shift_pressed := Table_Index:=0
+   ide_filename := "None"
+   Tidesession := table()
+end

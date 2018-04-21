@@ -1,0 +1,853 @@
+# quest.icn - CVE quest library code
+#
+# Author: Jafar Al Gharaibeh
+# Date: 02/14/09
+#
+
+$define DEBUG 1
+
+#
+# establishes and returns an http connection to "pagelink". or fails
+#
+procedure connect_http(pagelink)
+   local con
+   \pagelink | fail
+   if not (con := open(pagelink, "m")) then {
+      DEBUG("can't open: ", image(pagelink))
+      fail
+      }
+   if con["Status-Code"]>=300 then {   # failed to connect to homepage
+      DEBUG("Error:", con["Status-Code"],"  can't access page: ", pagelink," ",
+	    con["Reason-Phrase"] | "")
+      close(con)
+      fail
+      }
+   #else
+   #   DEBUG("connection to page is up :", pagelink )
+
+   return con
+end
+
+#
+# load a file from local disk
+# returns a string of all data or fails
+#
+procedure load_file(fname)
+   local fin, p, buffer
+   
+   fin := open(fname, "r") | (DEBUG("Can't open file:", image(fname)) & fail )
+   p := stat(fin) | ( DEBUG("Can't Stat file:", fname) & fail )
+   buffer := reads(fin, p.size) | ( DEBUG("Can't read file:", fname) & fail)
+   close(fin)
+   return buffer   
+end
+
+
+#
+# retrieves the file resides at pagelink (http connection to pagelink)
+# returns a string of all data or fails
+#
+procedure load_file_http(pagelink)
+   local buffer, buffer2, con, L
+
+   con := connect_http(pagelink)   
+   \con | fail
+   
+   buffer2 := ""
+   buffer := ""
+   
+   while *(L:=select([con], 100 ))>0 & \buffer do {
+      buffer := ready(L[1])
+      if \buffer then {
+	 if buffer == "" then break
+	 buffer2 ||:=  buffer
+	 buffer := ""
+	 }
+      } # while
+   
+   close(con)
+   return buffer2
+end
+
+#
+#  removes html tags from s and returns the result trimmed if trim_set is given
+#
+procedure remove_tags(s, trim_set)
+   local s2 := "", i
+   s ||:="<>"
+   s ? {
+      every i := find("<") do {
+         s2 ||:= tab(i)
+         tab(find(">"))
+         move(1)
+         }
+     }
+
+   if \trim_set then return trim(s2,trim_set,0)
+   return s2
+end
+
+procedure replace_href(s)
+   local s2:="", i, href
+   if /s then fail
+   s ? {
+      every i := find("<a href=\"") do{	 
+         s2 ||:= tab(i)
+	 move(9)
+	 href := tab(find("\""))
+	 #DEBUG("^^^^^^^^^^^^^^^^^:", image(href))
+         s2 ||:= " (" || href  || " ) "
+         tab(find(">")+1)
+         }
+	 s2 ||:= tab(0)
+     }
+   return s2
+end
+
+
+#
+# returns the first word in s after skipping any tags. 
+# if count is not null the second word will be returned instead
+#
+procedure get_first_word(s, count)
+   local w1, w2
+       s ? {
+         tab(many(' '))
+         while ="<" do {
+            tab(find(">")+1)
+            tab(many(' '))
+            }
+	 w1 := tab(many(&letters))
+	 if /count then return w1
+	 tab(upto(&letters))
+	 w2 := tab(many(&letters))
+
+	 if /w1 then fail
+	 if /w2 then return w1
+	 return w1 || " " || w2             
+         }
+end
+
+#
+# Holds a question (Q) and an answer (A). (A) is a string in case of short
+# answer question, or an integer which points to the correct answer in
+# mcOptions_list in case of mulitple choice question
+#
+class QuestionAnswer(Q, A,			# question and answer
+		     question_type, 		#  SA :short answer, MC: Multiple choice
+		     mcOptions_list,
+		     user_ans, user_score	# user's answer and score for this question
+		     )
+   method is_multiple_choice()
+      if question_type=="MC" then return "MC"
+   end
+   
+   method set_type_multiple_choice()
+      question_type=="MC"
+   end
+   
+   method set_type(t)
+      if t == ("SA" | "MC") then
+	 question_type := t
+   end
+   
+   method get_ansOption_list()
+      return mcOptions_list
+   end
+      
+   method add_mcOption(s)
+      /mcOptions_list := []
+      put(mcOptions_list, s)
+   end
+   
+   initially
+      /question_type := "SA"
+      user_score := 0
+end
+
+#
+# Class Quiz : Holds all Info about a quiz, and it is current state (if running)
+#
+class Quiz(
+   question_answer_list,
+   current_question_index,
+   current_question,
+
+   # statics   
+   pass_score,
+   parsestate, question, answer, mcOption_list, mc_flag, ansOption
+   )
+
+method parse(line)
+   local i, s
+
+   if find("/dl" | "<dt>", line) then {
+       if \question & ( \answer | \mcOption_list) then {
+	 if /mc_flag then {
+	    if trim(question, ' \t')~==="" & trim(question, ' \t')~==="" then
+	       add_question_answer(QuestionAnswer(question,answer))
+	    }
+	 else {
+	    if \ansOption then{ 
+	       put(mcOption_list, ansOption)
+	       #DEBUG("MC Option : ", ansOption, "    *MC:", *mcOption_list)
+	       ansOption := &null
+	       }
+	    add_question_answer(QuestionAnswer(question,answer, "MC", mcOption_list))
+	    }
+	 }
+      parsestate := "question"
+      question := &null
+      answer := &null
+      mcOption_list := &null
+      ansOption := &null
+      \mc_flag := &null      
+      if find("</dl>", line) then
+	 return "done"	 
+      }
+   else if find("<dd>", line) & \question then {
+      if /mc_flag then
+	 parsestate := "answer"
+      else if \ansOption then {
+	 put(mcOption_list, ansOption)
+	 #DEBUG("MC Option : ", ansOption, "    *MC:", *mcOption_list)
+	 ansOption := &null
+         }
+      }
+
+   line ? {
+      case parsestate of {
+	 "question" : {
+	    if /question then
+	       question := remove_tags(line, ' \t')
+	    else	       
+	       question ||:= " " || remove_tags(line, ' \t')
+	    if question[-1] ===")" then{
+	       i:=*question-1
+	       while i>1 & question[i]~=="(" do i-:=1
+	       if map(question[i+1:-1])=="multiple choice" then {
+		  parsestate := "mc"
+		  question := question[1:i]
+		  mc_flag := 1
+		  mcOption_list := []
+		  #DEBUG("multiple choice question!!!!!!")
+		  }
+	       }
+	    }
+	 "answer": {
+	    if /answer then 
+	       answer := remove_tags(line, ' \t')
+	    else 
+	       answer ||:= " " || remove_tags(line, ' \t')
+	    }
+	 "mc" : {
+	    if /ansOption then 
+	       ansOption := remove_tags(line, ' \t')
+	    else 
+	       ansOption ||:= " " || remove_tags(line, ' \t')
+
+	    if ansOption[-1] ===")" then {
+	       i:=*ansOption-1
+	       while i>1 & ansOption[i]~=="(" do i-:=1
+	       if map(ansOption[i+1:-1])=="true" then {
+		     ansOption := ansOption[1:i]
+		     answer := *mcOption_list + 1
+		     }
+	       }
+	    }
+	 } #case
+      } # line ?
+end
+
+#
+# export the quiz to the file handler (fout:opened file) in html format
+#
+method export_html(fout)
+   local i, q_a
+   
+   write(fout, "<dt>  Quiz (", pass_score, "/", *question_answer_list, ")" )
+   write(fout, "<dd>")
+   write(fout, "<dl>")
+   
+   every q_a := !question_answer_list do{      
+      if q_a.question_type=="SA" then{		# Short answer question
+	 write(fout, "<dt> ", q_a.Q)
+	 write(fout, "<dd> ", q_a.A)
+	 }
+      else{					# Multiple choice question
+	 write(fout, "<dt> ", q_a.Q, "(Multiple Choice)")
+	 every i:=1 to *(q_a.mcOptions_list) do
+	    write(fout, "<dd> ", q_a.mcOptions_list[i], 
+		      (if i=q_a.A then "(TRUE)" else "" ))
+	 }
+      } # every q_a
+   
+   write(fout, "</dl>")
+   
+end
+
+method set_current_question_answer(qa)
+   if  0 < current_question_index <= *question_answer_list then
+      question_answer_list[current_question_index] := current_question := qa
+end
+
+method get_current_question()
+   if \current_question then return current_question.Q
+end
+
+method get_current_question_index()
+   return current_question_index
+end
+
+method is_current_question_MC()
+   return current_question.is_multiple_choice()
+end
+
+method get_current_question_answer_list()
+   return current_question.get_ansOption_list()
+end
+
+method get_next_question()
+   if current_question_index>=*question_answer_list then fail
+   current_question_index +:= 1
+   current_question := question_answer_list[current_question_index]
+   
+   if \current_question then return current_question.Q
+end
+
+method get_previous_question()
+   if current_question_index<=1 then fail
+   current_question_index -:= 1
+   current_question := question_answer_list[current_question_index]
+   
+   if \current_question then return current_question.Q
+end
+
+method get_answer()
+   if /current_question then fail
+   return current_question.A
+end
+
+method get_user_answer()
+   if /current_question then fail
+   return current_question.user_ans
+end
+
+
+method check_answer(ans)
+   local setA, setAns, setRes, word
+   static set_exclude
+   initial set_exclude := set("the", "a", "or", "and", "it", "at", "an")
+   if /current_question | /ans then fail
+   
+   current_question.user_ans := ans
+   
+   if is_current_question_MC() then{
+      if current_question.A = ans then
+	 return current_question.user_score:=1
+      else
+	 return current_question.user_score:=0
+	 
+   }
+      
+   
+   setA := set()
+   setAns := set()
+   ans ? {
+      tab(many(' -.,;:'))
+      while not(pos(0)) do{
+	 word := map(tab(upto(' -.,;:')|0))
+	 insert(setAns, word)
+	 tab(many(' -.,;:')|0)
+         }
+      } # ans ?
+
+   current_question.A ? {
+      tab(many(' -.,;:'))
+      while not(pos(0)) do{
+	 word := map(tab(upto(' -.,;:')|0))
+	 insert(setA, word)
+	 tab(many(' -.,;:')|0)
+         }
+      } # ans ?
+
+   setRes := setA -- setAns -- set_exclude
+
+   if (*setA - *setRes) / *setA > 0.66 then 	# (correct answer!)
+      # if the user's answer is .66 or more similar to the question answer
+      return current_question.user_score:=1
+   else
+      return current_question.user_score:=0
+end
+
+method get_user_score()
+   local score, q
+   score := 0
+   every q:=!question_answer_list do
+      if \(q.user_score) then score +:= q.user_score
+   return score
+end
+
+method is_completed()
+   local d
+   if (d:=get_user_score()) >= pass_score then return d
+end
+
+method is_last_question()
+   local d
+   if (d:=question_count()) <= current_question_index  then
+      return d
+end
+
+method question_count()
+   return *question_answer_list
+end
+
+#
+# add new question at position i
+#  if i is null the question is appened at the end
+# if i=0 the question will be inserted after the current question
+method add_question_answer(qa, i)
+   if /i | current_question_index>=*question_answer_list then
+      put(question_answer_list, qa)
+   else if i=0 then 
+      insert(question_answer_list, current_question_index+1, qa)
+      
+end
+
+method delete_current_question()
+   if  0 < current_question_index <= *question_answer_list then{
+      delete(question_answer_list, current_question_index )
+      if current_question_index > *question_answer_list then
+	 current_question_index:= *question_answer_list
+      
+      current_question := question_answer_list[current_question_index]
+      }
+   
+end
+
+   initially
+      question_answer_list := []
+      current_question_index := 0
+      pass_score := -1
+      parsestate := ""
+end
+
+#
+#
+#
+class Quest(
+   title,
+   summary,
+   requires,
+   steps_list,
+   Trewards,
+   reading,
+   quiz,
+   demo,
+   page_link,		# http link to this quest
+   npc_name,		# who is the owner (npc) of this quest
+   id,			# quest identifer - serial number   (id from different npc's could be the same)
+   which_type,		# 
+   program_input,
+   program_output,
+   quest_done,
+   quest_source,	#  "quiz" or "demo" . "done" (default) if no source
+   sections,		#  what section names could a quest possibly has
+
+   parse2_parsestate, parse2_answer
+
+   )
+
+
+method set_quest_source( qsource )
+   case qsource of {
+      "quiz": {
+	 if \quiz then {
+	    quest_source := quiz
+	    return "quiz"
+	    } 
+         }
+      "demo": {
+	 if \demo then{
+	    quest_source := demo
+	    return "demo"
+            }
+         }
+      } # case
+end
+
+method get_user_score()
+   if type(quest_source)=="record" then
+      return quest_source.get_user_score()
+   else     
+      return 0
+end
+
+method is_last_question()
+   return quest_source.is_last_question()
+end
+
+method question_count()
+   return quest_source.question_count()
+end
+
+method check_program_output(L)  # jave quest
+   local ans
+   \quest_done := &null
+   #DEBUG("check answer-----")
+   #DEBUG("stored:", image(program_output))
+   
+   if type(L)~=="list" then fail
+   #DEBUG("new:", image(L[1]))
+
+   every ans := !L do{
+      #DEBUG("ans:", ans)
+      if ans===program_output then{
+	 quest_done := "done"
+	 return "done" # need to be smarter than just string matching   
+	 }
+   }
+end
+
+method is_short_answer()
+   return which_type=="short answer"
+end
+
+method is_completed()
+   if \quest_done then return
+
+   if which_type=="short answer" then
+      return quiz.is_completed()
+end
+
+method consider_it_completed()
+      quest_done := "done"
+end
+
+method add_question_answer(qa, i)
+   quest_source.add_question_answer(qa, i)
+end
+
+method set_current_question_answer(qa)
+   quest_source.set_current_question_answer(qa)
+end
+
+method get_next_question()
+   return quest_source.get_next_question() 
+end
+
+method is_current_question_MC()
+   return quest_source.is_current_question_MC()
+end
+
+method get_current_question_answer_list()
+   return quest_source.get_current_question_answer_list()
+end
+
+method get_current_question_index()
+return quest_source.get_current_question_index()
+end
+
+method get_current_question()
+   return quest_source.get_current_question() 
+end
+
+method get_previous_question()
+   return quest_source.get_previous_question() 
+end
+
+method get_user_answer()
+   return quest_source.get_user_answer() 
+end
+
+method get_answer()
+   return quest_source.get_answer() 
+end
+
+method check_answer(ans)
+   return quest_source.check_answer(ans)
+end
+
+#
+# import quest data from the html file fname
+# fname could be a local file name or a url
+# 
+method import_html_file(fname, try_local)
+   local line, buffer
+   
+   if find("http", fname) then{
+      if /try_local then
+	 buffer := load_file_http(fname) | fail
+      else{
+	 buffer := load_file(fname) | load_file_http(fname) | fail 
+	 }
+      }
+   else
+      buffer := load_file(fname) | fail
+      
+   *buffer > 0 | ( DEBUG("No data was read from :", fname) & fail)
+   
+   page_link := fname
+   
+   buffer ? {
+      while line := tab(find("\n")) do {
+	 parse(line)
+	 move(1)
+      }      
+      if line := tab(0) then
+	 parse(line)
+   }
+   return
+end
+
+#
+# export the quest into html file name fname.
+# fname defaults to quest tilte
+#
+method export_html(fname)
+   local fout, qstr, s, s2, i
+   /fname := title || ".html"
+   
+   fout := open(fname, "w")
+      
+   write(fout, "<title>", title, " Quest</title>\n<dl>\n" )
+   
+   # Name section
+   write(fout, "<dt> Name\n<dd> ", title, "\n")
+   
+   # Summary section
+   write(fout, "<dt> Summary")
+   write(fout, "<dd> ", summary)
+   write(fout)
+
+   # Requires section
+   if \requires & requires~=="" then{ 
+      write(fout, "<dt> Requires")
+      write(fout, "<dd> ", requires)
+      write(fout)
+      }
+
+   # Steps section
+   write(fout, "<dt> Steps")
+   write(fout, "<dd>")
+   write(fout, "<ol>")
+   every s:= !steps_list do
+      write(fout, "<li> ", s , "</li>")
+   write(fout, "</ol>")
+   write(fout)
+   
+   # Rewards section
+   write(fout, "<dt> Rewards")
+   s2 :=""
+   every s:=key(Trewards) do
+      s2 ||:= s || ":" || Trewards[s] || "; "
+   
+   s2 := trim( s2, '; ')   
+   write(fout, "<dd> ", s2 ) 
+   write(fout)
+   
+   # Reading section
+   write(fout, "<dt> Reading")
+   write(fout, "<dd> ", reading[1]|" ")
+   every i:=2 to *reading do
+      write(fout, reading[i])
+  
+   write(fout)
+      
+   # quiz/demo/java/session sections
+   case which_type of{
+      "short answer" : {
+	 if \quiz then quiz.export_html(fout)
+	 if \demo then demo.export_html(fout)
+	 }
+      "java" : {
+	 }
+      "session" : {
+	 }
+      }
+   
+   write(fout)
+   write(fout, "</dl>")   
+   close(fout)
+end
+
+#
+# break down line to multiple lines by inserting 
+# \n before each item in the set linesep
+#
+method split(line)
+   local tmp, sep, is_sep
+   static linesep
+   initial linesep := set("<dt>", "<dd>", "</dl>", "<br>")
+
+   line ? {
+      tmp := tab(upto('<') | 0)
+      while not(pos(0)) do {
+	 every sep := !linesep do
+	    if =sep then {
+	       tmp ||:= "\n" || sep
+	       is_sep := 1
+	       break
+	       }
+	    
+	 if \is_sep then
+	    is_sep := &null 
+	 else{
+	    tmp ||:=move(1)
+	 }
+	 tmp ||:= tab(upto('<') | 0)
+	 }# while
+      } # line ?
+   
+   return trim(tmp, '\n', 1)	# we don't want "\n" at the beginning of the line
+end
+
+#
+# This function breaks line into multiple lines if neccessary
+# and pass each new line (line2) to parse2
+#
+method parse(line)
+   local line2
+   if line=="" then { 
+      parse2(line)
+      return
+      }
+   line := split(line)
+   line ? {
+      while not(pos(0)) do {
+	 line2 := tab(upto('\n') | 0)
+         if \line2 then parse2(line2)
+	 move(1)
+	 }
+      }
+end
+
+#
+# Parse all predefined sections in the set (sections) and fill in all the data
+#
+method parse2(line)
+   local word, cat, d, s
+
+   line ?{
+   if find("<dt>") then{   # we might be entering a new section
+      #DEBUG ("########## : ", line)
+      word := map(\get_first_word(line))
+      #DEBUG (" WORD is :", image(word))
+      if word ==="program" then word := map(\get_first_word(line, 2))
+
+      if member(sections, word) then{
+	 delete(sections, word)
+         parse2_parsestate := word
+         #DEBUG( " parsing.................... ", parsestate)
+         case parse2_parsestate of{
+            "quiz" :{
+               quiz := Quiz()
+               tab(upto(&digits))
+               d := tab(many(&digits))
+               #DEBUG("*************** pass score :", image(d) )
+               if \d then
+                  quiz.pass_score := integer(d)
+	       which_type := "short answer"
+               }
+            "demo" : { demo := Quiz(); which_type := "short answer" }
+	    "program output" : { which_type := "java" }
+	    "session" : { which_type := "session" }
+            }#case
+         return
+         }
+      }
+      } # line
+
+   line ? {
+      case parse2_parsestate of{
+         "name" : {
+	    s := remove_tags(line, ' \t')
+	    if s~==="" then {
+	       title :=s
+	       #DEBUG("quest name: ", title )
+	       }
+	    }
+         "summary" : {
+            s := remove_tags(line)
+	    s:=trim(s,' \t.',0)
+	    if \s & s~==""  then summary ||:= " " || s
+            #DEBUG("quest summary: ", summary )
+            }
+         "requires" : {
+	    s := remove_tags(line, ' \t.')
+	    s := trim(s,' \t.',0)
+	    if \s & s~=="" then requires ||:= " " || s
+            #DEBUG("quest requires: ", requires )
+            }
+         "steps" : {
+            if find("<li>") then{
+	       s:=replace_href(line)
+	       put(steps_list, remove_tags(s, ' \t'))
+               #DEBUG("quest step: ", steps_list[-1] )
+               }
+            }
+         "rewards" : {
+            if tab(find("<dd>")+4) then{
+	       tab(many(' \t'))
+               while cat := tab(many(&letters)) do{
+		  tab(find(":")+1 | 0)
+		  tab(many(' \t'))
+                  Trewards[cat] := integer(tab(many(&digits))) | 0
+		  tab(find(";")+1 | 0)
+		  tab(many(' \t'))
+                  #DEBUG("quest rewards: ", cat, ":", Trewards[cat] )
+		  }
+               }
+            }
+         "reading" : {
+	    s:=replace_href(line)
+	    s := remove_tags(s)
+	    if \s & s~=="" then
+	       put(reading, s)
+            #DEBUG("quest reading: ",s)
+            }
+
+         "program output" | "session" : {
+             if tab(find("<pre>")+5) then{
+		parse2_answer := remove_tags(line, ' \t')
+                /parse2_answer := ""
+                }
+             if tab(find("</pre>")) then{
+                program_output := trim(parse2_answer, '\n', 0)
+		parse2_parsestate := ""
+                }
+             else if \parse2_answer then {
+		s := remove_tags(line, ' \t')
+                if \s & s~=="" & \parse2_answer then 
+                   parse2_answer ||:= "\n" || s
+                }
+            }            
+         "quiz" : {
+	    if quiz.parse(line) === "done" then{
+	       parse2_parsestate :=""
+	       if quiz.pass_score=-1 then 
+		  quiz.pass_score := quiz.question_count()
+	       }
+            }
+         "demo" : {
+	    if demo.parse(line) === "done" then{
+	       parse2_parsestate :=""
+	    }
+	    }
+          } # case
+       }
+end
+
+initially
+   title := summary := requires := parse2_parsestate := ""
+   steps_list := []
+   Trewards := table(0)
+   reading := []
+   which_type := "short answer"
+   quest_source := "done"
+   sections := set("name", "summary", "requires", "steps", "rewards", 
+		     "quiz", "demo", "program input", "program output", 
+		     "reading", "session" )
+end
+# class Quest

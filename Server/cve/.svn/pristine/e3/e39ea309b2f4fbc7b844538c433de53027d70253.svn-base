@@ -1,0 +1,46 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Setting Breakpoints
+<dt> Summary
+<dd> Learn the basics of setting breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about how to set breakpoints in GDB.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 11; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+Breakpoints are set with the break command (abbreviated b). <br>
+break location<br>
+Set a breakpoint at the given location, which can specify a function name, a 
+line number, or an address of an instruction. The breakpoint will stop 
+your program just before it executes any of the code in the specified location.<br>
+<br>
+
+<dt> Quiz (4/4)
+<dd>
+<dl>
+<dt>What is the command name used to set a breakpoint?
+<dd> break
+<dt>What is the abbreviation of the break command?
+<dd> b
+<dt>What kind of arguments does the command break take? (Multiple Choice)
+<dd> address
+<dd> function name
+<dd> line number
+<dd> all of the above (TRUE)
+<dt>Where does the breakpoint stop your program in correspondence to the location provided by the break command? (Multiple Choice)
+<dd> right before the location of the breakpoint (TRUE)
+<dd> right after the location of the breakpoint
+<dd> right in the middle of the breakpoint location
+<dd> none of the above
+</dl>

@@ -1,0 +1,18 @@
+Room {
+	name  JEB104Stage
+	x 1.88
+	y 5.6
+	z 0
+	w 10.4
+	h 6.5
+	l 2.21
+	texture dat/uidaho/texsmall/jeb104wall.gif
+	floor Wall { texture dat/uidaho/texsmall/jeb104wood.gif }
+	ceiling Wall { texture dat/uidaho/texsmall/jeb104wall.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

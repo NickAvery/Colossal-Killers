@@ -1,0 +1,77 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Disabling Breakpoints
+<dt> Summary
+<dd> Learn the basics of disabling breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about how to disable breakpoints in GDB.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 13; Linux: 1
+<dt> Reading
+<dd> 
+<p>Rather than deleting a breakpoint you might prefer to disable it. This makes 
+the breakpoint inoperative as if it had been deleted, but remembers the 
+information on the breakpoint so that you can enable it again later.
+<p>
+You disable and enable breakpoints with the enable and disable commands, 
+optionally specifying one or more breakpoint numbers as arguments. Use info 
+break to print a list of breakpoints if you do not know which numbers to use.
+<p>
+Disabling and enabling a breakpoint that has multiple locations affects all of 
+its locations.
+<p>
+A breakpoint can have any of four different states of enablement:
+<p> * Enabled. The breakpoint stops your program. A breakpoint set with the break command starts out in this state.
+<p> * Disabled. The breakpoint has no effect on your program.
+<p> * Enabled once. The breakpoint stops your program, but then becomes disabled.
+<p> * Enabled for deletion. The breakpoint stops your program, but immediately after 
+it does so it is deleted permanently. A breakpoint set with the tbreak command 
+starts out in this state.
+<p> You can use the following commands to enable or disable breakpoints:
+<p> disable [breakpoints] [range...]
+<p> Disable the specified breakpoints--or all breakpoints, if none are listed. A 
+disabled breakpoint has no effect but is not forgotten. All options such as 
+ignore-counts, conditions and commands are remembered in case the breakpoint is 
+enabled again later. You may abbreviate disable as dis.
+<p> enable [breakpoints] [range...]
+<p> Enable the specified breakpoints (or all defined breakpoints). They become 
+effective once again in stopping your program.
+<p>
+enable [breakpoints] once range...
+<p>
+Enable the specified breakpoints temporarily. GDB disables any of these 
+breakpoints immediately after stopping your program.
+<p>
+enable [breakpoints] delete range...
+<p>
+Enable the specified breakpoints to work once, then die. GDB deletes any of 
+these breakpoints as soon as your program stops there. <br>
+<br>
+
+<dt> Quiz (6/6)
+<dd>
+<dt>Can you disable a breakpoint? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>What command is used to disable a breakpoint?
+<dd> disable
+<dt>What abbreviation can be used for the disable command?
+<dd> dis
+<dt>Can you enable/re-enable any disabled breakpoint? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>What command is used to re-enable a disabled breakpoint?
+<dd> enable
+<dt>Can you enable a breakpoint once? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+</dl>

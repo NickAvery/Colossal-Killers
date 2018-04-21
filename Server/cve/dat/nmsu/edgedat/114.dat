@@ -1,0 +1,11 @@
+Door {
+	id 114
+	x 68
+	y 4.35
+	z 26.2
+	w 0.91
+	height 2.1
+	collide_in 0.8
+	plane 3
+	rooms [elevator_2, floor_2_corridor_roger]
+}

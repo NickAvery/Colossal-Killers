@@ -1,0 +1,902 @@
+Room {
+name csac
+x 10.2
+y 10.25
+z 17.55
+w 4.38
+h 3.53
+l 4.80
+texture csacwalls.gif
+floor Wall{
+texture csaccarpet.gif
+}
+ceiling Wall{
+texture csacceiling.gif
+}
+decorations [
+	Wall { texture csacsign.gif
+	     coords [11.63, 11.95, 19.91,
+		     11.63, 12.27, 19.91,
+		     11.63, 12.27, 18.14,
+		     11.63, 11.95, 18.14]
+	   }	
+	Wall { texture window1.gif
+	     coords [12.51, 11.88, 22.32,
+		     12.51, 12.45, 22.32,
+		     11.62, 12.45, 22.32,
+		     11.62, 11.88, 22.32]
+	  }
+	Wall { texture csacwindow.gif
+	    coords [11.63, 12.4, 19.91,
+		     11.63, 13.11, 19.91,
+		     11.63, 13.11, 18.89,
+		     11.63, 12.4, 18.89]
+	 }
+	Wall { texture csacwindow.gif
+	     coords [11.63, 12.4, 18.72,
+		     11.63, 13.11, 18.72,
+		     11.63, 13.11, 17.7,
+		     11.63, 12.4, 17.7]
+	  }
+	Wall { texture asign.gif
+		coords [13.00, 11.87, 22.32,
+			13.00, 12.04, 22.32,
+			12.75, 12.04, 22.32,
+			12.75, 11.87, 22.32]
+	     }
+	Wall { texture lightswitch.gif
+		coords [14.5, 11.35, 18.83,
+			14.5, 11.47, 18.83,
+			14.5, 11.47, 18.99,
+			14.5, 11.35, 18.99]
+	  }				
+	Wall { texture exitsign.gif
+		coords [14.5, 12.6, 19.97,
+			14.5, 12.8, 19.97,
+		        14.5, 12.8, 20.28,
+			14.5, 12.6, 20.28]
+	  }
+]
+obstacles [
+	Box { #front desk 1
+	Wall {texture csacdesk.gif
+		coords [12.72,11.01,19.25, 13.48,11.01,19.25, 13.48,11.01,20.16, 12.72,11.01,20.16]} #top
+	Wall {texture csacdeskside.gif
+		coords [12.72,10.25,20.16, 12.72,11.01,20.16, 13.48,11.01,20.16, 13.48,10.25,20.16]} #right
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,19.25, 13.48,11.01,19.25, 12.72,11.01,19.25, 12.72,10.25,19.25]} #left
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,19.25, 13.48,11.01,19.25, 13.48,11.01,20.16, 13.48,10.25,20.16]} #back
+	}
+
+	Box { #front desk 2
+	Wall {texture csacdesk.gif
+		coords [12.72,11.01,17.92, 13.48,11.01,17.92, 13.48,11.01,18.83, 12.72,11.01,18.83]} #top
+	Wall {texture csacdeskside.gif
+		coords [12.72,10.25,18.83, 12.72,11.01,18.83, 13.48,11.01,18.83, 13.48,10.25,18.83]} #right
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,17.92, 13.48,11.01,17.92, 12.72,11.01,17.92, 12.72,10.25,17.92]} #left
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,17.92, 13.48,11.01,17.92, 13.48,11.01,18.83, 13.48,10.25,18.83]} #back
+	}
+	Box { #front desk 3
+	Wall {texture csacdesk.gif
+		coords [12.56,11.01,21.59, 12.56,11.01,22.34, 11.65,11.01,22.34, 11.65,11.01,21.59]} #top
+	Wall {texture csacdeskside.gif
+		coords [11.65,10.25,21.59, 11.65,11.01,21.59, 11.65,11.01,22.34, 11.65,10.25,22.34]} #right
+	Wall {texture csacdeskside.gif
+		coords [12.56,10.25,21.59, 12.56,11.01,21.59, 12.56,11.01,22.34, 12.56,10.25,22.34]} #left
+	Wall {texture csacdeskside.gif
+		coords [12.56,10.25,22.34, 12.56,11.01,22.34, 11.65,11.01,22.34, 11.65,10.25,22.34]} #back
+	}
+	
+	Box {#computer 1
+	Wall {texture compfront.gif
+		coords [13.1,11.1,19.51, 13.1,11.43,19.51, 13.1,11.43,19.92, 13.1,11.1,19.92]} #front
+	Wall {texture compback.gif
+		coords [13.105,11.1,19.51, 13.105,11.43,19.51, 13.105,11.43,19.92, 13.105,11.1,19.92]} #back
+	Wall {texture compstand.gif
+		coords [13.1,11.02,19.67, 13.1,11.1,19.67, 13.1,11.1,19.75, 13.1,11.02,19.75]} #stand
+	Wall {texture keyboard.gif
+		coords [12.85,11.02,19.48, 13.0,11.02,19.48, 13.0,11.02,19.94, 12.85,11.02,19.94]} #keyboard
+	
+	}
+	
+	Box {#computer 2
+	Wall {texture compfront.gif
+		coords [13.1,11.1,18.12, 13.1,11.43,18.12, 13.1,11.43,18.53, 13.1,11.1,18.53]} #front
+	Wall {texture compback.gif
+		coords [13.105,11.1,18.12, 13.105,11.43,18.12, 13.105,11.43,18.53, 13.105,11.1,18.53]} #back
+	Wall {texture compstand.gif
+		coords [13.1,11.02,18.28, 13.1,11.1,18.28, 13.1,11.1,18.36, 13.1,11.02,18.36]} #stand
+	Wall {texture keyboard.gif
+		coords [12.85,11.02,18.09, 13.0,11.02,18.09, 13.0,11.02,18.55, 12.85,11.02,18.55]} #keyboard
+	
+	}
+]
+}
+
+
+Room {
+name lab
+x 0.0
+y 10.25
+z 17.55
+w 10.19
+h 3.53
+l 4.80
+texture csacwalls2.gif
+floor Wall{
+texture labcarpet.gif
+}
+ceiling Wall{
+texture csacceiling.gif
+}
+decorations [
+	Wall { texture window1.gif
+	     coords [11.62, 11.87, 22.32,
+		     11.62, 12.45, 22.32,
+		     10.73, 12.45, 22.32,
+		     10.73, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [9.6, 11.87, 22.32,
+		     9.6, 12.45, 22.32,
+		     8.71, 12.45, 22.32,
+		     8.71, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [8.71, 11.87, 22.32,
+		     8.71, 12.45, 22.32,
+		     7.82, 12.45, 22.32,
+		     7.82, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [7.82, 11.87, 22.32,
+		     7.82, 12.45, 22.32,
+		     6.93, 12.45, 22.32,
+		     6.93, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [6.93, 11.87, 22.32,
+		     6.93, 12.45, 22.32,
+		     6.04, 12.45, 22.32,
+		     6.04, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [6.04, 11.87, 22.32,
+		     6.04, 12.45, 22.32,
+		     5.15, 12.45, 22.32,
+		     5.15, 11.87, 22.32]
+	  }
+	Wall { texture csacwindow.gif
+	    coords [11.60, 12.4, 19.91,
+		     11.60, 13.11, 19.91,
+		     11.60, 13.11, 18.89,
+		     11.60, 12.4, 18.89]
+	 }
+	Wall { texture csacwindow.gif
+	     coords [11.60, 12.4, 18.72,
+		     11.60, 13.11, 18.72,
+		     11.60, 13.11, 17.7,
+		     11.60, 12.4, 17.7]
+	  }
+	Wall { texture window2.gif
+	     coords [0.1, 11.25, 19.95,
+		     0.1, 11.95, 19.95,
+		     0.1, 11.95, 18.43,
+		     0.1, 11.25, 18.43]
+	  }
+	Wall { texture blinds.gif
+	     coords [0.1, 11.95, 19.95,
+		     0.1, 13.37,19.95,
+		     0.1, 13.37,18.42,
+		     0.1, 11.95, 18.42]
+	  }
+	Wall { texture blinds.gif
+	     coords [0.1, 11.95, 21.47,
+		     0.1, 13.37,21.47,
+		     0.1, 13.37,19.95,
+		     0.1, 11.95, 19.95]
+	  }
+	Wall { texture ac.gif
+	     coords [0.1, 11.25, 21.47,
+		     0.1, 11.95, 21.47,
+		     0.1, 11.95, 19.95,
+		     0.1, 11.25, 19.95]
+	  }
+	
+]
+
+obstacles [
+	
+	Box { #row of brown desks
+	Wall {texture browndesk.gif
+		coords [10.18,10.91,17.56, 10.94,10.91,17.56, 10.94,10.91,18.78, 10.18,10.91,18.78]} #top
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,18.78, 10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.25,18.78]} #right
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,17.56, 10.18,10.91,17.56, 10.94,10.91,17.56, 10.94,10.25,17.56]} #left
+	Wall {texture browndesk.gif
+		coords [10.94,10.25,17.56, 10.94,10.91,17.56, 10.94,10.91,18.78, 10.94,10.25,18.78]} #back
+	}	
+	Box { #row of brown desks
+	Wall {texture browndesk.gif
+		coords [10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.91,20.00, 10.18,10.91,20.00]} #top
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,20.00, 10.18,10.91,20.00, 10.94,10.91,20.00, 10.94,10.25,20.00]} #right
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,18.78, 10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.25,18.78]} #left
+	Wall {texture browndesk.gif
+		coords [10.94,10.25,18.78, 10.94,10.91,18.78, 10.94,10.91,20.00, 10.94,10.25,20.00]} #back
+	}
+
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,17.56, 8.72,11.01,17.56, 8.72,11.01,18.46, 7.96,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,18.46, 7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,17.56, 7.96,11.01,17.56, 8.72,11.01,17.56, 8.72,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,17.56, 8.72,11.01,17.56, 8.72,11.01,18.46, 8.72,10.25,18.46]} #back
+	}
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,11.01,19.37, 7.96,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,19.37, 7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,18.46, 7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,18.46, 8.72,11.01,18.46, 8.72,11.01,19.37, 8.72,10.25,19.37]} #back
+	}
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,11.01,20.28, 7.96,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,20.28, 7.96,11.01,20.28, 8.72,11.01,20.28, 8.72,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,19.37, 7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,19.37, 8.72,11.01,19.37, 8.72,11.01,20.28, 8.72,10.25,20.28]} #back
+	}
+	
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [6.14,11.01,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 6.14,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [6.14,10.25,21.6, 6.14,11.01,21.6, 6.14,11.01,22.34, 6.14,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [7.94,10.25,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 7.94,10.25,22.34]} #left
+	}
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [7.94,11.01,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 7.94,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [7.94,10.25,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 7.94,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [9.74,10.25,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 9.74,10.25,22.34]} #left
+	}
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [9.74,11.01,21.6, 11.54,11.01,21.6, 11.54,11.01,22.34, 9.74,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [9.74,10.25,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 9.74,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [11.54,10.25,21.6, 11.54,11.01,21.6, 11.54,11.01,22.34, 11.54,10.25,22.34]} #left
+	}
+	Box { #blue desk by sunsol desk
+	Wall {texture csacdesk.gif
+		coords [5.23,11.01,21.58, 6.13,11.01,21.58, 6.13,11.01,22.34, 5.23,11.01,23.34]} #top
+	Wall {texture csacdeskside.gif
+		coords [5.23,10.25,21.58, 5.23,11.01,21.58, 5.23,11.01,22.34, 5.23,10.25,22.34]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.13,10.25,21.58, 6.13,11.01,21.58, 6.13,11.01,22.34, 6.13,10.25,22.34]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.13,10.25,22.34, 6.13,11.01,22.34, 5.23,11.01,22.34, 5.23,10.25,22.34]} #back
+	}
+		
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,17.56, 6.90,11.01,17.56, 6.90,11.01,18.46, 6.14,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,18.46, 6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,17.56, 6.14,11.01,17.56, 6.90,11.01,17.56, 6.90,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,17.56, 6.90,11.01,17.56, 6.90,11.01,18.46, 6.90,10.25,18.46]} #back
+	}
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,11.01,19.37, 6.14,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,19.37, 6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,18.46, 6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,18.46, 6.90,11.01,18.46, 6.90,11.01,19.37, 6.90,10.25,19.37]} #back
+	}
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,11.01,20.28, 6.14,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,20.28, 6.14,11.01,20.28, 6.90,11.01,20.28, 6.90,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,19.37, 6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,19.37, 6.90,11.01,19.37, 6.90,11.01,20.28, 6.90,10.25,20.28]} #back
+	}
+	Box { #Printer
+	Wall {texture printertop.gif
+		coords [6.14,11.49,19.92, 6.14,11.49,19.50, 6.53,11.49,19.50, 6.53,11.49,19.92]} #top
+	Wall {texture printerfront.gif
+		coords [6.14,11.01,19.92, 6.14,11.49,19.92, 6.53,11.49,19.92, 6.53,11.01,19.92]} #front
+	Wall {texture printerback.gif
+		coords [6.53,11.01,19.50, 6.53,11.49,19.50, 6.14,11.49,19.50, 6.14,11.01,19.50]} #back
+	Wall {texture printerright.gif
+		coords [6.53,11.01,19.92, 6.53,11.49,19.92, 6.53,11.49,19.50, 6.53,11.01,19.50]} #right
+	Wall {texture printerleft.gif
+		coords [6.14,11.01,19.50, 6.14,11.49,19.50, 6.14,11.49,19.92, 6.14,11.01,19.92]} #left
+	}
+
+
+	Box { #3rd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [4.32,11.01,17.56, 5.08,11.01,17.56, 5.08,11.01,18.46, 4.32,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,18.46, 4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,17.56, 4.32,11.01,17.56, 5.08,11.01,17.56, 5.08,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [5.08,10.25,17.56, 5.08,11.01,17.56, 5.08,11.01,18.46, 5.08,10.25,18.46]} #back
+	}
+	Box { #3rd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,11.01,19.37, 4.32,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,19.37, 4.32,11.01,19.37, 5.08,11.01,19.37, 5.08,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,18.46, 4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [5.08,10.25,18.46, 5.08,11.01,18.46, 5.08,11.01,19.37, 5.08,10.25,19.37]} #back
+	}
+
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,17.56, 3.26,11.01,17.56, 3.26,11.01,18.46, 2.5,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,18.46, 2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,17.56, 2.5,11.01,17.56, 3.26,11.01,17.56, 3.26,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,17.56, 3.26,11.01,17.56, 3.26,11.01,18.46, 3.26,10.25,18.46]} #back
+	}
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,11.01,19.37, 2.5,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,19.37, 2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,18.46, 2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,18.46, 3.26,11.01,18.46, 3.26,11.01,19.37, 3.26,10.25,19.37]} #back
+	}
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,11.01,20.28, 2.5,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,20.28, 2.5,11.01,20.28, 3.26,11.01,20.28, 3.26,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,19.37, 2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,19.37, 3.26,11.01,19.37, 3.26,11.01,20.28, 3.26,10.25,20.28]} #back
+	}
+	
+	Box { #Radiator
+	Wall {texture radiator.gif
+		coords [.20,10.25,20.97, .2,10.86,20.97, .2,10.86,19.04, .2,10.25,19.04]} #front
+	Wall {texture radiatortop.gif
+		coords [.20,10.86,20.97, 0,10.86,20.97, 0,10.86,19.04, .2,10.86,19.04]} #top
+	Wall {texture radiator.gif
+		coords [0,10.25,20.97, 0,10.86,20.97, .2,10.86,20.97, .2,10.25,20.97]} #left
+	Wall {texture radiator.gif
+		coords [.2,10.25,19.04, .2,10.86,19.04, 0,10.86,19.04, 0,10.25,19.04]} #right
+	}
+
+]
+}
+
+Room {
+name weststairs
+x 14.59
+y 10.25
+z 15.33
+w 3.31
+h 3.53
+l 6.30
+}
+
+#Room {
+#name jeb211a
+#x 10.2
+#y 10.25
+#z 22.35
+#w 4.39
+#h 3.53
+#l 4.80
+#}
+#
+#Room {
+#name jeb211b
+#x 0.0
+#y 10.25
+#z 22.36
+#w 2.89
+#h 3.53
+#l 4.80
+#}
+#
+#Room {
+#name jebnorth
+#x 5.0
+#y 10.25
+#z 12.74
+#w 2.89
+#h 3.53
+#l 4.80
+#}
+
+Door{
+id 21
+x 10.2 
+y 10.25
+z 20.07
+w 1.04
+height 2.21
+texture labwalldoor.gif
+collide_in 1.2
+plane 1
+rooms [csac ,lab]
+}
+
+#Door{
+#id 22
+#x 11.76 
+#y 10.25
+#z 22.35
+#w 1.04
+#height 2.21
+#collide_in 1.2
+#plane 3
+#rooms [csac ,jeb211a]
+#}
+#
+#Door{
+#id 23
+#x .72 
+#y 10.25
+#z 22.35
+#w 1.04
+#height 2.21
+#collide_in 1.2
+#plane 3
+#rooms [lab ,jeb211b]
+#}
+#
+#Door{
+#id 24
+#x 5.5 
+#y 10.25
+#z 17.55
+#w 1.04
+#height 2.21
+#collide_in 1.2
+#plane 3
+#rooms [lab ,jebnorth]
+#}
+#
+
+Opening{
+id 25
+x 14.59
+y 10.25
+z 19.17
+w .9398
+height 2.21
+collide_in 1.2
+plane 1
+rooms [csac ,weststairs]
+}
+
+Opening{
+id 26
+x 14.59 
+y 10.25
+z 20.16
+w .9398
+height 2.21
+collide_in 1.2
+plane 1
+rooms [csac ,weststairs]
+}
+
+
+decorations [
+	Wall { texture csacsign.gif
+	     coords [11.63, 11.95, 19.91,
+		     11.63, 14.32, 19.91,
+		     11.63, 14.32, 18.14,
+		     11.63, 11.95, 18.14]
+	   }	
+	Wall { texture window1.gif
+	     coords [12.51, 11.87, 22.32,
+		     12.51, 12.45, 22.32,
+		     11.62, 12.45, 22.32,
+		     11.62, 11.87, 22.32]
+	  }
+	Wall { texture csacwindow.gif
+	    coords [11.63, 12.4, 19.91,
+		     11.63, 13.11, 19.91,
+		     11.63, 13.11, 18.89,
+		     11.63, 12.4, 18.89]
+	 }
+	Wall { texture csacwindow.gif
+	     coords [11.63, 12.4, 18.72,
+		     11.63, 13.11, 18.72,
+		     11.63, 13.11, 17.7,
+		     11.63, 12.4, 17.7]
+	  }
+	Wall { texture asign.gif
+		coords [13.00, 11.87, 22.32,
+			13.00, 12.04, 22.32,
+			12.75, 12.04, 22.32,
+			12.75, 11.87, 22.32]
+	     }
+	Wall { texture lightswitch.gif
+		coords [14.5, 11.35, 18.83,
+			14.5, 11.47, 18.83,
+			14.5, 11.47, 18.99,
+			14.5, 11.35, 18.99]
+	  }				
+	Wall { texture exitsign.gif
+		coords [14.5, 12.6, 19.97,
+			14.5, 12.8, 19.97,
+		        14.5, 12.8, 20.28,
+			14.5, 12.6, 20.28]
+	  }
+]
+obstacles [
+	Box { #front desk 1
+	Wall {texture csacdesk.gif
+		coords [12.72,11.01,19.25, 11.43,11.01,19.25, 13.48,11.01,20.16, 12.72,11.01,20.16]} #top
+	Wall {texture csacdeskside.gif
+		coords [12.72,10.25,20.16, 12.72,11.01,20.16, 13.48,11.01,20.16, 13.48,10.25,20.16]} #right
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,19.25, 13.48,11.01,19.25, 12.72,11.01,19.25, 12.72,10.25,19.25]} #left
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,19.25, 13.48,11.01,19.25, 13.48,11.01,20.16, 13.48,10.25,20.16]} #back
+	}
+
+	Box { #front desk 2
+	Wall {texture csacdesk.gif
+		coords [12.72,11.01,17.92, 13.48,11.01,17.92, 13.48,11.01,18.83, 12.72,11.01,18.83]} #top
+	Wall {texture csacdeskside.gif
+		coords [12.72,10.25,18.83, 12.72,11.01,18.83, 13.48,11.01,18.83, 13.48,10.25,18.83]} #right
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,17.92, 13.48,11.01,17.92, 12.72,11.01,17.92, 12.72,10.25,17.92]} #left
+	Wall {texture csacdeskside.gif
+		coords [13.48,10.25,17.92, 13.48,11.01,17.92, 13.48,11.01,18.83, 13.48,10.25,18.83]} #back
+	}
+	Box { #front desk 3
+	Wall {texture csacdesk.gif
+		coords [12.54,11.01,21.59, 12.54,11.01,22.34, 11.63,11.01,22.34, 11.63,11.01,21.59]} #top
+	Wall {texture csacdeskside.gif
+		coords [11.63,10.25,21.59, 11.63,11.01,21.59, 11.63,11.01,22.34, 11.63,10.25,22.34]} #right
+	Wall {texture csacdeskside.gif
+		coords [12.54,10.25,21.59, 12.54,11.01,21.59, 12.54,11.01,22.34, 12.54,10.25,22.34]} #left
+	Wall {texture csacdeskside.gif
+		coords [12.54,10.25,22.34, 12.54,11.01,22.34, 11.63,11.01,22.34, 11.63,10.25,22.34]} #back
+	}
+	
+	Box {#computer 1
+	Wall {texture compfront.gif
+		coords [13.1,11.1,19.51, 13.1,11.43,19.51, 13.1,11.43,19.92, 13.1,11.1,19.92]} #front
+	Wall {texture compback.gif
+		coords [13.105,11.1,19.51, 13.105,11.43,19.51, 13.105,11.43,19.92, 13.105,11.1,19.92]} #back
+	Wall {texture compstand.gif
+		coords [13.1,11.02,19.67, 13.1,11.1,19.67, 13.1,11.1,19.75, 13.1,11.02,19.75]} #stand
+	Wall {texture keyboard.gif
+		coords [12.85,11.02,19.48, 13.0,11.02,19.48, 13.0,11.02,19.94, 12.85,11.02,19.94]} #keyboard
+	
+	}
+	
+	Box {#computer 2
+	Wall {texture compfront.gif
+		coords [13.1,11.1,18.12, 13.1,11.43,18.12, 13.1,11.43,18.53, 13.1,11.1,18.53]} #front
+	Wall {texture compback.gif
+		coords [13.105,11.1,18.12, 13.105,11.43,18.12, 13.105,11.43,18.53, 13.105,11.1,18.53]} #back
+	Wall {texture compstand.gif
+		coords [13.1,11.02,18.28, 13.1,11.1,18.28, 13.1,11.1,18.36, 13.1,11.02,18.36]} #stand
+	Wall {texture keyboard.gif
+		coords [12.85,11.02,18.09, 13.0,11.02,18.09, 13.0,11.02,18.55, 12.85,11.02,18.55]} #keyboard
+	
+	}
+
+
+]
+}
+
+decorations [
+	Wall { texture window1.gif
+	     coords [11.62, 11.87, 22.32,
+		     11.62, 12.45, 22.32,
+		     10.73, 12.45, 22.32,
+		     10.73, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [9.6, 11.87, 22.32,
+		     9.6, 12.45, 22.32,
+		     8.71, 12.45, 22.32,
+		     8.71, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [8.71, 11.87, 22.32,
+		     8.71, 12.45, 22.32,
+		     7.82, 12.45, 22.32,
+		     7.82, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [7.82, 11.87, 22.32,
+		     7.82, 12.45, 22.32,
+		     6.93, 12.45, 22.32,
+		     6.93, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [6.93, 11.87, 22.32,
+		     6.93, 12.45, 22.32,
+		     6.04, 12.45, 22.32,
+		     6.04, 11.87, 22.32]
+	  }
+	Wall { texture window1.gif
+	     coords [6.04, 11.87, 22.32,
+		     6.04, 12.45, 22.32,
+		     5.15, 12.45, 22.32,
+		     5.15, 11.87, 22.32]
+	  }
+	Wall { texture csacwindow.gif
+	    coords [11.60, 12.4, 19.91,
+		     11.60, 13.11, 19.91,
+		     11.60, 13.11, 18.89,
+		     11.60, 12.4, 18.89]
+	 }
+	Wall { texture csacwindow.gif
+	     coords [11.60, 12.4, 18.72,
+		     11.60, 13.11, 18.72,
+		     11.60, 13.11, 17.7,
+		     11.60, 12.4, 17.7]
+	  }
+	Wall { texture window2.gif
+	     coords [0.1, 11.25, 19.95,
+		     0.1, 11.95, 19.95,
+		     0.1, 11.95, 18.43,
+		     0.1, 11.25, 18.43]
+	  }
+	Wall { texture blinds.gif
+	     coords [0.1, 11.95, 19.95,
+		     0.1, 13.37,19.95,
+		     0.1, 13.37,18.42,
+		     0.1, 11.95, 18.42]
+	  }
+	Wall { texture blinds.gif
+	     coords [0.1, 11.95, 21.47,
+		     0.1, 13.37,21.47,
+		     0.1, 13.37,19.95,
+		     0.1, 11.95, 19.95]
+	  }
+	Wall { texture ac.gif
+	     coords [0.1, 11.25, 21.47,
+		     0.1, 11.95, 21.47,
+		     0.1, 11.95, 19.95,
+		     0.1, 11.25, 19.95]
+	  }
+	
+]
+
+obstacles [
+	
+	Box { #row of brown desks
+	Wall {texture browndesk.gif
+		coords [10.18,10.91,17.56, 10.94,10.91,17.56, 10.94,10.91,18.78, 10.18,10.91,18.78]} #top
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,18.78, 10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.25,18.78]} #right
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,17.56, 10.18,10.91,17.56, 10.94,10.91,17.56, 10.94,10.25,17.56]} #left
+	Wall {texture browndesk.gif
+		coords [10.94,10.25,17.56, 10.94,10.91,17.56, 10.94,10.91,18.78, 10.94,10.25,18.78]} #back
+	}	
+	Box { #row of brown desks
+	Wall {texture browndesk.gif
+		coords [10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.91,20.00, 10.18,10.91,20.00]} #top
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,20.00, 10.18,10.91,20.00, 10.94,10.91,20.00, 10.94,10.25,20.00]} #right
+	Wall {texture csacdeskside.gif
+		coords [10.18,10.25,18.78, 10.18,10.91,18.78, 10.94,10.91,18.78, 10.94,10.25,18.78]} #left
+	Wall {texture browndesk.gif
+		coords [10.94,10.25,18.78, 10.94,10.91,18.78, 10.94,10.91,20.00, 10.94,10.25,20.00]} #back
+	}
+
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,17.56, 8.72,11.01,17.56, 8.72,11.01,18.46, 7.96,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,18.46, 7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,17.56, 7.96,11.01,17.56, 8.72,11.01,17.56, 8.72,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,17.56, 8.72,11.01,17.56, 8.72,11.01,18.46, 8.72,10.25,18.46]} #back
+	}
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,11.01,19.37, 7.96,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,19.37, 7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,18.46, 7.96,11.01,18.46, 8.72,11.01,18.46, 8.72,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,18.46, 8.72,11.01,18.46, 8.72,11.01,19.37, 8.72,10.25,19.37]} #back
+	}
+	Box { #1st row of blue desks
+	Wall {texture csacdesk.gif
+		coords [7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,11.01,20.28, 7.96,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,20.28, 7.96,11.01,20.28, 8.72,11.01,20.28, 8.72,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [7.96,10.25,19.37, 7.96,11.01,19.37, 8.72,11.01,19.37, 8.72,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [8.72,10.25,19.37, 8.72,11.01,19.37, 8.72,11.01,20.28, 8.72,10.25,20.28]} #back
+	}
+	
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [6.14,11.01,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 6.14,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [6.14,10.25,21.6, 6.14,11.01,21.6, 6.14,11.01,22.34, 6.14,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [7.94,10.25,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 7.94,10.25,22.34]} #left
+	}
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [7.94,11.01,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 7.94,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [7.94,10.25,21.6, 7.94,11.01,21.6, 7.94,11.01,22.34, 7.94,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [9.74,10.25,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 9.74,10.25,22.34]} #left
+	}
+	Box { #sunsol desks
+	Wall {texture sunsoldesk.gif
+		coords [9.74,11.01,21.6, 11.54,11.01,21.6, 11.54,11.01,22.34, 9.74,11.01,22.34]} #top
+	Wall {texture sunsoldesk.gif
+		coords [9.74,10.25,21.6, 9.74,11.01,21.6, 9.74,11.01,22.34, 9.74,10.25,22.34]} #right
+	Wall {texture sunsoldesk.gif
+		coords [11.54,10.25,21.6, 11.54,11.01,21.6, 11.54,11.01,22.34, 11.54,10.25,22.34]} #left
+	}
+	Box { #blue desk by sunsol desk
+	Wall {texture csacdesk.gif
+		coords [5.23,11.01,21.58, 6.13,11.01,21.58, 6.13,11.01,22.34, 5.23,11.01,23.34]} #top
+	Wall {texture csacdeskside.gif
+		coords [5.23,10.25,21.58, 5.23,11.01,21.58, 5.23,11.01,22.34, 5.23,10.25,22.34]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.13,10.25,21.58, 6.13,11.01,21.58, 6.13,11.01,22.34, 6.13,10.25,22.34]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.13,10.25,22.34, 6.13,11.01,22.34, 5.23,11.01,22.34, 5.23,10.25,22.34]} #back
+	}
+		
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,17.56, 6.90,11.01,17.56, 6.90,11.01,18.46, 6.14,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,18.46, 6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,17.56, 6.14,11.01,17.56, 6.90,11.01,17.56, 6.90,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,17.56, 6.90,11.01,17.56, 6.90,11.01,18.46, 6.90,10.25,18.46]} #back
+	}
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,11.01,19.37, 6.14,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,19.37, 6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,18.46, 6.14,11.01,18.46, 6.90,11.01,18.46, 6.90,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,18.46, 6.90,11.01,18.46, 6.90,11.01,19.37, 6.90,10.25,19.37]} #back
+	}
+	Box { #2nd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,11.01,20.28, 6.14,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,20.28, 6.14,11.01,20.28, 6.90,11.01,20.28, 6.90,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [6.14,10.25,19.37, 6.14,11.01,19.37, 6.90,11.01,19.37, 6.90,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [6.90,10.25,19.37, 6.90,11.01,19.37, 6.90,11.01,20.28, 6.90,10.25,20.28]} #back
+	}
+	Box { #Printer
+	Wall {texture printertop.gif
+		coords [6.14,11.49,19.92, 6.14,11.49,19.50, 6.53,11.49,19.50, 6.53,11.49,19.92]} #top
+	Wall {texture printerfront.gif
+		coords [6.14,11.01,19.92, 6.14,11.49,19.92, 6.53,11.49,19.92, 6.53,11.01,19.92]} #front
+	Wall {texture printerback.gif
+		coords [6.53,11.01,19.50, 6.53,11.49,19.50, 6.14,11.49,19.50, 6.14,11.01,19.50]} #back
+	Wall {texture printerright.gif
+		coords [6.53,11.01,19.92, 6.53,11.49,19.92, 6.53,11.49,19.50, 6.53,11.01,19.50]} #right
+	Wall {texture printerleft.gif
+		coords [6.14,11.01,19.50, 6.14,11.49,19.50, 6.14,11.49,19.92, 6.14,11.01,19.92]} #left
+	}
+
+
+	Box { #3rd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [4.32,11.01,17.56, 5.08,11.01,17.56, 5.08,11.01,18.46, 4.32,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,18.46, 4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,17.56, 4.32,11.01,17.56, 5.08,11.01,17.56, 5.08,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [5.08,10.25,17.56, 5.08,11.01,17.56, 5.08,11.01,18.46, 5.08,10.25,18.46]} #back
+	}
+	Box { #3rd row of blue desks
+	Wall {texture csacdesk.gif
+		coords [4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,11.01,19.37, 4.32,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,19.37, 4.32,11.01,19.37, 5.08,11.01,19.37, 5.08,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [4.32,10.25,18.46, 4.32,11.01,18.46, 5.08,11.01,18.46, 5.08,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [5.08,10.25,18.46, 5.08,11.01,18.46, 5.08,11.01,19.37, 5.08,10.25,19.37]} #back
+	}
+
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,17.56, 3.26,11.01,17.56, 3.26,11.01,18.46, 2.5,11.01,18.46]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,18.46, 2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,10.25,18.46]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,17.56, 2.5,11.01,17.56, 3.26,11.01,17.56, 3.26,10.25,17.56]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,17.56, 3.26,11.01,17.56, 3.26,11.01,18.46, 3.26,10.25,18.46]} #back
+	}
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,11.01,19.37, 2.5,11.01,19.37]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,19.37, 2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,10.25,19.37]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,18.46, 2.5,11.01,18.46, 3.26,11.01,18.46, 3.26,10.25,18.46]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,18.46, 3.26,11.01,18.46, 3.26,11.01,19.37, 3.26,10.25,19.37]} #back
+	}
+	Box { #4th row of blue desks
+	Wall {texture csacdesk.gif
+		coords [2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,11.01,20.28, 2.5,11.01,20.28]} #top
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,20.28, 2.5,11.01,20.28, 3.26,11.01,20.28, 3.26,10.25,20.28]} #right
+	Wall {texture csacdeskside.gif
+		coords [2.5,10.25,19.37, 2.5,11.01,19.37, 3.26,11.01,19.37, 3.26,10.25,19.37]} #left
+	Wall {texture csacdeskside.gif
+		coords [3.26,10.25,19.37, 3.26,11.01,19.37, 3.26,11.01,20.28, 3.26,10.25,20.28]} #back
+	}
+	
+	Box { #Radiator
+	Wall {texture radiator.gif
+		coords [.20,10.25,20.97, .2,10.86,20.97, .2,10.86,19.04, .2,10.25,19.04]} #front
+	Wall {texture radiatortop.gif
+		coords [.20,10.86,20.97, 0,10.86,20.97, 0,10.86,19.04, .2,10.86,19.04]} #top
+	Wall {texture radiator.gif
+		coords [0,10.25,20.97, 0,10.86,20.97, .2,10.86,20.97, .2,10.25,20.97]} #left
+	Wall {texture radiator.gif
+		coords [.2,10.25,19.04, .2,10.86,19.04, 0,10.86,19.04, 0,10.25,19.04]} #right
+	}
+]
+}

@@ -1,0 +1,1507 @@
+version	U12.1.00
+uid	TiledWall.u1-1523917601-0
+record	TiledWall__state,14
+	0,__s
+	1,__m
+	2,maxx
+	3,minx
+	4,maxy
+	5,miny
+	6,maxz
+	7,minz
+	8,walls
+	9,coords
+	10,plane
+	11,xdelta
+	12,ydelta
+	13,zdelta
+record	TiledWall__methods,7
+	0,render
+	1,printwall
+	2,calc_boundbox
+	3,addwall
+	4,setcoords
+	5,set_plane
+	6,initially
+impl	error
+global	12
+	0,000005,TiledWall_render,1
+	1,000005,TiledWall_printwall,1
+	2,000005,TiledWall_calc_boundbox,1
+	3,000005,TiledWall_addwall,2
+	4,000005,TiledWall_setcoords,-2
+	5,000005,TiledWall_set_plane,1
+	6,000005,TiledWall_initially,-2
+	7,000011,TiledWall__state,14
+	8,000011,TiledWall__methods,7
+	9,000001,TiledWall__oprec,0
+	10,000005,TiledWall,-1
+	11,000005,TiledWallinitialize,0
+
+proc TiledWall_render
+	local	0,001000,self
+	local	1,000020,i
+	con	0,002000,1,1
+	declend
+	filen	TiledWall.icn
+	line	4
+	colm	11
+	synt	any
+	mark	L1
+	line	6
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	int	0
+	pnull
+	pnull
+	var	0
+	line	6
+	colm	28
+	synt	any
+	field	walls
+	line	6
+	colm	23
+	synt	any
+	size
+	push1
+	line	6
+	colm	20
+	synt	any
+	toby
+	line	6
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	7
+	colm	14
+	synt	any
+	field	walls
+	var	1
+	line	7
+	colm	20
+	synt	any
+	subsc
+	line	7
+	colm	23
+	synt	any
+	field	render
+	pnull
+	int	0
+	line	7
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	efail
+lab L3
+	line	6
+	colm	7
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	8
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_printwall
+	local	0,001000,self
+	local	1,000020,i
+	con	0,002000,1,1
+	declend
+	line	9
+	colm	11
+	synt	any
+	mark	L1
+	line	11
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	int	0
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	28
+	synt	any
+	field	walls
+	line	11
+	colm	23
+	synt	any
+	size
+	push1
+	line	11
+	colm	20
+	synt	any
+	toby
+	line	11
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	14
+	synt	any
+	field	walls
+	var	1
+	line	12
+	colm	20
+	synt	any
+	subsc
+	line	12
+	colm	23
+	synt	any
+	field	printwall
+	line	12
+	colm	33
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	efail
+lab L3
+	line	11
+	colm	7
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	13
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_calc_boundbox
+	local	0,001000,self
+	local	1,000020,L
+	local	2,000020,i
+	con	0,002000,1,1
+	con	1,002000,1,2
+	con	2,002000,1,3
+	con	3,002000,1,4
+	declend
+	line	14
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	16
+	colm	11
+	synt	any
+	field	maxx
+	pnull
+	pnull
+	var	0
+	line	16
+	colm	22
+	synt	any
+	field	minx
+	pnull
+	pnull
+	var	0
+	line	16
+	colm	33
+	synt	any
+	field	coords
+	int	0
+	line	16
+	colm	40
+	synt	any
+	subsc
+	line	16
+	colm	27
+	synt	any
+	asgn
+	line	16
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	17
+	colm	11
+	synt	any
+	field	maxy
+	pnull
+	pnull
+	var	0
+	line	17
+	colm	22
+	synt	any
+	field	miny
+	pnull
+	pnull
+	var	0
+	line	17
+	colm	33
+	synt	any
+	field	coords
+	int	1
+	line	17
+	colm	40
+	synt	any
+	subsc
+	line	17
+	colm	27
+	synt	any
+	asgn
+	line	17
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	11
+	synt	any
+	field	maxz
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	22
+	synt	any
+	field	minz
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	33
+	synt	any
+	field	coords
+	int	2
+	line	18
+	colm	40
+	synt	any
+	subsc
+	line	18
+	colm	27
+	synt	any
+	asgn
+	line	18
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	1
+	pnull
+	var	0
+	line	19
+	colm	16
+	synt	any
+	field	coords
+	line	19
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	20
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	int	3
+	pnull
+	var	1
+	line	20
+	colm	23
+	synt	any
+	size
+	int	2
+	line	20
+	colm	20
+	synt	any
+	toby
+	line	20
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	21
+	colm	14
+	synt	any
+	field	minx
+	dup
+	pnull
+	var	1
+	var	2
+	line	21
+	colm	23
+	synt	any
+	subsc
+	line	21
+	colm	19
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	14
+	synt	any
+	field	maxx
+	dup
+	pnull
+	var	1
+	var	2
+	line	22
+	colm	23
+	synt	any
+	subsc
+	line	22
+	colm	19
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	14
+	synt	any
+	field	miny
+	dup
+	pnull
+	var	1
+	pnull
+	var	2
+	int	0
+	line	23
+	colm	25
+	synt	any
+	plus
+	line	23
+	colm	23
+	synt	any
+	subsc
+	line	23
+	colm	19
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	24
+	colm	14
+	synt	any
+	field	maxy
+	dup
+	pnull
+	var	1
+	pnull
+	var	2
+	int	0
+	line	24
+	colm	25
+	synt	any
+	plus
+	line	24
+	colm	23
+	synt	any
+	subsc
+	line	24
+	colm	19
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	25
+	colm	14
+	synt	any
+	field	minz
+	dup
+	pnull
+	var	1
+	pnull
+	var	2
+	int	1
+	line	25
+	colm	25
+	synt	any
+	plus
+	line	25
+	colm	23
+	synt	any
+	subsc
+	line	25
+	colm	19
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L12
+	pnull
+	pnull
+	var	0
+	line	26
+	colm	14
+	synt	any
+	field	maxz
+	dup
+	pnull
+	var	1
+	pnull
+	var	2
+	int	1
+	line	26
+	colm	25
+	synt	any
+	plus
+	line	26
+	colm	23
+	synt	any
+	subsc
+	line	26
+	colm	19
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L6
+	efail
+lab L7
+	line	20
+	colm	7
+	synt	endevery
+	unmark
+lab L5
+	pnull
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_addwall
+	local	0,001000,self
+	local	1,001000,w
+	local	2,000000,put
+	declend
+	line	30
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	31
+	colm	15
+	synt	any
+	field	walls
+	var	1
+	line	31
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	32
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_setcoords
+	local	0,001000,self
+	local	1,001000,c
+	declend
+	line	33
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	34
+	colm	11
+	synt	any
+	field	coords
+	var	1
+	line	34
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	35
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_set_plane
+	local	0,001000,self
+	local	1,000020,c
+	local	2,000000,write
+	local	3,000000,runerr
+	local	4,000000,max
+	local	5,000000,abs
+	con	0,002000,1,0
+	con	1,002000,2,12
+	con	2,010000,37,163,150,157,162,164,040,167,141,154,154,040,156,145,145,144,163,040,061,062,040,143,157,157,162,144,151,156,141,164,145,163,054,040,150,141,144,040
+	con	3,002000,3,500
+	con	4,002000,1,4
+	con	5,002000,1,1
+	con	6,002000,1,7
+	con	7,002000,2,10
+	con	8,002000,1,5
+	con	9,002000,1,2
+	con	10,002000,1,8
+	con	11,002000,2,11
+	con	12,002000,1,6
+	con	13,002000,1,3
+	con	14,002000,1,9
+	con	15,004000,0.0001
+	con	16,004000,0.05
+	con	17,010000,28,127,141,154,154,040,144,157,145,163,040,156,157,164,040,150,141,166,145,040,141,040,160,154,141,156,145,041,040
+	declend
+	line	36
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	38
+	colm	11
+	synt	any
+	field	plane
+	line	38
+	colm	19
+	synt	any
+	keywd	null
+	line	38
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	40
+	colm	7
+	synt	if
+	mark0
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	15
+	synt	any
+	field	coords
+	line	40
+	colm	10
+	synt	any
+	null
+	line	40
+	colm	22
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	29
+	synt	any
+	field	coords
+	line	40
+	colm	24
+	synt	any
+	size
+	int	0
+	line	40
+	colm	36
+	synt	any
+	numeq
+lab L4
+	unmark
+	line	40
+	colm	44
+	synt	any
+	pfail
+	line	40
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L5
+	pnull
+	var	1
+	pnull
+	var	0
+	line	41
+	colm	16
+	synt	any
+	field	coords
+	line	41
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	42
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	42
+	colm	10
+	synt	any
+	size
+	int	1
+	line	42
+	colm	13
+	synt	any
+	numlt
+	unmark
+	mark	L7
+	var	2
+	line	43
+	colm	16
+	synt	any
+	keywd	errout
+	pnull
+	str	2
+	pnull
+	var	1
+	line	43
+	colm	67
+	synt	any
+	size
+	line	43
+	colm	64
+	synt	any
+	cat
+	line	43
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	var	3
+	int	3
+	var	1
+	line	44
+	colm	16
+	synt	any
+	invoke	2
+	line	42
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	47
+	colm	11
+	synt	any
+	field	xdelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	4
+	line	47
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	5
+	line	47
+	colm	34
+	synt	any
+	subsc
+	line	47
+	colm	32
+	synt	any
+	minus
+	line	47
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	6
+	line	47
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	4
+	line	47
+	colm	50
+	synt	any
+	subsc
+	line	47
+	colm	48
+	synt	any
+	minus
+	line	47
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	7
+	line	48
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	6
+	line	48
+	colm	32
+	synt	any
+	subsc
+	line	48
+	colm	30
+	synt	any
+	minus
+	line	48
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	7
+	line	48
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	5
+	line	48
+	colm	51
+	synt	any
+	subsc
+	line	48
+	colm	48
+	synt	any
+	minus
+	line	48
+	colm	41
+	synt	any
+	invoke	1
+	line	47
+	colm	23
+	synt	any
+	invoke	4
+	line	47
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	49
+	colm	11
+	synt	any
+	field	ydelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	8
+	line	49
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	9
+	line	49
+	colm	34
+	synt	any
+	subsc
+	line	49
+	colm	32
+	synt	any
+	minus
+	line	49
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	10
+	line	49
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	8
+	line	49
+	colm	50
+	synt	any
+	subsc
+	line	49
+	colm	48
+	synt	any
+	minus
+	line	49
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	11
+	line	50
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	10
+	line	50
+	colm	32
+	synt	any
+	subsc
+	line	50
+	colm	30
+	synt	any
+	minus
+	line	50
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	11
+	line	50
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	9
+	line	50
+	colm	51
+	synt	any
+	subsc
+	line	50
+	colm	48
+	synt	any
+	minus
+	line	50
+	colm	41
+	synt	any
+	invoke	1
+	line	49
+	colm	23
+	synt	any
+	invoke	4
+	line	49
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	11
+	synt	any
+	field	zdelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	12
+	line	51
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	13
+	line	51
+	colm	34
+	synt	any
+	subsc
+	line	51
+	colm	32
+	synt	any
+	minus
+	line	51
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	14
+	line	51
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	12
+	line	51
+	colm	50
+	synt	any
+	subsc
+	line	51
+	colm	48
+	synt	any
+	minus
+	line	51
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	1
+	line	52
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	14
+	line	52
+	colm	32
+	synt	any
+	subsc
+	line	52
+	colm	30
+	synt	any
+	minus
+	line	52
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	1
+	line	52
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	13
+	line	52
+	colm	51
+	synt	any
+	subsc
+	line	52
+	colm	48
+	synt	any
+	minus
+	line	52
+	colm	41
+	synt	any
+	invoke	1
+	line	51
+	colm	23
+	synt	any
+	invoke	4
+	line	51
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	54
+	colm	7
+	synt	ifelse
+	mark	L12
+	pnull
+	pnull
+	pnull
+	real	15
+	line	54
+	colm	10
+	synt	any
+	neg
+	pnull
+	var	0
+	line	54
+	colm	24
+	synt	any
+	field	zdelta
+	line	54
+	colm	18
+	synt	any
+	numlt
+	real	16
+	line	54
+	colm	31
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	14
+	synt	any
+	field	plane
+	int	13
+	line	55
+	colm	20
+	synt	any
+	asgn
+	goto	L13
+lab L12
+	line	56
+	colm	12
+	synt	ifelse
+	mark	L14
+	pnull
+	pnull
+	pnull
+	real	15
+	line	56
+	colm	15
+	synt	any
+	neg
+	pnull
+	var	0
+	line	56
+	colm	29
+	synt	any
+	field	ydelta
+	line	56
+	colm	23
+	synt	any
+	numlt
+	real	16
+	line	56
+	colm	36
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	57
+	colm	14
+	synt	any
+	field	plane
+	int	9
+	line	57
+	colm	20
+	synt	any
+	asgn
+	goto	L15
+lab L14
+	line	58
+	colm	12
+	synt	ifelse
+	mark	L16
+	pnull
+	pnull
+	pnull
+	real	15
+	line	58
+	colm	15
+	synt	any
+	neg
+	pnull
+	var	0
+	line	58
+	colm	29
+	synt	any
+	field	xdelta
+	line	58
+	colm	23
+	synt	any
+	numlt
+	real	16
+	line	58
+	colm	36
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	14
+	synt	any
+	field	plane
+	int	5
+	line	59
+	colm	20
+	synt	any
+	asgn
+	goto	L17
+lab L16
+	mark	L18
+	var	2
+	str	17
+	line	61
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	pnull
+	var	0
+	line	62
+	colm	14
+	synt	any
+	field	printwall
+	line	62
+	colm	24
+	synt	any
+	invoke	0
+lab L17
+	line	58
+	colm	12
+	synt	endifelse
+lab L15
+	line	56
+	colm	12
+	synt	endifelse
+lab L13
+	line	54
+	colm	7
+	synt	endifelse
+	unmark
+lab L11
+	pnull
+	line	64
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall_initially
+	local	0,001000,self
+	local	1,001000,c
+	declend
+	line	66
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	67
+	colm	8
+	synt	any
+	field	coords
+	var	1
+	line	67
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	8
+	synt	any
+	field	walls
+	pnull
+	line	68
+	colm	16
+	synt	any
+	llist	0
+	line	68
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	0
+	line	69
+	colm	8
+	synt	any
+	field	set_plane
+	line	69
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	mark	L5
+	pnull
+	line	70
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	71
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWall
+	local	0,001000,c
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,TiledWall__oprec
+	local	4,000000,TiledWallinitialize
+	local	5,000000,TiledWall__state
+	local	6,000000,push
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	48
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	28
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	27
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	6
+	var	0
+	var	1
+	line	12
+	colm	27
+	synt	any
+	invoke	2
+	invoke	-1
+	line	12
+	colm	37
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	39
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc TiledWallinitialize
+	local	0,000000,TiledWall__oprec
+	local	1,000000,TiledWall__methods
+	local	2,000000,TiledWall_render
+	local	3,000000,TiledWall_printwall
+	local	4,000000,TiledWall_calc_boundbox
+	local	5,000000,TiledWall_addwall
+	local	6,000000,TiledWall_setcoords
+	local	7,000000,TiledWall_set_plane
+	local	8,000000,TiledWall_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	line	17
+	colm	49
+	synt	any
+	invoke	7
+	line	17
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

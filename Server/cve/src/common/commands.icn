@@ -1,0 +1,278 @@
+#
+# This file handles the CVE protocol.  It is used by both client and server.
+#
+# global handle_char # a client procedure; leave null for server
+
+link strings
+
+class Commands(commands,   # list of valid commands
+               wchar )     # set of valid chars in a command string
+
+   ######  CLIENT + SERVER COMMANDS
+
+   # extract & validate user command from user input
+   # returns list of 2 strings
+   #    1 command
+   #    2 args ( everything after first blank
+   # fail if invalid command format
+
+   method ParseCommand( datagram )
+      local pos, dgram, parsed, cmd, msg, first
+      dgram := trim(datagram,'\n\r', 0) || " "
+      dgram  ? {
+	 first := move(1)
+	 cmd := tab(find(" "))
+	 move(1)
+	 msg := tab(0)
+	 }
+
+      if first == ("\\"|"/") then{
+	 if cmd == "s" then
+	    cmd :="say"
+	 else if cmd == ("t"|"w") then
+	    cmd :="tell"
+
+	 if member(commands, cmd) then{
+	    parsed := [ cmd, trim(msg,' \n\r',0) ]
+            return parsed
+	    }
+	 }
+      else {
+     	 # "Command Parse Error: Your software seems to be out of date. _
+     	 #		Can't recognize this command:",parsed[1])
+         #fail
+	 }
+   end
+   #
+   # This is similar to ParseCommand, but is a generator instead, to handle
+   # multiple commands in the same datagram. It appears to be used by the
+   # server. Each time it suspends a list of two items:
+   #  1. Command  (minus the initial backslash)
+   #  2. Args  (one string -- the data following the first space until end of
+   #     string or the next command)
+   method newParseCommand( datagram )
+      local position := 1
+      local space_pos, dtg
+      local parsed := list()
+
+      datagram := trim(datagram,'\n\r')
+      if datagram == "" then return ""
+      repeat {
+         position := find("\\", datagram[2:0]) | *datagram
+         dtg := trim(datagram[2:position+1], ' ', 0) || " "
+
+         space_pos := find(" ", dtg)
+         parsed := [trim(dtg[1:space_pos+1], ' ',0),
+		    trim(dtg[space_pos+1:0], ' \n\r', 0)]
+         suspend parsed
+
+         datagram := datagram[position+1:0]
+         if datagram === "" then fail
+      }
+   end
+
+#   method newParseCommand(datagram)
+#       datagram ? {
+#       while cmd := tab(upto('\n')) do {
+#           # OK, we got a unquoted \\, we are done with a command
+#           dtg := trim(cmd, ' \r', 0)
+#           if ="\\" then { }
+#           else write("expected leading \\ is missing in:\n\t", image(dtg))
+#           dtg ? { parsed := [tab(find(" ")),
+#                    (move(1), tab(0))] }
+#           suspend \parsed
+#           move(1)
+#           cmd := ""
+#           parsed := &null
+#       }
+#       cmd := tab(0)
+#       # OK, at end, we are done with a command
+#       dtg := trim(cmd, ' \r', 0)
+#       if ="\\" then { }
+#       else write("expected leading \\ is missing in:\n\t", image(dtg))
+
+#       if dtg ? parsed := [tab(find(" ")), (move(1), tab(0))] then
+#           suspend \parsed
+#       }
+#   end
+
+#   method newParseCommand(datagram)
+#       datagram ? {
+#       cmd := ""
+#       while cmd ||:= tab(upto('\"\\')) do {
+#           if cmd ||:= ="\"" then {
+#           cmd ||:= tab((find("\"")+1)|0)
+#           } else {
+#           # OK, we got a unquoted \\, we are done with a command
+#           dtg := trim(cmd, ' ', 0)
+#           dtg ? { parsed := [tab(find(" ")),
+#                    (move(1), trim(tab(0), ' \n\r'))] }
+#           suspend \parsed
+#           move(1)
+#           cmd := ""
+#           parsed := &null
+#           }
+#       }
+#       cmd ||:= tab(0)
+#       # OK, at end, we are done with a command
+#       dtg := trim(cmd, ' ', 0)
+#       dtg ? parsed := [tab(find(" ")),
+#                (move(1), trim(tab(0), ' \n\r'))]
+#       suspend \parsed
+#       }
+#   end
+
+   method commandIs( buffer, target_command )
+      local parsed
+
+      if not ( parsed := ParseCommand( buffer ) ) then fail
+      if not ( parsed[1] == target_command ) then fail
+
+      return SplitArgs(parsed[2])
+   end
+
+   method SplitArgs( string, splitONspace )
+      local  L, arg
+
+      L := []
+      if /splitONspace then
+      string ? while tab(upto(wchar)) do {
+	 if ="\"" then {  # quoted arg
+	     # go to closing quote
+	     put(L, tab(find("\""))) |
+		 write(&errout, "unclosed quote in SplitArgs:\n",
+		       image(string))
+	     move(1) # throw away closing quote
+	 }
+	 else 
+	     put(L, tab(many(wchar)))
+      }
+      else
+      string ?{ 
+            while put(L, tab(find(" "))) do move(1)
+            put(L, tab(0))
+           }
+
+      return L
+   end
+
+   method LoginCommand( datagram )
+      local parsed
+
+      if not ( parsed := ParseCommand( datagram ) ) then fail
+      if not ( parsed[1] == "login" ) then fail
+      #if find( " ", parsed[2] ) then fail      # no blanks in user id
+
+      return parsed
+   end
+
+   method wasSuccessfull( datagram )
+      local parsed
+
+      if not ( parsed := ParseCommand( datagram ) ) then fail
+      if not ( parsed[1] == "success" ) then fail
+      return parsed[2]
+   end
+
+   method wasUnSuccessfull( datagram )
+      local parsed
+
+      if not ( parsed := ParseCommand( datagram ) ) then fail
+      if not ( parsed[1] == "failure" ) then fail
+
+      return parsed[2]
+   end
+
+   ######  END CLIENT + SERVER COMMANDS
+
+   initially()
+
+      # bpalmer: I added : to the list of acceptable wchar; what
+      # implications does this have? Benefits are that it'd let us
+      # specify times without the : being replaced by whitespace
+
+      # valid chars
+      wchar := &letters ++ &digits ++ ':.-_/^\\\'\"!@$%&*()~+=?<>#[]{}|;,'
+
+      commands :=
+	 set("admin:list", "admin:add", "admin:remove", "admin:quit",
+	     "admin:change", "afk", "allow", "allusers" , "attrib", "avatar",
+	     "avtroom", "back",
+	     "cmd", "color", "course", "close", "changereg",
+	     "damage", "dat", "delavatar","disband", "door",
+             "doorMotion", "draw", "dynstate",
+             "fire",
+	     "emote","enroll","erase","exit", "failure", "follow","fetchip",
+	     "getip", "give", "group", "groups", "gvstate",
+	     "hand", "history",
+	     "ignore", "inform", "invite","join","kill",
+	     "latency", "loc", "lock", "log", "logwatch", "login", "logout",
+	     "move", "moveavatar", "movedoor",
+	     "newuser", "nodechange", "npcmsg",
+	     "passwd", "pen", "possess",
+	     "query", "quit!", "redraw", "request",
+	     "say","server","set","setip","sound","stop", "stoplogwatch",
+	     "success","switchobjectup","switchobjectdown",
+	     "take","tell", "transfer",
+	     "unpossess", "update", "uptime","users",
+	     "vaccept", "vchroom", "version", "vhold", "video",
+	     "vlocal","vlend","voice", "vpend", "vphone",
+	     "vreject", "vrequest", "vroom", "vstate", "vuhold", "vwho",
+	     "vrtalk","vtalk","vend","vgetip", "who",
+             "IDErequest","WEBopen",
+             "CETLevent","CETLmouse","CETLkey","CETLscrol",
+	     "SHLevent","SHLmouse","SHLkey","SHLscrol",
+	     "CETLaccept","Addusers","CETLOpen","DeleteUser","CETLCompile",
+	     "RejectIDE","Whoami","CETLDeletefile","CETLDeleteEntry",
+	     "CETLSendUser","CETLLock","CETLLockTransfer","CETLRemoveUser",
+	     "SHLHighlight","CETLPaste","CETLhostuser","SHLResize",
+	     "groupInvite","groupRemove","groupWall", "userRemove",
+             "sciAdduser","groupJoin","groupLeave", "inviteAccept","makesig",
+             "addFriend", "addFriendAccept",
+             "userProfile", "getAccountSettings", "setAccountSettings",
+             "getPrivacySettings", "setPrivacySettings",
+             "addFeed", "removeFeed","viewFeed", "replytoFeed", "changeStatus",
+             "projfileOpen", "projfileClose", "commitChanges", "readytoCommit",
+             "getProjectInfo", "projectInvite", "makeProject", "projectDelete",
+             "projectInvite", "projectJoin", "projfileAdd", "projfileDelete",
+             "checkdiff", "ADDPending", "DELPending", "FWDPendingSuggest",
+             "sendToGroup", "getEmail", "setPermissions", "projActivity",
+             "memberActivity", "projMembersLst", "memberProjectsList",
+             "getAccessedProjFiles", "updateChangedLines", "storeChangedLines",
+             "storeUpdatedLines", "membersColorList", "setIDESession",
+             "getUpdatedLines", "getChangedLines", "checkMemberColor", 
+             "setMemberColor", "writeToWall", "projTooltip", "sessionTooltip", 
+             "sessionActivity", "blockUser", "getExpertsList", "avatlocation", 
+             "userAvailability", "^k", "createroom", "teleport", "saveroom", 
+             "createDatFile", "checkforupdates", "userTimeSpent", 
+             "userProgress", "saveopening", "updatelocations", "myFriendsList",
+             "interactionsIn3D", "projTeleport", "unblockUser", "delWallPost",
+             "myPartnersList", "addWallPost", "replyWallPost", "refreshWall", 
+             "myProjectsList", "objDescription", "getDescription", "setDescription",
+             "usersAvailability", "editroom", "addopening", "updateMode", "checkMode",
+             "CETLStoreOutput", "setFont", "avaReport", "whereami"
+             )
+
+      #
+      #  Descriptions of Commands:
+      #
+      #  "avatar" - color - creates the users avatar
+      #  "delavatar" deletes an avatar
+      #  "attrib" - change window attributes - colors fonts - done
+      #  "close" - closes chat window / if logged out - graphics stays open
+      #  "color" - changes color on users avatar to [color] # obsolete
+      #  "logout" - close net conection but keep window open
+      #  "move"  - uid x y z angle    moves uid's avatar to point specified
+      #                 will be sent automatically when avatar moves
+      #                 can also be sent from command window
+      #  "update" - causes all logged in users to re-broadcast their avatar
+      #            this is done when a new user logs in to give them a complete
+      #             set of avatars
+      #  "quit!" - quick kill everything - net kill is not real clean
+      #   "server" - query server:port, or set server:port if not logged in
+
+      #  todo:
+      #   re-work \say  -  stays in mode till changed
+      #           modes  \say room  \say all  \say group \say class  \say uid
+      #  "whoami"
+end

@@ -1,0 +1,285 @@
+# $Header: /home/jeffery/tmp/cve/cve/src/server/account_admin.icn,v 1.3 2010-05-25 22:39:43 hanibs Exp $
+
+#  ---------------------------------------------------
+# | Project: Collaborative Virtual Environment        |
+# | Author: Kosta Tachtevrenidis (tachtevrenidis.com) |  
+# | Date: 9/10/2004                                   |
+#  ---------------------------------------------------
+
+#  ---------------------------------------------------
+# | filename: account_admin.icn                       |
+# | description: account maintenance tool             |
+#  ---------------------------------------------------
+
+$include "../common/defaults.icn"
+
+global menu
+
+class Account_Admin(net, server, port, connect_username, connect_pass)
+
+   #
+   # create_Account: prepares the request for new account creation
+   #                 also sends it
+   #
+   method create_Account()
+      local user, pass
+
+      write("Fill out the form.")
+      writes("Username:")
+      user := read()
+      writes("Password:")
+      pass := read()
+
+      write(net, "\\admin:add ", user, " ", pass)
+      return
+   end
+
+   #
+   # remove_Account: prepares the request for account removal
+   #
+   method remove_Account()
+      local user
+
+      write("Fill out the form.")
+      writes("Username:")
+      user := read()
+
+      write(net, "\\admin:remove")
+      write(net, user)
+      return
+   end
+
+   #
+   # change_Account: prepares the request for account password change
+   #
+   method change_Account()
+      local user, pass
+
+      write("Fill out the form.")
+      writes("Username:")
+      user := read()
+      writes("Password:")
+      pass := read()
+
+      write(net, "\\admin:change") | stop("admin change failed")
+      write(net, user) | stop("net failed on username")
+      write(net, pass) | stop("net failed on password")
+
+      return
+   end
+
+   #
+   # list_Account: prepares the request for account listing
+   #
+   method list_Account()
+      write(net, "\\admin:list")
+      return
+   end
+
+   #
+   # stop_server: notifies the server that it should be terminated
+   #
+   method stop_server()
+      write(net, "\\admin:quit")
+      delay(500)
+   end
+
+   #
+   # terminate: program exits
+   #
+   method terminate()
+      stop("Account Admin is bailing.")
+   end
+
+   #
+   # login: the login sequence
+   #        this will probably change or most likely be moved
+   #        to a common place so that account_admin and chat_client
+   #
+   method login()
+      local result, args, cmds
+
+      cmds := Commands()
+
+      write(net, "\\login " || connect_username || " " || connect_pass)
+      result := read(net)
+
+      if args := cmds.SplitArgs(result) then
+         if args[1] == "Valid" then
+            return
+
+      close(net)
+      stop("auth failed")
+   end
+
+   #
+   # quit: exits account_admin
+   #
+   method quit()
+      write(net, "\\logout ")
+      while \read(net)
+         
+      close(net)
+   end
+
+   #
+   # start: main menu command polling loop
+   #
+   method start()
+      local choice, account
+      
+      net := open(server || ":" || port, "n") |
+	  stop("open failed: ", sys_errstr(&errno))
+
+      login()
+         
+      while 1 do {
+         drawMenu()
+         choice := read()
+         case choice[1] of {
+            "1": create_Account()
+            "2": remove_Account() 
+            "3": change_Account()
+            "4": list_Account()
+            "5": drawMenu()
+            "6": { stop_server(); terminate() }
+            "7": logwatch()
+            "8": { quit(); terminate() }
+            default: { write("Unrecognized Selection. Retry..."); next }
+         }
+
+         # fix the bug, this should only be called when 
+         # choice[1] is 1 2 3 4 otherwise it hangs
+         account := ""
+
+         if account := read(net) then {
+
+	     while account ~== "<ADMIN BEGIN>" do {
+		 if not (account := read(net)) then stop("can't read")
+
+	     }
+	 }
+	 else stop("can't read")
+
+         account := read(net)         
+         write("-----------------------------")
+         write("Response:                    ")
+         while account ~== "<ADMIN END>" do
+         {
+            write(account)
+            account := read(net)
+         }
+         write("-----------------------------")
+      }
+   end
+
+   #
+   # logwatch(): remote monitoring of server logs
+   #
+   method logwatch()
+      write("Commencing Remote Server Log Monitoring -------- ")
+      write("you will have to press CTRL+C to stop this process")
+      write(net, "\\logwatch ")
+
+      repeat {
+         write(read(net))
+      }
+
+      return
+   end
+
+   #
+   # drawMenu: presents the main menu
+   #
+   method drawMenu()      
+
+      write("Unicrond Account Administration Tool")
+      write("")
+      write("[1] Create a new User Account")
+      write("[2] Remove an existing User Account")
+      write("[3] Change Password on an existing Account")
+      write("[4] List Current Accounts")
+      write("[5] Print this Menu Again")
+      write("[6] Terminate the Server")
+      write("[7] Tail Server Logs!")
+      write("[8] Exit")
+      write()
+      writes("Choice:")
+
+   end
+      
+   # parse cmd line and set parms here
+   method process_cmd_line( args )
+      local i := 1
+      while i < *args do {
+         case args[i] of {
+            "-port": {port := integer(args[i+1]);i+:= 1}
+            "-server":  {
+               server := args[i+1]
+               i+:= 1
+               if i := find(":", server) then {
+                  port := server[i+1:0]
+                  server[i:0] := ""
+               }
+            }
+            "-user": { connect_username:= args[i+1]; i +:= 1 }
+            "-pass"|"-password": { connect_pass := args[i+1]; i +:= 1 }
+         }
+         i +:= 1
+      }
+
+      if /server then
+         server := SERVER
+
+      if /port then
+         port := DEFAULT_PORT
+
+      if /connect_username then {
+	  writes("Username: ")
+	  connect_username := read() | fail
+      }
+      if /connect_pass then {
+	  writes("Password: ")
+	  connect_pass := read() | fail
+      }
+
+      if \connect_username & \connect_pass then
+         return
+      
+      fail
+   end
+
+   method usage()  
+      write("Usage: ./account_admin -user uid -password pwd _
+            -server svr -port prt")
+   end
+
+   #
+   # constructor
+   #
+   initially(args)
+
+      if not process_cmd_line(args) then {
+         usage()
+         stop()
+      }
+
+end #class Account_Admin
+
+#
+# main: instantiates Account_Admin
+#
+procedure main(args)
+   trap("SIGINT", SIGINT_handler)
+   menu := Account_Admin(args)
+   menu.start()
+end
+      
+#
+# SIGINT_handler: handles CTRL-Cs to this process
+#
+procedure SIGINT_handler(s)
+   menu.quit()
+   delay(200)
+   menu.start()
+end

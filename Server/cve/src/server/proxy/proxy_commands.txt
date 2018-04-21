@@ -1,0 +1,21 @@
+
+These are the list of commands that the Server 
+will provide.
+
+(1) \newproxy "proxy name" 
+      Proxy will send this command when it starts up.
+      The server will maintain a list of proxies which
+      are currently running.
+      
+(2) \delproxy "proxy name"
+      Proxy will send this command just before it closes.
+      The server will remove the proxy from its list.
+      
+(3) \proxylogin "uid"
+      Proxy will send this command when a Client has logged 
+      in.
+      
+(4) \proxylogout "uid"
+      Proxy will send this command when a Client logs out.
+      
+      

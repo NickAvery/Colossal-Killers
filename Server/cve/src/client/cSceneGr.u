@@ -1,0 +1,3035 @@
+version	U12.1.00
+uid	cSceneGr.u1-1523917899-0
+record	ClientSceneGraph__state,13
+	0,__s
+	1,__m
+	2,is_server
+	3,services
+	4,nodesTable
+	5,edgesTable
+	6,directionTable
+	7,avatarTable
+	8,nodeRPath
+	9,edgeRPath
+	10,logHandler
+	11,genDyn
+	12,cveBuilder
+record	ClientSceneGraph__methods,44
+	0,putRoomInWorld
+	1,assignCurrRoom
+	2,updateDynamicState
+	3,handleNodeState
+	4,printRenderedNodes
+	5,deRenderNodes
+	6,initially
+	7,generateSceneGraph
+	8,constructStaticData
+	9,constructStaticNodeData
+	10,constructStaticEdgeData
+	11,constructDynamicData
+	12,constructDynamicNodeData
+	13,constructAvatarStates
+	14,constructDynamicEdgeData
+	15,printGraph
+	16,createEdgeName
+	17,determineCurrRoom
+	18,getAdjacencyList
+	19,getAdjacency
+	20,clearVisited
+	21,storeToDisk
+	22,storeDynamicNodeData
+	23,storeDynamicEdgeData
+	24,populateEdgeTblFrmNode
+	25,getAdjDynamicStateForNode
+	26,getDynStateForNode
+	27,getEdgeStates
+	28,getAvatarStates
+	29,getRoomByName
+	30,getRoom
+	31,getAvatarState
+	32,updateAvatarState
+	33,updateEdgeState
+	34,updateBlackboardState
+	35,handleAvatarNodeChanges
+	36,getAvatarsForEdgeMove
+	37,getAvatarsForAvtMove
+	38,populateAvtTblFrmNode
+	39,getAvtRoom
+	40,getAvtInRoom
+	41,constructStaticDirectionNodes
+	42,checkForDirection
+	43,CVESceneGraph
+impl	error
+link	C:/Users/Kevin/cve/src/common/SceneGraph.u
+link	basename.u
+global	15
+	0,000005,ClientSceneGraph_putRoomInWorld,2
+	1,000005,ClientSceneGraph_assignCurrRoom,2
+	2,000005,ClientSceneGraph_updateDynamicState,4
+	3,000005,ClientSceneGraph_handleNodeState,4
+	4,000005,ClientSceneGraph_printRenderedNodes,2
+	5,000005,ClientSceneGraph_deRenderNodes,4
+	6,000005,ClientSceneGraph_initially,3
+	7,000011,ClientSceneGraph__state,13
+	8,000011,ClientSceneGraph__methods,44
+	9,000001,ClientSceneGraph__oprec,0
+	10,000001,CVESceneGraph__oprec,0
+	11,000005,ClientSceneGraph,2
+	12,000005,ClientSceneGraphinitialize,0
+	13,000005,CheckForUpdates,0
+	14,000005,ApplyUpdates,0
+
+proc ClientSceneGraph_putRoomInWorld
+	local	0,001000,self
+	local	1,001000,r
+	local	2,000000,put
+	local	3,000000,world
+	declend
+	filen	cSceneGr.icn
+	line	57
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	3
+	line	58
+	colm	16
+	synt	any
+	field	Rooms
+	var	1
+	line	58
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	59
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_assignCurrRoom
+	local	0,001000,self
+	local	1,001000,r
+	local	2,000000,world
+	declend
+	line	61
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	2
+	line	62
+	colm	12
+	synt	any
+	field	curr_room
+	var	1
+	line	62
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	63
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_updateDynamicState
+	local	0,001000,self
+	local	1,001000,strDynstate
+	local	2,001000,TupdatedNodes
+	local	3,001000,TupdatedAvatars
+	local	4,000020,strNodeState
+	local	5,000000,view
+	local	6,000000,image
+	local	7,000000,tab
+	local	8,000000,find
+	local	9,000000,move
+	con	0,002000,1,1
+	con	1,010000,1,174
+	con	2,010000,29,127,141,162,156,151,156,147,040,144,157,145,163,040,156,157,164,040,145,156,144,040,167,151,164,150,040,174,072,012
+	declend
+	line	76
+	colm	11
+	synt	any
+	mark	L1
+	line	80
+	colm	7
+	synt	if
+	mark0
+	pnull
+	mark	L2
+	pnull
+	var	1
+	pnull
+	int	0
+	line	80
+	colm	26
+	synt	any
+	neg
+	line	80
+	colm	25
+	synt	any
+	subsc
+	unmark
+	efail
+lab L2
+	pnull
+	str	1
+	line	80
+	colm	30
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	5
+	line	81
+	colm	14
+	synt	any
+	field	write_to_chat_win
+	str	2
+	var	6
+	var	1
+	line	81
+	colm	71
+	synt	any
+	invoke	1
+	line	81
+	colm	32
+	synt	any
+	invoke	2
+	line	80
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	var	1
+	line	82
+	colm	19
+	synt	any
+	bscan
+lab L4
+	line	83
+	colm	10
+	synt	while
+	mark0
+	pnull
+	var	4
+	var	7
+	var	8
+	str	1
+	line	83
+	colm	40
+	synt	any
+	invoke	1
+	line	83
+	colm	35
+	synt	any
+	invoke	1
+	line	83
+	colm	29
+	synt	any
+	asgn
+	unmark
+	mark	L4
+	mark	L7
+	pnull
+	var	0
+	line	84
+	colm	17
+	synt	any
+	field	handleNodeState
+	var	4
+	var	2
+	var	3
+	line	84
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L7
+	var	9
+	int	0
+	line	85
+	colm	17
+	synt	any
+	invoke	1
+lab L5
+	unmark
+	goto	L4
+lab L6
+	line	83
+	colm	10
+	synt	endwhile
+	line	82
+	colm	19
+	synt	any
+	escan
+	unmark
+lab L3
+	pnull
+	line	88
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_handleNodeState
+	local	0,001000,self
+	local	1,001000,strNodeState
+	local	2,001000,TupdatedNodes
+	local	3,001000,TupdatedAvatars
+	local	4,000020,nodeName
+	local	5,000020,strEdgeStates
+	local	6,000020,strAvtStates
+	local	7,000020,strEdgeName
+	local	8,000020,avtName
+	local	9,000020,openness
+	local	10,000020,delta
+	local	11,000020,direction
+	local	12,000020,node
+	local	13,000020,x
+	local	14,000020,y
+	local	15,000020,z
+	local	16,000020,angle
+	local	17,000020,t
+	local	18,000000,tab
+	local	19,000000,find
+	local	20,000000,move
+	local	21,000000,member
+	local	22,000000,upto
+	local	23,000000,many
+	local	24,000000,stop
+	local	25,000000,table
+	con	0,010000,1,173
+	con	1,002000,1,1
+	con	2,010000,5,145,144,147,145,163
+	con	3,010000,1,054
+	con	4,010000,1,133
+	con	5,020000,2,040,011
+	con	6,010000,1,135
+	con	7,010000,41,115,145,163,163,141,147,145,040,123,171,156,164,141,170,040,105,162,162,157,162,072,040,116,145,145,144,040,074,145,144,147,145,163,076,040,141,146,164,145,162,040
+	con	8,010000,7,141,166,141,164,141,162,163
+	con	9,010000,1,175
+	con	10,010000,4,156,157,144,145
+	con	11,010000,1,170
+	con	12,010000,1,171
+	con	13,010000,1,172
+	con	14,010000,5,141,156,147,154,145
+	con	15,010000,44,115,145,163,163,141,147,145,040,123,171,156,164,141,170,040,105,162,162,157,162,072,040,116,145,145,144,040,074,141,166,141,164,141,162,163,076,040,141,146,164,145,162,040,054
+	declend
+	line	99
+	colm	11
+	synt	any
+	mark	L1
+	var	1
+	line	105
+	colm	20
+	synt	any
+	bscan
+	mark	L2
+	pnull
+	var	4
+	var	18
+	var	19
+	str	0
+	line	106
+	colm	30
+	synt	any
+	invoke	1
+	line	106
+	colm	25
+	synt	any
+	invoke	1
+	line	106
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	20
+	int	1
+	line	107
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	line	109
+	colm	10
+	synt	if
+	mark0
+	mark	L5
+	var	21
+	var	2
+	var	4
+	line	109
+	colm	23
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L5
+	pnull
+	unmark
+	pnull
+	pnull
+	var	2
+	var	4
+	line	110
+	colm	26
+	synt	any
+	subsc
+	pnull
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	45
+	synt	any
+	field	nodesTable
+	var	4
+	line	110
+	colm	56
+	synt	any
+	subsc
+	line	110
+	colm	40
+	synt	any
+	nonnull
+	line	110
+	colm	37
+	synt	any
+	asgn
+	line	109
+	colm	10
+	synt	endif
+	unmark
+lab L4
+	mark	L6
+	line	115
+	colm	10
+	synt	ifelse
+	mark	L7
+	pnull
+	str	2
+	line	115
+	colm	13
+	synt	any
+	tabmat
+	unmark
+	mark	L9
+	var	20
+	int	1
+	line	117
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	line	119
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	5
+	var	18
+	var	19
+	str	3
+	line	119
+	colm	41
+	synt	any
+	invoke	1
+	line	119
+	colm	36
+	synt	any
+	invoke	1
+	line	119
+	colm	30
+	synt	any
+	asgn
+	unmark
+	var	5
+	line	119
+	colm	67
+	synt	any
+	bscan
+lab L10
+	line	122
+	colm	16
+	synt	while
+	mark0
+	pnull
+	var	7
+	var	18
+	var	19
+	str	4
+	line	122
+	colm	45
+	synt	any
+	invoke	1
+	line	122
+	colm	40
+	synt	any
+	invoke	1
+	line	122
+	colm	34
+	synt	any
+	asgn
+	unmark
+	mark	L10
+	mark	L13
+	var	20
+	int	1
+	line	125
+	colm	23
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	9
+	pnull
+	pnull
+	var	0
+	line	126
+	colm	35
+	synt	any
+	field	cveBuilder
+	line	126
+	colm	46
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	126
+	colm	64
+	synt	any
+	invoke	1
+	line	126
+	colm	59
+	synt	any
+	invoke	1
+	line	126
+	colm	55
+	synt	any
+	invoke	1
+	line	126
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	var	18
+	var	23
+	cset	5
+	line	127
+	colm	27
+	synt	any
+	invoke	1
+	line	127
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	10
+	pnull
+	pnull
+	var	0
+	line	128
+	colm	32
+	synt	any
+	field	cveBuilder
+	line	128
+	colm	43
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	128
+	colm	61
+	synt	any
+	invoke	1
+	line	128
+	colm	56
+	synt	any
+	invoke	1
+	line	128
+	colm	52
+	synt	any
+	invoke	1
+	line	128
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	var	18
+	var	23
+	cset	5
+	line	129
+	colm	27
+	synt	any
+	invoke	1
+	line	129
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	11
+	pnull
+	pnull
+	var	0
+	line	130
+	colm	36
+	synt	any
+	field	cveBuilder
+	line	130
+	colm	47
+	synt	any
+	field	parseval
+	var	18
+	var	19
+	str	6
+	line	130
+	colm	65
+	synt	any
+	invoke	1
+	line	130
+	colm	60
+	synt	any
+	invoke	1
+	line	130
+	colm	56
+	synt	any
+	invoke	1
+	line	130
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	131
+	colm	23
+	synt	any
+	field	edgesTable
+	var	7
+	line	131
+	colm	34
+	synt	any
+	subsc
+	line	131
+	colm	47
+	synt	any
+	field	openness
+	var	9
+	line	131
+	colm	56
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	23
+	synt	any
+	field	edgesTable
+	var	7
+	line	132
+	colm	34
+	synt	any
+	subsc
+	line	132
+	colm	47
+	synt	any
+	field	delt
+	var	10
+	line	132
+	colm	52
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	133
+	colm	23
+	synt	any
+	field	edgesTable
+	var	7
+	line	133
+	colm	34
+	synt	any
+	subsc
+	line	133
+	colm	47
+	synt	any
+	field	direction
+	var	11
+	line	133
+	colm	57
+	synt	any
+	asgn
+	unmark
+lab L21
+	var	20
+	int	1
+	line	135
+	colm	23
+	synt	any
+	invoke	1
+lab L11
+	unmark
+	goto	L10
+lab L12
+	line	122
+	colm	16
+	synt	endwhile
+	line	119
+	colm	67
+	synt	any
+	escan
+	line	119
+	colm	13
+	synt	endif
+	goto	L8
+lab L7
+	var	24
+	pnull
+	str	7
+	var	4
+	line	140
+	colm	62
+	synt	any
+	cat
+	str	0
+	line	140
+	colm	17
+	synt	any
+	invoke	2
+lab L8
+	line	115
+	colm	10
+	synt	endifelse
+	unmark
+lab L6
+	mark	L22
+	var	20
+	int	1
+	line	142
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	line	147
+	colm	7
+	synt	ifelse
+	mark	L23
+	pnull
+	str	8
+	line	147
+	colm	10
+	synt	any
+	tabmat
+	unmark
+	mark	L25
+	var	20
+	int	1
+	line	149
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	line	151
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	6
+	var	18
+	var	19
+	str	9
+	line	151
+	colm	37
+	synt	any
+	invoke	1
+	line	151
+	colm	32
+	synt	any
+	invoke	1
+	line	151
+	colm	26
+	synt	any
+	asgn
+	unmark
+	var	6
+	line	151
+	colm	62
+	synt	any
+	bscan
+lab L26
+	line	154
+	colm	13
+	synt	while
+	mark0
+	pnull
+	var	8
+	var	18
+	var	19
+	str	4
+	line	154
+	colm	38
+	synt	any
+	invoke	1
+	line	154
+	colm	33
+	synt	any
+	invoke	1
+	line	154
+	colm	27
+	synt	any
+	asgn
+	unmark
+	mark	L26
+	mark	L29
+	var	20
+	int	1
+	line	157
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	mark	L30
+	pnull
+	var	12
+	pnull
+	pnull
+	var	0
+	line	158
+	colm	28
+	synt	any
+	field	cveBuilder
+	line	158
+	colm	39
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	158
+	colm	57
+	synt	any
+	invoke	1
+	line	158
+	colm	52
+	synt	any
+	invoke	1
+	line	158
+	colm	48
+	synt	any
+	invoke	1
+	line	158
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	var	18
+	var	23
+	cset	5
+	line	159
+	colm	24
+	synt	any
+	invoke	1
+	line	159
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L31
+	mark	L32
+	pnull
+	var	13
+	pnull
+	pnull
+	var	0
+	line	160
+	colm	25
+	synt	any
+	field	cveBuilder
+	line	160
+	colm	36
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	160
+	colm	54
+	synt	any
+	invoke	1
+	line	160
+	colm	49
+	synt	any
+	invoke	1
+	line	160
+	colm	45
+	synt	any
+	invoke	1
+	line	160
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	var	18
+	var	23
+	cset	5
+	line	161
+	colm	24
+	synt	any
+	invoke	1
+	line	161
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	mark	L34
+	pnull
+	var	14
+	pnull
+	pnull
+	var	0
+	line	162
+	colm	25
+	synt	any
+	field	cveBuilder
+	line	162
+	colm	36
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	162
+	colm	54
+	synt	any
+	invoke	1
+	line	162
+	colm	49
+	synt	any
+	invoke	1
+	line	162
+	colm	45
+	synt	any
+	invoke	1
+	line	162
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	var	18
+	var	23
+	cset	5
+	line	163
+	colm	24
+	synt	any
+	invoke	1
+	line	163
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L35
+	mark	L36
+	pnull
+	var	15
+	pnull
+	pnull
+	var	0
+	line	164
+	colm	25
+	synt	any
+	field	cveBuilder
+	line	164
+	colm	36
+	synt	any
+	field	parseval
+	var	18
+	var	22
+	cset	5
+	line	164
+	colm	54
+	synt	any
+	invoke	1
+	line	164
+	colm	49
+	synt	any
+	invoke	1
+	line	164
+	colm	45
+	synt	any
+	invoke	1
+	line	164
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	var	18
+	var	23
+	cset	5
+	line	165
+	colm	24
+	synt	any
+	invoke	1
+	line	165
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L37
+	mark	L38
+	pnull
+	var	16
+	pnull
+	pnull
+	var	0
+	line	166
+	colm	29
+	synt	any
+	field	cveBuilder
+	line	166
+	colm	40
+	synt	any
+	field	parseval
+	var	18
+	var	19
+	str	6
+	line	166
+	colm	58
+	synt	any
+	invoke	1
+	line	166
+	colm	53
+	synt	any
+	invoke	1
+	line	166
+	colm	49
+	synt	any
+	invoke	1
+	line	166
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	var	20
+	int	1
+	line	168
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	169
+	colm	20
+	synt	any
+	field	nodesTable
+	var	4
+	line	169
+	colm	31
+	synt	any
+	subsc
+	line	169
+	colm	41
+	synt	any
+	field	Tavatars
+	var	8
+	line	169
+	colm	50
+	synt	any
+	subsc
+	pnull
+	var	17
+	var	25
+	line	169
+	colm	69
+	synt	any
+	invoke	0
+	line	169
+	colm	62
+	synt	any
+	asgn
+	line	169
+	colm	59
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	17
+	str	10
+	line	170
+	colm	17
+	synt	any
+	subsc
+	var	12
+	line	170
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	17
+	str	11
+	line	171
+	colm	17
+	synt	any
+	subsc
+	var	13
+	line	171
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	17
+	str	12
+	line	172
+	colm	17
+	synt	any
+	subsc
+	var	14
+	line	172
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	17
+	str	13
+	line	173
+	colm	17
+	synt	any
+	subsc
+	var	15
+	line	173
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	pnull
+	var	17
+	str	14
+	line	174
+	colm	17
+	synt	any
+	subsc
+	var	16
+	line	174
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L45
+	line	177
+	colm	16
+	synt	if
+	mark0
+	mark	L46
+	var	21
+	var	3
+	var	8
+	line	177
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L46
+	pnull
+	unmark
+	mark	L47
+	line	178
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	178
+	colm	29
+	synt	any
+	field	avatarTable
+	var	8
+	line	178
+	colm	41
+	synt	any
+	subsc
+	line	178
+	colm	22
+	synt	any
+	null
+	unmark
+	pnull
+	pnull
+	pnull
+	var	0
+	line	179
+	colm	26
+	synt	any
+	field	avatarTable
+	var	8
+	line	179
+	colm	38
+	synt	any
+	subsc
+	var	17
+	line	179
+	colm	47
+	synt	any
+	asgn
+	line	178
+	colm	19
+	synt	endif
+	unmark
+lab L47
+	pnull
+	pnull
+	var	3
+	var	8
+	line	181
+	colm	34
+	synt	any
+	subsc
+	pnull
+	pnull
+	pnull
+	var	0
+	line	181
+	colm	52
+	synt	any
+	field	avatarTable
+	var	8
+	line	181
+	colm	64
+	synt	any
+	subsc
+	line	181
+	colm	47
+	synt	any
+	nonnull
+	line	181
+	colm	44
+	synt	any
+	asgn
+	line	177
+	colm	16
+	synt	endif
+lab L27
+	unmark
+	goto	L26
+lab L28
+	line	154
+	colm	13
+	synt	endwhile
+	line	151
+	colm	62
+	synt	any
+	escan
+	line	151
+	colm	10
+	synt	endif
+	goto	L24
+lab L23
+	var	24
+	str	15
+	line	187
+	colm	14
+	synt	any
+	invoke	1
+lab L24
+	line	147
+	colm	7
+	synt	endifelse
+	line	105
+	colm	20
+	synt	any
+	escan
+	unmark
+lab L1
+	pnull
+	line	189
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_printRenderedNodes
+	local	0,001000,self
+	local	1,001000,outType
+	local	2,000020,node
+	local	3,000020,count
+	local	4,000020,TrenderedNodes
+	local	5,000000,table
+	local	6,000000,write
+	con	0,002000,1,0
+	con	1,002000,1,1
+	con	2,010000,1,040
+	con	3,002000,1,2
+	con	4,002000,1,3
+	declend
+	line	197
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	int	0
+	line	198
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	var	5
+	line	198
+	colm	54
+	synt	any
+	invoke	0
+	line	198
+	colm	46
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	201
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	201
+	colm	26
+	synt	any
+	field	nodesTable
+	line	201
+	colm	21
+	synt	any
+	bang
+	line	201
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	line	203
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	line	203
+	colm	19
+	synt	any
+	field	isRendered
+	line	203
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	line	204
+	colm	13
+	synt	case
+	mark0
+	var	1
+	eret
+	mark	L7
+	ccase
+	int	1
+	line	205
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	var	6
+	pnull
+	var	2
+	line	205
+	colm	29
+	synt	any
+	field	name
+	str	2
+	line	205
+	colm	24
+	synt	any
+	invoke	2
+	goto	L6
+lab L7
+	mark	L8
+	ccase
+	int	3
+	line	206
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	3
+	dup
+	pnull
+	var	2
+	line	206
+	colm	33
+	synt	any
+	field	isRendered
+	line	206
+	colm	25
+	synt	any
+	plus
+	asgn
+	goto	L6
+lab L8
+	mark	L9
+	ccase
+	int	4
+	line	207
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	4
+	pnull
+	var	2
+	line	207
+	colm	38
+	synt	any
+	field	name
+	line	207
+	colm	33
+	synt	any
+	subsc
+	var	2
+	line	207
+	colm	45
+	synt	any
+	asgn
+	goto	L6
+lab L9
+	efail
+lab L6
+	line	204
+	colm	13
+	synt	endcase
+	line	203
+	colm	10
+	synt	endif
+	unmark
+lab L4
+	efail
+lab L5
+	line	201
+	colm	7
+	synt	endevery
+	unmark
+lab L3
+	mark	L10
+	line	211
+	colm	7
+	synt	ifelse
+	mark	L11
+	pnull
+	var	1
+	mark	L13
+	int	1
+	line	211
+	colm	22
+	synt	any
+	esusp
+	goto	L14
+lab L13
+	int	3
+lab L14
+	line	211
+	colm	18
+	synt	any
+	numeq
+	unmark
+	mark	L15
+	var	3
+	line	212
+	colm	10
+	synt	any
+	pret
+lab L15
+	synt	any
+	pfail
+	goto	L12
+lab L11
+	mark	L16
+	var	4
+	line	214
+	colm	10
+	synt	any
+	pret
+lab L16
+	synt	any
+	pfail
+lab L12
+	line	211
+	colm	7
+	synt	endifelse
+	unmark
+lab L10
+	pnull
+	line	215
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_deRenderNodes
+	local	0,001000,self
+	local	1,001000,currNodeName
+	local	2,001000,TnodesToBeRendered
+	local	3,001000,TavatarsToBeRendered
+	local	4,000020,renderCount
+	local	5,000020,deRenderCount
+	local	6,000020,c2
+	local	7,000020,edgeName
+	local	8,000020,derenderset
+	local	9,000020,TadjList
+	local	10,000020,node
+	local	11,000020,node1
+	local	12,000020,Edge
+	local	13,000020,TrenderedNodes
+	local	14,000000,table
+	local	15,000000,view
+	local	16,000000,member
+	con	0,002000,1,0
+	con	1,002000,1,2
+	con	2,010000,40,116,157,164,150,151,156,147,040,164,157,040,142,145,040,144,145,162,145,156,144,145,162,145,144,040,141,164,040,164,150,145,040,155,157,155,145,156,164,040,074
+	con	3,010000,1,076
+	con	4,002000,1,4
+	con	5,002000,1,1
+	con	6,010000,4,122,117,117,124
+	con	7,002000,1,3
+	declend
+	line	220
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	int	0
+	line	221
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	5
+	int	0
+	line	221
+	colm	42
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	6
+	int	0
+	line	221
+	colm	49
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	9
+	var	14
+	line	222
+	colm	28
+	synt	any
+	invoke	0
+	line	222
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	13
+	var	14
+	line	222
+	colm	73
+	synt	any
+	invoke	0
+	line	222
+	colm	65
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	4
+	pnull
+	var	0
+	line	227
+	colm	26
+	synt	any
+	field	printRenderedNodes
+	int	1
+	line	227
+	colm	45
+	synt	any
+	invoke	1
+	line	227
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	229
+	colm	7
+	synt	ifelse
+	mark	L8
+	pnull
+	var	4
+	int	0
+	line	229
+	colm	22
+	synt	any
+	numgt
+	unmark
+	mark	L10
+	line	232
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	5
+	pnull
+	var	4
+	int	0
+	line	232
+	colm	42
+	synt	any
+	minus
+	line	232
+	colm	28
+	synt	any
+	asgn
+	int	0
+	line	232
+	colm	46
+	synt	any
+	numle
+	unmark
+	mark	L11
+	pnull
+	var	15
+	line	233
+	colm	17
+	synt	any
+	field	write_to_chat_win
+	str	2
+	var	5
+	str	3
+	line	233
+	colm	35
+	synt	any
+	invoke	3
+	unmark
+lab L11
+	mark	L12
+	pnull
+	line	235
+	colm	13
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	line	232
+	colm	10
+	synt	endif
+	unmark
+lab L10
+	mark	L13
+	pnull
+	var	0
+	line	242
+	colm	14
+	synt	any
+	field	getAdjacencyList
+	var	1
+	var	9
+	int	4
+	int	5
+	line	242
+	colm	31
+	synt	any
+	invoke	4
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	9
+	str	6
+	line	248
+	colm	18
+	synt	any
+	subsc
+	pnull
+	pnull
+	pnull
+	var	0
+	line	248
+	colm	35
+	synt	any
+	field	nodesTable
+	var	1
+	line	248
+	colm	46
+	synt	any
+	subsc
+	line	248
+	colm	30
+	synt	any
+	nonnull
+	line	248
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	13
+	pnull
+	var	0
+	line	254
+	colm	32
+	synt	any
+	field	printRenderedNodes
+	int	7
+	line	254
+	colm	51
+	synt	any
+	invoke	1
+	line	254
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L15
+	line	261
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	10
+	pnull
+	var	13
+	line	261
+	colm	24
+	synt	any
+	bang
+	line	261
+	colm	21
+	synt	any
+	asgn
+	pop
+	mark0
+	line	262
+	colm	13
+	synt	if
+	mark0
+	mark	L18
+	var	16
+	var	9
+	pnull
+	var	10
+	line	262
+	colm	41
+	synt	any
+	field	name
+	line	262
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L18
+	pnull
+	unmark
+	pnull
+	var	10
+	line	263
+	colm	20
+	synt	any
+	field	deRender
+	line	263
+	colm	29
+	synt	any
+	invoke	0
+	line	262
+	colm	13
+	synt	endif
+	unmark
+lab L16
+	efail
+lab L17
+	line	261
+	colm	10
+	synt	endevery
+	goto	L9
+lab L8
+	mark	L19
+	pnull
+	line	268
+	colm	12
+	synt	any
+	pret
+lab L19
+	synt	any
+	pfail
+lab L9
+	line	229
+	colm	7
+	synt	endifelse
+	unmark
+lab L7
+	pnull
+	line	269
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph_initially
+	local	0,001000,self
+	local	1,001000,dyn
+	local	2,001000,logging
+	local	3,000000,CheckForUpdates
+	local	4,000000,ApplyUpdates
+	local	5,000000,cltSceneGraph
+	local	6,000000,Logger
+	local	7,000000,CVEBuilder
+	local	8,000000,world
+	local	9,000000,gui__dispatcher
+	local	10,000000,WcveBuilder
+	con	0,010000,1,143
+	declend
+	line	271
+	colm	11
+	synt	any
+	mark	L1
+	var	3
+	line	272
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	mark	L2
+	var	4
+	line	273
+	colm	16
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	274
+	colm	9
+	synt	any
+	field	__m
+	line	274
+	colm	13
+	synt	any
+	field	CVESceneGraph
+	line	274
+	colm	27
+	synt	any
+	field	initially
+	var	0
+	line	274
+	colm	38
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	275
+	colm	8
+	synt	any
+	field	genDyn
+	var	1
+	line	275
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	5
+	var	0
+	line	276
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	277
+	colm	4
+	synt	ifelse
+	mark	L7
+	pnull
+	var	2
+	line	277
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	pnull
+	pnull
+	var	0
+	line	278
+	colm	11
+	synt	any
+	field	logHandler
+	var	2
+	line	278
+	colm	22
+	synt	any
+	asgn
+	goto	L8
+lab L7
+	pnull
+	pnull
+	var	0
+	line	280
+	colm	11
+	synt	any
+	field	logHandler
+	var	6
+	line	280
+	colm	30
+	synt	any
+	invoke	0
+	line	280
+	colm	22
+	synt	any
+	asgn
+lab L8
+	line	277
+	colm	4
+	synt	endifelse
+	unmark
+lab L6
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	281
+	colm	8
+	synt	any
+	field	cveBuilder
+	var	7
+	str	0
+	var	0
+	var	8
+	var	9
+	line	281
+	colm	31
+	synt	any
+	invoke	4
+	line	281
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	line	282
+	colm	8
+	synt	any
+	field	generateSceneGraph
+	line	282
+	colm	27
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	10
+	pnull
+	var	0
+	line	283
+	colm	23
+	synt	any
+	field	cveBuilder
+	line	283
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	mark	L13
+	pnull
+	line	284
+	colm	7
+	synt	any
+	pret
+lab L13
+	synt	any
+	pfail
+	unmark
+lab L12
+	pnull
+	line	285
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraph
+	local	0,001000,dyn
+	local	1,001000,logging
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,ClientSceneGraph__oprec
+	local	5,000000,ClientSceneGraphinitialize
+	local	6,000000,CVESceneGraph__oprec
+	local	7,000000,CVESceneGraphinitialize
+	local	8,000000,ClientSceneGraph__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	62
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	7
+	line	9
+	colm	56
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	4
+	line	10
+	colm	26
+	synt	any
+	field	CVESceneGraph
+	var	6
+	line	10
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	2
+	var	8
+	line	12
+	colm	35
+	synt	any
+	keywd	null
+	var	4
+	line	12
+	colm	34
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	2
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	14
+	colm	21
+	synt	any
+	invoke	3
+	line	14
+	colm	40
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	42
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	2
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc ClientSceneGraphinitialize
+	local	0,000000,ClientSceneGraph__oprec
+	local	1,000000,ClientSceneGraph__methods
+	local	2,000000,ClientSceneGraph_putRoomInWorld
+	local	3,000000,ClientSceneGraph_assignCurrRoom
+	local	4,000000,ClientSceneGraph_updateDynamicState
+	local	5,000000,ClientSceneGraph_handleNodeState
+	local	6,000000,ClientSceneGraph_printRenderedNodes
+	local	7,000000,ClientSceneGraph_deRenderNodes
+	local	8,000000,ClientSceneGraph_initially
+	local	9,000000,CVESceneGraph_generateSceneGraph
+	local	10,000000,CVESceneGraph_constructStaticData
+	local	11,000000,CVESceneGraph_constructStaticNodeData
+	local	12,000000,CVESceneGraph_constructStaticEdgeData
+	local	13,000000,CVESceneGraph_constructDynamicData
+	local	14,000000,CVESceneGraph_constructDynamicNodeData
+	local	15,000000,CVESceneGraph_constructAvatarStates
+	local	16,000000,CVESceneGraph_constructDynamicEdgeData
+	local	17,000000,CVESceneGraph_printGraph
+	local	18,000000,CVESceneGraph_createEdgeName
+	local	19,000000,CVESceneGraph_determineCurrRoom
+	local	20,000000,CVESceneGraph_getAdjacencyList
+	local	21,000000,CVESceneGraph_getAdjacency
+	local	22,000000,CVESceneGraph_clearVisited
+	local	23,000000,CVESceneGraph_storeToDisk
+	local	24,000000,CVESceneGraph_storeDynamicNodeData
+	local	25,000000,CVESceneGraph_storeDynamicEdgeData
+	local	26,000000,CVESceneGraph_populateEdgeTblFrmNode
+	local	27,000000,CVESceneGraph_getAdjDynamicStateForNode
+	local	28,000000,CVESceneGraph_getDynStateForNode
+	local	29,000000,CVESceneGraph_getEdgeStates
+	local	30,000000,CVESceneGraph_getAvatarStates
+	local	31,000000,CVESceneGraph_getRoomByName
+	local	32,000000,CVESceneGraph_getRoom
+	local	33,000000,CVESceneGraph_getAvatarState
+	local	34,000000,CVESceneGraph_updateAvatarState
+	local	35,000000,CVESceneGraph_updateEdgeState
+	local	36,000000,CVESceneGraph_updateBlackboardState
+	local	37,000000,CVESceneGraph_handleAvatarNodeChanges
+	local	38,000000,CVESceneGraph_getAvatarsForEdgeMove
+	local	39,000000,CVESceneGraph_getAvatarsForAvtMove
+	local	40,000000,CVESceneGraph_populateAvtTblFrmNode
+	local	41,000000,CVESceneGraph_getAvtRoom
+	local	42,000000,CVESceneGraph_getAvtInRoom
+	local	43,000000,CVESceneGraph_constructStaticDirectionNodes
+	local	44,000000,CVESceneGraph_checkForDirection
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	line	19
+	colm	63
+	synt	any
+	invoke	43
+	line	19
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc CheckForUpdates
+	local	0,000020,clientFileName
+	local	1,000020,toSend
+	local	2,000000,stat
+	local	3,000000,DAT
+	local	4,000000,open
+	local	5,000000,write
+	local	6,000000,close
+	local	7,000000,read
+	local	8,000000,session
+	local	9,000000,view
+	con	0,010000,1,134
+	con	1,010000,16,103,154,151,145,156,164,125,160,144,141,164,145,056,164,151,155
+	con	2,010000,1,167
+	con	3,010000,1,060
+	con	4,010000,1,162
+	con	5,010000,17,134,143,150,145,143,153,146,157,162,165,160,144,141,164,145,163,040
+	con	6,010000,29,143,150,145,143,153,146,157,162,165,160,144,141,164,145,163,050,051,040,144,151,144,156,047,164,040,167,157,162,153
+	declend
+	filen	cSceneGr.icn
+	line	286
+	colm	12
+	synt	any
+	mark	L1
+	line	288
+	colm	4
+	synt	if
+	mark0
+	mark	L2
+	var	2
+	pnull
+	pnull
+	var	3
+	str	0
+	line	288
+	colm	20
+	synt	any
+	cat
+	str	1
+	line	288
+	colm	28
+	synt	any
+	cat
+	line	288
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+	efail
+lab L2
+	pnull
+	unmark
+	line	290
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	var	4
+	pnull
+	pnull
+	var	3
+	str	0
+	line	290
+	colm	37
+	synt	any
+	cat
+	str	1
+	line	290
+	colm	45
+	synt	any
+	cat
+	str	2
+	line	290
+	colm	32
+	synt	any
+	invoke	2
+	line	290
+	colm	25
+	synt	any
+	asgn
+	unmark
+	mark	L3
+	var	5
+	var	0
+	str	3
+	line	291
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	var	6
+	var	0
+	line	292
+	colm	15
+	synt	any
+	invoke	1
+	line	290
+	colm	7
+	synt	endif
+	line	288
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	line	295
+	colm	4
+	synt	ifelse
+	mark	L5
+	pnull
+	var	0
+	var	4
+	pnull
+	pnull
+	var	3
+	str	0
+	line	295
+	colm	34
+	synt	any
+	cat
+	str	1
+	line	295
+	colm	42
+	synt	any
+	cat
+	str	4
+	line	295
+	colm	29
+	synt	any
+	invoke	2
+	line	295
+	colm	22
+	synt	any
+	asgn
+	unmark
+	mark	L7
+	pnull
+	var	1
+	pnull
+	str	5
+	var	7
+	var	0
+	line	297
+	colm	45
+	synt	any
+	invoke	1
+	line	297
+	colm	38
+	synt	any
+	cat
+	line	297
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	8
+	line	298
+	colm	14
+	synt	any
+	field	Write
+	var	1
+	line	298
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	var	6
+	var	0
+	line	299
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	line	300
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	var	4
+	pnull
+	pnull
+	var	3
+	str	0
+	line	300
+	colm	37
+	synt	any
+	cat
+	str	1
+	line	300
+	colm	45
+	synt	any
+	cat
+	str	2
+	line	300
+	colm	32
+	synt	any
+	invoke	2
+	line	300
+	colm	25
+	synt	any
+	asgn
+	unmark
+	mark	L10
+	var	5
+	var	0
+	line	301
+	colm	32
+	synt	any
+	keywd	now
+	line	301
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	var	6
+	var	0
+	line	302
+	colm	15
+	synt	any
+	invoke	1
+	line	300
+	colm	7
+	synt	endif
+	goto	L6
+lab L5
+	pnull
+	var	9
+	line	305
+	colm	13
+	synt	any
+	field	write_to_chat_win
+	str	6
+	line	305
+	colm	31
+	synt	any
+	invoke	1
+lab L6
+	line	295
+	colm	4
+	synt	endifelse
+	unmark
+lab L4
+	pnull
+	line	306
+	colm	1
+	synt	any
+	pfail
+	end
+proc ApplyUpdates
+	local	0,000020,rad
+	local	1,000020,saveDatFile
+	local	2,000020,breakPoint
+	local	3,000020,saveDatFileName
+	local	4,000020,saveDatFileData
+	local	5,000020,newFileName
+	local	6,000020,newFilePath
+	local	7,000000,session
+	local	8,000000,find
+	local	9,000000,map
+	local	10,000000,open
+	local	11,000000,write
+	local	12,000000,close
+	local	13,000000,basename
+	local	14,000000,mkdir
+	local	15,000000,view
+	con	0,010000,5,102,122,105,101,113
+	con	1,010000,0
+	con	2,010000,1,011
+	con	3,002000,1,1
+	con	4,002000,1,0
+	con	5,010000,1,044
+	con	6,010000,1,012
+	con	7,010000,1,167
+	con	8,010000,15,143,141,156,156,157,164,040,165,160,144,141,164,145,040,042
+	con	9,010000,1,042
+	declend
+	line	308
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	pnull
+	var	7
+	line	312
+	colm	18
+	synt	any
+	field	Read
+	line	312
+	colm	23
+	synt	any
+	invoke	0
+	line	312
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+lab L3
+	line	313
+	colm	4
+	synt	while
+	mark0
+	pnull
+	var	0
+	str	0
+	line	313
+	colm	14
+	synt	any
+	neqv
+	unmark
+	mark	L3
+	line	314
+	colm	7
+	synt	ifelse
+	mark	L6
+	pnull
+	var	0
+	str	1
+	line	314
+	colm	14
+	synt	any
+	eqv
+	unmark
+	pnull
+	var	0
+	pnull
+	var	7
+	line	315
+	colm	24
+	synt	any
+	field	Read
+	line	315
+	colm	29
+	synt	any
+	invoke	0
+	line	315
+	colm	14
+	synt	any
+	asgn
+	goto	L7
+lab L6
+	mark	L8
+	pnull
+	var	2
+	var	8
+	str	2
+	var	0
+	line	317
+	colm	28
+	synt	any
+	invoke	2
+	line	317
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	318
+	colm	10
+	synt	if
+	mark0
+	mark	L10
+	pnull
+	var	2
+	line	318
+	colm	13
+	synt	any
+	null
+	line	318
+	colm	25
+	synt	any
+	esusp
+	goto	L11
+lab L10
+	pnull
+	var	0
+	line	318
+	colm	27
+	synt	any
+	null
+lab L11
+	unmark
+	unmark
+	unmark
+	pnull
+	goto	L5
+	line	318
+	colm	10
+	synt	endif
+	unmark
+lab L9
+	mark	L12
+	pnull
+	var	3
+	pnull
+	var	0
+	int	3
+	var	2
+	line	319
+	colm	34
+	synt	any
+	synt	any
+	sect
+	line	319
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	4
+	pnull
+	var	0
+	pnull
+	var	2
+	int	3
+	line	320
+	colm	43
+	synt	any
+	plus
+	int	4
+	line	320
+	colm	45
+	synt	any
+	synt	any
+	sect
+	line	320
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	4
+	var	9
+	var	4
+	str	5
+	str	6
+	line	321
+	colm	32
+	synt	any
+	invoke	3
+	line	321
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	line	322
+	colm	10
+	synt	ifelse
+	mark	L16
+	pnull
+	var	1
+	var	10
+	var	3
+	str	7
+	line	322
+	colm	32
+	synt	any
+	invoke	2
+	line	322
+	colm	25
+	synt	any
+	asgn
+	unmark
+	mark	L18
+	var	11
+	var	1
+	var	4
+	line	323
+	colm	18
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	var	12
+	var	1
+	line	324
+	colm	18
+	synt	any
+	invoke	1
+	goto	L17
+lab L16
+	mark	L19
+	pnull
+	var	5
+	var	13
+	var	3
+	line	329
+	colm	36
+	synt	any
+	invoke	1
+	line	329
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	6
+	pnull
+	var	3
+	int	3
+	pnull
+	pnull
+	var	3
+	line	330
+	colm	46
+	synt	any
+	size
+	pnull
+	var	5
+	line	330
+	colm	65
+	synt	any
+	size
+	line	330
+	colm	63
+	synt	any
+	minus
+	line	330
+	colm	45
+	synt	any
+	synt	any
+	sect
+	line	330
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	var	14
+	var	6
+	line	331
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L21
+	line	332
+	colm	13
+	synt	ifelse
+	mark	L22
+	pnull
+	var	1
+	var	10
+	var	3
+	str	7
+	line	332
+	colm	35
+	synt	any
+	invoke	2
+	line	332
+	colm	28
+	synt	any
+	asgn
+	unmark
+	mark	L24
+	var	11
+	var	1
+	var	4
+	line	333
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L24
+	var	12
+	var	1
+	line	334
+	colm	21
+	synt	any
+	invoke	1
+	goto	L23
+lab L22
+	pnull
+	var	15
+	line	337
+	colm	20
+	synt	any
+	field	write_to_chat_win
+	pnull
+	pnull
+	str	8
+	var	5
+	line	337
+	colm	58
+	synt	any
+	cat
+	str	9
+	line	337
+	colm	73
+	synt	any
+	cat
+	line	337
+	colm	38
+	synt	any
+	invoke	1
+lab L23
+	line	332
+	colm	13
+	synt	endifelse
+lab L17
+	line	322
+	colm	10
+	synt	endifelse
+	unmark
+lab L15
+	pnull
+	var	0
+	pnull
+	var	7
+	line	339
+	colm	24
+	synt	any
+	field	Read
+	line	339
+	colm	29
+	synt	any
+	invoke	0
+	line	339
+	colm	14
+	synt	any
+	asgn
+lab L7
+	line	314
+	colm	7
+	synt	endifelse
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	313
+	colm	4
+	synt	endwhile
+	unmark
+lab L2
+	pnull
+	line	342
+	colm	1
+	synt	any
+	pfail
+	end

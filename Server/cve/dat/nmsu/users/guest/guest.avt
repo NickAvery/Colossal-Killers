@@ -1,0 +1,14 @@
+#@ Avatar property file converted by by txt2avt
+#@ on: Tue Feb 15 23:57:47 MST 2005
+NAME=guest
+GENDER=m
+HEIGHT=0.9
+XSIZE=0.7
+YSIZE=0.7
+ZSIZE=0.7
+SKIN COLOR=gray
+SHIRT COLOR=gray
+PANTS COLOR=gray
+SHOES COLOR=gray
+HEAD SHAPE=1
+FACE PICTURE=guest.gif

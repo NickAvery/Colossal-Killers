@@ -1,0 +1,16 @@
+class Elevator(
+   name,
+   ground,
+   rooms,
+   minx,maxx,
+   minz,maxz
+)
+initially(nam,gro,rms,mx,mx1,mz,mz1)
+   name := nam
+   ground := gro
+   rooms := rms
+   minx := mx
+   maxx := mx1
+   minz := mz
+   maxz := mz1
+end

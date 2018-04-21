@@ -1,0 +1,155 @@
+#
+# cve.icn - the collaborative virtual environment client
+#
+
+$include "../common/defaults.icn"
+
+link unilex, tree
+
+# WDAT is the "writable DAT"
+global  SH, DAT, WDAT, CONFIG, USER_LOCALPATH, USER_GLOBALPATH,
+        GROUP_GLOBALPATH, PROJECT_GLOBALPATH, NEWSFEED_GLOBALPATH,
+        SESSION_GLOBALPATH
+global  WB_PATH, NODERPATH, EDGERPATH
+global  FIRST_PORT # used by port handler for file transfer
+global vmem, WcveBuilder
+
+#
+# The main() procedure launches a splash screen, creates the world,
+# and turns over control to it.
+#
+procedure main( args )
+   local  rc, plink, cwd, tex, w2, dw, dh, fin, modfilename
+
+   trap("SIGINT", sigint_handler)
+
+   DAT := "dat" || PS || "nmsu"
+   if WDAT := getenv("APPDATA") || PS || "CVE" then {
+      if not stat(WDAT) then if not mkdir(WDAT) then
+	  stop("Unable to write to APPDATA directory \n",
+	       image(WDAT),", sorry")
+      if not stat(WDAT || PS || "users") then
+	  if not mkdir(WDAT || PS || "users") then
+	  stop("Unable to write to APPDATA/CVE/users directory \n",
+	       image(WDAT),", sorry")
+      }
+   else {
+      WDAT := "dat"
+      }
+   CONFIG := "dat" || PS || "config.cve"
+   if fin := datopen(CONFIG) then {
+      DAT := "dat" || PS || (read(fin) ? (="model " & tab(0)))
+      if *DAT < 5 then {
+	 DAT := "dat" || PS || "uidaho"
+         }
+      if not stat(datfile(DAT)) then if not mkdir(datfile(DAT)) then
+	  stop("Unable to write to APPDATA directory \n",
+	       image(datfile(DAT)),", sorry")
+      close(fin)
+      }
+   else 
+      DAT := "dat"||PS||"nmsu"
+   modfilename := DAT||PS||"model.dat"
+   if fin := datopen(modfilename) then {
+      MODEL_NAME := read(fin)
+      while not (find("default", MODEL_NAME)) do MODEL_NAME := read(fin) 
+         MODEL_NAME := read(fin)
+      MODEL_NAME := (MODEL_NAME ? (tab(find("name ")) & move(5) & tab(0)))
+      close(fin)
+   }
+   else MODEL_NAME := "Science Hall"
+   # else write("no config file")
+   # read config.cve, override defaults after selecting either
+   # standalone or get config information from selected server
+   USER_LOCALPATH := DAT ||PS|| "users"
+   USER_GLOBALPATH := "dat" ||PS|| "users"
+   GROUP_GLOBALPATH := "dat" ||PS|| "groups"
+   PROJECT_GLOBALPATH := "dat" ||PS|| "projects"
+   NEWSFEED_GLOBALPATH := "dat" ||PS|| "newsfeed"
+   SESSION_GLOBALPATH := "dat" ||PS|| "sessions"
+
+   WB_PATH := DAT||PS||"whiteboards"
+   NODERPATH := DAT||PS||"nodes"
+   EDGERPATH := DAT||PS||"edges"
+   
+   FIRST_PORT := DEFAULT_PORT + 10  # until we get the actual port being used.
+
+   cwd := chdir()
+   if cwd[-4:0]==(PS||"bin") then chdir("..")
+   else if cwd[-10:0] == ("src" || PS || "client") then {
+      chdir(".."); chdir("..")
+   }
+
+#   probably already in the right directory due to cve chdir'ing us
+#   else write("didn't see where I was to chdir to; staying put in ", cwd)
+
+   # open up a splash screen
+   if &window := open("CVE", "g", "image=" || "dat" ||PS|| "images" ||PS||
+		      "splash.gif", "canvas=hidden") then {
+      dw := WAttrib("displaywidth")
+      dh := WAttrib("displayheight")
+      if w2 := open("CVE", "g", "size=100,100", "pos=0,0") then {
+	 WAttrib(w2, "width="||(dw-8), "height="||(dh-80))
+         Zoom(&window,w2,0,0,WAttrib("width"),WAttrib("height"),0,0,dw-8,dh-80)
+	 Raise(w2)
+	 close(&window)
+	 &window := w2
+	 }
+      else {
+	 stop("can't open splash screen canvas=maximal")
+	 }
+      }
+   else {
+      stop("couldn't open ", DAT ,"images", PS, "splash.gif")
+      }
+
+$ifdef PLINK
+   # ssh tunneling; broken at present
+   # todo: make this Linux-compatible also
+   plink :="bin\\plink.exe"
+   if stat(plink) then {
+      rc := system(plink ||"  -l winkler -pw unicron " ||
+		   "  -N -L 4500:tachtevrenidis.homelinux.com:22 " ||
+		   "  tachtevrenidis.homelinux.com " , , , ,"nowait")
+      write( " tunnel rc ",rc )
+      }
+   else {
+      write ("can't find plink")
+      exit(-1)
+      }
+$endif
+
+   GotoRC(&window,9,1)
+   write(&window, "  creating virtual world...")
+
+   if not (vmem := vgamem()) then TexSmall := 1
+
+   SH := World()
+
+   if \vmem then {
+      SH.write_chat("Graphics memory: ", vmem, " bytes")
+      }
+
+   SH.process_cmd_line(args) # Sets the necessary values in session
+   
+   # do a  moodle login here using the SH.userID an SH.password
+   #SH.moodle_db := open("mydsn", "o", "moodle", SH.userId, SH.password)
+   # write("userid",userId)
+   # write("password",password)
+   SH.setMoodle(SH.userId,SH.password)
+   
+   write(&window,"  scenegraph...")
+ 
+   #
+   # Authentication also done here....
+   # Populate the dynamic data sent by the server, if possible,
+   # then render and wait for events.
+   #
+   SH.event_loop() 
+   
+   SH.close_cve(" closed from proc main" )
+end
+
+procedure sigint_handler(s)
+    stop("sorry, SIGINT(",image(s),"), please report to Dr. J")
+end

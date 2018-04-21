@@ -1,0 +1,208 @@
+#
+# HeightField.icn - a flexible surface object.
+#
+# To do: add support for procedurally-generated height fields.
+#
+# A HeightField is a non-flat piece of terrain, analogous to a Ramp.
+# It has a "world-coordinate embedding", within which it plots a grid
+# of varying heights, rendered using a regular mesh of triangles.
+# See [Rabin2010], Chapter 4.2, Figure 4.2.11. Compared with the Rabin
+# examples, we use a particular "alternating diagonal" layout:
+#
+# V-V-V
+# |\|/|
+# V-V-V
+# |/|\|
+# V-V-V
+#
+# Call the rectangular surface regions between adjacent vertices "cells".
+# Let HF be a list of list of heights. There are in fact *HF-1 cell rows,
+# and *(HF[1])-1 cell columns. In the above example *HF=3, *(HF[1])=3, and
+# although the heightfield matrix is a 3x3, the cell matrix is 2x2. The
+# cell row length is length/(*HF-1) and the
+# cell column width is width/(*(HF[1])-1).
+#
+# Vertex Vij, where i is the row and j is the column, starting at 0, is given
+# by x+(i*cell_column_width),y+HF[i+1][j+1],z+(j*cell_row_length).
+#
+class HeightField : Obstacle(
+   x, y, z,		# base position
+   width, length,	# x- and z- extents
+   HF,			# list of lists of y-offsets.
+   tex, color,
+   rows, columns, row_length, column_width, # derived/internal
+   vertex
+   )
+
+   #
+   # assumes 1-based subscripts.
+   #
+   method calc_vertex(i,j)
+      / (vertex[j][i]) := [x+(i-1)*column_width, y+HF[j][i], z+((j-1)*row_length)]
+      return vertex[j][i]
+#      return [x+(i-1)*column_width, y+HF[j][i], z+((j-1)*row_length)]
+   end
+
+method render(render_level)
+local row, col, v1, v2, v3, v4, oldtexmode, oldmeshmode, oldfg, vertexdata
+   oldtexmode := WAttrib("texmode")
+   oldmeshmode := WAttrib("meshmode")
+   oldfg := WAttrib("fg")
+
+   if \color & /tex then {
+      WAttrib("texmode=off")
+      /color := "green"
+      Fg(color)
+      }
+   else if /color & \tex then {
+      WAttrib("texmode=on")
+      if not Texture(tex) then write("Texture() failed")
+      if not Texcoord(0.0,0.0,1.0,0.0,1.0,1.0) then write("Texcoord() failed")
+      }
+   else {
+      stop("texture blend deferred for now")
+      }
+   vertexdata := []
+   every row := 2 to *HF do {
+      every col := 2 to *(HF[1]) do {
+	 v1 := calc_vertex(col-1,row-1) | stop("can't calculate v1")
+	 v2 := calc_vertex(col-1,row) | stop("can't calculate v2")
+	 v3 := calc_vertex(col,row) | stop("can't calculate v3")
+	 v4 := calc_vertex(col,row-1) | stop("can't calculate v4")
+	 # there are two cases, triangle faces forward (cell row+col even)
+	 # and triangle faces backward (cell row+col odd)
+	 if row+col %2 = 0 then {
+	    # render a triangle facing the previous column
+#	    vertexdata |||:= v1 ||| v2 ||| v3 ||| v1 ||| v3 ||| v4
+	    FillPolygon(v1 ||| v2 ||| v3)
+	    FillPolygon(v1 ||| v3 ||| v4)
+	    }
+	 else {
+	    # render a triangle facing the next column
+#	    vertexdata |||:= v1 ||| v2 ||| v4 ||| v2 ||| v3 ||| v4
+	    FillPolygon(v1 ||| v2 ||| v4)
+	    FillPolygon(v2 ||| v3 ||| v4)
+	   }
+       }
+   }
+#   WAttrib("meshmode=triangles")
+#   FillPolygon ! vertexdata
+#   WAttrib("meshmode="||oldmeshmode)
+   WAttrib("texmode="||oldtexmode)
+   Fg(oldfg)
+end
+
+method disallows(x2,y2,z2)
+local dx, dy, dz, thisrow, thiscol, dist1, dist2, dist3, dist4, sumofdistance,
+      wt1, wt2, wt3, wt4, sumofweights
+   # insert code to calculate y here
+# first, we must figure out which row/column, and then which triangle
+   dx := x2 - x
+   dz := z2 - z
+   thisrow := integer(dz / row_length) + 1
+   thiscol := integer(dx / column_width) + 1
+
+   # based on row column, we could calculate y by averaging 4 surrounding
+   # vertices' y values
+#   dy := y + (HF[thisrow][thiscol]+HF[thisrow+1][thiscol]+HF[thisrow][thiscol+1]+HF[thisrow+1][thiscol+1])/4
+#   write("y+= ", dy - y)
+
+   # a bit better would be to weight the contributions proportional to
+   # distance.
+   dist1 := pythagoras(dx - vertex[thisrow][thiscol][1],
+		       dz - vertex[thisrow][thiscol][3])
+   dist2 := pythagoras(dx - vertex[thisrow+1][thiscol][1],
+		       dz - vertex[thisrow+1][thiscol][3])
+   dist3 := pythagoras(dx - vertex[thisrow+1][thiscol+1][1],
+		       dz - vertex[thisrow+1][thiscol+1][3])
+   dist4 := pythagoras(dx - vertex[thisrow][thiscol+1][1],
+		       dz - vertex[thisrow][thiscol+1][3])
+#write("d1 ", dist1, " d2 ", dist2, " d3 ", dist3, " d4 ", dist4)
+   sumofdistance := dist1+dist2+dist3+dist4
+
+   wt1 := sumofdistance/dist1
+   wt2 := sumofdistance/dist2
+   wt3 := sumofdistance/dist3
+   wt4 := sumofdistance/dist4
+   sumofweights := wt1 + wt2 + wt3 + wt4
+
+   dy := y
+   dy +:= (HF[thisrow, thiscol]*((wt1/sumofweights)) +
+           HF[thisrow+1, thiscol]*((wt2/sumofweights)) +
+           HF[thisrow+1, thiscol+1]*((wt3/sumofweights)) +
+           HF[thisrow, thiscol+1]*((wt4/sumofweights)))
+
+   # better still, we can figure out which triangle we are in, per Rabin.
+   # if row+col is even we are in a slanting down square; if odd, slant up.
+   # in a slanting down square...
+   # in a slanting up square...
+#   if thisrow+thiscol % 2 = 0 then {
+#     write("even: slant down")
+#     writes("think my triangle is either ")
+#     every writes(!(vertex[thisrow][thiscol]), " ")
+#     write()
+#     every writes(!(vertex[thisrow+1][thiscol]), " ")
+#     write()
+#     every writes(!(vertex[thisrow+1][thiscol+1]), " ")
+#     write()
+#     write(" --- or ---")
+#     every writes(!(vertex[thisrow][thiscol]), " ")
+#     write()
+#     every writes(!(vertex[thisrow+1][thiscol+1]), " ")
+#     write()
+#     every writes(!(vertex[thisrow][thiscol+1]), " ")
+#     write()
+#     write("which triangle am I on?")
+#   } else {
+#     write("odd: slant up")
+#   }
+
+# write("dy ", dy)
+
+   return [4, 0, dy]
+end
+
+initially(coords,coltex,w,l,heights)
+local iii, jjj
+if type(coords)~=="list" then stop("coords is not a list")
+   /x := coords[1]
+   /y := coords[2]
+   /z := coords[3]
+   /width := w
+   /length := l
+   if not find("cved", &progname) then {
+      /coltex := "grass.png"
+      if find(".",coltex) then {
+	 tex := coltex
+	 tex := world.find_texture(tex)
+         }
+      else color := coltex
+      }
+   if type(heights) == "list" then {
+      HF := heights
+      if type(heights[1]) == "list" then {
+	 if type(heights[1]) ~== "list" then stop("bad heightfield")
+	 columns := *(heights[1])
+	 if columns < 2 then stop("bad heightfield columns: ", columns)
+	 every iii := 1 to *heights do {
+	    every jjj := 1 to columns do {
+	       if not numeric(heights[iii][jjj]) then stop("bad heightfield")
+	       }
+	    }
+         }
+      else {
+	 stop("heights is not a list of lists so forget it")
+      }
+      }
+   else {
+      HF := list(3)
+      every !HF := list(3, 0.0)
+      HF[2,2] := 0.5
+      }
+   rows := *HF-1
+   columns := *(HF[1])-1
+   row_length := length/rows
+   column_width := width/columns
+   vertex := list(rows+1)
+   every !vertex := list(columns+1)
+end

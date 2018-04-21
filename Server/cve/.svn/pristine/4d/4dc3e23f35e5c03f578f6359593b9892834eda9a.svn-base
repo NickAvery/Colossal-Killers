@@ -1,0 +1,74 @@
+Room {
+	name  library
+	x 26
+	y 4.35
+	z 11.6
+	w 12.8
+	h 3.0
+	l 11.4
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Box {
+			Wall {
+				texture dat/nmsu/textures/books_color.gif
+				coords [
+					32, 4.35, 17.3,
+					32, 5.35, 17.3,
+					33, 5.35, 17.3,
+					33, 4.35, 17.3
+				]
+			}
+			Wall {
+				texture dat/nmsu/textures/books_color.gif
+				coords [
+					32, 5.35, 17.3,
+					32, 6.35, 17.3,
+					33, 6.35, 17.3,
+					33, 5.35, 17.3
+				]
+			}
+			Wall {
+				texture dat/nmsu/textures/books_color.gif
+				coords [
+					32, 4.35, 17.55,
+					32, 5.35, 17.55,
+					33, 5.35, 17.55,
+					33, 4.35, 17.55
+				]
+			}
+			Wall {
+				texture dat/nmsu/textures/books_color.gif
+				coords [
+					32, 5.35, 17.55,
+					32, 6.35, 17.55,
+					33, 6.35, 17.55,
+					33, 5.35, 17.55
+				]
+			}
+			Wall {
+				texture dat/nmsu/texsmall/wood9.gif
+				coords [
+					32, 4.35, 17.3,
+					32, 6.35, 17.3,
+					32, 6.35, 17.55,
+					32, 4.35, 17.55
+				]
+			}
+			Wall {
+				texture dat/nmsu/texsmall/wood9.gif
+				coords [
+					33, 4.35, 17.3,
+					33, 6.35, 17.3,
+					33, 6.35, 17.55,
+					33, 4.35, 17.55
+				]
+			}
+		}
+	]
+	decorations [
+	]
+	tools [
+	]
+}
