@@ -1177,6 +1177,18 @@ $endif
             "fire":{ # handle \fire command here
                write(&errout, "received \\fire command")
                }
+			"death":{ # handle \death command here
+			   write(&errout, "received \\fire command")
+			   }
+			"dinocount":{ #handle \dinocount command here
+			   write(&errout, "received \\fire command")
+			   }
+			"dinospawn":{ #handle \dinospawn command here
+			   write(&errout, "received \\fire command")
+			   }
+			"dinowave":{ #handle \dinowave command here
+			   write(&errout, "received \\fire command")
+			   }
             "createroom":{
                roomStats := []
                tmpWord := ""
