@@ -10,3 +10,5 @@ The premise is: save "the Village" from the (progressively larger) dino attacks 
 - Tim Sonnen
 - Joe Carter
 - Kevin Dorscher
+- Jackson Taylor
+- Hunter Barnett
