@@ -199,7 +199,7 @@ class Commands(commands,   # list of valid commands
 	     "admin:change", "afk", "allow", "allusers" , "attrib", "avatar",
 	     "avtroom", "back",
 	     "cmd", "color", "course", "close", "changereg",
-	     "damage", "dat", "delavatar","disband", "door",
+	     "damage", "dat", "deathnoote", "delavatar","disband", "dinocount", "dinowave", "dinospawn",  "door",
              "doorMotion", "draw", "dynstate",
              "fire",
 	     "emote","enroll","erase","exit", "failure", "follow","fetchip",
@@ -275,4 +275,5 @@ class Commands(commands,   # list of valid commands
       #   re-work \say  -  stays in mode till changed
       #           modes  \say room  \say all  \say group \say class  \say uid
       #  "whoami"
+	  # "dinocount" - Returns the number of dino's left in the game world
 end
