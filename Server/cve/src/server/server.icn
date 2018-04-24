@@ -736,6 +736,10 @@ $endif
             }
 
       repeat {
+	  
+			#	Dino mechanics / AI 
+			#	Dino Updates 
+			#	Write out to clients (Split into Batches) (All moves pre 1 packet)
 
          checktime +:= 1
          if checktime%50=0 & find(backup_day, &dateline) then{

@@ -1,0 +1,155 @@
+Room {
+	name  JEB222
+	x 23.21
+	y 12.3
+	z 15.2
+	w 3.2
+	h 3.5
+	l 3
+	texture dat/uidaho/texsmall/printer_room_wall.gif
+	floor Wall { texture dat/uidaho/texsmall/printer_room_carpet.gif }
+	ceiling Wall { texture dat/uidaho/textures/ceiling.gif }
+	obstacles [
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/printer_room_filecabinet.gif
+				coords [
+					24.0, 12.3, 15.33,
+					24.0, 13.65, 15.33,
+					24.0, 13.65, 16.09,
+					24.0, 12.3, 16.09
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/printer_room_file_side.gif
+				coords [
+					24.0, 12.3, 16.09,
+					24.0, 13.65, 16.09,
+					23.3, 13.65, 16.09,
+					23.3, 12.3, 16.09
+				]
+			}
+			Wall {
+				coords [
+					24.0, 12.3, 15.33,
+					24.0, 13.65, 15.33,
+					23.3, 13.65, 15.33,
+					23.3, 12.3, 15.33
+				]
+			}
+			Wall {
+				coords [
+					23.3, 13.65, 16.09,
+					24.0, 13.65, 16.09,
+					24.0, 13.65, 15.33,
+					23.3, 13.65, 15.33
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/printer_room_wall.gif
+				coords [
+					23.35, 12.3, 15.23,
+					23.35, 15.8, 15.23,
+					23.35, 15.8, 18.23,
+					23.35, 12.3, 18.23
+				]
+			}
+			Wall {
+				coords [
+					23.3, 12.3, 15.23,
+					23.3, 15.8, 15.23,
+					23.35, 15.8, 15.23,
+					23.35, 12.3, 15.23
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/printer_room_wall.gif
+				coords [
+					25.13, 12.3, 18.0,
+					25.13, 15.8, 18.0,
+					25.6, 15.8, 18.0,
+					25.6, 12.3, 18.0
+				]
+			}
+			Wall {
+				coords [
+					25.13, 12.3, 18.0,
+					25.13, 15.8, 18.0,
+					25.13, 15.8, 18.23,
+					25.13, 12.3, 18.23
+				]
+			}
+			Wall {
+				coords [
+					25.6, 12.3, 18.0,
+					25.6, 15.8, 18.0,
+					25.6, 15.8, 18.23,
+					25.6, 12.3, 18.23
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/printer_room_shelf.gif
+				coords [
+					25.6, 13.3, 18.0,
+					25.6, 14.7, 18.0,
+					26.3, 14.7, 18.0,
+					26.3, 13.3, 18.0
+				]
+			}
+			Wall {
+				coords [
+					25.6, 12.3, 18.0,
+					25.6, 13.3, 18.0,
+					26.3, 13.3, 18.0,
+					26.3, 12.3, 18.0
+				]
+			}
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/uidaho/texsmall/printer_room_wallcover.gif
+			coords [
+				23.355, 13.8, 16.43,
+				23.355, 14.3, 16.43,
+				23.355, 14.3, 16.73,
+				23.355, 13.8, 16.73
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/printer_room_brown_wall_cover.gif
+			coords [
+				23.355, 12.4, 16.43,
+				23.355, 12.9, 16.43,
+				23.355, 12.9, 16.73,
+				23.355, 12.4, 16.73
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/printer_room_light_switch.gif
+			coords [
+				25.1, 13.8, 18.20,
+				25.1, 14.3, 18.20,
+				24.6, 14.3, 18.20,
+				24.6, 13.8, 18.20
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/printer_room_window.gif
+			coords [
+				25.8, 14.7, 15.33,
+				25.8, 15.1, 15.33,
+				24.3, 15.1, 15.33,
+				24.3, 14.7, 15.33
+			]
+		}
+	]
+	tools [
+	]
+}

@@ -54,6 +54,10 @@ procedure main(av)
                mod := "nmsu" 
 	       DAT := "dat" || PS || "nmsu"
 	       }
+		else if find("Colossal-Killers",s) then {
+               mod := "Colossal-Killers" 
+	       DAT := "dat" || PS || "Colossal-Killers"
+	       }
 	    else {
 	       mod := s
 	       DAT := "dat" || PS || s
@@ -81,6 +85,7 @@ procedure main(av)
    EDGERPATH := DAT||PS||"edges"   
    
    if /p & find("nmsu", DAT) then p:=4600
+   else if /p & find("Colossal-Killers", DAT) then p:=4700
    
    if /p then FIRST_PORT := DEFAULT_PORT
    else FIRST_PORT := integer(p)

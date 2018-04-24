@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	cved.u1-1523917616-0
+uid	cved.u1-1524605537-0
 impl	error
 global	17
 	0,000001,server,0
@@ -86,27 +86,29 @@ proc main
 	con	21,010000,2,055,155
 	con	22,010000,5,151,144,141,150,157
 	con	23,010000,6,165,151,144,141,150,157
-	con	24,010000,10,143,157,156,146,151,147,056,143,166,145
-	con	25,010000,1,167
-	con	26,010000,6,155,157,144,145,154,040
-	con	27,010000,5,165,163,145,162,163
-	con	28,010000,6,147,162,157,165,160,163
-	con	29,010000,8,160,162,157,152,145,143,164,163
-	con	30,010000,8,156,145,167,163,146,145,145,144
-	con	31,010000,8,163,145,163,163,151,157,156,163
-	con	32,010000,11,167,150,151,164,145,142,157,141,162,144,163
-	con	33,010000,5,156,157,144,145,163
-	con	34,010000,5,145,144,147,145,163
-	con	35,002000,4,4600
-	con	36,002000,4,4500
-	con	37,010000,8,123,141,164,165,162,144,141,171
-	con	38,010000,6,123,165,156,144,141,171
-	con	39,010000,6,115,157,156,144,141,171
-	con	40,010000,7,124,165,145,163,144,141,171
-	con	41,010000,9,127,145,144,156,145,163,144,141,171
-	con	42,010000,8,124,150,165,162,163,144,141,171
-	con	43,010000,6,106,162,151,144,141,171
-	con	44,002000,2,24
+	con	24,010000,16,103,157,154,157,163,163,141,154,055,113,151,154,154,145,162,163
+	con	25,010000,10,143,157,156,146,151,147,056,143,166,145
+	con	26,010000,1,167
+	con	27,010000,6,155,157,144,145,154,040
+	con	28,010000,5,165,163,145,162,163
+	con	29,010000,6,147,162,157,165,160,163
+	con	30,010000,8,160,162,157,152,145,143,164,163
+	con	31,010000,8,156,145,167,163,146,145,145,144
+	con	32,010000,8,163,145,163,163,151,157,156,163
+	con	33,010000,11,167,150,151,164,145,142,157,141,162,144,163
+	con	34,010000,5,156,157,144,145,163
+	con	35,010000,5,145,144,147,145,163
+	con	36,002000,4,4600
+	con	37,002000,4,4700
+	con	38,002000,4,4500
+	con	39,010000,8,123,141,164,165,162,144,141,171
+	con	40,010000,6,123,165,156,144,141,171
+	con	41,010000,6,115,157,156,144,141,171
+	con	42,010000,7,124,165,145,163,144,141,171
+	con	43,010000,9,127,145,144,156,145,163,144,141,171
+	con	44,010000,8,124,150,165,162,163,144,141,171
+	con	45,010000,6,106,162,151,144,141,171
+	con	46,002000,2,24
 	declend
 	filen	cved.icn
 	line	17
@@ -620,16 +622,28 @@ lab L34
 	asgn
 	goto	L33
 lab L32
+	line	57
+	colm	22
+	synt	ifelse
 	mark	L35
+	var	19
+	str	24
+	var	5
+	line	57
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+	mark	L37
 	pnull
 	var	6
-	var	5
+	str	24
 	line	58
 	colm	20
 	synt	any
 	asgn
 	unmark
-lab L35
+lab L37
 	pnull
 	var	17
 	pnull
@@ -640,7 +654,7 @@ lab L35
 	colm	29
 	synt	any
 	cat
-	var	5
+	str	24
 	line	59
 	colm	37
 	synt	any
@@ -649,6 +663,41 @@ lab L35
 	colm	20
 	synt	any
 	asgn
+	goto	L36
+lab L35
+	mark	L38
+	pnull
+	var	6
+	var	5
+	line	62
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L38
+	pnull
+	var	17
+	pnull
+	pnull
+	str	10
+	str	7
+	line	63
+	colm	29
+	synt	any
+	cat
+	var	5
+	line	63
+	colm	37
+	synt	any
+	cat
+	line	63
+	colm	20
+	synt	any
+	asgn
+lab L36
+	line	57
+	colm	22
+	synt	endifelse
 lab L33
 	line	53
 	colm	18
@@ -659,7 +708,7 @@ lab L30
 	synt	endifelse
 	unmark
 lab L28
-	line	61
+	line	65
 	colm	13
 	synt	if
 	mark0
@@ -670,43 +719,43 @@ lab L28
 	pnull
 	str	10
 	str	7
-	line	61
+	line	65
 	colm	34
 	synt	any
 	cat
-	str	24
-	line	61
+	str	25
+	line	65
 	colm	42
 	synt	any
 	cat
-	str	25
-	line	61
+	str	26
+	line	65
 	colm	27
 	synt	any
 	invoke	2
-	line	61
+	line	65
 	colm	20
 	synt	any
 	asgn
 	unmark
-	mark	L36
+	mark	L39
 	var	16
 	var	3
-	str	26
+	str	27
 	var	6
-	line	62
+	line	66
 	colm	21
 	synt	any
 	invoke	3
 	unmark
-lab L36
+lab L39
 	var	21
 	var	3
-	line	63
+	line	67
 	colm	21
 	synt	any
 	invoke	1
-	line	61
+	line	65
 	colm	13
 	synt	endif
 	goto	L13
@@ -725,30 +774,30 @@ lab L12
 	synt	endevery
 	unmark
 lab L10
-	mark	L37
+	mark	L40
 	pnull
 	var	22
 	pnull
 	pnull
 	str	10
 	str	7
-	line	67
+	line	71
 	colm	20
 	synt	any
 	cat
-	str	24
-	line	67
+	str	25
+	line	71
 	colm	28
 	synt	any
 	cat
-	line	67
+	line	71
 	colm	11
 	synt	any
 	asgn
 	unmark
-lab L37
-	mark	L38
-	line	68
+lab L40
+	mark	L41
+	line	72
 	colm	4
 	synt	if
 	mark0
@@ -756,280 +805,280 @@ lab L37
 	var	3
 	var	20
 	var	22
-	line	68
+	line	72
 	colm	18
 	synt	any
 	invoke	1
-	line	68
+	line	72
 	colm	11
 	synt	any
 	asgn
 	unmark
-	mark	L39
+	mark	L42
 	pnull
 	var	17
 	pnull
 	pnull
 	str	10
 	str	7
-	line	69
+	line	73
 	colm	21
 	synt	any
 	cat
 	var	23
 	var	3
-	line	69
+	line	73
 	colm	37
 	synt	any
 	invoke	1
-	line	69
+	line	73
 	colm	43
 	synt	any
 	bscan
 	pnull
-	str	26
-	line	69
+	str	27
+	line	73
 	colm	46
 	synt	any
 	tabmat
 	pop
 	var	24
 	int	2
-	line	69
+	line	73
 	colm	61
 	synt	any
 	invoke	1
-	line	69
+	line	73
 	colm	43
 	synt	any
 	escan
-	line	69
+	line	73
 	colm	29
 	synt	any
 	cat
-	line	69
+	line	73
 	colm	12
 	synt	any
 	asgn
 	unmark
-lab L39
+lab L42
 	var	21
 	var	3
-	line	70
+	line	74
 	colm	13
 	synt	any
 	invoke	1
-	line	68
+	line	72
 	colm	4
 	synt	endif
 	unmark
-lab L38
-	mark	L40
+lab L41
+	mark	L43
 	pnull
 	var	25
 	pnull
 	pnull
 	var	17
 	str	7
-	line	73
+	line	77
 	colm	26
 	synt	any
 	cat
-	str	27
-	line	73
-	colm	32
-	synt	any
-	cat
-	line	73
-	colm	19
-	synt	any
-	asgn
-	unmark
-lab L40
-	mark	L41
-	pnull
-	var	26
-	pnull
-	pnull
-	str	10
-	str	7
-	line	74
-	colm	29
-	synt	any
-	cat
-	str	27
-	line	74
-	colm	35
-	synt	any
-	cat
-	line	74
-	colm	20
-	synt	any
-	asgn
-	unmark
-lab L41
-	mark	L42
-	pnull
-	var	27
-	pnull
-	pnull
-	str	10
-	str	7
-	line	75
-	colm	30
-	synt	any
-	cat
 	str	28
-	line	75
-	colm	36
-	synt	any
-	cat
-	line	75
-	colm	21
-	synt	any
-	asgn
-	unmark
-lab L42
-	mark	L43
-	pnull
-	var	28
-	pnull
-	pnull
-	str	10
-	str	7
-	line	76
+	line	77
 	colm	32
 	synt	any
 	cat
-	str	29
-	line	76
-	colm	38
-	synt	any
-	cat
-	line	76
-	colm	23
+	line	77
+	colm	19
 	synt	any
 	asgn
 	unmark
 lab L43
 	mark	L44
 	pnull
-	var	29
+	var	26
 	pnull
 	pnull
 	str	10
 	str	7
-	line	77
-	colm	33
+	line	78
+	colm	29
 	synt	any
 	cat
-	str	30
-	line	77
-	colm	39
+	str	28
+	line	78
+	colm	35
 	synt	any
 	cat
-	line	77
-	colm	24
+	line	78
+	colm	20
 	synt	any
 	asgn
 	unmark
 lab L44
 	mark	L45
 	pnull
-	var	30
+	var	27
 	pnull
 	pnull
 	str	10
 	str	7
-	line	78
-	colm	32
+	line	79
+	colm	30
 	synt	any
 	cat
-	str	31
-	line	78
-	colm	38
+	str	29
+	line	79
+	colm	36
 	synt	any
 	cat
-	line	78
-	colm	23
+	line	79
+	colm	21
 	synt	any
 	asgn
 	unmark
 lab L45
 	mark	L46
 	pnull
-	var	31
+	var	28
 	pnull
 	pnull
-	var	17
+	str	10
 	str	7
-	line	79
-	colm	18
+	line	80
+	colm	32
 	synt	any
 	cat
-	str	32
-	line	79
-	colm	24
+	str	30
+	line	80
+	colm	38
 	synt	any
 	cat
-	line	79
-	colm	12
+	line	80
+	colm	23
 	synt	any
 	asgn
 	unmark
 lab L46
 	mark	L47
 	pnull
-	var	32
+	var	29
 	pnull
 	pnull
-	var	17
+	str	10
 	str	7
-	line	80
-	colm	20
+	line	81
+	colm	33
 	synt	any
 	cat
-	str	33
-	line	80
-	colm	26
+	str	31
+	line	81
+	colm	39
 	synt	any
 	cat
-	line	80
-	colm	14
+	line	81
+	colm	24
 	synt	any
 	asgn
 	unmark
 lab L47
 	mark	L48
 	pnull
-	var	33
+	var	30
 	pnull
 	pnull
-	var	17
+	str	10
 	str	7
-	line	81
-	colm	20
+	line	82
+	colm	32
 	synt	any
 	cat
-	str	34
-	line	81
-	colm	26
+	str	32
+	line	82
+	colm	38
 	synt	any
 	cat
-	line	81
-	colm	14
+	line	82
+	colm	23
 	synt	any
 	asgn
 	unmark
 lab L48
 	mark	L49
+	pnull
+	var	31
+	pnull
+	pnull
+	var	17
+	str	7
 	line	83
+	colm	18
+	synt	any
+	cat
+	str	33
+	line	83
+	colm	24
+	synt	any
+	cat
+	line	83
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L49
+	mark	L50
+	pnull
+	var	32
+	pnull
+	pnull
+	var	17
+	str	7
+	line	84
+	colm	20
+	synt	any
+	cat
+	str	34
+	line	84
+	colm	26
+	synt	any
+	cat
+	line	84
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L50
+	mark	L51
+	pnull
+	var	33
+	pnull
+	pnull
+	var	17
+	str	7
+	line	85
+	colm	20
+	synt	any
+	cat
+	str	35
+	line	85
+	colm	26
+	synt	any
+	cat
+	line	85
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L51
+	mark	L52
+	line	87
 	colm	4
-	synt	if
-	mark0
+	synt	ifelse
+	mark	L53
 	pnull
 	var	4
-	line	83
+	line	87
 	colm	7
 	synt	any
 	null
@@ -1037,63 +1086,95 @@ lab L48
 	var	19
 	str	11
 	var	17
-	line	83
+	line	87
 	colm	16
 	synt	any
 	invoke	2
 	unmark
 	pnull
 	var	4
-	int	35
-	line	83
+	int	36
+	line	87
 	colm	36
 	synt	any
 	asgn
-	line	83
-	colm	4
-	synt	endif
-	unmark
-lab L49
-	mark	L50
-	line	85
-	colm	4
-	synt	ifelse
-	mark	L51
+	goto	L54
+lab L53
+	line	88
+	colm	9
+	synt	if
+	mark0
 	pnull
 	var	4
-	line	85
+	line	88
+	colm	12
+	synt	any
+	null
+	pop
+	var	19
+	str	24
+	var	17
+	line	88
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	4
+	int	37
+	line	88
+	colm	53
+	synt	any
+	asgn
+	line	88
+	colm	9
+	synt	endif
+lab L54
+	line	87
+	colm	4
+	synt	endifelse
+	unmark
+lab L52
+	mark	L55
+	line	90
+	colm	4
+	synt	ifelse
+	mark	L56
+	pnull
+	var	4
+	line	90
 	colm	7
 	synt	any
 	null
 	unmark
 	pnull
 	var	34
-	int	36
-	line	85
+	int	38
+	line	90
 	colm	26
 	synt	any
 	asgn
-	goto	L52
-lab L51
+	goto	L57
+lab L56
 	pnull
 	var	34
 	var	18
 	var	4
-	line	86
+	line	91
 	colm	30
 	synt	any
 	invoke	1
-	line	86
+	line	91
 	colm	20
 	synt	any
 	asgn
-lab L52
-	line	85
+lab L57
+	line	90
 	colm	4
 	synt	endifelse
 	unmark
-lab L50
-	mark	L53
+lab L55
+	mark	L58
 	pnull
 	var	35
 	var	36
@@ -1101,53 +1182,53 @@ lab L50
 	var	10
 	var	11
 	var	12
-	line	88
+	line	93
 	colm	20
 	synt	any
 	invoke	4
-	line	88
+	line	93
 	colm	11
 	synt	any
 	asgn
 	unmark
-lab L53
-	mark	L54
+lab L58
+	mark	L59
 	pnull
 	var	7
 	pnull
-	str	37
-	str	38
 	str	39
 	str	40
 	str	41
 	str	42
 	str	43
-	line	89
+	str	44
+	str	45
+	line	94
 	colm	13
 	synt	any
 	llist	7
-	line	89
+	line	94
 	colm	10
 	synt	any
 	asgn
 	unmark
-lab L54
-	mark	L55
+lab L59
+	mark	L60
 	pnull
 	var	37
 	var	38
-	line	91
+	line	96
 	colm	18
 	synt	any
 	invoke	0
-	line	91
+	line	96
 	colm	10
 	synt	any
 	asgn
 	unmark
-lab L55
-	mark	L56
-	line	93
+lab L60
+	mark	L61
+	line	98
 	colm	4
 	synt	every
 	mark0
@@ -1157,16 +1238,16 @@ lab L55
 	int	12
 	pnull
 	var	7
-	line	93
+	line	98
 	colm	19
 	synt	any
 	size
 	push1
-	line	93
+	line	98
 	colm	16
 	synt	any
 	toby
-	line	93
+	line	98
 	colm	11
 	synt	any
 	asgn
@@ -1178,34 +1259,34 @@ lab L55
 	pnull
 	var	7
 	var	2
-	line	94
+	line	99
 	colm	19
 	synt	any
 	subsc
-	line	94
+	line	99
 	colm	13
 	synt	any
 	subsc
 	var	38
-	line	94
+	line	99
 	colm	32
 	synt	any
 	invoke	0
-	line	94
+	line	99
 	colm	24
 	synt	any
 	asgn
 	unmark
-lab L57
+lab L62
 	efail
-lab L58
-	line	93
+lab L63
+	line	98
 	colm	4
 	synt	endevery
 	unmark
-lab L56
-	mark	L59
-	line	97
+lab L61
+	mark	L64
+	line	102
 	colm	4
 	synt	every
 	mark0
@@ -1213,47 +1294,47 @@ lab L56
 	var	8
 	var	39
 	var	37
-	line	97
+	line	102
 	colm	18
 	synt	any
 	invoke	1
-	line	97
+	line	102
 	colm	12
 	synt	any
 	asgn
 	pop
 	mark0
-	mark	L62
+	mark	L67
 	pnull
 	var	40
 	var	38
-	line	98
+	line	103
 	colm	22
 	synt	any
 	invoke	0
-	line	98
+	line	103
 	colm	14
 	synt	any
 	asgn
 	unmark
-lab L62
-	mark	L63
+lab L67
+	mark	L68
 	pnull
 	pnull
 	var	37
 	var	8
-	line	99
+	line	104
 	colm	12
 	synt	any
 	subsc
 	var	40
-	line	99
+	line	104
 	colm	16
 	synt	any
 	asgn
 	unmark
-lab L63
-	line	100
+lab L68
+	line	105
 	colm	7
 	synt	every
 	mark0
@@ -1261,97 +1342,97 @@ lab L63
 	var	9
 	pnull
 	int	12
-	int	44
+	int	46
 	push1
-	line	100
+	line	105
 	colm	20
 	synt	any
 	toby
-	line	100
+	line	105
 	colm	15
 	synt	any
 	asgn
 	pop
 	mark0
-	mark	L66
+	mark	L71
 	pnull
 	pnull
 	var	40
 	var	9
-	line	101
+	line	106
 	colm	16
 	synt	any
 	subsc
 	int	2
-	line	101
+	line	106
 	colm	20
 	synt	any
 	asgn
 	unmark
-lab L66
+lab L71
 	pnull
 	pnull
 	pnull
 	var	37
 	var	8
-	line	102
+	line	107
 	colm	15
 	synt	any
 	subsc
 	var	9
-	line	102
+	line	107
 	colm	18
 	synt	any
 	subsc
 	int	2
-	line	102
+	line	107
 	colm	22
 	synt	any
 	asgn
 	unmark
-lab L64
+lab L69
 	efail
-lab L65
-	line	100
+lab L70
+	line	105
 	colm	7
 	synt	endevery
 	unmark
-lab L60
+lab L65
 	efail
-lab L61
-	line	97
+lab L66
+	line	102
 	colm	4
 	synt	endevery
 	unmark
-lab L59
-	mark	L67
+lab L64
+	mark	L72
 	pnull
 	var	35
-	line	106
+	line	111
 	colm	10
 	synt	any
 	field	open_TCP_listener
-	line	106
+	line	111
 	colm	28
 	synt	any
 	invoke	0
 	unmark
-lab L67
-	mark	L68
+lab L72
+	mark	L73
 	pnull
 	var	35
-	line	108
+	line	113
 	colm	10
 	synt	any
 	field	run
-	line	108
+	line	113
 	colm	14
 	synt	any
 	invoke	0
 	unmark
-lab L68
+lab L73
 	pnull
-	line	109
+	line	114
 	colm	1
 	synt	any
 	pfail
@@ -1360,24 +1441,24 @@ proc SIGINT_handler
 	local	0,001000,s
 	local	1,000000,server
 	declend
-	line	114
+	line	119
 	colm	12
 	synt	any
 	mark	L1
 	pnull
 	var	1
-	line	115
+	line	120
 	colm	10
 	synt	any
 	field	shutdown
-	line	115
+	line	120
 	colm	19
 	synt	any
 	invoke	0
 	unmark
 lab L1
 	pnull
-	line	116
+	line	121
 	colm	1
 	synt	any
 	pfail
