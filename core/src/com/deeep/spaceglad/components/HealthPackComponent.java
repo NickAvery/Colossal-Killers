@@ -1,8 +1,16 @@
 package com.deeep.spaceglad.components;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.physics.bullet.collision.btConvexShape;
+import com.badlogic.gdx.physics.bullet.collision.btPairCachingGhostObject;
+//import com.badlogic.gdx.physics.bullet.collision.btCollisionObject;
 
 public class HealthPackComponent extends Component {
+
+	public btPairCachingGhostObject ghostObject;
+	public btConvexShape ghostShape;
+	//public btCollisionObject body;
+
 
     public enum STATE {
         READY,

@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Matrix4;
 public class ModelComponent extends Component {
     public Model model;
     public ModelInstance instance;
+	
 
     public ModelComponent(Model model, float x, float y, float z) {
         this.model = model;

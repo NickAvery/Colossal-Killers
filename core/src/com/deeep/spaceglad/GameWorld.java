@@ -141,7 +141,7 @@ public class GameWorld {
         createPlayer(0, 3, 0);
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
 		
-		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 50));
+		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
 		
     }
 
