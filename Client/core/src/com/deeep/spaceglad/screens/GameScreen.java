@@ -34,7 +34,8 @@ public class GameScreen implements Screen {
 		// Handle server messages
 		if (game.client != null) {
 			// Should only be null if offline
-			for (String msg : game.client.getMessageQueue()) {
+			while (game.client.getQueueLength() > 0) {
+				String msg = game.client.getNextMessage();
 				if (msg.startsWith("\\say ")) {
 					gameUI.messageWidget.addChatMessage(msg.substring(5));
 				} else if (msg.startsWith("\\inform ")) {

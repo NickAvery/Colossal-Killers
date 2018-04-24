@@ -21,7 +21,7 @@ public class Client implements Runnable {
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
-    private Thread thread;
+	private Thread thread;
 
 	public enum ClientState {
 		STARTING, RUNNING, STOPPED;
@@ -30,17 +30,17 @@ public class Client implements Runnable {
 	private volatile ClientState state = ClientState.STOPPED;
 	private final ArrayList<String> queue = new ArrayList<String>();
 
-	// PUBLIC METHODS
-	public synchronized ArrayList<String> getMessageQueue() {
-		ArrayList<String> q = new ArrayList<String>(queue);
-		queue.clear();
-		return q;
+	// BEGIN PUBLIC METHODS
+	public synchronized int getQueueLength() {
+		return queue.size();
 	}
 
-	//Added for use in new user function.
-	//Spamming of create account button would cause crash if using getMessage Queue
-	public ArrayList<String> getQueue() {
-		return queue;
+	public synchronized String getNextMessage() {
+		if (queue.size() > 0) {
+			return queue.remove(0);
+		} else {
+			return "";
+		}
 	}
 
 	public void sendMessage(String msg) {
@@ -52,16 +52,16 @@ public class Client implements Runnable {
 	}
 
 	public void close() {
-        if (isRunning()) {
-    		setState(ClientState.STOPPED);
-    		sendMessage("\\logout \n");
-    		socket.dispose();
-            try {
-                thread.join();
-            } catch (Exception e) {
-                // Can't actually error
-            }
-        }
+		if (isRunning()) {
+			setState(ClientState.STOPPED);
+			sendMessage("\\logout \n");
+			socket.dispose();
+			try {
+				thread.join();
+			} catch (Exception e) {
+				// Can't actually error
+			}
+		}
 	}
 
 	// BEGIN PRIVATE METHODS
@@ -78,7 +78,7 @@ public class Client implements Runnable {
 			setState(ClientState.STOPPED);
 			return;
 		}
-		
+
 		if (!socket.isConnected()) {
 			setState(ClientState.STOPPED);
 			return;
@@ -100,16 +100,12 @@ public class Client implements Runnable {
 			String msg = recvMessage();
 			if (msg.equals("")) {
 			} else if (msg.equals("Valid\n")) {
-                thread = new Thread(this);
-                thread.start();
+				thread = new Thread(this);
+				thread.start();
 				break;
 			} else if (msg.equals("Failed\n")) {
-                // TODO show login failed error
 				setState(ClientState.STOPPED);
 				break;
-			} else {
-				// Invalid response
-                // TODO should we handle this?
 			}
 		}
 	}
@@ -127,7 +123,7 @@ public class Client implements Runnable {
 				}
 			} catch (IOException e) {
 				// Can't actually error
-            }
+			}
 		}
 		return msg;
 	}
@@ -138,7 +134,7 @@ public class Client implements Runnable {
 				dos.write(msg);
 			} catch (IOException e) {
 				// Can't actually error
-            }
+			}
 		}
 	}
 
@@ -170,12 +166,4 @@ public class Client implements Runnable {
 			}
 		}
 	}
-
-
-    // TODO where to handle message loop
-    // for (String msg : client.getMessageQueue()) { ... }
-
-    // TODO where to send messages
-    // Core.client.sendMessage(msg + "\n");
 }
-
