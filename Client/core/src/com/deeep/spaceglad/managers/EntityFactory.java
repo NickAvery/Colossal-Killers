@@ -128,6 +128,53 @@ public class EntityFactory {
         entity.add(new PlayerComponent());
         return entity;
     }
+	
+	// Handles creating health packs
+	public static Entity createHealthPack(BulletSystem bulletSystem, float x, float y, float z) {
+        Entity entity = new Entity();
+		final BoundingBox boundingBox = new BoundingBox();
+		Model model = new Model();
+		model = Assets.healthPackModel;
+		model.calculateBoundingBox(boundingBox);
+		
+		ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.scale(0.1f, 0.1f, 0.1f);
+		modelComponent.instance.calculateTransforms();
+		//modelComponent.calculateBoundingBox(boundingBox);
+		
+		HealthPackComponent healthPackComponent = new HealthPackComponent(HealthPackComponent.STATE.READY, 1);
+		
+		healthPackComponent.ghostObject = new btPairCachingGhostObject();
+        healthPackComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
+        healthPackComponent.ghostShape = new btCapsuleShape(2f, 2f);
+        healthPackComponent.ghostObject.setCollisionShape(healthPackComponent.ghostShape);
+        healthPackComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
+		
+		
+		entity.add(healthPackComponent);
+		
+		
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btBoxShape(tmpV.set(boundingBox.getWidth() * 0.3f, boundingBox.getHeight() * 0.3f, boundingBox.getDepth() * 0.3f));
+		
+		
+		BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+		
+		
+		
+		entity.add(modelComponent);
+		
+		
+		
+        
+        return entity;
+    }
 
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
         if (type != 1 && type != 2)

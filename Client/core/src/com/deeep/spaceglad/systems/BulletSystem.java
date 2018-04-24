@@ -38,7 +38,24 @@ public class BulletSystem extends EntitySystem implements EntityListener {
                             entity0.getComponent(PlayerComponent.class).health -= 10;
                         //entity1.getComponent(StatusComponent.class).alive = false;
                     }
+					
+
+					
                 }
+				
+				if(entity0.getComponent(HealthPackComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null){
+					if(entity1.getComponent(PlayerComponent.class) != null){
+						entity1.getComponent(PlayerComponent.class).health += 10;
+						if(entity1.getComponent(PlayerComponent.class).health > 100) entity1.getComponent(PlayerComponent.class).health = 100;
+					}
+					
+					
+				}else if(entity1.getComponent(HealthPackComponent.class) != null && entity0.getComponent(CharacterComponent.class) != null){
+					if(entity0.getComponent(PlayerComponent.class) != null){
+						entity0.getComponent(PlayerComponent.class).health += 10;
+						if(entity0.getComponent(PlayerComponent.class).health > 100) entity0.getComponent(PlayerComponent.class).health = 100;
+					}
+				}
             }
         }
     }
