@@ -94,13 +94,16 @@ public class EntityFactory {
 	ModelComponent modelComponent = null;
 	switch(type) {
 		case 0: //player
-			modelComponent = new ModelComponent(playerModel, x, y, z);	
-			modelComponent.instance.transform.rotate(0, 1, 0, 180);		
-			modelComponent.instance.calculateTransforms();				
+			modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model, wayyyy too big -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
 		break;
+
 		case 1: //anklyo model
 		modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
 		break;
+
 		case 2: //raptor model	
 			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
 		break;
