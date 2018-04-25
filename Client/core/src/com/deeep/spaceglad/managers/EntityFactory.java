@@ -42,7 +42,7 @@ public class EntityFactory {
         modelBuilder = new ModelBuilder();
         playerTexture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
         Material material = new Material(TextureAttribute.createDiffuse(playerTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(8f));
-        playerModel = modelBuilder.createCapsule(2f, 6f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+        playerModel = modelBuilder.createCapsule(2f, 4f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
         boxModel = modelBuilder.createBox(1f, 1f, 1f, new Material(ColorAttribute.createDiffuse(Color.WHITE),
                 ColorAttribute.createSpecular(Color.WHITE), FloatAttribute.createShininess(64f)), VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
     }
@@ -95,7 +95,7 @@ public class EntityFactory {
 	switch(type) {
 		case 0: //player
 			modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
-            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model, wayyyy too big -Paul
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
             modelComponent.instance.transform.rotate(0, 1, 0, 0);
             modelComponent.instance.calculateTransforms();
 		break;
@@ -123,6 +123,9 @@ public class EntityFactory {
                 (short) btBroadphaseProxy.CollisionFilterGroups.CharacterFilter,
                 (short) (btBroadphaseProxy.CollisionFilterGroups.AllFilter));
         bulletSystem.collisionWorld.addAction(entity.getComponent(CharacterComponent.class).characterController);
+
+        entity.add(new AnimationComponent(modelComponent.instance)); //Avatar animation -paul
+
         return entity;
     }
 

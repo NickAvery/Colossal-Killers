@@ -148,7 +148,9 @@ public class GameWorld {
         engine.addEntity(character);
 		engine.addEntity(gun = EntityFactory.loadGun(2.5f, -1.9f, -4));
 		playerSystem.gun = gun;
+		playerSystem.player = character;
 		renderSystem.gun = gun;
+		renderSystem.player = character;
     }
 
     private void createGround() {
