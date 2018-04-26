@@ -37,7 +37,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
 	//Nick A for HW#6
-        if (entities.size() < 10) {
+        if (entities.size() < 2) {
             Random random = new Random();
             engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));        }
         for (Entity e : entities) {
