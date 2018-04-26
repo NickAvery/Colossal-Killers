@@ -16,10 +16,10 @@ public class DieParticleComponent extends Component {
 
     public DieParticleComponent(ParticleSystem particleSystem) {
         ParticleEffectLoader.ParticleEffectLoadParameter loadParam = new ParticleEffectLoader.ParticleEffectLoadParameter(particleSystem.getBatches());
-        if (!Assets.assetManager.isLoaded("data/dieparticle.pfx")) {
-            Assets.assetManager.load("data/dieparticle.pfx", ParticleEffect.class, loadParam);
+        if (!Assets.assetManager.isLoaded("data/bloodTest.pfx")) {
+            Assets.assetManager.load("data/bloodTest.pfx", ParticleEffect.class, loadParam);
             Assets.assetManager.finishLoading();
         }
-        originalEffect = Assets.assetManager.get("data/dieparticle.pfx");
+        originalEffect = Assets.assetManager.get("data/bloodTest.pfx");
     }
 }

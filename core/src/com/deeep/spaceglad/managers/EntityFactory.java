@@ -30,6 +30,7 @@ import com.deeep.spaceglad.systems.BulletSystem;
 import com.deeep.spaceglad.systems.RenderSystem;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.Assets;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 /**
  * Created by Elmar on 7-8-2015.
  */
@@ -101,7 +102,7 @@ public class EntityFactory {
 			modelComponent.instance.calculateTransforms();				
 		break;
 		case 1: //anklyo model
-		modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
+		  modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
 		break;
 		case 2: //raptor model	
 			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
@@ -125,6 +126,16 @@ public class EntityFactory {
         return entity;
     }
 
+    public static Entity createProjectile(BulletSystem bulletSystem, Vector3 origin, Vector3 direction){
+        ModelBuilder modelBuilder   = new ModelBuilder();
+        Texture playerTexture       = new Texture(Gdx.files.internal("data/badlogic.jpg"));
+        Material material           = new Material(TextureAttribute.createDiffuse(playerTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(8f));
+        Model playerModel           = modelBuilder.createCapsule(2f, 6f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+        Entity entity               = createStaticEntity(playerModel, origin.x, origin.y, origin.z, 0);
+        entity.add(new ProjectileComponent(direction));
+        return entity;
+    }
+
     public static Entity createPlayer(BulletSystem bulletSystem, float x, float y, float z) {
         Entity entity = createCharacter(bulletSystem, x, y, z, 0);
         entity.add(new PlayerComponent());
@@ -133,8 +144,8 @@ public class EntityFactory {
 
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
         if (type != 1 && type != 2)
-		type = 1;
-	Entity entity = createCharacter(bulletSystem, x,y,z, type);
+		  type = 1;
+	    Entity entity = createCharacter(bulletSystem, x,y,z, type);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));

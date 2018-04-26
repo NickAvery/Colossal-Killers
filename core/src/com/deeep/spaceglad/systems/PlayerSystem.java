@@ -105,7 +105,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
             characterComponent.characterController.setJumpSpeed(25);
             characterComponent.characterController.jump();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) fire();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT)) fire();
 		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);
     }
 
@@ -125,16 +125,13 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         if (rayTestCB.hasHit()) {
             final btCollisionObject obj = rayTestCB.getCollisionObject();
             if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
-                if( !((Entity) obj.userData).getComponent(DieParticleComponent.class).used) {
-                    ((Entity) obj.userData).getComponent(DieParticleComponent.class).used = true;
-                    ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
-                    ((RegularEmitter)effect.getControllers().first().emitter).setEmissionMode(RegularEmitter.EmissionMode.EnabledUntilCycleEnd);
-                    effect.setTransform(((Entity) obj.userData).getComponent(ModelComponent.class).instance.transform);
-                    effect.scale(3.25f, 1, 1.5f);
-                    effect.init();
-                    effect.start();
-                    RenderSystem.particleSystem.add(effect);
-                }
+                ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
+                ((RegularEmitter)effect.getControllers().first().emitter).setEmissionMode(RegularEmitter.EmissionMode.EnabledUntilCycleEnd);
+                effect.setTransform(((Entity) obj.userData).getComponent(ModelComponent.class).instance.transform);
+                effect.scale(3.25f, 1, 1.5f);
+                effect.init();
+                effect.start();
+                RenderSystem.particleSystem.add(effect);
                 ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 		        if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
 			       PlayerComponent.score += 100;
