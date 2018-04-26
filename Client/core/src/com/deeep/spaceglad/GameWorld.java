@@ -327,6 +327,7 @@ public class GameWorld {
 		
         engine.addSystem(new EnemySystem(this));
         engine.addSystem(new StatusSystem(this));
+		engine.addSystem(new HealthPackSystem(this));
 		
 		if (debug)
 		{
@@ -345,11 +346,13 @@ public class GameWorld {
             engine.getSystem(EnemySystem.class).setProcessing(false);
             engine.getSystem(StatusSystem.class).setProcessing(false);
             engine.getSystem(BulletSystem.class).setProcessing(false);
+			engine.getSystem(HealthPackSystem.class).setProcessing(false);
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
+			engine.getSystem(HealthPackSystem.class).setProcessing(true);
         }
     }
 

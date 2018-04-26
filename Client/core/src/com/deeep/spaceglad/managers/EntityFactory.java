@@ -92,12 +92,61 @@ public class EntityFactory {
         return entity;
 	}
 
+    public static Entity createVisualEntity(Model model, float x, float y, float z, float rotateDeg){
+                Entity entity = new Entity();
+                ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+                modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+                modelComponent.instance.calculateTransforms();
+                entity.add(modelComponent);
+                return entity;
+           }
+
+    public static Entity createTreeEntity(Model model, float x, float y, float z, float rotateDeg){
+        final BoundingBox boundingBox = new BoundingBox();
+        model.calculateBoundingBox(boundingBox);
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btCylinderShape(tmpV.set(boundingBox.getWidth() * 0.15f, boundingBox.getHeight() * 0.9f, boundingBox.getDepth() * 0.5f));
+        Entity entity = new Entity();
+        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+		modelComponent.instance.calculateTransforms();
+        entity.add(modelComponent);
+        BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+        return entity;
+       }
+
+       public static Entity createRampEntity(Model model, float x, float y, float z, float rotateDeg){
+        final BoundingBox boundingBox = new BoundingBox();
+        model.calculateBoundingBox(boundingBox);
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btConvexHullShape();
+        Entity entity = new Entity();
+        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+		modelComponent.instance.calculateTransforms();
+        entity.add(modelComponent);
+        BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+        return entity;
+       }
+
     private static Entity createCharacter(BulletSystem bulletSystem, float x, float y, float z, int type) {
         Entity entity = new Entity();
 	ModelComponent modelComponent = null;
 	switch(type) {
 		case 0: //player
-		switch(Assets.avColor){
+            switch(Assets.avColor){
                 case 1: //red
                     modelComponent = new ModelComponent(Assets.playerModelRed, x, y, z);
                     break;
@@ -129,14 +178,19 @@ public class EntityFactory {
             }
             for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
             modelComponent.instance.transform.rotate(0, 1, 0, 0);
-            modelComponent.instance.calculateTransforms();	
+            modelComponent.instance.calculateTransforms();
 		break;
-		case 1: //anklyo model
-		  modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
-		break;
-		case 2: //raptor model	
-			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
-		break;
+
+		//Nick A for HW#6
+			case 1: //anklyo model
+				modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
+				entity.add(new AnimationComponent(modelComponent.instance));
+			break;
+			case 2: //raptor model	
+				modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
+				entity.add(new AnimationComponent(modelComponent.instance));
+			break;
+			//end
 	}
 	if(modelComponent != null)
 		entity.add(modelComponent);
@@ -145,6 +199,7 @@ public class EntityFactory {
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
         characterComponent.ghostShape = new btCapsuleShape(2f, 2f);
         characterComponent.ghostObject.setCollisionShape(characterComponent.ghostShape);
+        //characterComponent.ghostObject.setCollisionShape(Bullet.obtainStaticNodeShape(modelComponent.instance.nodes));
         characterComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
         characterComponent.characterController = new btKinematicCharacterController(characterComponent.ghostObject, characterComponent.ghostShape, .35f);
         characterComponent.ghostObject.userData = entity;
@@ -154,75 +209,17 @@ public class EntityFactory {
                 (short) (btBroadphaseProxy.CollisionFilterGroups.AllFilter));
         bulletSystem.collisionWorld.addAction(entity.getComponent(CharacterComponent.class).characterController);
 
-		 entity.add(new AnimationComponent(modelComponent.instance)); //Avatar animation -paul
+        entity.add(new AnimationComponent(modelComponent.instance)); //Avatar animation -paul
 
         return entity;
     }
-
-    public static Entity createProjectile(BulletSystem bulletSystem, Vector3 origin, Vector3 direction){
-        ModelBuilder modelBuilder   = new ModelBuilder();
-        Texture playerTexture       = new Texture(Gdx.files.internal("data/badlogic.jpg"));
-        Material material           = new Material(TextureAttribute.createDiffuse(playerTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(8f));
-        Model playerModel           = modelBuilder.createCapsule(2f, 6f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-        Entity entity               = createStaticEntity(playerModel, origin.x, origin.y, origin.z, 0);
-        entity.add(new ProjectileComponent(direction));
-        return entity;
-    }
-
-        public static Entity createVisualEntity(Model model, float x, float y, float z, float rotateDeg){
-                Entity entity = new Entity();
-                ModelComponent modelComponent = new ModelComponent(model, x, y, z);
-                modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
-                modelComponent.instance.calculateTransforms();
-                entity.add(modelComponent);
-                return entity;
-           }
-
-    public static Entity createTreeEntity(Model model, float x, float y, float z, float rotateDeg){
-        final BoundingBox boundingBox = new BoundingBox();
-        model.calculateBoundingBox(boundingBox);
-        Vector3 tmpV = new Vector3();
-        btCollisionShape col = new btCylinderShape(tmpV.set(boundingBox.getWidth() * 0.15f, boundingBox.getHeight() * 0.9f, boundingBox.getDepth() * 0.5f));
-        Entity entity = new Entity();
-        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
-        modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
-        modelComponent.instance.calculateTransforms();
-        entity.add(modelComponent);
-        BulletComponent bulletComponent = new BulletComponent();
-        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
-        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
-        bulletComponent.body.userData = entity;
-        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
-        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
-        entity.add(bulletComponent);
-        return entity;
-       }
-
-       public static Entity createRampEntity(Model model, float x, float y, float z, float rotateDeg){
-        final BoundingBox boundingBox = new BoundingBox();
-        model.calculateBoundingBox(boundingBox);
-        Vector3 tmpV = new Vector3();
-        btCollisionShape col = new btConvexHullShape();
-        Entity entity = new Entity();
-        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
-        modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
-        modelComponent.instance.calculateTransforms();
-        entity.add(modelComponent);
-        BulletComponent bulletComponent = new BulletComponent();
-        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
-        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
-        bulletComponent.body.userData = entity;
-        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
-        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
-        entity.add(bulletComponent);
-        return entity;
-       }
 
     public static Entity createPlayer(BulletSystem bulletSystem, float x, float y, float z) {
         Entity entity = createCharacter(bulletSystem, x, y, z, 0);
         entity.add(new PlayerComponent());
         return entity;
     }
+	
 	// Handles creating health packs
 	public static Entity createHealthPack(BulletSystem bulletSystem, float x, float y, float z) {
         Entity entity = new Entity();
@@ -272,7 +269,7 @@ public class EntityFactory {
 
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
         if (type != 1 && type != 2)
-		  type = 1;
+		type = 1;
 	    Entity entity = createCharacter(bulletSystem, x,y,z, type);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
@@ -300,3 +297,4 @@ public class EntityFactory {
 //        boxModel.dispose();
 //    }
 }
+
