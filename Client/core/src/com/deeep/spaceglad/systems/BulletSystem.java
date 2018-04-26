@@ -28,9 +28,6 @@ public class BulletSystem extends EntitySystem implements EntityListener {
             if (colObj0.userData instanceof Entity && colObj1.userData instanceof Entity) {
                 Entity entity0 = (Entity) colObj0.userData;
                 Entity entity1 = (Entity) colObj1.userData;
-                if (colObj0.userData instanceof Entity && colObj1.userData instanceof Entity){			
-                Entity entity0 = (Entity) colObj0.userData;
-                Entity entity1 = (Entity) colObj1.userData;
                 if (entity0.getComponent(CharacterComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null) {
                     if (entity0.getComponent(EnemyComponent.class) != null && entity1.getComponent(PlayerComponent.class) != null) { //entity0 is monster
                         if (entity0.getComponent(StatusComponent.class).alive)
@@ -56,7 +53,6 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 						//end
                     }
                 }
-            }
 				
 				if(entity0.getComponent(HealthPackComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null){
 					if(entity1.getComponent(PlayerComponent.class) != null){
