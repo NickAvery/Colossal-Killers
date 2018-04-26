@@ -18,6 +18,11 @@ import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
+import com.badlogic.gdx.graphics.g3d.particles.emitters.RegularEmitter;
 
 /**
  * Created by Elmar on 8-8-2015.
@@ -36,6 +41,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     private final Vector3 tempVector = new Vector3();
     private GameWorld gameWorld;
     private Sound gunShot;
+    private Music footStep;
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
     ClosestRayResultCallback rayTestCB;
@@ -46,6 +52,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         this.gameUI = gameUI;
         rayTestCB = new ClosestRayResultCallback(Vector3.Zero, Vector3.Z);
         gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
+        footStep = Gdx.audio.newMusic(Gdx.files.internal("data/dinoFootstep.mp3"));
     }
 
     @Override
@@ -99,6 +106,8 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
             characterComponent.characterController.jump();
         }
 
+        checkDino();
+
         if (Gdx.input.justTouched()) fire();  //mouse fire -Paul
 
 		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);  //should we change this? -Paul
@@ -123,6 +132,30 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         gameUI.healthWidget.setValue(playerComponent.health);
     }
 
+    private void checkDino(){
+        Ray ray = camera.getPickRay(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        rayFrom.set(ray.origin);
+        rayTo.set(ray.direction).scl(50f).add(rayFrom);
+        rayTestCB.setCollisionObject(null);
+        rayTestCB.setClosestHitFraction(1f);
+        rayTestCB.setRayFromWorld(rayFrom);
+        rayTestCB.setRayToWorld(rayTo);
+        gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayTo, rayTestCB);
+        if (rayTestCB.hasHit()) {
+            final btCollisionObject obj = rayTestCB.getCollisionObject();
+            if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
+                if(!footStep.isPlaying()){
+                    footStep.setLooping(true);
+                    footStep.play();
+                }
+            }
+        }
+        else{
+            footStep.setLooping(false);
+            footStep.stop();
+        }
+    }
+
     private void fire() {
         Ray ray = camera.getPickRay(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         rayFrom.set(ray.origin);
@@ -135,6 +168,13 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         if (rayTestCB.hasHit()) {
             final btCollisionObject obj = rayTestCB.getCollisionObject();
             if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
+                 ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
+                ((RegularEmitter)effect.getControllers().first().emitter).setEmissionMode(RegularEmitter.EmissionMode.EnabledUntilCycleEnd);
+                effect.setTransform(((Entity) obj.userData).getComponent(ModelComponent.class).instance.transform);
+                effect.scale(3.25f, 1, 1.5f);
+                effect.init();
+                effect.start();
+                RenderSystem.particleSystem.add(effect);
                 ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 		if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
 			PlayerComponent.score += 100;
@@ -197,3 +237,4 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     public void entityRemoved(Entity entity) {
     }
 }
+

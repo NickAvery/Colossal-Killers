@@ -27,8 +27,10 @@ import com.badlogic.gdx.utils.UBJsonReader;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.systems.BulletSystem;
+import com.deeep.spaceglad.systems.RenderSystem;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.Assets;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 /**
  * Created by Elmar on 7-8-2015.
  */
@@ -37,6 +39,7 @@ public class EntityFactory {
     private static Texture playerTexture;
     private static ModelBuilder modelBuilder;
     private static Model boxModel;
+    public static RenderSystem renderSystem;
 
     static {
         modelBuilder = new ModelBuilder();
@@ -267,16 +270,10 @@ public class EntityFactory {
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
         if (type != 1 && type != 2)
 		type = 1;
-	Entity entity = createCharacter(bulletSystem, x,y,z, type);
+	    Entity entity = createCharacter(bulletSystem, x,y,z, type);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
-	    //Nick A for HW#6
-		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
-		{
-			if(entity.getComponent(AnimationComponent.class).getController().current == null)
-				entity.getComponent(AnimationComponent.class).animate("Armature|walk", -1, 3);
-		}
-		//end
+        entity.add(new DieParticleComponent(renderSystem.particleSystem));
         return entity;
     }
 	
@@ -300,3 +297,4 @@ public class EntityFactory {
 //        boxModel.dispose();
 //    }
 }
+

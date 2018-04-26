@@ -1,3 +1,4 @@
+
 package com.deeep.spaceglad;
 
 import com.badlogic.gdx.Gdx;
@@ -316,6 +317,7 @@ public class GameWorld {
         engine = new Engine();
 		
         //engine.addSystem(new RenderSystem(modelBatch, environment));1
+		EntityFactory.renderSystem = renderSystem;
 		
 		engine.addSystem(renderSystem = new RenderSystem());
         engine.addSystem(bulletSystem = new BulletSystem());
@@ -401,3 +403,4 @@ public class GameWorld {
         bulletSystem.removeBody(entity);
     }
 }
+
