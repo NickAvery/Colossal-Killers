@@ -73,6 +73,12 @@ public class RenderSystem extends EntitySystem {
 					player.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
 				}
 			}
+			//Nick A for HW#6
+			if (entities.get(i).getComponent(EnemyComponent.class) != null && entities.get(i).getComponent(AnimationComponent.class) != null)
+			{
+				entities.get(i).getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime());
+			}
+			//end
 		}
 		batch.end();
 		drawGun();
