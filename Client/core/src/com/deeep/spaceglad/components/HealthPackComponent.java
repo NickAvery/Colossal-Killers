@@ -18,7 +18,12 @@ public class HealthPackComponent extends Component {
     }
     public float health;
     public STATE state = STATE.READY;
-
+	public float respawnTime = 5f;
+	public float respawnDelta = 0f;
+	public float x, y, z;
+	public boolean despawnFlag = false;
+	public boolean respawnFlag = false;
+	
      public HealthPackComponent(STATE state, int type){
         this.state = state;
 		switch(type) {
