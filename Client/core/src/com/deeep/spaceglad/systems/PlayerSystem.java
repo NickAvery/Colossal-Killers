@@ -104,11 +104,13 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);  //should we change this? -Paul
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.A) ||
+                Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.D)) {
             player.getComponent(AnimationComponent.class).animate("Root|Run_loop", 10000, 2); //animate the avatar
             moving = true;
         }
-        if (!Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.A) &&
+                !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
             if (moving == true) { //only start animation once.... -Paul
             player.getComponent(AnimationComponent.class).animate("Root|Idle", 10000, 1); //animate the avatar
             }
