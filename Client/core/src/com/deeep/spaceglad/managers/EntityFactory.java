@@ -94,7 +94,36 @@ public class EntityFactory {
 	ModelComponent modelComponent = null;
 	switch(type) {
 		case 0: //player
-			modelComponent = new ModelComponent(Assets.playerModel, x, y, z);
+            switch(Assets.avColor){
+                case 1: //red
+                    modelComponent = new ModelComponent(Assets.playerModelRed, x, y, z);
+                    break;
+                case 2: //orange
+                    modelComponent = new ModelComponent(Assets.playerModelOrange, x, y, z);
+                    break;
+                case 3: //yellow
+                    modelComponent = new ModelComponent(Assets.playerModelYellow, x, y, z);
+                    break;
+                case 4: //green
+                    modelComponent = new ModelComponent(Assets.playerModelGreen, x, y, z);
+                    break;
+                case 5: //blue
+                    modelComponent = new ModelComponent(Assets.playerModelBlue, x, y, z);
+                    break;
+                case 6: //indigo
+                    modelComponent = new ModelComponent(Assets.playerModelIndigo, x, y, z);
+                    break;
+                case 7: //violet
+                    modelComponent = new ModelComponent(Assets.playerModelViolet, x, y, z);
+                    break;
+                case 8: //gray
+                    modelComponent = new ModelComponent(Assets.playerModelGray, x, y, z);
+                    break;
+                case 9: //black
+                    modelComponent = new ModelComponent(Assets.playerModelBlack, x, y, z);
+                    break;
+
+            }
             for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
             modelComponent.instance.transform.rotate(0, 1, 0, 0);
             modelComponent.instance.calculateTransforms();

@@ -39,7 +39,7 @@ public class MainMenuScreen implements Screen {
         playButton = new TextButton("Play", Assets.skin);
         leaderboardsButton = new TextButton("Leaderboards", Assets.skin);
         quitButton = new TextButton("Quit", Assets.skin);
-        avatarButton = new TextButton("Account", Assets.skin); //TODO: @Joe, must have an account with name and avatar data to hit "Play" button -Paul
+        avatarButton = new TextButton("Avatar", Assets.skin); //TODO: @Joe, must have an account with name and avatar data to hit "Play" button -Paul
     }
 
     private void configureWidgets() {
@@ -81,6 +81,12 @@ public class MainMenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
+            }
+        });
+        avatarButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new AvatarScreen(game));
             }
         });
     }

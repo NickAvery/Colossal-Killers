@@ -28,9 +28,11 @@ public class Assets {
 	public static Model playerModelViolet;
 	public static Model playerModelGray;
 	public static Model playerModelBlack;
+	public static int avColor;
 	
 	
     public Assets() {
+    	avColor = 1; // default to avatar 1, valid selections are 1-9 and correspond to ROYGBIV +gray +black -paul
         skin = new Skin();
         FileHandle fileHandle = Gdx.files.internal("data/uiskin.json");
         FileHandle atlasFile = fileHandle.sibling("uiskin.atlas");
