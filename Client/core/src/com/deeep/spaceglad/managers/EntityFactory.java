@@ -115,6 +115,7 @@ public class EntityFactory {
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
         characterComponent.ghostShape = new btCapsuleShape(2f, 2f);
         characterComponent.ghostObject.setCollisionShape(characterComponent.ghostShape);
+        //characterComponent.ghostObject.setCollisionShape(Bullet.obtainStaticNodeShape(modelComponent.instance.nodes));
         characterComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
         characterComponent.characterController = new btKinematicCharacterController(characterComponent.ghostObject, characterComponent.ghostShape, .35f);
         characterComponent.ghostObject.userData = entity;

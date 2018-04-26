@@ -89,7 +89,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         Quaternion lookAngle = new Quaternion(); //PFM -paul
         float theta = (float) (Math.atan2(camera.direction.x, camera.direction.z));
         Quaternion rot = lookAngle.setFromAxis(0, 1, 0, (float) Math.toDegrees(theta));
-        modelComponent.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w); //keep avatar rotated where camera rotates -paul
+        modelComponent.instance.transform.set(translation.x, translation.y-3, translation.z, rot.x, rot.y, rot.z, rot.w); //keep avatar rotated where camera rotates -paul
 
         camera.position.set(translation.x, translation.y, translation.z);
         camera.update(true);
