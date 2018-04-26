@@ -1,5 +1,6 @@
 package com.deeep.spaceglad.systems;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.collision.*;
@@ -46,14 +47,22 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 				if(entity0.getComponent(HealthPackComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null){
 					if(entity1.getComponent(PlayerComponent.class) != null){
 						entity1.getComponent(PlayerComponent.class).health += 10;
-						if(entity1.getComponent(PlayerComponent.class).health > 100) entity1.getComponent(PlayerComponent.class).health = 100;
+						if(entity1.getComponent(PlayerComponent.class).health > 100)
+							entity1.getComponent(PlayerComponent.class).health = 100;
+						entity0.getComponent(HealthPackComponent.class).state = HealthPackComponent.STATE.RESPAWNING;
+						entity0.getComponent(HealthPackComponent.class).respawnDelta = 0f;
+						entity0.getComponent(HealthPackComponent.class).despawnFlag = true;
 					}
 					
 					
 				}else if(entity1.getComponent(HealthPackComponent.class) != null && entity0.getComponent(CharacterComponent.class) != null){
 					if(entity0.getComponent(PlayerComponent.class) != null){
 						entity0.getComponent(PlayerComponent.class).health += 10;
-						if(entity0.getComponent(PlayerComponent.class).health > 100) entity0.getComponent(PlayerComponent.class).health = 100;
+						if(entity0.getComponent(PlayerComponent.class).health > 100)
+							entity0.getComponent(PlayerComponent.class).health = 100;
+						entity1.getComponent(HealthPackComponent.class).state = HealthPackComponent.STATE.RESPAWNING;
+						entity1.getComponent(HealthPackComponent.class).respawnDelta = 0f;
+						entity1.getComponent(HealthPackComponent.class).despawnFlag = true;
 					}
 				}
             }
