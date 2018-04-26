@@ -138,7 +138,7 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-        createPlayer(0, 3, 0);
+		createPlayer(0, 3, 0);
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
     }
 
@@ -151,7 +151,7 @@ public class GameWorld {
     }
 
     private void createGround() {
-		boolean frontDoor = false;
+		/*boolean frontDoor = false;
 		boolean backDoor = false;
 		boolean leftDoor = false;
 		boolean rightDoor = false;
@@ -268,10 +268,45 @@ public class GameWorld {
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, -20f, 180f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, 20f, 0f));
         //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, 20f, 10f, 0f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 4f, 0.25f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 0f, 0f));
+		//engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));	*/
+		
+		//Create Floo from primitive
+		Texture	tempTexture = new Texture(Gdx.files.internal("data/snow_ground.png"));
+		Material tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
+		Model tempModel = modelBuilder.createBox(1800, 2, 1800, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+		engine.addEntity(EntityFactory.createStaticEntity(tempModel, 0, 0, 0, 0f));
+		
+		//skybox and left over models
+		//engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 8f, 0.25f, 0f, 0f));
+		//engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 8f, 0f));
+		//engine.addEntity(EntityFactory.createStaticEntity(Assets.level1groundModel, -2f, -2f, -2f, 0f));
 		//engine.addEntity(EntityFactory.createStaticEntity(Assets.playerModel, -4f, 0.25f, 0f, 0f));
+
+
+		engine.addEntity(EntityFactory.createVisualEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
+		for (int i =0; i < 50; i++)
+		{
+			float x = 5*i-20;
+			float z = i%4;
+			float y = -i%8;
+			engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
+		}
+
+		for (int i =0; i < 50; i++)
+		{
+			float x = 5*i-20;
+			float z = i%4-45;
+			float y = -i%8;
+			engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
+		}
+
+		for (int i =0; i < 10; i++)
+		{
+			float z = -i*5;
+			float y = -i%8;
+			engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, -20, y, z, 0f));
+		}
+
     }
 
     private void addSystems(GameUI gameUI) {

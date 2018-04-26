@@ -89,6 +89,55 @@ public class EntityFactory {
         return entity;
 	}
 
+    public static Entity createVisualEntity(Model model, float x, float y, float z, float rotateDeg){
+                Entity entity = new Entity();
+                ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+                modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+                modelComponent.instance.calculateTransforms();
+                entity.add(modelComponent);
+                return entity;
+           }
+
+    public static Entity createTreeEntity(Model model, float x, float y, float z, float rotateDeg){
+        final BoundingBox boundingBox = new BoundingBox();
+        model.calculateBoundingBox(boundingBox);
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btCylinderShape(tmpV.set(boundingBox.getWidth() * 0.15f, boundingBox.getHeight() * 0.9f, boundingBox.getDepth() * 0.5f));
+        Entity entity = new Entity();
+        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+		modelComponent.instance.calculateTransforms();
+        entity.add(modelComponent);
+        BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+        return entity;
+       }
+
+       public static Entity createRampEntity(Model model, float x, float y, float z, float rotateDeg){
+        final BoundingBox boundingBox = new BoundingBox();
+        model.calculateBoundingBox(boundingBox);
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btConvexHullShape();
+        Entity entity = new Entity();
+        ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.rotate(0f, 0f, 1f, rotateDeg);
+		modelComponent.instance.calculateTransforms();
+        entity.add(modelComponent);
+        BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+        return entity;
+       }
+
     private static Entity createCharacter(BulletSystem bulletSystem, float x, float y, float z, int type) {
         Entity entity = new Entity();
 	ModelComponent modelComponent = null;
