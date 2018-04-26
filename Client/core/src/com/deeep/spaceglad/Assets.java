@@ -48,8 +48,8 @@ public class Assets {
 		
 		FileHandle tvPath = Gdx.files.internal("data/tv.g3db");
 		FileHandle chairPath = Gdx.files.internal("data/chair.g3db");
-		FileHandle anklyoPath = Gdx.files.internal("data/anklyo.g3db");
-		FileHandle raptorPath = Gdx.files.internal("data/raptor.g3db");
+		FileHandle anklyoPath = Gdx.files.internal("data/ANKYLO.g3db");//Nick A for HW#6
+		FileHandle raptorPath = Gdx.files.internal("data/RAPTOR.g3db");//Nick A for HW#6
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
 		FileHandle level1groundPath = Gdx.files.internal("data/level1ground.g3db");//level 1 groundmodel JT
 		FileHandle level1skyPath = Gdx.files.internal("data/level1sky.g3db");	//level1 sky model JT
