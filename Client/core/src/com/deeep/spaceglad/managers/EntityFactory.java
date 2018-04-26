@@ -178,13 +178,16 @@ public class EntityFactory {
             modelComponent.instance.calculateTransforms();
 		break;
 
-		case 1: //anklyo model
-		modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
-		break;
-
-		case 2: //raptor model	
-			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
-		break;
+		//Nick A for HW#6
+			case 1: //anklyo model
+				modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
+				entity.add(new AnimationComponent(modelComponent.instance));
+			break;
+			case 2: //raptor model	
+				modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
+				entity.add(new AnimationComponent(modelComponent.instance));
+			break;
+			//end
 	}
 	if(modelComponent != null)
 		entity.add(modelComponent);
@@ -267,6 +270,13 @@ public class EntityFactory {
 	Entity entity = createCharacter(bulletSystem, x,y,z, type);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
+	    //Nick A for HW#6
+		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
+		{
+			if(entity.getComponent(AnimationComponent.class).getController().current == null)
+				entity.getComponent(AnimationComponent.class).animate("Armature|walk", -1, 3);
+		}
+		//end
         return entity;
     }
 	

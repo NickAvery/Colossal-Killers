@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.deeep.spaceglad.GameWorld;
-import com.deeep.spaceglad.components.StatusComponent;
+import com.deeep.spaceglad.components.*;
 
 import java.util.Iterator;
 
@@ -32,7 +32,17 @@ public class StatusSystem extends EntitySystem {
         while(iterator.hasNext()){
             Entity entity = (Entity) iterator.next();
             if(!entity.getComponent(StatusComponent.class).alive){
-                gameWorld.remove(entity);
+                //Nick A for HW#6
+				if(entity.getComponent(EnemyComponent.class) != null && entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
+				{
+					if(entity.getComponent(AnimationComponent.class).getDesc().loopCount == 0)
+					{
+						gameWorld.remove(entity);
+					}
+				}
+				else
+					gameWorld.remove(entity);
+				//end
             }
         }
     }

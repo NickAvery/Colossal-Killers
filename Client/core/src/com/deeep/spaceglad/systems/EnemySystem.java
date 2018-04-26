@@ -36,7 +36,8 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     }
 
     public void update(float delta) {
-        if (entities.size() < 1) {
+	//Nick A for HW#6
+        if (entities.size() < 10) {
             Random random = new Random();
             engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));        }
         for (Entity e : entities) {
@@ -71,7 +72,14 @@ public class EnemySystem extends EntitySystem implements EntityListener {
             mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
             if (e.getComponent(EnemyComponent.class).health <= 0)
 			{
-				e.getComponent(StatusComponent.class).alive = false;
+				//Nick A for HW#6
+					if(e.getComponent(AnimationComponent.class) != null && e.getComponent(AnimationComponent.class).getController() != null)
+					{
+						if(e.getComponent(StatusComponent.class).alive)
+							e.getComponent(AnimationComponent.class).action("Armature|dead", 1, 3);
+					}
+					//end
+					e.getComponent(StatusComponent.class).alive = false;
 			}
         }
     }
