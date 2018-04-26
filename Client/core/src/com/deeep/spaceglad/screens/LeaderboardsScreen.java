@@ -28,19 +28,19 @@ public class LeaderboardsScreen implements Screen {
         this.game = game;
         stage = new Stage(new FitViewport(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT));
         setWidgets();
-        configureWidgers();
+        configureWidgets();
         setListeners();
         Gdx.input.setInputProcessor(stage);
     }
 
     private void setWidgets() {
-        backgroundImage = new Image(new Texture(Gdx.files.internal("data/backgroundMN.png")));
+        backgroundImage = new Image(new Texture(Gdx.files.internal("data/splash.jpg")));
         backButton = new TextButton("Back", Assets.skin);
         label = new Label[5];
         for (int i = 0; i < label.length; i++) label[i] = new Label(i + 1 + ") " + Settings.highscores[i], Assets.skin);
     }
 
-    private void configureWidgers() {
+    private void configureWidgets() {
         backgroundImage.setSize(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT);
         backButton.setSize(128, 64);
         backButton.setPosition(Core.VIRTUAL_WIDTH - backButton.getWidth() - 5, 5);

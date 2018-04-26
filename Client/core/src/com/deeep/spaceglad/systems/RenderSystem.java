@@ -29,6 +29,7 @@ public class RenderSystem extends EntitySystem {
     private Environment environment;
 	public PerspectiveCamera perspectiveCamera, gunCamera;
 	public Entity gun;
+	public Entity player;
 
     public RenderSystem() {
         //this.batch = batch;
@@ -66,12 +67,17 @@ public class RenderSystem extends EntitySystem {
 			{
 				ModelComponent mod = entities.get(i).getComponent(ModelComponent.class);
 				batch.render(mod.instance, environment);
+
+				if(entities.get(i).getComponent(PlayerComponent.class) != null) //-paul
+				{
+					player.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
+				}
 			}
 		}
 		batch.end();
 		drawGun();
 	}
-	
+
 	private void drawGun()
 	{
 		Gdx.gl.glClear(GL20.GL_DEPTH_BUFFER_BIT);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.bullet.collision.ClosestRayResultCallback;
@@ -22,7 +23,7 @@ import com.badlogic.gdx.audio.Sound;
  * Created by Elmar on 8-8-2015.
  */
 public class PlayerSystem extends EntitySystem implements EntityListener {
-    private Entity player;
+    public Entity player;
     private PlayerComponent playerComponent;
 	
 	public Entity gun;
@@ -60,10 +61,12 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         checkGameOver();
     }
 
+    boolean moving = true;
+
     private void updateMovement(float delta) {
         //Updated to mouse controls -Paul
-        float deltaX = -Gdx.input.getDeltaX() * 0.5f;
-        float deltaY = -Gdx.input.getDeltaY() * 0.5f;
+        float deltaX = -Gdx.input.getDeltaX() * 0.3f;
+        float deltaY = -Gdx.input.getDeltaY() * 0.3f;
         tmp.set(0, 0, 0);
         camera.rotate(camera.up, deltaX);
         tmp.set(camera.direction).crs(camera.up).nor();
@@ -82,7 +85,12 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         Vector3 translation = new Vector3();
         characterComponent.ghostObject.getWorldTransform(ghost);   //TODO export this
         ghost.getTranslation(translation);
-        modelComponent.instance.transform.set(translation.x, translation.y, translation.z, camera.direction.x, camera.direction.y, camera.direction.z, 0);
+
+        Quaternion lookAngle = new Quaternion(); //PFM -paul
+        float theta = (float) (Math.atan2(camera.direction.x, camera.direction.z));
+        Quaternion rot = lookAngle.setFromAxis(0, 1, 0, (float) Math.toDegrees(theta));
+        modelComponent.instance.transform.set(translation.x, translation.y-3, translation.z, rot.x, rot.y, rot.z, rot.w); //keep avatar rotated where camera rotates -paul
+
         camera.position.set(translation.x, translation.y, translation.z);
         camera.update(true);
 
@@ -94,6 +102,21 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         if (Gdx.input.justTouched()) fire();  //mouse fire -Paul
 
 		if (Gdx.input.isKeyPressed(Input.Keys.X)) useDoor(delta);  //should we change this? -Paul
+
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.A) ||
+                Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.D)) {
+            player.getComponent(AnimationComponent.class).animate("Root|Run_loop", 10000, 2); //animate the avatar
+            moving = true;
+        }
+        if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.A) &&
+                !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
+            if (moving == true) { //only start animation once.... -Paul
+            player.getComponent(AnimationComponent.class).animate("Root|Idle", 10000, 1); //animate the avatar
+            }
+            moving = false;
+        }
+
     }
 
     private void updateStatus() {

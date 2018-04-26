@@ -140,6 +140,7 @@ public class GameWorld {
         createGround();
 		createPlayer(0, 3, 0);
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
+		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -147,7 +148,9 @@ public class GameWorld {
         engine.addEntity(character);
 		engine.addEntity(gun = EntityFactory.loadGun(2.5f, -1.9f, -4));
 		playerSystem.gun = gun;
+		playerSystem.player = character;
 		renderSystem.gun = gun;
+		renderSystem.player = character;
     }
 
     private void createGround() {

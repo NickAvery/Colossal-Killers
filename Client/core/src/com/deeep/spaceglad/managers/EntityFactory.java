@@ -42,7 +42,7 @@ public class EntityFactory {
         modelBuilder = new ModelBuilder();
         playerTexture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
         Material material = new Material(TextureAttribute.createDiffuse(playerTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(8f));
-        playerModel = modelBuilder.createCapsule(2f, 6f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+        playerModel = modelBuilder.createCapsule(2f, 4f, 16, material, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
         boxModel = modelBuilder.createBox(1f, 1f, 1f, new Material(ColorAttribute.createDiffuse(Color.WHITE),
                 ColorAttribute.createSpecular(Color.WHITE), FloatAttribute.createShininess(64f)), VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
     }
@@ -143,13 +143,45 @@ public class EntityFactory {
 	ModelComponent modelComponent = null;
 	switch(type) {
 		case 0: //player
-			modelComponent = new ModelComponent(playerModel, x, y, z);	
-			modelComponent.instance.transform.rotate(0, 1, 0, 180);		
-			modelComponent.instance.calculateTransforms();				
+            switch(Assets.avColor){
+                case 1: //red
+                    modelComponent = new ModelComponent(Assets.playerModelRed, x, y, z);
+                    break;
+                case 2: //orange
+                    modelComponent = new ModelComponent(Assets.playerModelOrange, x, y, z);
+                    break;
+                case 3: //yellow
+                    modelComponent = new ModelComponent(Assets.playerModelYellow, x, y, z);
+                    break;
+                case 4: //green
+                    modelComponent = new ModelComponent(Assets.playerModelGreen, x, y, z);
+                    break;
+                case 5: //blue
+                    modelComponent = new ModelComponent(Assets.playerModelBlue, x, y, z);
+                    break;
+                case 6: //indigo
+                    modelComponent = new ModelComponent(Assets.playerModelIndigo, x, y, z);
+                    break;
+                case 7: //violet
+                    modelComponent = new ModelComponent(Assets.playerModelViolet, x, y, z);
+                    break;
+                case 8: //gray
+                    modelComponent = new ModelComponent(Assets.playerModelGray, x, y, z);
+                    break;
+                case 9: //black
+                    modelComponent = new ModelComponent(Assets.playerModelBlack, x, y, z);
+                    break;
+
+            }
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
 		break;
+
 		case 1: //anklyo model
 		modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
 		break;
+
 		case 2: //raptor model	
 			modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
 		break;
@@ -161,6 +193,7 @@ public class EntityFactory {
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
         characterComponent.ghostShape = new btCapsuleShape(2f, 2f);
         characterComponent.ghostObject.setCollisionShape(characterComponent.ghostShape);
+        //characterComponent.ghostObject.setCollisionShape(Bullet.obtainStaticNodeShape(modelComponent.instance.nodes));
         characterComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
         characterComponent.characterController = new btKinematicCharacterController(characterComponent.ghostObject, characterComponent.ghostShape, .35f);
         characterComponent.ghostObject.userData = entity;
@@ -169,12 +202,62 @@ public class EntityFactory {
                 (short) btBroadphaseProxy.CollisionFilterGroups.CharacterFilter,
                 (short) (btBroadphaseProxy.CollisionFilterGroups.AllFilter));
         bulletSystem.collisionWorld.addAction(entity.getComponent(CharacterComponent.class).characterController);
+
+        entity.add(new AnimationComponent(modelComponent.instance)); //Avatar animation -paul
+
         return entity;
     }
 
     public static Entity createPlayer(BulletSystem bulletSystem, float x, float y, float z) {
         Entity entity = createCharacter(bulletSystem, x, y, z, 0);
         entity.add(new PlayerComponent());
+        return entity;
+    }
+	
+	// Handles creating health packs
+	public static Entity createHealthPack(BulletSystem bulletSystem, float x, float y, float z) {
+        Entity entity = new Entity();
+		final BoundingBox boundingBox = new BoundingBox();
+		Model model = new Model();
+		model = Assets.healthPackModel;
+		model.calculateBoundingBox(boundingBox);
+		
+		ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		modelComponent.instance.transform.scale(0.1f, 0.1f, 0.1f);
+		modelComponent.instance.calculateTransforms();
+		//modelComponent.calculateBoundingBox(boundingBox);
+		
+		HealthPackComponent healthPackComponent = new HealthPackComponent(HealthPackComponent.STATE.READY, 1);
+		
+		healthPackComponent.ghostObject = new btPairCachingGhostObject();
+        healthPackComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
+        healthPackComponent.ghostShape = new btCapsuleShape(2f, 2f);
+        healthPackComponent.ghostObject.setCollisionShape(healthPackComponent.ghostShape);
+        healthPackComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
+		
+		
+		entity.add(healthPackComponent);
+		
+		
+        Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btBoxShape(tmpV.set(boundingBox.getWidth() * 0.3f, boundingBox.getHeight() * 0.3f, boundingBox.getDepth() * 0.3f));
+		
+		
+		BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        entity.add(bulletComponent);
+		
+		
+		
+		entity.add(modelComponent);
+		
+		
+		
+        
         return entity;
     }
 

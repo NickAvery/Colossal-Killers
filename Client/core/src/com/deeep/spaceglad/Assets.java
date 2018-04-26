@@ -23,9 +23,21 @@ public class Assets {
 	public static Model level1rockmodel1;
 	public static Model level1treemodel;
 	public static Model ramp1model;
+	public static Model healthPackModel;
+	public static Model playerModelRed;
+	public static Model playerModelOrange;
+	public static Model playerModelYellow;
+	public static Model playerModelGreen;
+	public static Model playerModelBlue;
+	public static Model playerModelIndigo;
+	public static Model playerModelViolet;
+	public static Model playerModelGray;
+	public static Model playerModelBlack;
+	public static int avColor;
 	
 	
     public Assets() {
+    	avColor = 1; // default to avatar 1, valid selections are 1-9 and correspond to ROYGBIV +gray +black -paul
         skin = new Skin();
         FileHandle fileHandle = Gdx.files.internal("data/uiskin.json");
         FileHandle atlasFile = fileHandle.sibling("uiskin.atlas");
@@ -44,6 +56,17 @@ public class Assets {
 		FileHandle level1rockPath = Gdx.files.internal("data/rockyoutcrop.g3db");	//levle1 rockyoutcrop JT
 		FileHandle level1treePath = Gdx.files.internal("data/tree1.g3db");
 		FileHandle level1rampPath = Gdx.files.internal("data/ramp1.g3db");
+		//FileHandle playerPath = Gdx.files.internal("data/avatars/red.g3db"); //Red avatar -Paul
+		FileHandle redPlayerPath = Gdx.files.internal("data/avatars/red.g3db");
+		FileHandle orangePlayerPath = Gdx.files.internal("data/avatars/orange.g3db");
+		FileHandle yellowPlayerPath = Gdx.files.internal("data/avatars/yellow.g3db");
+		FileHandle greenPlayerPath = Gdx.files.internal("data/avatars/green.g3db");
+		FileHandle bluePlayerPath = Gdx.files.internal("data/avatars/blue.g3db");
+		FileHandle indigoPlayerPath = Gdx.files.internal("data/avatars/indigo.g3db");
+		FileHandle violetPlayerPath = Gdx.files.internal("data/avatars/violet.g3db");
+		FileHandle grayPlayerPath = Gdx.files.internal("data/avatars/gray.g3db");
+		FileHandle blackPlayerPath = Gdx.files.internal("data/avatars/black.g3db");
+		FileHandle healthPackPath = Gdx.files.internal("data/health_pack.g3db");// health pack - James
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 		
@@ -51,13 +74,23 @@ public class Assets {
 		chairModel = modelLoader.loadModel(chairPath);
 		anklyoModel = modelLoader.loadModel(anklyoPath);
 		raptorModel = modelLoader.loadModel(raptorPath);
-		playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
+//playerModel = modelLoader.loadModel(playerPath); //avatar -Paul
 		level1skymodel = modelLoader.loadModel(level1skyPath);	//level1skyjt
 		level1groundModel = modelLoader.loadModel(level1groundPath);	//level1ground JT
 		level1rockmodel1 = modelLoader.loadModel(level1rockPath);	//level1rock JT
 
 		level1treemodel = modelLoader.loadModel(level1treePath);
 		ramp1model = modelLoader.loadModel(level1rampPath);
+		playerModelRed = modelLoader.loadModel(redPlayerPath);
+		playerModelOrange = modelLoader.loadModel(orangePlayerPath);
+		playerModelYellow = modelLoader.loadModel(yellowPlayerPath);
+		playerModelGreen = modelLoader.loadModel(greenPlayerPath);
+		playerModelBlue = modelLoader.loadModel(bluePlayerPath);
+		playerModelIndigo = modelLoader.loadModel(indigoPlayerPath);
+		playerModelViolet = modelLoader.loadModel(violetPlayerPath);
+		playerModelGray = modelLoader.loadModel(grayPlayerPath);
+		playerModelBlack = modelLoader.loadModel(blackPlayerPath);
+		healthPackModel = modelLoader.loadModel(healthPackPath); // health pack - James
     }
 
     public static void dispose() {
