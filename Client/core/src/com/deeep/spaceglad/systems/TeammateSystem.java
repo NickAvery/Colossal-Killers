@@ -50,6 +50,7 @@ public class TeammateSystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
         for (Entity e : entities) {
+            /*
             ModelComponent mod = e.getComponent(ModelComponent.class);
             ModelComponent playerModel = player.getComponent(ModelComponent.class);
 
@@ -81,7 +82,7 @@ public class TeammateSystem extends EntitySystem implements EntityListener {
             Vector3 translation = new Vector3();
             cm.get(e).ghostObject.getWorldTransform(ghost);
             ghost.getTranslation(translation);
-
+*/
             //mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
 
             //e.getComponent(AnimationComponent.class).animate("Root|Idle", 10000, 1); //animate the avatar
