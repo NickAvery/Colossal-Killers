@@ -1,6 +1,7 @@
 package com.deeep.spaceglad.systems;
 
 import com.badlogic.ashley.core.*;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
@@ -9,6 +10,8 @@ import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.managers.EntityFactory;
+import com.badlogic.gdx.audio.Music;
+import java.lang.Math;
 
 import java.util.Random;
 
@@ -22,10 +25,14 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     private Quaternion quat = new Quaternion();
     private Engine engine;
     private GameWorld gameWorld;
+    private Music footStep;
     ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
     public EnemySystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
+        footStep = Gdx.audio.newMusic(Gdx.files.internal("data/dinoFootstep.mp3"));
+        footStep.setLooping(true);
+        footStep.play();
     }
 
     @Override
@@ -37,9 +44,11 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
 	//Nick A for HW#6
+        float distance = Float.MAX_VALUE;
         if (entities.size() < 2) {
             Random random = new Random();
-            engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));        }
+            engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));
+        }
         for (Entity e : entities) {
             ModelComponent mod = e.getComponent(ModelComponent.class);
             ModelComponent playerModel = player.getComponent(ModelComponent.class);
@@ -49,6 +58,10 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
             playerPosition = playerModel.instance.transform.getTranslation(playerPosition);
             enemyPosition = mod.instance.transform.getTranslation(enemyPosition);
+
+            float tmpDist = (float)Math.sqrt(Math.pow(playerPosition.x - enemyPosition.x, 2) + Math.pow(playerPosition.y - enemyPosition.y, 2) + Math.pow(playerPosition.z - enemyPosition.z, 2));
+            if(tmpDist < distance) 
+                distance = tmpDist;
 
             float dX = playerPosition.x - enemyPosition.x;
             float dZ = playerPosition.z - enemyPosition.z;
@@ -70,6 +83,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
             ghost.getTranslation(translation);
 
             mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
+
             if (e.getComponent(EnemyComponent.class).health <= 0)
 			{
 				//Nick A for HW#6
@@ -82,6 +96,9 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 					e.getComponent(StatusComponent.class).alive = false;
 			}
         }
+
+        System.out.println(distance);
+        footStep.setVolume(10/distance);
     }
 
     @Override
