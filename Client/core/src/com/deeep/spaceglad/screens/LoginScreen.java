@@ -45,6 +45,7 @@ public class LoginScreen implements Screen {
 		// TODO disallow newline in usernameArea
 		passwordArea = new TextArea("", Assets.skin);
 		passwordArea.setPasswordMode(true);
+		passwordArea.setPasswordCharacter('*');
 		// TODO disallow newline in passwordArea
 		messageLabel = new Label("", Assets.skin);
 		newUserButton = new TextButton("New User?", Assets.skin);

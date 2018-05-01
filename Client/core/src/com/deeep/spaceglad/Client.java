@@ -22,6 +22,7 @@ public class Client implements Runnable {
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	private Thread thread;
+	public  String username;
 
 	public enum ClientState {
 		STARTING, RUNNING, STOPPED;
@@ -68,6 +69,7 @@ public class Client implements Runnable {
 
 	public Client(String username, String password) {
 
+		this.username = username;
 		// Connect to server
 		setState(ClientState.STARTING);
 		SocketHints hints = new SocketHints();
@@ -162,7 +164,6 @@ public class Client implements Runnable {
 			String msg = recvMessage();
 			if (!msg.equals("")) {
 				queue.add(msg);
-				System.out.println(msg);
 			}
 		}
 	}

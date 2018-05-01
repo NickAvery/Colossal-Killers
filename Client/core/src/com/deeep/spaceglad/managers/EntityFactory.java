@@ -131,10 +131,16 @@ public class EntityFactory {
 
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
         if (type != 1 && type != 2)
-		type = 1;
-	Entity entity = createCharacter(bulletSystem, x,y,z, type);
-        entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
+            type = 1;
+        Entity entity = createCharacter(bulletSystem, x, y, z, type);
+        entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING, type));
         entity.add(new StatusComponent());
+        return entity;
+    }
+
+    public static Entity createAvatar(BulletSystem bulletSystem, float x, float y, float z) {
+        Entity entity = createCharacter(bulletSystem, x, y, z, 0);
+        entity.add(new AvatarComponent());
         return entity;
     }
 	
