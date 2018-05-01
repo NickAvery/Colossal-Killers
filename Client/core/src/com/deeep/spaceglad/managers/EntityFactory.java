@@ -339,6 +339,7 @@ public class EntityFactory {
         //entity.add(new DieParticleComponent(renderSystem.particleSystem));
 
         entity.add(new TeammateComponent());
+        entity.add(new StatusComponent());
         return entity;
     }
 	
