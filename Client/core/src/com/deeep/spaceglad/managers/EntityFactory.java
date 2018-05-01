@@ -191,7 +191,61 @@ public class EntityFactory {
 				entity.add(new AnimationComponent(modelComponent.instance));
 			break;
 			//end
-	}
+        case 11:
+            modelComponent = new ModelComponent(Assets.playerModelRed, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 12:
+            modelComponent = new ModelComponent(Assets.playerModelOrange, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 13:
+            modelComponent = new ModelComponent(Assets.playerModelYellow, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 14:
+            modelComponent = new ModelComponent(Assets.playerModelGreen, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 15:
+            modelComponent = new ModelComponent(Assets.playerModelBlue, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 16:
+            modelComponent = new ModelComponent(Assets.playerModelIndigo, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 17:
+            modelComponent = new ModelComponent(Assets.playerModelViolet, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 18:
+            modelComponent = new ModelComponent(Assets.playerModelGray, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+        case 19:
+            modelComponent = new ModelComponent(Assets.playerModelBlack, x, y, z);
+            for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
+            modelComponent.instance.transform.rotate(0, 1, 0, 0);
+            modelComponent.instance.calculateTransforms();
+            break;
+    }
 	if(modelComponent != null)
 		entity.add(modelComponent);
         CharacterComponent characterComponent = new CharacterComponent();
@@ -274,6 +328,17 @@ public class EntityFactory {
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));
+        return entity;
+    }
+
+    public static Entity createTeammate(BulletSystem bulletSystem, float x, float y, float z, int type11_19) {
+        //type 11 through 19 for the 9 possible teammate avatar models
+        Entity entity = createCharacter(bulletSystem, x,y,z, type11_19);
+        //entity.add(new EnemyComponent(EnemyComponent.STATE.IDLE,1));
+        //entity.add(new StatusComponent());
+        //entity.add(new DieParticleComponent(renderSystem.particleSystem));
+
+        entity.add(new TeammateComponent());
         return entity;
     }
 	

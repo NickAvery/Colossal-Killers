@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7becadf5-def8-4dde-a690-a64c0504a2e6" name="Default" comment="" />
+    <list default="true" id="f67bcef9-e1cb-4256-bf77-17616cad89ff" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/core/out/" />
     <ignored path="$PROJECT_DIR$/desktop/out/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Assets.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Assets.java">
+      <file leaf-file-name="GameWorld.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="376">
+              <caret line="155" column="5" lean-forward="false" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -33,116 +33,58 @@
       <file leaf-file-name="EntityFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="120" column="26" lean-forward="false" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+            <state relative-caret-position="281">
+              <caret line="341" column="22" lean-forward="false" selection-start-line="341" selection-start-column="22" selection-end-line="341" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameWorld.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
+      <file leaf-file-name="TeammateComponent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/TeammateComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="152" column="40" lean-forward="false" selection-start-line="152" selection-start-column="40" selection-end-line="152" selection-end-column="40" />
+            <state relative-caret-position="340">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerSystem.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java">
+      <file leaf-file-name="CharacterComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/CharacterComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="91" column="91" lean-forward="false" selection-start-line="91" selection-start-column="91" selection-end-line="91" selection-end-column="91" />
-              <folding>
-                <element signature="e#5205#5206#0" expanded="true" />
-                <element signature="e#5273#5274#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainMenuScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/MainMenuScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="55" column="87" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="87" />
-              <folding>
-                <element signature="e#3518#3687#0" expanded="true" />
-                <element signature="e#3686#3687#0" expanded="true" />
-                <element signature="e#3723#3916#0" expanded="true" />
-                <element signature="e#3915#3916#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeaderboardsScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/LeaderboardsScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state relative-caret-position="221">
+              <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AvatarScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/AvatarScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="80" column="70" lean-forward="false" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4054#4285#0" expanded="true" />
-                <element signature="e#4284#4285#0" expanded="true" />
-                <element signature="e#4315#4546#0" expanded="true" />
-                <element signature="e#4545#4546#0" expanded="true" />
-                <element signature="e#4576#4807#0" expanded="true" />
-                <element signature="e#4806#4807#0" expanded="true" />
-                <element signature="e#4836#5067#0" expanded="true" />
-                <element signature="e#5066#5067#0" expanded="true" />
-                <element signature="e#5095#5326#0" expanded="true" />
-                <element signature="e#5325#5326#0" expanded="true" />
-                <element signature="e#5356#5587#0" expanded="true" />
-                <element signature="e#5586#5587#0" expanded="true" />
-                <element signature="e#5617#5848#0" expanded="true" />
-                <element signature="e#5847#5848#0" expanded="true" />
-                <element signature="e#5876#6107#0" expanded="true" />
-                <element signature="e#6106#6107#0" expanded="true" />
-                <element signature="e#6136#6367#0" expanded="true" />
-                <element signature="e#6366#6367#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Core.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="42" column="74" lean-forward="false" selection-start-line="42" selection-start-column="70" selection-end-line="42" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/LoginScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="178" column="0" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="178" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java">
+      <file leaf-file-name="PlayerComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/PlayerComponent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BulletSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/BulletSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1360">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1071">
+              <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -152,16 +94,22 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gun</find>
-      <find>rot</find>
-      <find>quat</find>
-      <find>theta</find>
-      <find>boxmodel</find>
-      <find>playermodel</find>
-      <find>tmp</find>
-      <find>game</find>
-      <find>modelcompo</find>
+      <find>createenem</find>
+      <find>render</find>
+      <find>enemy</find>
+      <find>enemys</find>
+      <find>teammat</find>
+      <find>player</find>
+      <find>system</find>
+      <find>character</find>
+      <find>charac</find>
+      <find>characterCompo</find>
+      <find>teammate</find>
+      <find>playersyst</find>
     </findStrings>
+    <replaceStrings>
+      <replace>TeammateCompo</replace>
+    </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -1394,15 +1342,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/RenderSystem.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/LeaderboardsScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/AccountScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/MainMenuScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/Assets.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/CharacterComponent.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/AvatarScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/TeammateComponent.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/TeammateSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java" />
       </list>
     </option>
   </component>
@@ -1427,7 +1371,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
@@ -1452,6 +1395,13 @@
               <item name="core" type="e9137016:NonAndroidModuleNode" />
               <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
               <item name="spaceglad" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Client" type="1abcf292:AndroidViewProjectNode" />
+              <item name="core" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="spaceglad" type="462c0819:PsiDirectoryNode" />
               <item name="managers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1459,7 +1409,7 @@
               <item name="core" type="e9137016:NonAndroidModuleNode" />
               <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
               <item name="spaceglad" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="systems" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Client" type="1abcf292:AndroidViewProjectNode" />
@@ -1472,6 +1422,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
@@ -1483,7 +1434,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.deeep.spaceglad.screens" />
+      <recent name="com.deeep.spaceglad.systems" />
+      <recent name="com.deeep.spaceglad.components" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1621,11 +1573,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7becadf5-def8-4dde-a690-a64c0504a2e6" name="Default" comment="" />
-      <created>1524693789375</created>
+      <changelist id="f67bcef9-e1cb-4256-bf77-17616cad89ff" name="Default" comment="" />
+      <created>1525190926908</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1524693789375</updated>
+      <updated>1525190926908</updated>
     </task>
     <servers />
   </component>
@@ -1633,165 +1585,135 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/EnemySystem.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="70" column="110" lean-forward="false" selection-start-line="70" selection-start-column="84" selection-end-line="70" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/RenderSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="74" column="13" lean-forward="false" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/LeaderboardsScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state relative-caret-position="119">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/BulletSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1360">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/ModelComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/LoginScreen.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/PlayerComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="178" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/MainMenuScreen.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="55" column="87" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="87" />
-          <folding>
-            <element signature="e#3518#3687#0" expanded="true" />
-            <element signature="e#3686#3687#0" expanded="true" />
-            <element signature="e#3723#3916#0" expanded="true" />
-            <element signature="e#3915#3916#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="42" column="74" lean-forward="false" selection-start-line="42" selection-start-column="70" selection-end-line="42" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="152" column="40" lean-forward="false" selection-start-line="152" selection-start-column="40" selection-end-line="152" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Assets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="-1071">
+          <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="120" column="26" lean-forward="false" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+        <state relative-caret-position="281">
+          <caret line="341" column="22" lean-forward="false" selection-start-line="341" selection-start-column="22" selection-end-line="341" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/AvatarScreen.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/EnemySystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="80" column="70" lean-forward="false" selection-start-line="80" selection-start-column="70" selection-end-line="80" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4054#4285#0" expanded="true" />
-            <element signature="e#4284#4285#0" expanded="true" />
-            <element signature="e#4315#4546#0" expanded="true" />
-            <element signature="e#4545#4546#0" expanded="true" />
-            <element signature="e#4576#4807#0" expanded="true" />
-            <element signature="e#4806#4807#0" expanded="true" />
-            <element signature="e#4836#5067#0" expanded="true" />
-            <element signature="e#5066#5067#0" expanded="true" />
-            <element signature="e#5095#5326#0" expanded="true" />
-            <element signature="e#5325#5326#0" expanded="true" />
-            <element signature="e#5356#5587#0" expanded="true" />
-            <element signature="e#5586#5587#0" expanded="true" />
-            <element signature="e#5617#5848#0" expanded="true" />
-            <element signature="e#5847#5848#0" expanded="true" />
-            <element signature="e#5876#6107#0" expanded="true" />
-            <element signature="e#6106#6107#0" expanded="true" />
-            <element signature="e#6136#6367#0" expanded="true" />
-            <element signature="e#6366#6367#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/CharacterComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="91" column="91" lean-forward="false" selection-start-line="91" selection-start-column="91" selection-end-line="91" selection-end-column="91" />
-          <folding>
-            <element signature="e#5205#5206#0" expanded="true" />
-            <element signature="e#5273#5274#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/TeammateSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="155" column="5" lean-forward="false" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/TeammateComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>

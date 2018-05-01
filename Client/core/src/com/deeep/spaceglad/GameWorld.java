@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.bullet.Bullet;
 import com.badlogic.gdx.physics.bullet.DebugDrawer;
 import com.badlogic.gdx.physics.bullet.linearmath.btIDebugDraw;
 import com.deeep.spaceglad.UI.GameUI;
+import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.managers.EntityFactory;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
@@ -139,9 +140,19 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-		createPlayer(0, 3, 0);
+		createPlayer(0, 1, 0);
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
 		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
+		//testing teammates -Paul
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, -15, 1, -15, 11));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, -10, 1, -15, 12));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, -5, 1, -15, 13));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 0, 1, -15, 14));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 5, 1, -15, 15));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 10, 1, -15, 16));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 15, 1, -15, 17));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 20, 1, -15, 18));
+		engine.addEntity(EntityFactory.createTeammate(bulletSystem, 25, 1, -15, 19));
     }
 
     private void createPlayer(float x, float y, float z) {
