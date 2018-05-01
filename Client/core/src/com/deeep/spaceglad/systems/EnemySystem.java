@@ -25,14 +25,11 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     private Quaternion quat = new Quaternion();
     private Engine engine;
     private GameWorld gameWorld;
-    private Music footStep;
+    
     ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
     public EnemySystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
-        footStep = Gdx.audio.newMusic(Gdx.files.internal("data/dinoFootstep.mp3"));
-        footStep.setLooping(true);
-        footStep.play();
     }
 
     @Override
@@ -44,7 +41,6 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
 	//Nick A for HW#6
-        float distance = Float.MAX_VALUE;
         if (entities.size() < 2) {
             Random random = new Random();
             engine.addEntity(EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10,random.nextInt(2)+1));
@@ -59,9 +55,9 @@ public class EnemySystem extends EntitySystem implements EntityListener {
             playerPosition = playerModel.instance.transform.getTranslation(playerPosition);
             enemyPosition = mod.instance.transform.getTranslation(enemyPosition);
 
-            float tmpDist = (float)Math.sqrt(Math.pow(playerPosition.x - enemyPosition.x, 2) + Math.pow(playerPosition.y - enemyPosition.y, 2) + Math.pow(playerPosition.z - enemyPosition.z, 2));
-            if(tmpDist < distance) 
-                distance = tmpDist;
+            float dist = (float)Math.sqrt(Math.pow(playerPosition.x - enemyPosition.x, 2) + Math.pow(playerPosition.y - enemyPosition.y, 2) + Math.pow(playerPosition.z - enemyPosition.z, 2));
+            if(dist < .01f) 
+                dist = .1f;
 
             float dX = playerPosition.x - enemyPosition.x;
             float dZ = playerPosition.z - enemyPosition.z;
@@ -86,19 +82,27 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
             if (e.getComponent(EnemyComponent.class).health <= 0)
 			{
+                e.getComponent(EnemyComponent.class).footStep.stop();
+                e.getComponent(EnemyComponent.class).footStep.dispose();
 				//Nick A for HW#6
 					if(e.getComponent(AnimationComponent.class) != null && e.getComponent(AnimationComponent.class).getController() != null)
 					{
-						if(e.getComponent(StatusComponent.class).alive)
+						if(e.getComponent(StatusComponent.class).alive){
 							e.getComponent(AnimationComponent.class).action("Armature|dead", 1, 3);
+                        }
 					}
 					//end
 					e.getComponent(StatusComponent.class).alive = false;
-			}
+			}else{
+                if(!e.getComponent(EnemyComponent.class).footStep.isPlaying()){
+                    e.getComponent(EnemyComponent.class).footStep.setLooping(true);
+                    e.getComponent(EnemyComponent.class).footStep.play();
+                }
+    
+                System.out.println(e.getComponent(EnemyComponent.class).footStep.getVolume());
+                e.getComponent(EnemyComponent.class).footStep.setVolume(10/dist);
+            }
         }
-
-        System.out.println(distance);
-        footStep.setVolume(10/distance);
     }
 
     @Override
