@@ -99,7 +99,6 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                     e.getComponent(EnemyComponent.class).footStep.play();
                 }
     
-                System.out.println(e.getComponent(EnemyComponent.class).footStep.getVolume());
                 e.getComponent(EnemyComponent.class).footStep.setVolume(10/dist);
             }
         }
