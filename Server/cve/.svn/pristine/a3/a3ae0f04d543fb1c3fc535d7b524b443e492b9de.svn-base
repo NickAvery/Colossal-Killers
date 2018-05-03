@@ -1,0 +1,244 @@
+Room {
+name ELEVATOR2
+x 17.9
+y 12.3
+z 15.33
+w 2.58
+h 3.5
+l 2.6
+texture elevatorwall.gif
+floor Wall {
+texture elevatorfloor.gif
+}
+decorations [
+   Wall { texture elevatorbuttons.gif
+          coords [20.46,13.2,17.79,
+		  20.46,13.8,17.79,
+                  20.46,13.8,17.45,
+		  20.46,13.2,17.45]
+      }
+   Wall { texture elevatordisplay.gif
+          coords [20.46,14.4,17.45,
+                  20.46,14.7,17.45,
+		  20.46,14.7,17.79,
+		  20.46,14.4,17.79]
+      }
+   Wall { texture elevatorvent.gif
+          coords [18.5,12.4,15.34,
+                  18.5,12.5,15.34,
+		  18.65,12.5,15.34,
+		  18.65,12.4,15.34]
+      }
+   Wall { texture elevatorvent.gif
+          coords [19.45,12.4,15.34,
+                  19.45,12.5,15.34,
+		  19.6,12.5,15.34,
+		  19.6,12.4,15.34]
+      }
+   Wall { texture elevatorrail.gif
+          coords [18.0,13.4,15.34,
+                  18.0,13.5,15.34,
+		  19.96,13.5,15.34,
+		  19.96,13.4,15.34]
+      }
+   Wall { texture elevatorvent.gif
+          coords [18.5,12.4,17.92,
+                  18.5,12.5,17.92,
+		  18.65,12.5,17.92,
+		  18.65,12.4,17.92]
+      }
+   Wall { texture elevatorvent.gif
+          coords [19.45,12.4,17.92,
+                  19.45,12.5,17.92,
+		  19.6,12.5,17.92,
+		  19.6,12.4,17.92]
+      }
+   Wall { texture elevatorrail.gif
+          coords [18.0,13.4,17.83,
+                  18.0,13.5,17.83,
+		  19.96,13.5,17.83,
+		  19.96,13.4,17.83]
+      }
+   Wall { texture elevatormetal.gif
+          coords [20.47,12.3,15.33,
+                  20.47,15.8,15.33,
+		  20.47,15.8,15.94,
+		  20.47,12.3,15.94]
+      }
+   Wall { texture elevatormetal.gif
+          coords [20.47,12.3,17.34,
+                  20.47,15.8,17.34,
+		  20.47,15.8,17.84,
+		  20.47,12.3,17.84]
+      }
+   Wall { texture elevatormetal.gif
+          coords [17.97,12.3,15.29,
+                  17.97,15.8,15.29,
+		  17.97,15.8,15.94,
+		  17.97,12.3,15.94]
+      }
+   Wall { texture elevatormetal.gif
+          coords [17.97,12.3,17.34,
+                  17.97,15.8,17.34,
+		  17.97,15.8,17.84,
+		  17.97,12.3,17.84]
+      }
+   Wall { texture elevatordoor.gif
+          coords [17.97,12.3,15.94,
+                  17.97,15.8,15.94,
+		  17.97,15.8,17.34,
+		  17.97,12.3,17.34]
+      }
+]
+}
+
+Room {
+name ELEVATOR1
+x 17.96
+y 0
+z 15.33
+w 2.04
+h 3.5
+l 2.51
+texture elevatorwall.gif
+floor Wall {
+texture elevatorfloor.gif
+}
+decorations [
+   Wall { texture elevatorbuttons.gif
+          coords [19.95,0.9,17.79,
+		  19.95,1.5,17.79,
+                  19.95,1.5,17.45,
+		  19.95,0.9,17.45]
+      }
+   Wall { texture elevatordisplay.gif
+          coords [19.95,2.1,17.45,
+                  19.95,2.4,17.45,
+		  19.95,2.4,17.79,
+		  19.95,2.1,17.79]
+      }
+   Wall { texture elevatorvent.gif
+          coords [18.5,0.1,15.34,
+                  18.5,0.2,15.34,
+		  18.65,0.2,15.34,
+		  18.65,0.1,15.34]
+      }
+   Wall { texture elevatorvent.gif
+          coords [19.45,0.1,15.34,
+                  19.45,0.2,15.34,
+		  19.6,0.2,15.34,
+		  19.6,0.1,15.34]
+      }
+   Wall { texture elevatorrail.gif
+          coords [18.0,2.1,15.34,
+                  18.0,2.2,15.34,
+		  19.96,2.2,15.34,
+		  19.96,2.1,15.34]
+      }
+   Wall { texture elevatorvent.gif
+          coords [18.5,0.1,17.83,
+                  18.5,0.2,17.83,
+		  18.65,0.2,17.83,
+		  18.65,0.1,17.83]
+      }
+   Wall { texture elevatorvent.gif
+          coords [19.45,0.1,17.83,
+                  19.45,0.2,17.83,
+		  19.6,0.2,17.83,
+		  19.6,0.1,17.83]
+      }
+   Wall { texture elevatorrail.gif
+          coords [18.0,2.1,17.83,
+                  18.0,2.2,17.83,
+		  19.96,2.2,17.83,
+		  19.96,2.1,17.83]
+      }
+   Wall { texture elevatormetal.gif
+          coords [19.99,0,15.33,
+                  19.99,3.5,15.33,
+		  19.99,3.5,15.94,
+		  19.99,0,15.94]
+      }
+   Wall { texture elevatormetal.gif
+          coords [19.99,0,17.34,
+                  19.99,3.5,17.34,
+		  19.99,3.5,17.84,
+		  19.99,0,17.84]
+      }
+   Wall { texture elevatormetal.gif
+          coords [17.97,0,15.29,
+                  17.97,3.5,15.29,
+		  17.97,3.5,15.94,
+		  17.97,0,15.94]
+      }
+   Wall { texture elevatormetal.gif
+          coords [17.97,0,17.34,
+                  17.97,3.5,17.34,
+		  17.97,3.5,17.84,
+		  17.97,0,17.84]
+      }
+   Wall { texture elevatordoor.gif
+          coords [17.97,0,15.94,
+                  17.97,3.5,15.94,
+		  17.97,3.5,17.34,
+		  17.97,0,17.34]
+      }
+
+
+]
+}
+
+Room {
+name elevator1entry
+x 20
+y 0
+z 15.33
+w 3.2
+h 3.5
+l 6.5
+texture wall.gif
+floor Wall {
+      texture red_yellow_tile.gif
+   }
+}
+
+
+Opening{
+id 6
+x 20
+y 0
+z 15.94
+w 1.4
+height 3.5
+collide_in 1.2
+plane 1
+rooms [ELEVATOR1, elevator1entry]
+}
+
+
+# Room {
+# name elevator2entry
+# x 20
+# y 12.3
+# z 15.33
+# w 3.2
+# h 3.5
+# l 6.5
+# texture textures/wall.gif
+# floor Wall {
+#       texture textures/red_yellow_tile.gif
+#    }
+#}
+
+
+Opening{
+id 7
+x 20.5
+y 12.3
+z 15.94
+w 1.4
+height 3.5
+collide_in 1.2
+plane 1
+rooms [ELEVATOR2, corridor_2_elevator]
+}

@@ -1,0 +1,11 @@
+Opening {
+	id 6
+	x 20
+	y 0
+	z 15.94
+	w 1.4
+	height 3.5
+	collide_in 1.2
+	plane 1
+	rooms [ELEVATOR1, elevator1entry]
+}

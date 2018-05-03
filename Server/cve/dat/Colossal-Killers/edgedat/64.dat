@@ -1,0 +1,11 @@
+Door {
+	id 64
+	x 10.32
+	y 2.05
+	z 21.9
+	w 0.8
+	height 2.2
+	collide_in 1.2
+	plane 3
+	rooms [JEB013, corridor_014]
+}

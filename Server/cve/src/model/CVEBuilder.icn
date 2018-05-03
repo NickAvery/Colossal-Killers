@@ -1,0 +1,706 @@
+#
+# CVEBuilder.icn - classes for static stuff
+#                     openings, doors, wall, box, room
+#                     which creates the 3D architecture
+#
+
+#   plane = 1   x plane has all x coords equal and thus is parallel to yz plane
+#                 and perpendicular to x axigs
+#   plane = 2   y plane has all y coords equal and thus is parallel to xz plane
+#                 and perpendicular to y axis - typically floor and ceiling
+#   plane = 3   z plane has all z coords equal and thus is parallel to xy plane
+#                 and perpendicular to z axis
+
+link printf
+
+$include "../common/defaults.icn"
+
+global operationMode
+
+global Maps, Elevators
+
+class CVEBuilder(opMode,sceneGraph,world,dispatcher)
+#
+# parse a tiny subset of Adobe SVG for whiteboards
+#
+method parsesvgfields()
+static chars
+local fieldname, val, t := table()
+initial chars := &letters ++ &digits
+   tab(many(' \t'))
+   while fieldname := tab(many(chars)) do {
+      ="=\""
+      val := tab(find("\"")|0)
+      t[fieldname] := if numeric(val) then trncReal(val) else val
+      move(1)
+      tab(many(' \t'))
+      }
+   return t
+end
+
+
+method parsebox(s, f)
+local b, w
+   b := Box(self.opMode,self.world)
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+   while not (s ? (tab(many(' \t')) & ="}" & *tab(0)=0)) do {
+      s ? {
+	 tab(many(' \t'))
+	 if ="Wall" then {
+	    w := parsewall(tab(0), f)
+	    put(b.walls, w)
+	    }
+	 }
+      s := readlin(f)
+      }
+   return b
+end
+
+#
+# Parse list elements. Normally this is a comma-separated list of strings.
+# However, if it starts with one of several recognized object types, parse
+# that instead.
+#
+method parselelems(L, s, f)
+local elem, sublist, subliststr
+#write("parselelems ", image(s))
+   s ? {
+      tab(many(' \t'))
+      if ="Box" then put(L, parsebox(tab(0), f))
+      else if ="Wall" then put(L, parsewall(tab(0), f))
+      else if ="WhiteBoard" then {
+	 elem := parsewall(tab(0), f)
+	 elem := WhiteBoard ! (push(elem.coords, elem.texture,
+				    self.dispatcher,self, self.opMode))
+	 put(L, elem)
+	 }
+      else if ="Windowblinds" then put(L, parsewindowblinds(tab(0), f))
+      else if ="Chair" then put(L, parsechair(tab(0), f))
+      else if ="Table" then put(L, parsetable(tab(0), f))
+      else if ="Pen" then put(L, parsepen(tab(0), f))
+      else if ="Book" then put(L, parsebook(tab(0), f))
+      else if ="Computer" then put(L, parsecomputer(tab(0), f))
+      else if ="Printer" then put(L, parseprinter(tab(0), f))
+      else if ="Ramp" then put(L, parseramp(tab(0), f))
+      else if ="HeightField" then put(L, parseheightfield(tab(0), f))
+      else if ="Object3D" then put(L, parseobject3D(tab(0), f))
+      else if match("[") then {
+	 if not (subliststr := tab(bal(' ,]','[',']'))) then {
+	    write("don't know what to do with ", image(tab(0)))
+	    subliststr := tab(0)
+	    }
+	 sublist := parselist(subliststr[2:0],f)
+	 put(L, sublist)
+	 if ="," then parselelems(L, tab(0), f)
+         }
+      else {
+	 while elem := trim(tab(find(","))) do {
+	    elem := numeric(elem)
+	    put(L, elem)
+	    =","
+	    tab(many(' \t'))
+	    }
+	 elem := trim(tab(0))
+	 if *elem>0 then {
+	    elem := numeric(elem)
+	    put(L, elem)
+	    }
+	 }
+      }
+end
+method parselist(s,f)
+local L
+#write("parselist ", image(s))
+   L := []
+   while (*s=0) | (s[-1] ~== "]") do s ? {
+      parselelems(L, s, f)
+      s := readlin(f)
+      }
+   if s ~== "]" then parselelems(L, s[1:-1], f)
+#write("after parsing lelems, L is ", image(L))
+#every write("\t", image(!L))
+   return L
+end
+
+#### TILED WALL CHANGES ####
+method parsetiledwall(s,f)
+   return parselist(s,f) 
+end
+
+method parsewall(s,f)
+   local w, field_s, t := table()
+   s ? {
+      repeat {
+	 tab(many(' \t'))
+	 if ="{" then break
+	 tab(many(' \t'))
+	 if &pos = *&subject + 1 then &subject := readlin(f)
+         }
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   s := trim(s,' \t')
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+       field_s := trim(tab(find("}")|0), ' \t')
+       if *field_s>0 then {
+       parsefield(t, field_s, f)
+       }
+       if (*s=0) | (s[-1] ~== "}") then s := trim(readlin(f), ' \t')
+   }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Wall ! ([self.opMode]||| [self.world] ||| [t["texture"]] ||| (\ (t["coords"]) | []))
+   return w
+end
+
+method parsewindowblinds(s,f)
+   local w, field_s, t := table()
+   s ? {
+       tab(many(' \t'))
+       ="{"
+       tab(many(' \t'))
+       s := tab(0)
+   }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Windowblinds ( (\ (t["coords"]) | []), t["angle"], t["crod"],
+		      t["cblinds"],t["height"], t["width"])
+   return w
+end
+
+method parsechair(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Chair ((\ (t["coords"]) | []), t["position"], t["color"],
+	       t["type"], t["movable"])
+   if \ t["action"] then
+       w.action := t["action"]
+   return w
+end
+
+
+method parsetable(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := ATable ( self.opMode, (\ (t["coords"]) | []), t["position"],
+		t["color"],t["type"])
+   if \ t["action"] then
+      w.action := t["action"]
+   return w
+end
+
+method parseobject3D(s,f)
+   local w, field_s, t := table()
+   #write("parsetable entered")
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Object3D ( self.opMode, (\ (t["coords"]) | []), t["position"],
+		  (\ (t["scale"]) | []), t["model3d"]  )
+   if \ t["action"] then
+       w.action := t["action"]
+   return w
+end
+
+method parsepen(s, f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Pen (opMode, t["Id"], (\ (t["coords"]) | []), t["color"], t["Angle"])
+   return w
+end
+
+method parsebook(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Book (self.opMode, (\ (t["coords"]) | []), t["color"], t["Angle"])
+   return w
+end
+
+method parseheightfield(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := HeightField ( (\ (t["coords"]) | []), (\ (t["color"|"texture"])|&null),
+		     t["width"], t["length"], t["heights"])
+   return w
+end
+
+method parseramp(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Ramp ( (\ (t["coords"]) | []), t["color"], t["type"], t["width"],
+	      t["height"], t["length"], t["numsteps"], t["texture"] )
+   return w
+end
+
+
+method parsecomputer(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Computer ((\ (t["coords_mntr"]) | []),(\ (t["coords_cpu"]) | []),
+		  (\ (t["coords_kb"]) | []), t["color"], t["angle"])
+   return w
+end
+
+method parseprinter(s,f)
+   local w, field_s, t := table()
+   s ? {
+      tab(many(' \t'))
+      ="{"
+      tab(many(' \t'))
+      s := tab(0)
+      }
+
+   while (*s=0) | (s[-1] ~== "}") do s ? {
+      field_s := tab(find("}")|0)
+      if *field_s>0 then {
+	 parsefield(t, field_s, f)
+	 }
+      if (*s=0) | (s[-1] ~== "}") then s := readlin(f)
+      }
+   s ?:= (tab(many(' \t')) & tab(0))
+   if s ~== "}" then parsefield(t, s[1:-1], f)
+   w := Printer ( (\ (t["coords"]) | []), t["color"], t["angle"])
+   return w
+end
+
+method parsefield(x, s, f)
+local field, val
+   s ? {
+      tab(many(' \t'))
+      (field := tab(upto(' \t'))) | stop("fieldname expected: ", image(tab(0)))
+      tab(many(' \t'))
+      val := parseval(tab(0),f)
+      if map(opMode) == "c" then {
+	 if field=="texture" then {
+	    val := self.world.find_texture(val)
+	    }
+	 }
+    
+      if field == "action" then {
+	 /(x["actors"]) := []
+	 put(x["actors"], 1)
+	 }
+      x [field] := val
+      }
+end
+
+method parseval(s,f)
+static dotdigits
+local val
+initial dotdigits := &digits ++ '.'
+   s ? {
+      tab(many(' \t'))
+      if val := numeric(tab(many(dotdigits))) then
+	 return trncReal(val) 
+      else if ="Wall" then return parsewall(tab(0), f)
+      else if ="[" then return parselist(tab(0), f)
+      else return trim(tab(0))
+      }
+end
+
+method parseplace(s,f)
+   local line, t := table()
+   while line := readlin(f) do line ? {
+      tab(many(' \t'))
+      if ="}" then break
+      if &pos = *&subject+1 then next
+      parsefield(t, tab(0), f)
+      }
+   return t
+end
+
+method parsemap(s,f)
+   local t, m
+   /Maps := table()
+   t := parseplace(s,f)
+   # if we are on the server, don't do the map stuff.
+   if type(variable("server")) == ("Server"|"Server__state") then fail
+   m := MapImage(t["index"],t["name"],t["filename"],
+		 t["oldx"],t["oldy"],t["miny"],t["maxy"])
+
+   m.set_pos("2%", "2%")
+   m.set_size("96%", "96%")
+   Maps[t["name"]] := m
+   return m
+end
+
+method parseelevator(s,f)
+   local t,e
+   /Elevators := table()
+   t := parseplace(s,f)
+
+   e := Elevator(t["name"],t["ground"],(\ (t["rooms"]) | []),
+		t["minx"],t["maxx"],t["minz"],t["maxz"])
+   Elevators[t["name"]] := e
+   return e
+end
+
+method parseAttach(s,f)
+   static idchars
+   local line, port, handler, name
+   initial idchars := &letters ++ &digits ++ '_'
+
+   while line := readlin(f) do line ? {
+      tab(many(' \t'))
+      if ="}" then break
+      ="port" & tab(many(' \t')) & port := tab(many(&digits++&letters))
+      ="handler" & tab(many(' \t')) & write("Got a line with handler in it ") &
+	  handler := tab(many(idchars))
+      ="name" & tab(many(' \t')) & write("Got a line with name in it ") &
+	  name := tab(many(idchars))
+      }
+   write("port2 is now "||image(port))
+   write("handler is now "||handler)
+   return Attach(name, port, handler)
+end
+
+method parseroom(s,f)
+   local t, r, actor, obstacle, temp, name, pattern, action
+   t := parseplace(s,f)
+   if upto(' -', t["name"]) then t["name"] := map(t["name"], " -", "__")
+      
+   r := Room(opMode,world,dispatcher,t["name"], t["x"], t["y"], t["z"],
+	     t["w"], t["h"], t["l"], t["texture"])
+   if \ (t["floor"]) then {
+      t["floor"].coords := [r.x,r.y,r.z,         r.x,r.y,r.z+r.l,
+                r.x+r.w,r.y,r.z+r.l, r.x+r.w,r.y,r.z]
+      t["floor"].set_plane()
+      r.floor := t["floor"]
+      }
+
+   if \ (t["ceiling"]) then {
+      t["ceiling"].coords := [t["x"],t["y"]+t["h"],t["z"],
+			    t["x"],t["y"]+t["h"],t["z"]+t["l"],
+			    t["x"]+t["w"],t["y"]+t["h"],t["z"]+t["l"],
+			    t["x"]+t["w"],t["y"]+t["h"],t["z"]]
+      t["ceiling"].set_plane()
+      r.ceiling := t["ceiling"]
+      }
+
+      if \ (t["floor_tiled"]) then {
+	 r.floor := TiledWall()
+	 every r.floor.addwall(!\ (t["floor_tiled"]))
+	 }
+
+      if \ (t["front_wall_tiled"]) then {
+	 put(r.walls,TiledWall(r.x,r.y,r.z,r.x,r.y+r.h,r.z,
+			       r.x+r.w,r.y+r.h,r.z,r.x+r.w,r.y,r.z))
+
+	 every r.walls[*r.walls].addwall(!\ (t["front_wall_tiled"]))
+	 } 
+      else
+	 r.make_default_front_wall(t["texture"])
+      
+      if \ (t["left_wall_tiled"]) then {
+	 put(r.walls,TiledWall(r.x,r.y,r.z,r.x,r.y+r.h,r.z,
+                               r.x,r.y+r.h,r.z+r.l,r.x,r.y,r.z+r.l))
+         every r.walls[*r.walls].addwall(!\ (t["left_wall_tiled"]))
+	 }
+      else
+          r.make_default_left_wall(t["texture"])
+
+      if \ (t["right_wall_tiled"]) then {
+	 put(r.walls,TiledWall(r.x+r.w,r.y,r.z,r.x+r.w,r.y+r.h,r.z,
+                               r.x+r.w,r.y+r.h,r.z+r.l,r.x+r.w,r.y,r.z+r.l))
+         every r.walls[*r.walls].addwall(!\ (t["right_wall_tiled"]))
+	 }
+      else {
+	 r.make_default_right_wall(t["texture"])
+	 }
+
+   if \ (t["back_wall_tiled"]) then {
+      put(r.walls,TiledWall(r.x,r.y,r.z+r.l,r.x,r.y+r.h,r.z+r.l,
+                            r.x+r.w,r.y+r.h,r.z+r.l,r.x+r.w,r.y,r.z+r.l))
+      every r.walls[*r.walls].addwall(!\ (t["back_wall_tiled"]))
+   }
+   else {
+       r.make_default_back_wall(t["texture"])
+   }
+  
+  every r.add_obstacle(!\ (t["obstacles"]))
+  every r.add_decoration(!\ (t["decorations"]))
+  every r.add_tool(!\ (t["tools"]))
+
+   # Actions can be embedded into rooms, or into obstacles... we need
+   # to lift the actions from the obstacles into the rooms at this
+   # point. TODO: we actually don't support room-located actors yet.
+   #  -- brian
+   /r.actors := []
+   every write("The room has actor " || image(!r.actors))
+
+   if \(t["attach"]) then {
+     t["attach"] ? {
+        write("subject is "||image(&subject))
+        tab(many(' \t\r'))& name := tab(many(&letters)) &
+	    tab(many(' \t\r')) & pattern := tab(&subject[&pos:0])
+        write("Foo is "||image(name)||" and bar is "||image(pattern))
+        (\(self.sceneGraph.services)).associate(name, pattern, self)
+     }
+     write("There was an attachment to " ||image(t["attach"]))
+   }
+
+   every obstacle := !\t["obstacles"] do {
+      \obstacle.action ? { # Only puts it if obstacle.action is non-nil 
+         name := tab(upto(' \r\t'))
+         tab(many(' \r\t'))
+         action := &subject[&pos:0]
+         put(r.actors, Actor(name, action,self.sceneGraph))    
+       } 
+   }
+     
+  return r
+end
+
+method readlin(f)
+static tincludes
+   local line, currentf, fn, f2
+
+initial tincludes := table()
+
+
+   /tincludes[f] := [f]
+
+   currentf := tincludes[f][1]
+
+   if line := read(currentf) then {
+      line[find("#", line):0] := ""                 # Strip out comments
+      if match("include ", line) then {
+	 fn := trim(line[9:0], ' \t')
+	 if f2 := datopen(DAT || PS || fn) then {
+	    push(tincludes[f], f2)
+	    push((\world).texture_path, Pathname(DAT || PS || fn))
+	    return readlin(f)
+	    }
+	 else {
+	    write(&errout, "can't open include in ", image(line))
+	    }
+	 }
+      return line
+      }
+   else {
+      close(currentf)
+      if * (tincludes[f]) > 1 then {
+	 pop(tincludes[f])
+	 if find((\world).texture_path[1], image(currentf)) then {
+	    pop(world.texture_path)
+	    }
+	 return readlin(f)
+         }
+      }
+end
+
+method parsedoor(s,f)
+   local t, d, r, rn
+   t := parseplace(s,f)
+   d := Door(self.opMode,self.world,self.dispatcher,
+	     t["x"], t["y"], t["z"], t["collide_in"], t["texture"],
+	     ((\ (t["h"]))|t["height"]), ((\ (t["w"]))|t["width"]))
+   if not (d.plane := \t["plane"]) then {
+      write(&errout, "bad model.dat, no plane in door ",image(t["id"]))
+      fail
+      }
+   if not (d.id := \t["id"]) then {
+      writes(&errout, "bad model.dat, parsedoor null id connecting ")
+      every writes(&errout, image(!t["rooms"]), " ")
+      write(&errout)
+      }
+   if \t["hinge_left"] then d.hinge_left := 1
+   every rn := !t["rooms"] do {
+      if find(" ", rn ) then rn := map(rn, " ", "-")
+	 
+      if \ (r := sceneGraph.nodesTable[rn]) then r.add_opening(d)
+      else write("parsedoor: no room named ", image(rn))
+      }
+  return d
+end
+
+method parseopening(s,f)
+   local t, d, r
+   t := parseplace(s,f)
+   d := Opening(self.opMode,t["x"], t["y"], t["z"], t["collide_in"], t["w"])
+   d.height := \ (t["height"])
+   if not (d.plane := \t["plane"]) then
+      write(&errout, "bad model.dat, no plane in opening ",image(t["id"]))
+   if not (d.id := \t["id"]) then {
+      writes(&errout, "bad model.dat, parseopening null id connecting ")
+      every writes(&errout, image(!t["rooms"]), " ")
+      write(&errout)
+      }
+   every r := !t["rooms"] do {
+      if find(" ", r) then r := map(r, " ", "-")
+	 
+      if \ ( sceneGraph.nodesTable[r] ) then
+        sceneGraph.nodesTable[r].add_opening(d)
+      else write(image(r), " is not in the nodes table.")
+      }
+   return d
+end
+
+method parseportal(s,f)
+   local t, d, r
+   t := parseplace(s,f)
+   d := Portal(opMode, world, dispatcher, t["x1"], t["y1"], t["z1"], t["x2"], 
+               t["y2"], t["z2"], t["collide_in"], t["w"], t["height"])
+   if not (d.plane := \t["plane"]) then
+      write(&errout, "bad model.dat, no plane in opening ",image(t["id"]))
+   if not (d.id := \t["id"]) then {
+      writes(&errout, "bad model.dat, parseopening null id connecting ")
+      every writes(&errout, image(!t["rooms"]), " ")
+      write(&errout)
+      }
+   every r := !t["rooms"] do {
+      if find(" ", r ) then r := map(r, " ", "-")
+	 
+      if \ ( sceneGraph.nodesTable[r] ) then
+        sceneGraph.nodesTable[r].add_opening(d)
+      else write(image(r), " is not in the nodes table.")
+      }
+   return d
+end
+
+initially(opMode,sceneGraph,world,dispatcher)
+   self.opMode := opMode
+   self.sceneGraph := sceneGraph
+   self.dispatcher := dispatcher
+   self.world  := world
+end
+
+procedure Pathname(s)                  #: obtain path of filename
+   local s2 := ""
+   s ? {
+      while s2 ||:= tab(upto('\\/')+1)
+      return s2
+      }
+end

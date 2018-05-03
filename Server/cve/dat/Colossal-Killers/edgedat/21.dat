@@ -1,0 +1,12 @@
+Door {
+	id 21
+	x 10.2
+	y 10.25
+	z 20.07
+	w 1.04
+	texture dat/uidaho/texsmall/labwalldoor.gif
+	height 2.21
+	collide_in 1.2
+	plane 1
+	rooms [csac, lab]
+}

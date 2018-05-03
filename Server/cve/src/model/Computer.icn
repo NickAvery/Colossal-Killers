@@ -1,0 +1,306 @@
+class Computer:Obstacle(
+   x_mntr,y_mntr,z_mntr, #coordinates of monitor
+   x_cpu,y_cpu,z_cpu,    #coordinates of cpu
+   x_kb,y_kb,z_kb,       #coordinates of key board
+   angle,                #angle 
+   color,                #color of the computer 
+   users,                # table holds info of users of this computer
+   owner,                #tells owner of the computer
+   name,                 #tells name of the computer 
+   status,               #tells the status of the computer
+   minx,miny,minz,maxx,
+   maxy,maxz,collide,    # variables which restricts the avatar
+                                     # movement through the computer
+   dle_mon1, dle_mon2,
+   dle_kb1,  dle_kb3,
+   dle_cpu1, dle_cpu2,
+   dle_drv1, dle_drv3
+   )
+
+method render(render_level)
+
+   WAttrib("texmode=off")
+   if \dle_mon1 then {
+      case render_level of {
+      0: {
+      dle_mon1.skip := dle_kb1.skip := dle_cpu1.skip := dle_drv1.skip := 1
+      }
+      1: {
+      dle_mon1.skip := 0
+      dle_mon2.skip := 1
+      dle_kb1.skip := 0
+      dle_kb3.skip := 1
+      dle_cpu1.skip := 0
+      dle_cpu2.skip := 1
+      dle_drv1.skip := 0
+      dle_drv3.skip := 1
+      }
+      2: {
+      dle_mon1.skip := dle_mon2.skip := 0
+      dle_kb1.skip := 0
+      dle_kb3.skip := 1
+      dle_cpu1.skip := dle_cpu2.skip := 0
+      dle_drv1.skip := 0
+      dle_drv3.skip := 1
+      }   
+      default: {
+      dle_mon1.skip := dle_mon2.skip := dle_kb1.skip := dle_kb3.skip :=
+         dle_cpu1.skip := dle_cpu2.skip := dle_drv1.skip := dle_drv3.skip := 0
+      }
+   }
+   fail
+   }
+else {
+   draw_MONITOR(x_mntr,y_mntr,z_mntr,angle,color)
+   draw_CPU(x_cpu,y_cpu,z_cpu,angle,color)
+   draw_KB(x_kb,y_kb,z_kb,angle,color)
+   #draw_MOUSE(x,y,z,angle,color)
+   WAttrib("texmode=on")
+   }
+end
+
+method draw_MONITOR(x,y,z,angle,col)
+local x_trans,z_trans, win3d
+
+win3d := !gui::dispatcher.subwins
+
+dle_mon1 := WSection(win3d, "Monitor1")
+
+x_trans := 0.15 * sin(dtor(angle))
+z_trans := 0.15 * cos(dtor(angle))
+ WAttrib("fg=black")
+PushMatrix()
+  PushMatrix()
+    Translate(x+x_trans,y,z+z_trans)
+    Rotate(angle,0,1,0)
+    Scale(2.2,5,1.4)
+    DrawCube(0,0,0,0.06)
+  PopMatrix()
+  x_trans := 0.17 * sin(dtor(angle))
+  z_trans := 0.17 * cos(dtor(angle))
+  PushMatrix()
+    Translate(x+x_trans,y-0.05,z+z_trans)
+    Rotate(angle,0,1,0)
+    Rotate(90,1,0,0)
+    Scale(6,6,0.15)
+    DrawSphere(0,0,0,0.025)
+  PopMatrix()
+  x_trans := 0.215 * sin(dtor(angle))
+  z_trans := 0.215 * cos(dtor(angle))
+ PushMatrix()
+    PushMatrix()
+      Translate(x+x_trans,y+0.17,z+z_trans)
+      Rotate(angle,0,1,0)
+      Scale(4,4,0.8)
+      DrawCube(0,0,0,0.06)
+    PopMatrix()
+    x_trans := 0.255 * sin(dtor(angle))
+    z_trans := 0.255 * cos(dtor(angle))  
+    PushMatrix()
+      Translate(x+x_trans,y+0.27,z+z_trans)
+      Rotate(angle,0,1,0)
+      Scale(7,7,0.7)
+      DrawCube(0,0,0,0.06)
+    PopMatrix()
+ PopMatrix()
+
+ x_trans := 0.28 * sin(dtor(angle))
+ z_trans := 0.28 * cos(dtor(angle))     
+
+dle_mon2 := WSection(win3d, "Monitor2")
+
+  PushMatrix()
+   Translate(x+x_trans,y,z+z_trans)
+   Rotate(angle,0,1,0)
+   WAttrib("texmode=on")
+   WAttrib("texcoord=0,0,0,1,1,1,1,0") |  write("texcoord failed")
+   WAttrib("texture=" || DAT || "/textures/screen2.gif") |
+       write("texture=monitor.gif failed")
+   FillPolygon(-0.16,0.12,0,  -0.16,0.44,0,    0.16,0.44,0,  0.16,0.12,0)
+   WAttrib("texmode=off")
+   Fg("light gray")
+   draw_monitorbtn(0.02,0.09,0,1.7)
+   draw_monitorbtn(0.06,0.09,0,2)
+   draw_monitorbtn(-0.02,0.09,0,1.7)
+   draw_monitorbtn(-0.06,0.09,0,2)   
+  PopMatrix()
+
+WSection(win3d)
+
+PopMatrix()
+WSection(win3d)
+end
+
+method draw_monitorbtn(x1,y1,z1,scalex)
+  PushMatrix()
+    Translate(x1,y1,z1)
+    Scale(scalex,0.8,0.4)
+    DrawSphere(0,0,0,0.005)
+  PopMatrix()
+end
+
+method draw_KB(x,y,z,angle,col)
+local x_trans,z_trans, win3d
+
+   win3d := !gui::dispatcher.subwins
+
+   dle_kb1 := WSection(win3d, "kb1_0")
+   x_trans := z_trans := 0
+   Fg(color)
+   PushMatrix()
+   Translate(x+x_trans,y,z+z_trans)
+   Rotate(angle,0,1,0)
+   Rotate(15,1,0,0)
+   PushMatrix()
+      Scale(8.5,0.3,3.5)
+      Fg("black")
+      DrawCube(0,0,0,0.06)
+   PopMatrix()
+   WAttrib("texmode=on")
+
+dle_kb3 := WSection(win3d, "kb3")
+
+  PushMatrix()
+      Translate(0,0.01,0)
+      Scale(8.5,0.3,3.5)
+      WAttrib("texcoord=0,0,1,0,1,1,0,1") | write("texcoord failed")
+      WAttrib("texture=" || DAT || "/textures/keyboard.gif") |
+         write("texture=keyboard.gif failed")
+      FillPolygon(-0.03,0,0.03, 0.03,0,0.03, 0.03,0,-0.03, -0.03,0,-0.03)
+    PopMatrix()
+WSection(win3d)
+
+PopMatrix()
+WAttrib("texmode=off")
+WSection(win3d)
+end
+
+ method draw_drive(angle,theight,drive) 
+ local x_trans,z_trans, win3d
+win3d := !gui::dispatcher.subwins
+
+dle_drv1 := WSection(win3d, "drive1")
+x_trans := 0.18 * sin(dtor(angle))
+z_trans := 0.18 * cos(dtor(angle))
+ PushMatrix()
+   Translate(x_trans,theight,z_trans)
+   Rotate(angle,0,1,0)
+  Scale(1.3,0.3,1.2)
+dle_drv3 := WSection(win3d, "drive3")
+
+  WAttrib("texmode=on","texcoord=0,0, 0,1, 1,1, 1,0")
+  WAttrib("texture=" || DAT || "/textures/" || drive || ".gif") |
+    write("texture=drive.gif failed")
+  FillPolygon(-0.075,-0.07,0.076, -0.075,0.09,0.076,
+	      0.075,0.09,0.076, 0.075,-0.07,0.076)
+  WAttrib("texmode=off")
+
+WSection(win3d)  
+  WAttrib("fg=black")
+  DrawCube(0,0,0,0.15)
+  PopMatrix()
+# dle_drv1
+WSection(win3d)
+end
+
+method draw_button(angle,height,r)
+local x_trans,z_trans
+ x_trans := r * sin(dtor(angle))
+ z_trans := r * cos(dtor(angle))
+PushMatrix()
+   Translate(x_trans,height,z_trans)
+   Rotate(angle,0,1,0)
+   DrawSphere(0,0,0,0.013)
+PopMatrix()
+end
+
+method draw_CPU(x,y,z,angle,col)
+local x_trans,z_trans, win3d
+
+win3d := !gui::dispatcher.subwins
+
+dle_cpu1 := WSection(win3d, "cpu1")
+PushMatrix()
+ Translate(x,y+0.12,z)
+
+ WAttrib("fg=black")
+  PushMatrix()
+    Rotate(angle,0,1,0)
+    Scale(1.5,3.4,3.6)
+
+    DrawCube(0,0,0,0.15)
+  PopMatrix()
+  PushMatrix()
+    Translate(0,-0.03,0)
+    Rotate(angle,0,1,0)
+    WAttrib("texmode=on","texcoord=0,0, 0,1, 1,1, 1,0")
+    WAttrib("texture="|| DAT || "/textures/logo.gif") |
+       write("texture="|| DAT || "/textures/logo.gif failed")   
+    FillPolygon(-0.03,-0.06,0.275,-0.03,0.0,0.275,
+		0.03,0.0,0.275,0.03,-0.06,0.275)
+    WAttrib("texture="||DAT||"/textures/name2.gif") |
+       write("texture="||DAT||"/textures/name2.gif failed") 
+    FillPolygon(-0.1,-0.2,0.275,  -0.1,-0.125,0.275,
+		0.1,-0.125,0.275,   0.1,-0.2,0.275)
+  PopMatrix()
+
+dle_cpu2 := WSection(win3d, "cpu2")
+
+  WAttrib("texmode=off")
+  draw_drive(angle,0.2,"cddrive")
+  draw_drive(angle,0.13,"dvddrive")
+  WAttrib("fg=red")
+  draw_button(angle+15,0.05,0.272)
+  WAttrib("fg=green")
+  draw_button(angle+15,0.02,0.268)
+
+WSection(win3d)
+
+PopMatrix()
+WSection(win3d)
+end
+
+method disallows(x,z)  ## Box
+      #calc_boundbox_chair()
+      if minx-collide <= x <= maxx+collide &
+	 minz-collide <= z <= maxz+collide then {
+         return
+         }
+      fail
+end
+
+initially(coords_mntr,coords_cpu,coords_kb,col,A)
+x_mntr := coords_mntr[1]
+y_mntr := coords_mntr[2]
+z_mntr := coords_mntr[3]
+x_cpu  := coords_cpu[1]
+y_cpu  := coords_cpu[2]
+z_cpu  := coords_cpu[3]
+x_kb  :=  coords_kb[1]
+y_kb  :=  coords_kb[2]
+z_kb  :=  coords_kb[3]
+angle := A
+color := col
+#default values
+/x_mntr := 0
+/y_mntr := 0
+/z_mntr := 0
+/x_cpu := 0
+/y_cpu := 0
+/z_cpu := 0
+/x_kb := 0
+/y_kb := 0
+/z_kb := 0
+/color := "gray"
+/owner := "no owner"
+/status := "free"
+/name := "Computer"
+/users := table()
+/minx := x_mntr - 0.9
+/miny := y_mntr
+/minz := z_mntr - 0.9
+/maxx := x_mntr + 0.9
+/maxy := y_mntr
+/maxz := z_mntr + 0.9
+/collide := 0.1
+end

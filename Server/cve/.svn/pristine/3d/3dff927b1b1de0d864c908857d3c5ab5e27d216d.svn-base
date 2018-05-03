@@ -1,0 +1,11 @@
+Door {
+	id 67
+	x 20.8
+	y 0
+	z 21.4
+	w 1.0
+	height 2.3
+	collide_in 0.8
+	plane 3
+	rooms [courtyard, courtyard_entry_south]
+}

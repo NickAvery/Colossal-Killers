@@ -1,0 +1,1105 @@
+##############################################################################
+#
+#   File:     SceneGraph.icn
+#
+#   Subject:  This file is shared and used by the server/sSceneGr.icn and
+#             cSceneGr.icn files.
+#
+#   Author:   Akshay V. Dabholkar (adabholk@cs.nmsu.edu)
+#
+#   Date:     February 27, 2005
+#
+##############################################################################
+#
+#   This file is in the public domain.
+#
+##############################################################################
+#
+#   It has a lot of $ifdef's that selectively include/exclude the code in the
+#   respective classes both the client and the server files  mentioned above.
+#   Thats why this file only defines methods. It will never compile as a
+#   stand-alone unit.
+#
+##############################################################################
+#
+#   WARNING:
+#   This file has class methods that get included at preprocessing time in the
+#   respective including classes. So only define methods over here using field
+#   names from either class files. Obviously no defining procedures over here.
+#
+##############################################################################
+
+
+$include "../common/defaults.icn"
+
+# these used to be constants, but they need to be in the model.dat
+global AVATAR_ORIGIN_X,  AVATAR_ORIGIN_Y,  AVATAR_ORIGIN_Z,
+    AVATAR_ANGLE, AVATAR_ORIGIN_NODE
+global MODEL_NAME
+
+class CVESceneGraph(
+   is_server,
+   services,
+   nodesTable,     # all rooms in the cve
+   edgesTable,     # all exits (doors, openings) in the cve
+   directionTable, # The list of all directions in the cve
+   avatarTable,    # The list of all avatars in the cve
+   nodeRPath,      # directory path where the room data files are stored
+   edgeRPath,      # directory path where the exits data is stored
+   logHandler,     # Logger object
+   genDyn,          # Swtich to enable/disable generation of dynamic data
+   cveBuilder
+   )
+
+   #
+   # Heavyweight: has both dynamic and static data:
+   # Can operate both in Server(static and dynamic data)
+   # and Client(Only static data) mode
+   # Populates the nodesTable and edgesTable class member variables
+   #
+   method generateSceneGraph()
+      logHandler.logit("Constructing the Scene Graph for : " || DAT)
+      constructStaticData()
+      constructDynamicData()
+      constructStaticDirectionNodes()
+   end
+
+   method constructStaticData()
+      constructStaticNodeData()
+      constructStaticEdgeData()
+   end
+
+   method constructStaticNodeData()
+      local modelFilePath, fin, s, r, roomDirHandle, attachment, t
+      modelFilePath := DAT||PS||"model.dat"
+      #
+      # STATIC DATA
+      #
+      # Read all the room info from the model.dat
+      # and populate their states to the respective node
+      #
+      fin := datopen(modelFilePath) | stop("can't open " || modelFilePath)
+
+      while s := cveBuilder.readlin(fin) do s ? {
+	 if ="#" then next
+	 else if ="Room" then {
+	    r := cveBuilder.parseroom(s, fin)
+	    #
+	    # Client-specific: Take care when referring to the server
+	    # graph code to not to copy this over there.
+	    #
+	    putRoomInWorld(r)
+	    self.nodesTable[r.name] := r
+
+	    #
+	    # Fix that creates directories if they are not present
+	    #
+	    roomDirHandle := datopen(self.nodeRPath||PS||r.name) | {
+	       mkdir(datfile(self.nodeRPath||PS||r.name))
+	       }
+	    if type(roomDirHandle) == "file" then close(roomDirHandle)
+	    }
+	 else if ="default" then {
+	    t := cveBuilder.parseplace(s, fin)
+	    if \ t["home"] then {
+	       AVATAR_ORIGIN_X := t["home"][1]
+	       AVATAR_ORIGIN_Y := t["home"][2]
+	       AVATAR_ORIGIN_Z := t["home"][3]
+	       }
+	    if t["angle"] then AVATAR_ANGLE := t["angle"]
+	    if t["origin_node"] then AVATAR_ORIGIN_NODE := t["origin_node"]
+	    if t["name"] then
+	       MODEL_NAME := t["name"] else MODEL_NAME := "3D View"
+	    }
+	 else if ="AttachPoint" then {
+	    attachment := cveBuilder.parseAttach(s,fin)
+	    if \is_server then services.bind(attachment)
+	    }
+	 else if ="Map" then {
+	    r := cveBuilder.parsemap(s, fin)
+	    }
+	 else if ="Elevator" then {
+	    r := cveBuilder.parseelevator(s, fin)
+	    }
+	 }
+      close(fin)
+      if &progname == "cved" then write("... done.")
+   end
+
+   method constructStaticEdgeData()
+      local edgeName := "",  d, s, fin, i := 0
+      #
+      #STATIC DATA
+      #
+      if &progname === "cved" then writes("Edges ")
+
+      fin := datopen(DAT || PS || "model.dat") |
+	 stop("EdgeData():can't open " || DAT || PS || "model.dat")
+
+      while s := cveBuilder.readlin(fin) do s ? {
+	 if &progname === "cved" then if ?5=1 then writes(".")
+
+	 if ="#" then
+	    next
+	 else  if ="Door" then {
+	    i +:= 1
+	    d := cveBuilder.parsedoor(s,fin)
+	    if \world & \d then{
+	       world.DoorsTable[d.id] := d
+	       #write("Door Added :", type(d.id)," -->  ", type(d))
+	       }
+	    }
+	 else if ="Opening" then {
+	    i +:= 1
+	    d := cveBuilder.parseopening(s,fin)
+	    }
+	 else if ="Portal" then {
+	    i +:= 1
+	    d := cveBuilder.parseportal(s,fin)
+	    }
+	 if \d then {
+	    / (d.id) := -i # dodge null id#'s by assigning negatives
+	    edgeName := createEdgeName(d)
+	    self.edgesTable[edgeName] := d
+	    }
+	 }
+      close(fin)
+      if &progname === "cved" then write(" done.")
+   end
+
+   method constructDynamicData()
+      constructDynamicNodeData()
+      constructDynamicEdgeData()
+   end
+
+   method constructDynamicNodeData()
+      local dirName, nodeDirHandle, roomDirHandle, fileName, avtName
+      local tblAvatars := table(), fin
+
+      #
+      # DYNAMIC DATA : Avatars, more should be added in
+      # the form of methods
+      #
+      if self.genDyn = 1 then {
+	 #
+	 # dat/nodes
+	 #
+	 nodeDirHandle := datopen(self.nodeRPath) | {
+            (mkdir(self.nodeRPath) &
+	     nodeDirHandle := datopen(self.nodeRPath)) |
+	    stop("constructDynamicData()::can't open "||self.nodeRPath)
+	    }
+
+	 every dirName := !nodeDirHandle do { # dat/nodes/room
+	    if not (dirName == ("."|".."|"model.dat"|"CVS")) then {
+	       if find(" "|"-", dirName) then
+		  dirName := map(dirName, " -", "__")
+
+	       roomDirHandle := datopen(self.nodeRPath||PS||dirName) |
+		  stop("constructDynamicData()::can't open "||
+		       self.nodeRPath||PS||dirName)
+
+	       #
+	       # dat/nodes/room/avatar.avt
+	       #
+	       every fileName := !roomDirHandle do {
+
+		  #
+		  # Read all the avatars files in each room directory
+		  # and populate their states to the respective node
+		  #
+
+		  if fileName[-6:0] == ".state" then {
+		     fin := datopen(self.nodeRPath||PS||dirName||PS||
+				 fileName) |
+			stop("constructDynamicData()::can't open "||
+			     self.nodeRPath||PS||dirName|| PS||fileName)
+
+		     avtName := fileName[1:-6]
+		     tblAvatars[avtName] := \(cveBuilder.parseplace("",fin))
+
+		  #
+		  # Populate the universal table too but make
+		  # a reversible assignment
+		  #
+		  self.avatarTable[avtName] := tblAvatars[avtName]
+		  close(fin)
+		  }
+	       }
+
+	    #
+	    # If there were any avatars in the room then load them in
+	    # the per node avatar table.
+	    #
+	    if *tblAvatars ~= 0 then
+	       nodesTable[dirName].Tavatars := tblAvatars
+
+	    #
+	    # Recreate the table otherwise the due to referencing it
+	    # will be assigned to all the nodes
+	    #
+	    tblAvatars := table()
+	    close(roomDirHandle)
+
+	    } # if not (dirName == ("."|".."|"model.dat"))
+	 } # every dirName := !nodeDirHandle
+
+      close(nodeDirHandle)
+      constructAvatarStates()
+      } # if self.genDyn = 1
+   end
+
+   #
+   # DYNAMIC DATA
+   #
+
+   method constructAvatarStates()
+      local fin, usrRDirHandle, usrDirHandle, avtName, coordinates
+      local TavtInfo := table(), usrDirName
+
+      if self.genDyn = 1 then {
+	 usrRDirHandle := datopen(USER_LOCALPATH) | {
+	    (mkdir(datfile(USER_LOCALPATH)) &
+	     usrRDirHandle := datopen(USER_LOCALPATH)) |
+	    stop("CVESceneGraph:can't open ",USER_LOCALPATH)
+	 }
+
+	 every avtName := !usrRDirHandle do { # dat/users/username
+	    if not (avtName == ("."|".."|".svn")) then {
+	       usrDirName := USER_LOCALPATH||PS||avtName||PS||avtName||".state"
+	       fin := datopen(usrDirName, "r") | {
+		  write(&errout, "loadAvatarStates:can't open ", usrDirName)
+		  next
+		  }
+	       TavtInfo := \ (cveBuilder.parseplace("",fin))
+	       close(fin)
+               if /TavtInfo | /TavtInfo["node"] | /TavtInfo["name"] then next
+	       if find(" "|"-", TavtInfo["node"]) then
+		  TavtInfo["node"] := map(TavtInfo["node"], " -", "__")
+
+
+	       #
+	       # Populate the universal table too but make
+	       # a reversible assignment
+	       #
+	       self.avatarTable[avtName] := TavtInfo
+
+	       #
+	       # Create the respective files per node
+	       #
+
+	       if not (fin := datopen(NODERPATH||PS||TavtInfo["node"]||PS||
+				   TavtInfo["name"]||".state", "c")) then {
+
+                  mkdir(NODERPATH||PS||TavtInfo["node"]) 
+                  if not (fin := datopen(NODERPATH||PS||TavtInfo["node"]||PS||
+                                         TavtInfo["name"]||".state", "c")) then {
+                      write("can't create state file ",
+		            NODERPATH||PS||TavtInfo["node"]||PS||
+			    TavtInfo["name"]||".state")
+		  fail
+	          }
+	       }
+
+	       write(fin,"name ",TavtInfo["name"])
+	       write(fin,"node ",TavtInfo["node"])
+	       write(fin,"x ",TavtInfo["x"] := trncReal(TavtInfo["x"]))
+	       write(fin,"y ",TavtInfo["y"] := trncReal(TavtInfo["y"]))
+	       write(fin,"z ",TavtInfo["z"] := trncReal(TavtInfo["z"]))
+	       write(fin,"angle ",
+		     TavtInfo["angle"] := trncReal(TavtInfo["angle"]))
+	       close(fin)
+
+	       #
+	       # load them in the per node avatar table.
+	       #
+	       nodesTable[TavtInfo["node"]].Tavatars[avtName] := TavtInfo
+
+	       } # if not (avtName == ("."|".."|"CVS"))
+	    } # every dirName := !usrRDirHandle
+
+	 close(usrRDirHandle)
+	 }
+   end
+
+
+   method constructDynamicEdgeData()
+      local doorPath, fin, fout, t := table(), s, edgeName, doorFileName, openNumber
+
+      if not stat(edgeRPath) then {
+	 mkdir(edgeRPath)
+	 }
+
+      # NOTE: Here the per node exits and the edgesTable would contain
+      #       basically the same references as here object assignment
+      #       is by reference.
+      if self.genDyn = 1 then {
+
+         #
+         # dat/edges/edge{x,y,z}.dat
+         #
+         every doorFileName := key(self.edgesTable) do {
+            doorPath := self.edgeRPath||PS||doorFileName||".state"
+            if not (fin := datopen(doorPath,"r")) then {
+               # If file doesn't exist create it with default values
+               if fout := datopen(doorPath,"w") then {
+                  if type(edgesTable[doorFileName]) == "Door__state" then openNumber := 0.0
+                  else openNumber := 1.0
+                  write(doorFileName," created")
+                  write(fout,"edge {\nname ",doorFileName,"\nopenness ", openNumber, "\n",
+                        "delta 0.0\ndirection 1.00\n}")
+                  close(fout)
+
+                  #
+                  # Open the file again so that it is read immediately
+                  # after creation in the code after this block
+                  if not (fin := datopen(doorPath,"r")) then {
+                     write(&errout, "CVESceneGraph1():can't open "||doorPath)
+		     next
+		     }
+	          }
+               else {
+                   write(&errout, "?! CVESceneGraph2():can't open "||doorPath)
+		   next
+		}
+	    }
+
+            while s := cveBuilder.readlin(fin) do s ? {
+               if ="#" then
+                   next
+               else if ="edge" then {
+                  t := cveBuilder.parseplace(s,fin) | stop("parseplace failed")
+               }
+               edgeName := t["name"]
+               self.edgesTable[edgeName].openness := t["openness"]
+               self.edgesTable[edgeName].delt := t["delta"]
+               self.edgesTable[edgeName].direction := t["direction"]
+            }
+
+            close(fin)
+         } #every doorFileName := !self.edgesTable do
+      }
+   end
+
+   #
+   # Prints out the node names
+   # @param which 1:All, 2:Nodes, 3:Edges, 4:Avatars
+   method printGraph(which:integer:1)
+      local node, Edge, avatar
+
+      if not (which = (1|2|3|4)) then {
+	 write(&errout,
+	       "parameter <which> to printGraph() can only be 1,2,3 or 4")
+	 fail
+	 }
+
+      if which = (1|2) then {
+            write("\nThe graph generated is as follows:\n")
+            write("\n***********Nodes***********\n")
+            every node := !(self.nodesTable) do {
+                write("Node Name: ",node.name)
+                write("# Edges  : ",*(node.exits))
+                every Edge := !node.exits do {
+                    write("Edge    : ",createEdgeName(Edge), " ---> ",
+                                                    (Edge.other(node)).name)
+                }
+
+                write("Dynamic State =>")
+
+                write("# Avatars: ",*(node.Tavatars))
+                every avatar := !node.Tavatars do {
+                    write("Avatar: ",avatar["name"])
+                    write("X: ",avatar["x"]," Y: ",avatar["y"]," Z: ",
+                                avatar["z"]," Angle: ",avatar["angle"])
+                }
+                write("\n")
+            }
+        }
+
+        if which = (1|3) then {
+            write("\n***********Edges***********\n")
+            every Edge := !(self.edgesTable) do {
+                write("Edge     : ",createEdgeName(Edge))
+                write("Type     : ",type(Edge)[1:-7])
+                writes("Nodes    : ")
+                every node := !(Edge.rooms) do  writes(node.name," ")
+
+                write("\nDynamic State =>")
+                write("Openness : ",Edge.openness)
+                write("Delta    : ",Edge.delt)
+                write("Direction: ",Edge.direction)
+                write("\n")
+            }
+        }
+
+        if which = (1|4) then {
+
+            write("\n***********Avatars***********\n")
+            every avatar := !(self.avatarTable) do {
+                write("Avatar: ",avatar["name"])
+                write("X: ",avatar["x"]," Y: ",avatar["y"]," Z: ",avatar["z"],
+                        " Angle: ",avatar["angle"]," Node: ",avatar["node"])
+                write("\n")
+            }
+        }
+
+    end
+
+   #
+   # @return the edge name using the x,y & z co-ordinates
+   # @param edgeObj Opening/Door Object
+   #
+   method createEdgeName(edgeObj)
+      if /edgeObj | /edgeObj.id then fail
+      return "edge" || edgeObj.id
+    end
+
+   #
+   # Returns the avatar's current node/room name based on his x & z
+   # @param   x        Avatar's x coordinate
+   # @param   z        Avatar's z coordinate
+   # @returns          Server: Returns Room Name,
+   #                   Client: Returns the Room object reference
+   #
+   method determineCurrRoom(x,z,y)
+      local r
+
+      every r := !self.nodesTable do {
+         if not (r.disallows(x,z,y)) then {
+            assignCurrRoom(r)
+            return getRoom(r)
+	 }
+      }
+   end
+
+   #
+   # A wrapper around getAdjacencyList() basically that does the clean up
+   # operation before and after the call to the actual function that does
+   # the work
+   #
+   method getAdjacencyList(currNodeName,TadjList,maxlevel:integer:2,
+                            initlevel:integer:1)
+      #
+      # Clear the DFS traversal marks made by getAdjacencyList()
+      #
+      clearVisited()
+
+      getAdjacency(currNodeName,TadjList,maxlevel,initlevel)
+      clearVisited()
+   end
+
+   #
+   # A recursive DFS graph traversal function that can handle cycles
+   # CAREFUL:  Again take care when passing parameter maxlevel. Adjacency
+   #           list at 1st level is always calculated but it is not at the
+   #           2nd level if the edge is not active. If you want more than
+   #           2 levels it will return all the adjacency lists.
+   # IMPORTANT: It is necessary to call clearVisited() after this call
+   #            otherwise the next time you call this function it will not
+   #            work as expected
+   # @result populates TadjList with the adjacent nodes
+   # @param currNodeName The node whose adjacency list is to be calculated
+   # @param TadjList The table that is populated with the adjacency list
+   # @param level The level from which adjacency is caluclated (Should be
+   #        always passed as 1)
+   # @param maxlevel The level until which the adjacency list is to be
+   #        calculated
+   #
+   method getAdjacency(currNodeName,TadjList,maxlevel:integer:2,
+                            initlevel:integer:1)
+        local currNode, nextNode, edgeName, nodeEdge
+
+        if not \ (currNode := self.nodesTable[currNodeName]) then {
+	   write("failed to find node ", currNodeName)
+	   fail
+	   }
+
+        #
+        # Need this as there could be cycles where are child may traverse
+        # back to parent
+        #
+        #
+        # Bounding condition for recursion
+        #
+        if (initlevel >= maxlevel) | (currNode.isVisited = 1) then return
+
+
+        #write("Calculating Adjacencies... at initlevel: ",
+        #                               initlevel," for node: ",currNode.name)
+        # Mark as visited and processed
+        currNode.isVisited := 1
+
+        every nodeEdge := !currNode.exits do {
+
+            if (initlevel>=2) & (nodeEdge.openness=0.0) then
+
+                #
+                # If there are no active edges in the level 2 then process
+                # next edge in level 2
+                #
+                next
+
+	    else {
+
+	       edgeName := createEdgeName(nodeEdge)
+
+	       # Get the child node
+	       if nextNode := nodeEdge.other(currNode) then {
+		  if nextNode.isVisited = 0 then
+		     TadjList[edgeName] := nextNode # put it in adjacency list
+		  #
+		  # Recursive call
+		  #
+		  getAdjacency(nextNode.name,TadjList,maxlevel,initlevel+1)
+		  }
+	       }
+	    }
+    end
+
+   #
+   # Clear the DFS traversal marks made by getAdjacencyList()
+   #
+   method clearVisited()
+      every (!(\nodesTable)).isVisited := 0
+   end
+
+   #
+   # A sophisticated function can Dump the entire graph to the disk
+   # with additional facility of selectively dumping a node or nodes
+   # This dumps the dynamic state from the graph nodes
+   # Each node goes to a separate directory by its name
+   # CAREFUL: Take care while specifying arguments to this function
+   # @param which          Option for storing either nodes/edges/both
+   # @param forNodeNames   The list of nodes names for which the data needs
+   #                       to be stored to disk
+   # @param TonlineUsers   You can specify here a table of users and
+   #           selectively save their states.
+   method storeToDisk(which:integer:1,# 1: All, 2: Node Only, 3: Edge Only
+            forNodeNames, # Specify the value here if you want to dump data
+                                    # for a specific node. It can take a
+                                    # list of valid node name values
+            forEdgeNames, # Specify value here only if don't provide
+                                    # the value for forNodeNames, otherwise
+                                    # this will not be effective.
+                      TonlineUsers # Only store for User that are Online
+                      )
+      local node, nodePath := "", nodeName := "", doorPath := "", pwd := ""
+      local nodeEdge, nTable := table(), lTable := table(), edges := table()
+      local edgeName := "", currAvatar, avatarPath, avatarName, drj
+      local nodeDirHandle := ""
+
+      if not (which = (1|2|3)) then {
+         write(&errout, "storeToDisk(<which>,...) can only be 1,2 or 3")
+	 fail
+	 }
+
+      # First build the tables here for the storage loops
+
+      if \forNodeNames & *forNodeNames ~= 0 & which = 2 then {
+
+         if type(forNodeNames) ~== "list" then {
+            write(&errout, "parameter <forNodeNames> should be a list")
+	    fail
+	    }
+
+         every nodeName := !forNodeNames do {
+            if \ (node := self.nodesTable[nodeName]) then {
+               nTable[nodeName] := node
+               populateEdgeTblFrmNode(lTable,nTable[nodeName])
+               if which = (1|3) then {
+                  # Delete all the old edge state files
+                  every nodeEdge := !node.exits do {
+                     edgeName := createEdgeName(nodeEdge)
+                     #logHandler.logit("Removing edge file <"||self.edgeRPath||
+                     #                  PS|| edgeName||"State.dat"||">")
+                     drj := self.edgeRPath||PS||edgeName||".state"
+                     if not (remove(drj)) then
+                         logHandler.logit(drj,": Remove Failed")
+                     else {
+                        logHandler.logit("remove succeeded on ", drj)
+                     }
+                  }
+               }
+               if which = (1|2) then {
+                  #
+                  # We enclose the nodeName in quotes because they may
+                  # contain spaces
+                  nodePath := self.nodeRPath||PS||nodeName
+                  nodeDirHandle := datopen(nodePath) | {
+                      mkdir(nodePath)
+                      nodeDirHandle := datopen(nodePath) | {
+                         write(&errout, "storeToDisk::can't open ", nodePath)
+			 fail
+		      }
+                  }
+                  # Delete all the old avatar state files
+                  #every avatarName := key(node.Tavatars) do {
+                  every avatarName := !nodeDirHandle do {
+                     #logHandler.logit("Removing avatar file <"||nodePath||
+                     #                       avatarName||".avt"||">")
+                     #
+                     # Only remove the files that are not in the node
+                     avatarPath := nodePath||PS||avatarName
+                     if not ( member(node.Tavatars,avatarName) |
+                             (avatarName == ("."|".."|"CVS"))   ) then {
+                        if not (remove(datfile(avatarPath))) then
+                            logHandler.logit(avatarPath||": Remove Failed")
+                        else {
+                           #logHandler.logit("remove succeeded on "||avatarPath)
+                        }
+                     }
+                  }
+                  close(nodeDirHandle)
+               }
+            }
+	       else {
+		   write(&errout, image(nodeName), ": Not a valid Node Name")
+	       }
+         }
+      } else { # Do it for all the nodes
+         nTable := self.nodesTable
+         if \forEdgeNames & which = 3 then {
+            every edgeName := !forEdgeNames do
+                lTable[edgeName] := self.edgesTable[edgeName]
+         }
+         else {
+            logHandler.logit("Committing Scene Graph to the File System...")
+            lTable := self.edgesTable # use universal edge table
+         }
+      }
+   storeDynamicNodeData(which, nTable, TonlineUsers)
+   storeDynamicEdgeData(which, lTable)
+   end
+
+   #
+   # This method dumps the dynamic data per node to the disk
+   # @param which          Option for storing either nodes(2)/both(1)
+   # @param nTable      The table of nodes names for which the data needs
+   #                       to be stored to disk
+   method storeDynamicNodeData(which, nTable, TonlineUsers)
+      local s, nodePath, node, nodeName, currAvatar, avatarPath, fout, userPath
+      #
+      #1. A loop here that creates the avatar files
+      #   on a per room basis
+      if which = (1|2) then {
+         every nodeName := key(nTable) do {
+            #
+            # "dat/nodes/roomname/"
+            #
+            nodePath := self.nodeRPath||PS||nodeName||PS
+            node := nTable[nodeName]
+
+            #
+            # Create an avatar file for each avatar in the room
+            # Code for writing the dynamic avatar state does here..
+            every currAvatar := !(node.Tavatars) do {
+               #
+               # "dat/nodes/roomname/avatar.state"
+               #
+               #write(*TonlineUsers, " ")
+               if \TonlineUsers & \(TonlineUsers[currAvatar["name"]]) then {
+                  #
+                  # Construct the string to be written
+                  s := "name " || currAvatar["name"] || "\n" ||
+                      "node " || currAvatar["node"] || "\n" ||
+                      "x "||trncReal(currAvatar["x"],2)||"\n"||
+                      "y "||trncReal(currAvatar["y"],2)||"\n"||
+                      "z "||trncReal(currAvatar["z"],2)||"\n"||
+                      "angle "||trncReal(currAvatar["angle"],2)
+
+                  #
+                  # Write in the current node
+                  #
+                  avatarPath := nodePath||currAvatar["name"]||".state"
+                  #logHandler.logit("Creating avatar files for: "||avatarPath)
+                  fout := datopen(avatarPath,"c") |
+                      stop("can't open "||avatarPath)
+                  write(fout, s) |
+                      logHandler.logit("ERROR: write failed for ", avatarPath)
+                  close(fout)
+                  #
+                  # Write in the corresponding user directory
+                  #
+		  if not stat(USER_LOCALPATH||PS||currAvatar["name"]) then
+		     mkdir(USER_LOCALPATH||PS||currAvatar["name"])
+
+                  userPath := USER_LOCALPATH||PS||currAvatar["name"]||PS||
+                      currAvatar["name"]||".state"
+                  #write("Creating avatar files for: "||userPath)
+                  fout := datopen(userPath, "w") |
+                      logHandler.logit("ERROR: can't open state file ",
+                                       image(userPath))
+                  write(fout, s) |
+                      logHandler.logit("ERROR: write failed for ", userPath)
+                  close(fout)
+               }
+            }
+         }
+      }
+   end
+
+   #
+   # This method dumps the edge dynamic to the disk
+   # @param which          Option for storing either edges(2)/both(1)
+   # @param lTable      The table of edge names for which the data needs
+   #                       to be stored to disk
+   #
+
+   method storeDynamicEdgeData(which, lTable)
+      local nodeEdge, edgeName, doorPath, fout
+      #
+      #2. A loop here that writes the updated door states to the disk from
+      #   the edgeTable table
+      if which = (1|3) then {
+    #
+    # Store all the door states to the disk
+    #
+    every nodeEdge := !lTable do {
+
+       edgeName := createEdgeName(nodeEdge)
+       doorPath := self.edgeRPath||PS||edgeName||".state"
+       fout := datopen(doorPath,"c") | {
+	   write(&errout, "580:can't open "||doorPath)
+	   next
+	   }
+
+       write(fout,"edge {")
+       write(fout,"name ",edgeName)
+       write(fout,"openness ", lTable[edgeName].openness )
+       write(fout,"delta ", lTable[edgeName].delt )
+       write(fout,"direction ", lTable[edgeName].direction )
+       write(fout,"}")
+       close(fout)
+       }
+         }
+   end
+
+   #
+   # Add all edges from the node to the edgeTbl
+   # @param edgeTbl    Table       The table to be populated with
+   # @param node       Room        The node from which to populate
+   #
+   method populateEdgeTblFrmNode(edgeTbl,node)
+      local edgeName := "", nodeEdge
+
+      every nodeEdge := !(node.exits) do {
+	 edgeName := createEdgeName(nodeEdge)
+	 edgeTbl[edgeName] := nodeEdge
+         }
+   end
+
+   #
+   # Gets the dynamic state string for a given node from its adjacency lists
+   # speculatively
+   #
+   # @return nodename1{edges(edgename[openness delta direction]...)
+   #         ,avatars(avatarname[node x y z angle]...)}|nodename2...
+   # @param currNodeName The node name whose adjacency list's dynamic state
+   #        is to be obtained
+   #
+   method getAdjDynamicStateForNode(currNodeName,endlevel:integer:2,
+                initlevel:integer:1,TonlineUsers,theta)
+      local TadjList := table(),TadjList1 := table(), strDynState := "", node
+      local listofnodes
+      local theta1,theta2,theta3	
+      local currNode, tempnode, cNodeName
+      local thetalist, thet
+
+      if find ( " "|"-",currNodeName) then
+	 currNodeName := map(currNodeName, " -","__")
+      currNode := nodesTable[currNodeName]
+      if / currNode then{
+         write(&errout, "No nodestable entry for ", image(currNodeName))
+	 runerr(501,currNodeName)
+         }
+
+      getAdjacencyList(currNodeName,TadjList1,endlevel,initlevel)
+
+      # if we have no directionality information, default to "all directions"
+      thetalist := [\theta] | ["north", "south", "east", "west"]
+
+      every thet := !thetalist do
+      case thet of {
+        "north":{
+       every tempnode := !(currNode.directionTable["north"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode := !(currNode.directionTable["south"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["east"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["west"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+               }
+       "south": {
+       every tempnode := !(currNode.directionTable["south"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode := !(currNode.directionTable["north"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["east"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["west"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+               }
+      "east": {
+       every tempnode := !(currNode.directionTable["east"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode := !(currNode.directionTable["west"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["north"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["south"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+               }
+       "west":{
+       every tempnode := !(currNode.directionTable["west"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode := !(currNode.directionTable["east"]["three"]) do
+             TadjList1[tempnode.name] := tempnode
+       every tempnode :=!(currNode.directionTable["north"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+           every tempnode := !(currNode.directionTable["south"]["two"]) do
+	     TadjList1[tempnode.name] := tempnode
+               }
+       default: {
+         write("theta not nsew: ", image(theta)) # should never happen
+         }
+            }
+
+     TadjList := TadjList1
+
+      TadjList1 := table()
+
+      getAdjacencyList(currNodeName,TadjList1,endlevel,initlevel)
+      every tempnode := !TadjList1 do {
+	 if tempnode.name[1:10]=="cooridoor" then {
+	    TadjList[tempnode.name] := tempnode
+	    }
+	 }
+
+      #
+      # Don't forget to add the current node to the list
+      #
+      TadjList["ROOT"] := self.nodesTable[currNodeName]
+
+      every node := !TadjList do {
+	 strDynState ||:= getDynStateForNode(node,TonlineUsers) || "|"
+         }
+      TadjList := table()
+      return strDynState
+   end
+
+   #
+   # returns the dynamic door states, avatars and their states for given node
+   # as a string
+   #
+   # @return nodename1{edges(edgename[openness delta direction]...)
+   #         ,avatars(avatarname[x y z angle]...)}
+   # @param currNode The node whose dynamic state is to be obtained
+   #
+   method getDynStateForNode(currNode,TonlineUsers)
+      local strDynNodeState
+
+      #
+      # Get the edge states & Get the avatars present and their
+      # respective states
+      #
+      strDynNodeState := currNode.name||"{"||getEdgeStates(currNode.exits)||
+            ","||getAvatarStates(currNode.Tavatars,TonlineUsers)||"}"
+      return strDynNodeState
+   end
+
+   #
+   # Returns the edge states from a list of edges.
+   # @return edges(edgename[openness delta direction]...)
+   # @param edgeList The list of edgesedge whose dynamic state is
+   #        to be obtained
+   #
+   method getEdgeStates(edgeList)
+      local strEdgeStates := "edges(", nodeEdge
+
+      every nodeEdge := !edgeList do {
+
+	 strEdgeStates ||:= createEdgeName(nodeEdge)||"["||
+		    nodeEdge.openness||" "||nodeEdge.delt||
+		        " "||nodeEdge.direction||"]"
+         }
+
+      return strEdgeStates||")"
+   end
+
+   #
+   # Returns the avatar states from a table of avatars.
+   # @return avatars(avatarname[x y z angle]...)
+   # @param avtTable The table of avatars whose dynamic state is
+   #        to be obtained
+   #
+   method getAvatarStates(avtTable,TonlineUsers)
+      local avatarState, strAvtStates := "avatars(", nodeEdge
+
+      every avatarState := !avtTable do {
+    # If the user is online then only add the state
+    if \(TonlineUsers[avatarState["name"]]) then
+        strAvtStates ||:= avatarState["name"]||"["||
+           avatarState["node"]|| " "||avatarState["x"]||
+           " "||avatarState["y"]|| " "||avatarState["z"]||
+           " "||avatarState["angle"]||"]"
+         }
+      return strAvtStates||")"
+   end
+
+   # 
+   # Return the room object given its name
+   # @retrun Room()Object
+   # @param rname is the name of the room
+   #
+   method getRoomByName(rname)
+      if \rname == "@Random" then
+        return \(?nodesTable)
+      return \nodesTable[rname]
+   end
+
+   #
+   # Abstract Methods
+   #
+   # This will be a Polymorphic call and actual method is implemented in
+   # derived class.
+   #
+
+   # Shared Abstract Methods
+   method putRoomInWorld(r)
+   end
+   method assignCurrRoom(r)
+   end
+   method getRoom(r)
+      return r.name
+   end
+
+   # Server-side Abstract Methods
+   method getAvatarState()
+   end
+   method updateAvatarState()
+   end
+   method updateEdgeState()
+   end
+   method updateBlackboardState()
+   end
+   method handleAvatarNodeChanges()
+   end
+   method getAvatarsForEdgeMove()
+   end
+   method getAvatarsForAvtMove()
+   end
+   method populateAvtTblFrmNode()
+   end
+
+   # Client-side Abstract Methods
+   method updateDynamicState()
+   end
+   method handleNodeState()
+   end
+   method printRenderedNodes()
+   end
+   method deRenderNodes()
+   end
+   #
+   # For VoIP
+   #
+   method getAvtRoom(avtName)
+      local avatar
+      if avtName === (avatar := !avatarTable)["name"] then
+	 return avatar["node"]
+   end
+
+   #
+   # For VoIP
+   #
+   method getAvtInRoom(roomName)
+      local avat_list := []
+
+      every put(avat_list, key(self.nodesTable[roomName].Tavatars))
+      return avat_list
+   end
+
+   method constructStaticDirectionNodes()
+   local adj_node, theta, current_node, node, levelnumeric,level,avatar
+   local adjTable := table(), rangeTable := table(), levelTable := table()
+
+      every current_node := !nodesTable do {
+
+	 rangeTable := current_node.rangeTable
+	 levelTable := current_node.levelTable
+
+	 every theta := !rangeTable do {
+	    current_node.directionTable[theta] := table()
+	    every level :=!(levelTable) do {	
+	       current_node.directionTable[theta][level] := table()
+	       }
+	    }
+
+	 every level := !levelTable do {
+	    case level of {
+	       "one": levelnumeric := 2
+	       "two": levelnumeric := 3
+	       "three": levelnumeric := 4
+	       default: levelnumeric := 4
+	       }
+
+	    adjTable := getAdjacencyList(current_node.name,table(),levelnumeric)
+	    every adj_node := !adjTable do {
+	       every theta := !rangeTable do {
+
+		  if checkForDirection(theta,current_node,adj_node) = 1 then {
+		     current_node.directionTable[theta][level][adj_node.name] := adj_node
+
+		     }
+	          }
+	       }
+	    }
+	 }
+end
+
+method checkForDirection(theta,current_node,adj_node)
+local theta1,theta2
+
+   if (current_node.x-adj_node.x >= 0) & (current_node.z-adj_node.z>= 0) then
+      theta2 := "east"
+   else
+   if (current_node.x-adj_node.x <= 0) & (current_node.z-adj_node.z >=0) then
+      theta2 := "north"
+   else
+   if (current_node.z-adj_node.z <= 0) & (current_node.x-adj_node.x <=0) then
+      theta2 := "west"
+   else
+   if (current_node.z-adj_node.z <= 0) & (current_node.x-adj_node.x >=0) then
+      theta2 := "south"
+
+   if theta == theta2 then
+      return 1
+   else
+      return 0
+end
+
+initially()
+
+   if find("nmsu",DAT) then{
+      AVATAR_ORIGIN_X := "92.0"
+      AVATAR_ORIGIN_Y := "0.0"
+      AVATAR_ORIGIN_Z := "25.9"
+      AVATAR_ANGLE := "4.6"
+      AVATAR_ORIGIN_NODE := "foyer"
+      }
+   else {
+      AVATAR_ORIGIN_X := "27.5"
+      AVATAR_ORIGIN_Y := "12.5"
+      AVATAR_ORIGIN_Z := "20.0"
+      AVATAR_ANGLE := "1.55"
+      AVATAR_ORIGIN_NODE := "FLOOR2COR"
+   }
+
+   self.nodesTable  := table()
+   self.edgesTable  := table()
+   self.avatarTable := table()
+   self.nodeRPath   := NODERPATH
+   self.edgeRPath   := EDGERPATH
+   #logHandler := Logger() # initialize the logging mechanism
+end

@@ -23,6 +23,7 @@ import com.badlogic.gdx.physics.bullet.linearmath.btIDebugDraw;
 import com.deeep.spaceglad.UI.GameUI;
 import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.CharacterComponent;
+import com.deeep.spaceglad.components.PlayerComponent;
 import com.deeep.spaceglad.managers.EntityFactory;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.deeep.spaceglad.systems.*;
@@ -65,6 +66,7 @@ public class GameWorld {
 	private Json json = new Json();
 	private JsonValue map;
 	private Array<Room> Rooms;
+	public Core game;
 	//private Array<Door> Doors;
 	
 	/*
@@ -92,6 +94,7 @@ public class GameWorld {
     public BulletSystem bulletSystem;
 	public PlayerSystem playerSystem;
 	private RenderSystem renderSystem;
+	public AvatarSystem avatarSystem;
     public ModelBuilder modelBuilder = new ModelBuilder();
 	
 	/*old chap3 code
@@ -101,7 +104,8 @@ public class GameWorld {
 	Model ceilingModel = modelBuilder.createBox(40, 1, 40, ceilingMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
 	*/
 	
-    public GameWorld(GameUI gameUI) {
+    public GameWorld(GameUI gameUI, Core game) {
+    	this.game = game;
         Bullet.init();
 		setDebug();
         //initEnvironment();
@@ -137,6 +141,14 @@ public class GameWorld {
 //    private void initModelBatch() {
 //        modelBatch = new ModelBatch();
 //    }
+	public void addPlayer(String username,float x, float y, float z) {
+    	Entity player = (EntityFactory.createAvatar(bulletSystem, x, y, z));
+    	player.getComponent(AvatarComponent.class).username = username;
+    	player.getComponent(AvatarComponent.class).x = x;
+        player.getComponent(AvatarComponent.class).y = y;
+        player.getComponent(AvatarComponent.class).z = z;
+    	engine.addEntity(player);
+	}
 
     private void addEntities() {
         createGround();
@@ -158,6 +170,7 @@ public class GameWorld {
 
     private void createPlayer(float x, float y, float z) {
         character = EntityFactory.createPlayer(bulletSystem, x, y, z);
+        character.getComponent(PlayerComponent.class).username = game.client.username;
         engine.addEntity(character);
 		engine.addEntity(gun = EntityFactory.loadGun(2.5f, -1.9f, -4));
 		playerSystem.gun = gun;
@@ -340,7 +353,6 @@ public class GameWorld {
         engine.addSystem(new EnemySystem(this));
         engine.addSystem(new TeammateSystem( this));
         engine.addSystem(new StatusSystem(this));
-		engine.addSystem(new HealthPackSystem(this));
 		
 		if (debug)
 		{
@@ -359,15 +371,11 @@ public class GameWorld {
             engine.getSystem(EnemySystem.class).setProcessing(false);
             engine.getSystem(StatusSystem.class).setProcessing(false);
             engine.getSystem(BulletSystem.class).setProcessing(false);
-			engine.getSystem(HealthPackSystem.class).setProcessing(false);
-			engine.getSystem(TeammateSystem.class).setProcessing(false);
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
-			engine.getSystem(HealthPackSystem.class).setProcessing(true);
-			engine.getSystem(TeammateSystem.class).setProcessing(true);
         }
     }
 

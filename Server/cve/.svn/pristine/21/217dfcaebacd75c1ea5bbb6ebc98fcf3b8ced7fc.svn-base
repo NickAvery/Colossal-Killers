@@ -1,0 +1,46 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>openFile quest</title>
+
+</head><body><dl>
+<dt> Name
+</dt><dd> openfile
+</dd><dt> Summary
+</dt><dd> Learn how to open an existine file/program.
+<dt> Requires
+<dd> <A href="newfile.html">newfile</A>
+</dd><dt> Steps
+</dt><dd>
+<ol>
+	<li> First, click on the "File" menu.</li>
+	<li> Second, Choose "Open File" menu item.</li>
+	<li> A new dialog box will appear.</li>
+	<li> Then, Select the directory(path) where the file is located.        	</li>
+	<li> Also, Select the program from the files listed in the directory.</li>
+	<li> Finally click OK to open the file.</li>
+	<li> A new tab will open with the existing program for you to edit/change.</li>
+</ol>
+</dd><dt> Rewards
+</dt><dd> IDE:3, Java:1 
+</dd><dt> Reading
+</dt><dd>
+ 
+<ol>
+<li>Open the HelloWorld.java program you created in the previous quest.<a href="http://www2.cs.uidaho.edu/~hani/npc/quests/HelloWorld.java">HelloWorld.java</a> </li>
+<li>Save it as HelloWorld2.java.</li>
+</ol>
+
+</p></dd><dt> Session
+</dt><dd>
+<dl>
+<dt> openfile:
+<dd>
+<pre>
+HelloWorld2.java saved
+</pre>
+</dd>
+</dl>
+
+</dt>
+</dl>
+</dd></dl>
+</body></html>

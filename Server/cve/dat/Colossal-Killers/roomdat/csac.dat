@@ -1,0 +1,271 @@
+Room {
+	name  csac
+	x 10.2
+	y 10.25
+	z 17.55
+	w 4.38
+	h 3.53
+	l 4.8
+	texture dat/uidaho/texsmall/csacwalls.gif
+	floor Wall { texture dat/uidaho/texsmall/csaccarpet.gif }
+	ceiling Wall { texture dat/uidaho/texsmall/csacceiling.gif }
+	obstacles [
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/csacdesk.gif
+				coords [
+					12.72, 11.01, 19.25,
+					13.48, 11.01, 19.25,
+					13.48, 11.01, 20.16,
+					12.72, 11.01, 20.16
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					12.72, 10.25, 20.16,
+					12.72, 11.01, 20.16,
+					13.48, 11.01, 20.16,
+					13.48, 10.25, 20.16
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					13.48, 10.25, 19.25,
+					13.48, 11.01, 19.25,
+					12.72, 11.01, 19.25,
+					12.72, 10.25, 19.25
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					13.48, 10.25, 19.25,
+					13.48, 11.01, 19.25,
+					13.48, 11.01, 20.16,
+					13.48, 10.25, 20.16
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/csacdesk.gif
+				coords [
+					12.72, 11.01, 17.92,
+					13.48, 11.01, 17.92,
+					13.48, 11.01, 18.83,
+					12.72, 11.01, 18.83
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					12.72, 10.25, 18.83,
+					12.72, 11.01, 18.83,
+					13.48, 11.01, 18.83,
+					13.48, 10.25, 18.83
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					13.48, 10.25, 17.92,
+					13.48, 11.01, 17.92,
+					12.72, 11.01, 17.92,
+					12.72, 10.25, 17.92
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					13.48, 10.25, 17.92,
+					13.48, 11.01, 17.92,
+					13.48, 11.01, 18.83,
+					13.48, 10.25, 18.83
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/csacdesk.gif
+				coords [
+					12.56, 11.01, 21.59,
+					12.56, 11.01, 22.34,
+					11.65, 11.01, 22.34,
+					11.65, 11.01, 21.59
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					11.65, 10.25, 21.59,
+					11.65, 11.01, 21.59,
+					11.65, 11.01, 22.34,
+					11.65, 10.25, 22.34
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					12.56, 10.25, 21.59,
+					12.56, 11.01, 21.59,
+					12.56, 11.01, 22.34,
+					12.56, 10.25, 22.34
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/csacdeskside.gif
+				coords [
+					12.56, 10.25, 22.34,
+					12.56, 11.01, 22.34,
+					11.65, 11.01, 22.34,
+					11.65, 10.25, 22.34
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/compfront.gif
+				coords [
+					13.1, 11.1, 19.51,
+					13.1, 11.43, 19.51,
+					13.1, 11.43, 19.92,
+					13.1, 11.1, 19.92
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/compback.gif
+				coords [
+					13.105, 11.1, 19.51,
+					13.105, 11.43, 19.51,
+					13.105, 11.43, 19.92,
+					13.105, 11.1, 19.92
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/compstand.gif
+				coords [
+					13.1, 11.02, 19.67,
+					13.1, 11.1, 19.67,
+					13.1, 11.1, 19.75,
+					13.1, 11.02, 19.75
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/keyboard.gif
+				coords [
+					12.85, 11.02, 19.48,
+					13.0, 11.02, 19.48,
+					13.0, 11.02, 19.94,
+					12.85, 11.02, 19.94
+				]
+			}
+		}
+		Box {
+			Wall {
+				texture dat/uidaho/texsmall/compfront.gif
+				coords [
+					13.1, 11.1, 18.12,
+					13.1, 11.43, 18.12,
+					13.1, 11.43, 18.53,
+					13.1, 11.1, 18.53
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/compback.gif
+				coords [
+					13.105, 11.1, 18.12,
+					13.105, 11.43, 18.12,
+					13.105, 11.43, 18.53,
+					13.105, 11.1, 18.53
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/compstand.gif
+				coords [
+					13.1, 11.02, 18.28,
+					13.1, 11.1, 18.28,
+					13.1, 11.1, 18.36,
+					13.1, 11.02, 18.36
+				]
+			}
+			Wall {
+				texture dat/uidaho/texsmall/keyboard.gif
+				coords [
+					12.85, 11.02, 18.09,
+					13.0, 11.02, 18.09,
+					13.0, 11.02, 18.55,
+					12.85, 11.02, 18.55
+				]
+			}
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/uidaho/texsmall/csacsign.gif
+			coords [
+				11.63, 11.95, 19.91,
+				11.63, 12.27, 19.91,
+				11.63, 12.27, 18.14,
+				11.63, 11.95, 18.14
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/window1.gif
+			coords [
+				12.51, 11.88, 22.32,
+				12.51, 12.45, 22.32,
+				11.62, 12.45, 22.32,
+				11.62, 11.88, 22.32
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/csacwindow.gif
+			coords [
+				11.63, 12.4, 19.91,
+				11.63, 13.11, 19.91,
+				11.63, 13.11, 18.89,
+				11.63, 12.4, 18.89
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/csacwindow.gif
+			coords [
+				11.63, 12.4, 18.72,
+				11.63, 13.11, 18.72,
+				11.63, 13.11, 17.7,
+				11.63, 12.4, 17.7
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/asign.gif
+			coords [
+				13.00, 11.87, 22.32,
+				13.00, 12.04, 22.32,
+				12.75, 12.04, 22.32,
+				12.75, 11.87, 22.32
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/lightswitch.gif
+			coords [
+				14.5, 11.35, 18.83,
+				14.5, 11.47, 18.83,
+				14.5, 11.47, 18.99,
+				14.5, 11.35, 18.99
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/exitsign.gif
+			coords [
+				14.5, 12.6, 19.97,
+				14.5, 12.8, 19.97,
+				14.5, 12.8, 20.28,
+				14.5, 12.6, 20.28
+			]
+		}
+	]
+	tools [
+	]
+}

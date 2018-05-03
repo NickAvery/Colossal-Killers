@@ -1,0 +1,45 @@
+$include "../common/defaults.icn"
+
+global WDAT
+
+procedure datfile(fn)
+local rv
+   if fn[1:4] == "dat" then {
+      return WDAT || fn[4:0]
+      }
+   else {
+      return fn
+      }
+end
+
+procedure datopen(fn,mode:"r")
+local rv, alt
+
+   # suppose fn starts with dat
+   if fn[1:4] == "dat" then {
+      alt := WDAT || PS || fn[5:0]
+      if any('wac', mode) then {
+	 rv := open(alt, mode)
+	 return \rv
+         }
+      else if match("r",mode) then {
+	 if stat(alt) then {
+	    rv := open(alt, mode)
+	    return \rv
+	    }
+	 else {
+	    rv := open(fn, mode)
+	    return \rv
+	    }
+	 }
+      else {
+	 rv := open(fn, mode)
+	 return \rv
+	 }
+      }
+   else {
+	 rv := open(fn, mode)
+	 return \rv
+      }
+end
+

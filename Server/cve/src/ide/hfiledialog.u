@@ -1,0 +1,4236 @@
+version	U12.1.00
+uid	hfiledialog.u1-1523917888-0
+record	HFileDialog__state,85
+	0,__s
+	1,__m
+	2,file_extension
+	3,fext_list
+	4,init_dir
+	5,init_file
+	6,res
+	7,dir
+	8,file
+	9,dlist
+	10,flist
+	11,okay
+	12,cancel
+	13,win
+	14,is_open
+	15,owning_dialog
+	16,child_dialogs
+	17,focus
+	18,unique_flag
+	19,re_process_flag
+	20,buffer_win
+	21,min_width
+	22,min_height
+	23,click_count
+	24,double_click_delay
+	25,repeat_delay
+	26,repeat_rate
+	27,prev_x
+	28,prev_y
+	29,prev_time
+	30,prev_event
+	31,is_blocked_flag
+	32,resize_attrib
+	33,drag_gesture_x
+	34,drag_gesture_y
+	35,curr_drag
+	36,tried_drag
+	37,pointer_component
+	38,pointer_stack
+	39,invokes
+	40,all_valid
+	41,tooltip_ticker
+	42,tooltip_last_obj
+	43,tooltip_state
+	44,tooltip_start_time
+	45,tooltip_end_time
+	46,tooltip_start_delay
+	47,tooltip_end_delay
+	48,tooltip_continue_time
+	49,tooltip_continue_delay
+	50,tooltip_win
+	51,tooltip_x
+	52,tooltip_y
+	53,tooltip_w
+	54,tooltip_h
+	55,x_spec
+	56,y_spec
+	57,w_spec
+	58,h_spec
+	59,x_align
+	60,y_align
+	61,x
+	62,y
+	63,w
+	64,h
+	65,parent_dialog
+	66,attribs
+	67,has_focus
+	68,is_shaded_flag
+	69,cwin
+	70,cbwin
+	71,accepts_focus_flag
+	72,draw_border_flag
+	73,tooltip
+	74,parent
+	75,children
+	76,valid
+	77,accel
+	78,allow_drag_flag
+	79,allow_drop_flag
+	80,pointer
+	81,ticker
+	82,transparent
+	83,auto_refresh
+	84,listeners
+record	HFileDialog__methods,197
+	0,set_file_type
+	1,set_path
+	2,on_file_extension
+	3,on_dlist
+	4,on_fextension_change
+	5,on_dir
+	6,component_setup
+	7,get_directory
+	8,get_result
+	9,set_directory
+	10,set_file
+	11,set_result
+	12,get_std_dir
+	13,on_okay
+	14,on_file
+	15,on_flist
+	16,init_dialog
+	17,initially
+	18,invoke_validate
+	19,needs_validate
+	20,is_shaded
+	21,is_unshaded
+	22,is_hidden
+	23,is_unhidden
+	24,block
+	25,unblock
+	26,raise
+	27,get_click_count
+	28,compute_absolutes
+	29,change_pointer
+	30,restore_pointer
+	31,show_child
+	32,show_modeless
+	33,show_modal
+	34,get_win
+	35,resize_win
+	36,init
+	37,open_win
+	38,close_win
+	39,set_min_size
+	40,get_buffer_win
+	41,set_unique
+	42,clear_unique
+	43,set_focus
+	44,clear_focus
+	45,display
+	46,end_dialog
+	47,show
+	48,bevel_dispose
+	49,dispose
+	50,consume_same
+	51,process_event
+	52,process_normal
+	53,tooltip_init
+	54,tooltip_dispose
+	55,set_tooltip_start_delay
+	56,set_tooltip_end_delay
+	57,set_tooltip_continue_delay
+	58,show_tooltip
+	59,hide_tooltip
+	60,process_tooltip
+	61,find_tooltip
+	62,synch_pointer
+	63,find_pointer_component
+	64,process_dnd
+	65,process_unique
+	66,check_dnd
+	67,handle_resize
+	68,check_click_count
+	69,get_focus_list
+	70,find_next_focus
+	71,find_previous_focus
+	72,set_double_click_delay
+	73,set_repeat_delay
+	74,set_repeat_rate
+	75,invoke_later
+	76,do_invoke
+	77,set_one
+	78,set_tooltip
+	79,get_tooltip
+	80,set_pointer
+	81,get_pointer
+	82,get_x_reference
+	83,get_y_reference
+	84,get_w_reference
+	85,get_h_reference
+	86,get_cwin_reference
+	87,get_cbwin_reference
+	88,get_parent_dialog_reference
+	89,fatal
+	90,keeps
+	91,do_shading
+	92,accepts_focus
+	93,unique_start
+	94,unique_end
+	95,handle_accel
+	96,handle_event
+	97,do_handle_event
+	98,fire_icon_events_on_mouse
+	99,toggle_is_shaded
+	100,set_auto_refresh
+	101,clear_auto_refresh
+	102,set_transparent
+	103,clear_transparent
+	104,set_is_shaded
+	105,clear_is_shaded
+	106,toggle_draw_border
+	107,set_draw_border
+	108,clear_draw_border
+	109,set_accepts_focus
+	110,clear_accepts_focus
+	111,attrib
+	112,set_attribs
+	113,set_attribs_list
+	114,in_region
+	115,got_focus
+	116,get_parent_win
+	117,get_parent_buffer_win
+	118,lost_focus
+	119,set_pos
+	120,set_size
+	121,set_align
+	122,set_abs_coords
+	123,set_abs_size
+	124,set_accel
+	125,get_accel
+	126,get_parent
+	127,set_parent
+	128,get_parent_dialog
+	129,set_parent_dialog
+	130,firstly
+	131,finally
+	132,parse_pos
+	133,resize
+	134,generate_components
+	135,find_focus
+	136,find_accel
+	137,invalidate
+	138,all_components_valid
+	139,validate
+	140,child_validated
+	141,add
+	142,remove
+	143,is_dialog_open
+	144,get_children
+	145,create_event_and_fire
+	146,set_ticker
+	147,stop_ticker
+	148,retime_ticker
+	149,is_ticking
+	150,tick
+	151,invoke_can_drag
+	152,invoke_drag_event
+	153,invoke_can_drop
+	154,invoke_end_drag
+	155,invoke_drag_reset
+	156,can_drag
+	157,drag_event
+	158,can_drop
+	159,end_drag
+	160,drag_reset
+	161,set_allow_drag
+	162,clear_allow_drag
+	163,set_allow_drop
+	164,clear_allow_drop
+	165,is_attrib
+	166,clone
+	167,to_string
+	168,equals
+	169,hash_code
+	170,get_class_name
+	171,get_id
+	172,get_class
+	173,is_instance
+	174,test_flag
+	175,as_attrib
+	176,int_val
+	177,int_vals
+	178,numeric_val
+	179,numeric_vals
+	180,cset_val
+	181,string_val
+	182,string_vals
+	183,set_fields
+	184,field_error
+	185,genlisteners
+	186,fire
+	187,connect
+	188,disconnect_fromlist
+	189,disconnect_all
+	190,disconnect
+	191,gui__FileDialog
+	192,gui__Dialog
+	193,gui__Component
+	194,lang__Object
+	195,util__SetFields
+	196,util__Connectable
+impl	error
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/setfields.u
+link	c:/unicon/uni/lib/connectable.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	19
+	0,000005,HFileDialog_set_file_type,2
+	1,000005,HFileDialog_set_path,2
+	2,000005,HFileDialog_on_file_extension,1
+	3,000005,HFileDialog_on_dlist,1
+	4,000005,HFileDialog_on_fextension_change,1
+	5,000005,HFileDialog_on_dir,1
+	6,000005,HFileDialog_component_setup,1
+	7,000011,HFileDialog__state,85
+	8,000011,HFileDialog__methods,197
+	9,000001,HFileDialog__oprec,0
+	10,000001,gui__FileDialog__oprec,0
+	11,000001,gui__Dialog__oprec,0
+	12,000001,gui__Component__oprec,0
+	13,000001,lang__Object__oprec,0
+	14,000001,util__SetFields__oprec,0
+	15,000001,util__Connectable__oprec,0
+	16,000005,HFileDialog,83
+	17,000005,HFileDialoginitialize,0
+	18,000005,get_directory_list,2
+
+proc HFileDialog_set_file_type
+	local	0,001000,self
+	local	1,001000,s
+	local	2,000000,init_fileType
+	declend
+	filen	hfiledialog.icn
+	line	37
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	2
+	var	1
+	line	38
+	colm	28
+	synt	any
+	asgn
+	line	38
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	39
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_set_path
+	local	0,001000,self
+	local	1,001000,s
+	local	2,000000,init_fileType
+	con	0,010000,5,052,056,151,143,156
+	declend
+	line	44
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	45
+	colm	11
+	synt	any
+	field	gui__FileDialog
+	line	45
+	colm	27
+	synt	any
+	field	set_path
+	var	1
+	line	45
+	colm	36
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	str	0
+	line	46
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	mark	L4
+	var	1
+	line	47
+	colm	7
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	unmark
+lab L3
+	pnull
+	line	48
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_on_file_extension
+	local	0,001000,self
+	declend
+	line	50
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	51
+	colm	11
+	synt	any
+	field	on_fextension_change
+	line	51
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	52
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_on_dlist
+	local	0,001000,self
+	local	1,000020,s
+	local	2,000020,value
+	local	3,000020,l
+	local	4,000000,get_directory_list
+	con	0,002000,1,1
+	con	1,010000,2,056,056
+	con	2,010000,1,134
+	con	3,010000,0
+	con	4,002000,1,0
+	con	5,002000,1,2
+	declend
+	line	54
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	20
+	synt	any
+	field	dlist
+	line	59
+	colm	26
+	synt	any
+	field	get_contents
+	line	59
+	colm	39
+	synt	any
+	invoke	0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	46
+	synt	any
+	field	dlist
+	line	59
+	colm	52
+	synt	any
+	field	get_selections
+	line	59
+	colm	67
+	synt	any
+	invoke	0
+	int	0
+	line	59
+	colm	69
+	synt	any
+	subsc
+	line	59
+	colm	41
+	synt	any
+	subsc
+	line	59
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	1
+	pnull
+	var	0
+	line	60
+	colm	16
+	synt	any
+	field	get_std_dir
+	line	60
+	colm	28
+	synt	any
+	invoke	0
+	line	60
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	64
+	colm	7
+	synt	ifelse
+	mark	L4
+	pnull
+	pnull
+	var	2
+	line	64
+	colm	10
+	synt	any
+	nonnull
+	pnull
+	str	1
+	str	2
+	line	64
+	colm	26
+	synt	any
+	cat
+	line	64
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	mark	L6
+	line	65
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	1
+	str	2
+	line	65
+	colm	15
+	synt	any
+	lexne
+	unmark
+	mark	L7
+	pnull
+	pnull
+	var	1
+	pnull
+	int	0
+	line	66
+	colm	15
+	synt	any
+	neg
+	line	66
+	colm	14
+	synt	any
+	subsc
+	str	3
+	line	66
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L7
+lab L8
+	line	67
+	colm	13
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	1
+	pnull
+	int	0
+	line	67
+	colm	21
+	synt	any
+	neg
+	line	67
+	colm	20
+	synt	any
+	subsc
+	str	2
+	line	67
+	colm	25
+	synt	any
+	lexne
+	unmark
+	mark	L8
+	pnull
+	pnull
+	var	1
+	pnull
+	int	0
+	line	67
+	colm	39
+	synt	any
+	neg
+	line	67
+	colm	38
+	synt	any
+	subsc
+	str	3
+	line	67
+	colm	43
+	synt	any
+	asgn
+lab L9
+	unmark
+	goto	L8
+lab L10
+	line	67
+	colm	13
+	synt	endwhile
+	line	65
+	colm	10
+	synt	endif
+	unmark
+lab L6
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	14
+	synt	any
+	field	dir
+	line	69
+	colm	18
+	synt	any
+	field	set_contents
+	var	1
+	line	69
+	colm	31
+	synt	any
+	invoke	1
+	goto	L5
+lab L4
+	pnull
+	pnull
+	var	0
+	line	72
+	colm	14
+	synt	any
+	field	dir
+	line	72
+	colm	18
+	synt	any
+	field	set_contents
+	pnull
+	var	1
+	dup
+	pnull
+	var	2
+	line	72
+	colm	37
+	synt	any
+	nonnull
+	line	72
+	colm	33
+	synt	any
+	cat
+	asgn
+	line	72
+	colm	31
+	synt	any
+	invoke	1
+lab L5
+	line	64
+	colm	7
+	synt	endifelse
+	unmark
+lab L3
+	mark	L11
+	pnull
+	var	3
+	mark	L12
+	var	4
+	var	1
+	pnull
+	var	0
+	line	76
+	colm	38
+	synt	any
+	field	file_extension
+	line	76
+	colm	31
+	synt	any
+	invoke	2
+	line	76
+	colm	54
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	pnull
+	pnull
+	line	76
+	colm	56
+	synt	any
+	llist	0
+	pnull
+	line	76
+	colm	59
+	synt	any
+	llist	0
+	line	76
+	colm	55
+	synt	any
+	llist	2
+lab L13
+	line	76
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	77
+	colm	11
+	synt	any
+	field	dlist
+	line	77
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	3
+	int	0
+	line	77
+	colm	32
+	synt	any
+	subsc
+	line	77
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	78
+	colm	11
+	synt	any
+	field	dlist
+	line	78
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	4
+	line	78
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	79
+	colm	11
+	synt	any
+	field	dlist
+	line	79
+	colm	17
+	synt	any
+	field	clear_selections
+	line	79
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	11
+	synt	any
+	field	flist
+	line	80
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	3
+	int	5
+	line	80
+	colm	32
+	synt	any
+	subsc
+	line	80
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	11
+	synt	any
+	field	flist
+	line	81
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	4
+	line	81
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	11
+	synt	any
+	field	flist
+	line	82
+	colm	17
+	synt	any
+	field	clear_selections
+	line	82
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	11
+	synt	any
+	field	file
+	line	83
+	colm	16
+	synt	any
+	field	set_contents
+	str	3
+	line	83
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	pnull
+	line	84
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_on_fextension_change
+	local	0,001000,self
+	local	1,000000,value
+	local	2,000000,s
+	local	3,000000,l
+	local	4,000000,get_directory_list
+	con	0,002000,1,1
+	con	1,010000,2,056,056
+	con	2,010000,1,134
+	con	3,010000,0
+	con	4,002000,1,0
+	con	5,002000,1,2
+	declend
+	line	85
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	20
+	synt	any
+	field	dlist
+	line	89
+	colm	26
+	synt	any
+	field	get_contents
+	line	89
+	colm	39
+	synt	any
+	invoke	0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	46
+	synt	any
+	field	dlist
+	line	89
+	colm	52
+	synt	any
+	field	get_selections
+	line	89
+	colm	67
+	synt	any
+	invoke	0
+	int	0
+	line	89
+	colm	69
+	synt	any
+	subsc
+	line	89
+	colm	41
+	synt	any
+	subsc
+	line	89
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	pnull
+	var	0
+	line	90
+	colm	16
+	synt	any
+	field	get_std_dir
+	line	90
+	colm	28
+	synt	any
+	invoke	0
+	line	90
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	94
+	colm	7
+	synt	ifelse
+	mark	L4
+	pnull
+	pnull
+	var	1
+	line	94
+	colm	10
+	synt	any
+	nonnull
+	pnull
+	str	1
+	str	2
+	line	94
+	colm	26
+	synt	any
+	cat
+	line	94
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	mark	L6
+	line	95
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	2
+	str	2
+	line	95
+	colm	15
+	synt	any
+	lexne
+	unmark
+	mark	L7
+	pnull
+	pnull
+	var	2
+	pnull
+	int	0
+	line	96
+	colm	15
+	synt	any
+	neg
+	line	96
+	colm	14
+	synt	any
+	subsc
+	str	3
+	line	96
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L7
+lab L8
+	line	97
+	colm	13
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	2
+	pnull
+	int	0
+	line	97
+	colm	21
+	synt	any
+	neg
+	line	97
+	colm	20
+	synt	any
+	subsc
+	str	2
+	line	97
+	colm	25
+	synt	any
+	lexne
+	unmark
+	mark	L8
+	pnull
+	pnull
+	var	2
+	pnull
+	int	0
+	line	97
+	colm	39
+	synt	any
+	neg
+	line	97
+	colm	38
+	synt	any
+	subsc
+	str	3
+	line	97
+	colm	43
+	synt	any
+	asgn
+lab L9
+	unmark
+	goto	L8
+lab L10
+	line	97
+	colm	13
+	synt	endwhile
+	line	95
+	colm	10
+	synt	endif
+	unmark
+lab L6
+	pnull
+	pnull
+	var	0
+	line	99
+	colm	14
+	synt	any
+	field	dir
+	line	99
+	colm	18
+	synt	any
+	field	set_contents
+	var	2
+	line	99
+	colm	31
+	synt	any
+	invoke	1
+	goto	L5
+lab L4
+	pnull
+	pnull
+	var	0
+	line	102
+	colm	14
+	synt	any
+	field	dir
+	line	102
+	colm	18
+	synt	any
+	field	set_contents
+	pnull
+	var	2
+	dup
+	pnull
+	var	1
+	line	102
+	colm	37
+	synt	any
+	nonnull
+	line	102
+	colm	33
+	synt	any
+	cat
+	asgn
+	line	102
+	colm	31
+	synt	any
+	invoke	1
+lab L5
+	line	94
+	colm	7
+	synt	endifelse
+	unmark
+lab L3
+	mark	L11
+	pnull
+	var	3
+	mark	L12
+	var	4
+	var	2
+	pnull
+	var	0
+	line	106
+	colm	38
+	synt	any
+	field	file_extension
+	line	106
+	colm	31
+	synt	any
+	invoke	2
+	line	106
+	colm	54
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	pnull
+	pnull
+	line	106
+	colm	56
+	synt	any
+	llist	0
+	pnull
+	line	106
+	colm	59
+	synt	any
+	llist	0
+	line	106
+	colm	55
+	synt	any
+	llist	2
+lab L13
+	line	106
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	107
+	colm	11
+	synt	any
+	field	dlist
+	line	107
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	3
+	int	0
+	line	107
+	colm	32
+	synt	any
+	subsc
+	line	107
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	108
+	colm	11
+	synt	any
+	field	dlist
+	line	108
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	4
+	line	108
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	109
+	colm	11
+	synt	any
+	field	dlist
+	line	109
+	colm	17
+	synt	any
+	field	clear_selections
+	line	109
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	11
+	synt	any
+	field	flist
+	line	110
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	3
+	int	5
+	line	110
+	colm	32
+	synt	any
+	subsc
+	line	110
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	111
+	colm	11
+	synt	any
+	field	flist
+	line	111
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	4
+	line	111
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	11
+	synt	any
+	field	flist
+	line	112
+	colm	17
+	synt	any
+	field	clear_selections
+	line	112
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L19
+	pnull
+	line	113
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_on_dir
+	local	0,001000,self
+	local	1,000020,s
+	local	2,000020,l
+	local	3,000000,get_directory_list
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,002000,1,2
+	con	3,010000,0
+	declend
+	line	115
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	11
+	synt	any
+	field	dir
+	line	120
+	colm	15
+	synt	any
+	field	set_contents
+	pnull
+	var	1
+	pnull
+	var	0
+	line	120
+	colm	36
+	synt	any
+	field	get_std_dir
+	line	120
+	colm	48
+	synt	any
+	invoke	0
+	line	120
+	colm	30
+	synt	any
+	asgn
+	line	120
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	mark	L3
+	var	3
+	var	1
+	pnull
+	var	0
+	line	121
+	colm	38
+	synt	any
+	field	file_extension
+	line	121
+	colm	31
+	synt	any
+	invoke	2
+	line	121
+	colm	54
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	pnull
+	pnull
+	line	121
+	colm	56
+	synt	any
+	llist	0
+	pnull
+	line	121
+	colm	59
+	synt	any
+	llist	0
+	line	121
+	colm	55
+	synt	any
+	llist	2
+lab L4
+	line	121
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	122
+	colm	11
+	synt	any
+	field	dlist
+	line	122
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	2
+	int	0
+	line	122
+	colm	32
+	synt	any
+	subsc
+	line	122
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	123
+	colm	11
+	synt	any
+	field	dlist
+	line	123
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	1
+	line	123
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	124
+	colm	11
+	synt	any
+	field	dlist
+	line	124
+	colm	17
+	synt	any
+	field	clear_selections
+	line	124
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	125
+	colm	11
+	synt	any
+	field	flist
+	line	125
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	2
+	int	2
+	line	125
+	colm	32
+	synt	any
+	subsc
+	line	125
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	126
+	colm	11
+	synt	any
+	field	flist
+	line	126
+	colm	17
+	synt	any
+	field	goto_pos
+	int	0
+	int	1
+	line	126
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	127
+	colm	11
+	synt	any
+	field	flist
+	line	127
+	colm	17
+	synt	any
+	field	clear_selections
+	line	127
+	colm	34
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	128
+	colm	11
+	synt	any
+	field	file
+	line	128
+	colm	16
+	synt	any
+	field	set_contents
+	str	3
+	line	128
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	pnull
+	line	129
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog_component_setup
+	local	0,001000,self
+	local	1,000020,l
+	local	2,000000,extChoosed
+	local	3,000000,chdir
+	local	4,000000,init_fileType
+	local	5,000000,gui__Label
+	local	6,000000,gui__TextField
+	local	7,000000,gui__List
+	local	8,000000,get_directory_list
+	local	9,000000,gui__TextList
+	local	10,000000,gui__TextButton
+	con	0,010000,5,106,101,114,123,105
+	con	1,010000,0
+	con	2,010000,1,134
+	con	3,002000,1,1
+	con	4,010000,9,160,157,163,075,062,065,054,062,065
+	con	5,010000,9,141,154,151,147,156,075,154,054,143
+	con	6,010000,15,154,141,142,145,154,075,104,151,162,145,143,164,157,162,171
+	con	7,010000,10,160,157,163,075,061,060,060,054,062,065
+	con	8,010000,13,163,151,172,145,075,061,060,060,045,055,061,065,060
+	con	9,010000,7,141,143,143,145,154,075,144
+	con	10,010000,6,157,156,137,144,151,162
+	con	11,002000,2,60
+	con	12,010000,9,160,157,163,075,062,065,054,066,060
+	con	13,010000,10,154,141,142,145,154,075,106,151,154,145
+	con	14,010000,10,160,157,163,075,061,060,060,054,066,060
+	con	15,010000,7,141,143,143,145,154,075,146
+	con	16,010000,7,157,156,137,146,151,154,145
+	con	17,010000,9,160,157,163,075,062,065,054,071,065
+	con	18,010000,15,154,141,142,145,154,075,106,151,154,145,040,124,171,160,145
+	con	19,010000,3,061,060,060
+	con	20,010000,2,070,060
+	con	21,010000,8,061,060,060,045,055,061,065,060
+	con	22,010000,2,062,060
+	con	23,010000,17,157,156,137,146,151,154,145,137,145,170,164,145,156,163,151,157,156
+	con	24,002000,2,40
+	con	25,010000,14,101,154,154,040,106,151,154,145,163,050,052,056,052,051
+	con	26,010000,32,103,040,123,157,165,162,143,145,163,050,052,056,143,160,160,073,040,052,056,143,073,040,052,056,143,143,073,040,052,056,150,051
+	con	27,010000,18,112,141,166,141,040,106,151,154,145,163,050,052,056,152,141,166,141,051
+	con	28,010000,19,125,156,151,143,157,156,040,106,151,154,145,163,050,052,056,151,143,156,051
+	con	29,010000,21,120,162,157,152,145,143,164,040,106,151,154,145,163,050,052,056,165,160,162,152,051
+	con	30,010000,10,160,157,163,075,062,065,054,061,061,060
+	con	31,010000,20,163,151,172,145,075,065,060,045,055,063,070,054,061,060,060,045,055,061,067,060
+	con	32,010000,10,163,145,154,145,143,164,137,157,156,145
+	con	33,010000,24,163,145,154,145,143,164,151,157,156,137,157,156,137,153,145,171,137,155,157,166,145,163,075,146
+	con	34,010000,8,157,156,137,144,154,151,163,164
+	con	35,010000,14,160,157,163,075,065,060,045,053,061,062,054,061,061,060
+	con	36,010000,8,157,156,137,146,154,151,163,164
+	con	37,002000,1,2
+	con	38,010000,15,160,157,163,075,063,063,045,054,061,060,060,045,055,063,060
+	con	39,010000,9,141,154,151,147,156,075,143,054,143
+	con	40,010000,10,154,141,142,145,154,075,117,153,141,171
+	con	41,010000,7,141,143,143,145,154,075,157
+	con	42,010000,7,157,156,137,157,153,141,171
+	con	43,010000,15,160,157,163,075,066,066,045,054,061,060,060,045,055,063,060
+	con	44,010000,12,154,141,142,145,154,075,103,141,156,143,145,154
+	con	45,010000,7,141,143,143,145,154,075,143
+	con	46,010000,7,144,151,163,160,157,163,145
+	con	47,002000,3,200
+	declend
+	line	131
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	str	0
+	line	133
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	137
+	colm	7
+	synt	if
+	mark0
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	137
+	colm	15
+	synt	any
+	field	init_dir
+	line	137
+	colm	10
+	synt	any
+	null
+	line	137
+	colm	24
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	pnull
+	pnull
+	var	0
+	line	137
+	colm	30
+	synt	any
+	field	init_dir
+	str	1
+	line	137
+	colm	39
+	synt	any
+	lexeq
+lab L4
+	unmark
+	pnull
+	pnull
+	var	0
+	line	138
+	colm	14
+	synt	any
+	field	init_dir
+	mark	L5
+	var	3
+	line	138
+	colm	30
+	synt	any
+	invoke	0
+	line	138
+	colm	32
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	str	2
+lab L6
+	line	138
+	colm	23
+	synt	any
+	asgn
+	line	137
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	140
+	colm	12
+	synt	any
+	field	init_file
+	line	140
+	colm	7
+	synt	any
+	null
+	str	1
+	line	140
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	4
+	line	141
+	colm	7
+	synt	any
+	null
+	str	1
+	line	141
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	142
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	142
+	colm	15
+	synt	any
+	field	init_dir
+	pnull
+	int	3
+	line	142
+	colm	25
+	synt	any
+	neg
+	line	142
+	colm	24
+	synt	any
+	subsc
+	str	2
+	line	142
+	colm	28
+	synt	any
+	lexne
+	unmark
+	pnull
+	pnull
+	var	0
+	line	142
+	colm	45
+	synt	any
+	field	init_dir
+	dup
+	str	2
+	line	142
+	colm	54
+	synt	any
+	cat
+	asgn
+	line	142
+	colm	7
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	1
+	var	5
+	str	4
+	str	5
+	str	6
+	line	144
+	colm	22
+	synt	any
+	invoke	3
+	line	144
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	0
+	line	145
+	colm	11
+	synt	any
+	field	add
+	var	1
+	line	145
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	146
+	colm	11
+	synt	any
+	field	dir
+	var	6
+	str	7
+	str	8
+	str	5
+	str	9
+	line	146
+	colm	31
+	synt	any
+	invoke	4
+	line	146
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	147
+	colm	11
+	synt	any
+	field	dir
+	line	147
+	colm	15
+	synt	any
+	field	connect
+	var	0
+	str	10
+	int	11
+	line	147
+	colm	23
+	synt	any
+	invoke	3
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	148
+	colm	11
+	synt	any
+	field	dir
+	line	148
+	colm	15
+	synt	any
+	field	set_contents
+	pnull
+	var	0
+	line	148
+	colm	33
+	synt	any
+	field	init_dir
+	line	148
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	0
+	line	149
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	149
+	colm	20
+	synt	any
+	field	dir
+	line	149
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	1
+	line	150
+	colm	8
+	synt	any
+	field	set_linked_accel
+	pnull
+	var	0
+	line	150
+	colm	30
+	synt	any
+	field	dir
+	line	150
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	1
+	var	5
+	str	12
+	str	5
+	str	13
+	line	152
+	colm	22
+	synt	any
+	invoke	3
+	line	152
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	0
+	line	153
+	colm	11
+	synt	any
+	field	add
+	var	1
+	line	153
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	154
+	colm	11
+	synt	any
+	field	file
+	var	6
+	str	14
+	str	8
+	str	5
+	str	15
+	line	154
+	colm	32
+	synt	any
+	invoke	4
+	line	154
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	155
+	colm	11
+	synt	any
+	field	file
+	line	155
+	colm	16
+	synt	any
+	field	connect
+	var	0
+	str	16
+	int	11
+	line	155
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	0
+	line	156
+	colm	11
+	synt	any
+	field	file
+	line	156
+	colm	16
+	synt	any
+	field	set_contents
+	pnull
+	var	0
+	line	156
+	colm	34
+	synt	any
+	field	init_file
+	line	156
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L21
+	mark	L22
+	pnull
+	var	0
+	line	157
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	157
+	colm	20
+	synt	any
+	field	file
+	line	157
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	mark	L23
+	pnull
+	var	1
+	line	158
+	colm	8
+	synt	any
+	field	set_linked_accel
+	pnull
+	var	0
+	line	158
+	colm	30
+	synt	any
+	field	file
+	line	158
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	mark	L24
+	pnull
+	var	1
+	var	5
+	str	17
+	str	5
+	str	18
+	line	160
+	colm	22
+	synt	any
+	invoke	3
+	line	160
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	0
+	line	161
+	colm	11
+	synt	any
+	field	add
+	var	1
+	line	161
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	162
+	colm	11
+	synt	any
+	field	file_extension
+	var	7
+	line	162
+	colm	37
+	synt	any
+	invoke	0
+	line	162
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	163
+	colm	11
+	synt	any
+	field	file_extension
+	line	163
+	colm	26
+	synt	any
+	field	set_pos
+	str	19
+	str	20
+	line	163
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	164
+	colm	11
+	synt	any
+	field	file_extension
+	line	164
+	colm	26
+	synt	any
+	field	set_size
+	str	21
+	str	22
+	line	164
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	165
+	colm	11
+	synt	any
+	field	file_extension
+	line	165
+	colm	26
+	synt	any
+	field	connect
+	var	0
+	str	23
+	int	24
+	line	165
+	colm	34
+	synt	any
+	invoke	3
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	0
+	line	166
+	colm	11
+	synt	any
+	field	file_extension
+	line	166
+	colm	26
+	synt	any
+	field	set_selection_list
+	pnull
+	str	25
+	str	26
+	str	27
+	str	28
+	str	29
+	line	166
+	colm	46
+	synt	any
+	llist	5
+	line	166
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L30
+	mark	L31
+	pnull
+	var	0
+	line	171
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	171
+	colm	20
+	synt	any
+	field	file_extension
+	line	171
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L31
+	mark	L32
+	pnull
+	var	1
+	line	172
+	colm	8
+	synt	any
+	field	set_linked_accel
+	pnull
+	var	0
+	line	172
+	colm	30
+	synt	any
+	field	file_extension
+	line	172
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L32
+	mark	L33
+	pnull
+	var	1
+	mark	L34
+	var	8
+	pnull
+	var	0
+	line	174
+	colm	36
+	synt	any
+	field	init_dir
+	pnull
+	var	0
+	line	174
+	colm	50
+	synt	any
+	field	file_extension
+	line	174
+	colm	31
+	synt	any
+	invoke	2
+	line	174
+	colm	66
+	synt	any
+	esusp
+	goto	L35
+lab L34
+	pnull
+	pnull
+	line	174
+	colm	68
+	synt	any
+	llist	0
+	pnull
+	line	174
+	colm	71
+	synt	any
+	llist	0
+	line	174
+	colm	67
+	synt	any
+	llist	2
+lab L35
+	line	174
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	176
+	colm	11
+	synt	any
+	field	dlist
+	var	9
+	str	30
+	str	31
+	str	32
+	str	33
+	line	176
+	colm	32
+	synt	any
+	invoke	4
+	line	176
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	178
+	colm	11
+	synt	any
+	field	dlist
+	line	178
+	colm	17
+	synt	any
+	field	connect
+	var	0
+	str	34
+	int	24
+	line	178
+	colm	25
+	synt	any
+	invoke	3
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	var	0
+	line	179
+	colm	11
+	synt	any
+	field	dlist
+	line	179
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	1
+	int	3
+	line	179
+	colm	32
+	synt	any
+	subsc
+	line	179
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L38
+	mark	L39
+	pnull
+	var	0
+	line	180
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	180
+	colm	20
+	synt	any
+	field	dlist
+	line	180
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	182
+	colm	11
+	synt	any
+	field	flist
+	var	9
+	str	35
+	str	31
+	str	32
+	str	33
+	line	182
+	colm	32
+	synt	any
+	invoke	4
+	line	182
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	184
+	colm	11
+	synt	any
+	field	flist
+	line	184
+	colm	17
+	synt	any
+	field	connect
+	var	0
+	str	36
+	int	24
+	line	184
+	colm	25
+	synt	any
+	invoke	3
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	185
+	colm	11
+	synt	any
+	field	flist
+	line	185
+	colm	17
+	synt	any
+	field	set_contents
+	pnull
+	var	1
+	int	37
+	line	185
+	colm	32
+	synt	any
+	subsc
+	line	185
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L42
+	mark	L43
+	pnull
+	var	0
+	line	186
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	186
+	colm	20
+	synt	any
+	field	flist
+	line	186
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	0
+	line	188
+	colm	11
+	synt	any
+	field	okay
+	var	10
+	str	38
+	str	39
+	str	40
+	str	41
+	line	188
+	colm	33
+	synt	any
+	invoke	4
+	line	188
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	pnull
+	var	0
+	line	189
+	colm	11
+	synt	any
+	field	okay
+	line	189
+	colm	16
+	synt	any
+	field	connect
+	var	0
+	str	42
+	int	11
+	line	189
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L45
+	mark	L46
+	pnull
+	var	0
+	line	190
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	190
+	colm	20
+	synt	any
+	field	okay
+	line	190
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L46
+	mark	L47
+	pnull
+	pnull
+	var	0
+	line	192
+	colm	11
+	synt	any
+	field	cancel
+	var	10
+	str	43
+	str	39
+	str	44
+	str	45
+	line	192
+	colm	35
+	synt	any
+	invoke	4
+	line	192
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L47
+	mark	L48
+	pnull
+	pnull
+	var	0
+	line	194
+	colm	11
+	synt	any
+	field	cancel
+	line	194
+	colm	18
+	synt	any
+	field	connect
+	var	0
+	str	46
+	int	11
+	line	194
+	colm	26
+	synt	any
+	invoke	3
+	unmark
+lab L48
+	mark	L49
+	pnull
+	var	0
+	line	195
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	195
+	colm	20
+	synt	any
+	field	cancel
+	line	195
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L49
+	mark	L50
+	pnull
+	var	0
+	line	196
+	colm	11
+	synt	any
+	field	connect
+	var	0
+	str	46
+	int	47
+	line	196
+	colm	19
+	synt	any
+	invoke	3
+	unmark
+lab L50
+	pnull
+	line	197
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialog
+	local	0,001000,file_extension
+	local	1,001000,fext_list
+	local	2,001000,init_dir
+	local	3,001000,init_file
+	local	4,001000,res
+	local	5,001000,dir
+	local	6,001000,file
+	local	7,001000,dlist
+	local	8,001000,flist
+	local	9,001000,okay
+	local	10,001000,cancel
+	local	11,001000,win
+	local	12,001000,is_open
+	local	13,001000,owning_dialog
+	local	14,001000,child_dialogs
+	local	15,001000,focus
+	local	16,001000,unique_flag
+	local	17,001000,re_process_flag
+	local	18,001000,buffer_win
+	local	19,001000,min_width
+	local	20,001000,min_height
+	local	21,001000,click_count
+	local	22,001000,double_click_delay
+	local	23,001000,repeat_delay
+	local	24,001000,repeat_rate
+	local	25,001000,prev_x
+	local	26,001000,prev_y
+	local	27,001000,prev_time
+	local	28,001000,prev_event
+	local	29,001000,is_blocked_flag
+	local	30,001000,resize_attrib
+	local	31,001000,drag_gesture_x
+	local	32,001000,drag_gesture_y
+	local	33,001000,curr_drag
+	local	34,001000,tried_drag
+	local	35,001000,pointer_component
+	local	36,001000,pointer_stack
+	local	37,001000,invokes
+	local	38,001000,all_valid
+	local	39,001000,tooltip_ticker
+	local	40,001000,tooltip_last_obj
+	local	41,001000,tooltip_state
+	local	42,001000,tooltip_start_time
+	local	43,001000,tooltip_end_time
+	local	44,001000,tooltip_start_delay
+	local	45,001000,tooltip_end_delay
+	local	46,001000,tooltip_continue_time
+	local	47,001000,tooltip_continue_delay
+	local	48,001000,tooltip_win
+	local	49,001000,tooltip_x
+	local	50,001000,tooltip_y
+	local	51,001000,tooltip_w
+	local	52,001000,tooltip_h
+	local	53,001000,x_spec
+	local	54,001000,y_spec
+	local	55,001000,w_spec
+	local	56,001000,h_spec
+	local	57,001000,x_align
+	local	58,001000,y_align
+	local	59,001000,x
+	local	60,001000,y
+	local	61,001000,w
+	local	62,001000,h
+	local	63,001000,parent_dialog
+	local	64,001000,attribs
+	local	65,001000,has_focus
+	local	66,001000,is_shaded_flag
+	local	67,001000,cwin
+	local	68,001000,cbwin
+	local	69,001000,accepts_focus_flag
+	local	70,001000,draw_border_flag
+	local	71,001000,tooltip
+	local	72,001000,parent
+	local	73,001000,children
+	local	74,001000,valid
+	local	75,001000,accel
+	local	76,001000,allow_drag_flag
+	local	77,001000,allow_drop_flag
+	local	78,001000,pointer
+	local	79,001000,ticker
+	local	80,001000,transparent
+	local	81,001000,auto_refresh
+	local	82,001000,listeners
+	local	83,000020,self
+	local	84,000020,clone
+	local	85,000000,HFileDialog__oprec
+	local	86,000000,HFileDialoginitialize
+	local	87,000000,gui__FileDialog__oprec
+	local	88,000000,gui__FileDialoginitialize
+	local	89,000000,gui__Dialog__oprec
+	local	90,000000,gui__Dialoginitialize
+	local	91,000000,gui__Component__oprec
+	local	92,000000,gui__Componentinitialize
+	local	93,000000,lang__Object__oprec
+	local	94,000000,lang__Objectinitialize
+	local	95,000000,util__SetFields__oprec
+	local	96,000000,util__SetFieldsinitialize
+	local	97,000000,util__Connectable__oprec
+	local	98,000000,util__Connectableinitialize
+	local	99,000000,HFileDialog__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	85
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	86
+	line	8
+	colm	52
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	87
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	88
+	line	9
+	colm	60
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	85
+	line	10
+	colm	21
+	synt	any
+	field	gui__FileDialog
+	var	87
+	line	10
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	11
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	89
+	line	11
+	colm	6
+	synt	any
+	null
+	unmark
+	var	90
+	line	11
+	colm	52
+	synt	any
+	invoke	0
+	line	11
+	colm	3
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	85
+	line	12
+	colm	21
+	synt	any
+	field	gui__Dialog
+	var	89
+	line	12
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	13
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	91
+	line	13
+	colm	6
+	synt	any
+	null
+	unmark
+	var	92
+	line	13
+	colm	58
+	synt	any
+	invoke	0
+	line	13
+	colm	3
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	85
+	line	14
+	colm	21
+	synt	any
+	field	gui__Component
+	var	91
+	line	14
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	15
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	93
+	line	15
+	colm	6
+	synt	any
+	null
+	unmark
+	var	94
+	line	15
+	colm	54
+	synt	any
+	invoke	0
+	line	15
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	85
+	line	16
+	colm	21
+	synt	any
+	field	lang__Object
+	var	93
+	line	16
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	17
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	95
+	line	17
+	colm	6
+	synt	any
+	null
+	unmark
+	var	96
+	line	17
+	colm	60
+	synt	any
+	invoke	0
+	line	17
+	colm	3
+	synt	endif
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	85
+	line	18
+	colm	21
+	synt	any
+	field	util__SetFields
+	var	95
+	line	18
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	line	19
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	97
+	line	19
+	colm	6
+	synt	any
+	null
+	unmark
+	var	98
+	line	19
+	colm	64
+	synt	any
+	invoke	0
+	line	19
+	colm	3
+	synt	endif
+	unmark
+lab L15
+	pnull
+	pnull
+	var	85
+	line	20
+	colm	21
+	synt	any
+	field	util__Connectable
+	var	97
+	line	20
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L16
+	pnull
+	var	83
+	var	99
+	line	22
+	colm	30
+	synt	any
+	keywd	null
+	var	85
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	line	22
+	colm	29
+	synt	any
+	invoke	85
+	line	22
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	83
+	line	23
+	colm	7
+	synt	any
+	field	__s
+	var	83
+	line	23
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	mark	L19
+	pnull
+	pnull
+	var	83
+	line	24
+	colm	7
+	synt	any
+	field	__m
+	line	24
+	colm	11
+	synt	any
+	field	initially
+	var	83
+	line	24
+	colm	21
+	synt	any
+	invoke	1
+	line	24
+	colm	28
+	synt	any
+	esusp
+	goto	L20
+lab L19
+	line	24
+	colm	30
+	synt	any
+	pfail
+lab L20
+	unmark
+lab L18
+	mark	L21
+	mark	L22
+	var	83
+	line	25
+	colm	3
+	synt	any
+	pret
+lab L22
+	synt	any
+	pfail
+	unmark
+lab L21
+	pnull
+	line	26
+	colm	1
+	synt	any
+	pfail
+	end
+proc HFileDialoginitialize
+	local	0,000000,HFileDialog__oprec
+	local	1,000000,HFileDialog__methods
+	local	2,000000,HFileDialog_set_file_type
+	local	3,000000,HFileDialog_set_path
+	local	4,000000,HFileDialog_on_file_extension
+	local	5,000000,HFileDialog_on_dlist
+	local	6,000000,HFileDialog_on_fextension_change
+	local	7,000000,HFileDialog_on_dir
+	local	8,000000,HFileDialog_component_setup
+	local	9,000000,gui__FileDialog_get_directory
+	local	10,000000,gui__FileDialog_get_result
+	local	11,000000,gui__FileDialog_set_directory
+	local	12,000000,gui__FileDialog_set_file
+	local	13,000000,gui__FileDialog_set_result
+	local	14,000000,gui__FileDialog_get_std_dir
+	local	15,000000,gui__FileDialog_on_okay
+	local	16,000000,gui__FileDialog_on_file
+	local	17,000000,gui__FileDialog_on_flist
+	local	18,000000,gui__FileDialog_init_dialog
+	local	19,000000,gui__FileDialog_initially
+	local	20,000000,gui__Dialog_invoke_validate
+	local	21,000000,gui__Dialog_needs_validate
+	local	22,000000,gui__Dialog_is_shaded
+	local	23,000000,gui__Dialog_is_unshaded
+	local	24,000000,gui__Dialog_is_hidden
+	local	25,000000,gui__Dialog_is_unhidden
+	local	26,000000,gui__Dialog_block
+	local	27,000000,gui__Dialog_unblock
+	local	28,000000,gui__Dialog_raise
+	local	29,000000,gui__Dialog_get_click_count
+	local	30,000000,gui__Dialog_compute_absolutes
+	local	31,000000,gui__Dialog_change_pointer
+	local	32,000000,gui__Dialog_restore_pointer
+	local	33,000000,gui__Dialog_show_child
+	local	34,000000,gui__Dialog_show_modeless
+	local	35,000000,gui__Dialog_show_modal
+	local	36,000000,gui__Dialog_get_win
+	local	37,000000,gui__Dialog_resize_win
+	local	38,000000,gui__Dialog_init
+	local	39,000000,gui__Dialog_open_win
+	local	40,000000,gui__Dialog_close_win
+	local	41,000000,gui__Dialog_set_min_size
+	local	42,000000,gui__Dialog_get_buffer_win
+	local	43,000000,gui__Dialog_set_unique
+	local	44,000000,gui__Dialog_clear_unique
+	local	45,000000,gui__Dialog_set_focus
+	local	46,000000,gui__Dialog_clear_focus
+	local	47,000000,gui__Dialog_display
+	local	48,000000,gui__Dialog_end_dialog
+	local	49,000000,gui__Dialog_show
+	local	50,000000,gui__Dialog_bevel_dispose
+	local	51,000000,gui__Dialog_dispose
+	local	52,000000,gui__Dialog_consume_same
+	local	53,000000,gui__Dialog_process_event
+	local	54,000000,gui__Dialog_process_normal
+	local	55,000000,gui__Dialog_tooltip_init
+	local	56,000000,gui__Dialog_tooltip_dispose
+	local	57,000000,gui__Dialog_set_tooltip_start_delay
+	local	58,000000,gui__Dialog_set_tooltip_end_delay
+	local	59,000000,gui__Dialog_set_tooltip_continue_delay
+	local	60,000000,gui__Dialog_show_tooltip
+	local	61,000000,gui__Dialog_hide_tooltip
+	local	62,000000,gui__Dialog_process_tooltip
+	local	63,000000,gui__Dialog_find_tooltip
+	local	64,000000,gui__Dialog_synch_pointer
+	local	65,000000,gui__Dialog_find_pointer_component
+	local	66,000000,gui__Dialog_process_dnd
+	local	67,000000,gui__Dialog_process_unique
+	local	68,000000,gui__Dialog_check_dnd
+	local	69,000000,gui__Dialog_handle_resize
+	local	70,000000,gui__Dialog_check_click_count
+	local	71,000000,gui__Dialog_get_focus_list
+	local	72,000000,gui__Dialog_find_next_focus
+	local	73,000000,gui__Dialog_find_previous_focus
+	local	74,000000,gui__Dialog_set_double_click_delay
+	local	75,000000,gui__Dialog_set_repeat_delay
+	local	76,000000,gui__Dialog_set_repeat_rate
+	local	77,000000,gui__Dialog_invoke_later
+	local	78,000000,gui__Dialog_do_invoke
+	local	79,000000,gui__Dialog_set_one
+	local	80,000000,gui__Component_set_tooltip
+	local	81,000000,gui__Component_get_tooltip
+	local	82,000000,gui__Component_set_pointer
+	local	83,000000,gui__Component_get_pointer
+	local	84,000000,gui__Component_get_x_reference
+	local	85,000000,gui__Component_get_y_reference
+	local	86,000000,gui__Component_get_w_reference
+	local	87,000000,gui__Component_get_h_reference
+	local	88,000000,gui__Component_get_cwin_reference
+	local	89,000000,gui__Component_get_cbwin_reference
+	local	90,000000,gui__Component_get_parent_dialog_reference
+	local	91,000000,gui__Component_fatal
+	local	92,000000,gui__Component_keeps
+	local	93,000000,gui__Component_do_shading
+	local	94,000000,gui__Component_accepts_focus
+	local	95,000000,gui__Component_unique_start
+	local	96,000000,gui__Component_unique_end
+	local	97,000000,gui__Component_handle_accel
+	local	98,000000,gui__Component_handle_event
+	local	99,000000,gui__Component_do_handle_event
+	local	100,000000,gui__Component_fire_icon_events_on_mouse
+	local	101,000000,gui__Component_toggle_is_shaded
+	local	102,000000,gui__Component_set_auto_refresh
+	local	103,000000,gui__Component_clear_auto_refresh
+	local	104,000000,gui__Component_set_transparent
+	local	105,000000,gui__Component_clear_transparent
+	local	106,000000,gui__Component_set_is_shaded
+	local	107,000000,gui__Component_clear_is_shaded
+	local	108,000000,gui__Component_toggle_draw_border
+	local	109,000000,gui__Component_set_draw_border
+	local	110,000000,gui__Component_clear_draw_border
+	local	111,000000,gui__Component_set_accepts_focus
+	local	112,000000,gui__Component_clear_accepts_focus
+	local	113,000000,gui__Component_attrib
+	local	114,000000,gui__Component_set_attribs
+	local	115,000000,gui__Component_set_attribs_list
+	local	116,000000,gui__Component_in_region
+	local	117,000000,gui__Component_got_focus
+	local	118,000000,gui__Component_get_parent_win
+	local	119,000000,gui__Component_get_parent_buffer_win
+	local	120,000000,gui__Component_lost_focus
+	local	121,000000,gui__Component_set_pos
+	local	122,000000,gui__Component_set_size
+	local	123,000000,gui__Component_set_align
+	local	124,000000,gui__Component_set_abs_coords
+	local	125,000000,gui__Component_set_abs_size
+	local	126,000000,gui__Component_set_accel
+	local	127,000000,gui__Component_get_accel
+	local	128,000000,gui__Component_get_parent
+	local	129,000000,gui__Component_set_parent
+	local	130,000000,gui__Component_get_parent_dialog
+	local	131,000000,gui__Component_set_parent_dialog
+	local	132,000000,gui__Component_firstly
+	local	133,000000,gui__Component_finally
+	local	134,000000,gui__Component_parse_pos
+	local	135,000000,gui__Component_resize
+	local	136,000000,gui__Component_generate_components
+	local	137,000000,gui__Component_find_focus
+	local	138,000000,gui__Component_find_accel
+	local	139,000000,gui__Component_invalidate
+	local	140,000000,gui__Component_all_components_valid
+	local	141,000000,gui__Component_validate
+	local	142,000000,gui__Component_child_validated
+	local	143,000000,gui__Component_add
+	local	144,000000,gui__Component_remove
+	local	145,000000,gui__Component_is_dialog_open
+	local	146,000000,gui__Component_get_children
+	local	147,000000,gui__Component_create_event_and_fire
+	local	148,000000,gui__Component_set_ticker
+	local	149,000000,gui__Component_stop_ticker
+	local	150,000000,gui__Component_retime_ticker
+	local	151,000000,gui__Component_is_ticking
+	local	152,000000,gui__Component_tick
+	local	153,000000,gui__Component_invoke_can_drag
+	local	154,000000,gui__Component_invoke_drag_event
+	local	155,000000,gui__Component_invoke_can_drop
+	local	156,000000,gui__Component_invoke_end_drag
+	local	157,000000,gui__Component_invoke_drag_reset
+	local	158,000000,gui__Component_can_drag
+	local	159,000000,gui__Component_drag_event
+	local	160,000000,gui__Component_can_drop
+	local	161,000000,gui__Component_end_drag
+	local	162,000000,gui__Component_drag_reset
+	local	163,000000,gui__Component_set_allow_drag
+	local	164,000000,gui__Component_clear_allow_drag
+	local	165,000000,gui__Component_set_allow_drop
+	local	166,000000,gui__Component_clear_allow_drop
+	local	167,000000,gui__Component_is_attrib
+	local	168,000000,lang__Object_clone
+	local	169,000000,lang__Object_to_string
+	local	170,000000,lang__Object_equals
+	local	171,000000,lang__Object_hash_code
+	local	172,000000,lang__Object_get_class_name
+	local	173,000000,lang__Object_get_id
+	local	174,000000,lang__Object_get_class
+	local	175,000000,lang__Object_is_instance
+	local	176,000000,util__SetFields_test_flag
+	local	177,000000,util__SetFields_as_attrib
+	local	178,000000,util__SetFields_int_val
+	local	179,000000,util__SetFields_int_vals
+	local	180,000000,util__SetFields_numeric_val
+	local	181,000000,util__SetFields_numeric_vals
+	local	182,000000,util__SetFields_cset_val
+	local	183,000000,util__SetFields_string_val
+	local	184,000000,util__SetFields_string_vals
+	local	185,000000,util__SetFields_set_fields
+	local	186,000000,util__SetFields_field_error
+	local	187,000000,util__Connectable_genlisteners
+	local	188,000000,util__Connectable_fire
+	local	189,000000,util__Connectable_connect
+	local	190,000000,util__Connectable_disconnect_fromlist
+	local	191,000000,util__Connectable_disconnect_all
+	local	192,000000,util__Connectable_disconnect
+	declend
+	line	28
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	var	127
+	var	128
+	var	129
+	var	130
+	var	131
+	var	132
+	var	133
+	var	134
+	var	135
+	var	136
+	var	137
+	var	138
+	var	139
+	var	140
+	var	141
+	var	142
+	var	143
+	var	144
+	var	145
+	var	146
+	var	147
+	var	148
+	var	149
+	var	150
+	var	151
+	var	152
+	var	153
+	var	154
+	var	155
+	var	156
+	var	157
+	var	158
+	var	159
+	var	160
+	var	161
+	var	162
+	var	163
+	var	164
+	var	165
+	var	166
+	var	167
+	var	168
+	var	169
+	var	170
+	var	171
+	var	172
+	var	173
+	var	174
+	var	175
+	var	176
+	var	177
+	var	178
+	var	179
+	var	180
+	var	181
+	var	182
+	var	183
+	var	184
+	var	185
+	var	186
+	var	187
+	var	188
+	var	189
+	var	190
+	var	191
+	var	192
+	line	29
+	colm	53
+	synt	any
+	invoke	191
+	line	29
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	30
+	colm	1
+	synt	any
+	pfail
+	end
+proc get_directory_list
+	local	0,001000,s
+	local	1,001000,file_extension
+	local	2,000020,dir_list
+	local	3,000020,file_list
+	local	4,000020,ext
+	local	5,000000,fatal_error
+	local	6,000000,stop
+	local	7,000000,fext_list
+	local	8,000000,map
+	local	9,000000,repl
+	local	10,000000,p
+	local	11,000000,open
+	local	12,000000,write
+	local	13,000000,image
+	local	14,000000,s2
+	local	15,000000,read
+	local	16,000000,sr
+	local	17,000000,stat
+	local	18,000000,put
+	local	19,000000,find
+	local	20,000000,close
+	local	21,000000,sort
+	con	0,010000,3,052,056,052
+	con	1,010000,4,056,143,160,160
+	con	2,010000,2,056,143
+	con	3,010000,3,056,143,143
+	con	4,010000,2,056,150
+	con	5,010000,5,056,152,141,166,141
+	con	6,010000,4,056,151,143,156
+	con	7,010000,5,056,165,160,162,152
+	con	8,010000,1,057
+	con	9,010000,1,134
+	con	10,002000,1,1
+	con	11,010000,1,141
+	con	12,002000,2,52
+	con	13,010000,3,141,072,134
+	con	14,010000,0
+	con	15,010000,31,147,145,164,137,144,151,162,145,143,164,157,162,171,137,154,151,163,164,072,040,143,141,156,047,164,040,157,160,145,156,040
+	con	16,010000,31,147,145,164,137,144,151,162,145,143,164,157,162,171,137,154,151,163,164,072,040,143,141,156,047,164,040,163,164,141,164,040
+	con	17,010000,1,144
+	con	18,002000,1,2
+	declend
+	filen	hfiledialog.icn
+	line	203
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	5
+	line	205
+	colm	4
+	synt	any
+	null
+	var	6
+	line	205
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	7
+	pnull
+	str	0
+	mark	L3
+	str	1
+	line	206
+	colm	30
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	mark	L5
+	str	2
+	line	206
+	colm	35
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	mark	L7
+	str	3
+	line	206
+	colm	41
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	str	4
+lab L8
+lab L6
+lab L4
+	str	5
+	str	6
+	str	7
+	line	206
+	colm	16
+	synt	any
+	llist	5
+	line	206
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L9
+	pnull
+	var	4
+	pnull
+	var	7
+	pnull
+	var	1
+	line	208
+	colm	35
+	synt	any
+	field	get_selection
+	line	208
+	colm	49
+	synt	any
+	invoke	0
+	line	208
+	colm	20
+	synt	any
+	subsc
+	line	208
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	var	8
+	var	0
+	str	8
+	str	9
+	line	211
+	colm	12
+	synt	any
+	invoke	3
+	line	211
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	212
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	212
+	colm	8
+	synt	any
+	size
+	int	10
+	line	212
+	colm	11
+	synt	any
+	numgt
+	pop
+	pnull
+	pnull
+	var	0
+	pnull
+	int	10
+	line	212
+	colm	21
+	synt	any
+	neg
+	line	212
+	colm	20
+	synt	any
+	subsc
+	str	9
+	line	212
+	colm	25
+	synt	any
+	lexeq
+	pop
+	pnull
+	var	8
+	var	0
+	line	213
+	colm	14
+	synt	any
+	keywd	letters
+	var	9
+	str	11
+	int	12
+	line	213
+	colm	27
+	synt	any
+	invoke	2
+	line	213
+	colm	11
+	synt	any
+	invoke	3
+	str	13
+	line	213
+	colm	37
+	synt	any
+	lexne
+	unmark
+	pnull
+	pnull
+	var	0
+	pnull
+	int	10
+	line	214
+	colm	9
+	synt	any
+	neg
+	line	214
+	colm	8
+	synt	any
+	subsc
+	str	14
+	line	214
+	colm	13
+	synt	any
+	asgn
+	line	212
+	colm	4
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	10
+	mark	L13
+	var	11
+	var	0
+	line	219
+	colm	13
+	synt	any
+	invoke	1
+	line	219
+	colm	17
+	synt	any
+	esusp
+	goto	L14
+lab L13
+	mark	L15
+	var	12
+	line	220
+	colm	13
+	synt	any
+	keywd	errout
+	str	15
+	var	13
+	var	0
+	line	220
+	colm	62
+	synt	any
+	invoke	1
+	line	220
+	colm	12
+	synt	any
+	invoke	3
+	unmark
+lab L15
+	line	221
+	colm	7
+	synt	any
+	pfail
+lab L14
+	line	219
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L16
+	line	223
+	colm	4
+	synt	if
+	mark0
+	mark	L17
+	pnull
+	pnull
+	var	0
+	pnull
+	int	10
+	line	223
+	colm	14
+	synt	any
+	neg
+	line	223
+	colm	13
+	synt	any
+	subsc
+	str	9
+	line	223
+	colm	18
+	synt	any
+	lexeq
+	unmark
+	efail
+lab L17
+	pnull
+	unmark
+	pnull
+	var	0
+	dup
+	str	9
+	line	223
+	colm	34
+	synt	any
+	cat
+	asgn
+	line	223
+	colm	4
+	synt	endif
+	unmark
+lab L16
+	mark	L18
+	pnull
+	var	2
+	pnull
+	line	224
+	colm	16
+	synt	any
+	llist	0
+	line	224
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	3
+	pnull
+	line	225
+	colm	17
+	synt	any
+	llist	0
+	line	225
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+lab L21
+	line	226
+	colm	4
+	synt	while
+	mark0
+	pnull
+	var	14
+	var	15
+	var	10
+	line	226
+	colm	20
+	synt	any
+	invoke	1
+	line	226
+	colm	13
+	synt	any
+	asgn
+	unmark
+	mark	L21
+	mark	L24
+	pnull
+	var	16
+	mark	L25
+	var	17
+	pnull
+	var	0
+	var	14
+	line	227
+	colm	19
+	synt	any
+	cat
+	line	227
+	colm	17
+	synt	any
+	invoke	1
+	line	227
+	colm	25
+	synt	any
+	esusp
+	goto	L26
+lab L25
+	mark	L27
+	var	12
+	line	228
+	colm	16
+	synt	any
+	keywd	errout
+	str	16
+	var	13
+	var	14
+	line	228
+	colm	65
+	synt	any
+	invoke	1
+	line	228
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L27
+	line	229
+	colm	10
+	synt	any
+	pfail
+lab L26
+	line	227
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L24
+	line	231
+	colm	7
+	synt	ifelse
+	mark	L28
+	pnull
+	pnull
+	pnull
+	var	16
+	line	231
+	colm	12
+	synt	any
+	field	mode
+	int	10
+	line	231
+	colm	17
+	synt	any
+	subsc
+	str	17
+	line	231
+	colm	21
+	synt	any
+	lexeq
+	unmark
+	var	18
+	var	2
+	pnull
+	var	14
+	str	9
+	line	232
+	colm	27
+	synt	any
+	cat
+	line	232
+	colm	13
+	synt	any
+	invoke	2
+	goto	L29
+lab L28
+	line	234
+	colm	10
+	synt	ifelse
+	mark	L30
+	pnull
+	pnull
+	var	1
+	line	234
+	colm	27
+	synt	any
+	field	get_selection
+	line	234
+	colm	41
+	synt	any
+	invoke	0
+	int	10
+	line	234
+	colm	44
+	synt	any
+	lexeq
+	unmark
+	var	18
+	var	3
+	var	14
+	line	235
+	colm	16
+	synt	any
+	invoke	2
+	goto	L31
+lab L30
+	mark	L32
+	line	237
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	237
+	colm	30
+	synt	any
+	field	get_selection
+	line	237
+	colm	44
+	synt	any
+	invoke	0
+	int	18
+	line	237
+	colm	47
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	4
+	mark	L33
+	str	1
+	line	238
+	colm	29
+	synt	any
+	esusp
+	goto	L34
+lab L33
+	mark	L35
+	str	2
+	line	238
+	colm	34
+	synt	any
+	esusp
+	goto	L36
+lab L35
+	mark	L37
+	str	3
+	line	238
+	colm	40
+	synt	any
+	esusp
+	goto	L38
+lab L37
+	str	4
+lab L38
+lab L36
+lab L34
+	line	238
+	colm	20
+	synt	any
+	asgn
+	line	237
+	colm	13
+	synt	endif
+	unmark
+lab L32
+	line	239
+	colm	13
+	synt	if
+	mark0
+	var	19
+	var	4
+	var	14
+	line	239
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+	var	18
+	var	3
+	var	14
+	line	240
+	colm	19
+	synt	any
+	invoke	2
+	line	239
+	colm	13
+	synt	endif
+lab L31
+	line	234
+	colm	10
+	synt	endifelse
+lab L29
+	line	231
+	colm	7
+	synt	endifelse
+lab L22
+	unmark
+	goto	L21
+lab L23
+	line	226
+	colm	4
+	synt	endwhile
+	unmark
+lab L20
+	mark	L39
+	var	20
+	var	10
+	line	243
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L39
+	mark	L40
+	mark	L41
+	pnull
+	var	21
+	var	2
+	line	244
+	colm	16
+	synt	any
+	invoke	1
+	var	21
+	var	3
+	line	244
+	colm	32
+	synt	any
+	invoke	1
+	line	244
+	colm	11
+	synt	any
+	llist	2
+	line	244
+	colm	4
+	synt	any
+	pret
+lab L41
+	synt	any
+	pfail
+	unmark
+lab L40
+	pnull
+	line	245
+	colm	1
+	synt	any
+	pfail
+	end

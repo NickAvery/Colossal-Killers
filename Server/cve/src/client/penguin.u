@@ -1,0 +1,16563 @@
+version	U12.1.00
+uid	penguin.u1-1523917903-0
+record	penguinj__state,55
+	0,__s
+	1,__m
+	2,origx
+	3,origy
+	4,origz
+	5,sex
+	6,angle
+	7,ro
+	8,mv
+	9,h
+	10,b
+	11,c
+	12,la
+	13,ra
+	14,lg
+	15,rg
+	16,face
+	17,X
+	18,Y
+	19,Z
+	20,xsize
+	21,ysize
+	22,zsize
+	23,height
+	24,color
+	25,face_path
+	26,a_name
+	27,scolor
+	28,pcolor
+	29,shcolor
+	30,hdchoice
+	31,shape
+	32,ps
+	33,moveuid
+	34,moveuidbody
+	35,uid
+	36,x
+	37,y
+	38,z
+	39,lx
+	40,lz
+	41,fint
+	42,rarm
+	43,larm
+	44,grouping
+	45,render_set
+	46,isRendered
+	47,vertical_ptr
+	48,horizontal_ptr
+	49,isPointing
+	50,object
+	51,chair
+	52,sittingDown
+	53,body_part
+	54,currObjID
+record	penguinj__methods,29
+	0,initialize
+	1,derender
+	2,flushnet
+	3,move_part
+	4,move_part_complex
+	5,move
+	6,isTalking
+	7,SetTalkState
+	8,setup
+	9,render
+	10,actual_render
+	11,parser
+	12,getcolor
+	13,test_new_pos
+	14,moveabs
+	15,actions
+	16,possess
+	17,unpossess
+	18,switchObjectUp
+	19,switchObjectDown
+	20,getX
+	21,getY
+	22,getZ
+	23,getName
+	24,cam_follows
+	25,broadcast_move
+	26,initially
+	27,movePartComplex
+	28,avatar
+record	phead__state,25
+	0,__s
+	1,__m
+	2,headx
+	3,heady
+	4,headz
+	5,headr
+	6,neckx
+	7,necky
+	8,neckz
+	9,neckh
+	10,neckt
+	11,neckb
+	12,m1
+	13,m2
+	14,m3
+	15,m4
+	16,counter
+	17,ch
+	18,romx
+	19,romy
+	20,romz
+	21,headWS
+	22,ps
+	23,object
+	24,nameTagWS
+record	phead__methods,7
+	0,render
+	1,initially
+	2,initRMatrix
+	3,setAngleComplex
+	4,setAngle
+	5,createNameTag
+	6,avatarParts
+record	pbody__state,9
+	0,__s
+	1,__m
+	2,bodyWS
+	3,ps
+	4,romx
+	5,romy
+	6,romz
+	7,object
+	8,nameTagWS
+record	pbody__methods,7
+	0,render
+	1,initially
+	2,initRMatrix
+	3,setAngleComplex
+	4,setAngle
+	5,createNameTag
+	6,avatarParts
+record	parm__state,9
+	0,__s
+	1,__m
+	2,armWS
+	3,ps
+	4,romx
+	5,romy
+	6,romz
+	7,object
+	8,nameTagWS
+record	parm__methods,7
+	0,render
+	1,initially
+	2,initRMatrix
+	3,setAngleComplex
+	4,setAngle
+	5,createNameTag
+	6,avatarParts
+record	pleg__state,10
+	0,__s
+	1,__m
+	2,rot
+	3,legWS
+	4,ps
+	5,romx
+	6,romy
+	7,romz
+	8,object
+	9,nameTagWS
+record	pleg__methods,10
+	0,render
+	1,incrementAngle
+	2,decrementAngle
+	3,setAnglePart
+	4,initially
+	5,initRMatrix
+	6,setAngleComplex
+	7,setAngle
+	8,createNameTag
+	9,avatarParts
+impl	error
+link	C:/Users/Kevin/cve/src/client/avatar.u
+link	C:/Users/Kevin/cve/src/client/avatar.u
+global	66
+	0,000001,penSize,0
+	1,000005,penguinj_initialize,1
+	2,000005,penguinj_derender,1
+	3,000005,penguinj_flushnet,1
+	4,000005,penguinj_move_part,4
+	5,000005,penguinj_move_part_complex,5
+	6,000005,penguinj_move,5
+	7,000005,penguinj_isTalking,1
+	8,000005,penguinj_SetTalkState,2
+	9,000005,penguinj_setup,5
+	10,000005,penguinj_render,1
+	11,000005,penguinj_actual_render,1
+	12,000005,penguinj_parser,2
+	13,000005,penguinj_getcolor,1
+	14,000005,penguinj_test_new_pos,6
+	15,000005,penguinj_moveabs,5
+	16,000005,penguinj_actions,3
+	17,000005,penguinj_possess,2
+	18,000005,penguinj_unpossess,1
+	19,000005,penguinj_switchObjectUp,1
+	20,000005,penguinj_switchObjectDown,1
+	21,000005,penguinj_getX,1
+	22,000005,penguinj_getY,1
+	23,000005,penguinj_getZ,1
+	24,000005,penguinj_getName,1
+	25,000005,penguinj_cam_follows,1
+	26,000005,penguinj_broadcast_move,1
+	27,000005,penguinj_initially,6
+	28,000011,penguinj__state,55
+	29,000011,penguinj__methods,29
+	30,000001,penguinj__oprec,0
+	31,000001,avatar__oprec,0
+	32,000005,penguinj,5
+	33,000005,penguinjinitialize,0
+	34,000005,phead_render,4
+	35,000005,phead_initially,1
+	36,000011,phead__state,25
+	37,000011,phead__methods,7
+	38,000001,phead__oprec,0
+	39,000001,avatarParts__oprec,0
+	40,000005,phead,0
+	41,000005,pheadinitialize,0
+	42,000005,pbody_render,7
+	43,000005,pbody_initially,1
+	44,000011,pbody__state,9
+	45,000011,pbody__methods,7
+	46,000001,pbody__oprec,0
+	47,000005,pbody,0
+	48,000005,pbodyinitialize,0
+	49,000005,parm_render,4
+	50,000005,parm_initially,1
+	51,000011,parm__state,9
+	52,000011,parm__methods,7
+	53,000001,parm__oprec,0
+	54,000005,parm,0
+	55,000005,parminitialize,0
+	56,000005,pleg_render,4
+	57,000005,pleg_incrementAngle,1
+	58,000005,pleg_decrementAngle,1
+	59,000005,pleg_setAnglePart,2
+	60,000005,pleg_initially,1
+	61,000011,pleg__state,10
+	62,000011,pleg__methods,10
+	63,000001,pleg__oprec,0
+	64,000005,pleg,0
+	65,000005,pleginitialize,0
+
+proc penguinj_initialize
+	local	0,001000,self
+	local	1,000000,world
+	con	0,010000,4,056,141,166,164
+	declend
+	filen	penguin.icn
+	line	47
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	11
+	synt	any
+	field	face_path
+	pnull
+	var	1
+	line	48
+	colm	28
+	synt	any
+	field	avatar_path
+	line	48
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	49
+	colm	11
+	synt	any
+	field	parser
+	pnull
+	pnull
+	pnull
+	var	1
+	line	49
+	colm	24
+	synt	any
+	field	avatar_path
+	pnull
+	var	0
+	line	49
+	colm	42
+	synt	any
+	field	uid
+	line	49
+	colm	36
+	synt	any
+	cat
+	str	0
+	line	49
+	colm	46
+	synt	any
+	cat
+	line	49
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	0
+	line	50
+	colm	11
+	synt	any
+	field	setup
+	pnull
+	var	0
+	line	50
+	colm	22
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	50
+	colm	29
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	50
+	colm	36
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	50
+	colm	43
+	synt	any
+	field	angle
+	line	50
+	colm	17
+	synt	any
+	invoke	4
+	unmark
+lab L3
+	pnull
+	line	51
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_derender
+	local	0,001000,self
+	local	1,000020,len
+	local	2,000020,i
+	local	3,000020,item
+	local	4,000020,win3d
+	local	5,000020,dispList
+	local	6,000000,world
+	con	0,002000,1,1
+	declend
+	line	52
+	colm	11
+	synt	any
+	mark	L1
+	line	55
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	16
+	synt	any
+	field	h
+	line	55
+	colm	18
+	synt	any
+	field	headWS
+	line	55
+	colm	11
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	56
+	colm	13
+	synt	any
+	field	h
+	line	56
+	colm	15
+	synt	any
+	field	headWS
+	line	56
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	56
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	57
+	colm	13
+	synt	any
+	field	b
+	line	57
+	colm	15
+	synt	any
+	field	bodyWS
+	line	57
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	57
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	13
+	synt	any
+	field	la
+	line	58
+	colm	16
+	synt	any
+	field	armWS
+	line	58
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	58
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	13
+	synt	any
+	field	ra
+	line	59
+	colm	16
+	synt	any
+	field	armWS
+	line	59
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	59
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	13
+	synt	any
+	field	lg
+	line	60
+	colm	16
+	synt	any
+	field	legWS
+	line	60
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	60
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L6
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	13
+	synt	any
+	field	rg
+	line	61
+	colm	16
+	synt	any
+	field	legWS
+	line	61
+	colm	22
+	synt	any
+	field	skip
+	int	0
+	line	61
+	colm	27
+	synt	any
+	asgn
+	line	55
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L7
+	line	64
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	64
+	colm	16
+	synt	any
+	field	isRendered
+	line	64
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L8
+	pnull
+	line	64
+	colm	33
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	line	64
+	colm	7
+	synt	endif
+	unmark
+lab L7
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	65
+	colm	14
+	synt	any
+	field	isRendered
+	line	65
+	colm	27
+	synt	any
+	keywd	null
+	line	65
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	6
+	line	66
+	colm	12
+	synt	any
+	field	NeedsRefresh
+	line	66
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	mark	L12
+	pnull
+	line	67
+	colm	7
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	68
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_flushnet
+	local	0,001000,self
+	local	1,000000,session
+	local	2,000000,list
+	declend
+	line	73
+	colm	11
+	synt	any
+	mark	L1
+	line	74
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	74
+	colm	17
+	synt	any
+	field	isUp
+	line	74
+	colm	22
+	synt	any
+	invoke	0
+	unmark
+	mark	L2
+	pnull
+	var	1
+	line	75
+	colm	17
+	synt	any
+	field	Write
+	pnull
+	var	0
+	line	75
+	colm	28
+	synt	any
+	field	grouping
+	line	75
+	colm	23
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	pnull
+	pnull
+	var	0
+	line	76
+	colm	14
+	synt	any
+	field	grouping
+	var	2
+	line	76
+	colm	29
+	synt	any
+	invoke	0
+	line	76
+	colm	23
+	synt	any
+	asgn
+	line	74
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	78
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_move_part
+	local	0,001000,self
+	local	1,001000,name
+	local	2,001000,dir
+	local	3,001000,ang
+	local	4,000000,world
+	local	5,000000,session
+	local	6,000000,put
+	con	0,010000,9,162,151,147,150,164,137,141,162,155
+	con	1,010000,8,154,145,146,164,137,141,162,155
+	con	2,010000,9,162,151,147,150,164,137,154,145,147
+	con	3,010000,8,154,145,146,164,137,154,145,147
+	con	4,010000,5,160,141,162,164,040
+	con	5,010000,1,040
+	declend
+	line	86
+	colm	11
+	synt	any
+	mark	L1
+	line	87
+	colm	7
+	synt	case
+	mark0
+	var	1
+	eret
+	mark	L3
+	ccase
+	str	0
+	line	88
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	88
+	colm	28
+	synt	any
+	field	ra
+	line	88
+	colm	31
+	synt	any
+	field	setAngle
+	var	3
+	var	2
+	line	88
+	colm	40
+	synt	any
+	invoke	2
+	goto	L2
+lab L3
+	mark	L4
+	ccase
+	str	1
+	line	89
+	colm	21
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	28
+	synt	any
+	field	la
+	line	89
+	colm	31
+	synt	any
+	field	setAngle
+	var	3
+	var	2
+	line	89
+	colm	40
+	synt	any
+	invoke	2
+	goto	L2
+lab L4
+	mark	L5
+	ccase
+	str	2
+	line	90
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	90
+	colm	28
+	synt	any
+	field	rg
+	line	90
+	colm	31
+	synt	any
+	field	setAngle
+	var	3
+	var	2
+	line	90
+	colm	40
+	synt	any
+	invoke	2
+	goto	L2
+lab L5
+	mark	L6
+	ccase
+	str	3
+	line	91
+	colm	21
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	28
+	synt	any
+	field	lg
+	line	91
+	colm	31
+	synt	any
+	field	setAngle
+	var	3
+	var	2
+	line	91
+	colm	40
+	synt	any
+	invoke	2
+	goto	L2
+lab L6
+	efail
+lab L2
+	line	87
+	colm	7
+	synt	endcase
+	unmark
+lab L1
+	mark	L7
+	pnull
+	var	4
+	line	93
+	colm	12
+	synt	any
+	field	NeedsRefresh
+	line	93
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L7
+	mark	L8
+	line	94
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	4
+	line	94
+	colm	25
+	synt	any
+	field	cam
+	line	94
+	colm	29
+	synt	any
+	field	avatar
+	line	94
+	colm	16
+	synt	any
+	eqv
+	pop
+	pnull
+	var	5
+	line	94
+	colm	47
+	synt	any
+	field	isUp
+	line	94
+	colm	52
+	synt	any
+	invoke	0
+	unmark
+	var	6
+	pnull
+	var	0
+	line	95
+	colm	18
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	95
+	colm	32
+	synt	any
+	field	moveuid
+	str	4
+	line	95
+	colm	40
+	synt	any
+	cat
+	var	1
+	line	95
+	colm	49
+	synt	any
+	cat
+	str	5
+	line	95
+	colm	55
+	synt	any
+	cat
+	var	2
+	line	95
+	colm	60
+	synt	any
+	cat
+	str	5
+	line	95
+	colm	66
+	synt	any
+	cat
+	var	3
+	line	95
+	colm	73
+	synt	any
+	cat
+	line	95
+	colm	13
+	synt	any
+	invoke	2
+	line	94
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	pnull
+	line	97
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_move_part_complex
+	local	0,001000,self
+	local	1,001000,name
+	local	2,001000,x
+	local	3,001000,y
+	local	4,001000,z
+	local	5,000020,msg
+	local	6,000000,world
+	local	7,000000,session
+	local	8,000000,put
+	con	0,010000,9,162,151,147,150,164,137,141,162,155
+	con	1,010000,4,150,145,141,144
+	con	2,010000,8,154,145,146,164,137,141,162,155
+	con	3,010000,9,162,151,147,150,164,137,154,145,147
+	con	4,010000,8,154,145,146,164,137,154,145,147
+	con	5,010000,6,160,141,162,164,062,040
+	con	6,010000,1,040
+	declend
+	line	106
+	colm	11
+	synt	any
+	mark	L1
+	line	109
+	colm	7
+	synt	case
+	mark0
+	var	1
+	eret
+	mark	L3
+	ccase
+	str	0
+	line	110
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	28
+	synt	any
+	field	ra
+	line	110
+	colm	31
+	synt	any
+	field	setAngleComplex
+	var	2
+	var	3
+	var	4
+	line	110
+	colm	47
+	synt	any
+	invoke	3
+	goto	L2
+lab L3
+	mark	L4
+	ccase
+	str	1
+	line	111
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	111
+	colm	28
+	synt	any
+	field	h
+	line	111
+	colm	30
+	synt	any
+	field	setAngleComplex
+	var	2
+	var	3
+	var	4
+	line	111
+	colm	46
+	synt	any
+	invoke	3
+	goto	L2
+lab L4
+	mark	L5
+	ccase
+	str	2
+	line	112
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	28
+	synt	any
+	field	la
+	line	112
+	colm	31
+	synt	any
+	field	setAngleComplex
+	var	2
+	var	3
+	var	4
+	line	112
+	colm	47
+	synt	any
+	invoke	3
+	goto	L2
+lab L5
+	mark	L6
+	ccase
+	str	3
+	line	113
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	113
+	colm	28
+	synt	any
+	field	rg
+	line	113
+	colm	31
+	synt	any
+	field	setAngleComplex
+	var	2
+	var	3
+	var	4
+	line	113
+	colm	47
+	synt	any
+	invoke	3
+	goto	L2
+lab L6
+	mark	L7
+	ccase
+	str	4
+	line	114
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	114
+	colm	28
+	synt	any
+	field	lg
+	line	114
+	colm	31
+	synt	any
+	field	setAngleComplex
+	var	2
+	var	3
+	var	4
+	line	114
+	colm	47
+	synt	any
+	invoke	3
+	goto	L2
+lab L7
+	efail
+lab L2
+	line	109
+	colm	7
+	synt	endcase
+	unmark
+lab L1
+	mark	L8
+	pnull
+	var	6
+	line	116
+	colm	12
+	synt	any
+	field	NeedsRefresh
+	line	116
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	line	117
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	6
+	line	117
+	colm	25
+	synt	any
+	field	cam
+	line	117
+	colm	29
+	synt	any
+	field	avatar
+	line	117
+	colm	16
+	synt	any
+	eqv
+	pop
+	pnull
+	var	7
+	line	117
+	colm	47
+	synt	any
+	field	isUp
+	line	117
+	colm	52
+	synt	any
+	invoke	0
+	unmark
+	mark	L10
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	118
+	colm	21
+	synt	any
+	field	moveuid
+	str	5
+	line	118
+	colm	29
+	synt	any
+	cat
+	var	1
+	line	118
+	colm	39
+	synt	any
+	cat
+	str	6
+	line	118
+	colm	46
+	synt	any
+	cat
+	var	2
+	line	118
+	colm	53
+	synt	any
+	cat
+	str	6
+	line	118
+	colm	58
+	synt	any
+	cat
+	var	3
+	line	118
+	colm	65
+	synt	any
+	cat
+	str	6
+	line	118
+	colm	70
+	synt	any
+	cat
+	var	4
+	line	118
+	colm	77
+	synt	any
+	cat
+	line	118
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L10
+	var	8
+	pnull
+	var	0
+	line	119
+	colm	18
+	synt	any
+	field	grouping
+	var	5
+	line	119
+	colm	13
+	synt	any
+	invoke	2
+	line	117
+	colm	7
+	synt	endif
+	unmark
+lab L9
+	pnull
+	line	121
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_move
+	local	0,001000,self
+	local	1,001000,posx
+	local	2,001000,posy
+	local	3,001000,posz
+	local	4,001000,ang
+	local	5,000020,degree
+	local	6,000000,rtod
+	local	7,000000,world
+	con	0,002000,1,2
+	con	1,002000,1,0
+	declend
+	line	129
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	5
+	var	6
+	var	4
+	line	131
+	colm	21
+	synt	any
+	invoke	1
+	line	131
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	132
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	15
+	synt	any
+	field	ro
+	line	132
+	colm	10
+	synt	any
+	null
+	unmark
+	line	132
+	colm	24
+	synt	any
+	pfail
+	line	132
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	133
+	colm	11
+	synt	any
+	field	ro
+	line	133
+	colm	14
+	synt	any
+	field	angle
+	var	5
+	line	133
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	134
+	colm	11
+	synt	any
+	field	X
+	var	1
+	line	134
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	135
+	colm	11
+	synt	any
+	field	Y
+	pnull
+	pnull
+	var	0
+	line	135
+	colm	19
+	synt	any
+	field	origy
+	pnull
+	int	0
+	pnull
+	var	0
+	line	135
+	colm	32
+	synt	any
+	field	height
+	line	135
+	colm	27
+	synt	any
+	mult
+	line	135
+	colm	25
+	synt	any
+	plus
+	line	135
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	136
+	colm	11
+	synt	any
+	field	Z
+	var	3
+	line	136
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	137
+	colm	11
+	synt	any
+	field	mv
+	line	137
+	colm	14
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	137
+	colm	22
+	synt	any
+	field	X
+	line	137
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	138
+	colm	11
+	synt	any
+	field	mv
+	line	138
+	colm	14
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	138
+	colm	22
+	synt	any
+	field	Y
+	line	138
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	139
+	colm	11
+	synt	any
+	field	mv
+	line	139
+	colm	14
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	139
+	colm	22
+	synt	any
+	field	Z
+	line	139
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	line	140
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	140
+	colm	15
+	synt	any
+	field	object
+	line	140
+	colm	10
+	synt	any
+	size
+	int	1
+	line	140
+	colm	22
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	pnull
+	var	0
+	line	141
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	141
+	colm	26
+	synt	any
+	field	currObjID
+	line	141
+	colm	21
+	synt	any
+	subsc
+	line	141
+	colm	37
+	synt	any
+	field	moveAlongAvatar
+	pnull
+	pnull
+	var	0
+	line	141
+	colm	58
+	synt	any
+	field	mv
+	line	141
+	colm	61
+	synt	any
+	field	x
+	var	2
+	pnull
+	pnull
+	var	0
+	line	141
+	colm	73
+	synt	any
+	field	mv
+	line	141
+	colm	76
+	synt	any
+	field	z
+	var	5
+	line	141
+	colm	53
+	synt	any
+	invoke	4
+	line	140
+	colm	7
+	synt	endif
+	unmark
+lab L10
+	mark	L11
+	line	143
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	7
+	line	143
+	colm	15
+	synt	any
+	field	cam
+	line	143
+	colm	19
+	synt	any
+	field	view_mode
+	int	0
+	line	143
+	colm	30
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	7
+	line	144
+	colm	15
+	synt	any
+	field	NeedsRefresh
+	line	144
+	colm	28
+	synt	any
+	invoke	0
+	line	143
+	colm	7
+	synt	endif
+	unmark
+lab L11
+	pnull
+	line	146
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_isTalking
+	local	0,001000,self
+	local	1,000000,world
+	local	2,000000,session
+	local	3,000000,put
+	con	0,010000,5,155,157,165,164,150
+	declend
+	line	151
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	152
+	colm	11
+	synt	any
+	field	h
+	line	152
+	colm	13
+	synt	any
+	field	isTalking
+	line	152
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	mark	L2
+	line	153
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	1
+	line	153
+	colm	25
+	synt	any
+	field	cam
+	line	153
+	colm	29
+	synt	any
+	field	avatar
+	line	153
+	colm	16
+	synt	any
+	eqv
+	pop
+	pnull
+	var	2
+	line	153
+	colm	47
+	synt	any
+	field	isUp
+	line	153
+	colm	52
+	synt	any
+	invoke	0
+	unmark
+	var	3
+	pnull
+	var	0
+	line	154
+	colm	18
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	var	0
+	line	154
+	colm	32
+	synt	any
+	field	moveuid
+	str	0
+	line	154
+	colm	40
+	synt	any
+	cat
+	line	154
+	colm	13
+	synt	any
+	invoke	2
+	line	153
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	156
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_SetTalkState
+	local	0,001000,self
+	local	1,001000,state
+	local	2,000000,world
+	local	3,000000,session
+	local	4,000000,put
+	con	0,010000,5,155,157,165,164,150
+	declend
+	line	161
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	162
+	colm	11
+	synt	any
+	field	h
+	line	162
+	colm	13
+	synt	any
+	field	SetTalkState
+	var	1
+	line	162
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	line	163
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	2
+	line	163
+	colm	25
+	synt	any
+	field	cam
+	line	163
+	colm	29
+	synt	any
+	field	avatar
+	line	163
+	colm	16
+	synt	any
+	eqv
+	pop
+	pnull
+	var	3
+	line	163
+	colm	47
+	synt	any
+	field	isUp
+	line	163
+	colm	52
+	synt	any
+	invoke	0
+	unmark
+	var	4
+	pnull
+	var	0
+	line	164
+	colm	18
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	var	0
+	line	164
+	colm	32
+	synt	any
+	field	moveuid
+	str	0
+	line	164
+	colm	40
+	synt	any
+	cat
+	line	164
+	colm	13
+	synt	any
+	invoke	2
+	line	163
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	166
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_setup
+	local	0,001000,self
+	local	1,001000,x
+	local	2,001000,y
+	local	3,001000,z
+	local	4,001000,ang
+	local	5,000000,phead
+	local	6,000000,pbody
+	local	7,000000,parm
+	local	8,000000,pleg
+	declend
+	line	173
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	11
+	synt	any
+	field	X
+	var	1
+	line	174
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	21
+	synt	any
+	field	Y
+	var	2
+	line	174
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	31
+	synt	any
+	field	Z
+	var	3
+	line	174
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	41
+	synt	any
+	field	angle
+	var	4
+	line	174
+	colm	47
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	175
+	colm	11
+	synt	any
+	field	h
+	var	5
+	line	175
+	colm	20
+	synt	any
+	invoke	0
+	line	175
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	176
+	colm	11
+	synt	any
+	field	b
+	var	6
+	line	176
+	colm	20
+	synt	any
+	invoke	0
+	line	176
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	177
+	colm	11
+	synt	any
+	field	la
+	var	7
+	line	177
+	colm	20
+	synt	any
+	invoke	0
+	line	177
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	178
+	colm	11
+	synt	any
+	field	ra
+	var	7
+	line	178
+	colm	20
+	synt	any
+	invoke	0
+	line	178
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	179
+	colm	11
+	synt	any
+	field	lg
+	var	8
+	line	179
+	colm	20
+	synt	any
+	invoke	0
+	line	179
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	180
+	colm	11
+	synt	any
+	field	rg
+	var	8
+	line	180
+	colm	20
+	synt	any
+	invoke	0
+	line	180
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L10
+	pnull
+	line	181
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_render
+	local	0,001000,self
+	local	1,000020,oldwin
+	local	2,000000,gui__dispatcher
+	con	0,002000,1,1
+	declend
+	line	187
+	colm	11
+	synt	any
+	mark	L1
+	line	190
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	190
+	colm	15
+	synt	any
+	field	isRendered
+	line	190
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	line	190
+	colm	32
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	190
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	191
+	colm	11
+	synt	any
+	field	isRendered
+	int	0
+	line	191
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	1
+	line	192
+	colm	17
+	synt	any
+	keywd	window
+	line	192
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	line	193
+	colm	7
+	synt	any
+	keywd	window
+	pnull
+	pnull
+	var	2
+	line	193
+	colm	34
+	synt	any
+	field	subwins
+	line	193
+	colm	18
+	synt	any
+	bang
+	line	193
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	0
+	line	194
+	colm	11
+	synt	any
+	field	actual_render
+	line	194
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	mark	L7
+	pnull
+	line	195
+	colm	7
+	synt	any
+	keywd	window
+	var	1
+	line	195
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L7
+	pnull
+	line	196
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_actual_render
+	local	0,001000,self
+	local	1,000000,PushMatrix
+	local	2,000000,Translate
+	local	3,000000,Rotate
+	local	4,000000,Scale
+	local	5,000000,PopMatrix
+	local	6,000000,WAttrib
+	con	0,004000,1.0
+	con	1,002000,1,0
+	con	2,002000,1,1
+	con	3,010000,1,154
+	con	4,010000,1,162
+	con	5,010000,10,164,145,170,155,157,144,145,075,157,156
+	declend
+	line	201
+	colm	11
+	synt	any
+	mark	L1
+	var	1
+	line	202
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	203
+	colm	11
+	synt	any
+	field	height
+	real	0
+	line	203
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	11
+	synt	any
+	field	mv
+	var	2
+	pnull
+	var	0
+	line	204
+	colm	30
+	synt	any
+	field	X
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	37
+	synt	any
+	field	origy
+	pnull
+	var	0
+	line	204
+	colm	48
+	synt	any
+	field	height
+	line	204
+	colm	43
+	synt	any
+	plus
+	pnull
+	var	0
+	line	204
+	colm	60
+	synt	any
+	field	Z
+	line	204
+	colm	25
+	synt	any
+	invoke	3
+	line	204
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	11
+	synt	any
+	field	ro
+	var	3
+	pnull
+	var	0
+	line	205
+	colm	27
+	synt	any
+	field	angle
+	int	1
+	int	2
+	int	1
+	line	205
+	colm	22
+	synt	any
+	invoke	4
+	line	205
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	var	4
+	pnull
+	var	0
+	line	206
+	colm	17
+	synt	any
+	field	xsize
+	pnull
+	var	0
+	line	206
+	colm	28
+	synt	any
+	field	height
+	pnull
+	var	0
+	line	206
+	colm	40
+	synt	any
+	field	zsize
+	line	206
+	colm	12
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	208
+	colm	11
+	synt	any
+	field	h
+	line	208
+	colm	13
+	synt	any
+	field	render
+	pnull
+	pnull
+	var	0
+	line	208
+	colm	25
+	synt	any
+	field	face_path
+	pnull
+	var	0
+	line	208
+	colm	41
+	synt	any
+	field	face
+	line	208
+	colm	35
+	synt	any
+	cat
+	pnull
+	var	0
+	line	208
+	colm	51
+	synt	any
+	field	color
+	pnull
+	var	0
+	line	208
+	colm	62
+	synt	any
+	field	hdchoice
+	line	208
+	colm	20
+	synt	any
+	invoke	3
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	209
+	colm	11
+	synt	any
+	field	b
+	line	209
+	colm	13
+	synt	any
+	field	render
+	pnull
+	var	0
+	line	209
+	colm	25
+	synt	any
+	field	a_name
+	pnull
+	var	0
+	line	209
+	colm	37
+	synt	any
+	field	scolor
+	pnull
+	var	0
+	line	209
+	colm	49
+	synt	any
+	field	sex
+	pnull
+	var	0
+	line	209
+	colm	58
+	synt	any
+	field	pcolor
+	pnull
+	var	0
+	line	209
+	colm	70
+	synt	any
+	field	face_path
+	pnull
+	var	0
+	line	209
+	colm	85
+	synt	any
+	field	ps
+	line	209
+	colm	20
+	synt	any
+	invoke	6
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	210
+	colm	11
+	synt	any
+	field	la
+	line	210
+	colm	14
+	synt	any
+	field	render
+	str	3
+	pnull
+	var	0
+	line	210
+	colm	30
+	synt	any
+	field	color
+	pnull
+	var	0
+	line	210
+	colm	41
+	synt	any
+	field	scolor
+	line	210
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	211
+	colm	11
+	synt	any
+	field	ra
+	line	211
+	colm	14
+	synt	any
+	field	render
+	str	4
+	pnull
+	var	0
+	line	211
+	colm	30
+	synt	any
+	field	color
+	pnull
+	var	0
+	line	211
+	colm	41
+	synt	any
+	field	scolor
+	line	211
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	212
+	colm	11
+	synt	any
+	field	lg
+	line	212
+	colm	14
+	synt	any
+	field	render
+	str	3
+	pnull
+	var	0
+	line	212
+	colm	30
+	synt	any
+	field	pcolor
+	pnull
+	var	0
+	line	212
+	colm	42
+	synt	any
+	field	shcolor
+	line	212
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	213
+	colm	11
+	synt	any
+	field	rg
+	line	213
+	colm	14
+	synt	any
+	field	render
+	str	4
+	pnull
+	var	0
+	line	213
+	colm	30
+	synt	any
+	field	pcolor
+	pnull
+	var	0
+	line	213
+	colm	42
+	synt	any
+	field	shcolor
+	line	213
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L11
+	mark	L12
+	var	5
+	line	214
+	colm	16
+	synt	any
+	invoke	0
+	unmark
+lab L12
+	mark	L13
+	var	6
+	str	5
+	line	215
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	pnull
+	line	216
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_parser
+	local	0,001000,self
+	local	1,001000,file_name
+	local	2,000020,line
+	local	3,000020,file
+	local	4,000020,i
+	local	5,000020,nm
+	local	6,000020,val
+	local	7,000000,datopen
+	local	8,000000,stop
+	local	9,000000,trim
+	local	10,000000,read
+	local	11,000000,find
+	local	12,000000,write
+	local	13,000000,image
+	local	14,000000,map
+	local	15,000000,close
+	con	0,010000,11,103,141,156,047,164,040,157,160,145,156,040
+	con	1,002000,1,1
+	con	2,010000,1,043
+	con	3,010000,1,075
+	con	4,010000,25,141,166,164,040,146,151,154,145,040,146,157,162,155,141,164,040,145,162,162,157,162,040,151,156,040
+	con	5,002000,1,0
+	con	6,010000,4,156,141,155,145
+	con	7,010000,6,147,145,156,144,145,162
+	con	8,010000,10,163,153,151,156,040,143,157,154,157,162
+	con	9,010000,11,163,150,151,162,164,040,143,157,154,157,162
+	con	10,010000,11,160,141,156,164,163,040,143,157,154,157,162
+	con	11,010000,11,163,150,157,145,163,040,143,157,154,157,162
+	con	12,010000,10,150,145,141,144,040,163,150,141,160,145
+	con	13,010000,12,146,141,143,145,040,160,151,143,164,165,162,145
+	con	14,010000,5,163,150,141,160,145
+	declend
+	line	223
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	mark	L2
+	var	7
+	var	1
+	line	226
+	colm	22
+	synt	any
+	invoke	1
+	line	226
+	colm	34
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	var	8
+	str	0
+	var	1
+	line	226
+	colm	40
+	synt	any
+	invoke	2
+lab L3
+	line	226
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L4
+lab L5
+	line	227
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	2
+	var	9
+	var	10
+	var	3
+	line	227
+	colm	30
+	synt	any
+	invoke	1
+	line	227
+	colm	25
+	synt	any
+	invoke	1
+	line	227
+	colm	18
+	synt	any
+	asgn
+	unmark
+	mark	L5
+	line	228
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	int	1
+	line	228
+	colm	17
+	synt	any
+	subsc
+	str	2
+	line	228
+	colm	20
+	synt	any
+	lexne
+	unmark
+	mark	L8
+	line	229
+	colm	13
+	synt	if
+	mark0
+	mark	L9
+	pnull
+	var	4
+	pnull
+	var	11
+	str	3
+	var	2
+	line	229
+	colm	30
+	synt	any
+	invoke	2
+	int	1
+	line	229
+	colm	42
+	synt	any
+	plus
+	line	229
+	colm	23
+	synt	any
+	asgn
+	unmark
+	efail
+lab L9
+	pnull
+	unmark
+	mark	L10
+	var	12
+	str	4
+	var	13
+	var	2
+	line	230
+	colm	56
+	synt	any
+	invoke	1
+	line	230
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	unmark
+	unmark
+	pnull
+	goto	L7
+	line	229
+	colm	13
+	synt	endif
+	unmark
+lab L8
+	mark	L11
+	pnull
+	var	5
+	var	14
+	pnull
+	var	2
+	int	1
+	pnull
+	var	4
+	int	1
+	line	233
+	colm	31
+	synt	any
+	minus
+	line	233
+	colm	29
+	synt	any
+	synt	any
+	sect
+	line	233
+	colm	22
+	synt	any
+	invoke	1
+	line	233
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	line	234
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	6
+	pnull
+	var	2
+	var	4
+	int	5
+	line	234
+	colm	31
+	synt	any
+	synt	any
+	sect
+	line	234
+	colm	22
+	synt	any
+	asgn
+	line	234
+	colm	16
+	synt	any
+	size
+	int	5
+	line	234
+	colm	36
+	synt	any
+	numeq
+	unmark
+	unmark
+	unmark
+	pnull
+	goto	L7
+	line	234
+	colm	13
+	synt	endif
+	unmark
+lab L12
+	line	235
+	colm	13
+	synt	case
+	mark0
+	var	5
+	eret
+	mark	L14
+	ccase
+	str	6
+	line	236
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	236
+	colm	28
+	synt	any
+	field	a_name
+	var	6
+	line	236
+	colm	35
+	synt	any
+	asgn
+	goto	L13
+lab L14
+	mark	L15
+	ccase
+	str	7
+	line	237
+	colm	24
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	237
+	colm	30
+	synt	any
+	field	sex
+	var	6
+	line	237
+	colm	34
+	synt	any
+	asgn
+	goto	L13
+lab L15
+	mark	L16
+	ccase
+	str	8
+	line	238
+	colm	28
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	238
+	colm	34
+	synt	any
+	field	color
+	var	6
+	line	238
+	colm	40
+	synt	any
+	asgn
+	goto	L13
+lab L16
+	mark	L17
+	ccase
+	str	9
+	line	239
+	colm	29
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	239
+	colm	35
+	synt	any
+	field	scolor
+	var	6
+	line	239
+	colm	42
+	synt	any
+	asgn
+	goto	L13
+lab L17
+	mark	L18
+	ccase
+	str	10
+	line	240
+	colm	29
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	240
+	colm	35
+	synt	any
+	field	pcolor
+	var	6
+	line	240
+	colm	42
+	synt	any
+	asgn
+	goto	L13
+lab L18
+	mark	L19
+	ccase
+	str	11
+	line	241
+	colm	29
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	241
+	colm	35
+	synt	any
+	field	shcolor
+	var	6
+	line	241
+	colm	43
+	synt	any
+	asgn
+	goto	L13
+lab L19
+	mark	L20
+	ccase
+	str	12
+	line	242
+	colm	28
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	242
+	colm	34
+	synt	any
+	field	hdchoice
+	var	6
+	line	242
+	colm	43
+	synt	any
+	asgn
+	goto	L13
+lab L20
+	mark	L21
+	ccase
+	str	13
+	line	243
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	243
+	colm	36
+	synt	any
+	field	face
+	var	6
+	line	243
+	colm	41
+	synt	any
+	asgn
+	goto	L13
+lab L21
+	mark	L22
+	ccase
+	str	14
+	line	244
+	colm	23
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	244
+	colm	29
+	synt	any
+	field	shape
+	var	6
+	line	244
+	colm	35
+	synt	any
+	asgn
+	goto	L13
+lab L22
+	pop
+	pnull
+	pnull
+	var	0
+	var	5
+	line	245
+	colm	30
+	synt	any
+	subsc
+	var	6
+	line	245
+	colm	35
+	synt	any
+	asgn
+lab L13
+	line	235
+	colm	13
+	synt	endcase
+	line	228
+	colm	10
+	synt	endif
+lab L6
+	unmark
+	goto	L5
+lab L7
+	line	227
+	colm	7
+	synt	endwhile
+	unmark
+lab L4
+	mark	L23
+	var	15
+	var	3
+	line	249
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	pnull
+	line	250
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_getcolor
+	local	0,001000,self
+	declend
+	line	257
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	258
+	colm	17
+	synt	any
+	field	color
+	line	258
+	colm	6
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	259
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_test_new_pos
+	local	0,001000,self
+	local	1,001000,step
+	local	2,001000,deltax
+	local	3,001000,deltaz
+	local	4,001000,y
+	local	5,001000,mov
+	local	6,000020,olddeltax
+	local	7,000020,olddeltaz
+	local	8,000020,room
+	local	9,000020,rdl
+	local	10,000020,typ
+	local	11,000000,world
+	local	12,000000,abs
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,004000,0.08
+	con	3,004000,0.8
+	con	4,002000,1,3
+	con	5,002000,1,4
+	con	6,004000,0.33
+	con	7,002000,1,2
+	con	8,004000,5.0
+	declend
+	line	263
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	6
+	var	2
+	line	264
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	7
+	var	3
+	line	264
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	8
+	pnull
+	var	11
+	line	265
+	colm	20
+	synt	any
+	field	curr_room
+	line	265
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	268
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	8
+	line	268
+	colm	22
+	synt	any
+	field	disallows
+	pnull
+	pnull
+	var	0
+	line	268
+	colm	37
+	synt	any
+	field	x
+	var	2
+	line	268
+	colm	39
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	268
+	colm	51
+	synt	any
+	field	z
+	var	3
+	line	268
+	colm	53
+	synt	any
+	plus
+	var	4
+	line	268
+	colm	32
+	synt	any
+	invoke	3
+	line	268
+	colm	15
+	synt	any
+	asgn
+	pop
+	pnull
+	mark	L5
+	var	9
+	line	268
+	colm	71
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	pnull
+	var	9
+	int	0
+	line	268
+	colm	75
+	synt	any
+	subsc
+lab L6
+	line	268
+	colm	66
+	synt	any
+	null
+	unmark
+	mark	L7
+	pnull
+	var	2
+	int	1
+	line	269
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L7
+	line	270
+	colm	11
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	8
+	line	270
+	colm	25
+	synt	any
+	field	disallows
+	pnull
+	var	0
+	line	270
+	colm	40
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	270
+	colm	47
+	synt	any
+	field	z
+	var	3
+	line	270
+	colm	49
+	synt	any
+	plus
+	var	4
+	line	270
+	colm	35
+	synt	any
+	invoke	3
+	line	270
+	colm	18
+	synt	any
+	asgn
+	pop
+	pnull
+	mark	L8
+	var	9
+	line	270
+	colm	66
+	synt	any
+	esusp
+	goto	L9
+lab L8
+	pnull
+	var	9
+	int	0
+	line	270
+	colm	70
+	synt	any
+	subsc
+lab L9
+	line	270
+	colm	61
+	synt	any
+	null
+	unmark
+	mark	L10
+	pnull
+	var	3
+	int	1
+	line	271
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	2
+	var	6
+	line	272
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L11
+	line	273
+	colm	15
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	8
+	line	273
+	colm	29
+	synt	any
+	field	disallows
+	pnull
+	pnull
+	var	0
+	line	273
+	colm	44
+	synt	any
+	field	x
+	var	2
+	line	273
+	colm	46
+	synt	any
+	plus
+	pnull
+	var	0
+	line	273
+	colm	58
+	synt	any
+	field	z
+	var	4
+	line	273
+	colm	39
+	synt	any
+	invoke	3
+	line	273
+	colm	22
+	synt	any
+	asgn
+	pop
+	pnull
+	mark	L12
+	var	9
+	line	273
+	colm	70
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	pnull
+	var	9
+	int	0
+	line	273
+	colm	74
+	synt	any
+	subsc
+lab L13
+	line	273
+	colm	65
+	synt	any
+	null
+	unmark
+	mark	L14
+	line	275
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	12
+	mark	L15
+	var	2
+	line	275
+	colm	32
+	synt	any
+	esusp
+	goto	L16
+lab L15
+	var	3
+lab L16
+	line	275
+	colm	25
+	synt	any
+	invoke	1
+	real	2
+	line	275
+	colm	41
+	synt	any
+	numgt
+	unmark
+	mark	L17
+	pnull
+	var	0
+	line	276
+	colm	34
+	synt	any
+	field	test_new_pos
+	var	1
+	pnull
+	var	2
+	real	3
+	line	276
+	colm	59
+	synt	any
+	mult
+	pnull
+	var	3
+	real	3
+	line	276
+	colm	70
+	synt	any
+	mult
+	var	4
+	var	5
+	line	276
+	colm	47
+	synt	any
+	invoke	5
+	line	276
+	colm	23
+	synt	any
+	pret
+lab L17
+	synt	any
+	pfail
+	line	275
+	colm	19
+	synt	endif
+	unmark
+lab L14
+	line	277
+	colm	19
+	synt	any
+	pfail
+	line	273
+	colm	15
+	synt	endif
+	line	270
+	colm	11
+	synt	endif
+	line	268
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L18
+	pnull
+	var	10
+	pnull
+	pnull
+	var	9
+	line	282
+	colm	12
+	synt	any
+	nonnull
+	int	0
+	line	282
+	colm	17
+	synt	any
+	subsc
+	line	282
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	line	284
+	colm	4
+	synt	ifelse
+	mark	L20
+	pnull
+	var	5
+	mark	L22
+	int	0
+	line	284
+	colm	15
+	synt	any
+	esusp
+	goto	L23
+lab L22
+	mark	L24
+	int	4
+	line	284
+	colm	17
+	synt	any
+	esusp
+	goto	L25
+lab L24
+	int	5
+lab L25
+lab L23
+	line	284
+	colm	11
+	synt	any
+	numeq
+	unmark
+	line	286
+	colm	7
+	synt	ifelse
+	mark	L26
+	pnull
+	var	10
+	line	286
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L28
+	pnull
+	pnull
+	pnull
+	var	0
+	line	287
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	287
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	287
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	287
+	colm	38
+	synt	any
+	plus
+	pnull
+	var	8
+	line	287
+	colm	50
+	synt	any
+	field	y
+	line	287
+	colm	17
+	synt	any
+	llist	3
+	line	287
+	colm	10
+	synt	any
+	pret
+lab L28
+	synt	any
+	pfail
+	goto	L27
+lab L26
+	line	288
+	colm	12
+	synt	ifelse
+	mark	L29
+	pnull
+	var	10
+	int	0
+	line	288
+	colm	19
+	synt	any
+	numeq
+	unmark
+	mark	L31
+	pnull
+	pnull
+	pnull
+	var	0
+	line	289
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	289
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	289
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	289
+	colm	38
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	real	6
+	var	3
+	line	289
+	colm	55
+	synt	any
+	mult
+	line	289
+	colm	49
+	synt	any
+	plus
+	line	289
+	colm	17
+	synt	any
+	llist	3
+	line	289
+	colm	10
+	synt	any
+	pret
+lab L31
+	synt	any
+	pfail
+	goto	L30
+lab L29
+	line	290
+	colm	12
+	synt	ifelse
+	mark	L32
+	pnull
+	var	10
+	int	7
+	line	290
+	colm	19
+	synt	any
+	numeq
+	unmark
+	mark	L34
+	pnull
+	pnull
+	pnull
+	var	0
+	line	291
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	291
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	291
+	colm	38
+	synt	any
+	field	z
+	var	3
+	line	291
+	colm	40
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	real	6
+	var	2
+	line	291
+	colm	55
+	synt	any
+	mult
+	line	291
+	colm	49
+	synt	any
+	plus
+	line	291
+	colm	17
+	synt	any
+	llist	3
+	line	291
+	colm	10
+	synt	any
+	pret
+lab L34
+	synt	any
+	pfail
+	goto	L33
+lab L32
+	line	292
+	colm	12
+	synt	ifelse
+	mark	L35
+	pnull
+	var	10
+	int	4
+	line	292
+	colm	19
+	synt	any
+	numeq
+	pop
+	pnull
+	var	4
+	int	0
+	line	292
+	colm	27
+	synt	any
+	numlt
+	unmark
+	mark	L37
+	pnull
+	var	4
+	int	0
+	line	293
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	pnull
+	var	0
+	line	294
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	294
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	294
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	294
+	colm	38
+	synt	any
+	plus
+	var	4
+	line	294
+	colm	17
+	synt	any
+	llist	3
+	line	294
+	colm	10
+	synt	any
+	pret
+lab L38
+	synt	any
+	pfail
+	goto	L36
+lab L35
+	line	296
+	colm	12
+	synt	ifelse
+	mark	L39
+	pnull
+	var	10
+	int	4
+	line	296
+	colm	18
+	synt	any
+	numeq
+	pop
+	pnull
+	var	4
+	int	0
+	line	296
+	colm	24
+	synt	any
+	numeq
+	unmark
+	mark	L41
+	pnull
+	pnull
+	pnull
+	var	0
+	line	297
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	297
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	297
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	297
+	colm	38
+	synt	any
+	plus
+	var	4
+	line	297
+	colm	17
+	synt	any
+	llist	3
+	line	297
+	colm	10
+	synt	any
+	pret
+lab L41
+	synt	any
+	pfail
+	goto	L40
+lab L39
+	line	298
+	colm	12
+	synt	if
+	mark0
+	pnull
+	var	10
+	int	5
+	line	298
+	colm	19
+	synt	any
+	numeq
+	unmark
+	mark	L42
+	pnull
+	pnull
+	pnull
+	var	0
+	line	299
+	colm	22
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	9
+	int	7
+	line	299
+	colm	29
+	synt	any
+	subsc
+	real	8
+	line	299
+	colm	32
+	synt	any
+	div
+	line	299
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	299
+	colm	42
+	synt	any
+	field	z
+	var	3
+	line	299
+	colm	44
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	pnull
+	var	9
+	int	4
+	line	299
+	colm	58
+	synt	any
+	subsc
+	real	8
+	line	299
+	colm	61
+	synt	any
+	div
+	line	299
+	colm	53
+	synt	any
+	plus
+	line	299
+	colm	17
+	synt	any
+	llist	3
+	line	299
+	colm	10
+	synt	any
+	pret
+lab L42
+	synt	any
+	pfail
+	line	298
+	colm	12
+	synt	endif
+lab L40
+	line	296
+	colm	12
+	synt	endifelse
+lab L36
+	line	292
+	colm	12
+	synt	endifelse
+lab L33
+	line	290
+	colm	12
+	synt	endifelse
+lab L30
+	line	288
+	colm	12
+	synt	endifelse
+lab L27
+	line	286
+	colm	7
+	synt	endifelse
+	goto	L21
+lab L20
+	mark	L43
+	line	303
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	10
+	line	303
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L44
+	pnull
+	pnull
+	pnull
+	var	0
+	line	304
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	304
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	304
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	304
+	colm	38
+	synt	any
+	plus
+	pnull
+	var	8
+	line	304
+	colm	50
+	synt	any
+	field	y
+	line	304
+	colm	17
+	synt	any
+	llist	3
+	line	304
+	colm	10
+	synt	any
+	pret
+lab L44
+	synt	any
+	pfail
+	line	303
+	colm	7
+	synt	endif
+	unmark
+lab L43
+	mark	L45
+	line	305
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	10
+	int	0
+	line	305
+	colm	14
+	synt	any
+	numeq
+	unmark
+	mark	L46
+	pnull
+	pnull
+	pnull
+	var	0
+	line	306
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	306
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	306
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	306
+	colm	38
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	real	6
+	var	3
+	line	306
+	colm	55
+	synt	any
+	mult
+	line	306
+	colm	49
+	synt	any
+	plus
+	line	306
+	colm	17
+	synt	any
+	llist	3
+	line	306
+	colm	10
+	synt	any
+	pret
+lab L46
+	synt	any
+	pfail
+	line	305
+	colm	7
+	synt	endif
+	unmark
+lab L45
+	mark	L47
+	line	307
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	10
+	int	7
+	line	307
+	colm	14
+	synt	any
+	numeq
+	unmark
+	mark	L48
+	pnull
+	pnull
+	pnull
+	var	0
+	line	308
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	308
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	308
+	colm	38
+	synt	any
+	field	z
+	var	3
+	line	308
+	colm	40
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	real	6
+	var	2
+	line	308
+	colm	55
+	synt	any
+	mult
+	line	308
+	colm	49
+	synt	any
+	plus
+	line	308
+	colm	17
+	synt	any
+	llist	3
+	line	308
+	colm	10
+	synt	any
+	pret
+lab L48
+	synt	any
+	pfail
+	line	307
+	colm	7
+	synt	endif
+	unmark
+lab L47
+	mark	L49
+	line	309
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	0
+	line	309
+	colm	12
+	synt	any
+	numge
+	pop
+	pnull
+	var	10
+	int	4
+	line	309
+	colm	23
+	synt	any
+	numeq
+	unmark
+	mark	L50
+	pnull
+	pnull
+	pnull
+	var	0
+	line	310
+	colm	22
+	synt	any
+	field	x
+	var	2
+	line	310
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	310
+	colm	36
+	synt	any
+	field	z
+	var	3
+	line	310
+	colm	38
+	synt	any
+	plus
+	var	4
+	line	310
+	colm	17
+	synt	any
+	llist	3
+	line	310
+	colm	10
+	synt	any
+	pret
+lab L50
+	synt	any
+	pfail
+	line	309
+	colm	7
+	synt	endif
+	unmark
+lab L49
+	line	311
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	0
+	line	311
+	colm	12
+	synt	any
+	numlt
+	pop
+	pnull
+	var	10
+	int	4
+	line	311
+	colm	22
+	synt	any
+	numeq
+	unmark
+	mark	L51
+	pnull
+	pnull
+	var	0
+	line	312
+	colm	22
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	312
+	colm	29
+	synt	any
+	field	z
+	var	3
+	line	312
+	colm	31
+	synt	any
+	plus
+	pnull
+	var	4
+	int	0
+	line	312
+	colm	40
+	synt	any
+	plus
+	line	312
+	colm	17
+	synt	any
+	llist	3
+	line	312
+	colm	10
+	synt	any
+	pret
+lab L51
+	synt	any
+	pfail
+	line	311
+	colm	7
+	synt	endif
+lab L21
+	line	284
+	colm	4
+	synt	endifelse
+	unmark
+lab L19
+	pnull
+	line	314
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_moveabs
+	local	0,001000,self
+	local	1,001000,nx
+	local	2,001000,ny
+	local	3,001000,nz
+	local	4,001000,na
+	local	5,000000,world
+	con	0,002000,1,1
+	declend
+	line	318
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	319
+	colm	11
+	synt	any
+	field	x
+	var	1
+	line	319
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	320
+	colm	11
+	synt	any
+	field	y
+	var	2
+	line	320
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	321
+	colm	11
+	synt	any
+	field	z
+	var	3
+	line	321
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	322
+	colm	11
+	synt	any
+	field	angle
+	var	4
+	line	322
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	323
+	colm	11
+	synt	any
+	field	move
+	var	1
+	var	2
+	var	3
+	var	4
+	line	323
+	colm	16
+	synt	any
+	invoke	4
+	unmark
+lab L5
+	mark	L6
+	line	324
+	colm	7
+	synt	ifelse
+	mark	L7
+	pnull
+	var	0
+	pnull
+	pnull
+	var	5
+	line	324
+	colm	24
+	synt	any
+	field	cam
+	line	324
+	colm	28
+	synt	any
+	field	avatar
+	line	324
+	colm	15
+	synt	any
+	eqv
+	unmark
+	mark	L9
+	line	325
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	5
+	line	325
+	colm	18
+	synt	any
+	field	cam
+	line	325
+	colm	22
+	synt	any
+	field	view_mode
+	int	0
+	line	325
+	colm	33
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	326
+	colm	17
+	synt	any
+	field	cam_follows
+	line	326
+	colm	29
+	synt	any
+	invoke	0
+	line	325
+	colm	10
+	synt	endif
+	unmark
+lab L9
+	pnull
+	var	0
+	line	328
+	colm	14
+	synt	any
+	field	broadcast_move
+	line	328
+	colm	29
+	synt	any
+	invoke	0
+	goto	L8
+lab L7
+	pnull
+	var	5
+	line	330
+	colm	17
+	synt	any
+	field	NeedsRefresh
+	line	330
+	colm	30
+	synt	any
+	invoke	0
+lab L8
+	line	324
+	colm	7
+	synt	endifelse
+	unmark
+lab L6
+	pnull
+	line	331
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_actions
+	local	0,001000,self
+	local	1,001000,act
+	local	2,001000,step
+	local	3,000020,deltax
+	local	4,000020,deltaz
+	local	5,000020,newpos
+	local	6,000000,sin
+	local	7,000000,cos
+	local	8,000000,world
+	local	9,000000,abs
+	con	0,010000,12,155,157,166,145,137,146,157,162,167,141,162,144
+	con	1,002000,1,1
+	con	2,002000,1,2
+	con	3,002000,1,3
+	con	4,002000,1,0
+	con	5,010000,9,162,151,147,150,164,137,141,162,155
+	con	6,010000,2,146,142
+	con	7,002000,2,10
+	con	8,010000,8,154,145,146,164,137,154,145,147
+	con	9,010000,8,154,145,146,164,137,141,162,155
+	con	10,010000,9,162,151,147,150,164,137,154,145,147
+	con	11,002000,1,6
+	con	12,010000,15,155,157,166,145,137,160,157,151,156,164,145,162,137,165,160
+	con	13,002000,3,210
+	con	14,010000,4,150,145,141,144
+	con	15,002000,3,270
+	con	16,010000,13,155,157,166,145,137,142,141,143,153,167,141,162,144
+	con	17,010000,17,155,157,166,145,137,160,157,151,156,164,145,162,137,144,157,167,156
+	con	18,002000,3,330
+	con	19,010000,15,162,141,151,163,145,137,162,151,147,150,164,137,141,162,155
+	con	20,002000,3,180
+	con	21,010000,14,162,141,151,163,145,137,154,145,146,164,137,141,162,155
+	con	22,010000,10,155,157,166,145,137,162,151,147,150,164
+	con	23,004000,1.571
+	con	24,010000,1,163
+	con	25,010000,18,155,157,166,145,137,160,157,151,156,164,145,162,137,162,151,147,150,164
+	con	26,002000,2,30
+	con	27,010000,9,155,157,166,145,137,154,145,146,164
+	con	28,002000,1,4
+	con	29,010000,17,155,157,166,145,137,160,157,151,156,164,145,162,137,154,145,146,164
+	con	30,010000,9,164,165,162,156,137,154,145,146,164
+	con	31,004000,0.0
+	con	32,010000,10,164,165,162,156,137,162,151,147,150,164
+	con	33,010000,12,142,141,143,153,137,144,145,146,141,165,154,164
+	con	34,010000,4,142,157,144,171
+	con	35,010000,14,164,157,147,147,154,145,137,160,157,151,156,164,145,162
+	declend
+	line	333
+	colm	11
+	synt	any
+	mark	L1
+	line	335
+	colm	10
+	synt	case
+	mark0
+	var	1
+	eret
+	mark	L3
+	ccase
+	str	0
+	line	336
+	colm	27
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	340
+	colm	20
+	synt	any
+	field	lx
+	var	6
+	pnull
+	var	0
+	line	340
+	colm	34
+	synt	any
+	field	angle
+	line	340
+	colm	29
+	synt	any
+	invoke	1
+	line	340
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	341
+	colm	20
+	synt	any
+	field	lz
+	var	7
+	pnull
+	var	0
+	line	341
+	colm	34
+	synt	any
+	field	angle
+	line	341
+	colm	29
+	synt	any
+	invoke	1
+	line	341
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	3
+	pnull
+	var	2
+	pnull
+	var	0
+	line	342
+	colm	37
+	synt	any
+	field	lx
+	line	342
+	colm	31
+	synt	any
+	mult
+	line	342
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	4
+	pnull
+	var	2
+	pnull
+	var	0
+	line	343
+	colm	37
+	synt	any
+	field	lz
+	line	343
+	colm	31
+	synt	any
+	mult
+	line	343
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L7
+	line	352
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	5
+	pnull
+	var	0
+	line	352
+	colm	33
+	synt	any
+	field	test_new_pos
+	var	2
+	var	3
+	var	4
+	pnull
+	var	0
+	line	352
+	colm	70
+	synt	any
+	field	y
+	int	1
+	line	352
+	colm	46
+	synt	any
+	invoke	5
+	line	352
+	colm	26
+	synt	any
+	asgn
+	unmark
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	353
+	colm	23
+	synt	any
+	field	x
+	pnull
+	var	5
+	int	1
+	line	353
+	colm	33
+	synt	any
+	subsc
+	line	353
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	354
+	colm	23
+	synt	any
+	field	z
+	pnull
+	var	5
+	int	2
+	line	354
+	colm	33
+	synt	any
+	subsc
+	line	354
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	355
+	colm	23
+	synt	any
+	field	y
+	pnull
+	var	5
+	int	3
+	line	355
+	colm	33
+	synt	any
+	subsc
+	line	355
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	358
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	358
+	colm	27
+	synt	any
+	field	ro
+	line	358
+	colm	22
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	0
+	line	358
+	colm	40
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	358
+	colm	50
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	358
+	colm	57
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	358
+	colm	64
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	358
+	colm	71
+	synt	any
+	field	angle
+	line	358
+	colm	45
+	synt	any
+	invoke	4
+	line	358
+	colm	19
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	line	359
+	colm	19
+	synt	ifelse
+	mark	L13
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	359
+	colm	36
+	synt	any
+	field	cam
+	line	359
+	colm	40
+	synt	any
+	field	avatar
+	line	359
+	colm	27
+	synt	any
+	eqv
+	unmark
+	mark	L15
+	line	360
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	360
+	colm	30
+	synt	any
+	field	cam
+	line	360
+	colm	34
+	synt	any
+	field	view_mode
+	int	1
+	line	360
+	colm	45
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	362
+	colm	29
+	synt	any
+	field	cam_follows
+	line	362
+	colm	41
+	synt	any
+	invoke	0
+	line	360
+	colm	22
+	synt	endif
+	unmark
+lab L15
+	pnull
+	var	0
+	line	364
+	colm	26
+	synt	any
+	field	broadcast_move
+	line	364
+	colm	41
+	synt	any
+	invoke	0
+	goto	L14
+lab L13
+	pnull
+	var	8
+	line	368
+	colm	27
+	synt	any
+	field	NeedsRefresh
+	line	368
+	colm	40
+	synt	any
+	invoke	0
+lab L14
+	line	359
+	colm	19
+	synt	endifelse
+	unmark
+lab L12
+	line	370
+	colm	19
+	synt	ifelse
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	370
+	colm	26
+	synt	any
+	field	fint
+	int	3
+	line	370
+	colm	31
+	synt	any
+	numlt
+	unmark
+	mark	L18
+	line	371
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	371
+	colm	29
+	synt	any
+	field	rarm
+	int	4
+	line	371
+	colm	34
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	371
+	colm	41
+	synt	any
+	field	isPointing
+	int	4
+	line	371
+	colm	52
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	372
+	colm	29
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	int	7
+	line	372
+	colm	39
+	synt	any
+	invoke	3
+	line	371
+	colm	22
+	synt	endif
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	0
+	line	374
+	colm	26
+	synt	any
+	field	move_part
+	str	8
+	str	6
+	int	7
+	line	374
+	colm	36
+	synt	any
+	invoke	3
+	unmark
+lab L19
+	mark	L20
+	line	375
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	375
+	colm	29
+	synt	any
+	field	larm
+	int	4
+	line	375
+	colm	34
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	376
+	colm	29
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	pnull
+	int	7
+	line	376
+	colm	56
+	synt	any
+	neg
+	line	376
+	colm	39
+	synt	any
+	invoke	3
+	line	375
+	colm	22
+	synt	endif
+	unmark
+lab L20
+	mark	L21
+	pnull
+	var	0
+	line	378
+	colm	26
+	synt	any
+	field	move_part
+	str	10
+	str	6
+	pnull
+	int	7
+	line	378
+	colm	54
+	synt	any
+	neg
+	line	378
+	colm	36
+	synt	any
+	invoke	3
+	unmark
+lab L21
+	pnull
+	pnull
+	var	0
+	line	379
+	colm	26
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	379
+	colm	31
+	synt	any
+	plus
+	asgn
+	goto	L17
+lab L16
+	mark	L22
+	line	382
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	382
+	colm	29
+	synt	any
+	field	rarm
+	int	4
+	line	382
+	colm	34
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	382
+	colm	41
+	synt	any
+	field	isPointing
+	int	4
+	line	382
+	colm	52
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	383
+	colm	29
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	pnull
+	int	7
+	line	383
+	colm	57
+	synt	any
+	neg
+	line	383
+	colm	39
+	synt	any
+	invoke	3
+	line	382
+	colm	22
+	synt	endif
+	unmark
+lab L22
+	mark	L23
+	pnull
+	var	0
+	line	385
+	colm	26
+	synt	any
+	field	move_part
+	str	8
+	str	6
+	pnull
+	int	7
+	line	385
+	colm	53
+	synt	any
+	neg
+	line	385
+	colm	36
+	synt	any
+	invoke	3
+	unmark
+lab L23
+	mark	L24
+	line	386
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	386
+	colm	29
+	synt	any
+	field	larm
+	int	4
+	line	386
+	colm	34
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	387
+	colm	29
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	int	7
+	line	387
+	colm	39
+	synt	any
+	invoke	3
+	line	386
+	colm	22
+	synt	endif
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	0
+	line	389
+	colm	26
+	synt	any
+	field	move_part
+	str	10
+	str	6
+	int	7
+	line	389
+	colm	36
+	synt	any
+	invoke	3
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	390
+	colm	26
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	390
+	colm	31
+	synt	any
+	plus
+	asgn
+	unmark
+lab L26
+	line	391
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	391
+	colm	29
+	synt	any
+	field	fint
+	int	11
+	line	391
+	colm	34
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	391
+	colm	46
+	synt	any
+	field	fint
+	int	4
+	line	391
+	colm	51
+	synt	any
+	asgn
+	line	391
+	colm	22
+	synt	endif
+lab L17
+	line	370
+	colm	19
+	synt	endifelse
+	line	352
+	colm	16
+	synt	endif
+	goto	L2
+lab L3
+	mark	L27
+	ccase
+	str	12
+	line	395
+	colm	31
+	synt	any
+	eqv
+	unmark
+	pop
+	line	396
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	396
+	colm	23
+	synt	any
+	field	isPointing
+	int	1
+	line	396
+	colm	34
+	synt	any
+	numeq
+	unmark
+	mark	L28
+	line	397
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	397
+	colm	26
+	synt	any
+	field	vertical_ptr
+	int	13
+	line	397
+	colm	39
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	398
+	colm	26
+	synt	any
+	field	vertical_ptr
+	pnull
+	pnull
+	var	0
+	line	398
+	colm	45
+	synt	any
+	field	vertical_ptr
+	int	1
+	line	398
+	colm	58
+	synt	any
+	minus
+	line	398
+	colm	39
+	synt	any
+	asgn
+	line	397
+	colm	19
+	synt	endif
+	unmark
+lab L28
+	mark	L29
+	pnull
+	var	0
+	line	399
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	5
+	pnull
+	var	0
+	line	399
+	colm	58
+	synt	any
+	field	vertical_ptr
+	int	4
+	pnull
+	var	0
+	line	400
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	line	399
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L29
+	pnull
+	var	0
+	line	401
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	14
+	pnull
+	pnull
+	var	0
+	line	401
+	colm	53
+	synt	any
+	field	vertical_ptr
+	int	15
+	line	401
+	colm	66
+	synt	any
+	minus
+	pnull
+	var	0
+	line	402
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	int	4
+	line	401
+	colm	41
+	synt	any
+	invoke	4
+	line	396
+	colm	16
+	synt	endif
+	goto	L2
+lab L27
+	mark	L30
+	ccase
+	str	16
+	line	406
+	colm	29
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	410
+	colm	23
+	synt	any
+	field	lx
+	var	6
+	pnull
+	var	0
+	line	410
+	colm	37
+	synt	any
+	field	angle
+	line	410
+	colm	32
+	synt	any
+	invoke	1
+	line	410
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	0
+	line	411
+	colm	23
+	synt	any
+	field	lz
+	var	7
+	pnull
+	var	0
+	line	411
+	colm	37
+	synt	any
+	field	angle
+	line	411
+	colm	32
+	synt	any
+	invoke	1
+	line	411
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	var	3
+	pnull
+	var	2
+	pnull
+	var	0
+	line	412
+	colm	40
+	synt	any
+	field	lx
+	line	412
+	colm	34
+	synt	any
+	mult
+	line	412
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	var	4
+	pnull
+	var	2
+	pnull
+	var	0
+	line	413
+	colm	40
+	synt	any
+	field	lz
+	line	413
+	colm	34
+	synt	any
+	mult
+	line	413
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L34
+	line	416
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	5
+	pnull
+	var	0
+	line	416
+	colm	36
+	synt	any
+	field	test_new_pos
+	var	2
+	var	3
+	var	4
+	pnull
+	var	0
+	line	416
+	colm	73
+	synt	any
+	field	y
+	int	2
+	line	416
+	colm	49
+	synt	any
+	invoke	5
+	line	416
+	colm	29
+	synt	any
+	asgn
+	unmark
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	417
+	colm	26
+	synt	any
+	field	x
+	pnull
+	var	5
+	int	1
+	line	417
+	colm	36
+	synt	any
+	subsc
+	line	417
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	418
+	colm	26
+	synt	any
+	field	z
+	pnull
+	var	5
+	int	2
+	line	418
+	colm	36
+	synt	any
+	subsc
+	line	418
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	419
+	colm	26
+	synt	any
+	field	y
+	pnull
+	var	5
+	int	3
+	line	419
+	colm	36
+	synt	any
+	subsc
+	line	419
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	var	0
+	line	420
+	colm	26
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	420
+	colm	36
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	420
+	colm	43
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	420
+	colm	50
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	420
+	colm	57
+	synt	any
+	field	angle
+	line	420
+	colm	31
+	synt	any
+	invoke	4
+	unmark
+lab L38
+	mark	L39
+	line	422
+	colm	22
+	synt	ifelse
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	422
+	colm	29
+	synt	any
+	field	fint
+	int	3
+	line	422
+	colm	34
+	synt	any
+	numlt
+	unmark
+	mark	L42
+	line	423
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	423
+	colm	32
+	synt	any
+	field	rarm
+	int	4
+	line	423
+	colm	37
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	423
+	colm	44
+	synt	any
+	field	isPointing
+	int	4
+	line	423
+	colm	55
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	424
+	colm	32
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	int	7
+	line	424
+	colm	42
+	synt	any
+	invoke	3
+	line	423
+	colm	25
+	synt	endif
+	unmark
+lab L42
+	mark	L43
+	pnull
+	var	0
+	line	426
+	colm	29
+	synt	any
+	field	move_part
+	str	8
+	str	6
+	int	7
+	line	426
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L43
+	mark	L44
+	line	427
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	427
+	colm	32
+	synt	any
+	field	larm
+	int	4
+	line	427
+	colm	37
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	428
+	colm	32
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	pnull
+	int	7
+	line	428
+	colm	59
+	synt	any
+	neg
+	line	428
+	colm	42
+	synt	any
+	invoke	3
+	line	427
+	colm	25
+	synt	endif
+	unmark
+lab L44
+	mark	L45
+	pnull
+	var	0
+	line	430
+	colm	29
+	synt	any
+	field	move_part
+	str	10
+	str	6
+	pnull
+	int	7
+	line	430
+	colm	57
+	synt	any
+	neg
+	line	430
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L45
+	pnull
+	pnull
+	var	0
+	line	431
+	colm	29
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	431
+	colm	34
+	synt	any
+	plus
+	asgn
+	goto	L41
+lab L40
+	mark	L46
+	line	434
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	434
+	colm	32
+	synt	any
+	field	rarm
+	int	4
+	line	434
+	colm	37
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	434
+	colm	44
+	synt	any
+	field	isPointing
+	int	4
+	line	434
+	colm	55
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	435
+	colm	32
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	pnull
+	int	7
+	line	435
+	colm	60
+	synt	any
+	neg
+	line	435
+	colm	42
+	synt	any
+	invoke	3
+	line	434
+	colm	25
+	synt	endif
+	unmark
+lab L46
+	mark	L47
+	pnull
+	var	0
+	line	437
+	colm	29
+	synt	any
+	field	move_part
+	str	8
+	str	6
+	pnull
+	int	7
+	line	437
+	colm	56
+	synt	any
+	neg
+	line	437
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L47
+	mark	L48
+	line	438
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	438
+	colm	32
+	synt	any
+	field	larm
+	int	4
+	line	438
+	colm	37
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	439
+	colm	32
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	int	7
+	line	439
+	colm	42
+	synt	any
+	invoke	3
+	line	438
+	colm	25
+	synt	endif
+	unmark
+lab L48
+	mark	L49
+	pnull
+	var	0
+	line	441
+	colm	29
+	synt	any
+	field	move_part
+	str	10
+	str	6
+	int	7
+	line	441
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L49
+	mark	L50
+	pnull
+	pnull
+	var	0
+	line	442
+	colm	29
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	442
+	colm	34
+	synt	any
+	plus
+	asgn
+	unmark
+lab L50
+	line	443
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	443
+	colm	32
+	synt	any
+	field	fint
+	int	11
+	line	443
+	colm	37
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	443
+	colm	49
+	synt	any
+	field	fint
+	int	4
+	line	443
+	colm	54
+	synt	any
+	asgn
+	line	443
+	colm	25
+	synt	endif
+lab L41
+	line	422
+	colm	22
+	synt	endifelse
+	unmark
+lab L39
+	line	445
+	colm	22
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	445
+	colm	39
+	synt	any
+	field	cam
+	line	445
+	colm	43
+	synt	any
+	field	avatar
+	line	445
+	colm	30
+	synt	any
+	eqv
+	unmark
+	mark	L51
+	line	446
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	446
+	colm	33
+	synt	any
+	field	cam
+	line	446
+	colm	37
+	synt	any
+	field	view_mode
+	int	1
+	line	446
+	colm	48
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	447
+	colm	32
+	synt	any
+	field	cam_follows
+	line	447
+	colm	44
+	synt	any
+	invoke	0
+	line	446
+	colm	25
+	synt	endif
+	unmark
+lab L51
+	pnull
+	var	0
+	line	449
+	colm	29
+	synt	any
+	field	broadcast_move
+	line	449
+	colm	44
+	synt	any
+	invoke	0
+	line	445
+	colm	22
+	synt	endif
+	line	416
+	colm	19
+	synt	endif
+	goto	L2
+lab L30
+	mark	L52
+	ccase
+	str	17
+	line	453
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	line	454
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	454
+	colm	23
+	synt	any
+	field	isPointing
+	int	1
+	line	454
+	colm	34
+	synt	any
+	numeq
+	unmark
+	mark	L53
+	line	455
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	455
+	colm	26
+	synt	any
+	field	vertical_ptr
+	int	18
+	line	455
+	colm	39
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	456
+	colm	26
+	synt	any
+	field	vertical_ptr
+	pnull
+	pnull
+	var	0
+	line	456
+	colm	45
+	synt	any
+	field	vertical_ptr
+	int	1
+	line	456
+	colm	58
+	synt	any
+	plus
+	line	456
+	colm	39
+	synt	any
+	asgn
+	line	455
+	colm	19
+	synt	endif
+	unmark
+lab L53
+	mark	L54
+	pnull
+	var	0
+	line	457
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	5
+	pnull
+	var	0
+	line	457
+	colm	58
+	synt	any
+	field	vertical_ptr
+	int	4
+	pnull
+	var	0
+	line	458
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	line	457
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L54
+	pnull
+	var	0
+	line	459
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	14
+	pnull
+	pnull
+	var	0
+	line	459
+	colm	53
+	synt	any
+	field	vertical_ptr
+	int	15
+	line	459
+	colm	66
+	synt	any
+	minus
+	pnull
+	var	0
+	line	460
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	int	4
+	line	459
+	colm	41
+	synt	any
+	invoke	4
+	line	454
+	colm	16
+	synt	endif
+	goto	L2
+lab L52
+	mark	L55
+	ccase
+	str	19
+	line	463
+	colm	31
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L56
+	pnull
+	pnull
+	var	0
+	line	467
+	colm	20
+	synt	any
+	field	isPointing
+	int	1
+	line	467
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L56
+	mark	L57
+	pnull
+	var	0
+	line	468
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	5
+	int	4
+	int	4
+	int	4
+	line	468
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L57
+	mark	L58
+	pnull
+	var	0
+	line	469
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	14
+	int	4
+	int	4
+	int	4
+	line	469
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L58
+	line	470
+	colm	16
+	synt	ifelse
+	mark	L59
+	pnull
+	pnull
+	var	0
+	line	470
+	colm	23
+	synt	any
+	field	rarm
+	int	4
+	line	470
+	colm	28
+	synt	any
+	numeq
+	unmark
+	mark	L61
+	pnull
+	pnull
+	var	0
+	line	471
+	colm	23
+	synt	any
+	field	rarm
+	int	1
+	line	471
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L61
+	pnull
+	var	0
+	line	472
+	colm	23
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	pnull
+	int	20
+	line	472
+	colm	51
+	synt	any
+	neg
+	int	1
+	line	472
+	colm	33
+	synt	any
+	invoke	4
+	goto	L60
+lab L59
+	mark	L62
+	pnull
+	pnull
+	var	0
+	line	475
+	colm	23
+	synt	any
+	field	rarm
+	int	4
+	line	475
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L62
+	pnull
+	var	0
+	line	476
+	colm	23
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	int	7
+	int	1
+	line	476
+	colm	33
+	synt	any
+	invoke	4
+lab L60
+	line	470
+	colm	16
+	synt	endifelse
+	goto	L2
+lab L55
+	mark	L63
+	ccase
+	str	21
+	line	480
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	line	484
+	colm	16
+	synt	ifelse
+	mark	L64
+	pnull
+	pnull
+	var	0
+	line	484
+	colm	23
+	synt	any
+	field	larm
+	int	4
+	line	484
+	colm	28
+	synt	any
+	numeq
+	unmark
+	mark	L66
+	pnull
+	pnull
+	var	0
+	line	485
+	colm	23
+	synt	any
+	field	larm
+	int	1
+	line	485
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L66
+	pnull
+	var	0
+	line	486
+	colm	23
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	pnull
+	int	20
+	line	486
+	colm	50
+	synt	any
+	neg
+	int	1
+	line	486
+	colm	33
+	synt	any
+	invoke	4
+	goto	L65
+lab L64
+	mark	L67
+	pnull
+	pnull
+	var	0
+	line	489
+	colm	23
+	synt	any
+	field	larm
+	int	4
+	line	489
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L67
+	pnull
+	var	0
+	line	490
+	colm	23
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	int	7
+	int	1
+	line	490
+	colm	33
+	synt	any
+	invoke	4
+lab L65
+	line	484
+	colm	16
+	synt	endifelse
+	goto	L2
+lab L63
+	mark	L68
+	ccase
+	str	22
+	line	494
+	colm	26
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L69
+	pnull
+	var	3
+	pnull
+	var	2
+	pnull
+	var	6
+	pnull
+	real	23
+	pnull
+	var	0
+	line	504
+	colm	53
+	synt	any
+	field	angle
+	line	504
+	colm	48
+	synt	any
+	minus
+	line	504
+	colm	42
+	synt	any
+	invoke	1
+	line	504
+	colm	38
+	synt	any
+	neg
+	line	504
+	colm	34
+	synt	any
+	mult
+	line	504
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L69
+	mark	L70
+	pnull
+	var	4
+	pnull
+	var	2
+	var	7
+	pnull
+	real	23
+	pnull
+	var	0
+	line	505
+	colm	53
+	synt	any
+	field	angle
+	line	505
+	colm	48
+	synt	any
+	minus
+	line	505
+	colm	42
+	synt	any
+	invoke	1
+	line	505
+	colm	34
+	synt	any
+	mult
+	line	505
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L70
+	line	508
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	5
+	pnull
+	var	0
+	line	508
+	colm	36
+	synt	any
+	field	test_new_pos
+	var	2
+	var	3
+	var	4
+	pnull
+	var	0
+	line	508
+	colm	73
+	synt	any
+	field	y
+	int	3
+	line	508
+	colm	49
+	synt	any
+	invoke	5
+	line	508
+	colm	29
+	synt	any
+	asgn
+	unmark
+	mark	L71
+	pnull
+	pnull
+	var	0
+	line	509
+	colm	26
+	synt	any
+	field	x
+	pnull
+	var	5
+	int	1
+	line	509
+	colm	36
+	synt	any
+	subsc
+	line	509
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L71
+	mark	L72
+	pnull
+	pnull
+	var	0
+	line	510
+	colm	26
+	synt	any
+	field	z
+	pnull
+	var	5
+	int	2
+	line	510
+	colm	36
+	synt	any
+	subsc
+	line	510
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L72
+	mark	L73
+	pnull
+	pnull
+	var	0
+	line	511
+	colm	26
+	synt	any
+	field	y
+	pnull
+	var	5
+	int	3
+	line	511
+	colm	36
+	synt	any
+	subsc
+	line	511
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L73
+	mark	L74
+	pnull
+	pnull
+	var	0
+	line	513
+	colm	26
+	synt	any
+	field	lx
+	dup
+	var	3
+	line	513
+	colm	29
+	synt	any
+	plus
+	asgn
+	unmark
+lab L74
+	mark	L75
+	pnull
+	pnull
+	var	0
+	line	514
+	colm	26
+	synt	any
+	field	lz
+	dup
+	var	4
+	line	514
+	colm	29
+	synt	any
+	plus
+	asgn
+	unmark
+lab L75
+	line	516
+	colm	22
+	synt	ifelse
+	mark	L76
+	pnull
+	pnull
+	var	0
+	line	516
+	colm	29
+	synt	any
+	field	fint
+	int	3
+	line	516
+	colm	34
+	synt	any
+	numlt
+	unmark
+	mark	L78
+	pnull
+	var	0
+	line	517
+	colm	29
+	synt	any
+	field	move_part
+	str	10
+	str	24
+	pnull
+	int	7
+	line	517
+	colm	56
+	synt	any
+	neg
+	line	517
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L78
+	mark	L79
+	pnull
+	var	0
+	line	518
+	colm	29
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	518
+	colm	39
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	518
+	colm	46
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	518
+	colm	53
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	518
+	colm	60
+	synt	any
+	field	angle
+	line	518
+	colm	34
+	synt	any
+	invoke	4
+	unmark
+lab L79
+	mark	L80
+	line	519
+	colm	25
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	519
+	colm	42
+	synt	any
+	field	cam
+	line	519
+	colm	46
+	synt	any
+	field	avatar
+	line	519
+	colm	33
+	synt	any
+	eqv
+	unmark
+	mark	L81
+	line	520
+	colm	28
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	520
+	colm	36
+	synt	any
+	field	cam
+	line	520
+	colm	40
+	synt	any
+	field	view_mode
+	int	1
+	line	520
+	colm	51
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	521
+	colm	35
+	synt	any
+	field	cam_follows
+	line	521
+	colm	47
+	synt	any
+	invoke	0
+	line	520
+	colm	28
+	synt	endif
+	unmark
+lab L81
+	pnull
+	var	0
+	line	523
+	colm	32
+	synt	any
+	field	broadcast_move
+	line	523
+	colm	47
+	synt	any
+	invoke	0
+	line	519
+	colm	25
+	synt	endif
+	unmark
+lab L80
+	pnull
+	pnull
+	var	0
+	line	525
+	colm	29
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	525
+	colm	34
+	synt	any
+	plus
+	asgn
+	goto	L77
+lab L76
+	mark	L82
+	pnull
+	var	0
+	line	528
+	colm	29
+	synt	any
+	field	move_part
+	str	10
+	str	24
+	int	4
+	line	528
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L82
+	mark	L83
+	pnull
+	pnull
+	var	0
+	line	529
+	colm	29
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	529
+	colm	34
+	synt	any
+	plus
+	asgn
+	unmark
+lab L83
+	line	530
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	530
+	colm	32
+	synt	any
+	field	fint
+	int	11
+	line	530
+	colm	37
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	530
+	colm	49
+	synt	any
+	field	fint
+	int	4
+	line	530
+	colm	54
+	synt	any
+	asgn
+	line	530
+	colm	25
+	synt	endif
+lab L77
+	line	516
+	colm	22
+	synt	endifelse
+	line	508
+	colm	19
+	synt	endif
+	goto	L2
+lab L68
+	mark	L84
+	ccase
+	str	25
+	line	534
+	colm	34
+	synt	any
+	eqv
+	unmark
+	pop
+	line	535
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	535
+	colm	23
+	synt	any
+	field	isPointing
+	int	1
+	line	535
+	colm	34
+	synt	any
+	numeq
+	unmark
+	mark	L85
+	line	536
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	536
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	pnull
+	int	26
+	line	536
+	colm	42
+	synt	any
+	neg
+	line	536
+	colm	41
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	537
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	pnull
+	pnull
+	var	0
+	line	537
+	colm	47
+	synt	any
+	field	horizontal_ptr
+	int	1
+	line	537
+	colm	62
+	synt	any
+	minus
+	line	537
+	colm	41
+	synt	any
+	asgn
+	line	536
+	colm	19
+	synt	endif
+	unmark
+lab L85
+	mark	L86
+	pnull
+	var	0
+	line	538
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	5
+	pnull
+	var	0
+	line	538
+	colm	58
+	synt	any
+	field	vertical_ptr
+	int	4
+	pnull
+	var	0
+	line	539
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	line	538
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L86
+	pnull
+	var	0
+	line	540
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	14
+	pnull
+	pnull
+	var	0
+	line	540
+	colm	53
+	synt	any
+	field	vertical_ptr
+	int	15
+	line	540
+	colm	66
+	synt	any
+	minus
+	pnull
+	var	0
+	line	541
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	int	4
+	line	540
+	colm	41
+	synt	any
+	invoke	4
+	line	535
+	colm	16
+	synt	endif
+	goto	L2
+lab L84
+	mark	L87
+	ccase
+	str	27
+	line	544
+	colm	25
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L88
+	pnull
+	var	3
+	pnull
+	var	2
+	var	6
+	pnull
+	real	23
+	pnull
+	var	0
+	line	551
+	colm	53
+	synt	any
+	field	angle
+	line	551
+	colm	48
+	synt	any
+	minus
+	line	551
+	colm	42
+	synt	any
+	invoke	1
+	line	551
+	colm	34
+	synt	any
+	mult
+	line	551
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L88
+	mark	L89
+	pnull
+	var	4
+	pnull
+	var	2
+	pnull
+	var	7
+	pnull
+	real	23
+	pnull
+	var	0
+	line	552
+	colm	53
+	synt	any
+	field	angle
+	line	552
+	colm	48
+	synt	any
+	minus
+	line	552
+	colm	42
+	synt	any
+	invoke	1
+	line	552
+	colm	38
+	synt	any
+	neg
+	line	552
+	colm	34
+	synt	any
+	mult
+	line	552
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L89
+	line	555
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	5
+	pnull
+	var	0
+	line	555
+	colm	36
+	synt	any
+	field	test_new_pos
+	var	2
+	var	3
+	var	4
+	pnull
+	var	0
+	line	555
+	colm	73
+	synt	any
+	field	y
+	int	28
+	line	555
+	colm	49
+	synt	any
+	invoke	5
+	line	555
+	colm	29
+	synt	any
+	asgn
+	unmark
+	mark	L90
+	pnull
+	pnull
+	var	0
+	line	556
+	colm	26
+	synt	any
+	field	x
+	pnull
+	var	5
+	int	1
+	line	556
+	colm	36
+	synt	any
+	subsc
+	line	556
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L90
+	mark	L91
+	pnull
+	pnull
+	var	0
+	line	557
+	colm	26
+	synt	any
+	field	z
+	pnull
+	var	5
+	int	2
+	line	557
+	colm	36
+	synt	any
+	subsc
+	line	557
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L91
+	mark	L92
+	pnull
+	pnull
+	var	0
+	line	558
+	colm	26
+	synt	any
+	field	y
+	pnull
+	var	5
+	int	3
+	line	558
+	colm	36
+	synt	any
+	subsc
+	line	558
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L92
+	mark	L93
+	pnull
+	pnull
+	var	0
+	line	559
+	colm	26
+	synt	any
+	field	lx
+	dup
+	var	3
+	line	559
+	colm	29
+	synt	any
+	plus
+	asgn
+	unmark
+lab L93
+	mark	L94
+	pnull
+	pnull
+	var	0
+	line	560
+	colm	26
+	synt	any
+	field	lz
+	dup
+	var	4
+	line	560
+	colm	29
+	synt	any
+	plus
+	asgn
+	unmark
+lab L94
+	line	562
+	colm	22
+	synt	ifelse
+	mark	L95
+	pnull
+	pnull
+	var	0
+	line	562
+	colm	29
+	synt	any
+	field	fint
+	int	3
+	line	562
+	colm	34
+	synt	any
+	numlt
+	unmark
+	mark	L97
+	pnull
+	var	0
+	line	563
+	colm	29
+	synt	any
+	field	move_part
+	str	8
+	str	24
+	int	7
+	line	563
+	colm	39
+	synt	any
+	invoke	3
+	unmark
+lab L97
+	mark	L98
+	pnull
+	var	0
+	line	564
+	colm	29
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	564
+	colm	39
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	564
+	colm	46
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	564
+	colm	53
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	564
+	colm	60
+	synt	any
+	field	angle
+	line	564
+	colm	34
+	synt	any
+	invoke	4
+	unmark
+lab L98
+	mark	L99
+	line	565
+	colm	25
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	565
+	colm	42
+	synt	any
+	field	cam
+	line	565
+	colm	46
+	synt	any
+	field	avatar
+	line	565
+	colm	33
+	synt	any
+	eqv
+	unmark
+	mark	L100
+	line	566
+	colm	28
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	566
+	colm	36
+	synt	any
+	field	cam
+	line	566
+	colm	40
+	synt	any
+	field	view_mode
+	int	1
+	line	566
+	colm	51
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	568
+	colm	35
+	synt	any
+	field	cam_follows
+	line	568
+	colm	47
+	synt	any
+	invoke	0
+	line	566
+	colm	28
+	synt	endif
+	unmark
+lab L100
+	pnull
+	var	0
+	line	570
+	colm	32
+	synt	any
+	field	broadcast_move
+	line	570
+	colm	47
+	synt	any
+	invoke	0
+	line	565
+	colm	25
+	synt	endif
+	unmark
+lab L99
+	pnull
+	pnull
+	var	0
+	line	572
+	colm	29
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	572
+	colm	34
+	synt	any
+	plus
+	asgn
+	goto	L96
+lab L95
+	mark	L101
+	pnull
+	var	0
+	line	575
+	colm	30
+	synt	any
+	field	move_part
+	str	8
+	str	24
+	int	4
+	line	575
+	colm	40
+	synt	any
+	invoke	3
+	unmark
+lab L101
+	mark	L102
+	pnull
+	pnull
+	var	0
+	line	576
+	colm	30
+	synt	any
+	field	fint
+	dup
+	int	1
+	line	576
+	colm	35
+	synt	any
+	plus
+	asgn
+	unmark
+lab L102
+	line	577
+	colm	26
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	577
+	colm	33
+	synt	any
+	field	fint
+	int	11
+	line	577
+	colm	38
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	577
+	colm	50
+	synt	any
+	field	fint
+	int	4
+	line	577
+	colm	55
+	synt	any
+	asgn
+	line	577
+	colm	26
+	synt	endif
+lab L96
+	line	562
+	colm	22
+	synt	endifelse
+	line	555
+	colm	19
+	synt	endif
+	goto	L2
+lab L87
+	mark	L103
+	ccase
+	str	29
+	line	581
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	line	582
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	582
+	colm	23
+	synt	any
+	field	isPointing
+	int	1
+	line	582
+	colm	34
+	synt	any
+	numeq
+	unmark
+	mark	L104
+	line	583
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	583
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	int	26
+	line	583
+	colm	41
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	584
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	pnull
+	pnull
+	var	0
+	line	584
+	colm	47
+	synt	any
+	field	horizontal_ptr
+	int	1
+	line	584
+	colm	62
+	synt	any
+	plus
+	line	584
+	colm	41
+	synt	any
+	asgn
+	line	583
+	colm	19
+	synt	endif
+	unmark
+lab L104
+	mark	L105
+	pnull
+	var	0
+	line	585
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	5
+	pnull
+	var	0
+	line	585
+	colm	58
+	synt	any
+	field	vertical_ptr
+	int	4
+	pnull
+	var	0
+	line	586
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	line	585
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L105
+	pnull
+	var	0
+	line	587
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	14
+	pnull
+	pnull
+	var	0
+	line	587
+	colm	53
+	synt	any
+	field	vertical_ptr
+	int	15
+	line	587
+	colm	66
+	synt	any
+	minus
+	pnull
+	var	0
+	line	588
+	colm	26
+	synt	any
+	field	horizontal_ptr
+	int	4
+	line	587
+	colm	41
+	synt	any
+	invoke	4
+	line	582
+	colm	16
+	synt	endif
+	goto	L2
+lab L103
+	mark	L106
+	ccase
+	str	30
+	line	591
+	colm	25
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L107
+	pnull
+	pnull
+	var	0
+	line	596
+	colm	20
+	synt	any
+	field	angle
+	dup
+	var	2
+	line	596
+	colm	26
+	synt	any
+	plus
+	asgn
+	unmark
+lab L107
+	mark	L108
+	line	597
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	0
+	line	597
+	colm	27
+	synt	any
+	field	angle
+	line	597
+	colm	22
+	synt	any
+	invoke	1
+	pnull
+	int	2
+	line	597
+	colm	37
+	synt	any
+	keywd	pi
+	line	597
+	colm	36
+	synt	any
+	mult
+	line	597
+	colm	34
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	597
+	colm	51
+	synt	any
+	field	angle
+	real	31
+	line	597
+	colm	57
+	synt	any
+	asgn
+	line	597
+	colm	16
+	synt	endif
+	unmark
+lab L108
+	mark	L109
+	pnull
+	var	0
+	line	598
+	colm	20
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	598
+	colm	30
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	598
+	colm	37
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	598
+	colm	44
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	598
+	colm	51
+	synt	any
+	field	angle
+	line	598
+	colm	25
+	synt	any
+	invoke	4
+	unmark
+lab L109
+	line	599
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	599
+	colm	33
+	synt	any
+	field	cam
+	line	599
+	colm	37
+	synt	any
+	field	avatar
+	line	599
+	colm	24
+	synt	any
+	eqv
+	unmark
+	mark	L110
+	line	600
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	600
+	colm	27
+	synt	any
+	field	cam
+	line	600
+	colm	31
+	synt	any
+	field	view_mode
+	int	1
+	line	600
+	colm	42
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	602
+	colm	27
+	synt	any
+	field	cam_follows
+	line	602
+	colm	39
+	synt	any
+	invoke	0
+	line	600
+	colm	19
+	synt	endif
+	unmark
+lab L110
+	pnull
+	var	0
+	line	604
+	colm	26
+	synt	any
+	field	broadcast_move
+	line	604
+	colm	41
+	synt	any
+	invoke	0
+	line	599
+	colm	16
+	synt	endif
+	goto	L2
+lab L106
+	mark	L111
+	ccase
+	str	32
+	line	616
+	colm	22
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L112
+	pnull
+	pnull
+	var	0
+	line	621
+	colm	20
+	synt	any
+	field	angle
+	dup
+	var	2
+	line	621
+	colm	26
+	synt	any
+	minus
+	asgn
+	unmark
+lab L112
+	mark	L113
+	line	622
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	0
+	line	622
+	colm	27
+	synt	any
+	field	angle
+	line	622
+	colm	22
+	synt	any
+	invoke	1
+	pnull
+	int	2
+	line	622
+	colm	37
+	synt	any
+	keywd	pi
+	line	622
+	colm	36
+	synt	any
+	mult
+	line	622
+	colm	34
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	622
+	colm	51
+	synt	any
+	field	angle
+	real	31
+	line	622
+	colm	57
+	synt	any
+	asgn
+	line	622
+	colm	16
+	synt	endif
+	unmark
+lab L113
+	mark	L114
+	pnull
+	var	0
+	line	623
+	colm	20
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	623
+	colm	30
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	623
+	colm	37
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	623
+	colm	44
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	623
+	colm	51
+	synt	any
+	field	angle
+	line	623
+	colm	25
+	synt	any
+	invoke	4
+	unmark
+lab L114
+	line	624
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	8
+	line	624
+	colm	33
+	synt	any
+	field	cam
+	line	624
+	colm	37
+	synt	any
+	field	avatar
+	line	624
+	colm	24
+	synt	any
+	eqv
+	unmark
+	mark	L115
+	line	625
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	8
+	line	625
+	colm	27
+	synt	any
+	field	cam
+	line	625
+	colm	31
+	synt	any
+	field	view_mode
+	int	1
+	line	625
+	colm	42
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	0
+	line	627
+	colm	27
+	synt	any
+	field	cam_follows
+	line	627
+	colm	39
+	synt	any
+	invoke	0
+	line	625
+	colm	19
+	synt	endif
+	unmark
+lab L115
+	pnull
+	var	0
+	line	629
+	colm	23
+	synt	any
+	field	broadcast_move
+	line	629
+	colm	38
+	synt	any
+	invoke	0
+	line	624
+	colm	16
+	synt	endif
+	goto	L2
+lab L111
+	mark	L116
+	ccase
+	str	33
+	line	644
+	colm	28
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L117
+	pnull
+	var	0
+	line	645
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	14
+	int	4
+	int	4
+	int	4
+	line	645
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L117
+	mark	L118
+	pnull
+	var	0
+	line	646
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	34
+	int	4
+	int	4
+	int	4
+	line	646
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L118
+	mark	L119
+	pnull
+	var	0
+	line	647
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	5
+	int	4
+	int	4
+	int	4
+	line	647
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L119
+	mark	L120
+	pnull
+	var	0
+	line	648
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	8
+	int	4
+	int	4
+	int	4
+	line	648
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L120
+	mark	L121
+	pnull
+	var	0
+	line	649
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	9
+	int	4
+	int	4
+	int	4
+	line	649
+	colm	38
+	synt	any
+	invoke	4
+	unmark
+lab L121
+	pnull
+	var	0
+	line	650
+	colm	20
+	synt	any
+	field	move_part_complex
+	str	10
+	int	4
+	int	4
+	int	4
+	line	650
+	colm	38
+	synt	any
+	invoke	4
+	goto	L2
+lab L116
+	mark	L122
+	ccase
+	str	35
+	line	656
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	line	657
+	colm	16
+	synt	ifelse
+	mark	L123
+	pnull
+	pnull
+	var	0
+	line	657
+	colm	23
+	synt	any
+	field	isPointing
+	int	4
+	line	657
+	colm	34
+	synt	any
+	numeq
+	unmark
+	mark	L125
+	pnull
+	var	0
+	line	659
+	colm	23
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	int	4
+	line	659
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L125
+	mark	L126
+	pnull
+	var	0
+	line	660
+	colm	23
+	synt	any
+	field	move_part
+	str	8
+	str	6
+	int	4
+	line	660
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L126
+	mark	L127
+	pnull
+	var	0
+	line	661
+	colm	23
+	synt	any
+	field	move_part
+	str	9
+	str	6
+	int	4
+	line	661
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L127
+	mark	L128
+	pnull
+	var	0
+	line	662
+	colm	23
+	synt	any
+	field	move_part
+	str	10
+	str	6
+	int	4
+	line	662
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L128
+	mark	L129
+	pnull
+	pnull
+	var	0
+	line	663
+	colm	23
+	synt	any
+	field	vertical_ptr
+	int	15
+	line	663
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L129
+	mark	L130
+	pnull
+	pnull
+	var	0
+	line	664
+	colm	23
+	synt	any
+	field	horizontal_ptr
+	int	4
+	line	664
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L130
+	mark	L131
+	pnull
+	var	0
+	line	665
+	colm	23
+	synt	any
+	field	move_part
+	str	5
+	str	6
+	int	15
+	line	665
+	colm	33
+	synt	any
+	invoke	3
+	unmark
+lab L131
+	pnull
+	pnull
+	var	0
+	line	666
+	colm	23
+	synt	any
+	field	isPointing
+	int	1
+	line	666
+	colm	34
+	synt	any
+	asgn
+	goto	L124
+lab L123
+	mark	L132
+	pnull
+	var	0
+	line	669
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	5
+	int	4
+	int	4
+	int	4
+	line	669
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L132
+	mark	L133
+	pnull
+	var	0
+	line	670
+	colm	23
+	synt	any
+	field	move_part_complex
+	str	14
+	int	4
+	int	4
+	int	4
+	line	670
+	colm	41
+	synt	any
+	invoke	4
+	unmark
+lab L133
+	pnull
+	pnull
+	var	0
+	line	671
+	colm	23
+	synt	any
+	field	isPointing
+	int	4
+	line	671
+	colm	34
+	synt	any
+	asgn
+lab L124
+	line	657
+	colm	16
+	synt	endifelse
+	goto	L2
+lab L122
+	efail
+lab L2
+	line	335
+	colm	10
+	synt	endcase
+	unmark
+lab L1
+	mark	L134
+	pnull
+	var	0
+	line	676
+	colm	11
+	synt	any
+	field	flushnet
+	line	676
+	colm	20
+	synt	any
+	invoke	0
+	unmark
+lab L134
+	pnull
+	line	677
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_possess
+	local	0,001000,self
+	local	1,001000,object1
+	local	2,000020,ownedObj
+	local	3,000020,objCol
+	local	4,000000,put
+	local	5,000000,name
+	local	6,000000,world
+	local	7,000000,session
+	local	8,000000,Objects
+	local	9,000000,currObjsID
+	con	0,002000,1,0
+	con	1,010000,4,150,141,156,144
+	con	2,010000,4,142,141,143,153
+	con	3,002000,1,1
+	con	4,010000,9,162,151,147,150,164,137,141,162,155
+	con	5,010000,2,146,142
+	con	6,010000,8,154,145,146,164,137,154,145,147
+	con	7,010000,8,154,145,146,164,137,141,162,155
+	con	8,010000,9,162,151,147,150,164,137,154,145,147
+	con	9,010000,9,134,160,157,163,163,145,163,163,040
+	con	10,010000,1,040
+	con	11,010000,13,040,160,157,163,163,145,163,163,145,144,040,141,040
+	con	12,010000,7,040,143,157,154,157,162,040
+	declend
+	line	679
+	colm	11
+	synt	any
+	mark	L1
+	line	682
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	682
+	colm	15
+	synt	any
+	field	object
+	line	682
+	colm	10
+	synt	any
+	size
+	int	0
+	line	682
+	colm	22
+	synt	any
+	numgt
+	unmark
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	683
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	683
+	colm	26
+	synt	any
+	field	currObjID
+	line	683
+	colm	21
+	synt	any
+	subsc
+	line	683
+	colm	37
+	synt	any
+	field	deRender
+	line	683
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	line	684
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	684
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	684
+	colm	31
+	synt	any
+	field	currObjID
+	line	684
+	colm	26
+	synt	any
+	subsc
+	line	684
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	684
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L4
+	ccase
+	str	1
+	line	685
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	685
+	colm	25
+	synt	any
+	field	la
+	line	685
+	colm	28
+	synt	any
+	field	unpossess
+	line	685
+	colm	38
+	synt	any
+	invoke	0
+	goto	L3
+lab L4
+	mark	L5
+	ccase
+	str	2
+	line	686
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	686
+	colm	25
+	synt	any
+	field	b
+	line	686
+	colm	27
+	synt	any
+	field	unpossess
+	line	686
+	colm	37
+	synt	any
+	invoke	0
+	goto	L3
+lab L5
+	efail
+lab L3
+	line	684
+	colm	10
+	synt	endcase
+	line	682
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	689
+	colm	11
+	synt	any
+	field	currObjID
+	pnull
+	pnull
+	var	0
+	line	689
+	colm	27
+	synt	any
+	field	currObjID
+	int	3
+	line	689
+	colm	37
+	synt	any
+	plus
+	line	689
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	var	4
+	pnull
+	var	0
+	line	691
+	colm	15
+	synt	any
+	field	object
+	var	1
+	line	691
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	692
+	colm	11
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	692
+	colm	23
+	synt	any
+	field	currObjID
+	line	692
+	colm	18
+	synt	any
+	subsc
+	line	692
+	colm	34
+	synt	any
+	field	owner
+	var	5
+	line	692
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	693
+	colm	11
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	693
+	colm	23
+	synt	any
+	field	currObjID
+	line	693
+	colm	18
+	synt	any
+	subsc
+	line	693
+	colm	34
+	synt	any
+	field	possessed
+	int	3
+	line	693
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	line	695
+	colm	11
+	synt	any
+	field	move_part
+	str	4
+	str	5
+	int	0
+	line	695
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	0
+	line	696
+	colm	11
+	synt	any
+	field	move_part
+	str	6
+	str	5
+	int	0
+	line	696
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	0
+	line	697
+	colm	11
+	synt	any
+	field	move_part
+	str	7
+	str	5
+	int	0
+	line	697
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	0
+	line	698
+	colm	11
+	synt	any
+	field	move_part
+	str	8
+	str	5
+	int	0
+	line	698
+	colm	21
+	synt	any
+	invoke	3
+	unmark
+lab L13
+	mark	L14
+	line	700
+	colm	5
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	6
+	line	700
+	colm	23
+	synt	any
+	field	cam
+	line	700
+	colm	27
+	synt	any
+	field	avatar
+	line	700
+	colm	14
+	synt	any
+	eqv
+	pop
+	pnull
+	var	7
+	line	700
+	colm	45
+	synt	any
+	field	isUp
+	line	700
+	colm	50
+	synt	any
+	invoke	0
+	unmark
+	var	4
+	pnull
+	var	0
+	line	701
+	colm	17
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	701
+	colm	45
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	701
+	colm	57
+	synt	any
+	field	currObjID
+	line	701
+	colm	52
+	synt	any
+	subsc
+	line	701
+	colm	68
+	synt	any
+	field	Id
+	line	701
+	colm	39
+	synt	any
+	cat
+	str	10
+	line	701
+	colm	71
+	synt	any
+	cat
+	pnull
+	var	0
+	line	701
+	colm	82
+	synt	any
+	field	a_name
+	line	701
+	colm	76
+	synt	any
+	cat
+	str	10
+	line	701
+	colm	89
+	synt	any
+	cat
+	pnull
+	pnull
+	var	6
+	line	701
+	colm	101
+	synt	any
+	field	curr_room
+	line	701
+	colm	111
+	synt	any
+	field	name
+	line	701
+	colm	94
+	synt	any
+	cat
+	line	701
+	colm	12
+	synt	any
+	invoke	2
+	line	700
+	colm	5
+	synt	endif
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	pnull
+	var	0
+	line	703
+	colm	11
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	703
+	colm	23
+	synt	any
+	field	currObjID
+	line	703
+	colm	18
+	synt	any
+	subsc
+	line	703
+	colm	34
+	synt	any
+	field	setSize
+	pnull
+	var	0
+	line	703
+	colm	47
+	synt	any
+	field	xsize
+	pnull
+	var	0
+	line	703
+	colm	58
+	synt	any
+	field	height
+	pnull
+	var	0
+	line	703
+	colm	70
+	synt	any
+	field	zsize
+	line	703
+	colm	42
+	synt	any
+	invoke	3
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	pnull
+	var	0
+	line	704
+	colm	11
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	704
+	colm	23
+	synt	any
+	field	currObjID
+	line	704
+	colm	18
+	synt	any
+	subsc
+	line	704
+	colm	34
+	synt	any
+	field	setPosAvatar
+	pnull
+	var	0
+	line	704
+	colm	52
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	704
+	colm	59
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	704
+	colm	66
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	704
+	colm	73
+	synt	any
+	field	angle
+	line	704
+	colm	47
+	synt	any
+	invoke	4
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	8
+	pnull
+	var	0
+	line	709
+	colm	21
+	synt	any
+	field	object
+	line	709
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	9
+	pnull
+	var	0
+	line	710
+	colm	25
+	synt	any
+	field	currObjID
+	line	710
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	0
+	line	711
+	colm	11
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	711
+	colm	21
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	711
+	colm	28
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	711
+	colm	35
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	711
+	colm	42
+	synt	any
+	field	angle
+	line	711
+	colm	16
+	synt	any
+	invoke	4
+	unmark
+lab L19
+	mark	L20
+	line	712
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	712
+	colm	15
+	synt	any
+	field	object
+	line	712
+	colm	10
+	synt	any
+	size
+	int	0
+	line	712
+	colm	22
+	synt	any
+	numgt
+	unmark
+	line	713
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	713
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	713
+	colm	31
+	synt	any
+	field	currObjID
+	line	713
+	colm	26
+	synt	any
+	subsc
+	line	713
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	713
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L22
+	ccase
+	str	1
+	line	714
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	714
+	colm	28
+	synt	any
+	field	la
+	line	714
+	colm	31
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	714
+	colm	44
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	714
+	colm	56
+	synt	any
+	field	currObjID
+	line	714
+	colm	51
+	synt	any
+	subsc
+	line	714
+	colm	39
+	synt	any
+	invoke	1
+	goto	L21
+lab L22
+	mark	L23
+	ccase
+	str	2
+	line	715
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	715
+	colm	28
+	synt	any
+	field	b
+	line	715
+	colm	30
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	715
+	colm	43
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	715
+	colm	55
+	synt	any
+	field	currObjID
+	line	715
+	colm	50
+	synt	any
+	subsc
+	line	715
+	colm	38
+	synt	any
+	invoke	1
+	goto	L21
+lab L23
+	efail
+lab L21
+	line	713
+	colm	10
+	synt	endcase
+	line	712
+	colm	7
+	synt	endif
+	unmark
+lab L20
+	mark	L24
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	719
+	colm	23
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	719
+	colm	35
+	synt	any
+	field	currObjID
+	line	719
+	colm	30
+	synt	any
+	subsc
+	line	719
+	colm	46
+	synt	any
+	field	name
+	line	719
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	720
+	colm	23
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	720
+	colm	35
+	synt	any
+	field	currObjID
+	line	720
+	colm	30
+	synt	any
+	subsc
+	line	720
+	colm	46
+	synt	any
+	field	color
+	line	720
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	6
+	line	721
+	colm	12
+	synt	any
+	field	nsh_dialog
+	line	721
+	colm	23
+	synt	any
+	field	write_to_chat_win
+	pnull
+	var	0
+	line	721
+	colm	47
+	synt	any
+	field	a_name
+	str	11
+	var	3
+	str	12
+	var	2
+	line	721
+	colm	41
+	synt	any
+	invoke	5
+	unmark
+lab L26
+	pnull
+	line	722
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_unpossess
+	local	0,001000,self
+	local	1,000020,i
+	local	2,000020,ownedObj
+	local	3,000020,objCol
+	local	4,000020,flag
+	local	5,000000,world
+	local	6,000000,session
+	local	7,000000,put
+	local	8,000000,pull
+	local	9,000000,currObjsID
+	local	10,000000,Objects
+	con	0,002000,1,0
+	con	1,010000,15,040,165,156,160,157,163,163,145,163,163,145,144,040,141,040
+	con	2,010000,7,040,143,157,154,157,162,040
+	con	3,010000,4,150,141,156,144
+	con	4,010000,4,142,141,143,153
+	con	5,010000,11,134,165,156,160,157,163,163,145,163,163,040
+	con	6,010000,1,040
+	con	7,002000,1,1
+	declend
+	line	729
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	int	0
+	line	731
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	732
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	732
+	colm	15
+	synt	any
+	field	object
+	line	732
+	colm	10
+	synt	any
+	size
+	int	0
+	line	732
+	colm	22
+	synt	any
+	numgt
+	unmark
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	734
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	734
+	colm	26
+	synt	any
+	field	currObjID
+	line	734
+	colm	21
+	synt	any
+	subsc
+	line	734
+	colm	37
+	synt	any
+	field	unpossessed
+	pnull
+	var	0
+	line	734
+	colm	54
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	734
+	colm	61
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	734
+	colm	68
+	synt	any
+	field	z
+	line	734
+	colm	49
+	synt	any
+	invoke	3
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	735
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	735
+	colm	26
+	synt	any
+	field	currObjID
+	line	735
+	colm	21
+	synt	any
+	subsc
+	line	735
+	colm	37
+	synt	any
+	field	possessed
+	int	0
+	line	735
+	colm	47
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	736
+	colm	26
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	736
+	colm	38
+	synt	any
+	field	currObjID
+	line	736
+	colm	33
+	synt	any
+	subsc
+	line	736
+	colm	49
+	synt	any
+	field	name
+	line	736
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	737
+	colm	26
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	737
+	colm	38
+	synt	any
+	field	currObjID
+	line	737
+	colm	33
+	synt	any
+	subsc
+	line	737
+	colm	49
+	synt	any
+	field	color
+	line	737
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	5
+	line	738
+	colm	15
+	synt	any
+	field	nsh_dialog
+	line	738
+	colm	26
+	synt	any
+	field	write_to_chat_win
+	pnull
+	var	0
+	line	738
+	colm	50
+	synt	any
+	field	a_name
+	str	1
+	var	3
+	str	2
+	var	2
+	line	738
+	colm	44
+	synt	any
+	invoke	5
+	unmark
+lab L7
+	mark	L8
+	line	739
+	colm	9
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	739
+	colm	18
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	739
+	colm	30
+	synt	any
+	field	currObjID
+	line	739
+	colm	25
+	synt	any
+	subsc
+	line	739
+	colm	41
+	synt	any
+	field	getPlacedAt
+	line	739
+	colm	53
+	synt	any
+	invoke	0
+	eret
+	mark	L10
+	ccase
+	str	3
+	line	740
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	740
+	colm	28
+	synt	any
+	field	la
+	line	740
+	colm	31
+	synt	any
+	field	unpossess
+	line	740
+	colm	41
+	synt	any
+	invoke	0
+	goto	L9
+lab L10
+	mark	L11
+	ccase
+	str	4
+	line	741
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	741
+	colm	28
+	synt	any
+	field	b
+	line	741
+	colm	30
+	synt	any
+	field	unpossess
+	line	741
+	colm	40
+	synt	any
+	invoke	0
+	goto	L9
+lab L11
+	efail
+lab L9
+	line	739
+	colm	9
+	synt	endcase
+	unmark
+lab L8
+	mark	L12
+	line	743
+	colm	8
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	5
+	line	743
+	colm	26
+	synt	any
+	field	cam
+	line	743
+	colm	30
+	synt	any
+	field	avatar
+	line	743
+	colm	17
+	synt	any
+	eqv
+	pop
+	pnull
+	var	6
+	line	743
+	colm	48
+	synt	any
+	field	isUp
+	line	743
+	colm	53
+	synt	any
+	invoke	0
+	unmark
+	var	7
+	pnull
+	var	0
+	line	744
+	colm	17
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	pnull
+	str	5
+	pnull
+	pnull
+	pnull
+	var	0
+	line	744
+	colm	47
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	744
+	colm	59
+	synt	any
+	field	currObjID
+	line	744
+	colm	54
+	synt	any
+	subsc
+	line	744
+	colm	70
+	synt	any
+	field	Id
+	line	744
+	colm	41
+	synt	any
+	cat
+	str	6
+	line	744
+	colm	73
+	synt	any
+	cat
+	pnull
+	var	0
+	line	744
+	colm	84
+	synt	any
+	field	a_name
+	line	744
+	colm	78
+	synt	any
+	cat
+	line	744
+	colm	12
+	synt	any
+	invoke	2
+	line	743
+	colm	8
+	synt	endif
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	1
+	pnull
+	var	0
+	line	746
+	colm	17
+	synt	any
+	field	currObjID
+	line	746
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+lab L15
+	line	747
+	colm	10
+	synt	while
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	747
+	colm	25
+	synt	any
+	field	object
+	line	747
+	colm	20
+	synt	any
+	size
+	line	747
+	colm	18
+	synt	any
+	numlt
+	unmark
+	mark	L15
+	mark	L18
+	pnull
+	pnull
+	pnull
+	var	0
+	line	748
+	colm	17
+	synt	any
+	field	object
+	var	1
+	line	748
+	colm	24
+	synt	any
+	subsc
+	line	748
+	colm	29
+	synt	any
+	keywd	null
+	line	748
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	pnull
+	var	0
+	line	749
+	colm	17
+	synt	any
+	field	object
+	var	1
+	line	749
+	colm	24
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	0
+	line	749
+	colm	33
+	synt	any
+	field	object
+	pnull
+	var	1
+	int	7
+	line	749
+	colm	42
+	synt	any
+	plus
+	line	749
+	colm	40
+	synt	any
+	subsc
+	line	749
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	750
+	colm	17
+	synt	any
+	field	object
+	var	1
+	line	750
+	colm	24
+	synt	any
+	subsc
+	line	750
+	colm	27
+	synt	any
+	field	possessed
+	int	7
+	line	750
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L20
+	pnull
+	var	1
+	dup
+	int	7
+	line	751
+	colm	14
+	synt	any
+	plus
+	asgn
+lab L16
+	unmark
+	goto	L15
+lab L17
+	line	747
+	colm	10
+	synt	endwhile
+	unmark
+lab L14
+	mark	L21
+	line	753
+	colm	8
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	753
+	colm	16
+	synt	any
+	field	currObjID
+	int	0
+	line	753
+	colm	26
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	754
+	colm	15
+	synt	any
+	field	currObjID
+	pnull
+	pnull
+	var	0
+	line	754
+	colm	31
+	synt	any
+	field	currObjID
+	int	7
+	line	754
+	colm	41
+	synt	any
+	minus
+	line	754
+	colm	25
+	synt	any
+	asgn
+	line	753
+	colm	8
+	synt	endif
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	pnull
+	var	0
+	line	757
+	colm	14
+	synt	any
+	field	object
+	var	1
+	line	757
+	colm	21
+	synt	any
+	subsc
+	line	757
+	colm	26
+	synt	any
+	keywd	null
+	line	757
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	var	8
+	pnull
+	var	0
+	line	758
+	colm	19
+	synt	any
+	field	object
+	line	758
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	pnull
+	var	0
+	line	759
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	759
+	colm	26
+	synt	any
+	field	currObjID
+	line	759
+	colm	21
+	synt	any
+	subsc
+	line	759
+	colm	37
+	synt	any
+	field	reRender
+	pnull
+	pnull
+	var	5
+	line	759
+	colm	52
+	synt	any
+	field	curr_room
+	line	759
+	colm	62
+	synt	any
+	field	render_level
+	line	759
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	line	760
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	760
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	760
+	colm	31
+	synt	any
+	field	currObjID
+	line	760
+	colm	26
+	synt	any
+	subsc
+	line	760
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	760
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L27
+	ccase
+	str	3
+	line	761
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	761
+	colm	28
+	synt	any
+	field	la
+	line	761
+	colm	31
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	761
+	colm	44
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	761
+	colm	56
+	synt	any
+	field	currObjID
+	line	761
+	colm	51
+	synt	any
+	subsc
+	line	761
+	colm	39
+	synt	any
+	invoke	1
+	goto	L26
+lab L27
+	mark	L28
+	ccase
+	str	4
+	line	762
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	762
+	colm	28
+	synt	any
+	field	b
+	line	762
+	colm	30
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	762
+	colm	43
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	762
+	colm	55
+	synt	any
+	field	currObjID
+	line	762
+	colm	50
+	synt	any
+	subsc
+	line	762
+	colm	38
+	synt	any
+	invoke	1
+	goto	L26
+lab L28
+	efail
+lab L26
+	line	760
+	colm	10
+	synt	endcase
+	unmark
+lab L25
+	mark	L29
+	pnull
+	var	9
+	var	9
+	line	764
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L29
+	mark	L30
+	pnull
+	var	10
+	pnull
+	var	0
+	line	765
+	colm	22
+	synt	any
+	field	object
+	line	765
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	pnull
+	var	0
+	line	766
+	colm	11
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	766
+	colm	21
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	766
+	colm	28
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	766
+	colm	35
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	766
+	colm	42
+	synt	any
+	field	angle
+	line	766
+	colm	16
+	synt	any
+	invoke	4
+	unmark
+lab L31
+	pnull
+	pnull
+	pnull
+	var	0
+	line	767
+	colm	12
+	synt	any
+	field	object
+	line	767
+	colm	7
+	synt	any
+	null
+	pnull
+	line	767
+	colm	21
+	synt	any
+	llist	0
+	line	767
+	colm	19
+	synt	any
+	asgn
+	line	732
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	769
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_switchObjectUp
+	local	0,001000,self
+	local	1,000020,switchFrom
+	local	2,000020,switchTo
+	local	3,000020,switchFromCol
+	local	4,000020,switchToCol
+	local	5,000000,world
+	local	6,000000,session
+	local	7,000000,put
+	local	8,000000,currObjsID
+	con	0,010000,9,162,151,147,150,164,137,141,162,155
+	con	1,010000,2,146,142
+	con	2,002000,1,0
+	con	3,010000,8,154,145,146,164,137,154,145,147
+	con	4,010000,8,154,145,146,164,137,141,162,155
+	con	5,010000,9,162,151,147,150,164,137,154,145,147
+	con	6,010000,4,150,141,156,144
+	con	7,010000,4,142,141,143,153
+	con	8,010000,16,134,163,167,151,164,143,150,157,142,152,145,143,164,165,160,040
+	con	9,010000,1,040
+	con	10,002000,1,1
+	con	11,010000,15,040,163,167,151,164,143,150,145,144,040,146,162,157,155,040
+	con	12,010000,7,040,143,157,154,157,162,040
+	con	13,010000,4,040,164,157,040
+	declend
+	line	771
+	colm	11
+	synt	any
+	mark	L1
+	line	773
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	773
+	colm	14
+	synt	any
+	field	currObjID
+	pnull
+	pnull
+	var	0
+	line	773
+	colm	30
+	synt	any
+	field	object
+	line	773
+	colm	25
+	synt	any
+	size
+	line	773
+	colm	24
+	synt	any
+	numlt
+	unmark
+	mark	L2
+	pnull
+	var	0
+	line	775
+	colm	14
+	synt	any
+	field	move_part
+	str	0
+	str	1
+	int	2
+	line	775
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	0
+	line	776
+	colm	14
+	synt	any
+	field	move_part
+	str	3
+	str	1
+	int	2
+	line	776
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	0
+	line	777
+	colm	14
+	synt	any
+	field	move_part
+	str	4
+	str	1
+	int	2
+	line	777
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	778
+	colm	14
+	synt	any
+	field	move_part
+	str	5
+	str	1
+	int	2
+	line	778
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	line	779
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	779
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	779
+	colm	31
+	synt	any
+	field	currObjID
+	line	779
+	colm	26
+	synt	any
+	subsc
+	line	779
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	779
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L8
+	ccase
+	str	6
+	line	780
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	780
+	colm	28
+	synt	any
+	field	la
+	line	780
+	colm	31
+	synt	any
+	field	unpossess
+	line	780
+	colm	41
+	synt	any
+	invoke	0
+	goto	L7
+lab L8
+	mark	L9
+	ccase
+	str	7
+	line	781
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	781
+	colm	28
+	synt	any
+	field	b
+	line	781
+	colm	30
+	synt	any
+	field	unpossess
+	line	781
+	colm	40
+	synt	any
+	invoke	0
+	goto	L7
+lab L9
+	efail
+lab L7
+	line	779
+	colm	10
+	synt	endcase
+	unmark
+lab L6
+	mark	L10
+	pnull
+	pnull
+	pnull
+	var	0
+	line	783
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	783
+	colm	26
+	synt	any
+	field	currObjID
+	line	783
+	colm	21
+	synt	any
+	subsc
+	line	783
+	colm	37
+	synt	any
+	field	deRender
+	line	783
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	line	784
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	5
+	line	784
+	colm	28
+	synt	any
+	field	cam
+	line	784
+	colm	32
+	synt	any
+	field	avatar
+	line	784
+	colm	19
+	synt	any
+	eqv
+	pop
+	pnull
+	var	6
+	line	784
+	colm	50
+	synt	any
+	field	isUp
+	line	784
+	colm	55
+	synt	any
+	invoke	0
+	unmark
+	var	7
+	pnull
+	var	0
+	line	785
+	colm	21
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	pnull
+	str	8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	785
+	colm	56
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	785
+	colm	68
+	synt	any
+	field	currObjID
+	line	785
+	colm	63
+	synt	any
+	subsc
+	line	785
+	colm	79
+	synt	any
+	field	Id
+	line	785
+	colm	50
+	synt	any
+	cat
+	str	9
+	line	785
+	colm	82
+	synt	any
+	cat
+	pnull
+	var	0
+	line	786
+	colm	28
+	synt	any
+	field	a_name
+	line	786
+	colm	21
+	synt	any
+	cat
+	line	785
+	colm	16
+	synt	any
+	invoke	2
+	line	784
+	colm	10
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	788
+	colm	14
+	synt	any
+	field	currObjID
+	pnull
+	pnull
+	var	0
+	line	788
+	colm	30
+	synt	any
+	field	currObjID
+	int	10
+	line	788
+	colm	40
+	synt	any
+	plus
+	line	788
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	pnull
+	var	0
+	line	789
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	789
+	colm	26
+	synt	any
+	field	currObjID
+	line	789
+	colm	21
+	synt	any
+	subsc
+	line	789
+	colm	37
+	synt	any
+	field	reRender
+	pnull
+	pnull
+	var	5
+	line	789
+	colm	52
+	synt	any
+	field	curr_room
+	line	789
+	colm	62
+	synt	any
+	field	render_level
+	line	789
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	790
+	colm	28
+	synt	any
+	field	object
+	pnull
+	pnull
+	var	0
+	line	790
+	colm	40
+	synt	any
+	field	currObjID
+	int	10
+	line	790
+	colm	50
+	synt	any
+	minus
+	line	790
+	colm	35
+	synt	any
+	subsc
+	line	790
+	colm	53
+	synt	any
+	field	name
+	line	790
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	791
+	colm	31
+	synt	any
+	field	object
+	pnull
+	pnull
+	var	0
+	line	791
+	colm	43
+	synt	any
+	field	currObjID
+	int	10
+	line	791
+	colm	53
+	synt	any
+	minus
+	line	791
+	colm	38
+	synt	any
+	subsc
+	line	791
+	colm	56
+	synt	any
+	field	color
+	line	791
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	792
+	colm	27
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	792
+	colm	39
+	synt	any
+	field	currObjID
+	line	792
+	colm	34
+	synt	any
+	subsc
+	line	792
+	colm	50
+	synt	any
+	field	name
+	line	792
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	793
+	colm	29
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	793
+	colm	41
+	synt	any
+	field	currObjID
+	line	793
+	colm	36
+	synt	any
+	subsc
+	line	793
+	colm	52
+	synt	any
+	field	color
+	line	793
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	5
+	line	794
+	colm	15
+	synt	any
+	field	nsh_dialog
+	line	794
+	colm	26
+	synt	any
+	field	write_to_chat_win
+	pnull
+	var	0
+	line	794
+	colm	50
+	synt	any
+	field	a_name
+	str	11
+	var	3
+	str	12
+	var	1
+	str	13
+	var	4
+	str	12
+	var	1
+	line	794
+	colm	44
+	synt	any
+	invoke	9
+	unmark
+lab L18
+	mark	L19
+	line	798
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	798
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	798
+	colm	31
+	synt	any
+	field	currObjID
+	line	798
+	colm	26
+	synt	any
+	subsc
+	line	798
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	798
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L21
+	ccase
+	str	6
+	line	799
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	799
+	colm	28
+	synt	any
+	field	la
+	line	799
+	colm	31
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	799
+	colm	44
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	799
+	colm	56
+	synt	any
+	field	currObjID
+	line	799
+	colm	51
+	synt	any
+	subsc
+	line	799
+	colm	39
+	synt	any
+	invoke	1
+	goto	L20
+lab L21
+	mark	L22
+	ccase
+	str	7
+	line	800
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	800
+	colm	28
+	synt	any
+	field	b
+	line	800
+	colm	30
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	800
+	colm	43
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	800
+	colm	55
+	synt	any
+	field	currObjID
+	line	800
+	colm	50
+	synt	any
+	subsc
+	line	800
+	colm	38
+	synt	any
+	invoke	1
+	goto	L20
+lab L22
+	efail
+lab L20
+	line	798
+	colm	10
+	synt	endcase
+	unmark
+lab L19
+	mark	L23
+	pnull
+	var	8
+	pnull
+	var	0
+	line	802
+	colm	25
+	synt	any
+	field	currObjID
+	line	802
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L23
+	pnull
+	var	0
+	line	803
+	colm	11
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	803
+	colm	21
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	803
+	colm	28
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	803
+	colm	35
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	803
+	colm	42
+	synt	any
+	field	angle
+	line	803
+	colm	16
+	synt	any
+	invoke	4
+	line	773
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	805
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_switchObjectDown
+	local	0,001000,self
+	local	1,000020,switchFrom
+	local	2,000020,switchTo
+	local	3,000020,switchFromCol
+	local	4,000020,switchToCol
+	local	5,000000,world
+	local	6,000000,session
+	local	7,000000,put
+	local	8,000000,currObjsID
+	con	0,002000,1,1
+	con	1,010000,9,162,151,147,150,164,137,141,162,155
+	con	2,010000,2,146,142
+	con	3,002000,1,0
+	con	4,010000,8,154,145,146,164,137,154,145,147
+	con	5,010000,8,154,145,146,164,137,141,162,155
+	con	6,010000,9,162,151,147,150,164,137,154,145,147
+	con	7,010000,4,150,141,156,144
+	con	8,010000,4,142,141,143,153
+	con	9,010000,18,134,163,167,151,164,143,150,157,142,152,145,143,164,144,157,167,156,040
+	con	10,010000,1,040
+	con	11,010000,15,040,163,167,151,164,143,150,145,144,040,146,162,157,155,040
+	con	12,010000,7,040,143,157,154,157,162,040
+	con	13,010000,4,040,164,157,040
+	declend
+	line	807
+	colm	11
+	synt	any
+	mark	L1
+	line	809
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	809
+	colm	14
+	synt	any
+	field	currObjID
+	int	0
+	line	809
+	colm	24
+	synt	any
+	numgt
+	unmark
+	mark	L2
+	pnull
+	var	0
+	line	811
+	colm	14
+	synt	any
+	field	move_part
+	str	1
+	str	2
+	int	3
+	line	811
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	0
+	line	812
+	colm	14
+	synt	any
+	field	move_part
+	str	4
+	str	2
+	int	3
+	line	812
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	0
+	line	813
+	colm	14
+	synt	any
+	field	move_part
+	str	5
+	str	2
+	int	3
+	line	813
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	814
+	colm	14
+	synt	any
+	field	move_part
+	str	6
+	str	2
+	int	3
+	line	814
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	line	815
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	815
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	815
+	colm	31
+	synt	any
+	field	currObjID
+	line	815
+	colm	26
+	synt	any
+	subsc
+	line	815
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	815
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L8
+	ccase
+	str	7
+	line	816
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	816
+	colm	28
+	synt	any
+	field	la
+	line	816
+	colm	31
+	synt	any
+	field	unpossess
+	line	816
+	colm	41
+	synt	any
+	invoke	0
+	goto	L7
+lab L8
+	mark	L9
+	ccase
+	str	8
+	line	817
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	817
+	colm	28
+	synt	any
+	field	b
+	line	817
+	colm	30
+	synt	any
+	field	unpossess
+	line	817
+	colm	40
+	synt	any
+	invoke	0
+	goto	L7
+lab L9
+	efail
+lab L7
+	line	815
+	colm	10
+	synt	endcase
+	unmark
+lab L6
+	mark	L10
+	pnull
+	pnull
+	pnull
+	var	0
+	line	819
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	819
+	colm	26
+	synt	any
+	field	currObjID
+	line	819
+	colm	21
+	synt	any
+	subsc
+	line	819
+	colm	37
+	synt	any
+	field	deRender
+	line	819
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	line	820
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	0
+	pnull
+	pnull
+	var	5
+	line	820
+	colm	28
+	synt	any
+	field	cam
+	line	820
+	colm	32
+	synt	any
+	field	avatar
+	line	820
+	colm	19
+	synt	any
+	eqv
+	pop
+	pnull
+	var	6
+	line	820
+	colm	50
+	synt	any
+	field	isUp
+	line	820
+	colm	55
+	synt	any
+	invoke	0
+	unmark
+	var	7
+	pnull
+	var	0
+	line	821
+	colm	21
+	synt	any
+	field	grouping
+	pnull
+	pnull
+	pnull
+	str	9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	821
+	colm	58
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	821
+	colm	70
+	synt	any
+	field	currObjID
+	line	821
+	colm	65
+	synt	any
+	subsc
+	line	821
+	colm	81
+	synt	any
+	field	Id
+	line	821
+	colm	52
+	synt	any
+	cat
+	str	10
+	line	821
+	colm	84
+	synt	any
+	cat
+	pnull
+	var	0
+	line	822
+	colm	28
+	synt	any
+	field	a_name
+	line	822
+	colm	21
+	synt	any
+	cat
+	line	821
+	colm	16
+	synt	any
+	invoke	2
+	line	820
+	colm	10
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	824
+	colm	14
+	synt	any
+	field	currObjID
+	pnull
+	pnull
+	var	0
+	line	824
+	colm	30
+	synt	any
+	field	currObjID
+	int	0
+	line	824
+	colm	40
+	synt	any
+	minus
+	line	824
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	825
+	colm	28
+	synt	any
+	field	object
+	pnull
+	pnull
+	var	0
+	line	825
+	colm	40
+	synt	any
+	field	currObjID
+	int	0
+	line	825
+	colm	50
+	synt	any
+	plus
+	line	825
+	colm	35
+	synt	any
+	subsc
+	line	825
+	colm	53
+	synt	any
+	field	name
+	line	825
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	826
+	colm	31
+	synt	any
+	field	object
+	pnull
+	pnull
+	var	0
+	line	826
+	colm	43
+	synt	any
+	field	currObjID
+	int	0
+	line	826
+	colm	53
+	synt	any
+	plus
+	line	826
+	colm	38
+	synt	any
+	subsc
+	line	826
+	colm	56
+	synt	any
+	field	color
+	line	826
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	827
+	colm	27
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	827
+	colm	39
+	synt	any
+	field	currObjID
+	line	827
+	colm	34
+	synt	any
+	subsc
+	line	827
+	colm	50
+	synt	any
+	field	name
+	line	827
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	828
+	colm	29
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	828
+	colm	41
+	synt	any
+	field	currObjID
+	line	828
+	colm	36
+	synt	any
+	subsc
+	line	828
+	colm	52
+	synt	any
+	field	color
+	line	828
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	5
+	line	829
+	colm	15
+	synt	any
+	field	nsh_dialog
+	line	829
+	colm	26
+	synt	any
+	field	write_to_chat_win
+	pnull
+	var	0
+	line	829
+	colm	50
+	synt	any
+	field	a_name
+	str	11
+	var	3
+	str	12
+	var	1
+	str	13
+	var	4
+	str	12
+	var	1
+	line	829
+	colm	44
+	synt	any
+	invoke	9
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	pnull
+	var	0
+	line	833
+	colm	14
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	833
+	colm	26
+	synt	any
+	field	currObjID
+	line	833
+	colm	21
+	synt	any
+	subsc
+	line	833
+	colm	37
+	synt	any
+	field	reRender
+	pnull
+	pnull
+	var	5
+	line	833
+	colm	52
+	synt	any
+	field	curr_room
+	line	833
+	colm	62
+	synt	any
+	field	render_level
+	line	833
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	mark	L19
+	line	834
+	colm	10
+	synt	case
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	834
+	colm	19
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	834
+	colm	31
+	synt	any
+	field	currObjID
+	line	834
+	colm	26
+	synt	any
+	subsc
+	line	834
+	colm	42
+	synt	any
+	field	getPlacedAt
+	line	834
+	colm	54
+	synt	any
+	invoke	0
+	eret
+	mark	L21
+	ccase
+	str	7
+	line	835
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	835
+	colm	28
+	synt	any
+	field	la
+	line	835
+	colm	31
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	835
+	colm	44
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	835
+	colm	56
+	synt	any
+	field	currObjID
+	line	835
+	colm	51
+	synt	any
+	subsc
+	line	835
+	colm	39
+	synt	any
+	invoke	1
+	goto	L20
+lab L21
+	mark	L22
+	ccase
+	str	8
+	line	836
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	836
+	colm	28
+	synt	any
+	field	b
+	line	836
+	colm	30
+	synt	any
+	field	possess
+	pnull
+	pnull
+	var	0
+	line	836
+	colm	43
+	synt	any
+	field	object
+	pnull
+	var	0
+	line	836
+	colm	55
+	synt	any
+	field	currObjID
+	line	836
+	colm	50
+	synt	any
+	subsc
+	line	836
+	colm	38
+	synt	any
+	invoke	1
+	goto	L20
+lab L22
+	efail
+lab L20
+	line	834
+	colm	10
+	synt	endcase
+	unmark
+lab L19
+	mark	L23
+	pnull
+	var	8
+	pnull
+	var	0
+	line	838
+	colm	28
+	synt	any
+	field	currObjID
+	line	838
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L23
+	pnull
+	var	0
+	line	839
+	colm	14
+	synt	any
+	field	move
+	pnull
+	var	0
+	line	839
+	colm	24
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	839
+	colm	31
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	839
+	colm	38
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	839
+	colm	45
+	synt	any
+	field	angle
+	line	839
+	colm	19
+	synt	any
+	invoke	4
+	line	809
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	841
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_getX
+	local	0,001000,self
+	declend
+	line	843
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	844
+	colm	18
+	synt	any
+	field	x
+	line	844
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	845
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_getY
+	local	0,001000,self
+	declend
+	line	846
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	847
+	colm	18
+	synt	any
+	field	y
+	line	847
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	848
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_getZ
+	local	0,001000,self
+	declend
+	line	849
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	850
+	colm	18
+	synt	any
+	field	z
+	line	850
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	851
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_getName
+	local	0,001000,self
+	local	1,000000,name
+	declend
+	line	852
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	var	1
+	line	853
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	854
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_cam_follows
+	local	0,001000,self
+	local	1,000020,adj_angle
+	local	2,000020,r
+	local	3,000020,owcy
+	local	4,000000,world
+	local	5,000000,sin
+	local	6,000000,cos
+	local	7,000000,dtor
+	con	0,002000,1,3
+	con	1,004000,.6
+	con	2,004000,1.5
+	con	3,002000,1,4
+	con	4,002000,1,2
+	con	5,004000,210.0
+	con	6,004000,2.4
+	con	7,004000,0.2
+	con	8,004000,0.9
+	declend
+	line	856
+	colm	11
+	synt	any
+	mark	L1
+	line	858
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	4
+	line	858
+	colm	15
+	synt	any
+	field	cam
+	line	858
+	colm	19
+	synt	any
+	field	view_mode
+	int	0
+	line	858
+	colm	30
+	synt	any
+	numeq
+	unmark
+	mark	L2
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	859
+	colm	19
+	synt	any
+	field	h
+	line	859
+	colm	21
+	synt	any
+	field	headr
+	line	859
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	4
+	line	860
+	colm	23
+	synt	any
+	field	cam
+	line	860
+	colm	27
+	synt	any
+	field	y
+	pnull
+	pnull
+	var	4
+	line	860
+	colm	37
+	synt	any
+	field	cam
+	line	860
+	colm	41
+	synt	any
+	field	looky
+	line	860
+	colm	30
+	synt	any
+	minus
+	line	860
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	var	4
+	line	861
+	colm	15
+	synt	any
+	field	cam
+	line	861
+	colm	19
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	861
+	colm	29
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	2
+	var	5
+	pnull
+	var	0
+	line	861
+	colm	42
+	synt	any
+	field	angle
+	line	861
+	colm	37
+	synt	any
+	invoke	1
+	line	861
+	colm	33
+	synt	any
+	mult
+	real	1
+	line	861
+	colm	49
+	synt	any
+	mult
+	line	861
+	colm	31
+	synt	any
+	plus
+	line	861
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	pnull
+	var	4
+	line	863
+	colm	15
+	synt	any
+	field	cam
+	line	863
+	colm	19
+	synt	any
+	field	y
+	pnull
+	pnull
+	var	0
+	line	863
+	colm	29
+	synt	any
+	field	y
+	real	2
+	line	863
+	colm	31
+	synt	any
+	plus
+	line	863
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	var	4
+	line	864
+	colm	15
+	synt	any
+	field	cam
+	line	864
+	colm	19
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	0
+	line	864
+	colm	29
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	2
+	var	6
+	pnull
+	var	0
+	line	864
+	colm	42
+	synt	any
+	field	angle
+	line	864
+	colm	37
+	synt	any
+	invoke	1
+	line	864
+	colm	33
+	synt	any
+	mult
+	real	1
+	line	864
+	colm	49
+	synt	any
+	mult
+	line	864
+	colm	31
+	synt	any
+	plus
+	line	864
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	pnull
+	var	4
+	line	865
+	colm	15
+	synt	any
+	field	cam
+	line	865
+	colm	19
+	synt	any
+	field	lx
+	pnull
+	var	0
+	line	865
+	colm	30
+	synt	any
+	field	lx
+	line	865
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	var	4
+	line	866
+	colm	15
+	synt	any
+	field	cam
+	line	866
+	colm	19
+	synt	any
+	field	lz
+	pnull
+	var	0
+	line	866
+	colm	30
+	synt	any
+	field	lz
+	line	866
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	pnull
+	var	4
+	line	867
+	colm	15
+	synt	any
+	field	cam
+	line	867
+	colm	19
+	synt	any
+	field	lookx
+	pnull
+	pnull
+	var	0
+	line	867
+	colm	33
+	synt	any
+	field	x
+	pnull
+	int	3
+	var	5
+	pnull
+	var	0
+	line	867
+	colm	46
+	synt	any
+	field	angle
+	line	867
+	colm	41
+	synt	any
+	invoke	1
+	line	867
+	colm	37
+	synt	any
+	mult
+	line	867
+	colm	35
+	synt	any
+	plus
+	line	867
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	pnull
+	var	4
+	line	869
+	colm	15
+	synt	any
+	field	cam
+	line	869
+	colm	19
+	synt	any
+	field	looky
+	pnull
+	pnull
+	pnull
+	var	0
+	line	869
+	colm	33
+	synt	any
+	field	y
+	real	2
+	line	869
+	colm	35
+	synt	any
+	plus
+	var	3
+	line	869
+	colm	39
+	synt	any
+	minus
+	line	869
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	pnull
+	var	4
+	line	870
+	colm	15
+	synt	any
+	field	cam
+	line	870
+	colm	19
+	synt	any
+	field	lookz
+	pnull
+	pnull
+	var	0
+	line	870
+	colm	33
+	synt	any
+	field	z
+	pnull
+	int	3
+	var	6
+	pnull
+	var	0
+	line	870
+	colm	46
+	synt	any
+	field	angle
+	line	870
+	colm	41
+	synt	any
+	invoke	1
+	line	870
+	colm	37
+	synt	any
+	mult
+	line	870
+	colm	35
+	synt	any
+	plus
+	line	870
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	line	871
+	colm	10
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	line	858
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L13
+	line	873
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	4
+	line	873
+	colm	15
+	synt	any
+	field	cam
+	line	873
+	colm	19
+	synt	any
+	field	view_mode
+	int	4
+	line	873
+	colm	30
+	synt	any
+	numeq
+	unmark
+	mark	L14
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	874
+	colm	27
+	synt	any
+	field	angle
+	var	7
+	real	5
+	line	874
+	colm	38
+	synt	any
+	invoke	1
+	line	874
+	colm	33
+	synt	any
+	plus
+	line	874
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	line	875
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	1
+	pnull
+	int	4
+	line	875
+	colm	30
+	synt	any
+	keywd	pi
+	line	875
+	colm	28
+	synt	any
+	mult
+	line	875
+	colm	23
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	int	4
+	line	875
+	colm	60
+	synt	any
+	keywd	pi
+	line	875
+	colm	58
+	synt	any
+	mult
+	line	875
+	colm	52
+	synt	any
+	minus
+	asgn
+	line	875
+	colm	10
+	synt	endif
+	unmark
+lab L15
+	mark	L16
+	line	876
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	int	4
+	line	876
+	colm	25
+	synt	any
+	neg
+	line	876
+	colm	30
+	synt	any
+	keywd	pi
+	line	876
+	colm	28
+	synt	any
+	mult
+	line	876
+	colm	23
+	synt	any
+	numlt
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	int	4
+	line	876
+	colm	60
+	synt	any
+	keywd	pi
+	line	876
+	colm	58
+	synt	any
+	mult
+	line	876
+	colm	52
+	synt	any
+	plus
+	asgn
+	line	876
+	colm	10
+	synt	endif
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	877
+	colm	14
+	synt	any
+	field	lx
+	var	5
+	var	1
+	line	877
+	colm	22
+	synt	any
+	invoke	1
+	line	877
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	878
+	colm	14
+	synt	any
+	field	lz
+	var	6
+	var	1
+	line	878
+	colm	22
+	synt	any
+	invoke	1
+	line	878
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	pnull
+	var	4
+	line	879
+	colm	15
+	synt	any
+	field	cam
+	line	879
+	colm	19
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	879
+	colm	34
+	synt	any
+	field	x
+	pnull
+	real	6
+	pnull
+	var	0
+	line	879
+	colm	45
+	synt	any
+	field	lx
+	line	879
+	colm	40
+	synt	any
+	mult
+	line	879
+	colm	36
+	synt	any
+	plus
+	line	879
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	pnull
+	var	4
+	line	880
+	colm	15
+	synt	any
+	field	cam
+	line	880
+	colm	19
+	synt	any
+	field	y
+	pnull
+	pnull
+	pnull
+	var	0
+	line	880
+	colm	33
+	synt	any
+	field	y
+	real	7
+	line	880
+	colm	35
+	synt	any
+	plus
+	real	2
+	line	880
+	colm	39
+	synt	any
+	plus
+	line	880
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	pnull
+	var	4
+	line	881
+	colm	15
+	synt	any
+	field	cam
+	line	881
+	colm	19
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	0
+	line	881
+	colm	34
+	synt	any
+	field	z
+	pnull
+	real	6
+	pnull
+	var	0
+	line	881
+	colm	45
+	synt	any
+	field	lz
+	line	881
+	colm	40
+	synt	any
+	mult
+	line	881
+	colm	36
+	synt	any
+	plus
+	line	881
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+lab L23
+	line	882
+	colm	10
+	synt	while
+	mark0
+	mark	L26
+	pnull
+	pnull
+	var	4
+	line	882
+	colm	25
+	synt	any
+	field	curr_room
+	line	882
+	colm	35
+	synt	any
+	field	isinside
+	pnull
+	pnull
+	var	4
+	line	882
+	colm	50
+	synt	any
+	field	cam
+	line	882
+	colm	54
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	4
+	line	882
+	colm	63
+	synt	any
+	field	cam
+	line	882
+	colm	67
+	synt	any
+	field	z
+	line	882
+	colm	44
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L26
+	pnull
+	unmark
+	mark	L23
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	883
+	colm	17
+	synt	any
+	field	lx
+	dup
+	real	8
+	line	883
+	colm	20
+	synt	any
+	mult
+	asgn
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	883
+	colm	31
+	synt	any
+	field	lz
+	dup
+	real	8
+	line	883
+	colm	34
+	synt	any
+	mult
+	asgn
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	pnull
+	var	4
+	line	884
+	colm	18
+	synt	any
+	field	cam
+	line	884
+	colm	22
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	884
+	colm	33
+	synt	any
+	field	x
+	pnull
+	real	6
+	pnull
+	var	0
+	line	884
+	colm	44
+	synt	any
+	field	lx
+	line	884
+	colm	39
+	synt	any
+	mult
+	line	884
+	colm	35
+	synt	any
+	plus
+	line	884
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	pnull
+	var	4
+	line	885
+	colm	18
+	synt	any
+	field	cam
+	line	885
+	colm	22
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	885
+	colm	32
+	synt	any
+	field	y
+	line	885
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L30
+	pnull
+	pnull
+	pnull
+	var	4
+	line	886
+	colm	18
+	synt	any
+	field	cam
+	line	886
+	colm	22
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	0
+	line	886
+	colm	33
+	synt	any
+	field	z
+	pnull
+	real	6
+	pnull
+	var	0
+	line	886
+	colm	44
+	synt	any
+	field	lz
+	line	886
+	colm	39
+	synt	any
+	mult
+	line	886
+	colm	35
+	synt	any
+	plus
+	line	886
+	colm	25
+	synt	any
+	asgn
+lab L24
+	unmark
+	goto	L23
+lab L25
+	line	882
+	colm	10
+	synt	endwhile
+	unmark
+lab L22
+	mark	L31
+	pnull
+	pnull
+	pnull
+	var	4
+	line	888
+	colm	15
+	synt	any
+	field	cam
+	line	888
+	colm	19
+	synt	any
+	field	lookx
+	pnull
+	pnull
+	var	0
+	line	888
+	colm	33
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	888
+	colm	40
+	synt	any
+	field	lx
+	line	888
+	colm	35
+	synt	any
+	minus
+	line	888
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	pnull
+	pnull
+	var	4
+	line	889
+	colm	18
+	synt	any
+	field	cam
+	line	889
+	colm	22
+	synt	any
+	field	looky
+	line	889
+	colm	10
+	synt	any
+	null
+	pnull
+	pnull
+	var	0
+	line	889
+	colm	37
+	synt	any
+	field	y
+	real	2
+	line	889
+	colm	39
+	synt	any
+	plus
+	line	889
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	pnull
+	var	4
+	line	890
+	colm	15
+	synt	any
+	field	cam
+	line	890
+	colm	19
+	synt	any
+	field	lookz
+	pnull
+	pnull
+	var	0
+	line	890
+	colm	33
+	synt	any
+	field	z
+	pnull
+	var	0
+	line	890
+	colm	40
+	synt	any
+	field	lz
+	line	890
+	colm	35
+	synt	any
+	minus
+	line	890
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	4
+	line	891
+	colm	15
+	synt	any
+	field	cam
+	line	891
+	colm	19
+	synt	any
+	field	eye
+	line	891
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L34
+	mark	L35
+	pnull
+	line	892
+	colm	10
+	synt	any
+	pret
+lab L35
+	synt	any
+	pfail
+	line	873
+	colm	7
+	synt	endif
+	unmark
+lab L13
+	pnull
+	line	894
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_broadcast_move
+	local	0,001000,self
+	local	1,000020,msg
+	local	2,000000,trncReal
+	local	3,000000,put
+	con	0,010000,1,040
+	declend
+	line	899
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	901
+	colm	18
+	synt	any
+	field	moveuidbody
+	var	2
+	pnull
+	var	0
+	line	901
+	colm	45
+	synt	any
+	field	x
+	line	901
+	colm	40
+	synt	any
+	invoke	1
+	line	901
+	colm	30
+	synt	any
+	cat
+	str	0
+	line	901
+	colm	48
+	synt	any
+	cat
+	var	2
+	pnull
+	var	0
+	line	902
+	colm	29
+	synt	any
+	field	y
+	line	902
+	colm	24
+	synt	any
+	invoke	1
+	line	901
+	colm	53
+	synt	any
+	cat
+	str	0
+	line	902
+	colm	32
+	synt	any
+	cat
+	var	2
+	pnull
+	var	0
+	line	902
+	colm	52
+	synt	any
+	field	z
+	line	902
+	colm	47
+	synt	any
+	invoke	1
+	line	902
+	colm	37
+	synt	any
+	cat
+	str	0
+	line	902
+	colm	55
+	synt	any
+	cat
+	var	2
+	pnull
+	var	0
+	line	902
+	colm	75
+	synt	any
+	field	angle
+	line	902
+	colm	70
+	synt	any
+	invoke	1
+	line	902
+	colm	60
+	synt	any
+	cat
+	line	901
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	3
+	pnull
+	var	0
+	line	903
+	colm	15
+	synt	any
+	field	grouping
+	var	1
+	line	903
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	pnull
+	line	904
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj_initially
+	local	0,001000,self
+	local	1,001000,uid_in
+	local	2,001000,x_in
+	local	3,001000,y_in
+	local	4,001000,z_in
+	local	5,001000,ang
+	local	6,000000,set
+	local	7,000000,list
+	local	8,000000,Objects
+	local	9,000000,currObjsID
+	local	10,000000,penSize
+	con	0,010000,3,162,145,144
+	con	1,010000,5,147,165,145,163,164
+	con	2,002000,1,0
+	con	3,010000,1,155
+	con	4,010000,9,163,155,151,154,171,056,147,151,146
+	con	5,002000,1,1
+	con	6,010000,1,134
+	con	7,010000,6,134,155,157,166,145,040
+	con	8,010000,1,040
+	con	9,010000,5,142,157,144,171,040
+	con	10,004000,0.0
+	con	11,010000,0
+	con	12,004000,0.35
+	declend
+	line	907
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	909
+	colm	9
+	synt	any
+	field	scolor
+	str	0
+	line	909
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	910
+	colm	9
+	synt	any
+	field	pcolor
+	str	0
+	line	910
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	911
+	colm	9
+	synt	any
+	field	shcolor
+	str	0
+	line	911
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	912
+	colm	9
+	synt	any
+	field	a_name
+	str	1
+	line	912
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	913
+	colm	9
+	synt	any
+	field	X
+	int	2
+	line	913
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	914
+	colm	9
+	synt	any
+	field	Y
+	int	2
+	line	914
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	915
+	colm	9
+	synt	any
+	field	Z
+	int	2
+	line	915
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	916
+	colm	9
+	synt	any
+	field	xsize
+	int	2
+	line	916
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	917
+	colm	9
+	synt	any
+	field	ysize
+	int	2
+	line	917
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	918
+	colm	9
+	synt	any
+	field	zsize
+	int	2
+	line	918
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	919
+	colm	9
+	synt	any
+	field	height
+	int	2
+	line	919
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	920
+	colm	9
+	synt	any
+	field	origx
+	int	2
+	line	920
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	921
+	colm	9
+	synt	any
+	field	origy
+	int	2
+	line	921
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	922
+	colm	9
+	synt	any
+	field	origz
+	int	2
+	line	922
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	923
+	colm	9
+	synt	any
+	field	sex
+	str	3
+	line	923
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	924
+	colm	9
+	synt	any
+	field	face_path
+	line	924
+	colm	21
+	synt	any
+	keywd	null
+	line	924
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	925
+	colm	9
+	synt	any
+	field	face
+	str	4
+	line	925
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	926
+	colm	9
+	synt	any
+	field	hdchoice
+	int	5
+	line	926
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	930
+	colm	8
+	synt	any
+	field	ps
+	str	6
+	line	930
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	933
+	colm	8
+	synt	any
+	field	uid
+	var	1
+	line	933
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	0
+	line	934
+	colm	8
+	synt	any
+	field	moveuid
+	pnull
+	pnull
+	str	7
+	pnull
+	var	0
+	line	934
+	colm	33
+	synt	any
+	field	uid
+	line	934
+	colm	27
+	synt	any
+	cat
+	str	8
+	line	934
+	colm	37
+	synt	any
+	cat
+	line	934
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	var	0
+	line	935
+	colm	8
+	synt	any
+	field	moveuidbody
+	pnull
+	pnull
+	var	0
+	line	935
+	colm	26
+	synt	any
+	field	moveuid
+	str	9
+	line	935
+	colm	34
+	synt	any
+	cat
+	line	935
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	var	0
+	line	937
+	colm	8
+	synt	any
+	field	x
+	var	2
+	line	937
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	var	0
+	line	938
+	colm	8
+	synt	any
+	field	y
+	var	3
+	line	938
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	939
+	colm	8
+	synt	any
+	field	z
+	var	4
+	line	939
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	941
+	colm	8
+	synt	any
+	field	lx
+	real	10
+	line	941
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	942
+	colm	8
+	synt	any
+	field	lz
+	real	10
+	line	942
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	944
+	colm	8
+	synt	any
+	field	angle
+	var	5
+	line	944
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	946
+	colm	8
+	synt	any
+	field	fint
+	int	2
+	line	946
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	0
+	line	947
+	colm	8
+	synt	any
+	field	rarm
+	int	2
+	line	947
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	948
+	colm	8
+	synt	any
+	field	larm
+	int	2
+	line	948
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	0
+	line	949
+	colm	8
+	synt	any
+	field	render_set
+	var	6
+	line	949
+	colm	24
+	synt	any
+	invoke	0
+	line	949
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	var	0
+	line	950
+	colm	8
+	synt	any
+	field	isRendered
+	line	950
+	colm	21
+	synt	any
+	keywd	null
+	line	950
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	0
+	line	951
+	colm	8
+	synt	any
+	field	grouping
+	var	7
+	line	951
+	colm	23
+	synt	any
+	invoke	0
+	line	951
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	953
+	colm	8
+	synt	any
+	field	isPointing
+	int	2
+	line	953
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	954
+	colm	8
+	synt	any
+	field	vertical_ptr
+	int	2
+	line	954
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	955
+	colm	8
+	synt	any
+	field	horizontal_ptr
+	int	2
+	line	955
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	pnull
+	var	0
+	line	958
+	colm	9
+	synt	any
+	field	object
+	line	958
+	colm	4
+	synt	any
+	null
+	pnull
+	line	958
+	colm	18
+	synt	any
+	llist	0
+	line	958
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	959
+	colm	8
+	synt	any
+	field	chair
+	line	959
+	colm	16
+	synt	any
+	keywd	null
+	line	959
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	960
+	colm	8
+	synt	any
+	field	sittingDown
+	int	2
+	line	960
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	961
+	colm	8
+	synt	any
+	field	body_part
+	str	11
+	line	961
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	pnull
+	var	0
+	line	963
+	colm	9
+	synt	any
+	field	currObjID
+	line	963
+	colm	4
+	synt	any
+	null
+	int	2
+	line	963
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	8
+	line	964
+	colm	4
+	synt	any
+	null
+	pnull
+	line	964
+	colm	16
+	synt	any
+	llist	0
+	line	964
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	9
+	line	965
+	colm	4
+	synt	any
+	null
+	int	2
+	line	965
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	var	10
+	real	12
+	line	967
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L45
+	mark	L46
+	mark	L47
+	pnull
+	line	968
+	colm	7
+	synt	any
+	pret
+lab L47
+	synt	any
+	pfail
+	unmark
+lab L46
+	pnull
+	line	969
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinj
+	local	0,001000,uid_in
+	local	1,001000,x_in
+	local	2,001000,y_in
+	local	3,001000,z_in
+	local	4,001000,ang
+	local	5,000020,self
+	local	6,000020,clone
+	local	7,000000,penguinj__oprec
+	local	8,000000,penguinjinitialize
+	local	9,000000,avatar__oprec
+	local	10,000000,avatarinitialize
+	local	11,000000,penguinj__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	7
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	8
+	line	8
+	colm	46
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	9
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	10
+	line	9
+	colm	42
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	7
+	line	10
+	colm	18
+	synt	any
+	field	avatar
+	var	9
+	line	10
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	5
+	var	11
+	line	12
+	colm	27
+	synt	any
+	keywd	null
+	var	7
+	line	12
+	colm	26
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	5
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	5
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	5
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	5
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	line	14
+	colm	21
+	synt	any
+	invoke	6
+	line	14
+	colm	54
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	56
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	5
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc penguinjinitialize
+	local	0,000000,penguinj__oprec
+	local	1,000000,penguinj__methods
+	local	2,000000,penguinj_initialize
+	local	3,000000,penguinj_derender
+	local	4,000000,penguinj_flushnet
+	local	5,000000,penguinj_move_part
+	local	6,000000,penguinj_move_part_complex
+	local	7,000000,penguinj_move
+	local	8,000000,penguinj_isTalking
+	local	9,000000,penguinj_SetTalkState
+	local	10,000000,penguinj_setup
+	local	11,000000,penguinj_render
+	local	12,000000,penguinj_actual_render
+	local	13,000000,penguinj_parser
+	local	14,000000,penguinj_getcolor
+	local	15,000000,penguinj_test_new_pos
+	local	16,000000,penguinj_moveabs
+	local	17,000000,penguinj_actions
+	local	18,000000,penguinj_possess
+	local	19,000000,penguinj_unpossess
+	local	20,000000,penguinj_switchObjectUp
+	local	21,000000,penguinj_switchObjectDown
+	local	22,000000,penguinj_getX
+	local	23,000000,penguinj_getY
+	local	24,000000,penguinj_getZ
+	local	25,000000,penguinj_getName
+	local	26,000000,penguinj_cam_follows
+	local	27,000000,penguinj_broadcast_move
+	local	28,000000,penguinj_initially
+	local	29,000000,avatar_movePartComplex
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	line	19
+	colm	47
+	synt	any
+	invoke	28
+	line	19
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc phead_render
+	local	0,001000,self
+	local	1,001000,face
+	local	2,001000,color
+	local	3,001000,choice
+	local	4,000020,win3d
+	local	5,000000,gui__dispatcher
+	local	6,000000,WSection
+	local	7,000000,PushMatrix
+	local	8,000000,Translate
+	local	9,000000,penSize
+	local	10,000000,WAttrib
+	local	11,000000,Scale
+	local	12,000000,Fg
+	local	13,000000,DrawSphere
+	local	14,000000,PopMatrix
+	local	15,000000,Rotate
+	local	16,000000,DrawCylinder
+	local	17,000000,DrawTorus
+	con	0,010000,4,150,145,141,144
+	con	1,004000,0.0
+	con	2,004000,1.7
+	con	3,010000,11,164,145,170,155,157,144,145,075,157,146,146
+	con	4,004000,1.75
+	con	5,004000,1.0
+	con	6,004000,0.8
+	con	7,010000,5,142,154,141,143,153
+	con	8,004000,0.625
+	con	9,004000,110.0
+	con	10,004000,0.2
+	con	11,010000,6,171,145,154,154,157,167
+	con	12,004000,0.25
+	con	13,004000,0.667
+	con	14,004000,0.4
+	con	15,004000,0.167
+	con	16,004000,0.08
+	con	17,004000,12.0
+	con	18,004000,20.0
+	con	19,004000,0.588
+	con	20,004000,0.6
+	con	21,004000,0.06
+	con	22,004000,0.10
+	con	23,004000,0.5
+	con	24,010000,5,167,150,151,164,145
+	con	25,004000,0.1
+	con	26,004000,0.083
+	declend
+	filen	penguin.icn
+	line	983
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	986
+	colm	9
+	synt	any
+	field	ch
+	var	3
+	line	986
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	pnull
+	pnull
+	var	5
+	line	987
+	colm	30
+	synt	any
+	field	subwins
+	line	987
+	colm	14
+	synt	any
+	bang
+	line	987
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	988
+	colm	9
+	synt	any
+	field	headWS
+	var	6
+	var	4
+	str	0
+	line	988
+	colm	26
+	synt	any
+	invoke	2
+	line	988
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	var	7
+	line	990
+	colm	15
+	synt	any
+	invoke	0
+	unmark
+lab L4
+	mark	L5
+	var	8
+	real	1
+	pnull
+	var	9
+	real	2
+	line	991
+	colm	32
+	synt	any
+	minus
+	real	1
+	line	991
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	var	10
+	str	3
+	line	992
+	colm	16
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	var	8
+	real	1
+	pnull
+	real	4
+	var	9
+	line	994
+	colm	28
+	synt	any
+	mult
+	real	1
+	line	994
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L7
+	mark	L8
+	var	7
+	line	995
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	var	11
+	real	5
+	real	6
+	real	5
+	line	996
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L9
+	mark	L10
+	var	12
+	str	7
+	line	997
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L10
+	mark	L11
+	var	13
+	real	1
+	real	1
+	real	1
+	pnull
+	var	9
+	real	8
+	line	998
+	colm	48
+	synt	any
+	mult
+	line	998
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L11
+	mark	L12
+	var	14
+	line	999
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L12
+	mark	L13
+	var	7
+	line	1001
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L13
+	mark	L14
+	var	15
+	real	9
+	real	5
+	real	1
+	real	1
+	line	1002
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L14
+	mark	L15
+	var	11
+	real	5
+	real	5
+	real	10
+	line	1003
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L15
+	mark	L16
+	var	12
+	str	11
+	line	1004
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	var	16
+	real	1
+	pnull
+	var	9
+	real	12
+	line	1005
+	colm	38
+	synt	any
+	mult
+	real	1
+	pnull
+	var	9
+	real	13
+	line	1005
+	colm	57
+	synt	any
+	mult
+	pnull
+	var	9
+	real	14
+	line	1005
+	colm	72
+	synt	any
+	mult
+	pnull
+	var	9
+	real	15
+	line	1005
+	colm	85
+	synt	any
+	mult
+	line	1005
+	colm	25
+	synt	any
+	invoke	6
+	unmark
+lab L17
+	mark	L18
+	var	16
+	real	1
+	pnull
+	var	9
+	real	12
+	line	1006
+	colm	38
+	synt	any
+	mult
+	pnull
+	var	9
+	real	16
+	line	1006
+	colm	52
+	synt	any
+	mult
+	pnull
+	var	9
+	real	13
+	line	1006
+	colm	66
+	synt	any
+	mult
+	pnull
+	var	9
+	real	14
+	line	1006
+	colm	81
+	synt	any
+	mult
+	pnull
+	var	9
+	real	15
+	line	1006
+	colm	94
+	synt	any
+	mult
+	line	1006
+	colm	25
+	synt	any
+	invoke	6
+	unmark
+lab L18
+	mark	L19
+	var	14
+	line	1007
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L19
+	mark	L20
+	var	7
+	line	1009
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L20
+	mark	L21
+	var	15
+	pnull
+	real	17
+	line	1010
+	colm	20
+	synt	any
+	neg
+	real	5
+	real	1
+	real	1
+	line	1010
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L21
+	mark	L22
+	var	15
+	pnull
+	real	18
+	line	1012
+	colm	21
+	synt	any
+	neg
+	real	1
+	real	5
+	real	1
+	line	1012
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L22
+	mark	L23
+	var	8
+	real	1
+	real	1
+	pnull
+	var	9
+	real	19
+	line	1014
+	colm	40
+	synt	any
+	mult
+	line	1014
+	colm	22
+	synt	any
+	invoke	3
+	unmark
+lab L23
+	mark	L24
+	var	11
+	real	5
+	real	5
+	real	20
+	line	1016
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L24
+	mark	L25
+	var	12
+	str	7
+	line	1017
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	mark	L26
+	var	13
+	real	1
+	pnull
+	pnull
+	var	9
+	line	1018
+	colm	31
+	synt	any
+	neg
+	real	21
+	line	1018
+	colm	39
+	synt	any
+	mult
+	real	1
+	pnull
+	var	9
+	real	22
+	line	1018
+	colm	59
+	synt	any
+	mult
+	line	1018
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L26
+	mark	L27
+	var	11
+	real	23
+	real	5
+	real	10
+	line	1019
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L27
+	mark	L28
+	var	12
+	str	24
+	line	1020
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L28
+	mark	L29
+	var	17
+	real	1
+	real	1
+	pnull
+	var	9
+	real	25
+	line	1021
+	colm	41
+	synt	any
+	mult
+	pnull
+	var	9
+	real	26
+	line	1021
+	colm	54
+	synt	any
+	mult
+	pnull
+	var	9
+	real	15
+	line	1021
+	colm	69
+	synt	any
+	mult
+	line	1021
+	colm	22
+	synt	any
+	invoke	5
+	unmark
+lab L29
+	mark	L30
+	var	14
+	line	1022
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L30
+	mark	L31
+	var	7
+	line	1024
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L31
+	mark	L32
+	var	15
+	pnull
+	real	17
+	line	1025
+	colm	21
+	synt	any
+	neg
+	real	5
+	real	1
+	real	1
+	line	1025
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L32
+	mark	L33
+	var	15
+	real	18
+	real	1
+	real	5
+	real	1
+	line	1026
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L33
+	mark	L34
+	var	8
+	real	1
+	real	1
+	pnull
+	var	9
+	real	19
+	line	1027
+	colm	41
+	synt	any
+	mult
+	line	1027
+	colm	22
+	synt	any
+	invoke	3
+	unmark
+lab L34
+	mark	L35
+	var	11
+	real	5
+	real	5
+	real	20
+	line	1028
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L35
+	mark	L36
+	var	12
+	str	7
+	line	1029
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L36
+	mark	L37
+	var	13
+	real	1
+	pnull
+	pnull
+	var	9
+	line	1030
+	colm	31
+	synt	any
+	neg
+	real	21
+	line	1030
+	colm	39
+	synt	any
+	mult
+	real	1
+	pnull
+	var	9
+	real	22
+	line	1030
+	colm	59
+	synt	any
+	mult
+	line	1030
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L37
+	mark	L38
+	var	11
+	real	23
+	real	5
+	real	10
+	line	1031
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L38
+	mark	L39
+	var	12
+	str	24
+	line	1032
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L39
+	mark	L40
+	var	17
+	real	1
+	real	1
+	pnull
+	var	9
+	real	25
+	line	1033
+	colm	41
+	synt	any
+	mult
+	pnull
+	var	9
+	real	26
+	line	1033
+	colm	54
+	synt	any
+	mult
+	pnull
+	var	9
+	real	15
+	line	1033
+	colm	69
+	synt	any
+	mult
+	line	1033
+	colm	22
+	synt	any
+	invoke	5
+	unmark
+lab L40
+	mark	L41
+	var	14
+	line	1034
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L41
+	mark	L42
+	var	14
+	line	1036
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L42
+	mark	L43
+	var	6
+	var	4
+	line	1037
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	pnull
+	line	1038
+	colm	1
+	synt	any
+	pfail
+	end
+proc phead_initially
+	local	0,001000,self
+	con	0,002000,1,0
+	con	1,002000,1,1
+	con	2,004000,0.6
+	con	3,004000,0.5
+	con	4,004000,0.3
+	con	5,004000,0.1
+	declend
+	line	1040
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	1041
+	colm	8
+	synt	any
+	field	counter
+	int	0
+	line	1041
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	1042
+	colm	8
+	synt	any
+	field	ch
+	int	1
+	line	1042
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	1043
+	colm	7
+	synt	any
+	field	headx
+	int	0
+	line	1043
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	1044
+	colm	8
+	synt	any
+	field	heady
+	real	2
+	line	1044
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	1045
+	colm	8
+	synt	any
+	field	headz
+	int	0
+	line	1045
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	1046
+	colm	8
+	synt	any
+	field	headr
+	real	3
+	line	1046
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	1047
+	colm	8
+	synt	any
+	field	neckx
+	int	0
+	line	1047
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	1048
+	colm	8
+	synt	any
+	field	necky
+	int	0
+	line	1048
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	1049
+	colm	8
+	synt	any
+	field	neckz
+	int	0
+	line	1049
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	1050
+	colm	8
+	synt	any
+	field	neckh
+	real	4
+	line	1050
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	1051
+	colm	8
+	synt	any
+	field	neckt
+	real	5
+	line	1051
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	1052
+	colm	8
+	synt	any
+	field	neckb
+	real	5
+	line	1052
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	mark	L14
+	pnull
+	line	1053
+	colm	7
+	synt	any
+	pret
+lab L14
+	synt	any
+	pfail
+	unmark
+lab L13
+	pnull
+	line	1054
+	colm	1
+	synt	any
+	pfail
+	end
+proc phead
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,phead__oprec
+	local	3,000000,pheadinitialize
+	local	4,000000,avatarParts__oprec
+	local	5,000000,avatarPartsinitialize
+	local	6,000000,phead__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	40
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	2
+	line	10
+	colm	15
+	synt	any
+	field	avatarParts
+	var	4
+	line	10
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	0
+	var	6
+	line	12
+	colm	24
+	synt	any
+	keywd	null
+	var	2
+	line	12
+	colm	23
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	14
+	colm	21
+	synt	any
+	invoke	2
+	line	14
+	colm	29
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	31
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	0
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc pheadinitialize
+	local	0,000000,phead__oprec
+	local	1,000000,phead__methods
+	local	2,000000,phead_render
+	local	3,000000,phead_initially
+	local	4,000000,avatarParts_initRMatrix
+	local	5,000000,avatarParts_setAngleComplex
+	local	6,000000,avatarParts_setAngle
+	local	7,000000,avatarParts_createNameTag
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	19
+	colm	41
+	synt	any
+	invoke	6
+	line	19
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc pbody_render
+	local	0,001000,self
+	local	1,001000,name
+	local	2,001000,scolor
+	local	3,001000,sex
+	local	4,001000,pcolor
+	local	5,001000,letter_path
+	local	6,001000,ps
+	local	7,000020,win3d
+	local	8,000000,gui__dispatcher
+	local	9,000000,WSection
+	local	10,000000,PushMatrix
+	local	11,000000,Translate
+	local	12,000000,penSize
+	local	13,000000,Scale
+	local	14,000000,Fg
+	local	15,000000,DrawSphere
+	local	16,000000,PopMatrix
+	con	0,010000,4,142,157,144,171
+	con	1,004000,0.0
+	con	2,004000,1.7
+	con	3,004000,1.0
+	con	4,004000,1.5
+	con	5,004000,0.8
+	con	6,010000,5,142,154,141,143,153
+	con	7,010000,5,167,150,151,164,145
+	con	8,004000,0.04
+	con	9,002000,1,0
+	con	10,004000,0.4
+	declend
+	filen	penguin.icn
+	line	1062
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	7
+	pnull
+	pnull
+	var	8
+	line	1065
+	colm	30
+	synt	any
+	field	subwins
+	line	1065
+	colm	14
+	synt	any
+	bang
+	line	1065
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	1066
+	colm	9
+	synt	any
+	field	bodyWS
+	var	9
+	var	7
+	str	0
+	line	1066
+	colm	26
+	synt	any
+	invoke	2
+	line	1066
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	10
+	line	1068
+	colm	15
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	var	11
+	real	1
+	pnull
+	var	12
+	real	2
+	line	1069
+	colm	32
+	synt	any
+	minus
+	real	1
+	line	1069
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	var	13
+	real	3
+	real	4
+	real	5
+	line	1071
+	colm	14
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	var	14
+	str	6
+	line	1072
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	var	15
+	real	1
+	real	1
+	real	1
+	var	12
+	line	1073
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L7
+	mark	L8
+	var	14
+	str	7
+	line	1074
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	var	15
+	real	1
+	real	1
+	pnull
+	var	12
+	real	8
+	line	1075
+	colm	36
+	synt	any
+	mult
+	var	12
+	line	1075
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	line	1076
+	colm	13
+	synt	any
+	field	createNameTag
+	var	1
+	pnull
+	var	12
+	real	4
+	line	1076
+	colm	40
+	synt	any
+	mult
+	int	9
+	pnull
+	var	12
+	real	10
+	line	1076
+	colm	54
+	synt	any
+	mult
+	var	12
+	var	5
+	var	6
+	line	1076
+	colm	27
+	synt	any
+	invoke	7
+	unmark
+lab L10
+	mark	L11
+	var	16
+	line	1077
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L11
+	mark	L12
+	var	9
+	var	7
+	line	1078
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	pnull
+	line	1079
+	colm	1
+	synt	any
+	pfail
+	end
+proc pbody_initially
+	local	0,001000,self
+	declend
+	line	1080
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	1082
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	1083
+	colm	1
+	synt	any
+	pfail
+	end
+proc pbody
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,pbody__oprec
+	local	3,000000,pbodyinitialize
+	local	4,000000,avatarParts__oprec
+	local	5,000000,avatarPartsinitialize
+	local	6,000000,pbody__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	40
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	2
+	line	10
+	colm	15
+	synt	any
+	field	avatarParts
+	var	4
+	line	10
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	0
+	var	6
+	line	12
+	colm	24
+	synt	any
+	keywd	null
+	var	2
+	line	12
+	colm	23
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	14
+	colm	21
+	synt	any
+	invoke	2
+	line	14
+	colm	29
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	31
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	0
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc pbodyinitialize
+	local	0,000000,pbody__oprec
+	local	1,000000,pbody__methods
+	local	2,000000,pbody_render
+	local	3,000000,pbody_initially
+	local	4,000000,avatarParts_initRMatrix
+	local	5,000000,avatarParts_setAngleComplex
+	local	6,000000,avatarParts_setAngle
+	local	7,000000,avatarParts_createNameTag
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	19
+	colm	41
+	synt	any
+	invoke	6
+	line	19
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc parm_render
+	local	0,001000,self
+	local	1,001000,side
+	local	2,001000,color
+	local	3,001000,scolor
+	local	4,000020,win3d
+	local	5,000000,gui__dispatcher
+	local	6,000000,WSection
+	local	7,000000,PushMatrix
+	local	8,000000,Translate
+	local	9,000000,penSize
+	local	10,000000,Rotate
+	local	11,000000,Scale
+	local	12,000000,Fg
+	local	13,000000,DrawCylinder
+	local	14,000000,PopMatrix
+	con	0,010000,3,141,162,155
+	con	1,004000,0.0
+	con	2,004000,1.7
+	con	3,004000,0.75
+	con	4,010000,1,162
+	con	5,004000,100.0
+	con	6,004000,1.0
+	con	7,004000,0.4
+	con	8,010000,5,142,154,141,143,153
+	con	9,004000,2.0
+	con	10,004000,0.71
+	con	11,004000,0.10
+	declend
+	filen	penguin.icn
+	line	1096
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	pnull
+	pnull
+	var	5
+	line	1099
+	colm	29
+	synt	any
+	field	subwins
+	line	1099
+	colm	13
+	synt	any
+	bang
+	line	1099
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	1100
+	colm	8
+	synt	any
+	field	armWS
+	var	6
+	var	4
+	str	0
+	line	1100
+	colm	24
+	synt	any
+	invoke	2
+	line	1100
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	7
+	line	1101
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	var	8
+	real	1
+	pnull
+	var	9
+	real	2
+	line	1102
+	colm	32
+	synt	any
+	minus
+	real	1
+	line	1102
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	var	8
+	real	1
+	pnull
+	var	9
+	real	3
+	line	1104
+	colm	31
+	synt	any
+	mult
+	real	1
+	line	1104
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	mark	L6
+	line	1106
+	colm	9
+	synt	ifelse
+	mark	L7
+	pnull
+	var	1
+	str	4
+	line	1106
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	var	10
+	real	5
+	real	1
+	real	1
+	real	6
+	line	1107
+	colm	18
+	synt	any
+	invoke	4
+	goto	L8
+lab L7
+	var	10
+	pnull
+	real	5
+	line	1109
+	colm	19
+	synt	any
+	neg
+	real	1
+	real	1
+	real	6
+	line	1109
+	colm	18
+	synt	any
+	invoke	4
+lab L8
+	line	1106
+	colm	9
+	synt	endifelse
+	unmark
+lab L6
+	mark	L9
+	var	11
+	real	6
+	real	6
+	real	7
+	line	1111
+	colm	14
+	synt	any
+	invoke	3
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	line	1112
+	colm	13
+	synt	any
+	field	initRMatrix
+	line	1112
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	var	12
+	str	8
+	line	1113
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	var	13
+	real	1
+	real	1
+	real	1
+	pnull
+	var	9
+	real	9
+	line	1114
+	colm	44
+	synt	any
+	mult
+	pnull
+	var	9
+	real	10
+	line	1114
+	colm	57
+	synt	any
+	mult
+	pnull
+	var	9
+	real	11
+	line	1114
+	colm	72
+	synt	any
+	mult
+	line	1114
+	colm	21
+	synt	any
+	invoke	6
+	unmark
+lab L12
+	mark	L13
+	var	14
+	line	1115
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L13
+	mark	L14
+	var	6
+	var	4
+	line	1116
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	pnull
+	line	1117
+	colm	1
+	synt	any
+	pfail
+	end
+proc parm_initially
+	local	0,001000,self
+	declend
+	line	1119
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	1121
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	1122
+	colm	1
+	synt	any
+	pfail
+	end
+proc parm
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,parm__oprec
+	local	3,000000,parminitialize
+	local	4,000000,avatarParts__oprec
+	local	5,000000,avatarPartsinitialize
+	local	6,000000,parm__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	38
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	2
+	line	10
+	colm	14
+	synt	any
+	field	avatarParts
+	var	4
+	line	10
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	0
+	var	6
+	line	12
+	colm	23
+	synt	any
+	keywd	null
+	var	2
+	line	12
+	colm	22
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	14
+	colm	21
+	synt	any
+	invoke	2
+	line	14
+	colm	29
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	31
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	0
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc parminitialize
+	local	0,000000,parm__oprec
+	local	1,000000,parm__methods
+	local	2,000000,parm_render
+	local	3,000000,parm_initially
+	local	4,000000,avatarParts_initRMatrix
+	local	5,000000,avatarParts_setAngleComplex
+	local	6,000000,avatarParts_setAngle
+	local	7,000000,avatarParts_createNameTag
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	19
+	colm	39
+	synt	any
+	invoke	6
+	line	19
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg_render
+	local	0,001000,self
+	local	1,001000,side
+	local	2,001000,pcolor
+	local	3,001000,shcolor
+	local	4,000020,win3d
+	local	5,000000,gui__dispatcher
+	local	6,000000,WSection
+	local	7,000000,PushMatrix
+	local	8,000000,Translate
+	local	9,000000,penSize
+	local	10,000000,Fg
+	local	11,000000,DrawCylinder
+	local	12,000000,Rotate
+	local	13,000000,Scale
+	local	14,000000,PopMatrix
+	con	0,010000,3,154,145,147
+	con	1,004000,0.0
+	con	2,004000,1.7
+	con	3,010000,1,162
+	con	4,004000,0.3
+	con	5,010000,5,167,150,151,164,145
+	con	6,004000,0.7
+	con	7,004000,0.5
+	con	8,004000,0.15
+	con	9,004000,0.17
+	con	10,004000,90.0
+	con	11,004000,1.0
+	con	12,004000,0.1
+	con	13,004000,25.0
+	con	14,010000,6,171,145,154,154,157,167
+	con	15,004000,0.20
+	con	16,004000,3.0
+	declend
+	filen	penguin.icn
+	line	1132
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	pnull
+	pnull
+	var	5
+	line	1135
+	colm	29
+	synt	any
+	field	subwins
+	line	1135
+	colm	13
+	synt	any
+	bang
+	line	1135
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	1136
+	colm	8
+	synt	any
+	field	legWS
+	var	6
+	var	4
+	str	0
+	line	1136
+	colm	24
+	synt	any
+	invoke	2
+	line	1136
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	7
+	line	1137
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	var	8
+	real	1
+	pnull
+	var	9
+	real	2
+	line	1138
+	colm	32
+	synt	any
+	minus
+	real	1
+	line	1138
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	line	1139
+	colm	9
+	synt	ifelse
+	mark	L6
+	pnull
+	var	1
+	str	3
+	line	1139
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	var	8
+	pnull
+	var	9
+	real	4
+	line	1140
+	colm	32
+	synt	any
+	mult
+	pnull
+	var	9
+	line	1140
+	colm	39
+	synt	any
+	neg
+	real	1
+	line	1140
+	colm	22
+	synt	any
+	invoke	3
+	goto	L7
+lab L6
+	var	8
+	pnull
+	pnull
+	var	9
+	line	1142
+	colm	23
+	synt	any
+	neg
+	real	4
+	line	1142
+	colm	32
+	synt	any
+	mult
+	pnull
+	var	9
+	line	1142
+	colm	39
+	synt	any
+	neg
+	real	1
+	line	1142
+	colm	22
+	synt	any
+	invoke	3
+lab L7
+	line	1139
+	colm	9
+	synt	endifelse
+	unmark
+lab L5
+	mark	L8
+	pnull
+	var	0
+	line	1144
+	colm	13
+	synt	any
+	field	initRMatrix
+	line	1144
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	var	10
+	str	5
+	line	1145
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	mark	L10
+	var	11
+	real	1
+	pnull
+	pnull
+	var	9
+	line	1146
+	colm	27
+	synt	any
+	neg
+	real	6
+	line	1146
+	colm	36
+	synt	any
+	mult
+	real	1
+	pnull
+	var	9
+	real	7
+	line	1146
+	colm	57
+	synt	any
+	mult
+	pnull
+	var	9
+	real	8
+	line	1146
+	colm	71
+	synt	any
+	mult
+	pnull
+	var	9
+	real	9
+	line	1146
+	colm	85
+	synt	any
+	mult
+	line	1146
+	colm	21
+	synt	any
+	invoke	6
+	unmark
+lab L10
+	mark	L11
+	var	12
+	real	10
+	real	11
+	real	1
+	real	1
+	line	1147
+	colm	15
+	synt	any
+	invoke	4
+	unmark
+lab L11
+	mark	L12
+	var	8
+	real	1
+	pnull
+	pnull
+	var	9
+	line	1148
+	colm	24
+	synt	any
+	neg
+	real	8
+	line	1148
+	colm	33
+	synt	any
+	mult
+	pnull
+	var	9
+	real	6
+	line	1148
+	colm	49
+	synt	any
+	mult
+	line	1148
+	colm	18
+	synt	any
+	invoke	3
+	unmark
+lab L12
+	mark	L13
+	var	13
+	real	11
+	real	11
+	real	12
+	line	1149
+	colm	14
+	synt	any
+	invoke	3
+	unmark
+lab L13
+	mark	L14
+	line	1151
+	colm	9
+	synt	ifelse
+	mark	L15
+	pnull
+	var	1
+	str	3
+	line	1151
+	colm	17
+	synt	any
+	lexeq
+	unmark
+	var	12
+	pnull
+	real	13
+	line	1152
+	colm	18
+	synt	any
+	neg
+	real	1
+	real	1
+	real	11
+	line	1152
+	colm	17
+	synt	any
+	invoke	4
+	goto	L16
+lab L15
+	var	12
+	real	13
+	real	1
+	real	1
+	real	11
+	line	1154
+	colm	17
+	synt	any
+	invoke	4
+lab L16
+	line	1151
+	colm	9
+	synt	endifelse
+	unmark
+lab L14
+	mark	L17
+	var	10
+	str	14
+	line	1156
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	var	11
+	real	1
+	real	1
+	real	1
+	pnull
+	var	9
+	real	6
+	line	1157
+	colm	48
+	synt	any
+	mult
+	pnull
+	var	9
+	real	15
+	line	1157
+	colm	62
+	synt	any
+	mult
+	pnull
+	var	9
+	real	16
+	line	1157
+	colm	76
+	synt	any
+	div
+	line	1157
+	colm	21
+	synt	any
+	invoke	6
+	unmark
+lab L18
+	mark	L19
+	var	14
+	line	1158
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L19
+	mark	L20
+	var	6
+	var	4
+	line	1159
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	pnull
+	line	1160
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg_incrementAngle
+	local	0,001000,self
+	con	0,002000,1,1
+	declend
+	line	1161
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	1162
+	colm	11
+	synt	any
+	field	rot
+	line	1162
+	colm	15
+	synt	any
+	field	angle
+	pnull
+	pnull
+	pnull
+	var	0
+	line	1162
+	colm	27
+	synt	any
+	field	rot
+	line	1162
+	colm	31
+	synt	any
+	field	angle
+	int	0
+	line	1162
+	colm	37
+	synt	any
+	plus
+	line	1162
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	1163
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg_decrementAngle
+	local	0,001000,self
+	con	0,002000,1,1
+	declend
+	line	1164
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	1165
+	colm	11
+	synt	any
+	field	rot
+	line	1165
+	colm	15
+	synt	any
+	field	angle
+	pnull
+	pnull
+	pnull
+	var	0
+	line	1165
+	colm	27
+	synt	any
+	field	rot
+	line	1165
+	colm	31
+	synt	any
+	field	angle
+	int	0
+	line	1165
+	colm	37
+	synt	any
+	minus
+	line	1165
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	1166
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg_setAnglePart
+	local	0,001000,self
+	local	1,001000,ang
+	declend
+	line	1167
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	1168
+	colm	11
+	synt	any
+	field	rot
+	line	1168
+	colm	15
+	synt	any
+	field	angle
+	var	1
+	line	1168
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	1169
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg_initially
+	local	0,001000,self
+	declend
+	line	1170
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	1172
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	1173
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleg
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,pleg__oprec
+	local	3,000000,pleginitialize
+	local	4,000000,avatarParts__oprec
+	local	5,000000,avatarPartsinitialize
+	local	6,000000,pleg__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	38
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	2
+	line	10
+	colm	14
+	synt	any
+	field	avatarParts
+	var	4
+	line	10
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	0
+	var	6
+	line	12
+	colm	23
+	synt	any
+	keywd	null
+	var	2
+	line	12
+	colm	22
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	14
+	colm	21
+	synt	any
+	invoke	2
+	line	14
+	colm	29
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	31
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	0
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc pleginitialize
+	local	0,000000,pleg__oprec
+	local	1,000000,pleg__methods
+	local	2,000000,pleg_render
+	local	3,000000,pleg_incrementAngle
+	local	4,000000,pleg_decrementAngle
+	local	5,000000,pleg_setAnglePart
+	local	6,000000,pleg_initially
+	local	7,000000,avatarParts_initRMatrix
+	local	8,000000,avatarParts_setAngleComplex
+	local	9,000000,avatarParts_setAngle
+	local	10,000000,avatarParts_createNameTag
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	line	19
+	colm	39
+	synt	any
+	invoke	9
+	line	19
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end

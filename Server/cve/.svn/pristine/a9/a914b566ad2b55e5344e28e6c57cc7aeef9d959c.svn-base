@@ -1,0 +1,11 @@
+Opening {
+	id 41
+	x 17.9
+	y 6.15
+	z 17.93
+	w 1.7
+	height 2.04
+	collide_in 0.8
+	plane 1
+	rooms [JEB1r_stairs, stair1r_G]
+}

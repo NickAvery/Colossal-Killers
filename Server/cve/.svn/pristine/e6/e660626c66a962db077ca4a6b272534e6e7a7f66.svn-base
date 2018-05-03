@@ -1,0 +1,29 @@
+class GCActor : Actor()
+
+   method heartbeat()
+   local u, numusers
+   static count := 0
+
+   if numusers := *((\server).Tuser_sock) then write("GCActor OK")
+   else write("GCActor fails") & fail
+
+      if numusers > 0 then {
+	 # What are their names?
+	 every u := key(server.Tuser_sock) do {
+	    if /(u.name) | (u.name == "watchdog") then numusers -:= 1
+	    }
+	 }
+
+      if numusers <= 2 then {
+	 count +:= 1
+	 if count > 2 then {
+	    count := 0
+	    collect()
+	    }
+	 }
+    end
+# initially inheritance bug! we inherit Actor's initially,
+# but the parameter handling is incorrect
+initially(sg, srv)
+   self.Actor.initially(sg,srv)
+end

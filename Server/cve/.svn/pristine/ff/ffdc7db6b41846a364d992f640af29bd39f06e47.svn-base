@@ -1,0 +1,476 @@
+#
+# class Door represents a closable connection between rooms.
+# This is a sub-class of class Opening which itself has no door,
+# but provides the opening
+#
+
+global world
+
+class Door : Opening(
+   x, y, z, thickness,
+   rotator,
+   openness, # 0<=o<=1: render angle must be >.67 to walk thru
+   hinge_left, inwards,
+   direction, 
+   delt, 
+   open_angle , 
+   texturec, tx,
+   renderedCounter,#a counter to determine rendering of doors
+   dle,    #display list entry
+   dirnum  #which tells the direction north,south,east or west
+   )
+
+   method allows(px,pz)  
+      if openness < 0.67 then {
+	 fail
+	 }
+      return self$Opening.allows(px,pz)
+   end
+      
+   method dist1( px, py, pz )  
+      return ((( abs( px - x ) ^ 2.0 ) + ( abs ( pz - z ) ^ 2.0 ) ) ^ 0.50 )
+   end
+
+   method distance(px,py,pz)   
+
+      if plane = 3 then {    # zplane
+         return min( dist1( px , py, pz ),dist1( px + width, py, pz ) )
+         }
+      else {                # plane = 1   x plane
+         return min( dist1( px , py, pz ),dist1( px , py, pz + width ) )
+         }
+   end 
+
+   method done_opening()
+      delt := 0
+   end
+
+   method start_closing()
+      direction := -1
+      delt := 0.03
+   end
+
+   method start_opening()
+      direction := 1
+      delt := 0.03
+   end
+
+   method delta()
+      if (direction=1 & openness < 1) |
+         (direction=-1 & openness > 0) then {
+         set_openness(openness + direction * delt)
+         return
+         }
+   end
+
+   method set_openness(o)
+      openness := o
+      openness <:= 0
+      openness >:= 1
+      #sets the openness value depending on the directions east,west,north or south
+      if dirnum = 3 then {
+         if \rotator then {
+            rotator.angle := -90.0 * openness
+            if \hinge_left then rotator.angle := (90.0 * openness)
+         }
+      }
+
+      if dirnum = 2 then {
+         if \rotator then {
+            rotator.angle := 90.0 * openness
+            if \hinge_left then rotator.angle *:= -1
+         }
+      }
+
+      if dirnum = 1 then {
+         if \rotator then {
+            rotator.angle := -90.0 * openness
+            if \hinge_left then rotator.angle *:= -1
+         }
+      }
+
+      if dirnum = 4 then {
+         if \rotator then {
+            rotator.angle := 90.0 * openness
+            if \hinge_left then rotator.angle *:= -1
+         }
+      }
+   end   
+   
+   method deRender()
+      local len, i, item, win3d, dispList
+
+      #If door is not rendered then return
+      renderedCounter -:= 1
+      #write("derender ", image(id), " goes to ", renderedCounter)
+      if renderedCounter ~= 0 then return
+
+      if /dle then stop("nothing to derender in door.icn")
+      dle.skip := 1
+
+      return
+   end 
+      
+   method render()  
+      local dispList, win3d, i, item, northroom, westroom, oldtexmode
+
+      # If the door is already rendered then don't render it again.
+      renderedCounter +:= 1
+      if renderedCounter ~= 1 then return
+      if \dle then { dle.skip := 0; return }
+
+      dle := WSection(&window, "door" || id)
+
+      if map(opMode) == "c" then {
+	 if world.current_texture ~=== texturec then {
+	    world.current_texture := texturec
+	    }
+         }
+      
+      oldtexmode := WAttrib("texmode")
+      if tx := Texture(\texturec) then {
+	 Texcoord(1,0, 0,0, 0,1, 1,1)
+         } 
+      else {
+         WAttrib("texmode=off","fg=very light yellow")
+	 }
+
+         
+      # this was the code added to change the direction of doors depending
+      # on direction north south, east or west.It compares the Z value of
+      # rooms and if z value of one room is greater and if its the corridor
+      # then the its south or else it is north in the same way  
+      # depending on X value it decides the east to west
+
+      if plane = 3 then {  #  zplane - code renders ok
+
+         if rooms[1].minz < rooms[2].minz then
+	    northroom := rooms[1]
+         else
+            northroom := rooms[2]
+ 
+         if find ("cooridoor"|"corridor", northroom.name) then
+            dirnum := 2 
+         else
+            dirnum := 3
+         } 
+      if plane = 1 then {  
+         if rooms[1].minx < rooms[2].minx then
+            westroom := rooms[1]
+         else
+            westroom := rooms[2]
+
+         if find( "cooridoor"|"corridor", westroom.name) then
+            dirnum := 4
+         else
+            dirnum := 1
+         }
+      set_open_angle()
+      if dirnum = 3 then    
+	 render_zn()
+      else if dirnum = 2 then
+	 render_zs()
+      else if dirnum = 1 then
+	 render_xw()
+      else if dirnum = 4 then
+	 render_xe()
+      else
+	 stop(" door rendering fails " )
+      if oldtexmode===(0|"off") then WAttrib("texmode=off")
+      else WAttrib("texmode=on")
+      WSection(&window)
+
+      return
+   end  # method render()
+
+# this is code for rendering  if its north
+
+   method  render_zn()  ## Door
+      local turnon, width_2 := width/2.0, height_2 := height/2.0,
+	  thick_2 := thickness/2.0
+      PushMatrix()
+      Translate(x,y,z)
+      if /hinge_left then Translate(width,0,0)
+      if \openness then {
+         if \hinge_left then
+            rotator := Rotate(180 + (90.0 * openness), 0, 1, 0)
+         else
+            rotator := Rotate(-90.0 * openness, 0, 1, 0)
+         }
+      if \hinge_left then {
+         PushMatrix()
+         Translate( -width_2, -height_2, -thick_2)
+         Translate( width , height_2 , thick_2 )
+         FillPolygon(-width_2,-height_2,-thick_2, width_2, -height_2,-thick_2,
+		     width_2, height_2, -thick_2, -width_2, height_2,-thick_2)
+         FillPolygon(-width_2,-height_2,thick_2, width_2, -height_2,  thick_2,
+		     width_2, height_2, thick_2, -width_2, height_2, thick_2)
+         PopMatrix()
+	 if WAttrib("texmode") == "on" then {
+	    WAttrib("texmode=off" )# this is not very general  ###
+	    turnon := 1
+	    Fg("brown")
+	 } 
+         else turnon := &null
+         DrawSphere(width*0.92, height_2, 0.08, 0.04)
+         DrawSphere(width*0.92, height_2, -0.08-thickness,0.04)
+	 if \turnon then
+	    WAttrib("texmode=on")
+      }
+      else { # normal door = hinge right
+         PushMatrix()
+         Translate( -width_2,  height_2,  -thick_2)
+         FillPolygon(-width_2,-height_2,thick_2, width_2, -height_2, thick_2,
+		     width_2, height_2, thick_2, -width_2, height_2, thick_2)
+         FillPolygon(-width_2,-height_2,-thick_2, width_2, -height_2, -thick_2,
+		     width_2, height_2, -thick_2, -width_2, height_2, -thick_2)
+         PopMatrix()
+	 if WAttrib("texmode") == "on" then {
+	    WAttrib("texmode=off" )# this is not very general  ###
+	    turnon := 1
+	    Fg("brown")
+	 } 
+         else turnon := &null
+            DrawSphere(-width*0.92, height_2, 0.04, 0.04)
+            DrawSphere(-width*0.92, height_2,-0.04-thickness,0.04)
+	    if \turnon then
+	       WAttrib("texmode=on")
+      }
+      PopMatrix()
+   end 
+
+# this is code for rendering if direction is south
+   method  render_zs()  ## Door
+      local turnon
+      PushMatrix()
+      Translate(x,y,z)
+      if /hinge_left then Translate(width,0,0)
+      if \openness then {
+         if \hinge_left then
+            rotator := Rotate(180 + (-90.0 * openness), 0,1, 0)
+         else
+            rotator := Rotate(90.0 * openness, 0, 1, 0)
+      }
+      if \hinge_left then {
+         PushMatrix()
+         Translate( -width/2.0,  -height/2.0,  -thickness/2.0)
+         Translate( width , height/2.0 , thickness/2.0 )
+         FillPolygon(-width/2.0,-height/2.0,thickness/2.0,
+	             width/2.0, -height/2.0,   thickness/2.0,
+		     width/2.0, height/2.0, thickness/2.0,
+		     -width/2.0, height/2.0, thickness/2.0)
+         FillPolygon(-width/2.0,-height/2.0,-thickness/2.0,
+		     width/2.0, -height/2.0,   -thickness/2.0,
+		     width/2.0, height/2.0, -thickness/2.0,
+		     -width/2.0, height/2.0, -thickness/2.0)
+         PopMatrix()
+	 if WAttrib("texmode") == "on" then {
+	     WAttrib("texmode=off" )# this is not very general  ###
+	     turnon := 1
+	     Fg("brown")
+	 } 
+         else 
+            turnon := &null
+         DrawSphere(width*0.92, height/2.0, 0.04, 0.04)
+         DrawSphere(width*0.92, height/2.0, -0.04-thickness,0.04)
+	 if \turnon then
+	    WAttrib("texmode=on")
+      }
+      else { # normal door = hinge right
+         PushMatrix()
+         Translate( -width/2.0,  height/2.0,  -thickness/2.0)
+         FillPolygon(-width/2.0,-height/2.0,thickness/2.0,
+		     width/2.0, -height/2.0,   thickness/2.0,
+		     width/2.0, height/2.0, thickness/2.0,
+		     -width/2.0, height/2.0, thickness/2.0)
+         FillPolygon(-width/2.0,-height/2.0,-thickness/2.0,
+		     width/2.0, -height/2.0,   -thickness/2.0,
+		     width/2.0, height/2.0, -thickness/2.0,
+		     -width/2.0, height/2.0, -thickness/2.0)
+         PopMatrix()
+	 if WAttrib("texmode") == "on" then {
+	    WAttrib("texmode=off" )# this is not very general  ###
+	    turnon := 1
+	    Fg("brown")
+	 } 
+         else 
+            turnon := &null
+         DrawSphere(-width*0.92, height/2.0, 0.04, 0.04)
+         DrawSphere(-width*0.92, height/2.0,-0.04-thickness,0.04)
+	 if \turnon then
+	    WAttrib("texmode=on")
+      }
+      PopMatrix()
+   end 
+
+#this is code for renderin if direction is west
+
+   method render_xw()  ## Door
+      local turnon
+      PushMatrix()
+      Translate(x,y,z)
+      #if /hinge_left then Translate(0.0, 0.0, width )
+      if \openness then {
+         if \hinge_left then
+            rotator := Rotate(90.0 * openness, 0, 1, 0)
+         else
+            rotator := Rotate(-90.0 * openness, 0, 1, 0)
+         }
+      if \hinge_left then {
+         PushMatrix()
+         Translate( -thickness/2.0,  -height/2.0, -width/2.0)
+         Translate(  thickness/2.0 ,    height/2.0 , width   )
+         FillPolygon(-thickness/2.0,-height/2.0,-width/2.0,
+		     -thickness/2.0, -height/2.0,   width/2.0,
+		     -thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0)
+         FillPolygon(thickness/2.0,-height/2.0,-width/2.0,
+		     thickness/2.0, -height/2.0,   width/2.0,
+		     thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0)
+         PopMatrix()
+	 render_knob()
+      }
+      else {
+         PushMatrix()
+         Translate( -thickness/2.0,  height/2.0, -width/2.0)
+         Translate( 0 , 0 , width )
+         FillPolygon(-thickness/2.0,-height/2.0,-width/2.0,
+		     -thickness/2.0, -height/2.0,   width/2.0,
+		     -thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0)
+         FillPolygon(thickness/2.0,-height/2.0,-width/2.0,
+		     thickness/2.0, -height/2.0,   width/2.0,
+		     thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0) 
+         PopMatrix()
+	 render_knob()
+      }
+      PopMatrix()
+   end
+         # 1,0,1,1,0,1,0,0
+
+#this is code for renderin if direction is east
+
+   method render_xe()  ## Door
+   local turnon
+     PushMatrix()
+     Translate(x,y,z)
+     #  if /hinge_left then Translate(0.0, 0.0, width )
+     if \openness then {
+         if \hinge_left then
+            rotator := Rotate(180.0 + (-90.0 * openness), 0,1, 0)
+         else
+            rotator := Rotate(90.0 * openness, 0, 1, 0)
+     	 }
+     if \hinge_left then {
+         PushMatrix()
+         Translate( -thickness/2.0,  -height/2.0, -width/2.0)
+         Translate(  thickness/2.0 ,    height/2.0 , width   )
+         FillPolygon(thickness/2.0,-height/2.0,-width/2.0,
+		     thickness/2.0, -height/2.0,   width/2.0,
+		     thickness/2.0, height/2.0, width/2.0,
+		     thickness/2.0, height/2.0,  -width/2.0)
+         FillPolygon(-thickness/2.0,-height/2.0,-width/2.0,
+		     -thickness/2.0, -height/2.0,   width/2.0,
+		     -thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0)
+        
+         PopMatrix()
+	 render_knob()
+         }        
+	else {
+         PushMatrix()
+         Translate( -thickness/2.0,  height/2.0, -width/2.0)
+         Translate( 0 , 0 , width )
+         FillPolygon(thickness/2.0,-height/2.0,-width/2.0,
+		     thickness/2.0, -height/2.0,   width/2.0,
+		     thickness/2.0, height/2.0, width/2.0,
+		     thickness/2.0, height/2.0, -width/2.0)
+         FillPolygon(-thickness/2.0,-height/2.0,-width/2.0,
+		     -thickness/2.0, -height/2.0,   width/2.0,
+		     -thickness/2.0, height/2.0, width/2.0,
+		     -thickness/2.0, height/2.0, -width/2.0)
+         
+         PopMatrix()
+	 render_knob()
+         }
+     PopMatrix()
+
+   end
+
+   method render_knob()
+   local turnon
+      if WAttrib("texmode") == "on" then {
+	 WAttrib("texmode=off" )# this is not very general  ###
+	 turnon := 1
+	 Fg("brown")
+         }
+      else turnon := &null
+      DrawSphere( 0.04          , height/2.0, width*0.92, 0.04)
+      DrawSphere(-0.04-thickness, height/2.0, width*0.92, 0.04)
+      if \turnon then
+	 WAttrib("texmode=on")
+   end
+
+   method print()
+      print_door()
+   end
+
+   method print_door()  
+      local rm
+
+      printf("door   x,y,z,w,h,t  %6.2r  %6.2r  %6.2r  %6.2r  %6.2r  %6.2r \n",
+            x, y, z, width, height, thickness )
+      printf("        openness, direction delt  %6.2r %6.2r  %6.2r  \n",
+            openness, direction, delt )
+      write("        plane   ", plane )
+      write("        # rooms  ",*rooms)
+      every rm := !rooms do
+      write("                  room ", image(rm) )
+      write("  " )
+   end 
+
+   method set_open_angle() 
+      if dirnum = 1 then 
+         open_angle := -90.00
+      else if dirnum = 4    then 
+         open_angle := 90.00
+      else if dirnum = 3 then 
+         open_angle := -90.0
+      else if dirnum = 2 then 
+         open_angle := 90.00
+   end
+
+   initially(opMode, world, dispatcher, x1, y1, z1, collide_in, tex, ht, wd)
+   #self.world := world
+   #self.dispatcher := dispatcher
+   self$Opening.initially(opMode,x1, y1, z1, collide_in) # (x, y, z)
+   # be sure x,y,z,w,h,t  are floats
+   
+   self.x := x1
+   self.y := y1
+   self.z := z1
+
+   # / x := 0.0
+   # / y := 0.0
+   # / z := 0.0
+   width := wd
+   / width     := 1.0   # default = 1 meter
+   height := ht
+   / height    := 2.6   # default = 2.6 meters
+   / thickness := 0.03  # something over an inch thick
+
+   texturec :=  tex # default texture for this room
+
+   # textures[tex] := texture(tex)
+
+   openness := 0.0
+   direction := -1.0
+   delt := 0.0
+   hinge_left := &null
+   open_angle := 0.00
+   renderedCounter := 0
+   plane := 3
+   dirnum := 0
+end # class Door

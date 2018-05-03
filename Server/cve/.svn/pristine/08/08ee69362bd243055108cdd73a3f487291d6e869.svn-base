@@ -1,0 +1,94 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Getting Help
+<dt> Summary
+<dd> Learn the basics of GDB on Linux.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about GDB and GDB commands.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 7; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+You can always ask GDB itself for information on its commands, using the command help.
+<p>
+You can use help (abbreviated h) with no arguments to display a short list f named classes of commands.
+<p>
+help class<br>
+Using one of the general help classes as an argument, you can get a list 
+of the individual commands in that class. For example, here is the help 
+display for the class status.
+<p>
+help command<br>
+With a command name as help argument, GDB displays a short paragraph on 
+how to use that command.
+<p>
+In addition to help, you can use the GDB commands info and show to inquire 
+about the state of your program, or the state of GDB itself. Each 
+command supports many topics of inquiry; this manual introduces each of 
+them in the appropriate context. The listings under info and under show 
+in the Index point to all the sub-commands.
+<p>
+info<br>
+This command (abbreviated i) is for describing the state of your 
+program. For example, you can show the arguments passed to a function 
+with info args.
+<p>
+show<br>
+In contrast to info, show is for describing the state of GDB itself. You 
+can change most of the things you can show, by using the related command 
+set; for example, you can control what number system is used for 
+displays with set radix, or simply inquire which is currently in use 
+with show radix.
+<p>
+show version<br>
+Show what version of GDB is running. You should include this information 
+in GDB bug-reports. If multiple versions of GDB are in use at your site, 
+you may need to determine which version of GDB you are running; as GDB 
+evolves, new commands are introduced, and old ones may wither away. 
+Also, many system vendors ship variant versions of GDB, and there are 
+variant versions of GDB in GNU/Linux distributions as well. The version 
+number is the same as the one announced when you start GDB.
+<p>
+show copying<br>
+info copying<br>
+Display information about permission for copying GDB.
+<p>
+show warranty<br>
+info warranty<br>
+Display the GNU "NO WARRANTY" statement, or a warranty, if your version 
+of GDB comes with one.
+     
+<dt> Quiz (8/8)
+<dd>
+<dl>
+<dt> What is the command name used to get help from GDB?
+<dd> help
+<dt> Does the command help has an abbreviation? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> What is the abbreviation of the command Help?
+<dd> h or ?
+<dt> Is the command name help the only help command provided by GDB ? (Multiple Choice)
+<dd> No (TRUE)
+<dd> Yes
+<dt> Name two help commands used by GDB other than help?
+<dd> info, show
+<dt> What command is used to display the GDB version?
+<dd> show version
+<dt> Can help command provide information about other GDB command? (Multiple Choice)
+<dd> Yse (TRUE)
+<dd> No
+<dt> How can you ask GDB to get help about the command run?
+<dd> (gdb) help run
+</dl>
+</dl>

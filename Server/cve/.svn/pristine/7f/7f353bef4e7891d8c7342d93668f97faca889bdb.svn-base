@@ -1,0 +1,121 @@
+# markov.pl:  markov chain algorithm for 2-word prefixes
+
+$define MAXGEN 100
+$define NONWORD "\n"
+
+class Interval(startHour, startMinutes, endHour, endMinutes)
+
+   method stringify()
+      return "[" || image(startHour) || ":" || image(startMinutes) || "," ||
+           image(endHour) || ":" || image(endMinutes) || "]"
+   end
+
+   # Succeed if there is overlap between the otherInterval and this
+   # one; fail otherwise.     
+   method overlaps(otherInterval)
+      if startHour <= otherInterval.startHour  &
+	 endHour >= otherInterval.startHour then 
+	 return 1
+
+      if (startHour <= otherInterval.endHour) &
+	 (endHour >= otherInterval.endHour) then 
+	 return 1
+
+      if (startHour >= otherInterval.startHour) &
+	 (endHour <= otherInterval.endHour) then
+	 return 1
+   end
+
+initially(startTime, endTime)
+   startTime ? {
+      startHour := integer(tab(find(":"))) | 0
+      move(1)
+      startMinutes := integer(tab(0)) | 0
+      }
+
+   endTime ? {
+      endHour := integer(tab(find(":"))) | 0
+      move(1)
+      endMinutes := integer(tab(0)) | 0
+      }
+   if (startHour > endHour) |
+      ((startHour = endHour) & (startMinutes > endMinutes)) then
+      fail     # They have to be in the correct order
+end
+
+
+# A schedule actor keeps track of people's appointments. The schedule
+# field is a table mapping uid -> list of appointments; an appointment is a
+# list [start,end,description]
+class ScheduleActor : Actor(schedule) 
+
+   method told(uid, message)
+      # Sample input: "schedule 5:00-5:30pm Meeting with the dean"
+      local whitespace := ' \f\t'
+      local verb, times, description, startTime, endTime, time, appointment
+
+      message ? {
+	 tab(many(whitespace))
+	 verb := tab(upto(whitespace) | 0)
+	 tab(many(whitespace))
+	 message := tab(0)
+	 }      
+
+      /schedule[uid] := []
+      case verb of  {
+	 "schedule": {
+	    message ? {
+	       times := tab(upto(whitespace))
+
+	       if find("-", times) then times ? {
+		  startTime := tab(find("-"))
+		  move(1)
+		  endTime := tab(0)
+		  }
+	       else {
+		  startTime := times
+		  endTime := startTime
+		  }
+	       tab(many(whitespace))
+	       description := tab(0)  # The rest of the string
+	       } 
+
+	    time := Interval(startTime,endTime)
+	    # Does it conflict? 
+	    every appointment := !schedule[uid] do {
+	       if appointment[1].overlaps(time) then {
+		  server.tell("secretary", "\\tell " || uid ||
+			      " This cannot be scheduled; it overlaps with "||
+			      image(appointment))
+		  fail
+		  } 
+	       }
+	    put(schedule[uid], [time, description])
+	    server.tell("secretary", "\\tell " || uid || " You're on for " ||
+			description || " at interval " || time.stringify())
+	    }
+	 "list": {
+	    every appointment := !schedule[uid] do {
+	       server.tell("secretary", "\\tell " || uid || " " ||
+			   appointment[1].stringify() || " " ||appointment[2])
+	       }
+	    }
+	 "unschedule": {
+	    }
+	 default: {
+	    write("verb " || image(verb) ||
+		  " is neither schedule nor unschedule")
+	    return
+	    }
+	 }
+   end
+
+    # This needs to read an existing schedule
+    # We also need to write it out periodically
+    method startup()
+    end
+   
+initially(sceneGraph, server)
+   self$Actor.initially(sceneGraph, server)
+   schedule := table()
+end

@@ -1,0 +1,3238 @@
+version	U12.1.00
+uid	langabstract.u1-1523917889-0
+record	LanguageAbstract__state,3
+	0,__s
+	1,__m
+	2,language
+record	LanguageAbstract__methods,6
+	0,token_highlighter
+	1,CTok_highlighting
+	2,JTok_highlighting
+	3,UTok_highlighting
+	4,syntax_chicker
+	5,initially
+impl	error
+link	c:/Users/Kevin/cve/src/ide/idol.u
+link	c:/Users/Kevin/cve/src/ide/preproce.u
+link	c:/Users/Kevin/cve/src/ide/unicon.u
+link	c:/Users/Kevin/cve/src/ide/unigram.u
+link	c:/Users/Kevin/cve/src/ide/unilex.u
+link	c:/Users/Kevin/cve/src/ide/yyerror.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	c:/unicon/uni/lib/undoableedit.u
+link	c:/unicon/uni/lib/compoundedit.u
+link	c:/unicon/uni/lib/undomanager.u
+link	c:/unicon/uni/lib/classcoding.u
+link	c:/unicon/uni/lib/basicclasscoding.u
+link	c:/unicon/uni/lib/method.u
+link	c:/unicon/uni/lib/class.u
+link	c:/unicon/uni/lib/langprocs.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/decode.u
+link	c:/unicon/uni/lib/encode.u
+link	c:/unicon/uni/lib/selectiveclasscoding.u
+link	c:/unicon/uni/lib/runnable.u
+link	c:/unicon/uni/lib/process.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	11
+	0,000005,LanguageAbstract_token_highlighter,8
+	1,000005,LanguageAbstract_CTok_highlighting,7
+	2,000005,LanguageAbstract_JTok_highlighting,7
+	3,000005,LanguageAbstract_UTok_highlighting,7
+	4,000005,LanguageAbstract_syntax_chicker,1
+	5,000005,LanguageAbstract_initially,1
+	6,000011,LanguageAbstract__state,3
+	7,000011,LanguageAbstract__methods,6
+	8,000001,LanguageAbstract__oprec,0
+	9,000005,LanguageAbstract,0
+	10,000005,LanguageAbstractinitialize,0
+
+proc LanguageAbstract_token_highlighter
+	local	0,001000,self
+	local	1,001000,f_name
+	local	2,001000,win
+	local	3,001000,s
+	local	4,001000,last_s_Position
+	local	5,001000,x
+	local	6,001000,y
+	local	7,001000,off
+	local	8,000000,find
+	con	0,010000,5,056,152,141,166,141
+	con	1,010000,4,112,141,166,141
+	con	2,010000,4,056,143,160,160
+	con	3,010000,2,056,143
+	con	4,010000,2,056,150
+	con	5,010000,5,103,057,103,053,053
+	con	6,010000,4,056,151,143,156
+	con	7,010000,6,125,156,151,143,157,156
+	declend
+	filen	langabstract.icn
+	line	11
+	colm	11
+	synt	any
+	mark	L1
+	line	12
+	colm	6
+	synt	ifelse
+	mark	L2
+	var	8
+	str	0
+	var	1
+	line	12
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	mark	L4
+	pnull
+	var	0
+	line	13
+	colm	13
+	synt	any
+	field	JTok_highlighting
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	13
+	colm	31
+	synt	any
+	invoke	6
+	unmark
+lab L4
+	pnull
+	pnull
+	var	0
+	line	14
+	colm	13
+	synt	any
+	field	language
+	str	1
+	line	14
+	colm	22
+	synt	any
+	asgn
+	goto	L3
+lab L2
+	line	16
+	colm	11
+	synt	ifelse
+	mark	L5
+	var	8
+	mark	L7
+	str	2
+	line	16
+	colm	26
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	mark	L9
+	str	3
+	line	16
+	colm	31
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	str	4
+lab L10
+lab L8
+	var	1
+	line	16
+	colm	19
+	synt	any
+	invoke	2
+	unmark
+	mark	L11
+	pnull
+	var	0
+	line	17
+	colm	13
+	synt	any
+	field	CTok_highlighting
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	17
+	colm	31
+	synt	any
+	invoke	6
+	unmark
+lab L11
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	13
+	synt	any
+	field	language
+	str	5
+	line	18
+	colm	22
+	synt	any
+	asgn
+	goto	L6
+lab L5
+	line	20
+	colm	11
+	synt	ifelse
+	mark	L12
+	var	8
+	str	6
+	var	1
+	line	20
+	colm	19
+	synt	any
+	invoke	2
+	unmark
+	mark	L14
+	pnull
+	var	0
+	line	21
+	colm	13
+	synt	any
+	field	UTok_highlighting
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	21
+	colm	31
+	synt	any
+	invoke	6
+	unmark
+lab L14
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	13
+	synt	any
+	field	language
+	str	7
+	line	22
+	colm	22
+	synt	any
+	asgn
+	goto	L13
+lab L12
+	pnull
+	pnull
+	var	0
+	line	24
+	colm	15
+	synt	any
+	field	language
+	line	24
+	colm	26
+	synt	any
+	keywd	null
+	line	24
+	colm	24
+	synt	any
+	asgn
+lab L13
+	line	20
+	colm	11
+	synt	endifelse
+lab L6
+	line	16
+	colm	11
+	synt	endifelse
+lab L3
+	line	12
+	colm	6
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	25
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract_CTok_highlighting
+	local	0,001000,self
+	local	1,001000,win
+	local	2,001000,s
+	local	3,001000,last_s_Position
+	local	4,001000,x
+	local	5,001000,y
+	local	6,001000,off
+	local	7,000020,ctoken
+	local	8,000020,new_s_Position
+	local	9,000000,UniconPackage__yylex
+	local	10,000000,Fg
+	local	11,000000,UniconPackage__yytoken
+	local	12,000000,DrawString
+	local	13,000000,TextWidth
+	local	14,000000,find
+	con	0,002000,3,262
+	con	1,002000,3,411
+	con	2,002000,3,412
+	con	3,002000,3,416
+	con	4,002000,3,418
+	con	5,002000,3,424
+	con	6,002000,3,434
+	con	7,002000,3,440
+	con	8,002000,3,441
+	con	9,002000,3,442
+	con	10,002000,3,449
+	con	11,002000,3,452
+	con	12,002000,3,453
+	con	13,002000,3,291
+	con	14,002000,3,468
+	con	15,002000,3,471
+	con	16,002000,3,472
+	con	17,002000,3,473
+	con	18,010000,10,104,141,162,153,040,102,162,157,167,156
+	con	19,002000,3,410
+	con	20,002000,3,263
+	con	21,002000,3,265
+	con	22,002000,3,415
+	con	23,002000,3,266
+	con	24,002000,3,419
+	con	25,002000,3,420
+	con	26,002000,3,268
+	con	27,002000,3,422
+	con	28,002000,3,269
+	con	29,002000,3,425
+	con	30,002000,3,270
+	con	31,002000,3,427
+	con	32,002000,3,428
+	con	33,002000,3,429
+	con	34,002000,3,430
+	con	35,002000,3,431
+	con	36,002000,3,432
+	con	37,002000,3,433
+	con	38,002000,3,435
+	con	39,002000,3,436
+	con	40,002000,3,437
+	con	41,002000,3,275
+	con	42,002000,3,439
+	con	43,002000,3,443
+	con	44,002000,3,444
+	con	45,002000,3,445
+	con	46,002000,3,446
+	con	47,002000,3,447
+	con	48,002000,3,448
+	con	49,002000,3,450
+	con	50,002000,3,290
+	con	51,002000,3,454
+	con	52,002000,3,456
+	con	53,002000,3,457
+	con	54,002000,3,458
+	con	55,002000,3,459
+	con	56,002000,3,460
+	con	57,002000,3,461
+	con	58,002000,3,462
+	con	59,002000,3,463
+	con	60,002000,3,464
+	con	61,002000,3,465
+	con	62,002000,3,466
+	con	63,002000,3,308
+	con	64,002000,3,469
+	con	65,002000,3,470
+	con	66,002000,3,296
+	con	67,010000,9,104,141,162,153,040,102,154,165,145
+	con	68,010000,5,102,154,141,143,153
+	con	69,010000,6,143,157,154,165,155,156
+	con	70,010000,1,163
+	con	71,002000,1,1
+	con	72,010000,1,043
+	con	73,010000,10,104,141,162,153,040,107,162,145,145,156
+	con	74,010000,5,147,162,145,145,156
+	declend
+	line	30
+	colm	11
+	synt	any
+	mark	L1
+lab L2
+	line	34
+	colm	6
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	7
+	var	9
+	line	34
+	colm	45
+	synt	any
+	invoke	0
+	line	34
+	colm	22
+	synt	any
+	asgn
+	int	0
+	line	34
+	colm	49
+	synt	any
+	neqv
+	unmark
+	mark	L2
+	mark	L5
+	line	36
+	colm	9
+	synt	case
+	mark0
+	var	7
+	eret
+	mark	L7
+	ccase
+	mark	L8
+	int	1
+	line	37
+	colm	16
+	synt	any
+	esusp
+	goto	L9
+lab L8
+	mark	L10
+	int	2
+	line	37
+	colm	22
+	synt	any
+	esusp
+	goto	L11
+lab L10
+	mark	L12
+	int	3
+	line	37
+	colm	28
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	mark	L14
+	int	4
+	line	37
+	colm	34
+	synt	any
+	esusp
+	goto	L15
+lab L14
+	mark	L16
+	int	5
+	line	37
+	colm	40
+	synt	any
+	esusp
+	goto	L17
+lab L16
+	mark	L18
+	int	6
+	line	37
+	colm	46
+	synt	any
+	esusp
+	goto	L19
+lab L18
+	mark	L20
+	int	7
+	line	38
+	colm	16
+	synt	any
+	esusp
+	goto	L21
+lab L20
+	mark	L22
+	int	8
+	line	38
+	colm	22
+	synt	any
+	esusp
+	goto	L23
+lab L22
+	mark	L24
+	int	9
+	line	38
+	colm	28
+	synt	any
+	esusp
+	goto	L25
+lab L24
+	mark	L26
+	int	10
+	line	38
+	colm	34
+	synt	any
+	esusp
+	goto	L27
+lab L26
+	mark	L28
+	int	11
+	line	38
+	colm	40
+	synt	any
+	esusp
+	goto	L29
+lab L28
+	mark	L30
+	int	12
+	line	39
+	colm	16
+	synt	any
+	esusp
+	goto	L31
+lab L30
+	mark	L32
+	int	13
+	line	39
+	colm	22
+	synt	any
+	esusp
+	goto	L33
+lab L32
+	mark	L34
+	int	14
+	line	39
+	colm	28
+	synt	any
+	esusp
+	goto	L35
+lab L34
+	mark	L36
+	int	15
+	line	39
+	colm	34
+	synt	any
+	esusp
+	goto	L37
+lab L36
+	mark	L38
+	int	16
+	line	39
+	colm	40
+	synt	any
+	esusp
+	goto	L39
+lab L38
+	int	17
+lab L39
+lab L37
+lab L35
+lab L33
+lab L31
+lab L29
+lab L27
+lab L25
+lab L23
+lab L21
+lab L19
+lab L17
+lab L15
+lab L13
+lab L11
+lab L9
+	line	40
+	colm	58
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	pnull
+	var	1
+	line	40
+	colm	63
+	synt	any
+	nonnull
+	str	18
+	line	40
+	colm	62
+	synt	any
+	invoke	2
+	goto	L6
+lab L7
+	mark	L40
+	ccase
+	mark	L41
+	int	19
+	line	42
+	colm	16
+	synt	any
+	esusp
+	goto	L42
+lab L41
+	mark	L43
+	int	20
+	line	42
+	colm	22
+	synt	any
+	esusp
+	goto	L44
+lab L43
+	mark	L45
+	int	21
+	line	42
+	colm	28
+	synt	any
+	esusp
+	goto	L46
+lab L45
+	mark	L47
+	int	22
+	line	42
+	colm	34
+	synt	any
+	esusp
+	goto	L48
+lab L47
+	mark	L49
+	int	23
+	line	42
+	colm	40
+	synt	any
+	esusp
+	goto	L50
+lab L49
+	mark	L51
+	int	24
+	line	43
+	colm	16
+	synt	any
+	esusp
+	goto	L52
+lab L51
+	mark	L53
+	int	25
+	line	43
+	colm	22
+	synt	any
+	esusp
+	goto	L54
+lab L53
+	mark	L55
+	int	26
+	line	43
+	colm	28
+	synt	any
+	esusp
+	goto	L56
+lab L55
+	mark	L57
+	int	27
+	line	43
+	colm	34
+	synt	any
+	esusp
+	goto	L58
+lab L57
+	mark	L59
+	int	28
+	line	43
+	colm	40
+	synt	any
+	esusp
+	goto	L60
+lab L59
+	mark	L61
+	int	29
+	line	44
+	colm	16
+	synt	any
+	esusp
+	goto	L62
+lab L61
+	mark	L63
+	int	30
+	line	44
+	colm	22
+	synt	any
+	esusp
+	goto	L64
+lab L63
+	mark	L65
+	int	31
+	line	44
+	colm	28
+	synt	any
+	esusp
+	goto	L66
+lab L65
+	mark	L67
+	int	32
+	line	44
+	colm	34
+	synt	any
+	esusp
+	goto	L68
+lab L67
+	mark	L69
+	int	33
+	line	44
+	colm	40
+	synt	any
+	esusp
+	goto	L70
+lab L69
+	mark	L71
+	int	34
+	line	45
+	colm	16
+	synt	any
+	esusp
+	goto	L72
+lab L71
+	mark	L73
+	int	35
+	line	45
+	colm	22
+	synt	any
+	esusp
+	goto	L74
+lab L73
+	mark	L75
+	int	36
+	line	45
+	colm	28
+	synt	any
+	esusp
+	goto	L76
+lab L75
+	mark	L77
+	int	37
+	line	45
+	colm	34
+	synt	any
+	esusp
+	goto	L78
+lab L77
+	mark	L79
+	int	38
+	line	45
+	colm	40
+	synt	any
+	esusp
+	goto	L80
+lab L79
+	mark	L81
+	int	39
+	line	45
+	colm	46
+	synt	any
+	esusp
+	goto	L82
+lab L81
+	mark	L83
+	int	40
+	line	46
+	colm	16
+	synt	any
+	esusp
+	goto	L84
+lab L83
+	mark	L85
+	int	41
+	line	46
+	colm	22
+	synt	any
+	esusp
+	goto	L86
+lab L85
+	mark	L87
+	int	42
+	line	46
+	colm	28
+	synt	any
+	esusp
+	goto	L88
+lab L87
+	mark	L89
+	int	43
+	line	46
+	colm	34
+	synt	any
+	esusp
+	goto	L90
+lab L89
+	mark	L91
+	int	44
+	line	46
+	colm	40
+	synt	any
+	esusp
+	goto	L92
+lab L91
+	mark	L93
+	int	45
+	line	46
+	colm	46
+	synt	any
+	esusp
+	goto	L94
+lab L93
+	mark	L95
+	int	46
+	line	47
+	colm	16
+	synt	any
+	esusp
+	goto	L96
+lab L95
+	mark	L97
+	int	47
+	line	47
+	colm	22
+	synt	any
+	esusp
+	goto	L98
+lab L97
+	mark	L99
+	int	48
+	line	47
+	colm	28
+	synt	any
+	esusp
+	goto	L100
+lab L99
+	mark	L101
+	int	49
+	line	47
+	colm	34
+	synt	any
+	esusp
+	goto	L102
+lab L101
+	mark	L103
+	int	50
+	line	48
+	colm	16
+	synt	any
+	esusp
+	goto	L104
+lab L103
+	mark	L105
+	int	51
+	line	48
+	colm	22
+	synt	any
+	esusp
+	goto	L106
+lab L105
+	mark	L107
+	int	13
+	line	48
+	colm	28
+	synt	any
+	esusp
+	goto	L108
+lab L107
+	mark	L109
+	int	52
+	line	48
+	colm	34
+	synt	any
+	esusp
+	goto	L110
+lab L109
+	mark	L111
+	int	53
+	line	48
+	colm	40
+	synt	any
+	esusp
+	goto	L112
+lab L111
+	mark	L113
+	int	54
+	line	49
+	colm	16
+	synt	any
+	esusp
+	goto	L114
+lab L113
+	mark	L115
+	int	55
+	line	49
+	colm	22
+	synt	any
+	esusp
+	goto	L116
+lab L115
+	mark	L117
+	int	56
+	line	49
+	colm	28
+	synt	any
+	esusp
+	goto	L118
+lab L117
+	mark	L119
+	int	57
+	line	49
+	colm	34
+	synt	any
+	esusp
+	goto	L120
+lab L119
+	mark	L121
+	int	58
+	line	49
+	colm	40
+	synt	any
+	esusp
+	goto	L122
+lab L121
+	mark	L123
+	int	59
+	line	49
+	colm	46
+	synt	any
+	esusp
+	goto	L124
+lab L123
+	mark	L125
+	int	60
+	line	50
+	colm	16
+	synt	any
+	esusp
+	goto	L126
+lab L125
+	mark	L127
+	int	61
+	line	50
+	colm	22
+	synt	any
+	esusp
+	goto	L128
+lab L127
+	mark	L129
+	int	62
+	line	50
+	colm	28
+	synt	any
+	esusp
+	goto	L130
+lab L129
+	mark	L131
+	int	63
+	line	50
+	colm	34
+	synt	any
+	esusp
+	goto	L132
+lab L131
+	mark	L133
+	int	64
+	line	50
+	colm	40
+	synt	any
+	esusp
+	goto	L134
+lab L133
+	mark	L135
+	int	65
+	line	51
+	colm	16
+	synt	any
+	esusp
+	goto	L136
+lab L135
+	int	66
+lab L136
+lab L134
+lab L132
+lab L130
+lab L128
+lab L126
+lab L124
+lab L122
+lab L120
+lab L118
+lab L116
+lab L114
+lab L112
+lab L110
+lab L108
+lab L106
+lab L104
+lab L102
+lab L100
+lab L98
+lab L96
+lab L94
+lab L92
+lab L90
+lab L88
+lab L86
+lab L84
+lab L82
+lab L80
+lab L78
+lab L76
+lab L74
+lab L72
+lab L70
+lab L68
+lab L66
+lab L64
+lab L62
+lab L60
+lab L58
+lab L56
+lab L54
+lab L52
+lab L50
+lab L48
+lab L46
+lab L44
+lab L42
+	line	51
+	colm	56
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	pnull
+	var	1
+	line	51
+	colm	61
+	synt	any
+	nonnull
+	str	67
+	line	51
+	colm	60
+	synt	any
+	invoke	2
+	goto	L6
+lab L40
+	pop
+	var	10
+	pnull
+	var	1
+	line	53
+	colm	67
+	synt	any
+	nonnull
+	str	68
+	line	53
+	colm	66
+	synt	any
+	invoke	2
+lab L6
+	line	36
+	colm	9
+	synt	endcase
+	unmark
+lab L5
+	mark	L137
+	pnull
+	var	8
+	pnull
+	pnull
+	pnull
+	var	11
+	str	69
+	line	57
+	colm	49
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	11
+	str	70
+	line	57
+	colm	83
+	synt	any
+	subsc
+	line	57
+	colm	60
+	synt	any
+	size
+	line	57
+	colm	59
+	synt	any
+	plus
+	int	71
+	line	57
+	colm	88
+	synt	any
+	minus
+	line	57
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L137
+	mark	L138
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	71
+	line	60
+	colm	69
+	synt	any
+	plus
+	line	60
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	60
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L138
+	mark	L139
+	pnull
+	var	6
+	var	13
+	var	1
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	71
+	line	63
+	colm	69
+	synt	any
+	plus
+	line	63
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	63
+	colm	25
+	synt	any
+	invoke	2
+	line	63
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L139
+	mark	L140
+	pnull
+	var	3
+	pnull
+	var	8
+	int	71
+	line	66
+	colm	43
+	synt	any
+	plus
+	line	66
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L140
+	pnull
+	var	4
+	dup
+	var	6
+	line	69
+	colm	11
+	synt	any
+	plus
+	asgn
+lab L3
+	unmark
+	goto	L2
+lab L4
+	line	34
+	colm	6
+	synt	endwhile
+	unmark
+lab L1
+	mark	L141
+	line	73
+	colm	9
+	synt	ifelse
+	mark	L142
+	pnull
+	var	14
+	str	72
+	pnull
+	var	2
+	int	71
+	line	73
+	colm	23
+	synt	any
+	subsc
+	line	73
+	colm	17
+	synt	any
+	invoke	2
+	line	73
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	var	10
+	var	1
+	str	73
+	line	73
+	colm	35
+	synt	any
+	invoke	2
+	goto	L143
+lab L142
+	var	10
+	var	1
+	str	74
+	line	74
+	colm	16
+	synt	any
+	invoke	2
+lab L143
+	line	73
+	colm	9
+	synt	endifelse
+	unmark
+lab L141
+	mark	L144
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	pnull
+	var	2
+	line	75
+	colm	55
+	synt	any
+	size
+	int	71
+	line	75
+	colm	58
+	synt	any
+	plus
+	line	75
+	colm	51
+	synt	any
+	synt	any
+	sect
+	line	75
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L144
+	pnull
+	line	76
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract_JTok_highlighting
+	local	0,001000,self
+	local	1,001000,win
+	local	2,001000,s
+	local	3,001000,last_s_Position
+	local	4,001000,x
+	local	5,001000,y
+	local	6,001000,off
+	local	7,000020,jtoken
+	local	8,000020,new_s_Position
+	local	9,000000,UniconPackage__yylex
+	local	10,000000,Fg
+	local	11,000000,UniconPackage__yytoken
+	local	12,000000,DrawString
+	local	13,000000,TextWidth
+	local	14,000000,find
+	con	0,002000,3,262
+	con	1,002000,3,479
+	con	2,010000,4,107,162,141,171
+	con	3,002000,3,480
+	con	4,002000,3,424
+	con	5,002000,3,481
+	con	6,002000,3,440
+	con	7,002000,3,452
+	con	8,002000,3,416
+	con	9,002000,3,482
+	con	10,002000,3,291
+	con	11,002000,3,471
+	con	12,002000,3,441
+	con	13,002000,3,418
+	con	14,002000,3,434
+	con	15,010000,10,104,141,162,153,040,102,162,157,167,156
+	con	16,002000,3,375
+	con	17,002000,3,420
+	con	18,002000,3,435
+	con	19,002000,3,444
+	con	20,002000,3,458
+	con	21,002000,3,268
+	con	22,002000,3,437
+	con	23,002000,3,286
+	con	24,002000,3,483
+	con	25,002000,3,269
+	con	26,002000,3,275
+	con	27,002000,3,446
+	con	28,002000,3,460
+	con	29,002000,3,263
+	con	30,002000,3,484
+	con	31,002000,3,447
+	con	32,002000,3,461
+	con	33,002000,3,270
+	con	34,002000,3,276
+	con	35,002000,3,448
+	con	36,002000,3,485
+	con	37,002000,3,265
+	con	38,002000,3,427
+	con	39,002000,3,486
+	con	40,002000,3,290
+	con	41,002000,3,487
+	con	42,002000,3,415
+	con	43,002000,3,488
+	con	44,002000,3,463
+	con	45,002000,3,489
+	con	46,002000,3,433
+	con	47,002000,3,490
+	con	48,002000,3,472
+	con	49,002000,3,491
+	con	50,002000,3,492
+	con	51,002000,3,296
+	con	52,002000,3,432
+	con	53,002000,3,493
+	con	54,002000,3,462
+	con	55,002000,3,478
+	con	56,010000,5,102,154,141,143,153
+	con	57,002000,3,494
+	con	58,002000,3,495
+	con	59,002000,3,496
+	con	60,002000,3,497
+	con	61,002000,3,498
+	con	62,002000,3,499
+	con	63,002000,3,500
+	con	64,002000,3,501
+	con	65,002000,3,502
+	con	66,002000,3,503
+	con	67,002000,3,504
+	con	68,002000,3,505
+	con	69,002000,3,506
+	con	70,010000,12,127,150,151,164,151,163,150,040,102,154,165,145
+	con	71,002000,3,507
+	con	72,002000,3,508
+	con	73,002000,3,509
+	con	74,002000,3,512
+	con	75,002000,3,510
+	con	76,002000,3,511
+	con	77,002000,3,266
+	con	78,010000,9,104,145,145,160,040,102,154,165,145
+	con	79,010000,6,143,157,154,165,155,156
+	con	80,010000,1,163
+	con	81,002000,1,1
+	con	82,010000,1,043
+	con	83,010000,10,104,141,162,153,040,107,162,145,145,156
+	con	84,010000,11,154,151,147,150,164,040,147,162,145,145,156
+	declend
+	line	81
+	colm	11
+	synt	any
+	mark	L1
+lab L2
+	line	85
+	colm	6
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	7
+	var	9
+	line	85
+	colm	45
+	synt	any
+	invoke	0
+	line	85
+	colm	22
+	synt	any
+	asgn
+	int	0
+	line	85
+	colm	49
+	synt	any
+	neqv
+	unmark
+	mark	L2
+	mark	L5
+	line	87
+	colm	9
+	synt	case
+	mark0
+	var	7
+	eret
+	mark	L7
+	ccase
+	int	1
+	line	88
+	colm	37
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	2
+	line	88
+	colm	41
+	synt	any
+	invoke	2
+	goto	L6
+lab L7
+	mark	L8
+	ccase
+	mark	L9
+	int	3
+	line	89
+	colm	16
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	mark	L11
+	int	4
+	line	89
+	colm	22
+	synt	any
+	esusp
+	goto	L12
+lab L11
+	mark	L13
+	int	5
+	line	89
+	colm	28
+	synt	any
+	esusp
+	goto	L14
+lab L13
+	mark	L15
+	int	6
+	line	89
+	colm	34
+	synt	any
+	esusp
+	goto	L16
+lab L15
+	mark	L17
+	int	7
+	line	90
+	colm	16
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	mark	L19
+	int	8
+	line	90
+	colm	22
+	synt	any
+	esusp
+	goto	L20
+lab L19
+	mark	L21
+	int	9
+	line	90
+	colm	28
+	synt	any
+	esusp
+	goto	L22
+lab L21
+	mark	L23
+	int	10
+	line	90
+	colm	34
+	synt	any
+	esusp
+	goto	L24
+lab L23
+	mark	L25
+	int	11
+	line	91
+	colm	16
+	synt	any
+	esusp
+	goto	L26
+lab L25
+	mark	L27
+	int	12
+	line	91
+	colm	22
+	synt	any
+	esusp
+	goto	L28
+lab L27
+	mark	L29
+	int	13
+	line	91
+	colm	28
+	synt	any
+	esusp
+	goto	L30
+lab L29
+	int	14
+lab L30
+lab L28
+lab L26
+lab L24
+lab L22
+lab L20
+lab L18
+lab L16
+lab L14
+lab L12
+lab L10
+	line	91
+	colm	34
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	15
+	line	91
+	colm	38
+	synt	any
+	invoke	2
+	goto	L6
+lab L8
+	mark	L31
+	ccase
+	mark	L32
+	int	16
+	line	93
+	colm	16
+	synt	any
+	esusp
+	goto	L33
+lab L32
+	mark	L34
+	int	17
+	line	93
+	colm	22
+	synt	any
+	esusp
+	goto	L35
+lab L34
+	mark	L36
+	int	18
+	line	93
+	colm	28
+	synt	any
+	esusp
+	goto	L37
+lab L36
+	mark	L38
+	int	19
+	line	93
+	colm	34
+	synt	any
+	esusp
+	goto	L39
+lab L38
+	mark	L40
+	int	20
+	line	94
+	colm	16
+	synt	any
+	esusp
+	goto	L41
+lab L40
+	mark	L42
+	int	21
+	line	94
+	colm	22
+	synt	any
+	esusp
+	goto	L43
+lab L42
+	mark	L44
+	int	22
+	line	94
+	colm	28
+	synt	any
+	esusp
+	goto	L45
+lab L44
+	mark	L46
+	int	23
+	line	94
+	colm	34
+	synt	any
+	esusp
+	goto	L47
+lab L46
+	mark	L48
+	int	24
+	line	95
+	colm	16
+	synt	any
+	esusp
+	goto	L49
+lab L48
+	mark	L50
+	int	25
+	line	95
+	colm	21
+	synt	any
+	esusp
+	goto	L51
+lab L50
+	mark	L52
+	int	26
+	line	95
+	colm	27
+	synt	any
+	esusp
+	goto	L53
+lab L52
+	mark	L54
+	int	27
+	line	95
+	colm	33
+	synt	any
+	esusp
+	goto	L55
+lab L54
+	mark	L56
+	int	28
+	line	96
+	colm	16
+	synt	any
+	esusp
+	goto	L57
+lab L56
+	mark	L58
+	int	29
+	line	96
+	colm	22
+	synt	any
+	esusp
+	goto	L59
+lab L58
+	mark	L60
+	int	30
+	line	96
+	colm	28
+	synt	any
+	esusp
+	goto	L61
+lab L60
+	mark	L62
+	int	31
+	line	96
+	colm	34
+	synt	any
+	esusp
+	goto	L63
+lab L62
+	mark	L64
+	int	32
+	line	97
+	colm	16
+	synt	any
+	esusp
+	goto	L65
+lab L64
+	mark	L66
+	int	33
+	line	97
+	colm	22
+	synt	any
+	esusp
+	goto	L67
+lab L66
+	mark	L68
+	int	34
+	line	97
+	colm	28
+	synt	any
+	esusp
+	goto	L69
+lab L68
+	mark	L70
+	int	35
+	line	97
+	colm	34
+	synt	any
+	esusp
+	goto	L71
+lab L70
+	mark	L72
+	int	36
+	line	97
+	colm	40
+	synt	any
+	esusp
+	goto	L73
+lab L72
+	mark	L74
+	int	37
+	line	98
+	colm	16
+	synt	any
+	esusp
+	goto	L75
+lab L74
+	mark	L76
+	int	38
+	line	98
+	colm	22
+	synt	any
+	esusp
+	goto	L77
+lab L76
+	mark	L78
+	int	39
+	line	98
+	colm	28
+	synt	any
+	esusp
+	goto	L79
+lab L78
+	mark	L80
+	int	40
+	line	98
+	colm	34
+	synt	any
+	esusp
+	goto	L81
+lab L80
+	mark	L82
+	int	41
+	line	99
+	colm	16
+	synt	any
+	esusp
+	goto	L83
+lab L82
+	mark	L84
+	int	42
+	line	99
+	colm	22
+	synt	any
+	esusp
+	goto	L85
+lab L84
+	mark	L86
+	int	43
+	line	99
+	colm	28
+	synt	any
+	esusp
+	goto	L87
+lab L86
+	mark	L88
+	int	44
+	line	99
+	colm	34
+	synt	any
+	esusp
+	goto	L89
+lab L88
+	mark	L90
+	int	45
+	line	100
+	colm	16
+	synt	any
+	esusp
+	goto	L91
+lab L90
+	mark	L92
+	int	46
+	line	100
+	colm	22
+	synt	any
+	esusp
+	goto	L93
+lab L92
+	mark	L94
+	int	47
+	line	100
+	colm	28
+	synt	any
+	esusp
+	goto	L95
+lab L94
+	mark	L96
+	int	48
+	line	100
+	colm	34
+	synt	any
+	esusp
+	goto	L97
+lab L96
+	mark	L98
+	int	49
+	line	101
+	colm	16
+	synt	any
+	esusp
+	goto	L99
+lab L98
+	mark	L100
+	int	50
+	line	101
+	colm	22
+	synt	any
+	esusp
+	goto	L101
+lab L100
+	mark	L102
+	int	51
+	line	101
+	colm	28
+	synt	any
+	esusp
+	goto	L103
+lab L102
+	mark	L104
+	int	52
+	line	101
+	colm	34
+	synt	any
+	esusp
+	goto	L105
+lab L104
+	mark	L106
+	int	53
+	line	101
+	colm	40
+	synt	any
+	esusp
+	goto	L107
+lab L106
+	mark	L108
+	int	54
+	line	102
+	colm	16
+	synt	any
+	esusp
+	goto	L109
+lab L108
+	int	55
+lab L109
+lab L107
+lab L105
+lab L103
+lab L101
+lab L99
+lab L97
+lab L95
+lab L93
+lab L91
+lab L89
+lab L87
+lab L85
+lab L83
+lab L81
+lab L79
+lab L77
+lab L75
+lab L73
+lab L71
+lab L69
+lab L67
+lab L65
+lab L63
+lab L61
+lab L59
+lab L57
+lab L55
+lab L53
+lab L51
+lab L49
+lab L47
+lab L45
+lab L43
+lab L41
+lab L39
+lab L37
+lab L35
+lab L33
+	line	102
+	colm	36
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	56
+	line	102
+	colm	40
+	synt	any
+	invoke	2
+	goto	L6
+lab L31
+	mark	L110
+	ccase
+	mark	L111
+	int	57
+	line	104
+	colm	16
+	synt	any
+	esusp
+	goto	L112
+lab L111
+	mark	L113
+	int	58
+	line	104
+	colm	22
+	synt	any
+	esusp
+	goto	L114
+lab L113
+	mark	L115
+	int	59
+	line	104
+	colm	28
+	synt	any
+	esusp
+	goto	L116
+lab L115
+	mark	L117
+	int	60
+	line	104
+	colm	34
+	synt	any
+	esusp
+	goto	L118
+lab L117
+	mark	L119
+	int	61
+	line	105
+	colm	16
+	synt	any
+	esusp
+	goto	L120
+lab L119
+	mark	L121
+	int	62
+	line	105
+	colm	22
+	synt	any
+	esusp
+	goto	L122
+lab L121
+	mark	L123
+	int	63
+	line	105
+	colm	28
+	synt	any
+	esusp
+	goto	L124
+lab L123
+	mark	L125
+	int	64
+	line	105
+	colm	34
+	synt	any
+	esusp
+	goto	L126
+lab L125
+	mark	L127
+	int	65
+	line	106
+	colm	16
+	synt	any
+	esusp
+	goto	L128
+lab L127
+	mark	L129
+	int	66
+	line	106
+	colm	22
+	synt	any
+	esusp
+	goto	L130
+lab L129
+	mark	L131
+	int	67
+	line	106
+	colm	28
+	synt	any
+	esusp
+	goto	L132
+lab L131
+	mark	L133
+	int	68
+	line	106
+	colm	34
+	synt	any
+	esusp
+	goto	L134
+lab L133
+	int	69
+lab L134
+lab L132
+lab L130
+lab L128
+lab L126
+lab L124
+lab L122
+lab L120
+lab L118
+lab L116
+lab L114
+lab L112
+	line	107
+	colm	32
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	70
+	line	107
+	colm	36
+	synt	any
+	invoke	2
+	goto	L6
+lab L110
+	mark	L135
+	ccase
+	mark	L136
+	int	71
+	line	109
+	colm	16
+	synt	any
+	esusp
+	goto	L137
+lab L136
+	mark	L138
+	int	72
+	line	109
+	colm	22
+	synt	any
+	esusp
+	goto	L139
+lab L138
+	mark	L140
+	int	73
+	line	109
+	colm	28
+	synt	any
+	esusp
+	goto	L141
+lab L140
+	mark	L142
+	int	74
+	line	109
+	colm	34
+	synt	any
+	esusp
+	goto	L143
+lab L142
+	mark	L144
+	int	75
+	line	109
+	colm	40
+	synt	any
+	esusp
+	goto	L145
+lab L144
+	mark	L146
+	int	76
+	line	110
+	colm	16
+	synt	any
+	esusp
+	goto	L147
+lab L146
+	int	77
+lab L147
+lab L145
+lab L143
+lab L141
+lab L139
+lab L137
+	line	110
+	colm	36
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	78
+	line	110
+	colm	40
+	synt	any
+	invoke	2
+	goto	L6
+lab L135
+	pop
+	var	10
+	var	1
+	str	56
+	line	112
+	colm	44
+	synt	any
+	invoke	2
+lab L6
+	line	87
+	colm	9
+	synt	endcase
+	unmark
+lab L5
+	mark	L148
+	pnull
+	var	8
+	pnull
+	pnull
+	pnull
+	var	11
+	str	79
+	line	116
+	colm	49
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	11
+	str	80
+	line	116
+	colm	83
+	synt	any
+	subsc
+	line	116
+	colm	60
+	synt	any
+	size
+	line	116
+	colm	59
+	synt	any
+	plus
+	int	81
+	line	116
+	colm	88
+	synt	any
+	minus
+	line	116
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L148
+	mark	L149
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	81
+	line	119
+	colm	69
+	synt	any
+	plus
+	line	119
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	119
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L149
+	mark	L150
+	pnull
+	var	6
+	var	13
+	var	1
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	81
+	line	122
+	colm	69
+	synt	any
+	plus
+	line	122
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	122
+	colm	25
+	synt	any
+	invoke	2
+	line	122
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L150
+	mark	L151
+	pnull
+	var	3
+	pnull
+	var	8
+	int	81
+	line	125
+	colm	43
+	synt	any
+	plus
+	line	125
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L151
+	pnull
+	var	4
+	dup
+	var	6
+	line	128
+	colm	11
+	synt	any
+	plus
+	asgn
+lab L3
+	unmark
+	goto	L2
+lab L4
+	line	85
+	colm	6
+	synt	endwhile
+	unmark
+lab L1
+	mark	L152
+	line	132
+	colm	9
+	synt	ifelse
+	mark	L153
+	pnull
+	var	14
+	str	82
+	pnull
+	var	2
+	int	81
+	line	132
+	colm	23
+	synt	any
+	subsc
+	line	132
+	colm	17
+	synt	any
+	invoke	2
+	line	132
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	var	10
+	var	1
+	str	83
+	line	132
+	colm	35
+	synt	any
+	invoke	2
+	goto	L154
+lab L153
+	var	10
+	var	1
+	str	84
+	line	133
+	colm	16
+	synt	any
+	invoke	2
+lab L154
+	line	132
+	colm	9
+	synt	endifelse
+	unmark
+lab L152
+	mark	L155
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	pnull
+	var	2
+	line	134
+	colm	55
+	synt	any
+	size
+	int	81
+	line	134
+	colm	58
+	synt	any
+	plus
+	line	134
+	colm	51
+	synt	any
+	synt	any
+	sect
+	line	134
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L155
+	pnull
+	line	135
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract_UTok_highlighting
+	local	0,001000,self
+	local	1,001000,win
+	local	2,001000,s
+	local	3,001000,last_s_Position
+	local	4,001000,x
+	local	5,001000,y
+	local	6,001000,off
+	local	7,000020,utoken
+	local	8,000020,new_s_Position
+	local	9,000000,UniconPackage__yylex
+	local	10,000000,Fg
+	local	11,000000,UniconPackage__yytoken
+	local	12,000000,DrawString
+	local	13,000000,TextWidth
+	con	0,002000,3,262
+	con	1,002000,3,375
+	con	2,002000,3,263
+	con	3,002000,3,264
+	con	4,002000,3,265
+	con	5,002000,3,266
+	con	6,002000,3,267
+	con	7,002000,3,268
+	con	8,002000,3,269
+	con	9,002000,3,270
+	con	10,002000,3,271
+	con	11,002000,3,272
+	con	12,002000,3,273
+	con	13,002000,3,274
+	con	14,002000,3,275
+	con	15,002000,3,276
+	con	16,002000,3,278
+	con	17,002000,3,277
+	con	18,002000,3,279
+	con	19,002000,3,280
+	con	20,002000,3,281
+	con	21,002000,3,282
+	con	22,002000,3,283
+	con	23,002000,3,284
+	con	24,002000,3,285
+	con	25,002000,3,286
+	con	26,002000,3,287
+	con	27,002000,3,288
+	con	28,002000,3,289
+	con	29,002000,3,290
+	con	30,002000,3,291
+	con	31,002000,3,292
+	con	32,002000,3,293
+	con	33,002000,3,294
+	con	34,002000,3,295
+	con	35,002000,3,296
+	con	36,010000,4,102,154,165,145
+	con	37,002000,3,260
+	con	38,002000,3,261
+	con	39,010000,8,104,141,162,153,040,122,145,144
+	con	40,010000,5,102,154,141,143,153
+	con	41,010000,6,143,157,154,165,155,156
+	con	42,010000,1,163
+	con	43,002000,1,1
+	con	44,010000,5,147,162,145,145,156
+	con	45,010000,12,154,151,147,150,164,040,171,145,154,154,157,167
+	declend
+	line	139
+	colm	11
+	synt	any
+	mark	L1
+lab L2
+	line	143
+	colm	6
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	7
+	var	9
+	line	143
+	colm	45
+	synt	any
+	invoke	0
+	line	143
+	colm	22
+	synt	any
+	asgn
+	int	0
+	line	143
+	colm	49
+	synt	any
+	neqv
+	unmark
+	mark	L2
+	mark	L5
+	line	145
+	colm	9
+	synt	case
+	mark0
+	var	7
+	eret
+	mark	L7
+	ccase
+	mark	L8
+	int	1
+	line	146
+	colm	16
+	synt	any
+	esusp
+	goto	L9
+lab L8
+	mark	L10
+	int	2
+	line	146
+	colm	22
+	synt	any
+	esusp
+	goto	L11
+lab L10
+	mark	L12
+	int	3
+	line	146
+	colm	28
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	mark	L14
+	int	4
+	line	146
+	colm	34
+	synt	any
+	esusp
+	goto	L15
+lab L14
+	mark	L16
+	int	5
+	line	146
+	colm	40
+	synt	any
+	esusp
+	goto	L17
+lab L16
+	mark	L18
+	int	6
+	line	146
+	colm	46
+	synt	any
+	esusp
+	goto	L19
+lab L18
+	mark	L20
+	int	7
+	line	147
+	colm	16
+	synt	any
+	esusp
+	goto	L21
+lab L20
+	mark	L22
+	int	8
+	line	147
+	colm	22
+	synt	any
+	esusp
+	goto	L23
+lab L22
+	mark	L24
+	int	9
+	line	147
+	colm	28
+	synt	any
+	esusp
+	goto	L25
+lab L24
+	mark	L26
+	int	10
+	line	147
+	colm	34
+	synt	any
+	esusp
+	goto	L27
+lab L26
+	mark	L28
+	int	11
+	line	147
+	colm	40
+	synt	any
+	esusp
+	goto	L29
+lab L28
+	mark	L30
+	int	12
+	line	147
+	colm	46
+	synt	any
+	esusp
+	goto	L31
+lab L30
+	mark	L32
+	int	13
+	line	148
+	colm	16
+	synt	any
+	esusp
+	goto	L33
+lab L32
+	mark	L34
+	int	14
+	line	148
+	colm	22
+	synt	any
+	esusp
+	goto	L35
+lab L34
+	mark	L36
+	int	15
+	line	148
+	colm	28
+	synt	any
+	esusp
+	goto	L37
+lab L36
+	mark	L38
+	int	16
+	line	148
+	colm	34
+	synt	any
+	esusp
+	goto	L39
+lab L38
+	mark	L40
+	int	17
+	line	149
+	colm	16
+	synt	any
+	esusp
+	goto	L41
+lab L40
+	mark	L42
+	int	18
+	line	149
+	colm	22
+	synt	any
+	esusp
+	goto	L43
+lab L42
+	mark	L44
+	int	19
+	line	149
+	colm	28
+	synt	any
+	esusp
+	goto	L45
+lab L44
+	mark	L46
+	int	20
+	line	149
+	colm	34
+	synt	any
+	esusp
+	goto	L47
+lab L46
+	mark	L48
+	int	21
+	line	150
+	colm	16
+	synt	any
+	esusp
+	goto	L49
+lab L48
+	mark	L50
+	int	22
+	line	150
+	colm	22
+	synt	any
+	esusp
+	goto	L51
+lab L50
+	mark	L52
+	int	23
+	line	150
+	colm	28
+	synt	any
+	esusp
+	goto	L53
+lab L52
+	mark	L54
+	int	24
+	line	150
+	colm	34
+	synt	any
+	esusp
+	goto	L55
+lab L54
+	mark	L56
+	int	25
+	line	150
+	colm	40
+	synt	any
+	esusp
+	goto	L57
+lab L56
+	mark	L58
+	int	26
+	line	151
+	colm	16
+	synt	any
+	esusp
+	goto	L59
+lab L58
+	mark	L60
+	int	27
+	line	151
+	colm	22
+	synt	any
+	esusp
+	goto	L61
+lab L60
+	mark	L62
+	int	28
+	line	151
+	colm	28
+	synt	any
+	esusp
+	goto	L63
+lab L62
+	mark	L64
+	int	29
+	line	151
+	colm	34
+	synt	any
+	esusp
+	goto	L65
+lab L64
+	mark	L66
+	int	30
+	line	151
+	colm	40
+	synt	any
+	esusp
+	goto	L67
+lab L66
+	mark	L68
+	int	31
+	line	152
+	colm	16
+	synt	any
+	esusp
+	goto	L69
+lab L68
+	mark	L70
+	int	32
+	line	152
+	colm	22
+	synt	any
+	esusp
+	goto	L71
+lab L70
+	mark	L72
+	int	33
+	line	152
+	colm	28
+	synt	any
+	esusp
+	goto	L73
+lab L72
+	mark	L74
+	int	34
+	line	152
+	colm	34
+	synt	any
+	esusp
+	goto	L75
+lab L74
+	mark	L76
+	int	35
+	line	152
+	colm	40
+	synt	any
+	esusp
+	goto	L77
+lab L76
+	int	13
+lab L77
+lab L75
+lab L73
+lab L71
+lab L69
+lab L67
+lab L65
+lab L63
+lab L61
+lab L59
+lab L57
+lab L55
+lab L53
+lab L51
+lab L49
+lab L47
+lab L45
+lab L43
+lab L41
+lab L39
+lab L37
+lab L35
+lab L33
+lab L31
+lab L29
+lab L27
+lab L25
+lab L23
+lab L21
+lab L19
+lab L17
+lab L15
+lab L13
+lab L11
+lab L9
+	line	153
+	colm	40
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	36
+	line	153
+	colm	44
+	synt	any
+	invoke	2
+	goto	L6
+lab L7
+	mark	L78
+	ccase
+	mark	L79
+	int	37
+	line	155
+	colm	16
+	synt	any
+	esusp
+	goto	L80
+lab L79
+	int	38
+lab L80
+	line	155
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	var	10
+	var	1
+	str	39
+	line	155
+	colm	34
+	synt	any
+	invoke	2
+	goto	L6
+lab L78
+	pop
+	var	10
+	var	1
+	str	40
+	line	157
+	colm	44
+	synt	any
+	invoke	2
+lab L6
+	line	145
+	colm	9
+	synt	endcase
+	unmark
+lab L5
+	mark	L81
+	pnull
+	var	8
+	pnull
+	pnull
+	pnull
+	var	11
+	str	41
+	line	161
+	colm	49
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	11
+	str	42
+	line	161
+	colm	83
+	synt	any
+	subsc
+	line	161
+	colm	60
+	synt	any
+	size
+	line	161
+	colm	59
+	synt	any
+	plus
+	int	43
+	line	161
+	colm	88
+	synt	any
+	minus
+	line	161
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L81
+	mark	L82
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	43
+	line	164
+	colm	69
+	synt	any
+	plus
+	line	164
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	164
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L82
+	mark	L83
+	pnull
+	var	6
+	var	13
+	var	1
+	pnull
+	var	2
+	var	3
+	pnull
+	var	8
+	int	43
+	line	167
+	colm	69
+	synt	any
+	plus
+	line	167
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	167
+	colm	25
+	synt	any
+	invoke	2
+	line	167
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L83
+	mark	L84
+	pnull
+	var	3
+	pnull
+	var	8
+	int	43
+	line	170
+	colm	43
+	synt	any
+	plus
+	line	170
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L84
+	pnull
+	var	4
+	dup
+	var	6
+	line	173
+	colm	11
+	synt	any
+	plus
+	asgn
+lab L3
+	unmark
+	goto	L2
+lab L4
+	line	143
+	colm	6
+	synt	endwhile
+	unmark
+lab L1
+	mark	L85
+	var	10
+	var	1
+	str	44
+	line	177
+	colm	11
+	synt	any
+	invoke	2
+	unmark
+lab L85
+	mark	L86
+	var	12
+	var	1
+	var	4
+	var	5
+	pnull
+	var	2
+	var	3
+	pnull
+	pnull
+	var	2
+	line	178
+	colm	54
+	synt	any
+	size
+	int	43
+	line	178
+	colm	57
+	synt	any
+	plus
+	line	178
+	colm	50
+	synt	any
+	synt	any
+	sect
+	line	178
+	colm	19
+	synt	any
+	invoke	4
+	unmark
+lab L86
+	mark	L87
+	var	10
+	var	1
+	str	45
+	line	179
+	colm	11
+	synt	any
+	invoke	2
+	unmark
+lab L87
+	pnull
+	line	180
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract_syntax_chicker
+	local	0,001000,self
+	declend
+	line	182
+	colm	11
+	synt	any
+	line	184
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract_initially
+	local	0,001000,self
+	declend
+	line	186
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	188
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	189
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstract
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,LanguageAbstract__oprec
+	local	3,000000,LanguageAbstractinitialize
+	local	4,000000,LanguageAbstract__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	62
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	0
+	var	4
+	line	10
+	colm	35
+	synt	any
+	keywd	null
+	var	2
+	line	10
+	colm	34
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	29
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	31
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	0
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc LanguageAbstractinitialize
+	local	0,000000,LanguageAbstract__oprec
+	local	1,000000,LanguageAbstract__methods
+	local	2,000000,LanguageAbstract_token_highlighter
+	local	3,000000,LanguageAbstract_CTok_highlighting
+	local	4,000000,LanguageAbstract_JTok_highlighting
+	local	5,000000,LanguageAbstract_UTok_highlighting
+	local	6,000000,LanguageAbstract_syntax_chicker
+	local	7,000000,LanguageAbstract_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	17
+	colm	63
+	synt	any
+	invoke	6
+	line	17
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

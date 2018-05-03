@@ -1,0 +1,11 @@
+Door {
+	id 328
+	x 38.6
+	y 16.4
+	z 18.23
+	w 0.8
+	height 2.2
+	collide_in 1.2
+	plane 3
+	rooms [JEB328, FLOOR3COR]
+}

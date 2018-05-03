@@ -1,0 +1,393 @@
+version	U12.1.00
+uid	datopen.u1-1523917904-0
+impl	error
+global	3
+	0,000001,WDAT,0
+	1,000005,datfile,1
+	2,000005,datopen,2
+
+proc datfile
+	local	0,001000,fn
+	local	1,000020,rv
+	local	2,000000,WDAT
+	con	0,002000,1,1
+	con	1,002000,1,4
+	con	2,010000,3,144,141,164
+	con	3,002000,1,0
+	declend
+	filen	datopen.icn
+	line	5
+	colm	12
+	synt	any
+	mark	L1
+	line	7
+	colm	4
+	synt	ifelse
+	mark	L2
+	pnull
+	pnull
+	var	0
+	int	0
+	int	1
+	line	7
+	colm	11
+	synt	any
+	synt	any
+	sect
+	str	2
+	line	7
+	colm	15
+	synt	any
+	lexeq
+	unmark
+	mark	L4
+	pnull
+	var	2
+	pnull
+	var	0
+	int	1
+	int	3
+	line	8
+	colm	26
+	synt	any
+	synt	any
+	sect
+	line	8
+	colm	19
+	synt	any
+	cat
+	line	8
+	colm	7
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	goto	L3
+lab L2
+	mark	L5
+	var	0
+	line	11
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+lab L3
+	line	7
+	colm	4
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	13
+	colm	1
+	synt	any
+	pfail
+	end
+proc datopen
+	local	0,001000,fn
+	local	1,001000,mode
+	local	2,000020,rv
+	local	3,000020,alt
+	local	4,000000,WDAT
+	local	5,000000,any
+	local	6,000000,open
+	local	7,000000,match
+	local	8,000000,stat
+	con	0,010000,1,162
+	con	1,002000,1,1
+	con	2,002000,1,4
+	con	3,010000,3,144,141,164
+	con	4,010000,1,134
+	con	5,002000,1,5
+	con	6,002000,1,0
+	con	7,020000,3,167,141,143
+	declend
+	line	15
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	1
+	line	17
+	colm	1
+	synt	any
+	null
+	str	0
+	line	17
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	21
+	colm	4
+	synt	ifelse
+	mark	L3
+	pnull
+	pnull
+	var	0
+	int	1
+	int	2
+	line	21
+	colm	11
+	synt	any
+	synt	any
+	sect
+	str	3
+	line	21
+	colm	15
+	synt	any
+	lexeq
+	unmark
+	mark	L5
+	pnull
+	var	3
+	pnull
+	pnull
+	var	4
+	str	4
+	line	22
+	colm	19
+	synt	any
+	cat
+	pnull
+	var	0
+	int	5
+	int	6
+	line	22
+	colm	34
+	synt	any
+	synt	any
+	sect
+	line	22
+	colm	27
+	synt	any
+	cat
+	line	22
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L5
+	line	23
+	colm	7
+	synt	ifelse
+	mark	L6
+	var	5
+	cset	7
+	var	1
+	line	23
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+	mark	L8
+	pnull
+	var	2
+	var	6
+	var	3
+	var	1
+	line	24
+	colm	20
+	synt	any
+	invoke	2
+	line	24
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	2
+	line	25
+	colm	17
+	synt	any
+	nonnull
+	line	25
+	colm	10
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	goto	L7
+lab L6
+	line	27
+	colm	12
+	synt	ifelse
+	mark	L10
+	var	7
+	str	0
+	var	1
+	line	27
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+	line	28
+	colm	10
+	synt	ifelse
+	mark	L12
+	var	8
+	var	3
+	line	28
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+	mark	L14
+	pnull
+	var	2
+	var	6
+	var	3
+	var	1
+	line	29
+	colm	23
+	synt	any
+	invoke	2
+	line	29
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	2
+	line	30
+	colm	20
+	synt	any
+	nonnull
+	line	30
+	colm	13
+	synt	any
+	pret
+lab L15
+	synt	any
+	pfail
+	goto	L13
+lab L12
+	mark	L16
+	pnull
+	var	2
+	var	6
+	var	0
+	var	1
+	line	33
+	colm	23
+	synt	any
+	invoke	2
+	line	33
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	2
+	line	34
+	colm	20
+	synt	any
+	nonnull
+	line	34
+	colm	13
+	synt	any
+	pret
+lab L17
+	synt	any
+	pfail
+lab L13
+	line	28
+	colm	10
+	synt	endifelse
+	goto	L11
+lab L10
+	mark	L18
+	pnull
+	var	2
+	var	6
+	var	0
+	var	1
+	line	38
+	colm	20
+	synt	any
+	invoke	2
+	line	38
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	2
+	line	39
+	colm	17
+	synt	any
+	nonnull
+	line	39
+	colm	10
+	synt	any
+	pret
+lab L19
+	synt	any
+	pfail
+lab L11
+	line	27
+	colm	12
+	synt	endifelse
+lab L7
+	line	23
+	colm	7
+	synt	endifelse
+	goto	L4
+lab L3
+	mark	L20
+	pnull
+	var	2
+	var	6
+	var	0
+	var	1
+	line	43
+	colm	20
+	synt	any
+	invoke	2
+	line	43
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	var	2
+	line	44
+	colm	17
+	synt	any
+	nonnull
+	line	44
+	colm	10
+	synt	any
+	pret
+lab L21
+	synt	any
+	pfail
+lab L4
+	line	21
+	colm	4
+	synt	endifelse
+	unmark
+lab L2
+	pnull
+	line	46
+	colm	1
+	synt	any
+	pfail
+	end

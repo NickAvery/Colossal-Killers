@@ -1,0 +1,3859 @@
+version	U12.1.00
+uid	customnpc.u1-1523917622-0
+record	CustomNPC__state,53
+	0,__s
+	1,__m
+	2,isMoving
+	3,first_teleport
+	4,npcthread
+	5,moves_range
+	6,moves_step
+	7,moves_dist
+	8,latency
+	9,latency_timestamp
+	10,totlat
+	11,totc
+	12,tt
+	13,tms
+	14,tsec
+	15,lfname
+	16,lfin
+	17,tshut
+	18,skip1
+	19,TOPP
+	20,CVED
+	21,dir
+	22,userid
+	23,password
+	24,firstname
+	25,lastname
+	26,emailid
+	27,affiliation
+	28,homepage
+	29,srvport
+	30,n
+	31,socket_list
+	32,x
+	33,y
+	34,z
+	35,angle
+	36,command_queue
+	37,reconnect_counter
+	38,Tnearby_avatars
+	39,Tavatars
+	40,info_card
+	41,chat
+	42,knowledge
+	43,close_to_avatar_t
+	44,reconnect_t
+	45,reconnect_t_sleep
+	46,Tsock_pendingin
+	47,profile_section
+	48,sections
+	49,twoPI
+	50,name_talking_to_me
+	51,localcon
+	52,concurrent
+record	CustomNPC__methods,42
+	0,clean_and_exit
+	1,do_latency
+	2,do_command
+	3,handle_query
+	4,idlefunc
+	5,handle_moves
+	6,run
+	7,initially
+	8,login
+	9,myopen
+	10,connect_to_server
+	11,prepare_to_go_to_room
+	12,get_home
+	13,teleport
+	14,reconnect
+	15,do_net
+	16,get_net_line
+	17,download_webpage
+	18,handle_http
+	19,parse_id_field
+	20,parse_id
+	21,send_command
+	22,mainloop
+	23,build_action_command
+	24,cmd_to_list
+	25,rotatey
+	26,collide_with_avatar
+	27,move_relative
+	28,say
+	29,tell
+	30,add_avatar
+	31,tell_npc_command
+	32,do_cmd
+	33,npc_command
+	34,conversation
+	35,flush_commands
+	36,writen
+	37,distance_to
+	38,close_to_avatar
+	39,already_nearby
+	40,check_nearby
+	41,ExternalNPC
+impl	error
+link	c:/Users/Kevin/cve/src/npc/npc.u
+link	~/unicon/uni/lib/thread.u
+link	c:/unicon/uni/lib/thread.u
+global	14
+	0,000005,CustomNPC_clean_and_exit,1
+	1,000005,CustomNPC_do_latency,1
+	2,000005,CustomNPC_do_command,2
+	3,000005,CustomNPC_handle_query,2
+	4,000005,CustomNPC_idlefunc,2
+	5,000005,CustomNPC_handle_moves,1
+	6,000005,CustomNPC_run,1
+	7,000005,CustomNPC_initially,4
+	8,000011,CustomNPC__state,53
+	9,000011,CustomNPC__methods,42
+	10,000001,CustomNPC__oprec,0
+	11,000001,ExternalNPC__oprec,0
+	12,000005,CustomNPC,3
+	13,000005,CustomNPCinitialize,0
+
+proc CustomNPC_clean_and_exit
+	local	0,001000,self
+	local	1,000000,write
+	local	2,000000,serial
+	local	3,000000,exit
+	con	0,010000,7,134,154,157,147,157,165,164
+	con	1,010000,24,104,157,156,145,040,072,040,147,157,157,144,040,142,171,145,041,040,163,145,162,151,141,154,075
+	con	2,002000,5,10101
+	declend
+	filen	customnpc.icn
+	line	47
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	48
+	colm	8
+	synt	any
+	field	writen
+	str	0
+	line	48
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	49
+	colm	8
+	synt	any
+	field	flush_commands
+	line	49
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	mark	L3
+	var	1
+	str	1
+	var	2
+	line	50
+	colm	44
+	synt	any
+	invoke	0
+	line	50
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	var	3
+	int	2
+	line	51
+	colm	8
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	line	52
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_do_latency
+	local	0,001000,self
+	local	1,000020,t
+	local	2,000000,microseconds
+	local	3,000000,write
+	con	0,010000,6,166,145,162,164,145,170
+	con	1,002000,1,1
+	con	2,002000,2,50
+	con	3,002000,4,1000
+	con	4,002000,1,0
+	con	5,010000,8,141,166,145,162,141,147,145,075
+	con	6,002000,2,15
+	con	7,010000,17,156,157,040,154,141,164,145,156,143,171,040,141,156,163,167,145,162
+	con	8,002000,1,3
+	con	9,010000,9,134,154,141,164,145,156,143,171,040
+	declend
+	line	54
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	var	2
+	line	56
+	colm	20
+	synt	any
+	invoke	0
+	line	56
+	colm	5
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	57
+	colm	3
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	57
+	colm	10
+	synt	any
+	field	userid
+	str	0
+	line	57
+	colm	17
+	synt	any
+	lexne
+	unmark
+	mark	L3
+	line	58
+	colm	5
+	synt	if
+	mark0
+	pnull
+	var	1
+	pnull
+	var	0
+	line	58
+	colm	14
+	synt	any
+	field	tshut
+	line	58
+	colm	9
+	synt	any
+	numlt
+	unmark
+	line	58
+	colm	26
+	synt	any
+	pfail
+	line	58
+	colm	5
+	synt	endif
+	unmark
+lab L3
+	pnull
+	var	0
+	line	59
+	colm	9
+	synt	any
+	field	clean_and_exit
+	line	59
+	colm	24
+	synt	any
+	invoke	0
+	line	57
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	mark	L4
+	line	61
+	colm	3
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	11
+	synt	any
+	field	lfname
+	line	61
+	colm	6
+	synt	any
+	null
+	unmark
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	62
+	colm	8
+	synt	any
+	field	lfname
+	int	1
+	line	62
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	65
+	colm	8
+	synt	any
+	field	tt
+	var	1
+	line	65
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	66
+	colm	8
+	synt	any
+	field	tshut
+	pnull
+	var	1
+	pnull
+	pnull
+	int	2
+	int	3
+	line	66
+	colm	20
+	synt	any
+	mult
+	int	3
+	line	66
+	colm	27
+	synt	any
+	mult
+	line	66
+	colm	17
+	synt	any
+	plus
+	line	66
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	67
+	colm	8
+	synt	any
+	field	totlat
+	int	4
+	line	67
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	8
+	synt	any
+	field	totc
+	int	4
+	line	68
+	colm	13
+	synt	any
+	asgn
+	line	61
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L9
+	line	72
+	colm	5
+	synt	if
+	mark0
+	pnull
+	var	1
+	pnull
+	var	0
+	line	72
+	colm	14
+	synt	any
+	field	tshut
+	line	72
+	colm	9
+	synt	any
+	numgt
+	unmark
+	mark	L10
+	var	3
+	str	5
+	pnull
+	pnull
+	var	0
+	line	73
+	colm	30
+	synt	any
+	field	totlat
+	pnull
+	var	0
+	line	73
+	colm	42
+	synt	any
+	field	totc
+	line	73
+	colm	37
+	synt	any
+	div
+	line	73
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	pnull
+	var	0
+	line	76
+	colm	12
+	synt	any
+	field	clean_and_exit
+	line	76
+	colm	27
+	synt	any
+	invoke	0
+	line	72
+	colm	5
+	synt	endif
+	unmark
+lab L9
+	mark	L11
+	line	80
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	pnull
+	var	0
+	line	80
+	colm	16
+	synt	any
+	field	tt
+	line	80
+	colm	11
+	synt	any
+	minus
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	24
+	synt	any
+	field	tsec
+	int	6
+	line	80
+	colm	29
+	synt	any
+	mult
+	line	80
+	colm	19
+	synt	any
+	numgt
+	unmark
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	12
+	synt	any
+	field	latency_timestamp
+	line	81
+	colm	32
+	synt	any
+	keywd	null
+	line	81
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L12
+	var	3
+	str	7
+	line	82
+	colm	13
+	synt	any
+	invoke	1
+	line	80
+	colm	7
+	synt	endif
+	unmark
+lab L11
+	mark	L13
+	line	85
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	85
+	colm	15
+	synt	any
+	field	latency_timestamp
+	line	85
+	colm	10
+	synt	any
+	null
+	pop
+	pnull
+	pnull
+	var	1
+	pnull
+	var	0
+	line	85
+	colm	40
+	synt	any
+	field	tt
+	line	85
+	colm	35
+	synt	any
+	minus
+	pnull
+	pnull
+	var	0
+	line	85
+	colm	48
+	synt	any
+	field	tsec
+	int	8
+	line	85
+	colm	53
+	synt	any
+	mult
+	line	85
+	colm	43
+	synt	any
+	numgt
+	unmark
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	14
+	synt	any
+	field	tt
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	23
+	synt	any
+	field	latency_timestamp
+	var	1
+	line	86
+	colm	41
+	synt	any
+	asgn
+	line	86
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L14
+	pnull
+	var	0
+	line	87
+	colm	14
+	synt	any
+	field	writen
+	pnull
+	str	9
+	pnull
+	var	0
+	line	87
+	colm	40
+	synt	any
+	field	latency_timestamp
+	line	87
+	colm	34
+	synt	any
+	cat
+	line	87
+	colm	21
+	synt	any
+	invoke	1
+	line	85
+	colm	7
+	synt	endif
+	unmark
+lab L13
+	pnull
+	line	89
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_do_command
+	local	0,001000,self
+	local	1,001000,s
+	local	2,000020,cmd
+	local	3,000020,commandL
+	local	4,000020,x
+	local	5,000020,y
+	local	6,000020,z
+	local	7,000020,angle
+	local	8,000020,avat
+	local	9,000020,name
+	local	10,000000,tab
+	local	11,000000,pop
+	local	12,000000,real
+	local	13,000000,delay
+	local	14,000000,NPCAvatar
+	local	15,000000,find
+	local	16,000000,microseconds
+	local	17,000000,write
+	con	0,010000,1,134
+	con	1,002000,1,0
+	con	2,010000,6,141,166,141,164,141,162
+	con	3,002000,1,5
+	con	4,002000,1,3
+	con	5,002000,3,100
+	con	6,002000,1,1
+	con	7,010000,10,144,157,156,047,164,040,146,141,151,154
+	con	8,004000,2.0
+	con	9,004000,0.0
+	con	10,002000,1,2
+	con	11,010000,4,155,157,166,145
+	con	12,010000,4,142,157,144,171
+	con	13,010000,4,164,145,154,154
+	con	14,010000,6,156,160,143,155,163,147
+	con	15,010000,5,161,165,145,162,171
+	con	16,010000,6,100,105,162,162,157,162
+	con	17,002000,1,6
+	con	18,010000,7,100,122,141,156,144,157,155
+	con	19,010000,7,154,141,164,145,156,143,171
+	con	20,002000,4,1000
+	con	21,010000,2,151,075
+	con	22,010000,11,040,040,040,154,141,164,145,156,143,171,075
+	con	23,010000,13,040,040,040,040,040,141,166,145,162,141,147,145,075
+	declend
+	line	92
+	colm	11
+	synt	any
+	mark	L1
+	var	1
+	line	95
+	colm	7
+	synt	any
+	bscan
+	line	96
+	colm	8
+	synt	ifelse
+	mark	L2
+	pnull
+	str	0
+	line	96
+	colm	11
+	synt	any
+	tabmat
+	unmark
+	pnull
+	var	3
+	pnull
+	var	0
+	line	97
+	colm	27
+	synt	any
+	field	cmd_to_list
+	var	10
+	int	1
+	line	97
+	colm	43
+	synt	any
+	invoke	1
+	line	97
+	colm	39
+	synt	any
+	invoke	1
+	line	97
+	colm	20
+	synt	any
+	asgn
+	goto	L3
+lab L2
+	line	98
+	colm	13
+	synt	any
+	pfail
+lab L3
+	line	96
+	colm	8
+	synt	endifelse
+	line	95
+	colm	7
+	synt	any
+	escan
+	unmark
+lab L1
+	mark	L4
+	pnull
+	var	2
+	var	11
+	var	3
+	line	101
+	colm	15
+	synt	any
+	invoke	1
+	line	101
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	105
+	colm	5
+	synt	case
+	mark0
+	var	2
+	eret
+	mark	L7
+	ccase
+	str	2
+	line	106
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L8
+	pnull
+	var	9
+	var	11
+	var	3
+	line	107
+	colm	22
+	synt	any
+	invoke	1
+	line	107
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L8
+	line	108
+	colm	11
+	synt	ifelse
+	mark	L9
+	pnull
+	var	9
+	pnull
+	var	0
+	line	108
+	colm	25
+	synt	any
+	field	userid
+	line	108
+	colm	18
+	synt	any
+	eqv
+	unmark
+	mark	L11
+	pnull
+	var	4
+	pnull
+	pnull
+	var	12
+	var	11
+	var	3
+	line	109
+	colm	27
+	synt	any
+	invoke	1
+	line	109
+	colm	23
+	synt	any
+	invoke	1
+	pnull
+	int	3
+	line	109
+	colm	43
+	synt	any
+	random
+	line	109
+	colm	40
+	synt	any
+	plus
+	int	4
+	line	109
+	colm	47
+	synt	any
+	minus
+	line	109
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	5
+	var	12
+	var	11
+	var	3
+	line	110
+	colm	27
+	synt	any
+	invoke	1
+	line	110
+	colm	23
+	synt	any
+	invoke	1
+	line	110
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	var	6
+	pnull
+	pnull
+	var	12
+	var	11
+	var	3
+	line	111
+	colm	27
+	synt	any
+	invoke	1
+	line	111
+	colm	23
+	synt	any
+	invoke	1
+	pnull
+	int	3
+	line	111
+	colm	43
+	synt	any
+	random
+	line	111
+	colm	40
+	synt	any
+	plus
+	int	4
+	line	111
+	colm	47
+	synt	any
+	minus
+	line	111
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	7
+	var	12
+	var	11
+	var	3
+	line	112
+	colm	31
+	synt	any
+	invoke	1
+	line	112
+	colm	27
+	synt	any
+	invoke	1
+	line	112
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	0
+	line	113
+	colm	18
+	synt	any
+	field	get_home
+	line	113
+	colm	27
+	synt	any
+	invoke	0
+	unmark
+lab L15
+	mark	L16
+	var	13
+	int	5
+	line	114
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	115
+	colm	18
+	synt	any
+	field	first_teleport
+	int	6
+	line	115
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	0
+	line	116
+	colm	18
+	synt	any
+	field	prepare_to_go_to_room
+	pnull
+	str	7
+	line	116
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	0
+	line	117
+	colm	18
+	synt	any
+	field	rotatey
+	pnull
+	line	117
+	colm	27
+	synt	any
+	keywd	pi
+	real	8
+	line	117
+	colm	30
+	synt	any
+	div
+	line	117
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	line	118
+	colm	14
+	synt	ifelse
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	118
+	colm	21
+	synt	any
+	field	moves_step
+	real	9
+	line	118
+	colm	32
+	synt	any
+	numlt
+	unmark
+	pnull
+	var	7
+	pnull
+	pnull
+	line	119
+	colm	27
+	synt	any
+	keywd	pi
+	line	119
+	colm	26
+	synt	any
+	neg
+	int	10
+	line	119
+	colm	30
+	synt	any
+	div
+	line	119
+	colm	23
+	synt	any
+	asgn
+	goto	L21
+lab L20
+	pnull
+	var	7
+	pnull
+	line	121
+	colm	26
+	synt	any
+	keywd	pi
+	int	10
+	line	121
+	colm	29
+	synt	any
+	div
+	line	121
+	colm	23
+	synt	any
+	asgn
+lab L21
+	line	118
+	colm	14
+	synt	endifelse
+	goto	L10
+lab L9
+	pnull
+	var	0
+	line	124
+	colm	18
+	synt	any
+	field	add_avatar
+	var	9
+	var	12
+	var	11
+	var	3
+	line	124
+	colm	43
+	synt	any
+	invoke	1
+	line	124
+	colm	39
+	synt	any
+	invoke	1
+	var	12
+	var	11
+	var	3
+	line	125
+	colm	43
+	synt	any
+	invoke	1
+	line	125
+	colm	39
+	synt	any
+	invoke	1
+	var	12
+	var	11
+	var	3
+	line	126
+	colm	43
+	synt	any
+	invoke	1
+	line	126
+	colm	39
+	synt	any
+	invoke	1
+	var	12
+	var	11
+	var	3
+	line	127
+	colm	43
+	synt	any
+	invoke	1
+	line	127
+	colm	39
+	synt	any
+	invoke	1
+	var	11
+	var	3
+	line	128
+	colm	38
+	synt	any
+	invoke	1
+	line	124
+	colm	29
+	synt	any
+	invoke	6
+lab L10
+	line	108
+	colm	11
+	synt	endifelse
+	goto	L6
+lab L7
+	mark	L22
+	ccase
+	str	11
+	line	132
+	colm	15
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L23
+	pnull
+	var	9
+	var	11
+	var	3
+	line	133
+	colm	22
+	synt	any
+	invoke	1
+	line	133
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L23
+	line	134
+	colm	11
+	synt	if
+	mark0
+	pnull
+	var	11
+	var	3
+	line	134
+	colm	17
+	synt	any
+	invoke	1
+	str	12
+	line	134
+	colm	28
+	synt	any
+	eqv
+	unmark
+	line	135
+	colm	11
+	synt	if
+	mark0
+	pnull
+	var	9
+	pnull
+	var	0
+	line	135
+	colm	25
+	synt	any
+	field	userid
+	line	135
+	colm	18
+	synt	any
+	lexne
+	unmark
+	mark	L24
+	pnull
+	var	4
+	var	12
+	var	11
+	var	3
+	line	136
+	colm	27
+	synt	any
+	invoke	1
+	line	136
+	colm	23
+	synt	any
+	invoke	1
+	line	136
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	5
+	var	12
+	var	11
+	var	3
+	line	137
+	colm	27
+	synt	any
+	invoke	1
+	line	137
+	colm	23
+	synt	any
+	invoke	1
+	line	137
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	var	6
+	var	12
+	var	11
+	var	3
+	line	138
+	colm	27
+	synt	any
+	invoke	1
+	line	138
+	colm	23
+	synt	any
+	invoke	1
+	line	138
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	var	7
+	var	12
+	var	11
+	var	3
+	line	139
+	colm	31
+	synt	any
+	invoke	1
+	line	139
+	colm	27
+	synt	any
+	invoke	1
+	line	139
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L27
+	mark	L28
+	pnull
+	var	8
+	var	14
+	var	9
+	var	4
+	var	5
+	var	6
+	var	7
+	line	141
+	colm	31
+	synt	any
+	invoke	5
+	line	141
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L28
+	pnull
+	var	0
+	line	142
+	colm	18
+	synt	any
+	field	check_nearby
+	var	8
+	line	142
+	colm	31
+	synt	any
+	invoke	1
+	line	135
+	colm	11
+	synt	endif
+	line	134
+	colm	11
+	synt	endif
+	goto	L6
+lab L22
+	mark	L29
+	ccase
+	str	13
+	line	145
+	colm	15
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	0
+	line	146
+	colm	16
+	synt	any
+	field	conversation
+	var	2
+	pnull
+	var	1
+	pnull
+	pnull
+	var	2
+	line	146
+	colm	36
+	synt	any
+	size
+	int	10
+	line	146
+	colm	40
+	synt	any
+	plus
+	int	1
+	line	146
+	colm	42
+	synt	any
+	synt	any
+	sect
+	line	146
+	colm	29
+	synt	any
+	invoke	2
+	goto	L6
+lab L29
+	mark	L30
+	ccase
+	str	14
+	line	148
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	0
+	line	149
+	colm	16
+	synt	any
+	field	npc_command
+	pnull
+	var	1
+	pnull
+	pnull
+	var	2
+	line	149
+	colm	31
+	synt	any
+	size
+	int	10
+	line	149
+	colm	35
+	synt	any
+	plus
+	int	1
+	line	149
+	colm	37
+	synt	any
+	synt	any
+	sect
+	line	149
+	colm	28
+	synt	any
+	invoke	1
+	goto	L6
+lab L30
+	mark	L31
+	ccase
+	str	15
+	line	151
+	colm	16
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L32
+	var	1
+	line	152
+	colm	13
+	synt	any
+	bscan
+	line	152
+	colm	14
+	synt	if
+	mark0
+	var	10
+	pnull
+	var	15
+	str	16
+	line	152
+	colm	25
+	synt	any
+	invoke	1
+	int	17
+	line	152
+	colm	36
+	synt	any
+	plus
+	line	152
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+	mark	L33
+	pnull
+	var	0
+	line	153
+	colm	17
+	synt	any
+	field	say
+	var	10
+	int	1
+	line	153
+	colm	25
+	synt	any
+	invoke	1
+	line	153
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	mark	L34
+	line	154
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	154
+	colm	21
+	synt	any
+	field	first_teleport
+	line	154
+	colm	16
+	synt	any
+	nonnull
+	unmark
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	155
+	colm	19
+	synt	any
+	field	first_teleport
+	line	155
+	colm	36
+	synt	any
+	keywd	null
+	line	155
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L35
+	pnull
+	var	0
+	line	156
+	colm	19
+	synt	any
+	field	prepare_to_go_to_room
+	str	18
+	line	156
+	colm	41
+	synt	any
+	invoke	1
+	line	154
+	colm	13
+	synt	endif
+	unmark
+lab L34
+	line	158
+	colm	13
+	synt	any
+	pfail
+	line	152
+	colm	14
+	synt	endif
+	line	152
+	colm	13
+	synt	any
+	escan
+	unmark
+lab L32
+	pnull
+	var	0
+	line	160
+	colm	14
+	synt	any
+	field	handle_query
+	var	3
+	line	160
+	colm	27
+	synt	any
+	invoke	1
+	goto	L6
+lab L31
+	mark	L36
+	ccase
+	str	19
+	line	162
+	colm	17
+	synt	any
+	eqv
+	unmark
+	pop
+	line	163
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	163
+	colm	18
+	synt	any
+	field	latency_timestamp
+	line	163
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	mark	L37
+	line	164
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	164
+	colm	21
+	synt	any
+	field	skip1
+	line	164
+	colm	16
+	synt	any
+	null
+	unmark
+	mark	L38
+	pnull
+	pnull
+	var	0
+	line	165
+	colm	20
+	synt	any
+	field	latency_timestamp
+	line	165
+	colm	40
+	synt	any
+	keywd	null
+	line	165
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	166
+	colm	20
+	synt	any
+	field	skip1
+	int	6
+	line	166
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L39
+	line	167
+	colm	16
+	synt	any
+	pfail
+	line	164
+	colm	13
+	synt	endif
+	unmark
+lab L37
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	169
+	colm	17
+	synt	any
+	field	latency
+	pnull
+	var	16
+	line	169
+	colm	39
+	synt	any
+	invoke	0
+	pnull
+	var	0
+	line	169
+	colm	46
+	synt	any
+	field	latency_timestamp
+	line	169
+	colm	41
+	synt	any
+	minus
+	line	169
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	171
+	colm	17
+	synt	any
+	field	latency_timestamp
+	line	171
+	colm	37
+	synt	any
+	keywd	null
+	line	171
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	17
+	synt	any
+	field	totlat
+	dup
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	31
+	synt	any
+	field	latency
+	int	20
+	line	172
+	colm	39
+	synt	any
+	div
+	line	172
+	colm	24
+	synt	any
+	plus
+	asgn
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	0
+	line	173
+	colm	17
+	synt	any
+	field	totc
+	dup
+	int	6
+	line	173
+	colm	22
+	synt	any
+	plus
+	asgn
+	unmark
+lab L43
+	var	17
+	str	21
+	pnull
+	var	0
+	line	174
+	colm	30
+	synt	any
+	field	totc
+	str	22
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	54
+	synt	any
+	field	latency
+	int	20
+	line	174
+	colm	62
+	synt	any
+	div
+	str	23
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	88
+	synt	any
+	field	totlat
+	pnull
+	var	0
+	line	174
+	colm	100
+	synt	any
+	field	totc
+	line	174
+	colm	95
+	synt	any
+	div
+	line	174
+	colm	18
+	synt	any
+	invoke	6
+	line	163
+	colm	10
+	synt	endif
+	goto	L6
+lab L36
+	efail
+lab L6
+	line	105
+	colm	5
+	synt	endcase
+	unmark
+lab L5
+	pnull
+	line	179
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_handle_query
+	local	0,001000,self
+	local	1,001000,cmdL
+	local	2,000000,pop
+	local	3,000000,real
+	con	0,010000,4,122,157,157,155
+	con	1,002000,1,6
+	con	2,002000,1,1
+	con	3,002000,1,5
+	con	4,002000,1,2
+	con	5,002000,1,0
+	con	6,004000,7.0
+	con	7,004000,3.5
+	con	8,002000,1,3
+	con	9,002000,1,4
+	con	10,004000,4.0
+	con	11,004000,2.0
+	declend
+	line	182
+	colm	11
+	synt	any
+	mark	L1
+	line	183
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	1
+	line	183
+	colm	10
+	synt	any
+	invoke	1
+	str	0
+	line	183
+	colm	16
+	synt	any
+	lexeq
+	unmark
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	184
+	colm	13
+	synt	any
+	field	info_card
+	line	184
+	colm	23
+	synt	any
+	field	current_place
+	var	2
+	var	1
+	line	184
+	colm	42
+	synt	any
+	invoke	1
+	line	184
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	mark	L4
+	pnull
+	pnull
+	var	1
+	line	188
+	colm	7
+	synt	any
+	size
+	int	1
+	line	188
+	colm	12
+	synt	any
+	numeq
+	line	188
+	colm	15
+	synt	any
+	esusp
+	goto	L5
+lab L4
+	line	188
+	colm	17
+	synt	any
+	pfail
+lab L5
+	unmark
+lab L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	189
+	colm	11
+	synt	any
+	field	teleport
+	pnull
+	pnull
+	pnull
+	var	3
+	pnull
+	var	1
+	int	2
+	line	189
+	colm	30
+	synt	any
+	subsc
+	line	189
+	colm	25
+	synt	any
+	invoke	1
+	pnull
+	var	3
+	pnull
+	var	1
+	int	3
+	line	189
+	colm	44
+	synt	any
+	subsc
+	line	189
+	colm	39
+	synt	any
+	invoke	1
+	int	4
+	line	189
+	colm	48
+	synt	any
+	div
+	line	189
+	colm	34
+	synt	any
+	plus
+	pnull
+	pnull
+	int	5
+	line	189
+	colm	52
+	synt	any
+	random
+	real	6
+	line	189
+	colm	55
+	synt	any
+	mult
+	line	189
+	colm	50
+	synt	any
+	plus
+	real	7
+	line	189
+	colm	60
+	synt	any
+	minus
+	var	3
+	pnull
+	var	1
+	int	4
+	line	190
+	colm	30
+	synt	any
+	subsc
+	line	190
+	colm	25
+	synt	any
+	invoke	1
+	pnull
+	var	3
+	pnull
+	var	1
+	int	8
+	line	191
+	colm	30
+	synt	any
+	subsc
+	line	191
+	colm	25
+	synt	any
+	invoke	1
+	pnull
+	var	3
+	pnull
+	var	1
+	int	9
+	line	191
+	colm	44
+	synt	any
+	subsc
+	line	191
+	colm	39
+	synt	any
+	invoke	1
+	int	4
+	line	191
+	colm	48
+	synt	any
+	div
+	line	191
+	colm	34
+	synt	any
+	plus
+	line	189
+	colm	20
+	synt	any
+	invoke	3
+	pnull
+	int	5
+	line	191
+	colm	53
+	synt	any
+	random
+	line	191
+	colm	52
+	synt	any
+	invoke	1
+	real	10
+	line	191
+	colm	57
+	synt	any
+	mult
+	real	11
+	line	191
+	colm	63
+	synt	any
+	minus
+	line	183
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	193
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_idlefunc
+	local	0,001000,self
+	local	1,001000,force_move
+	local	2,000000,delay
+	con	0,002000,3,250
+	declend
+	line	196
+	colm	11
+	synt	any
+	mark	L1
+	line	197
+	colm	4
+	synt	if
+	mark0
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	197
+	colm	12
+	synt	any
+	field	isMoving
+	line	197
+	colm	7
+	synt	any
+	nonnull
+	line	197
+	colm	21
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	var	1
+lab L3
+	unmark
+	pnull
+	var	0
+	line	198
+	colm	11
+	synt	any
+	field	handle_moves
+	line	198
+	colm	24
+	synt	any
+	invoke	0
+	line	197
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	var	2
+	int	0
+	line	200
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	line	201
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_handle_moves
+	local	0,001000,self
+	con	0,002000,1,3
+	con	1,004000,0.0
+	con	2,002000,1,2
+	con	3,002000,1,0
+	con	4,004000,4.0
+	declend
+	line	203
+	colm	11
+	synt	any
+	mark	L1
+	line	204
+	colm	4
+	synt	if
+	mark0
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	11
+	synt	any
+	field	moves_dist
+	pnull
+	var	0
+	line	204
+	colm	27
+	synt	any
+	field	moves_range
+	line	204
+	colm	22
+	synt	any
+	numgt
+	line	204
+	colm	39
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	44
+	synt	any
+	field	moves_dist
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	62
+	synt	any
+	field	moves_range
+	line	204
+	colm	57
+	synt	any
+	neg
+	line	204
+	colm	55
+	synt	any
+	numlt
+lab L3
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	11
+	synt	any
+	field	moves_step
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	29
+	synt	any
+	field	moves_step
+	line	205
+	colm	24
+	synt	any
+	neg
+	line	205
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	206
+	colm	11
+	synt	any
+	field	x
+	dup
+	pnull
+	pnull
+	var	0
+	line	206
+	colm	20
+	synt	any
+	field	moves_step
+	int	0
+	line	206
+	colm	31
+	synt	any
+	mult
+	line	206
+	colm	13
+	synt	any
+	plus
+	asgn
+	unmark
+lab L5
+	line	207
+	colm	7
+	synt	ifelse
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	207
+	colm	14
+	synt	any
+	field	moves_step
+	real	1
+	line	207
+	colm	25
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	208
+	colm	13
+	synt	any
+	field	angle
+	pnull
+	pnull
+	line	208
+	colm	22
+	synt	any
+	keywd	pi
+	line	208
+	colm	21
+	synt	any
+	neg
+	int	2
+	line	208
+	colm	25
+	synt	any
+	div
+	line	208
+	colm	19
+	synt	any
+	asgn
+	goto	L7
+lab L6
+	pnull
+	pnull
+	var	0
+	line	210
+	colm	13
+	synt	any
+	field	angle
+	pnull
+	line	210
+	colm	21
+	synt	any
+	keywd	pi
+	int	2
+	line	210
+	colm	24
+	synt	any
+	div
+	line	210
+	colm	19
+	synt	any
+	asgn
+lab L7
+	line	207
+	colm	7
+	synt	endifelse
+	line	204
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	mark	L8
+	line	214
+	colm	4
+	synt	ifelse
+	mark	L9
+	mark	L11
+	pnull
+	var	0
+	line	214
+	colm	15
+	synt	any
+	field	collide_with_avatar
+	pnull
+	pnull
+	var	0
+	line	214
+	colm	40
+	synt	any
+	field	x
+	pnull
+	var	0
+	line	214
+	colm	47
+	synt	any
+	field	moves_step
+	line	214
+	colm	42
+	synt	any
+	plus
+	pnull
+	var	0
+	line	214
+	colm	63
+	synt	any
+	field	y
+	pnull
+	var	0
+	line	214
+	colm	70
+	synt	any
+	field	z
+	line	214
+	colm	35
+	synt	any
+	invoke	3
+	unmark
+	efail
+lab L11
+	pnull
+	unmark
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	215
+	colm	11
+	synt	any
+	field	moves_dist
+	dup
+	pnull
+	var	0
+	line	215
+	colm	29
+	synt	any
+	field	moves_step
+	line	215
+	colm	22
+	synt	any
+	plus
+	asgn
+	unmark
+lab L12
+	pnull
+	var	0
+	line	216
+	colm	11
+	synt	any
+	field	move_relative
+	pnull
+	var	0
+	line	216
+	colm	30
+	synt	any
+	field	moves_step
+	int	3
+	int	3
+	line	216
+	colm	25
+	synt	any
+	invoke	3
+	goto	L10
+lab L9
+	pnull
+	var	0
+	line	219
+	colm	11
+	synt	any
+	field	move_relative
+	int	3
+	int	3
+	pnull
+	pnull
+	var	0
+	line	219
+	colm	34
+	synt	any
+	field	moves_step
+	real	4
+	line	219
+	colm	45
+	synt	any
+	div
+	line	219
+	colm	25
+	synt	any
+	invoke	3
+lab L10
+	line	214
+	colm	4
+	synt	endifelse
+	unmark
+lab L8
+	pnull
+	line	220
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_run
+	local	0,001000,self
+	local	1,000000,microseconds
+	local	2,000000,delay
+	local	3,000000,Attrib
+	con	0,002000,4,5000
+	con	1,002000,4,1004
+	con	2,002000,4,1024
+	con	3,002000,4,1005
+	con	4,002000,1,4
+	declend
+	line	227
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	line	228
+	colm	4
+	synt	any
+	keywd	random
+	var	1
+	line	228
+	colm	27
+	synt	any
+	invoke	0
+	line	228
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	2
+	pnull
+	int	0
+	line	229
+	colm	10
+	synt	any
+	random
+	line	229
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	var	3
+	int	1
+	pnull
+	int	2
+	int	2
+	line	232
+	colm	21
+	synt	any
+	mult
+	line	232
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	var	3
+	int	3
+	int	4
+	line	233
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	236
+	colm	8
+	synt	any
+	field	login
+	line	236
+	colm	14
+	synt	any
+	invoke	0
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	0
+	line	237
+	colm	8
+	synt	any
+	field	mainloop
+	line	237
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	pnull
+	line	238
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC_initially
+	local	0,001000,self
+	local	1,001000,argv
+	local	2,001000,concurrent
+	local	3,001000,com
+	local	4,000020,i
+	local	5,000020,arg
+	local	6,000020,port
+	local	7,000020,val
+	local	8,000000,trim
+	local	9,000000,find
+	local	10,000000,map
+	local	11,000000,microseconds
+	local	12,000000,spawn
+	con	0,002000,1,1
+	con	1,020000,1,040
+	con	2,002000,1,0
+	con	3,010000,7,055,163,145,162,166,145,162
+	con	4,010000,2,055,160
+	con	5,010000,5,055,160,157,162,164
+	con	6,010000,5,055,165,163,145,162
+	con	7,010000,5,055,150,157,155,145
+	con	8,010000,9,055,150,157,155,145,160,141,147,145
+	con	9,010000,9,055,160,141,163,163,167,157,162,144
+	con	10,010000,3,055,160,167
+	con	11,010000,5,055,155,157,166,145
+	con	12,010000,23,172,141,160,160,056,143,163,056,165,151,144,141,150,157,056,145,144,165,072,064,065,060,060
+	con	13,010000,1,072
+	con	14,010000,4,064,065,060,060
+	con	15,010000,6,166,145,162,164,145,170
+	con	16,010000,7,167,145,154,143,157,155,145
+	con	17,010000,44,150,164,164,160,072,057,057,167,167,167,062,056,143,163,056,165,151,144,141,150,157,056,145,144,165,057,176,152,141,146,141,162,057,156,160,143,057,166,145,162,164,145,170,057
+	con	18,010000,3,164,165,170
+	con	19,010000,43,150,164,164,160,072,057,057,167,167,167,062,056,143,163,056,165,151,144,141,150,157,056,145,144,165,057,176,152,145,146,146,145,162,171,057,156,160,143,057,164,165,170,057
+	con	20,010000,3,163,151,144
+	con	21,010000,40,150,164,164,160,072,057,057,167,167,167,062,056,143,163,056,165,151,144,141,150,157,056,145,144,165,057,176,150,141,156,151,057,156,160,143,057,123,151,144,057
+	con	22,010000,6,164,141,165,163,150,141
+	con	23,010000,46,150,164,164,160,072,057,057,167,167,167,062,056,143,163,056,165,151,144,141,150,157,056,145,144,165,057,176,152,145,146,146,145,162,171,057,156,160,143,057,164,141,165,163,150,141,057
+	con	24,010000,3,144,157,147
+	con	25,010000,47,150,164,164,160,072,057,057,167,167,167,062,056,143,163,056,165,151,144,141,150,157,056,145,144,165,057,176,172,163,150,141,162,151,146,057,156,160,143,057,144,157,147,056,150,164,155,154
+	con	26,010000,3,156,160,143
+	con	27,010000,6,126,145,162,164,145,170
+	con	28,010000,5,115,157,144,145,154
+	con	29,010000,18,164,157,056,152,141,146,141,162,100,147,155,141,151,154,056,143,157,155
+	con	30,010000,8,107,162,141,160,150,151,143,163
+	con	31,004000,3.0
+	con	32,004000,1.0
+	con	33,004000,0.8
+	con	34,004000,0.4
+	con	35,004000,0.1
+	con	36,002000,3,120
+	con	37,002000,4,1000
+	con	38,002000,7,1000000
+	con	39,010000,18,143,157,156,143,165,162,162,145,156,164,040,164,150,162,145,141,144,163
+	declend
+	line	240
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	int	0
+	line	242
+	colm	5
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	243
+	colm	8
+	synt	any
+	field	isMoving
+	int	0
+	line	243
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	244
+	colm	4
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	int	0
+	pnull
+	var	1
+	line	244
+	colm	20
+	synt	any
+	size
+	push1
+	line	244
+	colm	17
+	synt	any
+	toby
+	line	244
+	colm	12
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L6
+	pnull
+	var	5
+	pnull
+	var	1
+	var	4
+	line	245
+	colm	18
+	synt	any
+	subsc
+	line	245
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	7
+	var	8
+	pnull
+	var	1
+	pnull
+	var	4
+	int	0
+	line	246
+	colm	25
+	synt	any
+	plus
+	line	246
+	colm	23
+	synt	any
+	subsc
+	cset	1
+	int	2
+	line	246
+	colm	18
+	synt	any
+	invoke	3
+	line	246
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L7
+	line	247
+	colm	7
+	synt	case
+	mark0
+	var	5
+	eret
+	mark	L9
+	ccase
+	str	3
+	line	248
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	248
+	colm	26
+	synt	any
+	field	srvport
+	var	7
+	line	248
+	colm	34
+	synt	any
+	asgn
+	goto	L8
+lab L9
+	mark	L10
+	ccase
+	mark	L11
+	str	4
+	line	249
+	colm	15
+	synt	any
+	esusp
+	goto	L12
+lab L11
+	str	5
+lab L12
+	line	249
+	colm	25
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	6
+	var	7
+	line	249
+	colm	32
+	synt	any
+	asgn
+	goto	L8
+lab L10
+	mark	L13
+	ccase
+	str	6
+	line	250
+	colm	18
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	250
+	colm	24
+	synt	any
+	field	userid
+	var	7
+	line	250
+	colm	31
+	synt	any
+	asgn
+	goto	L8
+lab L13
+	mark	L14
+	ccase
+	mark	L15
+	str	7
+	line	251
+	colm	18
+	synt	any
+	esusp
+	goto	L16
+lab L15
+	str	8
+lab L16
+	line	251
+	colm	32
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	251
+	colm	38
+	synt	any
+	field	homepage
+	var	7
+	line	251
+	colm	47
+	synt	any
+	asgn
+	goto	L8
+lab L14
+	mark	L17
+	ccase
+	mark	L18
+	str	9
+	line	252
+	colm	22
+	synt	any
+	esusp
+	goto	L19
+lab L18
+	str	10
+lab L19
+	line	252
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	252
+	colm	36
+	synt	any
+	field	password
+	var	7
+	line	252
+	colm	45
+	synt	any
+	asgn
+	goto	L8
+lab L17
+	mark	L20
+	ccase
+	str	11
+	line	253
+	colm	18
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	253
+	colm	24
+	synt	any
+	field	isMoving
+	line	253
+	colm	35
+	synt	any
+	keywd	null
+	line	253
+	colm	33
+	synt	any
+	asgn
+	goto	L8
+lab L20
+	efail
+lab L8
+	line	247
+	colm	7
+	synt	endcase
+	unmark
+lab L4
+	efail
+lab L5
+	line	244
+	colm	4
+	synt	endevery
+	unmark
+lab L3
+	mark	L21
+	pnull
+	pnull
+	pnull
+	var	0
+	line	258
+	colm	9
+	synt	any
+	field	srvport
+	line	258
+	colm	4
+	synt	any
+	null
+	str	12
+	line	258
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	line	259
+	colm	4
+	synt	if
+	mark0
+	mark	L23
+	var	9
+	str	13
+	pnull
+	var	0
+	line	259
+	colm	24
+	synt	any
+	field	srvport
+	line	259
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L23
+	pnull
+	unmark
+	mark	L24
+	pnull
+	pnull
+	var	6
+	line	260
+	colm	7
+	synt	any
+	null
+	str	14
+	line	260
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L24
+	pnull
+	pnull
+	var	0
+	line	261
+	colm	11
+	synt	any
+	field	srvport
+	dup
+	pnull
+	str	13
+	var	6
+	line	261
+	colm	26
+	synt	any
+	cat
+	line	261
+	colm	19
+	synt	any
+	cat
+	asgn
+	line	259
+	colm	4
+	synt	endif
+	unmark
+lab L22
+	mark	L25
+	pnull
+	pnull
+	pnull
+	var	0
+	line	264
+	colm	9
+	synt	any
+	field	userid
+	line	264
+	colm	4
+	synt	any
+	null
+	str	15
+	line	264
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	pnull
+	var	0
+	line	265
+	colm	9
+	synt	any
+	field	password
+	line	265
+	colm	4
+	synt	any
+	null
+	str	16
+	line	265
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	line	267
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	267
+	colm	12
+	synt	any
+	field	homepage
+	line	267
+	colm	7
+	synt	any
+	null
+	unmark
+	line	268
+	colm	7
+	synt	case
+	mark0
+	var	10
+	pnull
+	var	0
+	line	268
+	colm	20
+	synt	any
+	field	userid
+	line	268
+	colm	15
+	synt	any
+	invoke	1
+	eret
+	mark	L29
+	ccase
+	str	15
+	line	269
+	colm	19
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	269
+	colm	25
+	synt	any
+	field	homepage
+	str	17
+	line	269
+	colm	34
+	synt	any
+	asgn
+	goto	L28
+lab L29
+	mark	L30
+	ccase
+	str	18
+	line	270
+	colm	19
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	270
+	colm	25
+	synt	any
+	field	homepage
+	str	19
+	line	270
+	colm	34
+	synt	any
+	asgn
+	goto	L28
+lab L30
+	mark	L31
+	ccase
+	str	20
+	line	271
+	colm	19
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	271
+	colm	25
+	synt	any
+	field	homepage
+	str	21
+	line	271
+	colm	34
+	synt	any
+	asgn
+	goto	L28
+lab L31
+	mark	L32
+	ccase
+	str	22
+	line	272
+	colm	19
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	272
+	colm	25
+	synt	any
+	field	homepage
+	str	23
+	line	272
+	colm	34
+	synt	any
+	asgn
+	goto	L28
+lab L32
+	mark	L33
+	ccase
+	str	24
+	line	273
+	colm	19
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	pnull
+	var	0
+	line	273
+	colm	25
+	synt	any
+	field	homepage
+	str	25
+	line	273
+	colm	34
+	synt	any
+	asgn
+	goto	L28
+lab L33
+	pop
+	pnull
+	var	0
+	line	274
+	colm	24
+	synt	any
+	field	userid
+	line	274
+	colm	31
+	synt	any
+	bscan
+	line	274
+	colm	32
+	synt	if
+	mark0
+	pnull
+	str	26
+	line	274
+	colm	34
+	synt	any
+	tabmat
+	unmark
+	pnull
+	pnull
+	var	0
+	line	275
+	colm	17
+	synt	any
+	field	homepage
+	str	17
+	line	275
+	colm	26
+	synt	any
+	asgn
+	line	274
+	colm	32
+	synt	endif
+	line	274
+	colm	31
+	synt	any
+	escan
+lab L28
+	line	268
+	colm	7
+	synt	endcase
+	line	267
+	colm	4
+	synt	endif
+	unmark
+lab L27
+	mark	L34
+	pnull
+	pnull
+	var	0
+	line	280
+	colm	8
+	synt	any
+	field	firstname
+	str	27
+	line	280
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	281
+	colm	8
+	synt	any
+	field	lastname
+	str	28
+	line	281
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	283
+	colm	8
+	synt	any
+	field	emailid
+	str	29
+	line	283
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	284
+	colm	8
+	synt	any
+	field	affiliation
+	str	30
+	line	284
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	line	285
+	colm	4
+	synt	any
+	keywd	random
+	var	11
+	line	285
+	colm	27
+	synt	any
+	invoke	0
+	line	285
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	287
+	colm	8
+	synt	any
+	field	ExternalNPC
+	line	287
+	colm	20
+	synt	any
+	field	initially
+	line	287
+	colm	30
+	synt	any
+	invoke	0
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	290
+	colm	8
+	synt	any
+	field	moves_range
+	pnull
+	pnull
+	pnull
+	int	2
+	line	290
+	colm	22
+	synt	any
+	random
+	real	31
+	line	290
+	colm	24
+	synt	any
+	mult
+	real	32
+	line	290
+	colm	28
+	synt	any
+	plus
+	line	290
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	291
+	colm	8
+	synt	any
+	field	moves_dist
+	int	2
+	line	291
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	293
+	colm	8
+	synt	any
+	field	moves_step
+	pnull
+	pnull
+	pnull
+	int	2
+	line	293
+	colm	21
+	synt	any
+	random
+	real	33
+	line	293
+	colm	23
+	synt	any
+	mult
+	real	34
+	line	293
+	colm	27
+	synt	any
+	minus
+	line	293
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+lab L44
+	line	294
+	colm	4
+	synt	until
+	mark	L45
+	mark	L48
+	pnull
+	pnull
+	pnull
+	real	35
+	line	294
+	colm	14
+	synt	any
+	neg
+	pnull
+	var	0
+	line	294
+	colm	23
+	synt	any
+	field	moves_step
+	line	294
+	colm	18
+	synt	any
+	numlt
+	real	35
+	line	294
+	colm	34
+	synt	any
+	numlt
+	unmark
+	efail
+lab L48
+	pnull
+	unmark
+	efail
+lab L45
+	mark	L44
+	pnull
+	pnull
+	var	0
+	line	295
+	colm	11
+	synt	any
+	field	moves_step
+	pnull
+	pnull
+	pnull
+	int	2
+	line	295
+	colm	24
+	synt	any
+	random
+	real	33
+	line	295
+	colm	26
+	synt	any
+	mult
+	real	34
+	line	295
+	colm	30
+	synt	any
+	minus
+	line	295
+	colm	22
+	synt	any
+	asgn
+lab L46
+	unmark
+	goto	L44
+lab L47
+	line	294
+	colm	4
+	synt	enduntil
+	unmark
+lab L43
+	mark	L49
+	pnull
+	pnull
+	var	0
+	line	298
+	colm	8
+	synt	any
+	field	localcon
+	var	3
+	line	298
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L49
+	mark	L50
+	pnull
+	pnull
+	var	0
+	line	299
+	colm	8
+	synt	any
+	field	concurrent
+	var	2
+	line	299
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L50
+	mark	L51
+	pnull
+	pnull
+	var	0
+	line	301
+	colm	7
+	synt	any
+	field	latency
+	int	0
+	line	301
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L51
+	mark	L52
+	pnull
+	pnull
+	var	0
+	line	302
+	colm	7
+	synt	any
+	field	tshut
+	pnull
+	var	11
+	line	302
+	colm	27
+	synt	any
+	invoke	0
+	pnull
+	pnull
+	int	36
+	int	37
+	line	302
+	colm	33
+	synt	any
+	mult
+	int	37
+	line	302
+	colm	40
+	synt	any
+	mult
+	line	302
+	colm	29
+	synt	any
+	plus
+	line	302
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L52
+	mark	L53
+	pnull
+	pnull
+	var	0
+	line	303
+	colm	7
+	synt	any
+	field	tms
+	int	37
+	line	303
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L53
+	mark	L54
+	pnull
+	pnull
+	var	0
+	line	304
+	colm	7
+	synt	any
+	field	tsec
+	int	38
+	line	304
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L54
+	mark	L55
+	line	307
+	colm	4
+	synt	ifelse
+	mark	L56
+	pnull
+	var	2
+	line	307
+	colm	7
+	synt	any
+	nonnull
+	pop
+	pnull
+	line	307
+	colm	21
+	synt	any
+	keywd	features
+	str	39
+	line	307
+	colm	30
+	synt	any
+	lexeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	308
+	colm	11
+	synt	any
+	field	npcthread
+	var	12
+	goto	L60
+lab L58
+	pop
+	mark	L59
+	pnull
+	var	0
+	line	308
+	colm	40
+	synt	any
+	field	run
+	var	2
+	line	308
+	colm	44
+	synt	any
+	invoke	1
+	line	308
+	colm	29
+	synt	any
+	coret
+	efail
+lab L59
+	cofail
+	goto	L59
+lab L60
+	create	L58
+	line	308
+	colm	28
+	synt	any
+	invoke	1
+	line	308
+	colm	21
+	synt	any
+	asgn
+	goto	L57
+lab L56
+	pnull
+	var	0
+	line	312
+	colm	11
+	synt	any
+	field	run
+	line	312
+	colm	15
+	synt	any
+	invoke	0
+lab L57
+	line	307
+	colm	4
+	synt	endifelse
+	unmark
+lab L55
+	mark	L61
+	mark	L62
+	pnull
+	line	313
+	colm	7
+	synt	any
+	pret
+lab L62
+	synt	any
+	pfail
+	unmark
+lab L61
+	pnull
+	line	314
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPC
+	local	0,001000,argv
+	local	1,001000,concurrent
+	local	2,001000,com
+	local	3,000020,self
+	local	4,000020,clone
+	local	5,000000,CustomNPC__oprec
+	local	6,000000,CustomNPCinitialize
+	local	7,000000,ExternalNPC__oprec
+	local	8,000000,ExternalNPCinitialize
+	local	9,000000,CustomNPC__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	5
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	6
+	line	8
+	colm	48
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	7
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	8
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	5
+	line	10
+	colm	19
+	synt	any
+	field	ExternalNPC
+	var	7
+	line	10
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	3
+	var	9
+	line	12
+	colm	28
+	synt	any
+	keywd	null
+	var	5
+	line	12
+	colm	27
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	3
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	3
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	3
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	3
+	var	0
+	var	1
+	var	2
+	line	14
+	colm	21
+	synt	any
+	invoke	4
+	line	14
+	colm	48
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	50
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	3
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc CustomNPCinitialize
+	local	0,000000,CustomNPC__oprec
+	local	1,000000,CustomNPC__methods
+	local	2,000000,CustomNPC_clean_and_exit
+	local	3,000000,CustomNPC_do_latency
+	local	4,000000,CustomNPC_do_command
+	local	5,000000,CustomNPC_handle_query
+	local	6,000000,CustomNPC_idlefunc
+	local	7,000000,CustomNPC_handle_moves
+	local	8,000000,CustomNPC_run
+	local	9,000000,CustomNPC_initially
+	local	10,000000,ExternalNPC_login
+	local	11,000000,ExternalNPC_myopen
+	local	12,000000,ExternalNPC_connect_to_server
+	local	13,000000,ExternalNPC_prepare_to_go_to_room
+	local	14,000000,ExternalNPC_get_home
+	local	15,000000,ExternalNPC_teleport
+	local	16,000000,ExternalNPC_reconnect
+	local	17,000000,ExternalNPC_do_net
+	local	18,000000,ExternalNPC_get_net_line
+	local	19,000000,ExternalNPC_download_webpage
+	local	20,000000,ExternalNPC_handle_http
+	local	21,000000,ExternalNPC_parse_id_field
+	local	22,000000,ExternalNPC_parse_id
+	local	23,000000,ExternalNPC_send_command
+	local	24,000000,ExternalNPC_mainloop
+	local	25,000000,ExternalNPC_build_action_command
+	local	26,000000,ExternalNPC_cmd_to_list
+	local	27,000000,ExternalNPC_rotatey
+	local	28,000000,ExternalNPC_collide_with_avatar
+	local	29,000000,ExternalNPC_move_relative
+	local	30,000000,ExternalNPC_say
+	local	31,000000,ExternalNPC_tell
+	local	32,000000,ExternalNPC_add_avatar
+	local	33,000000,ExternalNPC_tell_npc_command
+	local	34,000000,ExternalNPC_do_cmd
+	local	35,000000,ExternalNPC_npc_command
+	local	36,000000,ExternalNPC_conversation
+	local	37,000000,ExternalNPC_flush_commands
+	local	38,000000,ExternalNPC_writen
+	local	39,000000,ExternalNPC_distance_to
+	local	40,000000,ExternalNPC_close_to_avatar
+	local	41,000000,ExternalNPC_already_nearby
+	local	42,000000,ExternalNPC_check_nearby
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	line	19
+	colm	49
+	synt	any
+	invoke	41
+	line	19
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end

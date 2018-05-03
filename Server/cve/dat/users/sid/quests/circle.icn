@@ -1,0 +1,19 @@
+class Circle : Shape(x, y, radius)
+   # accessors for the radius
+   method getRadius()
+      return radius
+   end
+   method setRadius(newradius)
+      radius := newradius
+   end
+
+   # draw the circle
+   method draw()
+      writes("Drawing a Circle at:(");
+      writes(getX());
+      writes(",");
+      writes(getY());
+      writes("), radius ");
+      write(getRadius())
+   end
+end

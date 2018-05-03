@@ -1,0 +1,26 @@
+<title>directories quest</title>
+
+<dl>
+<dt> Name
+<dd> directories
+<dt> Summary
+<dd> Learn the basics of directories on computers.
+<dt> Requires
+<dd> <A href="files.html">files</A>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about directories
+<li> Pass a quiz on directories.
+</ol>
+<dt> Rewards
+<dd> UNIX: 1; Windows: 1
+<dt> Reading
+<dd> Directories are special files that hold collections of 0 or more files.
+<dt> Quiz (1/1)
+<dd>
+<dl>
+<dt> Why can directories hold other directories.
+<dd> Because directories hold files, and other directories are files.
+</dl>
+</dl>

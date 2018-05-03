@@ -1,0 +1,45 @@
+Room {
+	name  cooridoor_mid
+	x 33.6
+	y 0
+	z 6.1
+	w 1.9
+	h 3.05
+	l 17.2
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/Evacuationplan.gif
+			coords [
+				33.7, 1.5, 22.4,
+				33.7, 1.6, 22.4,
+				33.7, 1.6, 22.2,
+				33.7, 1.5, 22.2
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/firealaram.gif
+			coords [
+				35.4, 1.3, 9.5,
+				35.4, 1.5, 9.5,
+				35.4, 1.5, 10.0,
+				35.4, 1.3, 10.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/Light1.gif
+			coords [
+				34.2, 2.75, 11.5,
+				34.8, 2.75, 11.5,
+				34.8, 2.75, 12.5,
+				34.2, 2.75, 12.5
+			]
+		}
+	]
+	tools [
+	]
+}

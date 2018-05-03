@@ -11,6 +11,10 @@ public class PlayerComponent extends Component {
 //    public float oxygen;
     public float health;
     public static int score;
+    public String username;
+    public float x;
+    public float y;
+    public float z;
 
     public PlayerComponent() {
 //        energy = 100;

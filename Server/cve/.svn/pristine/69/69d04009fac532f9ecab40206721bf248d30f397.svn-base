@@ -1,0 +1,45 @@
+Room {
+	name  SH_144
+	x 12.4
+	y 0
+	z 14.8
+	w 4.8
+	h 3.05
+	l 4.7
+	texture dat/nmsu/texsmall/walltest.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Chair {
+			coords [15.3, 0, 15.3]
+			position 0
+			color light gray
+			type office
+			movable true
+		}
+		Chair {
+			coords [15.3, 0, 17.4]
+			position 180
+			color brown
+			type lab
+			movable true
+		}
+		Chair {
+			coords [14.7, 0, 17.4]
+			position 180
+			color brown
+			type lab
+			movable true
+		}
+		Table {
+			coords [15.3, 0, 16.5]
+			position 180
+			color brown
+			type office
+		}
+	]
+	decorations [
+	]
+	tools [
+	]
+}

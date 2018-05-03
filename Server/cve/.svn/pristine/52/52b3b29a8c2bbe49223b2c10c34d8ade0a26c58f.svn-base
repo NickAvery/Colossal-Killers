@@ -1,0 +1,8 @@
+This directory contains the model classes for Unicron's virtual world.
+It is shared by the client and server.
+
+Status: under construction, migrating from duplicate copies in
+client/ and server/
+
+Policies: one class per file, and #ifdef's for client-only or
+server-only code.

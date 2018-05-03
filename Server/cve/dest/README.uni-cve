@@ -1,0 +1,6 @@
+This is the CVE Collaborative Virtual Environment Version 0.5 Source
+Distribution.  CVE is written in the Unicon programming language and
+in order to make CVE relatively easy to build, this CVE distribution
+includes the Unicon 11.7 source distribution. To compile, run the
+make.sh script, usually via "./make.sh" or "sh make.sh" from the shell
+command line.

@@ -1,0 +1,135 @@
+Room {
+	name  ELEVATOR2
+	x 17.9
+	y 12.3
+	z 15.33
+	w 2.58
+	h 3.5
+	l 2.6
+	texture dat/uidaho/texsmall/elevatorwall.gif
+	floor Wall { texture dat/uidaho/texsmall/elevatorfloor.gif }
+	ceiling Wall { texture dat/uidaho/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/uidaho/texsmall/elevatorbuttons.gif
+			coords [
+				20.46, 13.2, 17.79,
+				20.46, 13.8, 17.79,
+				20.46, 13.8, 17.45,
+				20.46, 13.2, 17.45
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatordisplay.gif
+			coords [
+				20.46, 14.4, 17.45,
+				20.46, 14.7, 17.45,
+				20.46, 14.7, 17.79,
+				20.46, 14.4, 17.79
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorvent.gif
+			coords [
+				18.5, 12.4, 15.34,
+				18.5, 12.5, 15.34,
+				18.65, 12.5, 15.34,
+				18.65, 12.4, 15.34
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorvent.gif
+			coords [
+				19.45, 12.4, 15.34,
+				19.45, 12.5, 15.34,
+				19.6, 12.5, 15.34,
+				19.6, 12.4, 15.34
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorrail.gif
+			coords [
+				18.0, 13.4, 15.34,
+				18.0, 13.5, 15.34,
+				19.96, 13.5, 15.34,
+				19.96, 13.4, 15.34
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorvent.gif
+			coords [
+				18.5, 12.4, 17.92,
+				18.5, 12.5, 17.92,
+				18.65, 12.5, 17.92,
+				18.65, 12.4, 17.92
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorvent.gif
+			coords [
+				19.45, 12.4, 17.92,
+				19.45, 12.5, 17.92,
+				19.6, 12.5, 17.92,
+				19.6, 12.4, 17.92
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatorrail.gif
+			coords [
+				18.0, 13.4, 17.83,
+				18.0, 13.5, 17.83,
+				19.96, 13.5, 17.83,
+				19.96, 13.4, 17.83
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatormetal.gif
+			coords [
+				20.47, 12.3, 15.33,
+				20.47, 15.8, 15.33,
+				20.47, 15.8, 15.94,
+				20.47, 12.3, 15.94
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatormetal.gif
+			coords [
+				20.47, 12.3, 17.34,
+				20.47, 15.8, 17.34,
+				20.47, 15.8, 17.84,
+				20.47, 12.3, 17.84
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatormetal.gif
+			coords [
+				17.97, 12.3, 15.29,
+				17.97, 15.8, 15.29,
+				17.97, 15.8, 15.94,
+				17.97, 12.3, 15.94
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatormetal.gif
+			coords [
+				17.97, 12.3, 17.34,
+				17.97, 15.8, 17.34,
+				17.97, 15.8, 17.84,
+				17.97, 12.3, 17.84
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/elevatordoor.gif
+			coords [
+				17.97, 12.3, 15.94,
+				17.97, 15.8, 15.94,
+				17.97, 15.8, 17.34,
+				17.97, 12.3, 17.34
+			]
+		}
+	]
+	tools [
+	]
+}

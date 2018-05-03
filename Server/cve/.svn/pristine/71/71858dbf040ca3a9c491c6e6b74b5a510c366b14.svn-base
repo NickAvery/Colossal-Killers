@@ -1,0 +1,11 @@
+Opening {
+	id 1
+	x 38.9
+	y 0
+	z 23.3
+	w 2.5
+	height 3.05
+	collide_in 0.8
+	plane 1
+	rooms [cooridoor_125, cooridoor_main]
+}

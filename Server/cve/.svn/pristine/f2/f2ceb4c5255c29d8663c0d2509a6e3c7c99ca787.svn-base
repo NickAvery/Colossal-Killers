@@ -1,0 +1,70 @@
+class TiledWall(maxx,minx,maxy,miny,maxz,minz,walls,coords,plane,
+		xdelta,ydelta,zdelta)
+
+   method render()
+      local i
+      every i := 1 to *walls do
+	 walls[i].render(, 1)
+   end
+   method printwall()
+      local i
+      every i := 1 to *walls do
+	 walls[i].printwall()
+   end
+   method calc_boundbox()
+      local L,i
+      maxx := minx := coords[1]
+      maxy := miny := coords[2]
+      maxz := minz := coords[3]
+      L := coords
+      every i := 4 to *L by 3 do {
+	 minx >:= L[i]
+	 maxx <:= L[i]
+	 miny >:= L[i+1]
+	 maxy <:= L[i+1]
+	 minz >:= L[i+2]
+	 maxz <:= L[i+2]
+         }
+   end
+
+   method addwall(w)
+      put(walls,w)
+   end
+   method setcoords(c[])
+      coords := c
+   end
+   method set_plane()  ## Wall
+      local c
+      plane := &null
+
+      if /coords | (*coords=0) then fail
+      c := coords
+      if *c < 12 then {
+	 write(&errout, "short wall needs 12 coordinates, had "|| *c)
+	 runerr(500, c)
+         }
+
+      xdelta := max( abs( c[4]-c[1] ), abs(c[7]-c[4]),
+		    abs(c[10]-c[7]), abs(c[10] - c[1] ) )
+      ydelta := max( abs( c[5]-c[2] ), abs(c[8]-c[5]),
+		    abs(c[11]-c[8]), abs(c[11] - c[2] ) )
+      zdelta := max( abs( c[6]-c[3] ), abs(c[9]-c[6]),
+		    abs(c[12]-c[9]), abs(c[12] - c[3] ) )
+
+      if -0.0001 < zdelta < 0.05  then
+	 plane := 3
+      else if -0.0001 < ydelta < 0.05  then
+	 plane := 2
+      else if -0.0001 < xdelta < 0.05  then
+	 plane := 1
+      else {
+	 write( "Wall does not have a plane! " )
+	 printwall()
+         }
+   end # method set_plane()
+
+initially(c[])
+   coords := c
+   walls := []
+   set_plane()
+end

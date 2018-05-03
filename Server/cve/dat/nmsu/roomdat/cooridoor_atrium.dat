@@ -1,0 +1,27 @@
+Room {
+	name  cooridoor_atrium
+	x 67.3
+	y 0
+	z 23.3
+	w 3.6
+	h 3.05
+	l 2.9
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/texsmall/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/textures/picture.gif
+			coords [
+				69.9, 1.4, 23.4,
+				69.9, 2.2, 23.4,
+				70.8, 2.2, 23.4,
+				70.8, 1.4, 23.4
+			]
+		}
+	]
+	tools [
+	]
+}

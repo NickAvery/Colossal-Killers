@@ -1,0 +1,30 @@
+Room{
+name ground_elevator
+x 20.5
+y 4.1
+z 15.23
+w 2.7
+h 3.6
+l 6.4
+
+texture wall.gif
+floor Wall {
+texture elcorridortile.gif
+}
+}
+
+# actually in floor_GR
+Room{
+name ground_stairs
+x 14.59
+y 2.05
+z 15.33
+w 3.31
+h 3.53
+l 6.30
+
+texture wall.gif
+floor Wall {
+texture elcorridortile.gif
+}
+}

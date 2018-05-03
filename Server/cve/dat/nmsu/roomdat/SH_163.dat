@@ -1,0 +1,58 @@
+Room {
+	name  SH_163
+	x 19.5
+	y 0
+	z 0.2
+	w 4.9
+	h 3.05
+	l 3.7
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/texsmall/floor2.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Table {
+			coords [22.35, 0, 2.65]
+			position 270
+			color brown
+			type office
+		}
+		Chair {
+			coords [21.35, 0, 2.65]
+			position 90
+			color very dark purplish red
+			type office
+			movable true
+		}
+		Box {
+			Wall {
+				coords [
+					19.5, 0, 0.22,
+					19.5, 1.0, 0.22,
+					24.4, 1.0, 0.22,
+					24.4, 0, 0.22
+				]
+			}
+			Wall {
+				coords [
+					19.5, 1, 0.22,
+					19.5, 1.0, 0.2,
+					24.4, 1.0, 0.2,
+					24.4, 1, 0.22
+				]
+			}
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/wall2.gif
+			coords [
+				19.5, 1.0, 0.22,
+				19.5, 3.2, 0.22,
+				24.4, 3.2, 0.22,
+				24.4, 1.0, 0.22
+			]
+		}
+	]
+	tools [
+	]
+}

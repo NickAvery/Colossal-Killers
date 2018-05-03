@@ -1,0 +1,94 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Deleting Breakpoints
+<dt> Summary
+<dd> Learn the basics of setting breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about how to delete breakpoints in GDB.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 12; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+It is often necessary to eliminate a breakpoint once it has done its job and 
+you no longer want your program to stop there. This is called deleting the 
+breakpoint. A breakpoint that has been deleted no longer exists; it is 
+forgotten.
+<p>
+With the clear command you can delete breakpoints according to where they are in 
+your program. With the delete command you can delete individual breakpoints by 
+specifying their breakpoint numbers.
+<p>
+It is not necessary to delete a breakpoint to proceed past it. GDB automatically 
+ignores breakpoints on the first instruction to be executed when you continue 
+execution without changing the execution address.
+<p>
+clear
+<p>
+Deletes any breakpoint at the next instruction to be executed in the selected 
+stack frame. When the innermost frame is selected, this is a good way to delete 
+a breakpoint where your program just stopped.
+<p>
+clear location
+<p>
+Deletes any breakpoint set at the specified location.
+<p>
+clear function
+<p>
+clear filename:function
+<p>
+Deletes any breakpoint set at entry to the named function.
+<p>
+clear linenum<br>
+clear filename:linenum<br>
+Deletes any breakpoint set at or within the code of the specified linenum of the 
+specified filename. <br>
+<br>
+delete [breakpoints] [range...]<br>
+Deletes the breakpoint of the breakpoint ranges specified as arguments. If no 
+argument is specified, delete all breakpoints (GDB asks confirmation, unless you 
+have set confirm off). You can abbreviate this command as d .<br>
+<br>
+
+<dt> Quiz (9/9)
+<dd>
+<dl>
+<dt>What command is used to clear a breakpoint?
+<dd> clear or delete
+<dt>What is the abbreviation of the delete command?
+<dd> d
+<dt>Can you use the clear command without arguments? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you use the delete command without arguments? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>What is the action of the clear command when it is used without any arguments? (Multiple Choice)
+<dd> deletes all breakpoints set at the next instruction to be executed (TRUE)
+<dd> deletes all breakpoints set during your debugging session
+<dd> deletes all previous breakpoints
+<dd> deletes all next breakpoints
+<dt>Can you delete a specific breakpoint? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you delete a specific breakpoint set on a function name ? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Can you delete a specific breakpoint set on specific line number? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>What is the action of the delete command when it is used without arguments? (Multiple Choice)
+<dd> deletes all breakpoints (TRUE)
+<dd> deletes the next breakpoint
+<dd> deletes the previous breakpoint
+<dd> none of the above
+</dl>

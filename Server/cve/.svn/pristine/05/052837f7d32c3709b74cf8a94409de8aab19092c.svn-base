@@ -1,0 +1,18 @@
+Room {
+	name  floor_2_corridor_roger
+	x 67.3
+	y 4.35
+	z 23.3
+	w 19.9
+	h 3.05
+	l 2.9
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

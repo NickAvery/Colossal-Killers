@@ -1,0 +1,36 @@
+
+(2018/04/16 15:34:05) Logged In
+(2018/04/16 15:34:05) In 3D
+(2018/04/16 15:34:59) Left FLOOR2COR and entered corridor_2_elevator
+(2018/04/16 15:35:03) Left corridor_2_elevator and entered ELEVATOR2
+(2018/04/16 15:35:07) Left ELEVATOR2 and entered corridor_2_elevator
+(2018/04/16 15:35:08) Left corridor_2_elevator and entered FLOOR2COR
+(2018/04/16 15:35:32) Left FLOOR2COR and entered JEB236
+(2018/04/16 15:35:40) Left JEB236 and entered FLOOR2COR
+(2018/04/16 15:35:52) Left FLOOR2COR and entered JEB237
+(2018/04/16 15:36:03) Left JEB237 and entered FLOOR2COR
+(2018/04/16 15:36:28) Left FLOOR2COR and entered corridor_2_elevator
+(2018/04/16 15:36:29) Left corridor_2_elevator and entered stair3r_2
+(2018/04/16 15:36:38) Left stair3r_2 and entered axelslanding
+(2018/04/16 15:36:41) Left axelslanding and entered stair3_3r
+(2018/04/16 15:36:44) Left stair3_3r and entered corridor_3_elevator
+(2018/04/16 15:36:45) Left corridor_3_elevator and entered FLOOR3COR
+(2018/04/16 15:37:05) Left FLOOR3COR and entered JEB328
+(2018/04/16 15:37:17) Left JEB328 and entered FLOOR3COR
+(2018/04/16 15:37:34) Left FLOOR3COR and entered corridor_3_elevator
+(2018/04/16 15:37:36) Left corridor_3_elevator and entered stair3_3r
+(2018/04/16 15:37:38) Left stair3_3r and entered axelslanding
+(2018/04/16 15:37:46) Left axelslanding and entered stair3r_2
+(2018/04/16 15:37:48) Left stair3r_2 and entered corridor_2_elevator
+(2018/04/16 15:37:49) Left corridor_2_elevator and entered FLOOR2COR
+(2018/04/16 15:38:17) Left FLOOR2COR and entered corridor_2_elevator
+(2018/04/16 15:38:19) Left corridor_2_elevator and entered stair2_2r
+(2018/04/16 15:38:22) Left stair2_2r and entered weststairs
+(2018/04/16 15:38:27) Left weststairs and entered stair2r_1
+(2018/04/16 15:38:28) Left stair2r_1 and entered weststairs
+(2018/04/16 15:38:31) Left weststairs and entered stair2r_1
+(2018/04/16 15:38:34) Left stair2r_1 and entered corridor_1_elevator
+(2018/04/16 15:38:35) Left corridor_1_elevator and entered FLOOR1COR
+(2018/04/16 15:38:52) Left FLOOR1COR and entered MainFoyer
+(2018/04/16 15:39:03) Left MainFoyer and entered FrontPorch
+(2018/04/16 15:39:06) Left FrontPorch and entered SeventhStreet

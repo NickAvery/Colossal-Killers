@@ -1,0 +1,1243 @@
+# mainfoyer.dat - translated from Jesse Brent's version
+# by translated, I mean literally: dx = -0.39, dy = 8.2, dz=-4.77
+
+# Jesse Brent
+# 5 May 2009
+
+Room {
+	
+    name MainFoyer 
+	
+    x 37.61
+    y 8.2
+    z 12.23
+    w 6.0
+    h 3.5
+    l 13.33
+    texture brent_wall.gif
+
+    floor Wall { 
+		texture brent_floor.gif 
+		coords [37.61,    8.2,    12.23, 
+				37.61,    8.2,    25.56, 
+				43.61,    8.2,    25.56, 
+				43.61,    8.2,    12.23]
+	}
+	
+    ceiling Wall {
+    	texture brent_ceiling.gif
+		coords [37.61,    8.2,    12.23, 
+				37.61,    8.2,    25.56, 
+				43.61,    8.2,    25.56, 
+				43.61,    8.2,    12.23]
+    }
+	
+	
+    obstacles [
+		
+		# Northwest corner.
+		Box { 
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 8.2,    12.23,
+					38.94, 8.2,    14.89, 
+					38.94, 11.7,  14.89, 
+					38.94, 11.7,  12.23
+				]
+            }
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					37.61,    8.2,    14.89, 
+					38.94, 8.2,    14.89, 
+					38.94, 11.7,  14.89, 
+					37.61   , 11.7,  14.89
+				]
+            }
+        }
+		
+		
+		# Northeast corner.
+        Box {
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					42.61,    8.2,    12.23, 
+                    42.61,    8.2,    14.89, 
+                    42.61,    11.7,  14.89, 
+                    42.61,    11.7,  12.23
+				]
+            }
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					42.61,    8.2,    14.89, 
+					43.61,    8.2,    14.89, 
+                    43.61,    11.7,  14.89, 
+                    42.61,    11.7,  14.89]
+            }
+        }
+		
+		
+		# Southeast corner.
+        Box { 
+            Wall { 
+				texture brent_wall.gif
+                coords [
+			42.61,    8.2,    18.89, 
+                    42.61,    8.2,    25.56, 
+                    42.61,    11.7,  25.56, 
+                    42.61,    11.7,  18.89
+				]
+            }
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					42.61,    8.2,    18.89, 
+                    43.61,    8.2,    18.89, 
+                    43.61,    11.7,  18.89, 
+                    42.61,    11.7,  18.89
+				]
+            }
+        }
+		
+		
+		# Southwest corner.
+        Box {
+            Wall { 
+				texture brent_wall.gif
+				coords [
+					38.94, 8.2,    18.89, 
+					38.94, 8.2,    25.56, 
+					38.94, 11.7,  25.56, 
+					38.94, 11.7,  18.89
+				]
+            }
+            Wall { 
+				texture brent_wall.gif
+				coords [
+					37.61,    8.2,    18.89, 
+					38.94, 8.2,    18.89, 
+					38.94, 11.7,  18.89, 
+					37.61   , 11.7,  18.89
+				]
+            }
+        }
+		
+		
+		# Inset Southeast corner.
+        Box { 
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					42.27, 8.2,    25.23, 
+                    42.61,    8.2,    25.23, 
+                    42.61,    11.7,  25.23, 
+                    42.27, 11.7,  25.23
+				]
+            }
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					42.27, 8.2,    25.23, 
+                    42.27, 8.2,    25.56,
+                    42.27, 11.7,  25.56, 
+                    42.27, 11.7,  25.23
+				]
+            }
+        }
+		
+		
+		# Inset Southwest corner.
+        Box { 
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 8.2,    25.23, 
+                    39.27, 8.2,    25.23, 
+                    39.27, 11.7,  25.23, 
+                    38.94, 11.7,  25.23
+				]
+            }
+            Wall { 
+				texture brent_wall.gif
+                coords [
+					39.27, 8.2,    25.23, 
+                    39.27, 8.2,    25.56, 
+                    39.27, 11.7,  25.56, 
+                    39.27, 11.7,  25.23
+				]
+            }
+        }
+		
+		
+		# Radiator.
+        Box { 
+            Wall { 
+				texture brent_radiatorFront.gif
+                coords [
+					42.41, 8.309999999999999, 23.23,
+                    42.41, 9.140000000000001, 23.23,
+                    42.41, 9.140000000000001, 24.89,
+                    42.41, 8.309999999999999, 24.89
+				]
+            }
+            Wall { 
+				texture brent_radiatorSide.gif
+                coords [
+					42.51, 8.309999999999999, 23.23,
+                    42.51, 9.140000000000001, 23.23,
+                    42.41, 9.140000000000001, 23.23,
+                    42.41, 8.309999999999999, 23.23
+				]
+            }
+            Wall { 
+				texture brent_radiatorTop.gif
+                coords [
+					42.41, 9.140000000000001, 23.23,
+                    42.51, 9.140000000000001, 23.23,
+                    42.51, 9.140000000000001, 24.89,
+                    42.41, 9.140000000000001, 24.89
+				]
+            }
+        }
+		
+		
+		# Radiator north base.
+		Box { 
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.41,    8.2, 23.13,
+                    42.41, 8.42, 23.13,
+                    42.41, 8.42, 23.23,
+                    42.41,    8.2, 23.23
+				]
+            }
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.51,    8.2, 23.13,
+                    42.51, 8.42, 23.13,
+                    42.41, 8.42, 23.13,
+                    42.41,    8.2, 23.13
+				]
+            }
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.51,    8.2, 23.23,
+                    42.51, 8.42, 23.23,
+                    42.41, 8.42, 23.23,
+                    42.41,    8.2, 23.23
+				]
+            }
+			Wall { 
+				texture brent_radiotorBaseTop.gif
+                coords [
+					42.51, 8.42, 23.13,
+                    42.51, 8.42, 23.23,
+                    42.41, 8.42, 23.23,
+                    42.41, 8.42, 23.13
+				]
+            }
+		}
+		
+		
+		# Radiator south base.
+		Box { 
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.41,    8.2, 24.89,
+                    42.41, 9.18, 24.89,
+                    42.41, 9.18, 25.0,
+                    42.41,    8.2, 25.0
+				]
+            }
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.51,    8.2, 24.89,
+                    42.51, 9.18, 24.89,
+                    42.41, 9.18, 24.89,
+                    42.41,    8.2, 24.89
+				]
+            }
+			Wall { 
+				texture brent_radiatorBase.gif
+                coords [
+					42.51,    8.2, 25.0,
+                    42.51, 9.18, 25.0,
+                    42.41, 9.18, 25.0,
+                    42.41,    8.2, 25.0
+				]
+            }
+			Wall { 
+				texture brent_radiotorBaseTop.gif
+                coords [
+					42.51, 9.18, 24.89,
+                    42.51, 9.18, 25.0,
+                    42.41, 9.18, 25.0,
+                    42.41, 9.18, 24.89
+				]
+            }
+		}
+		
+		
+		# Trophy case on east wall.
+        Box {
+			Wall { 
+				texture brent_showcase.gif
+				coords [
+					42.58, 9.31, 19.89,
+					42.58, 10.31, 19.89,
+					42.58, 10.31, 21.56,
+					42.58, 9.31, 21.56
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+				coords [
+					42.61, 9.31, 19.89,
+					42.61, 10.31, 19.89,
+					42.58, 10.31, 19.89,
+					42.58, 9.31, 19.89
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+				coords [
+					42.61, 9.31, 21.56,
+					42.61, 10.31, 21.56,
+					42.58, 10.31, 21.56,
+					42.58, 9.31, 21.56
+				]
+			}
+		}
+		
+		# Join engineering poster on west wall.
+		Box {
+			Wall { 
+				texture brent_joinPoster.gif
+				coords [
+					38.99, 9.31, 21.56,
+					38.99, 10.31, 21.56,
+					38.99, 10.31, 19.89,
+					38.99, 9.31, 19.89
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+				coords [
+					38.94, 9.31, 19.89,
+					38.94, 10.31, 19.89,
+					38.99, 10.31, 19.89,
+					38.99, 9.31, 19.89
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+				coords [
+					38.94, 9.31, 21.56,
+					38.94, 10.31, 21.56,
+					38.99, 10.31, 21.56,
+					38.99, 9.31, 21.56
+				]
+			}
+        }
+    ]
+	
+	
+    decorations [
+		
+		# Exit sign.
+		Box {
+			Wall {
+				texture brent_exitSign.gif
+                coords [
+					40.56, 11.3, 16.64,
+                    40.56, 11.7, 16.64,
+                    40.56, 11.7, 17.14,
+                    40.56, 11.3, 17.14
+				]
+			}
+			Wall {
+				texture brent_exitSign.gif
+                coords [
+					40.66, 11.3, 17.14,
+                    40.66, 11.7, 17.14,
+                    40.66, 11.7, 16.64,
+                    40.66, 11.3, 16.64
+				]
+			}
+			Wall {
+				texture brent_wall.gif
+                coords [
+					40.66, 11.3, 17.14,
+                    40.56, 11.3, 17.14,
+                    40.56, 11.3, 16.64,
+                    40.66, 11.3, 16.64
+				]
+			}
+			Wall {
+				texture brent_wall.gif
+                coords [
+					40.56, 11.3, 16.64,
+                    40.56, 11.7, 16.64,
+                    40.66, 11.7, 16.64,
+                    40.66, 11.3, 16.64
+				]
+			}
+			Wall {
+				texture brent_wall.gif
+                coords [
+					40.56, 11.3, 17.14,
+                    40.56, 11.7, 17.14,
+                    40.66, 11.7, 17.14,
+                    40.66, 11.3, 17.14
+				]
+			}
+		}
+		
+		
+		# Ceiling wall next to outside.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 24.23,
+                    42.61, 11.2, 24.23,
+                    42.61, 11.7, 24.23,
+                    38.94, 11.7, 24.23
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 25.56,
+                    42.61, 11.2, 25.56,
+                    42.61, 11.2, 24.23,
+                    38.94, 11.2, 24.23
+				]
+			}
+		}
+		
+		
+		# West ceiling wall.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.27, 11.2, 14.89,
+                    38.27, 11.2, 18.89,
+                    38.27, 11.7, 18.89,
+                    38.27, 11.7, 14.89
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					37.61, 11.2, 14.89,
+                    38.27, 11.2, 14.89,
+                    38.27, 11.2, 18.89,
+                    37.61, 11.2, 18.89
+				]
+			}
+		}
+		
+		
+		# South door ceiling wall.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 18.89,
+                    42.61, 11.2, 18.89,
+                    42.61, 11.7, 18.89,
+                    38.94, 11.7, 18.89
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 18.89,
+                    42.61, 11.2, 18.89,
+                    42.61, 11.2, 19.34,
+                    38.94, 11.2, 19.34
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 19.34,
+                    42.61, 11.2, 19.34,
+                    42.61, 11.7, 19.34,
+                    38.94, 11.7, 19.34
+				]
+			}
+		}
+		
+		
+		# South middle ceiling wall.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 21.89,
+                    42.61, 11.2, 21.89,
+                    42.61, 11.7, 21.89,
+                    38.94, 11.7, 21.89
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 21.89,
+                    42.61, 11.2, 21.89,
+                    42.61, 11.2, 22.34,
+                    38.94, 11.2, 22.34
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 22.34,
+                    42.61, 11.2, 22.34,
+                    42.61, 11.7, 22.34,
+                    38.94, 11.7, 22.34
+				]
+			}
+		}
+		
+		
+		# North door ceiling wall.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 14.89,
+                    42.61, 11.2, 14.89,
+                    42.61, 11.7, 14.89,
+                    38.94, 11.7, 14.89
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+				coords [
+					38.94, 11.2, 14.89,
+                    42.61, 11.2, 14.89,
+                    42.61, 11.2, 14.34,
+                    38.94, 11.2, 14.34
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					38.94, 11.2, 14.34,
+                    42.61, 11.2, 14.34,
+                    42.61, 11.7, 14.34,
+                    38.94, 11.7, 14.34
+				]
+			}
+		}
+		
+		
+		# East ceiling wall.
+		Box {
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					43.11, 11.2, 14.89,
+                    43.11, 11.2, 18.89,
+                    43.11, 11.7, 18.89,
+                    43.11, 11.7, 14.89
+				]
+			}
+			Wall { 
+				texture brent_wall.gif
+                coords [
+					43.61, 11.2, 14.89,
+                    43.11, 11.2, 14.89,
+                    43.11, 11.2, 18.89,
+                    43.61, 11.2, 18.89
+				]
+			}
+        }
+		
+		
+		# Block the upper ridge for stairs.
+		Wall { 
+			texture brent_wall.gif
+            coords [
+				38.94, 11.38, 12.26,
+                42.61, 11.38, 12.26,
+                42.61, 11.7, 12.26,
+                38.94, 11.7, 12.26
+			]
+        }
+		
+		
+		# Carpet next to entrance.
+        Wall { 
+			texture brent_carpet.gif
+            coords [
+				39.76, 8.209999999999999, 25.56,
+                41.76, 8.209999999999999, 25.56,
+                41.76, 8.209999999999999, 22.23,
+                39.76, 8.209999999999999, 22.23
+			]
+        }
+		
+		
+		# Northeast light switch on wall.
+        Wall { 
+			texture brent_lightSwitch.gif
+            coords [
+				42.6, 9.529999999999999, 13.5,
+                42.6, 9.76, 13.5,
+                42.6, 9.76, 13.62,
+                42.6, 9.529999999999999, 13.62
+			]
+        }
+		
+		
+		# Southwest light switch on wall.
+        Wall { 
+			texture brent_lightSwitch.gif
+            coords [
+				38.95, 9.529999999999999, 24.62,
+                38.95, 9.76, 24.62,
+                38.95, 9.76, 24.5,
+                38.95, 9.529999999999999, 24.5
+			]
+        }
+		
+		
+		# Southwest light switch number 2 on wall.
+        Wall { 
+			texture brent_lightSwitch.gif
+            coords [
+				38.95, 9.529999999999999, 24.74,
+                38.95, 9.76, 24.74,
+                38.95, 9.76, 24.62,
+                38.95, 9.529999999999999, 24.62
+			]
+        }
+		
+		
+		# Southeast power outlet on wall.
+        Wall { 
+			texture brent_powerOutlet.gif
+            coords [
+				42.6, 8.379999999999999, 22.89,
+                42.6, 8.609999999999999, 22.89,
+                42.6, 8.609999999999999, 23.0,
+                42.6, 8.379999999999999, 23.0
+			]
+        }
+		
+		
+		# Campus map on wall.
+		Box {
+			Wall { 
+				texture brent_campusmap.gif
+				coords [
+					42.59,    9.199999999999999, 22.23,
+					42.59, 10.53, 22.23,
+					42.59, 10.53, 23.23,
+					42.59,    9.199999999999999, 23.23
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.61,    9.199999999999999, 22.23,
+					42.61, 10.53, 22.23,
+					42.59, 10.53, 22.23,
+					42.59,    9.199999999999999, 22.23
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.61,    9.199999999999999, 23.23,
+					42.61, 10.53, 23.23,
+					42.59, 10.53, 23.23,
+					42.59,    9.199999999999999, 23.23
+				]
+			}
+		}
+		
+		
+		# Outside.
+        Wall { 
+			texture brent_outside.gif
+            coords [
+				39.27,    8.2, 25.54,
+                39.27, 11.2, 25.54,
+                42.27, 11.2, 25.54,
+                42.27,    8.2, 25.54
+			]
+        }
+		
+		
+		# Stairway.
+        Wall { 
+			texture brent_stairs.gif
+            coords [
+				38.94,   8.2,  12.25,
+                38.94, 11.7,  12.25,
+                42.61,    11.7,  12.25,
+                42.61,      8.2,  12.25
+			]
+        }
+		
+		
+		# Jeb sign.
+		Wall { 
+			texture brent_jebDoorSign.gif
+            coords [
+				37.62, 10.65, 17.14,
+                37.62, 11.03, 17.14,
+                37.62, 11.03, 16.64,
+                37.62, 10.65, 16.64
+			]
+		}
+		
+		
+		# Jeb Northwest arrow sign.
+		Wall { 
+			texture brent_jebArrowSign.gif
+            coords [
+				38.28, 9.529999999999999, 14.9,
+                38.28, 9.91, 14.9,
+                38.78, 9.91, 14.9,
+                38.78, 9.529999999999999, 14.9
+			]
+		}
+		
+		
+		# Jeb Southwest arrow sign.
+		Wall { 
+			texture brent_jebArrowSignSouth.gif
+            coords [
+				38.78, 9.529999999999999, 18.88,
+                38.78, 9.91, 18.88,
+                38.28, 9.91, 18.88,
+                38.28, 9.529999999999999, 18.88
+			]
+		}
+		
+		
+		# Northwest flooredges.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					38.95, 8.2,    12.24, 
+					38.95, 8.2,    14.9, 
+					38.95, 8.309999999999999, 14.9, 
+					38.95, 8.309999999999999, 12.24
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					37.62, 8.2,    14.9, 
+					38.95, 8.2,    14.9, 
+					38.95, 8.309999999999999, 14.9, 
+					37.62, 8.309999999999999, 14.9
+				]
+			}
+		}
+		
+		
+		# Southwest flooredges.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					38.95, 8.2,    18.88, 
+					38.95, 8.2,    25.55, 
+					38.95, 8.309999999999999, 25.55, 
+					38.95, 8.309999999999999, 18.88
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					37.62, 8.2,    18.88, 
+					38.95, 8.2,    18.88, 
+					38.95, 8.309999999999999, 18.88, 
+					37.62, 8.309999999999999, 18.88
+				]
+			}
+		}
+		
+		
+		# Northeast flooredges.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.6, 8.2,    12.24, 
+					42.6, 8.2,    14.9, 
+					42.6, 8.309999999999999, 14.9, 
+					42.6, 8.309999999999999, 12.24
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.6, 8.2,    14.9, 
+					43.6, 8.2,    14.9, 
+					43.6, 8.309999999999999, 14.9, 
+					42.6, 8.309999999999999, 14.9
+				]
+			}
+		}
+		
+		
+		# Southeast flooredges.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.6, 8.2,    18.88, 
+					42.6, 8.2,    25.55, 
+					42.6, 8.309999999999999, 25.55, 
+					42.6, 8.309999999999999, 18.88
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.6, 8.2,    18.88, 
+					43.6, 8.2,    18.88, 
+					43.6, 8.309999999999999, 18.88, 
+					42.6, 8.309999999999999, 18.88
+				]
+			}
+		}
+		
+		
+		# Southwest flooredges on corner.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					38.95, 8.2,    25.22, 
+					39.28, 8.2,    25.22, 
+					39.28, 8.309999999999999, 25.22, 
+					38.95, 8.309999999999999, 25.22
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					39.28, 8.2,    25.22, 
+					39.28, 8.2,    25.55, 
+					39.28, 8.309999999999999, 25.55, 
+					39.28, 8.309999999999999, 25.22
+				]
+			}
+		}
+		
+		
+		# Southeast flooredge on corner.
+		Box {
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.26, 8.2,    25.22, 
+					42.6, 8.2,    25.22, 
+					42.6, 8.309999999999999, 25.22, 
+					42.26, 8.309999999999999, 25.22
+				]
+			}
+			Wall { 
+				texture brent_floorEdge.gif
+				coords [
+					42.26, 8.2,    25.22, 
+					42.26, 8.2,    25.55,
+					42.26, 8.309999999999999, 25.55, 
+					42.26, 8.309999999999999, 25.22
+				]
+			}
+		}
+		
+		
+		# Northeast flooredge mext to door.
+        Wall { 
+			texture brent_floorEdge.gif
+            coords [
+				37.62, 8.2,    14.23, 
+                37.62, 8.2,    15.89,
+                37.62, 8.309999999999999, 15.89, 
+                37.62, 8.309999999999999, 14.23
+			]
+        }
+		
+		
+		# Southeast flooredge mext to door.
+        Wall { 
+			texture brent_floorEdge.gif
+            coords [
+				37.62, 8.2,    17.89, 
+                37.62, 8.2,    19.23,
+                37.62, 8.309999999999999, 19.23, 
+                37.62, 8.309999999999999, 17.89
+			]
+        }
+		
+		
+		# Northwest flooredge mext to door.
+        Wall { 
+			texture brent_floorEdge.gif
+            coords [
+				43.6, 8.2,    14.23, 
+                43.6, 8.2,    15.89,
+                43.6, 8.309999999999999, 15.89, 
+                43.6, 8.309999999999999, 14.23
+			]
+        }
+		
+		
+		# Southwest flooredge mext to door.
+        Wall { texture brent_floorEdge.gif
+                   coords [43.6, 8.2,    17.89, 
+                           43.6, 8.2,    19.23,
+                           43.6, 8.309999999999999, 19.23, 
+                           43.6, 8.309999999999999, 17.89]
+        }
+		
+		
+		# West southside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+				coords [
+					37.61, 8.2,    17.89, 
+					37.64, 8.2,    17.86, 
+					37.64, 10.5,  17.86, 
+					37.61, 10.5,  17.89
+				]
+			}
+			Wall { 
+				texture brent_doorWestSouth.gif
+                coords [
+					37.67,   8.2,  18.8, 
+                    37.67, 10.5,  18.8, 
+                    37.64, 10.5,  17.86, 
+                    37.64,   8.2,  17.86
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.64, 8.2,    18.83, 
+                    37.67, 8.2,    18.8, 
+                    37.67, 10.5,  18.8, 
+                    37.64, 10.5,  18.83
+				]
+			}
+		}
+		
+		
+		# Double thickness West southside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.64, 8.2,    17.86, 
+                    37.67, 8.2,    17.83, 
+                    37.67, 10.5,  17.83, 
+                    37.64, 10.5,  17.86
+				]
+			}
+			Wall { 
+				texture brent_doorWestSouth.gif
+                coords [
+					37.7,   8.2,  18.77, 
+                    37.7, 10.5,  18.77, 
+                    37.67, 10.5,  17.83, 
+                    37.67,   8.2,  17.83
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.67, 8.2,    18.8, 
+                    37.7, 8.2,    18.77, 
+                    37.7, 10.5,  18.77, 
+                    37.67, 10.5,  18.8
+				]
+			}
+		}
+		
+		
+		# West northside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.61, 8.2,    15.89, 
+                    37.64, 8.2,    15.92, 
+                    37.64, 10.5,  15.92, 
+                    37.61, 10.5,  15.89
+				]
+			}
+			Wall { 
+				texture brent_doorWestNorth.gif
+                coords [
+					37.64,   8.2,  15.92, 
+                    37.64, 10.5,  15.92, 
+                    37.67, 10.5,  14.98, 
+                    37.67,   8.2,  14.98
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.64, 8.2,    14.95, 
+                    37.67, 8.2,    14.98, 
+                    37.67, 10.5,  14.98, 
+                    37.64, 10.5,  14.95
+				]
+			}
+		}
+		
+		
+		# Double thickness West northside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.64, 8.2,    15.92, 
+                    37.67, 8.2,    15.95, 
+                    37.67, 10.5,  15.95, 
+                    37.64, 10.5,  15.92
+				]
+			}
+			Wall { 
+				texture brent_doorWestNorth.gif
+                coords [
+					37.67,   8.2,  15.95, 
+                    37.67, 10.5,  15.95, 
+                    37.7, 10.5,  15.01, 
+                    37.7,   8.2,  15.01
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					37.67, 8.2,    14.98, 
+                    37.7, 8.2,    15.01, 
+                    37.7, 10.5,  15.01, 
+                    37.67, 10.5,  14.98
+				]
+			}
+		}
+		
+		
+		# East southside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.61, 8.2,    17.89, 
+                    43.58, 8.2,    17.86, 
+                    43.58, 10.5,  17.86, 
+                    43.61, 10.5,  17.89
+				]
+			}
+			Wall { 
+				texture brent_doorEastSouth.gif
+                coords [
+					43.58,   8.2,  17.86, 
+                    43.58, 10.5,  17.86, 
+                    43.55, 10.5,  18.8, 
+                    43.55,   8.2,  18.8
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.58,   8.2,  18.83, 
+                    43.55,   8.2,  18.8, 
+                    43.55, 10.5,  18.8, 
+                    43.58, 10.5,  18.83
+				]
+			}
+		}
+		
+		
+		# Double thickness east southside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.58, 8.2,    17.86, 
+                    43.55, 8.2,    17.83, 
+                    43.55, 10.5,  17.83, 
+                    43.58, 10.5,  17.86
+				]
+			}
+			Wall { 
+				texture brent_doorEastSouth.gif
+                coords [
+					43.55,   8.2,  17.83, 
+                    43.55, 10.5,  17.83, 
+                    43.52, 10.5,  18.77, 
+                    43.52,   8.2,  18.77
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.55, 8.2,    18.8, 
+                    43.52, 8.2,    18.77, 
+                    43.52, 10.5,  18.77, 
+                    43.55, 10.5,  18.8
+				]
+			}
+		}
+		
+		
+		# East northside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.61, 8.2,    15.89, 
+                    43.58, 8.2,    15.92, 
+                    43.58, 10.5,  15.92, 
+                    43.61, 10.5,  15.89
+				]
+			}
+			Wall { 
+				texture brent_doorEastNorth.gif
+                coords [
+					43.55,   8.2,  14.98, 
+                    43.55, 10.5,  14.98, 
+                    43.58, 10.5,  15.92, 
+                    43.58,   8.2,  15.92
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.58, 8.2,    14.95, 
+                    43.55, 8.2,    14.98, 
+                    43.55, 10.5,  14.98, 
+                    43.58, 10.5,  14.95
+				]
+			}
+		}
+		
+		
+		# Double thickness East northside door.
+		Box {
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.58, 8.2,    15.92, 
+                    43.55, 8.2,    15.95, 
+                    43.55, 10.5,  15.95, 
+                    43.58, 10.5,  15.92
+				]
+			}
+			Wall { 
+				texture brent_doorEastNorth.gif
+                coords [
+					43.52,   8.2,  15.01, 
+                    43.52, 10.5,  15.01, 
+                    43.55, 10.5,  15.95, 
+                    43.55,   8.2,  15.95
+				]
+			}
+			Wall { 
+				texture brent_woodSide.gif
+                coords [
+					43.55, 8.2,    14.98, 
+                    43.52, 8.2,    15.01, 
+                    43.52, 10.5,  15.01, 
+                    43.55, 10.5,  14.98
+				]
+			}
+		}
+		
+		
+		# West doorframe.
+		Wall { 
+			texture brent_doorBeam.gif
+            coords [
+				37.62, 10.5,  15.87, 
+                37.62, 10.6,  15.87, 
+                37.62, 10.6,  17.91, 
+                37.62, 10.5,  17.91
+			]
+		}
+		
+		
+		# East doorframe.
+		Wall { 
+			texture brent_doorBeam.gif
+            coords [
+				43.6, 10.5,  15.87, 
+                43.6, 10.6,  15.87, 
+                43.6, 10.6,  17.91, 
+                43.6, 10.5,  17.91
+			]
+		}
+		
+		
+		# West doorbeam.
+		Wall { 
+			texture brent_doorBeam.gif
+            coords [
+				37.62, 8.2,    16.84, 
+                37.62, 8.2,    16.94, 
+                37.62, 10.5,  16.94, 
+                37.62, 10.5,  16.84
+			]
+		}
+		
+		
+		# East doorbeam.
+		Wall { 
+			texture brent_doorBeam.gif
+            coords [
+				43.6, 8.2,    16.84, 
+                43.6, 8.2,    16.94, 
+                43.6, 10.5,  16.94, 
+                43.6, 10.5,  16.84
+			]
+		}
+    ]
+}
+
+# Temporary room to provide openings; revise to make lavatory area.
+Room {
+	
+    name emptyHall2
+	
+    x 43.61
+    y 8.2
+    z 13.23
+    w 3
+    h 3.5
+    l 10
+	
+    texture brent_wall.gif
+	
+    floor Wall { 
+        texture brent_floor.gif
+    }
+	
+    ceiling Wall {
+    	texture brent_ceiling.gif
+    }
+}

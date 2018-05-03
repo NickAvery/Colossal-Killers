@@ -1,0 +1,489 @@
+import gui
+$include "guih.icn"
+link regexp
+
+#
+# class Moodle manages a client Moodle connection.
+#
+class Moodle (moodle_db, uid, pwd, dsn, userID_mdl, coursedesc )
+
+   method  initialize_moodle(uID,Pwd)
+      moodle_db := (open(dsn, "o", "moodle", \uID, \Pwd) | &null)
+    end
+
+   # succeed if the db connection is open
+   method isUp()
+      if \moodle_db then return
+   end
+
+   # return a dereferenced connection handle
+   method return_moodle_conn()
+      return . \ moodle_db
+   end
+
+   method write_odbcini(f)
+      write(f, "\n[cve]\nDescription = MySQL database moodle\n",
+	    "Driver = MySQL\nSERVER = virtual.cs.nmsu.edu\n",
+	    "DATABASE = moodle\nPORT = 3306\nSocket =\nOption =\n",
+	    "Stmt =\nUSER = ", uid, "\npassword = ", pwd, "\n",
+	    "Trace = 1\nTraceFile = error.log")
+   end
+   
+   method WritetoDB( sqlstmt )
+      local SQL := variable("sql")
+      if \ moodle_db then {
+	 SQL(moodle_db, sqlstmt) | write("Error in SQL: ", image(sqlstmt))
+	 }
+   end
+
+   method DisplayUsername(username)
+      local row1
+      if /moodle_db then fail
+      WritetoDB(
+       "select id,firstname,lastname from mdl_user where username='"||uid||"'")
+      userID_mdl := 0
+      while row1 := fetch(moodle_db) do {
+	 userID_mdl := row1.id
+	 username.set_label(row1.firstname || " " || row1.lastname)
+	 }
+   end
+
+   method ClientUserActivity(courseslist, clientIP)
+      local sqlstmt
+      if \ moodle_db then {
+	 sqlstmt := "insert into mdl_log (userid, ip, time,action) values(" ||
+	      userID_mdl || ",'" || clientIP || "'," || &now || ",'Logged in')"
+	 WritetoDB(sqlstmt)
+	 courseslist.set_size("0","0")
+	 }
+   end
+   
+   method on_grades_cs370(ev)
+   local L, row
+      if \ moodle_db then {
+	 WritetoDB("select description from mdl_assignment where course=3")
+	 L := [ ]
+	 while row := fetch(moodle_db) do {
+	    put(L, row.description)
+	    }
+	 view.uide.CurrentTabItem().gradelist.set_contents(L)
+	 }
+   end
+
+   method on_class_cs370(ev)
+   local L, row
+
+      if \ moodle_db then {
+	 WritetoDB("select name from mdl_resource")
+	 L := [ ]
+	 while row := fetch(moodle_db) do {
+	    put(L, row.name)
+	    }
+	 # missing code here: should do something with L
+	 }
+   end
+   
+   method mdl_courses_btn()
+   local L, row, n, i, courseL
+      L := []
+      if \ moodle_db then {
+	 WritetoDB("select id from mdl_user where username='" ||
+		    world.userId || "'")
+	 row := fetch(moodle_db)
+	 n := row.id
+	 WritetoDB("select course from mdl_user_students where userid = '" ||
+		    n || "'")
+	 while put(L, fetch(moodle_db).course)
+
+	 courseL := []
+	 every i := 1 to *L do {	  
+	    WritetoDB("select shortname from mdl_course where id='"||L[i]||"'")
+	    put(courseL,fetch(moodle_db).shortname)
+	    }
+	 }
+      return courseL
+   end   
+
+   method chatline_to_server(input_line)
+   local row
+      if \ moodle_db then {
+	 WritetoDB("select chatid,groupid from mdl_chat_users where userid="||
+		    userID_mdl)
+	 while row := fetch(moodle_db) do {
+	    WritetoDB("insert into mdl_chat_messages " ||
+		    "(chatid,groupid,userid,message,timestamp)values("||
+		      row.chatid ||","||row.groupid||","||userID_mdl||",'"||
+		      input_line||"'," || &now ||")")
+	    }
+	 }
+   end
+   
+   method mdl_courseslist()
+   local f, L, row
+      if \ moodle_db then {
+	 WritetoDB("select * from mdl_course ")
+	 if f := open("coursesfile3.txt","w") then {
+	    L := []
+	    while row := fetch(moodle_db) do {
+	       write(f, row.summary)
+	       put(L, row.summary)
+	       }
+	    close(f)
+	    coursedesc.set_contents(L)
+	    }
+	 }
+   end
+   
+   method new_Class_tabitem1() #ev,file_contents)
+   local tab_item_newh
+      tab_item_newh := BufferTabItem()
+      tab_item_newh.set_label("Courses")
+
+      coursedesc := TextList()
+      coursedesc.set_pos("50%+2", "2")
+      coursedesc.set_size("50%-4", "100%-4")
+      coursedesc.set_attribs("bg=white","font=sans,14")
+      coursedesc.set_contents("")#file_contents)
+      tab_item_newh.add(coursedesc) 
+
+      view.VCSC_tab.add(tab_item_newh)
+      tab_item_newh.init()
+      view.resize()
+      view.VCSC_tab.set_which_one(tab_item_newh)
+      view.is_subwin_hidden()
+   end
+   
+   method mdl_assignment_btn(ev)
+      local s, row, preventlate, timedue, s3, resubmit
+      if \ moodle_db then {
+	 s := view.uide.CurrentTabItem().assignmentlist.get_contents()
+	 if s ~=== "" then {
+	    WritetoDB("select * from mdl_assignment where name='"|| s || "'")
+	    while row := fetch(moodle_db) do {
+	       preventlate := row.preventlate
+	       timedue := row.timedue
+	       s3 := row.id
+	       resubmit := row.resubmit
+	       }
+	    if preventlate === 1 then
+	       if &now > timedue then
+		  return
+	    handle_openfile1(ev)
+	    }
+	 }
+   end
+
+   method handle_openfile1(ev, filename)
+   local fd, fs
+
+   if /filename then {
+$ifdef _UNIX
+      fd := HFileDialog()
+      fd.show_modal(self)
+      filename := fd.get_result() | fail
+      if filename ~=== "" then {
+	 fs := stat(filename)
+	 if fs.mode[1] ~== "d" then {
+	    upload_file(filename)
+	    }
+	 }
+$else
+      filename := WinOpenDialog(view.win, "Open File ...", "", 50) | fail
+$endif
+      }
+
+   tab_label :=  file_name(filename)
+   end
+
+   method upload_file(filename)
+   local sqlstmt,f,s,s2,s3,row2,s1,row1,fs,row3,numfiles
+      if not (fs := stat(filename)) then fail
+      f := open(filename,"u") | stop("sqlpatch can't open ")
+      s := reads(f, fs.size)
+      *s = fs.size | stop("sizes don't match: ", *s, " vs. ", fs.size)
+      close(f)
+	
+      s := view.hstr(s)
+
+      s1 := view.uide.CurrentTabItem().assignmentlist.get_contents()
+      if s1 === "" then
+	 return
+
+      sqlstmt := "select id from mdl_user where username='"||
+	     uid||"' and password=MD5('"|| pwd ||"')"
+	 
+      WritetoDB(sqlstmt)
+      if row1 := fetch(. \moodle_db) then {
+	 s2 := row1.id
+	 sqlstmt := "select * from mdl_assignment where name='"||s1||"'"
+	 WritetoDB(sqlstmt)
+	 if row2 := fetch(moodle_db) then {
+	    s3 := row2.id
+	    sqlstmt := "select * from mdl_assignment_submissions _
+			where assignment=" || s3
+	    WritetoDB(sqlstmt)
+	    numfiles := 0
+	    while row3 := fetch(moodle_db) do {
+	       numfiles := row3.numfiles + 1
+	       sqlstmt := "insert into mdl_assignment_submissions _
+		(assignment, userid, filename, data1, timemodified, numfiles )_
+		values('"|| s3 ||"',"|| s2||", '"||filename||"',"||s||"," ||
+		&now ||"," || numfiles ||");" 
+	       WritetoDB(sqlstmt) 
+	       UpdateLastSubmittedTime()
+	       }
+	    }
+	 }
+   end
+
+   # this won't work. Tries to do nested sql statements.
+   method mdl_lect_notelist()
+   local L, row, s, row_temp
+   s := view.uide.CurrentTabItem().filelist_get_content()
+   if \ moodle_db then {
+      write(&errout, "warning, moodle bug")
+      WritetoDB("select mdl_resource.alltext from mdl_resource, mdl_course _
+		  where mdl_resource.name='"||s ||
+		  "' and mdl_course.shortname='"||
+		view.uide.CurrentTabItem().label||"'")
+
+      while row_temp := fetch(moodle_db) do {
+	 WritetoDB("select summary from mdl_resource where name='" ||s || "'")
+	 L := []
+	 while row := fetch(moodle_db) do {
+	    put(L,row.summary)
+	    }
+	 view.uide.CurrentTabItem().notelist.set_contents(L)
+	 }
+      }
+   end
+
+   method mdl_assignmentlist()
+   local cti, f, line, L, row, s, timemodified, timedue, tm
+
+      cti := view.uide.CurrentTabItem()
+      s := cti.assignmentlist.get_contents()
+
+      if \ moodle_db then {
+	 if not (f := open("assign1.txt","w")) then fail
+	 WritetoDB("select * from mdl_assignment where name='"|| s || "'")
+	 L := []
+	 while row := fetch(moodle_db) do {
+	    write(f, row.description)
+	    timemodified := row.timemodified
+	    timedue := row.timedue
+	    if timedue === 0 then {
+	       cti.label_2.set_label(repl("-",20))
+	       cti.label_3.set_label(repl("-",20))
+	       }
+	    else {
+	       cti.label_2.set_label(ctime(timedue)[5:17] || " " ||
+				     ctime(timemodified)[21:25])
+	       cti.label_3.set_label(ctime(timemodified)[5:17] ||
+				     " " || ctime(timemodified)[21:25])
+	       }
+	    }
+	 tm := UpdateLastSubmittedTime()
+	 CalculateTimeLeft(tm, timedue)
+	 if f := open("assign1.txt","r") then {
+	    while put(L,read(f))
+	    close(f)
+	    }
+	 cti.gradelist.set_contents(L)
+      }
+   end  
+
+   # Not yet implemented 
+   method CalculateTimeLeft(tm, timedue)
+   end
+
+   method UpdateLastSubmittedTime()
+      local sqlstmt,s1,row1,s2,s3,row2,row21,timemodified,cti
+      timemodified := ""
+      cti := view.uide.CurrentTabItem()
+      s1 := cti.assignmentlist.get_contents()
+      if s1 === "" then
+	 return
+      if \ moodle_db then {
+	 sqlstmt := "select id from mdl_user where username='"||
+	     uid||"' and password=MD5('"|| pwd ||"')"
+	 WritetoDB(sqlstmt)
+	 row1 := fetch(moodle_db)
+	 s2 := row1.id
+
+	 WritetoDB("select * from mdl_assignment where name='"||s1||"'")
+	 row2 := fetch(moodle_db) | write("fetch failed1") 
+	 s3 := row2.id
+	 WritetoDB("select * from mdl_assignment_submissions where _
+		   assignment=" || s3 || " and userid=" || s2 ||
+		   " order by timemodified DESC")
+
+	 if row21 := fetch(moodle_db) then {
+	    timemodified := row21.timemodified
+	    cti.label_13.set_label(ctime(timemodified)[5:17] || " " ||
+				   ctime(timemodified)[21:25])
+	    }
+	 else {
+	    cti.label_13.set_label(repl("-",20))
+	    timemodified := ""
+	    }		
+	 }
+      return timemodified
+end
+
+   # won't work, nested sql
+   method mdl_InstructorInfo(lbl_teachername, lbl_teacheremail, forumlist)
+   local teachername1,teacheremailid,teacherid,s1,row,sqlstmt, s
+
+      if \ moodle_db then {
+	 write(&errout, "warning, moodle bug")
+	 s := view.VCSC_tab.get_which_one().label
+	 WritetoDB("select * from mdl_course where shortname='" || s || "'")
+	 if row := fetch(moodle_db) then {
+	    FetchForums(row.id, forumlist)
+	    }
+
+	 WritetoDB("select * from mdl_course where shortname='" || s || "'")
+	 while row := fetch(moodle_db) do {
+	    WritetoDB("select * from mdl_user_teachers where course=" ||row.id)
+	    teachername1 := ""
+	    teacheremailid := ""
+	    while row := fetch(moodle_db) do {
+	       teacherid := row.userid
+	       WritetoDB("select * from mdl_user where id=" || teacherid)
+	       while row := fetch(moodle_db) do {
+		  teachername1 ||:= row.firstname || " " || row.lastname || ","
+		  teacheremailid ||:= row.email || ","
+		  }
+	       }
+	    teachername1[-1] := " "
+	    teacheremailid[-1] := " "
+	    lbl_teachername.set_label(teachername1)
+	    lbl_teacheremail.set_label(teacheremailid)
+	    }
+	 }
+   end
+   
+   method SetContentTab(tabItem,file_contents,file1_contents,label2)
+      tabItem.SetContent( ,file_contents,file1_contents,label2)
+      tabItem.filelist.connect(self,"on_lect_notelist",SELECTION_CHANGED_EVENT)
+      tabItem.text_button_1.connect(self, "on_assignment_btn", ACTION_EVENT)
+      tabItem.label_grades.connect(self, "on_mdl_grades", MOUSE_PRESS_EVENT)
+      tabItem.assignmentlist.connect(self, "on_assignmentlist",
+				     SELECTION_CHANGED_EVENT)
+   end
+
+   method mdl_courselist(tablist, courseslist, tabItem, teachername,
+			 teacheremail, forumlist, clientIP)
+   local f,line,L,L1,L2,s,flag:=0,i,row,sqlstmt,s1,row1,msg
+   static klmnop := 0
+      view.VCSC_tab.set_which_one(view.uide.CurrentTabItem())
+      if \ moodle_db then {
+	 L1 := []
+	 L2 := []
+	 i := 0
+	 every i := 1 to *tablist do {
+	    if tablist[i] === courseslist.get_contents() then {
+	       flag := 1
+	       }
+	    }
+	 if courseslist.get_contents() === "" then
+	    return
+
+	 s := courseslist.get_contents()
+	 WritetoDB("select * from mdl_course where shortname='" || s || "'")
+		
+	 row := fetch(moodle_db) | write("fetch failed")
+	 s := row.id
+
+	 if flag == 0 then {
+	    WritetoDB("select distinct name from mdl_assignment where _
+		      course='" || s || "'")
+	    L := []
+	    while put(L, fetch(moodle_db).name)
+
+	    WritetoDB("select distinct name from mdl_resource where course='"||
+		      s || "'")
+	    L1:= []
+	    while put(L1, fetch(moodle_db).name)
+
+	    FetchForums(s, forumlist)
+	    tabItem := CourseTabItem()
+	    SetContentTab(tabItem,L,L1,courseslist.get_contents())
+	    view.VCSC_tab.add(tabItem)
+	    tabItem.init()
+	    view.VCSC_tab.resize()
+	    view.VCSC_tab.set_which_one(tabItem)
+	    view.is_subwin_hidden()
+	    put(tablist,courseslist.get_contents())
+	    flag := 1
+	    }
+	 else {
+	    write("")
+	    }
+	 }
+      s := courseslist.get_contents()
+      if \ moodle_db then {
+	 WritetoDB("select id from mdl_course where shortname='" || s || "'")
+	 row := fetch(moodle_db) | write("fetch failed")
+	 s := row.id
+	 msg := "Courselist"
+	 WritetoDB("select id from mdl_user where username='"||uid||
+		   "' and password=MD5('"|| pwd ||"')")
+	 row1 := fetch(moodle_db) | write("fetch failed1")
+	 s1 := row1.id
+	 WritetoDB("insert into mdl_log(userid,course,ip,action,time) _
+		   values(" || s1 || "," || s || ",'" || clientIP || "','"||
+		   msg ||"',"|| &now||");")
+	 }
+      s := courseslist.get_contents()
+      mdl_InstructorInfo(teachername, teacheremail, forumlist )
+   end
+   
+   method FetchForums( s , forumlist)
+   local L2
+      if /moodle_db then fail
+      WritetoDB("select name from mdl_forum where course='" || s || "'")
+      L2 := []
+      while put(L2, fetch(moodle_db).name)
+      forumlist.set_contents(L2)
+   end
+   
+
+initially(uID,Pwd,srv)
+local home, f
+   flag := 0
+   uid := \uID
+   pwd := \Pwd
+   dsn := \srv | "cve"
+$ifdef _UNIX
+   if not (home := getenv("HOME")) then {
+      write(&errout, "please set your HOME variable to enable Moodle support.")
+      fail
+      }
+   if f := open( home || "/.odbc.ini", "r") then {
+      if "[cve]" === !f then
+	 flag := 1
+      close(f)
+      if flag ~= 1 then {
+	 if not (f := open(home || "/.odbc.ini","a")) then {
+	    write(&errout, "can't append your HOME .odbc.ini, ",
+		  "please configure your ODBC manually")
+	    return
+	    }
+	 write_odbcini(f)
+	 close(f)
+	 }
+      }
+   else {
+      if not (f := open(home || "/.odbc.ini","w")) then {
+	 write(&errout, "can't write your HOME .odbc.ini, ",
+	       "please configure your ODBC manually")
+	 return
+	 }
+      write_odbcini(f)
+      close(f)
+      }
+$endif
+   initialize_moodle(uID, Pwd)
+end

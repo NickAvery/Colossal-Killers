@@ -1,0 +1,83 @@
+#Sayed Riley J Naimi
+
+Room {
+name JEB025a
+x 23.25
+y 0.0
+z 18.13
+w 4.44
+h 2.50
+l 4.75
+texture jeb025wall.gif
+floor Wall {
+texture jeb025floor.gif
+}
+ceiling Wall{
+texture jeb025wall.gif
+}
+decorations [
+   Wall { texture whiteboard.gif
+          coords [27.68,1.04,18.66,
+		  27.68,2.24,18.66,
+		  27.68,2.24,22.32,
+		  27.68,1.04,22.32]
+      }
+]
+obstacles [
+   Table {
+       coords [25.7,0,19.75]
+   	 position 0
+	 color very dark brown
+	 type  office
+       }
+]
+}
+
+#Room {
+#name JEB025b
+#x 21.2
+#y 0.0
+#z 19.27
+#w 2.06
+#h 2.50
+#l 3.63
+#texture jeb025wall.gif
+#floor Wall {
+#texture jeb025floor.gif
+#}
+#ceiling Wall{
+#texture jeb025wall.gif
+#}
+#decorations [
+#   Wall { texture jeb025closet.gif
+#          coords [20.8,23.52,0.0,
+#		  21.97,23.52,0.0,
+#		  21.97,23.52,2.16,
+#		  20.8,23.52,2.16]
+#      }
+#]
+}
+
+#Opening{
+#id 61
+#x 23.25
+#y 0.0
+#z 19.27
+#w 3.59
+#height 2.5
+#collide_in 1.2
+#plane 1
+#rooms [JEB025a, JEB025b]
+#}
+
+Door {
+id 62
+x 23.5
+y 0.0
+z 18.13
+w 0.8
+height 2.2
+collide_in 1.2
+plane 3
+rooms [JEB025a, basement_corridor]
+}

@@ -1,0 +1,140 @@
+class Printer:Obstacle(x,y,z,           #coordinates of the position of the computer
+              color,       		# color of the printer
+              angle,       		# angle at which printershould be places in side the room
+              name,			# contains name of the printer
+              status,      		# status of the printer (on, off, busy)
+              tray,        		# table which gives the status of the trays 
+              job,         		#job queue contains info of jobs executing currently on printer
+               minx,miny,minz,maxx,     # collide variables
+               maxy,maxz,collide        # variables which restricts the avatar movement 
+                                        # through the computer
+             )
+
+
+method render()
+
+WAttrib("texmode=off")
+WAttrib("fg=black")
+draw_component(0,0,0,    3,0.15,4,     0,angle, 0,0, "notexture")
+draw_component(0,0.095,0,   3,0.15,4,  0,angle, 0,0, "notexture")
+draw_component(0,0.189,0,   3,0.15,4,  0,angle, 0,0, "notexture")
+
+
+draw_component(0,0.012,0,   3,0.05,4,   0,angle, 0,0, "notexture")
+
+WAttrib("fg=white")
+draw_component(0,0.019,0,   3,0.12,4,    0,     angle, 0,0, "notexture")
+draw_component(0,0.056,0,   3,0.5,0.1,   0.24,  angle, 0,0, "notexture")
+draw_component(0,0.056,0,   4,0.5,0.1,   0.173,  90+angle, 0,0, "notexture")
+draw_component(0,0.056,0,   3,0.5,0.1,   0.24,   180+angle, 0,0, "notexture")
+draw_component(0,0.056,0,   4,0.5,0.1,   0.173,  270+angle, 0,0, "notexture")
+
+if tray["tray1_status"] == "nonempty"  then
+    draw_label(0,0.056,0,      0.247,  angle, 0,1, "two")
+else
+    draw_label(0,0.056,0,      0.247,  angle, 0,1, "twor")
+
+draw_component(0,0.118,0,   3,0.12,4,     0,      angle, 0,0, "notexture")
+draw_component(0,0.15,0,    3,0.5,0.1,    0.24,   angle, 0,0, "notexture")
+draw_component(0,0.15,0,    4,0.5,0.1,    0.173,  90+angle, 0,0, "notexture")
+draw_component(0,0.15,0,    3,0.5,0.1,    0.24,   180+angle, 0,0, "notexture")
+draw_component(0,0.15,0,    4,0.5,0.1,    0.173,  270+angle, 0,0, "notexture")
+
+if tray["tray2_status"] == "nonempty"  then 
+    draw_label(0,0.15,0,      0.247,  angle, 0,1, "one")
+else
+    draw_label(0,0.15,0,      0.247,  angle, 0,1, "oner")
+
+WAttrib("fg=black")
+draw_component(0,0.108,0,  3,0.05,4,   0,angle, 0,0, "notexture")
+
+WAttrib("fg=white")
+draw_component(0,0.265,0,  3,1,4,   0,angle, 0,0, "notexture")
+draw_component(0,0.235,0,   4,1.5,0.4,   0.206,  270+angle, 0,0, "notexture")
+
+WAttrib("fg=white")
+draw_component(0,0.05,0,   2.5,0.1,2,  0.28, 270+angle, 1,0, "notexture")
+
+WAttrib("texmode=on")
+
+end
+
+method draw_label(tx,ty,tz, r,a1, s,lac, texname)
+local x_trans,z_trans,labelpath
+   if /texname then fail
+
+   x_trans := r * sin(dtor(a1))
+   z_trans := r * cos(dtor(a1))
+   PushMatrix()
+      Translate(x,y,z)
+      Translate(tx+x_trans,  ty,  tz+z_trans)
+      Rotate(a1,0,1,0)
+
+      WAttrib("texmode=on")
+      WAttrib("texcoord=0,0,0,1,1,1,1,0") |  write("texcoord failed")
+      labelpath := world.find_texture(texname || ".gif")
+      WAttrib("texture="||labelpath) |
+         write("texture ", texname, " -> ", image(labelpath), " failed")
+      FillPolygon(-0.1,-0.025,0, -0.1,0.025,0,   0,0.025,0,  0,-0.025,0)
+      WAttrib("texmode=off")
+   PopMatrix()
+end
+
+
+method  draw_component(tx,ty,tz,   sx,sy,sz,   r,a1, s,lac, texname)
+local x_trans,z_trans
+ x_trans := r * sin(dtor(a1))
+ z_trans := r * cos(dtor(a1))
+PushMatrix()
+    Translate(x,y,z)
+     Translate(tx+x_trans,  ty,  tz+z_trans)
+    if s = 1 then {
+        Rotate(a1-270,0,1,0)
+        Rotate(170,0,0,1)
+      }
+    else {
+         Rotate(a1,0,1,0)
+      }
+    Scale(sx,sy,sz)
+    if lac = 0  then {
+       DrawCube(0,0,0,0.12)
+       }
+PopMatrix()
+end
+
+
+   method disallows(x,z)  ## Box
+      #calc_boundbox_chair()
+      if minx-collide <= x <= maxx+collide &
+	 minz-collide <= z <= maxz+collide then {
+         return
+         }
+      fail
+end
+
+initially(coords,col,A)
+x := coords[1]
+y := coords[2]
+z := coords[3]
+color := col
+angle := A
+# default values
+/x := 0
+/y := 0
+/z := 0
+/col := "white"
+/A := 0
+/name := "NMSU"
+/status := "on"
+/tray := table()
+tray["tray1_status"] := "nonempty"
+tray["tray2_status"] := "nonempty"
+/job := table()
+/minx := x - 0.9
+/miny := y
+/minz := z - 0.9
+/maxx := x + 0.9
+/maxy := y
+/maxz := z + 0.9
+/collide := 0.1
+end

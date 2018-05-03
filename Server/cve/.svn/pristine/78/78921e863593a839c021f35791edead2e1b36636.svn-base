@@ -1,0 +1,27 @@
+class Rectangle : Shape(x, y, width, height)
+   # accessors for the width & height
+   method getWidth()
+      return width
+   end
+   method getHeight()
+      return height
+   end
+   method setWidth(newwidth)
+      width := newwidth
+   end
+   method setHeight(newheight)
+      height := newheight
+   end
+
+   # draw the rectangle
+   method draw()
+      writes("Drawing a Rectangle at:(");
+      writes(getX());
+      writes(",");
+      writes(getY());
+      writes("), width ");
+      writes(getWidth());
+      writes(", height ");
+      write(getHeight())
+   end
+end

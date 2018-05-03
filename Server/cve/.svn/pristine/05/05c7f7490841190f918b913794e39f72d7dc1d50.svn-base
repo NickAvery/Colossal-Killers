@@ -1,0 +1,7 @@
+procedure main(av)
+    s := ""
+    every s ||:= !av || " "
+    system(s)
+    write("press ENTER to continue")
+    read()
+end

@@ -1,0 +1,18 @@
+Room {
+	name  SH_181
+	x 87.2
+	y 0
+	z 9.800000000000001
+	w 5.8
+	h 3.05
+	l 3.9
+	texture dat/nmsu/texsmall/walltest.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}
