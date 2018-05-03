@@ -44,6 +44,7 @@ class Server(listen_UDP_sock,
              Lusers_to_send,
              agents,
 	     Tusername_user,
+		 Tusername_dino,
 	     local_npc_set
              )
 
