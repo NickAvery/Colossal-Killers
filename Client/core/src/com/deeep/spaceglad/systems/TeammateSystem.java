@@ -50,27 +50,13 @@ public class TeammateSystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
         for (Entity e : entities) {
-            /*
             ModelComponent mod = e.getComponent(ModelComponent.class);
-            ModelComponent playerModel = player.getComponent(ModelComponent.class);
 
-            Vector3 playerPosition = new Vector3();
+            /*
             Vector3 enemyPosition = new Vector3();
 
             playerPosition = playerModel.instance.transform.getTranslation(playerPosition);
             enemyPosition = mod.instance.transform.getTranslation(enemyPosition);
-
-            float dist = (float)Math.sqrt(Math.pow(playerPosition.x - enemyPosition.x, 2) + Math.pow(playerPosition.y - enemyPosition.y, 2) + Math.pow(playerPosition.z - enemyPosition.z, 2));
-            if(dist < .01f) 
-                dist = .1f;
-
-            float dX = playerPosition.x - enemyPosition.x;
-            float dZ = playerPosition.z - enemyPosition.z;
-
-            float theta = (float) (Math.atan2(dX, dZ));
-
-            //Calculate the transforms
-            Quaternion rot = quat.setFromAxis(0, 1, 0, (float) Math.toDegrees(theta));
 
             cm.get(e).characterDirection.set(-1, 0, 0).rot(mod.instance.transform);
             cm.get(e).walkDirection.set(0, 0, 0);
@@ -83,11 +69,8 @@ public class TeammateSystem extends EntitySystem implements EntityListener {
             cm.get(e).ghostObject.getWorldTransform(ghost);
             ghost.getTranslation(translation);
 */
+            //TODO For each e, check if character is connected to the server, and get position/orientation and update below
             //mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
-
-            //e.getComponent(AnimationComponent.class).animate("Root|Idle", 10000, 1); //animate the avatar
-
-
         }
     }
 
