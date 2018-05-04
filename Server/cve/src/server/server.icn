@@ -21,7 +21,6 @@ record SocketDriver(socket,
                     pending_input   # unhandled input (typically from
                                     # incomplete lines).
                     )
-
 #
 # CVE Daemon Server Class: handles all network related communications
 #
@@ -8868,7 +8867,7 @@ end
       # any users to talk to
       if *Tuser_sock = 1 & command == "say" then {
          buffer := "nobody to talk to. To see who is online type '\\who'"
-         sendRaw(sock_from, buffer, "inform")
+         sendRaw(\sock_from, buffer, "inform")
          return
       }
 
@@ -8876,7 +8875,10 @@ end
       every x := !Tuser_sock do {
 	 if \(Tsocket_drivers[x]).user.name=="system" then next
 	 if (exclude_me ~=== 1) | (sock_from ~=== x) then {
-            sendtoOne(x, buffer, command, sock_from)
+            if sock_from ~=== &null then
+				sendtoOne(x, buffer, command, sock_from)
+			else
+				sendRaw(x, buffer, command)
          }
       }
       return
@@ -8915,16 +8917,16 @@ end
          target := Tsocket_drivers[target].user.name
       }
 
-      if type(source) ~== "string" then {
+      if type(\source) ~== "string" then {
          # change source to be a name
          source := Tsocket_drivers[source].user.name
       }
 
       # Temporarily fail if we aren't sending to a valid user
       to_user := getUser(target)
-      from_user := getUser(source)
+      from_user := getUser(\source)
       every i := key(Tsocket_drivers) do {
-         if \(Tsocket_drivers[i].user) & Tsocket_drivers[i].user.name == source
+         if \(Tsocket_drivers[i].user) & Tsocket_drivers[i].user.name == \source
          then {
              from_driver := Tsocket_drivers[i]
              break
@@ -8952,7 +8954,7 @@ end
 	    }
          "say" | "tell" | "npcmsg" : {
             # is the user we are trying to talk to, ignoring us?
-            if to_user.isIgnored(source) = 0 then
+            if to_user.isIgnored(\source) = 0 then
                return
             if command == ("say" | "tell") then {
                if find("is added", buffer) |
@@ -8979,7 +8981,7 @@ end
 	       }
             # no matter if the user is afk or not,
             # the message should still be sent
-            if target ~== source then
+            if target ~=== source then
                 message := formulate_chat(buffer, command, from_user)
             else
                 message := formulate_chat(buffer, command)
@@ -9747,6 +9749,7 @@ method run_processes(n)
 end
 
    initially (p, npc_mode, npc_n, com)
+      local x
       server := self
       trap("SIGPIPE", pipeHandler) # traps Broken Pipe errors
       logHandler := Logger() # initialize the logging mechanism
@@ -9761,6 +9764,10 @@ end
       IDE_Checked_Counter := 0
       Addcounter := 0
       Lusers_to_send := []
+	  
+	  # Arrays are indexed starting from 1
+	  # Hardwired positions
+	  # position[[x, y, z], [x, y, z], [x, y, z], ect]
 
       # the main data structures
    Tsocket_drivers := table()
@@ -9770,7 +9777,22 @@ end
    Tide := table()        # all users in IDE session
 
    Tusername_user := table()
+   Tusername_dino := table()
+   
+   # Create Dino Instances
+   
+	every x := 1 to 10 do
+	{
+		D := Dino(position[x])
+		#write(D.name)
+		
+		#insert into table
+		Tusername_dino[D.name] := D
 
+		#convert non-string value to string
+		#image(D)
+	}
+   
    Cmds         := Commands() # server commands table & methods
    dynStHandler := StateHandler(logHandler) # Dynamic State Handler
    fileHandler  := fileTransfer(logHandler) # Handling file transfers
