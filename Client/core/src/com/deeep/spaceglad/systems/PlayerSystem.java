@@ -1,7 +1,6 @@
 package com.deeep.spaceglad.systems;
 
 import com.badlogic.ashley.core.*;
-import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -46,7 +45,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
     ClosestRayResultCallback rayTestCB;
-    private ImmutableArray<Entity> playersList;
 
     public PlayerSystem(GameWorld gameWorld, GameUI gameUI, Camera camera) {
         this.camera = camera;
@@ -101,8 +99,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 
         camera.position.set(translation.x, translation.y, translation.z);
         camera.update(true);
-        gameWorld.game.client.sendMessage("\\move " + gameWorld.game.client.username + " " +
-            translation.x + " " + translation.y + " " + translation.z + " " + "0" + "\n");
+
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             characterComponent.characterController.setJumpSpeed(25);
             characterComponent.characterController.jump();
@@ -152,8 +149,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                 effect.start();
                 RenderSystem.particleSystem.add(effect);
                 ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
-                gameWorld.game.client.sendMessage("\\fire " + camera.direction + " " +
-                        ((Entity) obj.userData).getId() + "\n");
 		if(((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
 			PlayerComponent.score += 100;
             }
@@ -195,10 +190,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
         }
 	}
 
-    public Entity getPlayer(){
-        return player;
-    }
-
     private void checkGameOver() {
         if (playerComponent.health <= 0 && !Settings.Paused) {
             Settings.Paused = true;
@@ -208,12 +199,11 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 
     @Override
     public void entityAdded(Entity entity) {
-        if(entity.getComponent(PlayerComponent.class) != null) {
-            player = entity;
-            playerComponent = entity.getComponent(PlayerComponent.class);
-            characterComponent = entity.getComponent(CharacterComponent.class);
-            modelComponent = entity.getComponent(ModelComponent.class);
-        }
+        player = entity;
+        playerComponent = entity.getComponent(PlayerComponent.class);
+        characterComponent = entity.getComponent(CharacterComponent.class);
+        modelComponent = entity.getComponent(ModelComponent.class);
+        //
     }
 
     @Override

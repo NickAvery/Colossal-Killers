@@ -1,8 +1,0 @@
-#
-# Attach.icn
-# This represents (a server's) attaching an agent-handler to a particular port
-#
-
-class Attach(name, port, handler)
-       
-end

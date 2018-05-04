@@ -1,7 +1,0 @@
-This directory holds the repository of what is hosted at
-http://cve.sf.net, the CVE main webpage.
-
-Files in here are uploaded to the CVE webpage via a command
-such as
-
-sftp userid,cve@web.sourceforge.net

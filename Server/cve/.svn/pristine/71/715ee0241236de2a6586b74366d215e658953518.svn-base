@@ -1,2 +1,0 @@
-#!/bin/sh
-./start-stop-daemon -b --quiet --start --exec cved -m --pidfile cvednmsu.pid -- -port 4600 -model nmsu

@@ -1,3 +1,0 @@
-#!/bin/sh
-./start-stop-daemon --stop --quiet --pidfile cvednmsu.pid
-rm cvednmsu.pid
