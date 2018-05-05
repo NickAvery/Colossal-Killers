@@ -1,0 +1,11 @@
+Opening {
+	id 23
+	x 83.90000000000001
+	y 0
+	z 23.3
+	w 5.2
+	height 3.3
+	collide_in 0.8
+	plane 1
+	rooms [atrium, foyer]
+}

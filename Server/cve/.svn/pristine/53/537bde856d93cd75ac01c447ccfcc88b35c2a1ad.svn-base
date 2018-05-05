@@ -1,0 +1,44 @@
+<title>IDEs quest</title>
+
+<dl>
+<dt> Name
+</dt><dd> IDEs?
+</dd><dt> Summary
+</dt><dd> Learn general information about IDEs.
+</dd><dt> Requires
+</dt><dd>
+
+</dd><dt> Steps
+</dt><dd>
+<ol>
+<li> Read this tutorial. <a href="http://en.wikipedia.org/wiki/Integrated_development_environment">Integrated Development Environment</a></li>
+<li> Pass a quiz on IDEs general information.</li>
+</ol>
+</dd><dt> Rewards
+</dt><dd> IDEs: 1
+</dd><dt> Quiz
+</dt><dd>
+<dl>
+<dt> IDE is a short for?
+</dt><dd> Integrated Development Environment.
+</dd><dt> What does IDE normally consist of? (Multiple Choice)</dt>
+<dd> Source code editor only</dd>
+<dd> Source code editor, a compiler and/or interpreter, build automation tools, and a debugger (TRUE)</dd>
+<dd> Source code editor and  compiler and/or interpreter only</dd>
+<dd> None of the above</dd>
+
+<dt> What was the first language to be created with an IDE? (Multiple Choice)</dt>
+<dd> C++</dd>
+<dd> Fortran</dd>
+<dd> Dartmouth BASIC (TRUE)</dd>
+<dd> Unicon</dd>
+<dt> Eclipse is a multiple-language IDE (Multiple Choice)</dt>
+<dd> YES (TRUE)</dd>
+<dd> NO</dd>
+<dt> What languages does Eclipse supports? (Multiple Choice)</dt>
+<dd> Only Java</dd>
+<dd> Java and C/C++ only</dd>
+<dd> Basis and Pascal only</d>
+<dd> Java, C/C++, Python, Perl, Ruby, Fortran, Cobol, PHP, JSP/Servlet, and others (TRUE)</dd>
+</dl>
+</dl>

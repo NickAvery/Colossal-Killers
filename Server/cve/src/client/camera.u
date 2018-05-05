@@ -1,0 +1,1410 @@
+version	U12.1.00
+uid	camera.u1-1523917894-0
+record	Camera__state,20
+	0,__s
+	1,__m
+	2,x
+	3,y
+	4,z
+	5,lookx
+	6,looky
+	7,lookz
+	8,lx
+	9,lz
+	10,angle
+	11,avatar
+	12,view_mode
+	13,oldx
+	14,oldy
+	15,oldz
+	16,oldlx
+	17,oldly
+	18,oldlz
+	19,need_Eye_refresh
+record	Camera__methods,6
+	0,eye
+	1,Eye_refresh
+	2,teleport
+	3,reset
+	4,toggle_viewmode
+	5,initially
+impl	error
+global	11
+	0,000005,Camera_eye,2
+	1,000005,Camera_Eye_refresh,1
+	2,000005,Camera_teleport,4
+	3,000005,Camera_reset,1
+	4,000005,Camera_toggle_viewmode,1
+	5,000005,Camera_initially,1
+	6,000011,Camera__state,20
+	7,000011,Camera__methods,6
+	8,000001,Camera__oprec,0
+	9,000005,Camera,18
+	10,000005,Camerainitialize,0
+
+proc Camera_eye
+	local	0,001000,self
+	local	1,001000,i
+	con	0,002000,1,0
+	con	1,002000,1,2
+	con	2,002000,1,1
+	declend
+	filen	camera.icn
+	line	13
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	1
+	line	15
+	colm	1
+	synt	any
+	null
+	int	0
+	line	15
+	colm	4
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	22
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	int	1
+	line	22
+	colm	13
+	synt	any
+	numlt
+	pop
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	25
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	33
+	synt	any
+	field	oldx
+	line	22
+	colm	28
+	synt	any
+	nonnull
+	line	22
+	colm	27
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	45
+	synt	any
+	field	y
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	53
+	synt	any
+	field	oldy
+	line	22
+	colm	48
+	synt	any
+	nonnull
+	line	22
+	colm	47
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	65
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	73
+	synt	any
+	field	oldz
+	line	22
+	colm	68
+	synt	any
+	nonnull
+	line	22
+	colm	67
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	15
+	synt	any
+	field	lookx
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	27
+	synt	any
+	field	oldlx
+	line	23
+	colm	22
+	synt	any
+	nonnull
+	line	23
+	colm	21
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	40
+	synt	any
+	field	looky
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	52
+	synt	any
+	field	oldly
+	line	23
+	colm	47
+	synt	any
+	nonnull
+	line	23
+	colm	46
+	synt	any
+	numeq
+	pop
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	65
+	synt	any
+	field	lookz
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	77
+	synt	any
+	field	oldlz
+	line	23
+	colm	72
+	synt	any
+	nonnull
+	line	23
+	colm	71
+	synt	any
+	numeq
+	unmark
+	line	25
+	colm	10
+	synt	any
+	pfail
+	line	22
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	27
+	colm	11
+	synt	any
+	field	oldx
+	pnull
+	var	0
+	line	27
+	colm	22
+	synt	any
+	field	x
+	line	27
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	27
+	colm	29
+	synt	any
+	field	oldy
+	pnull
+	var	0
+	line	27
+	colm	40
+	synt	any
+	field	y
+	line	27
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	27
+	colm	47
+	synt	any
+	field	oldz
+	pnull
+	var	0
+	line	27
+	colm	58
+	synt	any
+	field	z
+	line	27
+	colm	52
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	28
+	colm	11
+	synt	any
+	field	oldlx
+	pnull
+	var	0
+	line	28
+	colm	23
+	synt	any
+	field	lookx
+	line	28
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	28
+	colm	34
+	synt	any
+	field	oldly
+	pnull
+	var	0
+	line	28
+	colm	46
+	synt	any
+	field	looky
+	line	28
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	28
+	colm	57
+	synt	any
+	field	oldlz
+	pnull
+	var	0
+	line	28
+	colm	69
+	synt	any
+	field	lookz
+	line	28
+	colm	63
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	30
+	colm	11
+	synt	any
+	field	need_Eye_refresh
+	int	2
+	line	30
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L9
+	pnull
+	line	31
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera_Eye_refresh
+	local	0,001000,self
+	local	1,000000,Eye
+	local	2,000000,mynsh
+	local	3,000000,write
+	con	0,010000,12,105,171,145,050,051,040,146,141,151,154,145,144
+	declend
+	line	42
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	var	1
+	pnull
+	pnull
+	var	2
+	line	43
+	colm	16
+	synt	any
+	field	subwin
+	line	43
+	colm	23
+	synt	any
+	field	cwin
+	pnull
+	var	0
+	line	43
+	colm	34
+	synt	any
+	field	oldx
+	pnull
+	var	0
+	line	43
+	colm	44
+	synt	any
+	field	oldy
+	pnull
+	var	0
+	line	43
+	colm	54
+	synt	any
+	field	oldz
+	pnull
+	var	0
+	line	43
+	colm	64
+	synt	any
+	field	oldlx
+	pnull
+	var	0
+	line	43
+	colm	75
+	synt	any
+	field	oldly
+	pnull
+	var	0
+	line	43
+	colm	86
+	synt	any
+	field	oldlz
+	line	43
+	colm	10
+	synt	any
+	invoke	7
+	line	43
+	colm	93
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	var	3
+	str	0
+	line	43
+	colm	99
+	synt	any
+	invoke	1
+lab L3
+	unmark
+lab L1
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	11
+	synt	any
+	field	need_Eye_refresh
+	line	44
+	colm	30
+	synt	any
+	keywd	null
+	line	44
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L4
+	pnull
+	line	45
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera_teleport
+	local	0,001000,self
+	local	1,001000,ex
+	local	2,001000,wye
+	local	3,001000,zee
+	local	4,000020,k
+	local	5,000020,theFloorToUse
+	local	6,000020,oldroom
+	local	7,000000,world
+	local	8,000000,write
+	local	9,000000,mynsh
+	local	10,000000,Tfloor
+	local	11,000000,key
+	con	0,004000,1.5
+	con	1,010000,18,146,141,151,154,145,144,040,164,157,040,164,145,154,145,160,157,162,164
+	con	2,002000,1,0
+	con	3,002000,1,1
+	con	4,010000,15,164,145,154,145,160,157,162,164,145,144,040,164,157,040,050
+	con	5,010000,1,054
+	con	6,010000,4,051,054,040,050
+	con	7,010000,1,051
+	con	8,010000,26,163,145,145,155,163,040,164,157,040,142,145,040,142,145,154,157,167,040,142,141,163,145,155,145,156,164
+	declend
+	line	48
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	6
+	pnull
+	var	7
+	line	49
+	colm	44
+	synt	any
+	field	curr_room
+	line	49
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	51
+	colm	7
+	synt	if
+	mark0
+	mark	L3
+	pnull
+	var	7
+	line	51
+	colm	19
+	synt	any
+	field	setPos
+	var	1
+	pnull
+	var	2
+	real	0
+	line	51
+	colm	33
+	synt	any
+	plus
+	var	3
+	line	51
+	colm	26
+	synt	any
+	invoke	3
+	unmark
+	efail
+lab L3
+	pnull
+	unmark
+	var	8
+	str	1
+	line	52
+	colm	15
+	synt	any
+	invoke	1
+	line	51
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	11
+	synt	any
+	field	lx
+	int	2
+	line	54
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	11
+	synt	any
+	field	lz
+	pnull
+	int	3
+	line	55
+	colm	16
+	synt	any
+	neg
+	line	55
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	9
+	line	56
+	colm	12
+	synt	any
+	field	set_label
+	line	56
+	colm	22
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	9
+	line	57
+	colm	12
+	synt	any
+	field	write_to_chat_win
+	str	4
+	pnull
+	var	1
+	line	57
+	colm	49
+	synt	any
+	nonnull
+	str	5
+	pnull
+	var	2
+	line	57
+	colm	57
+	synt	any
+	nonnull
+	str	5
+	pnull
+	var	3
+	line	57
+	colm	66
+	synt	any
+	nonnull
+	str	6
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	30
+	synt	any
+	field	lookx
+	line	58
+	colm	25
+	synt	any
+	nonnull
+	str	5
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	46
+	synt	any
+	field	looky
+	line	58
+	colm	41
+	synt	any
+	nonnull
+	str	5
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	62
+	synt	any
+	field	lookz
+	line	58
+	colm	57
+	synt	any
+	nonnull
+	str	7
+	line	57
+	colm	30
+	synt	any
+	invoke	13
+	unmark
+lab L7
+	mark	L8
+	line	59
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	6
+	line	59
+	colm	10
+	synt	any
+	nonnull
+	pnull
+	var	7
+	line	59
+	colm	29
+	synt	any
+	field	curr_room
+	line	59
+	colm	19
+	synt	any
+	neqv
+	unmark
+	pnull
+	var	6
+	line	59
+	colm	52
+	synt	any
+	field	changeroom
+	pnull
+	var	7
+	line	59
+	colm	69
+	synt	any
+	field	curr_room
+	line	59
+	colm	63
+	synt	any
+	invoke	1
+	line	59
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	mark	L9
+	line	62
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	10
+	line	62
+	colm	9
+	synt	any
+	nonnull
+	line	62
+	colm	7
+	synt	any
+	size
+	int	3
+	line	62
+	colm	17
+	synt	any
+	numgt
+	unmark
+	mark	L10
+	line	63
+	colm	8
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	line	63
+	colm	11
+	synt	any
+	nonnull
+	pnull
+	pnull
+	var	10
+	int	3
+	line	63
+	colm	24
+	synt	any
+	subsc
+	line	63
+	colm	27
+	synt	any
+	field	miny
+	line	63
+	colm	16
+	synt	any
+	numlt
+	unmark
+	var	8
+	str	8
+	line	63
+	colm	43
+	synt	any
+	invoke	1
+	line	63
+	colm	8
+	synt	endif
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	5
+	int	3
+	line	64
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	line	65
+	colm	8
+	synt	every
+	mark0
+	pnull
+	var	4
+	var	11
+	var	10
+	line	65
+	colm	22
+	synt	any
+	invoke	1
+	line	65
+	colm	16
+	synt	any
+	asgn
+	pop
+	mark0
+	line	66
+	colm	12
+	synt	if
+	mark0
+	pnull
+	var	3
+	pnull
+	pnull
+	var	10
+	var	4
+	line	66
+	colm	28
+	synt	any
+	subsc
+	line	66
+	colm	31
+	synt	any
+	field	miny
+	line	66
+	colm	19
+	synt	any
+	numge
+	unmark
+	pnull
+	var	5
+	var	4
+	line	66
+	colm	56
+	synt	any
+	asgn
+	line	66
+	colm	12
+	synt	endif
+	unmark
+lab L13
+	efail
+lab L14
+	line	65
+	colm	8
+	synt	endevery
+	unmark
+lab L12
+	pnull
+	pnull
+	var	9
+	line	68
+	colm	13
+	synt	any
+	field	floormap
+	pnull
+	pnull
+	var	10
+	var	5
+	line	68
+	colm	32
+	synt	any
+	subsc
+	line	68
+	colm	47
+	synt	any
+	field	filepath
+	line	68
+	colm	23
+	synt	any
+	asgn
+	line	62
+	colm	4
+	synt	endif
+	unmark
+lab L9
+	pnull
+	line	70
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera_reset
+	local	0,001000,self
+	con	0,002000,1,3
+	declend
+	line	73
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	74
+	colm	11
+	synt	any
+	field	view_mode
+	int	0
+	line	74
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	75
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera_toggle_viewmode
+	local	0,001000,self
+	local	1,000040,been_here_before
+	local	2,000000,world
+	con	0,002000,1,1
+	con	1,002000,1,3
+	con	2,002000,1,2
+	con	3,010000,12,155,157,166,145,137,146,157,162,167,141,162,144
+	con	4,004000,0.01
+	declend
+	line	78
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	12
+	synt	any
+	field	avatar
+	line	80
+	colm	7
+	synt	any
+	null
+	pnull
+	pnull
+	var	2
+	line	80
+	colm	26
+	synt	any
+	field	TAvatars
+	pnull
+	var	2
+	line	80
+	colm	41
+	synt	any
+	field	userId
+	line	80
+	colm	35
+	synt	any
+	subsc
+	line	80
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	81
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	15
+	synt	any
+	field	avatar
+	line	81
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L3
+	line	82
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	82
+	colm	13
+	synt	any
+	null
+	int	0
+	line	82
+	colm	31
+	synt	any
+	asgn
+	unmark
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	45
+	synt	any
+	field	avatar
+	line	82
+	colm	52
+	synt	any
+	field	render
+	line	82
+	colm	59
+	synt	any
+	invoke	0
+	line	82
+	colm	10
+	synt	endif
+	unmark
+lab L3
+	mark	L4
+	line	83
+	colm	10
+	synt	ifelse
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	17
+	synt	any
+	field	view_mode
+	int	1
+	line	83
+	colm	27
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	39
+	synt	any
+	field	view_mode
+	int	2
+	line	83
+	colm	49
+	synt	any
+	asgn
+	goto	L6
+lab L5
+	line	84
+	colm	15
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	84
+	colm	22
+	synt	any
+	field	view_mode
+	int	2
+	line	84
+	colm	32
+	synt	any
+	numeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	84
+	colm	44
+	synt	any
+	field	view_mode
+	int	1
+	line	84
+	colm	54
+	synt	any
+	asgn
+	line	84
+	colm	15
+	synt	endif
+lab L6
+	line	83
+	colm	10
+	synt	endifelse
+	unmark
+lab L4
+	pnull
+	pnull
+	var	0
+	line	85
+	colm	14
+	synt	any
+	field	avatar
+	line	85
+	colm	21
+	synt	any
+	field	actions
+	str	3
+	real	4
+	line	85
+	colm	29
+	synt	any
+	invoke	2
+	line	81
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	87
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera_initially
+	local	0,001000,self
+	con	0,002000,1,0
+	declend
+	line	90
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	9
+	synt	any
+	field	x
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	17
+	synt	any
+	field	y
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	25
+	synt	any
+	field	z
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	33
+	synt	any
+	field	lookx
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	45
+	synt	any
+	field	looky
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	57
+	synt	any
+	field	lookz
+	int	0
+	line	91
+	colm	63
+	synt	any
+	asgn
+	line	91
+	colm	51
+	synt	any
+	asgn
+	line	91
+	colm	39
+	synt	any
+	asgn
+	line	91
+	colm	27
+	synt	any
+	asgn
+	line	91
+	colm	19
+	synt	any
+	asgn
+	line	91
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	92
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	93
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camera
+	local	0,001000,x
+	local	1,001000,y
+	local	2,001000,z
+	local	3,001000,lookx
+	local	4,001000,looky
+	local	5,001000,lookz
+	local	6,001000,lx
+	local	7,001000,lz
+	local	8,001000,angle
+	local	9,001000,avatar
+	local	10,001000,view_mode
+	local	11,001000,oldx
+	local	12,001000,oldy
+	local	13,001000,oldz
+	local	14,001000,oldlx
+	local	15,001000,oldly
+	local	16,001000,oldlz
+	local	17,001000,need_Eye_refresh
+	local	18,000020,self
+	local	19,000020,clone
+	local	20,000000,Camera__oprec
+	local	21,000000,Camerainitialize
+	local	22,000000,Camera__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	20
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	21
+	line	8
+	colm	42
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	18
+	var	22
+	line	10
+	colm	25
+	synt	any
+	keywd	null
+	var	20
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	line	10
+	colm	24
+	synt	any
+	invoke	20
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	18
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	18
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	18
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	18
+	line	12
+	colm	21
+	synt	any
+	invoke	1
+	line	12
+	colm	28
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	30
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	18
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Camerainitialize
+	local	0,000000,Camera__oprec
+	local	1,000000,Camera__methods
+	local	2,000000,Camera_eye
+	local	3,000000,Camera_Eye_refresh
+	local	4,000000,Camera_teleport
+	local	5,000000,Camera_reset
+	local	6,000000,Camera_toggle_viewmode
+	local	7,000000,Camera_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	17
+	colm	43
+	synt	any
+	invoke	6
+	line	17
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

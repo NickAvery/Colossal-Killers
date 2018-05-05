@@ -1,0 +1,22 @@
+<em>Editor's note: the introductory prose for this chapter is really just a
+placeholder so far, each chapter will be expanded to include design
+documentation in such a section.  This prose will be added in CVS in a
+cve/doc/src/index.html and subdirectory index.html files.</em>
+
+<p>
+The client/ directory contains the client consisting of two executables,
+currently named cve and nsh.  Although it is the default program
+you run in order to run the CVE, cve is actually just a "patcher" program,
+capable of downloading updated client files from a website.  Unfortunately,
+it is a pain to maintain the patcher's website with constantly updated files,
+and the patcher will not be a wise tool to enable by default until relevant
+files have reasonable timestamp and version number checking in place.
+The cve launcher  has another role: selecting what server you are logging
+into, by hostname:port or ip#:port.
+<p>
+
+nsh (actually named nsh.cmd) is the actual CVE client program.  It is a .cmd
+file to document clearly that it does not include the Unicon virtual machine,
+which is downloadable/patchable separately.  nsh links extensively to other
+directories, specifically the model/ and ide/ directories.
+<p>

@@ -1,0 +1,155 @@
+#
+# Virtual Pen/marker
+#
+
+class Pen : ToolsUtilities(
+   color,
+   defaultOwner,
+   dle1,
+   dle2
+   )
+
+   method reRender(render_level)
+      render(render_level)
+      #write("avatarSizeX :=", avatarSizeX)
+      #write("avatarPartX :=", avatarPartX)
+      #write("avatarObjX :=", avatarObjX)
+      setSize(avatarSizeX,avatarSizeY,avatarSizeZ)
+      setPosPart(avatarPartX,avatarPartY,avatarPartZ)
+      setPosObj(avatarObjX,avatarObjY,avatarObjZ)
+   end
+
+   method render(render_level)
+
+   if \dle1 then {
+      if render_level=0 then { # 'derender'
+         dle1.skip := 1
+         }
+      else if render_level=1 then { # 'minimal'
+         dle1.skip := 0
+         dle2.skip := 1
+         }
+      else {
+         dle1.skip := 0
+         dle2.skip := 0
+         }
+      }
+   else {
+      full_pen_detail()
+      render(render_level)
+      }
+   end
+
+   method full_pen_detail()
+   local win3d
+   win3d := !gui::dispatcher.subwins
+
+      dle1 := WSection(win3d, "Pen1_0")
+      PushMatrix()
+       sca := Scale(1,1,1)
+       mov := Translate(x,y,z)
+       rot := Rotate(0,0,1,0)
+
+       # SET POSITION PART#
+       PushMatrix()
+            mv := Translate(0,0,0)
+            romx := Rotate(0,1,0,0)
+            romy := Rotate(0,0,1,0)
+            romz := Rotate(0,0,0,1)
+            # SET POSITION OBJECT#
+            PushMatrix()
+               mvDraw := Translate(0,0,0)
+               rox := Rotate(origXangle,1,0,0)
+               roy := Rotate(origYangle,0,1,0)
+               roz := Rotate(origZangle,0,0,1)
+               WAttrib("texmode=off")
+               Fg("white")
+
+               # Upper part
+               DrawCylinder(0,0,0,0.35,0.035,0.035)
+   
+        dle2 := WSection(win3d, "Pen2")
+                  #Lower part
+                  DrawCylinder(0,0.35,0,0.09,0.035,0.015)
+                  # Point
+                  WAttrib("fg="||color)
+                  DrawCylinder(0,0.44,0,0.05,0.015,0.003)
+
+                 # Top
+                 DrawCylinder(0,-0.09,0,0.09,0.035,0.035)
+                 # Closing for Top
+                 DrawSphere(0,-0.09,0,0.035)
+
+        # dle2
+        WSection(win3d)
+
+               WAttrib("texmode=on")
+            PopMatrix()
+       PopMatrix()
+    PopMatrix()
+    # dle1
+    WSection(win3d)
+   end
+
+   method allows(posx,posy,posz)
+      #write("X: ", posx, " | ", x)
+      #write("Y: ", posy, " | ", y)
+      #write("Z: ", posz, " | ", z)
+      #write("possessed for pen=",possessed)
+
+      if x-1 <= posx <= x+1 & z-1 <= posz <= z+1 then {
+         isMoving := 1
+         return 1
+         }
+      else
+         return 0
+   end
+
+   method unpossessed(posx,posy,posz)
+      #write("entered unpossessed method")
+      mov.x := posx
+      x := posx
+      #write("x:=", mov.x)
+      mov.y := 0
+      mov.z := posz
+      z := posz
+      #write("z:=", mov.z)
+      mv.x := 0
+      mv.y := 0
+      mv.z := 0
+      mvDraw.x := 0
+      mvDraw.y := 0
+      mvDraw.z := 0
+      romx.angle := 0
+      romy.angle := 0
+      romz.angle := 0
+      rox.angle := origXangle
+      roy.angle := origYangle
+      roz.angle := origZangle
+      owner := defaultOwner
+      possessed := 0
+   end
+
+initially(opMode,ID,coords,col,A)
+   self.opMode := opMode
+   /Id := ID
+   #write("ID  ", self.Id)
+   /x := coords[1]
+   /y := coords[2]
+   /z := coords[3]
+   color := col
+   /color := "blue"
+   /origXangle := 90
+   origYangle := A
+   /origYangle := 0
+   /origZangle := 0
+   /movable := 1
+   /isMoving := 0
+   /defaultOwner := "nobody"
+   /owner := defaultOwner
+   /name :=  "Pen"
+   /placedAt := "hand"
+   /cover := "pencil.gif"
+   /render_set := set()
+   /possessed := 0
+end

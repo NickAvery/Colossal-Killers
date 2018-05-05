@@ -1,0 +1,796 @@
+version	U12.1.00
+uid	portHandler.u1-1523917586-0
+record	portHandler__state,7
+	0,__s
+	1,__m
+	2,port_range
+	3,first_port
+	4,port_list
+	5,avatar_port_udp
+	6,last_used_port
+record	portHandler__methods,5
+	0,getAvatarPort
+	1,getNextPort
+	2,releasePort
+	3,init_ports
+	4,initially
+impl	error
+global	10
+	0,000005,portHandler_getAvatarPort,1
+	1,000005,portHandler_getNextPort,1
+	2,000005,portHandler_releasePort,2
+	3,000005,portHandler_init_ports,1
+	4,000005,portHandler_initially,1
+	5,000011,portHandler__state,7
+	6,000011,portHandler__methods,5
+	7,000001,portHandler__oprec,0
+	8,000005,portHandler,5
+	9,000005,portHandlerinitialize,0
+
+proc portHandler_getAvatarPort
+	local	0,001000,self
+	declend
+	filen	portHandler.icn
+	line	6
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	7
+	colm	18
+	synt	any
+	field	avatar_port_udp
+	line	7
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	8
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandler_getNextPort
+	local	0,001000,self
+	local	1,000020,i
+	con	0,002000,1,1
+	con	1,002000,1,0
+	declend
+	line	10
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	17
+	colm	16
+	synt	any
+	field	last_used_port
+	int	0
+	line	17
+	colm	31
+	synt	any
+	plus
+	line	17
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+lab L3
+	line	18
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	22
+	synt	any
+	field	first_port
+	pnull
+	var	0
+	line	18
+	colm	38
+	synt	any
+	field	port_range
+	line	18
+	colm	33
+	synt	any
+	plus
+	line	18
+	colm	15
+	synt	any
+	numlt
+	unmark
+	mark	L3
+	line	20
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	20
+	colm	17
+	synt	any
+	field	port_list
+	var	1
+	line	20
+	colm	27
+	synt	any
+	subsc
+	int	1
+	line	20
+	colm	30
+	synt	any
+	lexeq
+	unmark
+	mark	L6
+	pnull
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	17
+	synt	any
+	field	port_list
+	var	1
+	line	22
+	colm	27
+	synt	any
+	subsc
+	int	0
+	line	22
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	17
+	synt	any
+	field	last_used_port
+	var	1
+	line	23
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	var	1
+	line	24
+	colm	13
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	var	1
+	dup
+	int	0
+	line	25
+	colm	14
+	synt	any
+	plus
+	asgn
+	line	20
+	colm	10
+	synt	endif
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	18
+	colm	7
+	synt	endwhile
+	unmark
+lab L2
+	mark	L10
+	pnull
+	var	1
+	pnull
+	var	0
+	line	30
+	colm	16
+	synt	any
+	field	first_port
+	line	30
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+lab L12
+	line	31
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	1
+	pnull
+	var	0
+	line	31
+	colm	21
+	synt	any
+	field	last_used_port
+	line	31
+	colm	15
+	synt	any
+	numlt
+	unmark
+	mark	L12
+	line	33
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	33
+	colm	17
+	synt	any
+	field	port_list
+	var	1
+	line	33
+	colm	27
+	synt	any
+	subsc
+	int	1
+	line	33
+	colm	30
+	synt	any
+	lexeq
+	unmark
+	mark	L15
+	pnull
+	pnull
+	pnull
+	var	0
+	line	35
+	colm	17
+	synt	any
+	field	port_list
+	var	1
+	line	35
+	colm	27
+	synt	any
+	subsc
+	int	0
+	line	35
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	var	1
+	line	36
+	colm	13
+	synt	any
+	pret
+lab L17
+	synt	any
+	pfail
+	unmark
+lab L16
+	pnull
+	var	1
+	dup
+	int	0
+	line	37
+	colm	14
+	synt	any
+	plus
+	asgn
+	line	33
+	colm	10
+	synt	endif
+lab L13
+	unmark
+	goto	L12
+lab L14
+	line	31
+	colm	7
+	synt	endwhile
+	unmark
+lab L11
+	pnull
+	line	40
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandler_releasePort
+	local	0,001000,self
+	local	1,001000,num
+	con	0,002000,1,0
+	declend
+	line	45
+	colm	11
+	synt	any
+	mark	L1
+	line	47
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	47
+	colm	14
+	synt	any
+	field	first_port
+	var	1
+	line	47
+	colm	25
+	synt	any
+	numle
+	pnull
+	pnull
+	var	0
+	line	47
+	colm	35
+	synt	any
+	field	first_port
+	pnull
+	var	0
+	line	47
+	colm	51
+	synt	any
+	field	port_range
+	line	47
+	colm	46
+	synt	any
+	plus
+	line	47
+	colm	30
+	synt	any
+	numlt
+	unmark
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	14
+	synt	any
+	field	port_list
+	var	1
+	line	48
+	colm	24
+	synt	any
+	subsc
+	int	0
+	line	48
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	1
+	line	49
+	colm	10
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	line	47
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	51
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandler_init_ports
+	local	0,001000,self
+	con	0,002000,1,1
+	con	1,002000,1,0
+	declend
+	line	53
+	colm	11
+	synt	any
+	mark	L1
+	line	54
+	colm	7
+	synt	every
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	17
+	synt	any
+	field	port_list
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	32
+	synt	any
+	field	first_port
+	pnull
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	51
+	synt	any
+	field	first_port
+	pnull
+	var	0
+	line	54
+	colm	67
+	synt	any
+	field	port_range
+	line	54
+	colm	62
+	synt	any
+	plus
+	int	0
+	line	54
+	colm	78
+	synt	any
+	minus
+	push1
+	line	54
+	colm	44
+	synt	any
+	toby
+	line	54
+	colm	27
+	synt	any
+	subsc
+	int	1
+	line	54
+	colm	82
+	synt	any
+	asgn
+	pop
+lab L2
+	efail
+lab L3
+	line	54
+	colm	7
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	55
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandler_initially
+	local	0,001000,self
+	local	1,000000,FIRST_PORT
+	local	2,000000,table
+	con	0,002000,4,4499
+	con	1,002000,2,10
+	con	2,002000,1,0
+	declend
+	line	57
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	11
+	synt	any
+	field	avatar_port_udp
+	int	0
+	line	58
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	11
+	synt	any
+	field	port_range
+	int	1
+	line	59
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	11
+	synt	any
+	field	first_port
+	var	1
+	line	60
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	11
+	synt	any
+	field	last_used_port
+	pnull
+	var	0
+	line	61
+	colm	32
+	synt	any
+	field	first_port
+	line	61
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	62
+	colm	11
+	synt	any
+	field	port_list
+	var	2
+	int	2
+	line	62
+	colm	28
+	synt	any
+	invoke	1
+	line	62
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	0
+	line	63
+	colm	11
+	synt	any
+	field	init_ports
+	line	63
+	colm	22
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	mark	L7
+	mark	L8
+	pnull
+	line	64
+	colm	7
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	65
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandler
+	local	0,001000,port_range
+	local	1,001000,first_port
+	local	2,001000,port_list
+	local	3,001000,avatar_port_udp
+	local	4,001000,last_used_port
+	local	5,000020,self
+	local	6,000020,clone
+	local	7,000000,portHandler__oprec
+	local	8,000000,portHandlerinitialize
+	local	9,000000,portHandler__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	7
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	8
+	line	8
+	colm	52
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	5
+	var	9
+	line	10
+	colm	30
+	synt	any
+	keywd	null
+	var	7
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	line	10
+	colm	29
+	synt	any
+	invoke	7
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	5
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	5
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	5
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	5
+	line	12
+	colm	21
+	synt	any
+	invoke	1
+	line	12
+	colm	28
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	30
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	5
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc portHandlerinitialize
+	local	0,000000,portHandler__oprec
+	local	1,000000,portHandler__methods
+	local	2,000000,portHandler_getAvatarPort
+	local	3,000000,portHandler_getNextPort
+	local	4,000000,portHandler_releasePort
+	local	5,000000,portHandler_init_ports
+	local	6,000000,portHandler_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	line	17
+	colm	53
+	synt	any
+	invoke	5
+	line	17
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

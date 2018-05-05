@@ -1,0 +1,177 @@
+<TITLE>The CVE Collaborative Virtual Environment</TITLE>
+<body bgcolor="#008844" link="#FFFF60" vlink="#40FFFF" text="#FFFFFF">
+<font size=3>
+
+<table>
+<tr>
+<th>
+<table border background="../unicon/granite8.gif" bgcolor=#666666>
+<tr><th><A href="people.html">People</A><br>
+	<A href="graphics/">Graphics</A><br>
+        <A href="edu/">Education</A><br>
+        <A href="screenshots/">Screenshots</A><br>
+        <A href="cve/">Virtual Environment</A><br>
+        <A href="ide/">Collaborative IDE</A><br>
+	<A href="network/">Network</A><br>
+	<A href="whiteboard/">Whiteboard</A><br>
+</table>
+<th>
+<center>
+<img src="cve_128.png"><br>
+<font size=6><b>&nbsp;&nbsp; a Collaborative Virtual Environment &nbsp;&nbsp; <br>
+ </b></font>
+</center>
+<th>
+<table border background="../unicon/granite8.gif" bgcolor=#666666>
+<tr><th><A href="papers">Documents</A><br>
+        <A href="http://sf.net/projects/cve/files/">Downloads</A><br>
+	<A href="format.html">Format Rules</A><br>
+	<A href="#virtualcs">Virtual Departments</A> <br>
+        <A href="#mailinglist">Mailing List</A> <br>
+	<A href="#whatsinaname">What's in a Name?</A>
+</table>
+</table>
+<p>
+
+<b><i>
+CVE is an open-source, multiplatform system for building low-cost
+collaborative virtual environments. Its primary support and development
+is taking place at the 
+<A href="http://www.uidaho.edu">University of Idaho</A>
+<A href="http://www.cs.uidaho.edu">Department of Computer Science</A>.
+CVE started life at
+<A href="http://www.cs.nmsu.edu/~jeffery/vcsc/">New Mexico State University</A>
+with support from NSF grant 0402572.
+</i></b>
+
+<p>
+
+<h4> What's New? </h4>
+
+<ul>
+<li> Concurrency brings dramatic improvements to CVE client and server for folks
+     with multicore machines. This is a result of Jafar Al Gharaibeh's Ph.D.
+     research (July 2012).
+<li> UI's new aggressive firewall policies shut off our virtual.cs.uidaho.edu
+     (primary server's)
+     accessibility from off campus in early 2012. We've moved to a temporary
+     host server and are evaluating new server home alternatives.
+</ul>
+
+<h4> Project <A href="todo.html">To Do</A> List </h4>
+
+<a name="virtualcs">
+<font size=5> <li> Virtual Departments </font>
+
+<p>
+
+We want to enable you to build virtual editions
+of your academic or organizational units.  The CVE distributions
+so far include the <A href="nmsucsdept.gif">NMSU CS department</A> within
+<A href="http://www.nmsu.edu/General/Maps/buildings/science.html">Science Hall</A> and the University of Idaho CS Department in the
+Janssen Engineering Building.
+<p>
+
+The Facilities Office at most colleges and universities have CAD data files
+with more accurate representations of buildings. These help
+a Lot if you can get them, however, they are often not public for security
+reasons.
+CVE enables you to do a virtual CS department with less, starting from
+floor plans.  Often you do not need to model the entire building. For example,
+at NMSU we are mainly interested in the <a href="sh1.gif">1st Floor</A>,
+while at Idaho we needed portions of every storey in the building.
+<p>
+
+<A name="virtualplease">
+Before modeling an entire building, you may want to model just a single room
+to get the hang of it.
+CVE's first room was NMSU's Programming
+Languages, Environments, and Automated Software Engineering Lab,
+located in Science Hall Room 167, a 12'x20' room
+(ceiling approximately 9' high) with a whiteboard, 4-5 workstations, and
+a printer.  This demo went through many revisions before expanding to a
+department-wide demo.
+<p>
+
+
+<A name="mailinglist">
+<font size=5><li>  Mailing List: </font>
+The cve-group mailing list is a primary source for questions, answers, and
+discussion about CVE. To <A href="mailto:cve-group-request@lists.sourceforge.net?subject=subscribe">subscribe</A>
+or  <A href="mailto:cve-group-request@lists.sourceforge.net?subject=unsubscribe">unsubscribe</A> send a message to cve-group-request@lists.sourceforge.net with your request.
+<p>
+
+<a name="platformrequirements">
+<font size=5><li> Platform Requirements: </font>
+
+CVE requires a reasonably fast OpenGL implementation in order to run
+well. Don't expect great performance on machines with integrated graphics
+or software OpenGL implementations. You may need to install drivers
+to get hardware acceleration for good OpenGL performance. Some operating
+systems seem to have crippled OpenGL deliberately, such as Windows Vista.
+We have tried hard to make CVE run as well as possible on available
+hardware, such as customizing it for a CS summer camp on a room full of
+integrated graphics laptops at NMSU.
+
+<p>
+
+<blockquote>
+Running on Vista or Windows 7?  You may need to
+<A href="ddc-win7.png">disable desktop composition</A>.
+</blockquote>
+
+<!-- <li> CVE <A href="dist/cve-mac.dmg">Intel Mac OSX 10.5 X11 binaries</A> of 6/16/09
+<A href="http://www2.cs.uidaho.edu/~jeffery/cve-mac.dmg">(Idaho mirror)</A> -->
+</ul>
+
+<p>
+
+<font size=5><li> CVE SVN Source Distribution</font>
+<p>
+
+CVE is free to everyone, under the GPL. Help yourself to the public
+distributions, which are not claimed to be finished or polished.
+To download and run CVE, follow these instructions:
+<ul>
+<li> Download and install the Unicon programming language from
+     <A href="http://unicon.org">unicon.org</A>.  You may have
+     to install some 3D (OpenGL or Mesa) development packages
+     containing header files and libraries if you need to build
+     Unicon from source and want it to build a working CVE client.
+<li> Obtain a SVN client, if you need one.  Although graphical SVN
+     clients like Tortoise exist, we recommend command line versions
+     due to occasional problems we have encountered.
+<li> Execute
+<pre>
+  svn checkout https://svn.code.sf.net/p/cve/code/trunk/cve
+</pre>
+This will create a subdirectory cve under
+whatever directory you do it from, so you may want to "cd" somewhere first.
+<li> cd into cve subdirectory you have just checked out
+<li> type "make".  This assumes you have a good working "make" or "make.exe" on your path
+<li> cd into bin subdirectory
+<li> type "./cve" (Linux/Unix/MacOS) or "cve" (Windows)
+</ul>
+<p>
+
+We welcome source code corrections, bug reports, and offers of collaboration.
+<p>
+
+<a name="whatsinaname">
+<font size=5> What's in a Name? </font>
+<p>
+
+CVE has gone through a few names, it was once "nsh", standing for
+"New Science Hall", or perhaps
+"new shell", since the collaborative virtual environment we are building
+will eventually constitute an entire working environment.  Then it was
+Unicron, playing on the name of its underlying implementation language
+(Unicon). For awhile
+we wanted to call it VIEW.  But ultimately these other names either are
+other folks' properties or don't fit us perfectly.  CVE is a generic term
+for collaborative virtual environment and we do not claim it for ourselves,
+but it was available on source forge and is a good fit, so we took it.
+
+</b>
+</font>
+</body>

@@ -1,0 +1,2327 @@
+version	U12.1.00
+uid	logger.u1-1523917584-0
+record	Logger__state,7
+	0,__s
+	1,__m
+	2,out
+	3,log_level
+	4,logfile
+	5,start_time
+	6,watch_list
+record	Logger__methods,10
+	0,subscribe
+	1,unsubscribe
+	2,logit
+	3,timestamp
+	4,terminate
+	5,getUptime
+	6,isMember
+	7,logUserActivity
+	8,logUserActivitySummary
+	9,initially
+impl	error
+global	15
+	0,000005,Logger_subscribe,3
+	1,000005,Logger_unsubscribe,2
+	2,000005,Logger_logit,-2
+	3,000005,Logger_timestamp,1
+	4,000005,Logger_terminate,1
+	5,000005,Logger_getUptime,1
+	6,000005,Logger_isMember,3
+	7,000005,Logger_logUserActivity,3
+	8,000005,Logger_logUserActivitySummary,3
+	9,000005,Logger_initially,2
+	10,000011,Logger__state,7
+	11,000011,Logger__methods,10
+	12,000001,Logger__oprec,0
+	13,000005,Logger,1
+	14,000005,Loggerinitialize,0
+
+proc Logger_subscribe
+	local	0,001000,self
+	local	1,001000,sock
+	local	2,001000,ip
+	local	3,000000,put
+	con	0,010000,38,163,165,142,163,143,162,151,142,145,050,051,072,040,141,144,144,151,156,147,040,154,157,147,040,154,151,163,164,145,156,145,162,040,146,162,157,155,040
+	declend
+	filen	logger.icn
+	line	9
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	10
+	colm	11
+	synt	any
+	field	logit
+	pnull
+	str	0
+	var	2
+	line	10
+	colm	58
+	synt	any
+	cat
+	line	10
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	var	3
+	pnull
+	var	0
+	line	11
+	colm	15
+	synt	any
+	field	watch_list
+	var	1
+	line	11
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	pnull
+	line	12
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_unsubscribe
+	local	0,001000,self
+	local	1,001000,sock
+	local	2,000020,index
+	local	3,000000,delete
+	con	0,010000,36,165,156,163,165,142,163,143,162,151,142,145,050,051,072,040,162,145,155,157,166,151,156,147,040,154,157,147,040,154,151,163,164,145,156,145,162
+	con	1,010000,39,165,156,163,165,142,163,143,162,151,142,145,050,051,072,040,165,163,145,162,040,156,157,164,040,151,156,040,154,157,147,040,154,151,163,164,145,156,145,162
+	declend
+	line	17
+	colm	11
+	synt	any
+	mark	L1
+	line	20
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	20
+	colm	23
+	synt	any
+	field	isMember
+	pnull
+	var	0
+	line	20
+	colm	37
+	synt	any
+	field	watch_list
+	var	1
+	line	20
+	colm	32
+	synt	any
+	invoke	2
+	line	20
+	colm	16
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	3
+	pnull
+	var	0
+	line	21
+	colm	21
+	synt	any
+	field	watch_list
+	var	2
+	line	21
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	0
+	line	22
+	colm	14
+	synt	any
+	field	logit
+	str	0
+	line	22
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	line	23
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	line	20
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L5
+	pnull
+	var	0
+	line	25
+	colm	11
+	synt	any
+	field	logit
+	str	1
+	line	25
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	line	26
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	27
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_logit
+	local	0,001000,self
+	local	1,001000,msg
+	local	2,000020,message
+	local	3,000020,log_message
+	local	4,000020,watcher
+	local	5,000000,write
+	con	0,010000,0
+	con	1,010000,4,143,166,145,144
+	declend
+	line	32
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	str	0
+	line	33
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	35
+	colm	11
+	synt	every
+	mark0
+	pnull
+	var	2
+	dup
+	pnull
+	var	1
+	line	35
+	colm	30
+	synt	any
+	bang
+	line	35
+	colm	25
+	synt	any
+	cat
+	asgn
+	pop
+lab L3
+	efail
+lab L4
+	line	35
+	colm	11
+	synt	endevery
+	unmark
+lab L2
+	mark	L5
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	line	37
+	colm	26
+	synt	any
+	field	timestamp
+	line	37
+	colm	36
+	synt	any
+	invoke	0
+	var	2
+	line	37
+	colm	38
+	synt	any
+	cat
+	line	37
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	39
+	colm	7
+	synt	if
+	mark0
+	mark	L7
+	pnull
+	line	39
+	colm	11
+	synt	any
+	keywd	progname
+	str	1
+	line	39
+	colm	21
+	synt	any
+	eqv
+	line	39
+	colm	33
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	pnull
+	pnull
+	var	0
+	line	39
+	colm	40
+	synt	any
+	field	out
+	line	39
+	colm	48
+	synt	any
+	keywd	output
+	line	39
+	colm	44
+	synt	any
+	neqv
+lab L8
+	unmark
+	var	5
+	pnull
+	var	0
+	line	41
+	colm	18
+	synt	any
+	field	out
+	var	3
+	line	41
+	colm	12
+	synt	any
+	invoke	2
+	line	39
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L9
+	line	43
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	43
+	colm	29
+	synt	any
+	field	watch_list
+	line	43
+	colm	24
+	synt	any
+	bang
+	line	43
+	colm	21
+	synt	any
+	asgn
+	pop
+	mark0
+	var	5
+	var	4
+	var	3
+	line	44
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	efail
+lab L11
+	line	43
+	colm	7
+	synt	endevery
+	unmark
+lab L9
+	mark	L12
+	mark	L13
+	var	2
+	line	46
+	colm	7
+	synt	any
+	pret
+lab L13
+	synt	any
+	pfail
+	unmark
+lab L12
+	pnull
+	line	47
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_timestamp
+	local	0,001000,self
+	con	0,010000,1,050
+	con	1,010000,1,040
+	con	2,010000,2,051,040
+	declend
+	line	52
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	pnull
+	str	0
+	line	53
+	colm	22
+	synt	any
+	keywd	date
+	line	53
+	colm	19
+	synt	any
+	cat
+	str	1
+	line	53
+	colm	28
+	synt	any
+	cat
+	line	53
+	colm	38
+	synt	any
+	keywd	clock
+	line	53
+	colm	35
+	synt	any
+	cat
+	str	2
+	line	53
+	colm	45
+	synt	any
+	cat
+	line	53
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	54
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_terminate
+	local	0,001000,self
+	local	1,000000,write
+	local	2,000000,close
+	con	0,010000,18,143,154,157,163,151,156,147,040,154,157,147,040,146,151,154,145,072,040
+	con	1,010000,45,123,145,163,163,151,157,156,040,105,156,144,040,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055
+	declend
+	line	59
+	colm	11
+	synt	any
+	mark	L1
+	line	60
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	14
+	synt	any
+	field	out
+	line	60
+	colm	22
+	synt	any
+	keywd	output
+	line	60
+	colm	18
+	synt	any
+	neqv
+	unmark
+	mark	L2
+	pnull
+	var	0
+	line	61
+	colm	14
+	synt	any
+	field	logit
+	pnull
+	str	0
+	pnull
+	var	0
+	line	61
+	colm	47
+	synt	any
+	field	logfile
+	line	61
+	colm	41
+	synt	any
+	cat
+	line	61
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	var	1
+	pnull
+	var	0
+	line	62
+	colm	20
+	synt	any
+	field	out
+	str	1
+	line	62
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	var	2
+	pnull
+	var	0
+	line	63
+	colm	20
+	synt	any
+	field	out
+	line	63
+	colm	15
+	synt	any
+	invoke	1
+	line	60
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	mark	L5
+	pnull
+	line	65
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	66
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_getUptime
+	local	0,001000,self
+	local	1,000020,elapsed_time
+	local	2,000020,days
+	local	3,000020,hours
+	local	4,000020,minutes
+	local	5,000020,seconds
+	local	6,000000,gettimeofday
+	con	0,002000,1,0
+	con	1,002000,2,60
+	con	2,002000,2,24
+	con	3,002000,4,3600
+	con	4,010000,17,125,156,151,143,162,157,156,144,040,165,160,164,151,155,145,072,040
+	con	5,010000,9,040,144,141,171,050,163,051,054,040
+	con	6,010000,10,040,150,157,165,162,050,163,051,054,040
+	con	7,010000,11,040,155,151,156,165,164,145,050,163,051,040
+	con	8,010000,7,040,163,145,143,050,163,051
+	declend
+	line	71
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	var	3
+	pnull
+	var	4
+	pnull
+	var	5
+	int	0
+	line	74
+	colm	43
+	synt	any
+	asgn
+	line	74
+	colm	32
+	synt	any
+	asgn
+	line	74
+	colm	21
+	synt	any
+	asgn
+	line	74
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	1
+	pnull
+	pnull
+	var	6
+	line	75
+	colm	35
+	synt	any
+	invoke	0
+	line	75
+	colm	37
+	synt	any
+	field	sec
+	pnull
+	var	0
+	line	75
+	colm	48
+	synt	any
+	field	start_time
+	line	75
+	colm	42
+	synt	any
+	minus
+	line	75
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	5
+	pnull
+	var	1
+	int	1
+	line	76
+	colm	31
+	synt	any
+	mod
+	line	76
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	78
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	int	1
+	line	78
+	colm	23
+	synt	any
+	numge
+	unmark
+	pnull
+	var	4
+	pnull
+	pnull
+	var	1
+	var	5
+	line	79
+	colm	34
+	synt	any
+	minus
+	int	1
+	line	79
+	colm	44
+	synt	any
+	div
+	line	79
+	colm	18
+	synt	any
+	asgn
+	line	78
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	81
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	1
+	line	81
+	colm	18
+	synt	any
+	numge
+	unmark
+	mark	L6
+	pnull
+	var	4
+	pnull
+	pnull
+	var	1
+	var	5
+	line	82
+	colm	35
+	synt	any
+	minus
+	int	1
+	line	82
+	colm	46
+	synt	any
+	mod
+	line	82
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L6
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	1
+	pnull
+	var	4
+	int	1
+	line	83
+	colm	43
+	synt	any
+	mult
+	line	83
+	colm	33
+	synt	any
+	minus
+	var	5
+	line	83
+	colm	48
+	synt	any
+	minus
+	pnull
+	int	1
+	int	1
+	line	83
+	colm	64
+	synt	any
+	mult
+	line	83
+	colm	59
+	synt	any
+	div
+	line	83
+	colm	16
+	synt	any
+	asgn
+	line	81
+	colm	7
+	synt	endif
+	unmark
+lab L5
+	mark	L7
+	line	86
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	3
+	int	2
+	line	86
+	colm	16
+	synt	any
+	numge
+	unmark
+	mark	L8
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	1
+	pnull
+	var	4
+	int	1
+	line	87
+	colm	43
+	synt	any
+	mult
+	line	87
+	colm	33
+	synt	any
+	minus
+	var	5
+	line	87
+	colm	48
+	synt	any
+	minus
+	pnull
+	int	1
+	int	1
+	line	87
+	colm	64
+	synt	any
+	mult
+	line	87
+	colm	59
+	synt	any
+	mod
+	line	87
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	pnull
+	var	1
+	pnull
+	var	3
+	int	2
+	line	88
+	colm	40
+	synt	any
+	mult
+	line	88
+	colm	32
+	synt	any
+	minus
+	pnull
+	var	4
+	int	1
+	line	88
+	colm	55
+	synt	any
+	mult
+	line	88
+	colm	45
+	synt	any
+	minus
+	var	5
+	line	88
+	colm	60
+	synt	any
+	minus
+	pnull
+	int	3
+	int	2
+	line	88
+	colm	76
+	synt	any
+	mult
+	line	88
+	colm	70
+	synt	any
+	div
+	line	88
+	colm	15
+	synt	any
+	asgn
+	line	86
+	colm	7
+	synt	endif
+	unmark
+lab L7
+	mark	L9
+	mark	L10
+	pnull
+	var	0
+	line	91
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	4
+	var	2
+	line	91
+	colm	44
+	synt	any
+	cat
+	str	5
+	line	91
+	colm	50
+	synt	any
+	cat
+	var	3
+	line	91
+	colm	63
+	synt	any
+	cat
+	str	6
+	line	91
+	colm	72
+	synt	any
+	cat
+	var	4
+	line	92
+	colm	28
+	synt	any
+	cat
+	str	7
+	line	92
+	colm	39
+	synt	any
+	cat
+	var	5
+	line	92
+	colm	56
+	synt	any
+	cat
+	str	8
+	line	92
+	colm	67
+	synt	any
+	cat
+	line	91
+	colm	24
+	synt	any
+	invoke	1
+	line	91
+	colm	7
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	93
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_isMember
+	local	0,001000,self
+	local	1,001000,L
+	local	2,001000,elem
+	local	3,000020,i
+	local	4,000000,key
+	declend
+	line	99
+	colm	11
+	synt	any
+	mark	L1
+	line	101
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	pnull
+	var	3
+	var	4
+	var	1
+	line	101
+	colm	20
+	synt	any
+	invoke	1
+	line	101
+	colm	14
+	synt	any
+	asgn
+	line	101
+	colm	11
+	synt	any
+	subsc
+	var	2
+	line	101
+	colm	25
+	synt	any
+	eqv
+	unmark
+	mark	L2
+	var	3
+	line	102
+	colm	10
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	101
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	103
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_logUserActivity
+	local	0,001000,self
+	local	1,001000,uid
+	local	2,001000,message
+	local	3,000020,fd
+	local	4,000020,logMsg
+	local	5,000020,aday
+	local	6,000020,fname
+	local	7,000020,m_afk
+	local	8,000020,afk_dur
+	local	9,000000,DAT
+	local	10,000000,datopen
+	local	11,000000,write
+	local	12,000000,close
+	local	13,000000,tab
+	local	14,000000,find
+	local	15,000000,move
+	local	16,000000,integer
+	con	0,010000,1,134
+	con	1,010000,5,165,163,145,162,163
+	con	2,010000,4,056,154,157,147
+	con	3,010000,2,167,141
+	con	4,010000,16,146,141,151,154,145,144,040,164,157,040,157,160,145,156,072,040
+	con	5,010000,9,114,157,147,147,145,144,040,111,156
+	con	6,010000,1,054
+	con	7,002000,1,1
+	con	8,010000,1,040
+	con	9,010000,16,141,166,141,151,154,141,142,151,154,151,164,171,056,154,157,147
+	con	10,010000,10,114,157,147,147,145,144,040,117,165,164
+	con	11,010000,16,141,146,153,137,141,143,164,151,166,151,164,171,056,154,157,147
+	con	12,010000,3,101,106,113
+	con	13,010000,1,072
+	con	14,002000,1,0
+	con	15,010000,15,040,114,157,147,147,145,144,040,157,165,164,040,141,164,040
+	con	16,010000,10,054,040,101,106,113,040,151,163,040,050
+	con	17,010000,1,051
+	con	18,010000,19,151,144,145,137,063,144,137,141,143,164,151,166,151,164,171,056,154,157,147
+	con	19,010000,2,063,104
+	con	20,010000,3,115,141,160
+	con	21,010000,6,105,144,151,164,157,162
+	con	22,010000,7,120,162,157,146,151,154,145
+	con	23,010000,4,127,141,154,154
+	declend
+	line	105
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	108
+	colm	22
+	synt	any
+	field	timestamp
+	line	108
+	colm	32
+	synt	any
+	invoke	0
+	var	2
+	line	108
+	colm	34
+	synt	any
+	cat
+	line	108
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	9
+	str	0
+	line	110
+	colm	19
+	synt	any
+	cat
+	str	1
+	line	110
+	colm	25
+	synt	any
+	cat
+	str	0
+	line	110
+	colm	35
+	synt	any
+	cat
+	var	1
+	line	110
+	colm	41
+	synt	any
+	cat
+	str	0
+	line	110
+	colm	47
+	synt	any
+	cat
+	var	1
+	line	110
+	colm	55
+	synt	any
+	cat
+	str	2
+	line	111
+	colm	14
+	synt	any
+	cat
+	line	110
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	3
+	mark	L4
+	var	10
+	var	6
+	str	3
+	line	113
+	colm	20
+	synt	any
+	invoke	2
+	line	113
+	colm	34
+	synt	any
+	esusp
+	goto	L5
+lab L4
+	mark	L6
+	pnull
+	var	0
+	line	114
+	colm	15
+	synt	any
+	field	logit
+	str	4
+	var	6
+	line	114
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L6
+	line	114
+	colm	48
+	synt	any
+	pfail
+lab L5
+	line	113
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L7
+	var	2
+	line	115
+	colm	15
+	synt	any
+	bscan
+	line	116
+	colm	10
+	synt	if
+	mark0
+	pnull
+	str	5
+	line	116
+	colm	13
+	synt	any
+	tabmat
+	unmark
+	var	11
+	var	3
+	line	116
+	colm	36
+	synt	any
+	invoke	1
+	line	116
+	colm	10
+	synt	endif
+	line	115
+	colm	15
+	synt	any
+	escan
+	unmark
+lab L7
+	mark	L8
+	var	11
+	var	3
+	var	4
+	line	118
+	colm	12
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	mark	L9
+	var	12
+	var	3
+	line	119
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	4
+	line	121
+	colm	17
+	synt	any
+	keywd	dateline
+	line	121
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	var	4
+	line	122
+	colm	14
+	synt	any
+	bscan
+	mark	L12
+	pnull
+	var	5
+	var	13
+	var	14
+	str	6
+	line	123
+	colm	25
+	synt	any
+	invoke	1
+	line	123
+	colm	20
+	synt	any
+	invoke	1
+	line	123
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L12
+	var	15
+	int	7
+	line	124
+	colm	13
+	synt	any
+	invoke	1
+	line	122
+	colm	14
+	synt	any
+	escan
+	unmark
+lab L11
+	mark	L13
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	5
+	str	8
+	line	126
+	colm	21
+	synt	any
+	cat
+	line	126
+	colm	28
+	synt	any
+	keywd	clock
+	line	126
+	colm	26
+	synt	any
+	cat
+	str	8
+	line	126
+	colm	34
+	synt	any
+	cat
+	var	2
+	line	126
+	colm	39
+	synt	any
+	cat
+	line	126
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	9
+	str	0
+	line	128
+	colm	19
+	synt	any
+	cat
+	str	1
+	line	128
+	colm	25
+	synt	any
+	cat
+	str	0
+	line	128
+	colm	35
+	synt	any
+	cat
+	var	1
+	line	128
+	colm	41
+	synt	any
+	cat
+	str	0
+	line	128
+	colm	47
+	synt	any
+	cat
+	str	9
+	line	128
+	colm	55
+	synt	any
+	cat
+	line	128
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	3
+	mark	L16
+	var	10
+	var	6
+	str	3
+	line	130
+	colm	20
+	synt	any
+	invoke	2
+	line	130
+	colm	34
+	synt	any
+	esusp
+	goto	L17
+lab L16
+	mark	L18
+	pnull
+	var	0
+	line	131
+	colm	15
+	synt	any
+	field	logit
+	str	4
+	var	6
+	line	131
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	line	131
+	colm	48
+	synt	any
+	pfail
+lab L17
+	line	130
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L19
+	line	132
+	colm	7
+	synt	if
+	mark0
+	var	14
+	mark	L20
+	str	5
+	line	132
+	colm	26
+	synt	any
+	esusp
+	goto	L21
+lab L20
+	str	10
+lab L21
+	var	2
+	line	132
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	var	11
+	var	3
+	var	4
+	line	133
+	colm	15
+	synt	any
+	invoke	2
+	line	132
+	colm	7
+	synt	endif
+	unmark
+lab L19
+	mark	L22
+	var	12
+	var	3
+	line	134
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	mark	L23
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	9
+	str	0
+	line	136
+	colm	19
+	synt	any
+	cat
+	str	1
+	line	136
+	colm	25
+	synt	any
+	cat
+	str	0
+	line	136
+	colm	35
+	synt	any
+	cat
+	var	1
+	line	136
+	colm	41
+	synt	any
+	cat
+	str	0
+	line	136
+	colm	47
+	synt	any
+	cat
+	str	11
+	line	136
+	colm	55
+	synt	any
+	cat
+	line	136
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	pnull
+	var	3
+	mark	L25
+	var	10
+	var	6
+	str	3
+	line	138
+	colm	20
+	synt	any
+	invoke	2
+	line	138
+	colm	34
+	synt	any
+	esusp
+	goto	L26
+lab L25
+	mark	L27
+	pnull
+	var	0
+	line	139
+	colm	15
+	synt	any
+	field	logit
+	str	4
+	var	6
+	line	139
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	line	139
+	colm	48
+	synt	any
+	pfail
+lab L26
+	line	138
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L28
+	line	140
+	colm	7
+	synt	if
+	mark0
+	var	14
+	str	12
+	var	2
+	line	140
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	mark	L29
+	var	2
+	line	141
+	colm	18
+	synt	any
+	bscan
+	mark	L30
+	pnull
+	var	7
+	var	13
+	var	14
+	str	13
+	line	142
+	colm	30
+	synt	any
+	invoke	1
+	line	142
+	colm	25
+	synt	any
+	invoke	1
+	line	142
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	var	15
+	int	7
+	line	143
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L31
+	pnull
+	var	8
+	var	16
+	var	13
+	int	14
+	line	144
+	colm	35
+	synt	any
+	invoke	1
+	line	144
+	colm	31
+	synt	any
+	invoke	1
+	line	144
+	colm	21
+	synt	any
+	asgn
+	line	141
+	colm	18
+	synt	any
+	escan
+	unmark
+lab L29
+	var	11
+	var	3
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	5
+	str	15
+	line	146
+	colm	24
+	synt	any
+	cat
+	line	146
+	colm	45
+	synt	any
+	keywd	clock
+	line	146
+	colm	43
+	synt	any
+	cat
+	str	16
+	line	146
+	colm	51
+	synt	any
+	cat
+	var	8
+	line	146
+	colm	65
+	synt	any
+	cat
+	str	17
+	line	146
+	colm	74
+	synt	any
+	cat
+	line	146
+	colm	15
+	synt	any
+	invoke	2
+	line	140
+	colm	7
+	synt	endif
+	unmark
+lab L28
+	mark	L32
+	var	12
+	var	3
+	line	148
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L32
+	mark	L33
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	9
+	str	0
+	line	150
+	colm	19
+	synt	any
+	cat
+	str	1
+	line	150
+	colm	25
+	synt	any
+	cat
+	str	0
+	line	150
+	colm	35
+	synt	any
+	cat
+	var	1
+	line	150
+	colm	41
+	synt	any
+	cat
+	str	0
+	line	150
+	colm	47
+	synt	any
+	cat
+	str	18
+	line	150
+	colm	55
+	synt	any
+	cat
+	line	150
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	var	3
+	mark	L35
+	var	10
+	var	6
+	str	3
+	line	152
+	colm	20
+	synt	any
+	invoke	2
+	line	152
+	colm	34
+	synt	any
+	esusp
+	goto	L36
+lab L35
+	mark	L37
+	pnull
+	var	0
+	line	153
+	colm	15
+	synt	any
+	field	logit
+	str	4
+	var	6
+	line	153
+	colm	21
+	synt	any
+	invoke	2
+	unmark
+lab L37
+	line	153
+	colm	48
+	synt	any
+	pfail
+lab L36
+	line	152
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L38
+	line	154
+	colm	7
+	synt	if
+	mark0
+	var	14
+	mark	L39
+	str	19
+	line	154
+	colm	19
+	synt	any
+	esusp
+	goto	L40
+lab L39
+	mark	L41
+	str	20
+	line	154
+	colm	25
+	synt	any
+	esusp
+	goto	L42
+lab L41
+	mark	L43
+	str	21
+	line	154
+	colm	34
+	synt	any
+	esusp
+	goto	L44
+lab L43
+	mark	L45
+	str	22
+	line	154
+	colm	44
+	synt	any
+	esusp
+	goto	L46
+lab L45
+	str	23
+lab L46
+lab L44
+lab L42
+lab L40
+	var	2
+	line	154
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	var	11
+	var	3
+	pnull
+	pnull
+	pnull
+	pnull
+	var	5
+	str	8
+	line	155
+	colm	24
+	synt	any
+	cat
+	line	155
+	colm	31
+	synt	any
+	keywd	clock
+	line	155
+	colm	29
+	synt	any
+	cat
+	str	8
+	line	155
+	colm	37
+	synt	any
+	cat
+	var	2
+	line	155
+	colm	42
+	synt	any
+	cat
+	line	155
+	colm	15
+	synt	any
+	invoke	2
+	line	154
+	colm	7
+	synt	endif
+	unmark
+lab L38
+	mark	L47
+	var	12
+	var	3
+	line	157
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L47
+	pnull
+	line	158
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_logUserActivitySummary
+	local	0,001000,self
+	local	1,001000,uid
+	local	2,001000,message
+	local	3,000020,fd
+	local	4,000000,datopen
+	local	5,000000,write
+	local	6,000000,close
+	con	0,010000,3,144,141,164
+	con	1,010000,1,134
+	con	2,010000,5,165,163,145,162,163
+	con	3,010000,12,137,163,165,155,155,141,162,171,056,154,157,147
+	con	4,010000,1,167
+	declend
+	line	161
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	0
+	str	1
+	line	163
+	colm	26
+	synt	any
+	cat
+	str	2
+	line	163
+	colm	32
+	synt	any
+	cat
+	str	1
+	line	163
+	colm	41
+	synt	any
+	cat
+	var	1
+	line	163
+	colm	47
+	synt	any
+	cat
+	str	1
+	line	163
+	colm	52
+	synt	any
+	cat
+	var	1
+	line	163
+	colm	58
+	synt	any
+	cat
+	str	3
+	line	163
+	colm	64
+	synt	any
+	cat
+	str	4
+	line	163
+	colm	20
+	synt	any
+	invoke	2
+	line	163
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	5
+	var	3
+	var	2
+	line	164
+	colm	12
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	var	6
+	var	3
+	line	165
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	pnull
+	line	166
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger_initially
+	local	0,001000,self
+	local	1,001000,log_name
+	local	2,000040,log_level
+	local	3,000000,gettimeofday
+	local	4,000000,write
+	local	5,000000,datopen
+	local	6,000000,list
+	con	0,010000,34,141,154,154,040,154,157,147,147,151,156,147,040,151,156,146,157,162,155,141,164,151,157,156,040,163,164,157,162,145,144,040,151,156,040
+	con	1,010000,2,167,141
+	con	2,010000,50,123,145,163,163,151,157,156,040,123,164,141,162,164,040,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055
+	declend
+	line	168
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	11
+	synt	any
+	field	start_time
+	pnull
+	var	3
+	line	172
+	colm	36
+	synt	any
+	invoke	0
+	line	172
+	colm	38
+	synt	any
+	field	sec
+	line	172
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	174
+	colm	7
+	synt	ifelse
+	mark	L3
+	pnull
+	var	1
+	line	174
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	175
+	colm	14
+	synt	any
+	field	logfile
+	var	1
+	line	175
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	var	4
+	pnull
+	str	0
+	pnull
+	var	0
+	line	176
+	colm	60
+	synt	any
+	field	logfile
+	line	176
+	colm	53
+	synt	any
+	cat
+	line	176
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	pnull
+	pnull
+	var	0
+	line	177
+	colm	14
+	synt	any
+	field	out
+	var	5
+	pnull
+	var	0
+	line	177
+	colm	32
+	synt	any
+	field	logfile
+	str	1
+	line	177
+	colm	27
+	synt	any
+	invoke	2
+	line	177
+	colm	18
+	synt	any
+	asgn
+	goto	L4
+lab L3
+	pnull
+	pnull
+	var	0
+	line	180
+	colm	14
+	synt	any
+	field	out
+	line	180
+	colm	20
+	synt	any
+	keywd	output
+	line	180
+	colm	18
+	synt	any
+	asgn
+lab L4
+	line	174
+	colm	7
+	synt	endifelse
+	unmark
+lab L2
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	182
+	colm	11
+	synt	any
+	field	watch_list
+	var	6
+	line	182
+	colm	28
+	synt	any
+	invoke	0
+	line	182
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	186
+	colm	7
+	synt	if
+	mark0
+	pnull
+	line	186
+	colm	10
+	synt	any
+	keywd	output
+	pnull
+	var	0
+	line	186
+	colm	27
+	synt	any
+	field	out
+	line	186
+	colm	18
+	synt	any
+	neqv
+	unmark
+	var	4
+	pnull
+	var	0
+	line	188
+	colm	20
+	synt	any
+	field	out
+	str	2
+	line	188
+	colm	15
+	synt	any
+	invoke	2
+	line	186
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	mark	L9
+	mark	L10
+	pnull
+	line	189
+	colm	7
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	190
+	colm	1
+	synt	any
+	pfail
+	end
+proc Logger
+	local	0,001000,log_name
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,Logger__oprec
+	local	4,000000,Loggerinitialize
+	local	5,000000,Logger__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	42
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	25
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	24
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	var	0
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	37
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	39
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Loggerinitialize
+	local	0,000000,Logger__oprec
+	local	1,000000,Logger__methods
+	local	2,000000,Logger_subscribe
+	local	3,000000,Logger_unsubscribe
+	local	4,000000,Logger_logit
+	local	5,000000,Logger_timestamp
+	local	6,000000,Logger_terminate
+	local	7,000000,Logger_getUptime
+	local	8,000000,Logger_isMember
+	local	9,000000,Logger_logUserActivity
+	local	10,000000,Logger_logUserActivitySummary
+	local	11,000000,Logger_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	line	17
+	colm	43
+	synt	any
+	invoke	10
+	line	17
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

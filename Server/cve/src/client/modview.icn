@@ -1,0 +1,156 @@
+#
+# Program: Modview, a CVE.org 2D model viewer
+# Author: Iyad Abu Doush, hacked by Jeffery
+#
+
+link gpxop
+
+$ifdef _UNIX
+$define PS "/"
+$else
+   $define PS  "\\"
+$endif
+
+global model
+
+procedure main(av)
+
+   if not (fname := av[1]) then {
+
+   # if a directory path is given for program, cd to there
+   if i := upto('/\\', &progname) then {
+      every i <:= upto('/\\', &progname)
+      chdir(&progname[1:i])
+      }
+   cwd := chdir()
+write("cwd ", cwd, " src/client ", "src"||PS||"client")
+   if (cwd[-3:0]=="bin") | (cwd[-10:0]==".bin.linux") then { chdir("..") }
+   else if cwd[-10:0] == ("src" || PS || "client") then {
+      chdir(".."); chdir("..")
+      }
+   else write("didn't see where I was to chdir to; staying put in ", cwd)
+
+   if f := open("dat/config.cve") then {
+       fname := "dat/" || (model := (read(f) ? (="model " & tab(0)))) || "/model.dat"
+       close(f)
+   }
+}
+
+   write("fname ", fname)
+    f := open(fname,"rt") | stop("can't open ", fname)
+    &window:=open("modview","g","fg=red",
+		  "image=" || (av[2]|("dat/" || model || "/images/map.gif"))) |
+	stop("can't open image=", (av[2]|("dat/" || model||"/images/map.gif")))
+    WAttrib("label=" || image(f))
+    wblack := Clone(&window, "fg=black")
+    wpurples := [
+		 Clone(&window,"fg=very light purple"),
+		 Clone(&window,"fg=light purple"),
+		 Clone(&window,"fg=purple"),
+		 Clone(&window,"fg=dark purple"),
+		 Clone(&window,"fg=very dark purple")
+	     ]
+
+    if match("-fpp=", av[1]) then
+	onePixelFt := numeric(pop(av)[6:0])
+    else
+	onePixelFt := 10.33 / 54
+
+    if match("-origin=", av[1]) then {
+	origin := pop(av)[9:0]
+	origin ? {
+	    originx := integer(tab(many(&digits)))
+	    =","
+	    originy := integer(tab(many(&digits)))
+	}
+    }
+    else {
+	originx := 188
+	originy := 60
+    }
+
+
+    #initializing list
+    NAME:=[]
+    L:=[]
+    X:=[]
+    Y:=[]
+    Z:=[]
+    W:=[]
+    Leng:=[]
+
+    #Values to add for X and Z 
+    onePixelMt := onePixelFt / 3.281
+    ox := originx
+    oz := originy
+
+    #put file lines in list
+    every put(L, !f) do {
+write("\t", L[-1])
+	if match("include ", L[-1]) then do_include(L)
+    }
+    every i:=1 to *L do {
+	s:=L[i]
+	s ? {
+	    tab(many(' \t'))
+	    if ="Room" then { enable := 1; next }
+	    else if =("Door"|"Opening"|"Table") then { enable := &null; next }
+	    else if \enable then {
+		# put values of X,Z,L,W in lists
+		case tab(many(&letters)) of {
+		    "name": put(NAME,tab(0))
+		    "x": put(X,tab(0))
+		    "y": put(Y,tab(0))
+		    "z": put(Z,tab(0))
+		    "w": put(W,tab(0))
+		    "l": put(Leng,tab(0))
+		}
+	    }
+        }
+    }
+    every j:=1 to *Leng do {
+	wye := integer(Y[j] / 10.0) + 1
+	if wye > *wpurples then wye := *wpurples
+	FillRectangle(wpurples[wye], X[j]/onePixelMt+ox, Z[j]/onePixelMt+oz,
+		      W[j]/onePixelMt, Leng[j]/onePixelMt)
+	CenterString(wblack,
+		     X[j]/onePixelMt+ox + (W[j]/onePixelMt)/2,
+		     Z[j]/onePixelMt+oz + (Leng[j]/onePixelMt)/2,
+		     NAME[j])
+	WFlush()
+	delay(1000)
+	FillRectangle(X[j]/onePixelMt+ox, Z[j]/onePixelMt+oz,
+		      W[j]/onePixelMt, Leng[j]/onePixelMt)
+	CenterString(wblack,
+		     X[j]/onePixelMt+ox + (W[j]/onePixelMt)/2,
+		     Z[j]/onePixelMt+oz + (Leng[j]/onePixelMt)/2,
+		     NAME[j])
+	WFlush()
+	Event()
+	}
+
+    WAttrib("label=...done")
+    repeat
+	case Event() of {
+	    &lpress : {
+		every j:=1 to *Leng do {
+		    FillRectangle(X[j]/onePixelMt+ox, Z[j]/onePixelMt+oz,
+				  W[j]/onePixelMt,Leng[j]/onePixelMt)
+		    }
+		}
+	    "q": exit()
+	}
+end
+
+procedure do_include(L)
+local s, f2
+write("doinclude")
+    if match("include ",L[-1]) then {
+	s := pull(L)
+	if f2 := open("dat/"||model||"/"||s[9:0]) then {
+	    every put(L, !f2) do if match("include ", L[-1]) then
+		do_include(L)
+	    close(f2)
+	}
+    }
+end

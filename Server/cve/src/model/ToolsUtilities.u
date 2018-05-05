@@ -1,0 +1,1321 @@
+version	U12.1.00
+uid	ToolsUtilities.u1-1523917597-0
+record	ToolsUtilities__state,38
+	0,__s
+	1,__m
+	2,opMode
+	3,x
+	4,y
+	5,z
+	6,Id
+	7,origXangle
+	8,origYangle
+	9,origZangle
+	10,romx
+	11,romy
+	12,romz
+	13,rox
+	14,roy
+	15,roz
+	16,mov
+	17,rot
+	18,mv
+	19,mvDraw
+	20,sca
+	21,movable
+	22,isMoving
+	23,owner
+	24,placedAt
+	25,cover
+	26,render_set
+	27,avatarSizeX
+	28,avatarSizeY
+	29,avatarSizeZ
+	30,avatarPartX
+	31,avatarPartY
+	32,avatarPartZ
+	33,avatarObjX
+	34,avatarObjY
+	35,avatarObjZ
+	36,possessed
+	37,name
+record	ToolsUtilities__methods,16
+	0,setSize
+	1,setPosAvatar
+	2,setPosPart
+	3,setPosObj
+	4,moveAlongAvatar
+	5,moveAlongPart
+	6,deRender
+	7,getX
+	8,getY
+	9,getZ
+	10,getOwner
+	11,setOwner
+	12,getPlacedAt
+	13,getMovable
+	14,getPossessed
+	15,initially
+impl	error
+global	21
+	0,000005,ToolsUtilities_setSize,4
+	1,000005,ToolsUtilities_setPosAvatar,5
+	2,000005,ToolsUtilities_setPosPart,4
+	3,000005,ToolsUtilities_setPosObj,4
+	4,000005,ToolsUtilities_moveAlongAvatar,5
+	5,000005,ToolsUtilities_moveAlongPart,4
+	6,000005,ToolsUtilities_deRender,1
+	7,000005,ToolsUtilities_getX,1
+	8,000005,ToolsUtilities_getY,1
+	9,000005,ToolsUtilities_getZ,1
+	10,000005,ToolsUtilities_getOwner,1
+	11,000005,ToolsUtilities_setOwner,2
+	12,000005,ToolsUtilities_getPlacedAt,1
+	13,000005,ToolsUtilities_getMovable,1
+	14,000005,ToolsUtilities_getPossessed,1
+	15,000005,ToolsUtilities_initially,1
+	16,000011,ToolsUtilities__state,38
+	17,000011,ToolsUtilities__methods,16
+	18,000001,ToolsUtilities__oprec,0
+	19,000005,ToolsUtilities,0
+	20,000005,ToolsUtilitiesinitialize,0
+
+proc ToolsUtilities_setSize
+	local	0,001000,self
+	local	1,001000,xscale
+	local	2,001000,yscale
+	local	3,001000,zscale
+	declend
+	filen	ToolsUtilities.icn
+	line	28
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	29
+	colm	11
+	synt	any
+	field	avatarSizeX
+	var	1
+	line	29
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	30
+	colm	11
+	synt	any
+	field	avatarSizeY
+	var	2
+	line	30
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	31
+	colm	11
+	synt	any
+	field	avatarSizeZ
+	var	3
+	line	31
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L3
+	pnull
+	line	32
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_setPosAvatar
+	local	0,001000,self
+	local	1,001000,posx
+	local	2,001000,posy
+	local	3,001000,posz
+	local	4,001000,angle
+	declend
+	line	36
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	38
+	colm	11
+	synt	any
+	field	mov
+	line	38
+	colm	15
+	synt	any
+	field	x
+	var	1
+	line	38
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	39
+	colm	11
+	synt	any
+	field	mov
+	line	39
+	colm	15
+	synt	any
+	field	y
+	var	2
+	line	39
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	11
+	synt	any
+	field	mov
+	line	40
+	colm	15
+	synt	any
+	field	z
+	var	3
+	line	40
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	41
+	colm	11
+	synt	any
+	field	rot
+	line	41
+	colm	15
+	synt	any
+	field	angle
+	var	4
+	line	41
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L4
+	pnull
+	line	42
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_setPosPart
+	local	0,001000,self
+	local	1,001000,posx
+	local	2,001000,posy
+	local	3,001000,posz
+	declend
+	line	43
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	45
+	colm	11
+	synt	any
+	field	avatarPartX
+	var	1
+	line	45
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	46
+	colm	11
+	synt	any
+	field	avatarPartY
+	var	2
+	line	46
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	47
+	colm	11
+	synt	any
+	field	avatarPartZ
+	var	3
+	line	47
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	11
+	synt	any
+	field	mv
+	line	48
+	colm	14
+	synt	any
+	field	x
+	var	1
+	line	48
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	pnull
+	var	0
+	line	49
+	colm	11
+	synt	any
+	field	mv
+	line	49
+	colm	14
+	synt	any
+	field	y
+	var	2
+	line	49
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	var	0
+	line	50
+	colm	11
+	synt	any
+	field	mv
+	line	50
+	colm	14
+	synt	any
+	field	z
+	var	3
+	line	50
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L6
+	pnull
+	line	51
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_setPosObj
+	local	0,001000,self
+	local	1,001000,posx
+	local	2,001000,posy
+	local	3,001000,posz
+	con	0,002000,3,110
+	con	1,002000,1,0
+	declend
+	line	52
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	11
+	synt	any
+	field	avatarObjX
+	var	1
+	line	54
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	11
+	synt	any
+	field	avatarObjY
+	var	2
+	line	55
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	56
+	colm	11
+	synt	any
+	field	avatarObjZ
+	var	3
+	line	56
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	57
+	colm	11
+	synt	any
+	field	mvDraw
+	line	57
+	colm	18
+	synt	any
+	field	x
+	var	1
+	line	57
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	pnull
+	var	0
+	line	58
+	colm	11
+	synt	any
+	field	mvDraw
+	line	58
+	colm	18
+	synt	any
+	field	y
+	var	2
+	line	58
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	11
+	synt	any
+	field	mvDraw
+	line	59
+	colm	18
+	synt	any
+	field	z
+	var	3
+	line	59
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	11
+	synt	any
+	field	rox
+	line	60
+	colm	15
+	synt	any
+	field	angle
+	int	0
+	line	60
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	11
+	synt	any
+	field	roy
+	line	61
+	colm	15
+	synt	any
+	field	angle
+	int	1
+	line	61
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	62
+	colm	11
+	synt	any
+	field	roz
+	line	62
+	colm	15
+	synt	any
+	field	angle
+	int	1
+	line	62
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L9
+	pnull
+	line	63
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_moveAlongAvatar
+	local	0,001000,self
+	local	1,001000,posx
+	local	2,001000,posy
+	local	3,001000,posz
+	local	4,001000,angle
+	declend
+	line	64
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	66
+	colm	11
+	synt	any
+	field	rot
+	line	66
+	colm	15
+	synt	any
+	field	angle
+	var	4
+	line	66
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	67
+	colm	11
+	synt	any
+	field	mov
+	line	67
+	colm	15
+	synt	any
+	field	x
+	var	1
+	line	67
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	11
+	synt	any
+	field	mov
+	line	68
+	colm	15
+	synt	any
+	field	y
+	var	2
+	line	68
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	11
+	synt	any
+	field	mov
+	line	69
+	colm	15
+	synt	any
+	field	z
+	var	3
+	line	69
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L4
+	pnull
+	line	70
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_moveAlongPart
+	local	0,001000,self
+	local	1,001000,xangle
+	local	2,001000,yangle
+	local	3,001000,zangle
+	declend
+	line	71
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	73
+	colm	11
+	synt	any
+	field	romx
+	line	73
+	colm	16
+	synt	any
+	field	angle
+	var	1
+	line	73
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	74
+	colm	11
+	synt	any
+	field	romy
+	line	74
+	colm	16
+	synt	any
+	field	angle
+	var	2
+	line	74
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	75
+	colm	11
+	synt	any
+	field	romz
+	line	75
+	colm	16
+	synt	any
+	field	angle
+	var	3
+	line	75
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L3
+	pnull
+	line	76
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_deRender
+	local	0,001000,self
+	local	1,000020,len
+	local	2,000020,i
+	local	3,000020,item
+	local	4,000020,dispList
+	local	5,000000,WindowContents
+	local	6,000000,pop
+	local	7,000000,member
+	local	8,000000,put
+	con	0,002000,1,1
+	declend
+	line	78
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	var	5
+	line	81
+	colm	36
+	synt	any
+	keywd	window
+	line	81
+	colm	35
+	synt	any
+	invoke	1
+	line	81
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	1
+	pnull
+	var	5
+	line	82
+	colm	32
+	synt	any
+	keywd	window
+	line	82
+	colm	31
+	synt	any
+	invoke	1
+	line	82
+	colm	16
+	synt	any
+	size
+	line	82
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	83
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	int	0
+	var	1
+	push1
+	line	83
+	colm	22
+	synt	any
+	toby
+	line	83
+	colm	17
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L6
+	pnull
+	var	3
+	var	6
+	var	4
+	line	84
+	colm	24
+	synt	any
+	invoke	1
+	line	84
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L6
+	line	85
+	colm	13
+	synt	if
+	mark0
+	mark	L7
+	var	7
+	pnull
+	var	0
+	line	85
+	colm	31
+	synt	any
+	field	render_set
+	var	3
+	line	85
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L7
+	pnull
+	unmark
+	var	8
+	var	4
+	var	3
+	line	85
+	colm	56
+	synt	any
+	invoke	2
+	line	85
+	colm	13
+	synt	endif
+	unmark
+lab L4
+	efail
+lab L5
+	line	83
+	colm	9
+	synt	endevery
+	unmark
+lab L3
+	mark	L8
+	mark	L9
+	pnull
+	line	87
+	colm	9
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	88
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getX
+	local	0,001000,self
+	declend
+	line	91
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	92
+	colm	18
+	synt	any
+	field	x
+	line	92
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	93
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getY
+	local	0,001000,self
+	declend
+	line	94
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	95
+	colm	18
+	synt	any
+	field	y
+	line	95
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	96
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getZ
+	local	0,001000,self
+	declend
+	line	97
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	98
+	colm	18
+	synt	any
+	field	z
+	line	98
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	99
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getOwner
+	local	0,001000,self
+	declend
+	line	100
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	101
+	colm	18
+	synt	any
+	field	owner
+	line	101
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	102
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_setOwner
+	local	0,001000,self
+	local	1,001000,newowner
+	declend
+	line	103
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	104
+	colm	11
+	synt	any
+	field	owner
+	var	1
+	line	104
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	105
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getPlacedAt
+	local	0,001000,self
+	declend
+	line	106
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	107
+	colm	18
+	synt	any
+	field	placedAt
+	line	107
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	108
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getMovable
+	local	0,001000,self
+	declend
+	line	109
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	111
+	colm	18
+	synt	any
+	field	isMoving
+	line	111
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	112
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_getPossessed
+	local	0,001000,self
+	declend
+	line	113
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	115
+	colm	18
+	synt	any
+	field	possessed
+	line	115
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	116
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities_initially
+	local	0,001000,self
+	local	1,000000,set
+	declend
+	line	119
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	8
+	synt	any
+	field	render_set
+	var	1
+	line	120
+	colm	24
+	synt	any
+	invoke	0
+	line	120
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	121
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	122
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilities
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,ToolsUtilities__oprec
+	local	3,000000,ToolsUtilitiesinitialize
+	local	4,000000,ToolsUtilities__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	58
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	0
+	var	4
+	line	10
+	colm	33
+	synt	any
+	keywd	null
+	var	2
+	line	10
+	colm	32
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	29
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	31
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	0
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc ToolsUtilitiesinitialize
+	local	0,000000,ToolsUtilities__oprec
+	local	1,000000,ToolsUtilities__methods
+	local	2,000000,ToolsUtilities_setSize
+	local	3,000000,ToolsUtilities_setPosAvatar
+	local	4,000000,ToolsUtilities_setPosPart
+	local	5,000000,ToolsUtilities_setPosObj
+	local	6,000000,ToolsUtilities_moveAlongAvatar
+	local	7,000000,ToolsUtilities_moveAlongPart
+	local	8,000000,ToolsUtilities_deRender
+	local	9,000000,ToolsUtilities_getX
+	local	10,000000,ToolsUtilities_getY
+	local	11,000000,ToolsUtilities_getZ
+	local	12,000000,ToolsUtilities_getOwner
+	local	13,000000,ToolsUtilities_setOwner
+	local	14,000000,ToolsUtilities_getPlacedAt
+	local	15,000000,ToolsUtilities_getMovable
+	local	16,000000,ToolsUtilities_getPossessed
+	local	17,000000,ToolsUtilities_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	line	17
+	colm	59
+	synt	any
+	invoke	16
+	line	17
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

@@ -1,0 +1,54 @@
+Room {
+	name  cooridoor_167
+	x 31.4
+	y 0
+	z 3.9
+	w 4.1
+	h 3.05
+	l 2.2
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				32.5, 1.0, 4.0,
+				32.5, 2.0, 4.0,
+				32.7, 2.0, 4.0,
+				32.7, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH167.gif
+			coords [
+				32.8, 1.5, 4.0,
+				32.8, 1.6, 4.0,
+				32.9, 1.6, 4.0,
+				32.9, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/exit.gif
+			coords [
+				34.4, 2.4, 4.0,
+				34.4, 2.6, 4.0,
+				34.6, 2.6, 4.0,
+				34.6, 2.4, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/Light.gif
+			coords [
+				33.6, 2.75, 5.0,
+				33.6, 2.75, 5.6,
+				33.8, 2.75, 5.6,
+				33.8, 2.75, 5.0
+			]
+		}
+	]
+	tools [
+	]
+}

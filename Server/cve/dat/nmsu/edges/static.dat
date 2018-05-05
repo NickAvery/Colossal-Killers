@@ -1,0 +1,1146 @@
+# sample links DAT file
+
+Opening {
+id 1
+x 38.9
+y 0
+z 23.3
+w 2.5
+height 3.05
+plane 1
+rooms [cooridoor_125, cooridoor_main]
+   }
+
+Opening {
+id 2
+x 5.3
+y 0
+z 23.3
+w 2.5
+height 2.3
+plane 1
+rooms [cooridoor_148, cooridoor_se]
+   }
+
+Opening {
+id 3
+x 31.4
+y 0
+z 23.3
+w 2.5
+height 3.05
+plane 1
+rooms [cooridoor_125, cooridoor_se]
+   }
+
+Opening {
+id 4
+x 80.7
+y 1
+z 82.6
+w 3.2
+height 2.3
+plane 3
+rooms [cooridoor_classes, cooridoor_south]
+   }
+
+Opening {
+id 5
+x 80.7
+y 1
+z 82.6
+w 3
+height 2.3
+plane 1
+rooms [cooridoor_classes, cooridoor_113]
+   }
+
+Opening {
+id 6
+x 83.9
+y 1
+z 82.6
+w 3
+height 2.3
+plane 1
+rooms [cooridoor_classes, cooridoor_115]
+   }
+
+Opening {
+id 7
+x 31.4
+y 0
+z 3.9
+w 2.2
+height 2.3
+plane 1
+rooms [cooridoor_167, cooridoor_nw]
+   }
+
+Opening {
+id 8
+x 35.5
+y 0
+z 3.9
+w 2.2
+height 2.3
+plane 1
+rooms [cooridoor_167, cooridoor_ne]
+   }
+
+Opening {
+id 9
+x 5.3
+y 0
+z 3.9
+w 2.2
+height 2.3
+plane 1
+rooms [cooridoor_154, cooridoor_nw]
+   }
+
+Opening {
+id 10
+x 33.6
+y 0
+z 23.3
+w 1.9
+height 3.05
+plane 3
+rooms [cooridoor_125, cooridoor_mid]
+   }
+
+Opening {
+id 11
+x 3.3
+y 0
+z 23.3
+w 1.9
+height 2.3
+plane 3
+rooms [cooridoor_148, cooridoor_west]
+   }
+
+Opening {
+id 12
+x 33.6
+y 0
+z 6.1
+w 1.9
+height 2.3
+plane 3
+rooms [cooridoor_167, cooridoor_mid]
+   }
+
+Opening {
+id 13
+x 85.3
+y 0
+z 17.2
+w 1.9
+height 2.3
+plane 3
+rooms [cooridoor_cog, vending]
+   }
+
+Opening {
+id 14
+x 85.3
+y 0
+z 6
+w 1.9
+height 2.3
+plane 3
+rooms [cooridoor_cog, cooridoor_necorner]
+   }
+
+Opening {
+id 15
+x 3.3
+y 0
+z 6.1
+w 1.9
+height 2.3
+plane 3
+rooms [cooridoor_154, cooridoor_west]
+   }
+
+Door {
+id 16
+x 33
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_167, cooridoor_167]
+   }
+
+Door {
+id 17
+x 34.5
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_125, cooridoor_125]
+   }
+
+Door {
+id 18
+x 52
+y 0
+z 23.3
+height 2.3
+plane 3
+rooms [SH_118b, cooridoor_main]
+ }
+ 
+Door {
+id 19
+x 67.3
+y 0
+z 23.8
+w 1.4
+height 2.3
+plane 1
+rooms [cooridoor_atrium, cooridoor_main]
+   }
+   
+Door {
+id 20
+x 81
+y 1
+z 32.5
+height 1.9
+plane 3
+rooms [atrium, cooridoor_south]
+   }
+
+Door {
+id 21
+x 85.5
+y 1
+z 23.3
+height 1.9
+plane 3
+rooms [foyer, vending]
+   }
+
+Opening {
+id 22
+x 70.9
+y 0
+z 23.3
+w 2.5
+height 2.3
+plane 1
+rooms [cooridoor_atrium, atrium]
+   }
+
+Opening {
+id 23
+x 83.9
+y 0
+z 23.3
+w 5.2
+height 3.3
+plane 1
+rooms [atrium, foyer]
+   }
+
+Opening {
+id 24
+x 85.3
+y 0
+z 3.9
+w 2.1
+height 2.3
+plane 1
+rooms [cooridoor_ne, cooridoor_necorner]
+   }
+
+Door {
+id 25
+x 3.36
+y 0
+z 12
+height 2.3
+plane 1
+rooms [SH_151, cooridoor_west]
+   }
+
+Door {
+id 26
+x 25.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_165, cooridoor_nw]
+   }
+
+Door {
+id 27
+x 22.7
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_163, cooridoor_nw]
+   }
+   
+Door {
+id 28
+x 10.9
+y 0
+z 18.5
+height 2.3
+plane 3
+rooms [SH_145, cooridoor_145]
+   }
+#Opening {
+#id 29
+#x 39.6
+#y 0
+#z 23.3
+#w 1.5
+#height 3.05
+#plane 3
+#rooms [cooridoor_main, entry_124w]
+ #  }
+Door {
+id 30
+x 10.7
+y 0
+z 19.5
+height 2.3
+plane 1
+rooms [SH_146, cooridoor_145]
+   }
+
+Door {
+id 31
+x 10.4
+y 0
+z 10.9
+height 2.3
+plane 3
+rooms [SH_158, cooridoor_158]
+   }
+   
+Door{
+id 32
+x 29.7
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_132, cooridoor_se]
+}
+
+Door{
+id 33
+x 24.7
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_137, cooridoor_se]
+}
+
+Door{
+id 34
+x 19.7
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_138, cooridoor_se]
+}
+
+Door{
+id 35
+x 14.9
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_141, cooridoor_se]
+}
+
+Door{
+id 36
+x 10.1
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_142, cooridoor_se]
+}
+
+Door{
+id 37
+x 76.6
+y 1
+z 85.6
+height 2.3
+plane 3
+rooms [SH_113, cooridoor_113]
+}
+
+Door{
+id 38
+x 70.9
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_176, cooridoor_ne]
+}
+
+Door{
+id 39
+x 87.2
+y 0
+z 4.2
+height 2.3
+plane 1
+rooms [SH_179, cooridoor_necorner]
+}
+
+Door{
+id 40
+x 88.0
+y 1
+z 85.6
+height 2.3
+plane 3
+rooms [SH_115, cooridoor_115]
+}
+
+Door{
+id 41
+x 63.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_175, cooridoor_ne]
+}
+
+Door{
+id 42
+x 3.36
+y 0
+z 7.8
+height 2.3
+plane 1
+rooms [SH_153, cooridoor_west]
+}
+
+Door{
+id 43
+x 3.36
+y 0
+z 17.8
+height 2.3
+plane 1
+rooms [SH_150, cooridoor_west]
+}
+
+Door{
+id 45
+x 36.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_168, cooridoor_ne]
+}
+
+Door{
+id 46
+x 39.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_170, cooridoor_ne]
+}
+
+Door{
+id 47
+x 42.6
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_171, cooridoor_ne]
+}
+
+Door{
+id 48
+x 47.7
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_172, cooridoor_ne]
+}
+
+Door{
+id 49
+x 52.5
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_173, cooridoor_ne]
+}
+
+Door{
+id 50
+x 57.4
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_174, cooridoor_ne]
+}
+
+Door{
+id 51
+x 8.0
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_147, cooridoor_se]
+}
+
+Door{
+id 52
+x 3.6
+y 0
+z 25.8
+height 2.3
+plane 3
+rooms [SH_148, cooridoor_148]
+}
+
+Door{
+id 53
+x 15.3
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_161, cooridoor_nw]
+}
+
+Door{
+id 54
+x 10.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_157, cooridoor_nw]
+}
+
+Door{
+id 55
+x 6.0
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_155, cooridoor_nw]
+}
+
+Door{
+id 56
+x 47.2
+y 0
+z 23.3
+height 2.3
+plane 3
+rooms [SH_124, cooridoor_main]
+}
+
+Door{
+id 57
+x 46.5
+y 0
+z 26.8
+height 2.3
+plane 3
+rooms [SH_123, cooridoor_main]
+}
+# Opening {
+# id 59
+# x 3.36
+# y 0
+# z 17.8
+# w 1.0
+# height 2.4
+# plane 1
+# rooms [SH_150, cooridoor_west]
+#   }
+Door {
+id 61
+x 3.3
+y 0
+z 20.9
+w 2.1
+height 2.4
+plane 1
+rooms [SH_149, cooridoor_west]
+  }
+ 
+Door{
+id 62
+x 3.5
+y 0
+z 3.9
+height 2.3
+plane 3
+rooms [SH_154, cooridoor_154]
+}
+
+Opening {
+id 64
+x 18.8
+y 0
+z 23.3
+w 5.2
+height 2.8
+plane 3
+rooms [cooridoor_se, courtyard_entry_south]
+   }
+
+Opening {
+id 65
+x 18.8
+y 0
+z 6.4
+w 5.2
+height 2.8
+plane 3
+rooms [cooridoor_nw, courtyard_entry_north]
+   }
+
+Door {
+id 66
+x 20.8
+y 0
+z 8.5
+height 2.3
+plane 3
+rooms [courtyard, courtyard_entry_north]
+   }
+
+Door {
+id 67
+x 20.8
+y 0
+z 21.4
+height 2.3
+plane 3
+rooms [courtyard, courtyard_entry_south]
+   }
+   
+Door{
+id 71
+x 91.2
+y 1.0
+z 85.6
+height 2.3
+plane 3
+rooms [SH_117, cooridoor_115]
+}   
+
+Door{
+id 72
+x 85.3
+y 1
+z 82.6
+height 2.3
+plane 3
+rooms [SH_114, cooridoor_115]
+}
+
+Door{
+id 73
+x 79.3
+y 1
+z 82.6
+height 2.3
+plane 3
+rooms [SH_112, cooridoor_113]
+}
+   
+Door{
+id 74
+x 91.5
+y 1
+z 82.6
+height 2.3
+plane 3
+rooms [SH_116, cooridoor_115]
+}
+
+Door{
+id 75
+x 72.5
+y 0
+z 23.3
+height 2.3
+plane 3
+rooms [SH_118, atrium]
+}   
+   
+Door{
+id 77
+x 83.9
+y 1
+z 69.0
+height 2.3
+plane 1
+rooms [SH_111, cooridoor_south]
+}
+
+Door{
+id 78
+x 83.9
+y 1
+z 62.0
+height 2.3
+plane 1
+rooms [SH_110, cooridoor_south]
+}
+
+Door{
+id 79
+x 83.9
+y 1
+z 52.3
+height 2.3
+plane 1
+rooms [SH_107, cooridoor_south]
+}
+
+Door{
+id 81
+x 80.7
+y 1
+z 66.4
+height 2.3
+plane 1
+rooms [SH_109, cooridoor_south]
+}
+
+Door{
+id 82
+x 80.7
+y 1
+z 54.5
+height 2.3
+plane 1
+rooms [SH_108, cooridoor_south]
+}
+
+Door{
+id 84
+x 80.7
+y 1
+z 47.0
+height 2.3
+plane 1
+rooms [SH_106, cooridoor_south]
+}
+
+Opening{
+id 85
+x 83.9
+y 0
+z 30.0
+w 2.2
+height 2.3
+plane 1
+rooms [atrium, cooridoor_102]
+}
+
+Door{
+id 86
+x 41.4
+y 0
+z 6.1
+height 2.3
+plane 3
+rooms [SH_169, cooridoor_ne]
+} 
+
+Door{
+id 87
+x 26.5
+y 0
+z 23.3
+height 2.3
+plane 3
+rooms [SH_135, cooridoor_se]
+}
+
+Door{
+id 88
+x 33.6
+y 0
+z 14.0
+height 2.3
+plane 1
+rooms [SH_134, cooridoor_mid]
+}
+
+Door{
+id 89
+x 33.6
+y 0
+z 10.5
+height 2.3
+plane 1
+rooms [SH_133, cooridoor_mid]
+}
+
+Door{
+id 91
+x 35.5
+y 0
+z 15.0
+height 2.3
+plane 1
+rooms [SH_128, cooridoor_mid]
+}
+
+Door{
+id 92
+x 35.5
+y 0
+z 17.6
+height 2.3
+plane 1
+rooms [SH_127, cooridoor_mid]
+}
+
+Door{
+id 93
+x 35.5
+y 0
+z 21.5
+height 2.3
+plane 1
+rooms [SH_126, cooridoor_mid]
+}
+
+Door{
+id 94
+x 35.5
+y 0
+z 7.5
+height 2.3
+plane 1
+rooms [SH_131, cooridoor_mid]
+}
+
+Door{
+id 95
+x 35.5
+y 0
+z 10.8
+height 2.3
+plane 1
+rooms [SH_130, cooridoor_mid]
+}
+
+Door{
+id 96
+x 35.5
+y 0
+z 12.2
+height 2.3
+plane 1
+rooms [SH_129, cooridoor_mid]
+}
+
+Opening {
+id 97
+x 10.7
+y 0
+z 23.3
+w 1.7
+height 2.3
+plane 3
+rooms [cooridoor_se, cooridoor_145]
+ }
+
+Door{
+id 98
+x 12.4
+y 0
+z 18.5
+height 2.3
+plane 1
+rooms [SH_144, cooridoor_145]
+}
+
+Door{
+id 99
+x 12.4
+y 0
+z 19.7
+height 2.3
+plane 1
+rooms [SH_143, cooridoor_145]
+}
+
+Door {
+id 100
+x 10.5
+y 0
+z 6.4
+height 2.3
+plane 3
+rooms [cooridoor_nw, cooridoor_158]
+   }
+
+Door {
+id 101
+x 12.0
+y 0
+z 8.0
+height 2.3
+plane 1
+rooms [SH_160, cooridoor_158]
+   }
+
+Door {
+id 102
+x 12.0
+y 0
+z 9.9
+height 2.3
+plane 1
+rooms [SH_159, cooridoor_158]
+   }
+   
+Door{
+id 103
+x 80.7
+y 1
+z 37.0
+height 2.3
+plane 1
+rooms [SH_103, cooridoor_south]
+}
+
+Door{
+id 104
+x 80.7
+y 1
+z 39.0
+height 2.3
+plane 1
+rooms [SH_104, cooridoor_south]
+}
+
+Door{
+id 105
+x 80.7
+y 1
+z 44.0
+height 2.3
+plane 1
+rooms [SH_105, cooridoor_south]
+}
+   
+Door{
+id 106
+x 87.2
+y 0
+z 6.6
+height 2.3
+plane 1
+rooms [SH_180, cooridoor_cog]
+}
+
+Door{
+id 107
+x 87.2
+y 0
+z 10.4
+height 2.3
+plane 1
+rooms [SH_181, cooridoor_cog]
+}
+
+Door{
+id 108
+x 85.3
+y 0
+z 10.9
+height 2.3
+plane 1
+rooms [SH_182, cooridoor_cog]
+}   
+
+Door{
+id 109
+x 85.3
+y 0
+z 32.4
+height 2.3
+plane 3
+rooms [SH_102, cooridoor_102]
+}
+
+#Opening {
+#id 110
+#x 62.1
+#y 0
+#z 26.8
+#w 1.7
+#height 3.05
+#plane 1
+#rooms [cooridoor_main, cooridoor_123]
+# }
+
+Door{
+id 111
+x 42.2
+y 0
+z 23.3
+height 2.3
+plane 3
+rooms [SH_124, cooridoor_main]
+}
+
+Door{
+id 112
+x 55.68
+y 0
+z 26.8
+h 2.3
+plane 3
+rooms [SH_122, cooridoor_main]
+}
+
+Door {
+id 113
+x 68
+y 0
+z 26.2
+w 0.91
+h 2.1
+plane 3
+rooms [elevator_1, cooridoor_atrium]
+}
+
+Door {
+id 114
+x 68
+y 4.35
+z 26.2
+w 0.91
+h 2.1
+plane 3
+rooms [elevator_2, floor_2_corridor_roger]
+}
+
+Opening {
+id 115
+x 67.3
+y 4.35
+z 23.7
+w 2.5
+h 3.05
+plane 1
+rooms [floor_2_corridor_main, floor_2_corridor_roger]
+}
+
+Door {
+id 116
+x 27
+y 4.35
+z 23
+w 0.92
+h 2.3
+plane 3
+rooms [library, floor_2_corridor_southwest]
+}
+
+
+Door {
+id 117
+x 36.8
+y 4.35
+z 23
+w 0.92
+h 2.3
+plane 3
+rooms [library, floor_2_corridor_southwest]
+}
+
+Opening {
+id 118
+x 71.2
+y 4.35
+z 26.2
+w 13
+h 3.05
+plane 3
+rooms [crl_ramps, floor_2_corridor_roger]
+}
+
+Opening {
+id 119
+x 47.3
+y 4.35
+z 23
+w 2.5
+h 3.05
+plane 1
+rooms [floor_2_corridor_main, floor_2_corridor_southwest]
+}
+
+Opening {
+id 120
+x 85.3
+y 4.35
+z 23.3
+w 1.9
+h 3.05
+plane 3
+rooms [floor_2_corridor_east, floor_2_corridor_roger]
+}
+
+
+Opening {
+id 121
+x 85.3
+y 4.35
+z 6
+w 1.9
+h 3.05
+plane 3
+rooms [floor_2_corridor_east, floor_2_corridor_necorner]
+}
+
+Door {
+id 122
+x 79.9
+y 4.35
+z 3.56
+w 0.91
+h 2.1
+plane 3
+rooms [freight_elevator_2, floor_2_corridor_necorner]
+}

@@ -1,0 +1,29 @@
+Room {
+	name  cooridoor_115
+	x 83.90000000000001
+	y 1
+	z 82.59999999999999
+	w 13.5
+	h 3.05
+	l 3
+	texture dat/nmsu/texsmall/wall2.gif
+	right_wall_tiled [
+		Wall {
+			texture dat/nmsu/textures/glass4.gif
+			coords [
+				97.4, 0, 82.6,
+				97.4, 3.05, 82.6,
+				97.4, 3.05, 85.6,
+				97.4, 0, 85.6
+			]
+		}
+	]
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

@@ -1,0 +1,2638 @@
+#
+# dispatch.icn - CVE dispatcher; a replacement for the Unicon GUI dispatcher.
+#
+# N3Dispatcher is a custom dispatcher.  Currently it knows about 3D
+# subwindows but we will extend it for networked 3D applications.
+#
+import gui
+$include "keysyms.icn"
+$include "../common/defaults.icn"
+$include "guih.icn"
+
+link "../common/groups"
+
+
+record pending_invitation(pid, uname, psubject,ppriority,pdate,pcomment,pstatus)
+
+global openedprojfileTable,  #stores opened files associated with their projects
+       msgfrom, fwdrply_action, avatloc, latency, latency_timestamp, postsTbl,
+       mouse_nav
+
+class N3Dispatcher : Dispatcher(ptys,
+				subwins,
+				subwins_2d,
+				nets,
+				connections,
+				whiteboards,
+				raw_wins,   # raw (non-GUI-class) windows
+				xdelta,
+				ydelta,
+				lookdelta)
+   method add_subwin(sw)
+      insert(subwins, sw)
+      if not (!connections === sw) then put(connections, sw)
+   end
+   method add_subwins2d(sw)
+      insert(subwins_2d, sw)
+      if not (!connections === sw) then put(connections, sw)
+   end
+   method add_raw_win(w)
+      insert(raw_wins, w)
+      if not (!connections === w) then put(connections, w)
+   end
+   method del_raw_win(w)
+      delete(raw_wins, w)
+      del_net(w)
+   end
+   method add_net(n)
+      insert(nets, n)
+      if not (!connections === n) then put(connections, n)
+   end
+   method add_pty(n)
+      insert(ptys, n)
+      if not (!connections === n) then put(connections, n)
+   end
+   method add_whiteboard(n, wb)
+      whiteboards[n] := wb
+      if not (!connections === n) then put(connections, n)
+   end
+   method del_whiteboard(n)
+      # need to inform user and/or reconnect later
+      delete(whiteboards, n)
+      del_net(n)
+   end
+   method del_net(n)
+   local i, x
+      delete(nets, n)
+      if /connections then write("null connections?")
+      every i := 1 to *\connections do {
+	 x := pop(connections)
+	 if x ~=== n then put(connections, x)
+	 }
+   end
+
+   #  called from handle_network_input() which means logout has happened on
+   #    server. should the avatar delete stuff move to class world????
+   method user_logout()
+   local avat
+
+      # delete other remote avatars visible on this terminal
+      every avat := !world.TAvatars do {
+	 if avat.uid ~== session.uid then {
+	    world.avatar_delete( avat.uid )
+	    }
+	 }
+
+      # need to broadcast a \delavatar cmd...
+      session.disconnect()
+      session.logout()
+   end
+
+   method do_whiteboard(x)
+       while * (select(!connections===x, 1)) > 0 do
+       (\ (whiteboards[x])).Read()
+       (\ (whiteboards[x])).update_whiteboard()
+   end
+
+   #
+   # Handle input on network connection x.
+   #
+   method do_net(x)
+   static Tsock_pendingin
+   local buffer, buffer2
+   local m, nchldrn, echldrn
+
+   initial { Tsock_pendingin := table("") }
+      # Call ready(), append new input to pending input from previous packets.
+      if not (buffer2 := Tsock_pendingin[x] || ready(x)) then {
+
+         world.nsh_dialog.chat_input.set_attribs("bg=red")
+         world.nsh_dialog.chat_input.set_is_shaded()
+
+         #Reset users' tree
+         if /(session.reconnecting) then
+	    world.nsh_dialog.reset_users_tree()
+
+         world.nsh_dialog.resize()
+         world.nsh_dialog.display()
+
+         #Clearing the notifications' menu
+         nchldrn := world.nsh_dialog.notifications_menu_icn.children
+         world.nsh_dialog.notifications_menu_icn.set_label("0")
+         every m := !nchldrn do 
+            world.nsh_dialog.notifications_menu_icn.remove(m)
+         world.nsh_dialog.notifications_menu_icn.resize()
+         world.nsh_dialog.notifications_menu_icn.display()
+         
+         #Clearing the emails' menu
+         echldrn := world.nsh_dialog.emails_menu_icn.children
+         world.nsh_dialog.emails_menu_icn.set_label("0")
+         every m := !echldrn do
+            world.nsh_dialog.emails_menu_icn.remove(m)
+         world.nsh_dialog.emails_menu_icn.resize()
+         world.nsh_dialog.emails_menu_icn.display()
+
+	 world.nsh_dialog.write_to_user_chat_win( "Lost connection to the server...")
+
+	 del_net(session.connID)
+
+         # Try to reconnect when Lost connection to server
+         # Till server is Up.
+         session.connID := &null
+         delay(4000)
+         projMenu.on_network_connect()
+
+         world.nsh_dialog.notifications_menu_icn.set_label(*nchldrn)
+         world.nsh_dialog.emails_menu_icn.set_label(*echldrn)
+
+	 session.disconnect()
+	 session.logout()
+	 fail
+	 }
+      Tsock_pendingin[x] := ""
+      buffer2 ? {
+	 while buffer := tab(find("\n")) do {
+	    do_netline(buffer)
+	    move(1)
+            }
+	 if *(buffer := tab(0)) > 0 then Tsock_pendingin[x] ||:= buffer
+	 }
+   end
+
+   # This is the place where the remote users' avatars will be downloaded from
+   # server and rendered on the fly. Guest files are created with the new
+   # user's name for now.
+
+method createavatarfile(ravatarname)
+   local f1,fd,gifcontent,attribfile,giffile
+   attribfile := world.avatar_path || ravatarname || PS || ravatarname|| ".avt"
+   if not stat(attribfile) then
+   {
+      mkdir(datfile(world.avatar_path || ravatarname))
+      mkdir(datfile(USER_LOCALPATH || PS || ravatarname))
+      if fd := datopen(attribfile,"w") then {
+
+         write(fd, "#@ Avatar property file generated by dispatch.icn",
+	       "\n#@ on:\t", &clock," MST ", &date, "\nNAME=", ravatarname,
+	       "\nGENDER=m", "\nHEIGHT=0.7",
+               "\nXSIZE=0.7", "\nYSIZE=0.7", "\nZSIZE=0.7",
+	       "\nSKIN COLOR=white", "\nSHIRT COLOR=white",
+	       "\nPANTS COLOR=white", "\nSHOES COLOR=white",
+	       "\nHEAD SHAPE=1", "\nFACE PICTURE=", ravatarname, ".gif")
+         close(fd)
+         }
+   }
+   giffile := world.avatar_path || ravatarname || PS || ravatarname|| ".gif"
+   if not stat(giffile) then {
+      if f1 := datopen("dat"||PS||"textures"||PS||"smily.gif","ru") then {
+         gifcontent := reads(f1,1430)
+         close(f1)
+         fd := datopen(giffile,"wu") | stop("can't write to ", giffile)
+         writes(fd,gifcontent)
+         close(fd)
+         }
+   }
+   return 1
+end
+
+
+# retrieves the quest resides at pagelink (http connection to pagelink)
+method get_quest(npc_name, pagelink, is_active_quest)
+   local quest, questinvdialog, questdialog, fname
+
+   fname := USER_GLOBALPATH || PS || npc_name || PS ||
+	    "quests" || PS ||file_name(pagelink)
+
+   if not stat(fname) then
+      fname := pagelink
+
+   quest := Quest()
+   quest.title := "Quest" # Until we parse the real title
+
+   quest.import_html_file(fname) | fail
+
+   quest.page_link := fname
+   quest.npc_name := npc_name
+
+
+   # already in my inventory, just got it from the server
+   if \is_active_quest then{
+      world.user_inventory.add_new_quest(npc_name, quest)
+      return quest
+      }
+
+   questinvdialog := QuestInvitationDialog(quest)
+   questinvdialog.show_modal()
+
+   if questinvdialog.user_choice=="take quest" then{
+      if world.user_inventory.add_new_quest(npc_name, quest) then
+         session.Write("\\npcmsg "|| npc_name || " Quest Title(" ||
+				  quest.title || ") Accept " || pagelink)
+      if quest.is_short_answer() then{
+	 questdialog := QuestDialog(quest)
+         questdialog.show_modal()
+         if quest.is_completed() & questdialog.user_choice=="ok" then{
+            world.user_inventory.finish_quest(npc_name, quest)
+	    session.Write("\\npcmsg " || npc_name ||
+			" Quest Title(" || quest.title  || ") Done" ||
+			" Score=" || string(quest.get_user_score()))
+            }
+	 }
+      }
+   else{
+      world.nsh_dialog.write_to_chat_win(" You chose to dismiss the quest: " ||
+					 quest.title )
+      session.Write("\\npcmsg "|| npc_name ||" Quest Title(" || quest.title ||
+		    ") Cancel")
+      }
+
+   return quest
+end
+
+#
+# assumes a string scanning environment
+# string of the form   " user: pla pla pla "
+# returns "user" and leaves the pos at p right after :
+#
+method parse_username()
+   local username
+
+   tab(many(' '))
+   if \(username := tab(find(":"))) then {
+      move(1)
+      tab(many(' '))
+      return username
+      }
+end
+
+   ####
+   #
+   # Network protocol command handlers, called by do_netline().
+   #
+   # All client protocol handlers receive two parameters: 
+   # cmd is the command name, rest is a string with any remaining arguments.
+   #
+   ###
+   method do_move(cmd, rest)
+   local userarglist, avat, u
+      userarglist := world.nsh_dialog.cmds.SplitArgs( rest )
+      if \(avat := world.get_avatar( userarglist[1] )) then {
+	 u := userarglist
+	 case u[2] of {
+	    "body":  avat.move(real(u[3]), real(u[4]), real(u[5]), real(u[6]))
+	    "part":  avat.move_part( u[3], u[4], real(u[5]) )
+	    "part2": avat.move_part_complex(u[3],u[4],u[5],u[6])
+	    "mouth": avat.isTalking()
+	    default: write("unknown move type")
+	    }
+	 }
+      else {
+	 write("move for no avatar I know (",image(userarglist[1]),")")
+	 }
+   end
+
+   method do_avatar(args)
+   local userarglist, avat, u, msg, shape
+      userarglist := world.nsh_dialog.cmds.SplitArgs( args )
+      u := userarglist
+      #THIS IS CALLED BEFORE CREATE AVATAR IN NSH-WORLD
+      # sysop is 'mute' user. No avatar needed.
+      if u[1] == "sysop" then
+	 fail
+      else if \(avat := world.get_avatar( u[1] )) then {
+	 # I have this avatar Already, Just update it position. This happen
+	 #after disconnect/connect after losing connection with the server
+	 avat.move( real(u[2]), real(u[3]), real(u[4]), real(u[5]))
+	 view.all_users()
+	 return
+	 }
+      # should this use world.avatar_create????
+      if /avat then {
+	 if \createavatarfile(u[1]) then {
+	    msg := " creating avatar " ||u[1]|| " from remote user."
+	    world.nsh_dialog.write_to_chat_win( msg )
+	    }
+	 else {
+	    msg :=" Cannot create avatar " ||u[1]|| " from remote user."
+	    world.nsh_dialog.write_to_chat_win( msg )
+	    fail
+	    }
+
+	 shape := world.parser(USER_GLOBALPATH||PS|| u[1] ||PS|| u[1]||".avt")
+
+	 if not (avat := case shape of {
+	       "dog": dog(u[1], real(u[2]), real(u[3]),
+			  real(u[4]), real(u[5]), u[6])
+	       "penguin": penguinj( u[1], real(u[2]), real(u[3]),
+				   real(u[4]), real(u[5]), u[6])
+	       "human": avatron( u[1], real(u[2]), real(u[3]),
+				  real(u[4]), real(u[5]),  u[6])
+		}) then {
+	    world.nsh_dialog.write_to_chat_win("no avatar for ", image(u[1]))
+	    fail
+	    }
+	 if /avat then fail
+	 avat.initialize()
+	 if /world.cam.avatar then {
+	    world.cam.avatar := avat
+	    world.setPos(avat.X, avat. Y+1.5, avat.Z)
+	    world.cam.looky := avat.Y + 1.5
+	    avat.cam_follows()
+	    }
+	 else { # someone else's avatar; render immediately (for now)
+	    avat.render()
+            }
+	 world.TAvatars[avat.uid] := avat
+         }
+      view.all_users()
+   end
+   # known to be bogus : fileTransfer is a class not an instance!
+   method do_transfer(args)
+      fileTransfer.receiveFile(args)
+   end
+   method do_avatlocation(args)
+      avatloc := args
+      #ici_groups.location.set_label("Location: "||args)
+   end
+   method do_possess(args)
+   local u, k, j, userarglist
+      u := userarglist := world.nsh_dialog.cmds.SplitArgs( args )
+      every k := 1 to *(world.Rooms) do {
+	 if world.Rooms[k].name == u[3]||" "||u[4] then {
+            j := k
+	    }
+	 }
+      world.TAvatars[u[2]].possess(world.Rooms[j].tools[u[1]])
+   end
+   method do_unpossess(args)
+      world.TAvatars[(world.nsh_dialog.cmds.SplitArgs(args))[2]].unpossess()
+   end
+   method do_switchobjectup(args)
+      local u := (world.nsh_dialog.cmds.SplitArgs(args))
+      world.TAvatars[u[2]].switchObjectUp()
+   end
+   method do_switchobjectdown(args)
+      local u := world.nsh_dialog.cmds.SplitArgs(args)
+      world.TAvatars[u[2]].switchObjectDown()
+   end
+   method do_dat(args)
+      DAT := args
+$ifdef _MS_WINDOWS_NT
+      DAT := map(DAT, "/", "\\")
+$endif
+      world.change_world_model(DAT)
+   end
+   method do_delavatar(args)
+      if *args > 0 then  {
+	 world.avatar_delete( args )
+	 view.all_users()
+	 }
+   end
+   method do_latency(args)
+      if \latency_timestamp then {
+	 latency := curr_time_of_day() - latency_timestamp
+	 view.latency_label.set_label(string(latency)||" ms")
+	 latency_timestamp := &null
+	 }
+   end
+   method do_afk(args)
+   local msg_from, msg_in, avat
+      args ? {
+	 if \ (msg_from := parse_username()) then {
+	    if \ (avat := world.get_avatar(msg_from)) then {
+	       tab(upto(&letters)) # move(1)
+	       msg_in := tab(0)
+	       if msg_in == "Busy" then
+		  avat.set_activity_status(msg_in)
+	       else
+		  avat.set_afk()
+	       }
+	    }
+	 }
+   end
+   method do_back(args)
+   local msg_from, msg_in, avat
+      args ? {
+	 if \ (msg_from := parse_username()) then {
+	    if \ (avat := world.get_avatar(msg_from) ) then {
+	       tab(upto(&letters)) # move(1)
+	       msg_in := tab(0)
+	       # if the user is not afk but he wants others to think so
+	       if msg_in == "Away" then
+		     avat.set_afk()
+		  else
+		     avat.set_activity_status(msg_in)
+	       }
+	    }
+	 }
+   end
+   method do_tell(args)
+   local msg_from, msg_in
+      args ? {
+	 if \ (msg_from := parse_username()) then {
+	    # someone (msg_from) is telling me something (msg_in)
+	    if msg_from ~== world.userId then
+	       msg_in := msg_from ||" whispers: "|| tab(0)
+	    else
+	       msg_in := tab(0)
+	    }
+	 else 					# Am I telling myself!!
+	    msg_in := tab(0)
+	 }
+      if find((("Editor"|"3D"|"Map"|"Profile"|"Wall")||" mode") |
+		"is currently in" | "no such user is online: ", msg_in) then
+	 world.nsh_dialog.write_to_chat_win(msg_in)
+      else if \msg_in then world.nsh_dialog.write_to_user_chat_win(msg_in)
+   end
+   method do_npcmsg(args)
+   local msg_from, msg_in, q_title, avatar_to_halo, is_active_q, q_webpage
+      args ? {
+	 if \ (msg_from := parse_username()) then {
+	    if ="Quest " then {
+	       if ="Title(" then {	# we have a quest title in this msg
+		  q_title := tab(find(")"))
+		  move(2)		# skip ") " after the quest title
+		  }
+	       /q_title := ""
+	       case tab(many(&letters)) of { # get command and take action
+		  "Halo" : {
+		     msg_in := &null
+		     if \ (avatar_to_halo := world.TAvatars[msg_from]) then
+			avatar_to_halo.showQuestHalo()
+		     else
+			world.nsh_dialog.write_to_chat_win("no avatar for " ||
+							   image(msg_from))
+		     return
+		     }
+		  "URL": {
+		     move(1)			# skip "="
+		     if ="Active "then
+			is_active_q := 1
+		     q_webpage := tab(0)
+
+		     if not(get_quest(msg_from,q_webpage,is_active_q))
+		     then
+			world.nsh_dialog.write_to_chat_win(
+			   " error : the quest can't be retrieved!" )
+
+		     msg_in := &null
+		     return
+		     }
+		  "Accept" : {
+		     world.nsh_dialog.write_to_chat_win( msg_from ||
+			    " accepted the quest (" || q_title || ")" )
+		     }
+		  "Cancel" : {
+		     world.nsh_dialog.write_to_chat_win( msg_from ||
+			    " declined the quest (" || q_title || ")" )
+		     }
+		  "Done" : {
+		     world.nsh_dialog.write_to_chat_win( msg_from ||
+			    " completed the quest (" || q_title || ")" )
+		     }
+		  default: {	# no need for this step, error checking for now
+		 }
+		 } # case
+	       } # if "Quest "
+	    } # if \(msg_from
+	 }
+   end
+   method do_createroom(args)
+   local roomStats := [], tmpWord := "", tmpLetter, tmpRoom
+      every tmpLetter := !args do {
+	 if tmpLetter == " " then {
+	    put(roomStats, tmpWord)
+	    tmpWord := ""
+	    }
+	 else tmpWord ||:= tmpLetter
+	 }
+      if *tmpWord > 0 then # if args didn't end with a space...
+	  put(roomStats, tmpWord)
+      tmpRoom := Room(WcveBuilder.opMode, WcveBuilder.world,
+		      WcveBuilder.dispatcher, roomStats[1], roomStats[2],
+		      roomStats[3], roomStats[4], roomStats[5],
+		      roomStats[6], roomStats[7], roomStats[8])
+      tmpRoom.make_default_left_wall(roomStats[8])
+      tmpRoom.make_default_right_wall(roomStats[8])
+      tmpRoom.make_default_front_wall(roomStats[8])
+      tmpRoom.make_default_back_wall(roomStats[8])
+      /tmpRoom.actors := []
+      WcveBuilder.sceneGraph.putRoomInWorld(tmpRoom)
+      WcveBuilder.sceneGraph.nodesTable[roomStats[1]] := tmpRoom
+   end
+   method do_inform(args)
+   local pName, uName, rec_lst, uLoc, friend_loc_lst, avtname, onn, nnn, parsed
+      args ? {
+	 if ="GROUPS" then {
+	    view.groups_tree.set_root_node(&null)
+	    ici_groups.on_login_groups_creation()
+	    }
+	 else if ="PROJECTS" then {
+	    view.projects_tree.set_root_node(&null)
+	    projectdlg.all_projects()
+	    }
+	 else if = "MYPROJECTS" then {
+	    myprojectslst := set()
+	    while not(pos(0)) do {
+	       pName := tab(find(","))
+	       move(1)
+	       if pName ~== "" then
+		  insert(myprojectslst, pName)
+	       }
+
+	    if *myprojectslst > 0 then {
+	       world.nsh_dialog.get_chart_info(?myprojectslst)
+	       }
+	    else {
+	       world.nsh_dialog.set_member_not_active()
+	       }
+	    }
+	 else if ="MYBLOCKLIST" then {
+	    myblocklst := set()
+	    while not (pos(0)) do {
+	       uName := tab(find(","))
+	       move(1)
+	       if uName ~== "" then
+		  insert(myblocklst, uName)
+	       }
+	    }
+	 else if = "FRIENDLOCATION" then {
+	    tab(find(" "))
+	    move(1)
+	    myfriendsslst := set()
+	    while not(pos(0)) do {
+	       rec_lst := []
+	       uName := tab(find(" "))
+	       move(1)
+	       uLoc := tab(find("~"))
+	       move(1)
+	       insert(myfriendsslst, uName)
+	       put(rec_lst, uName, uLoc)
+	       put(friend_loc_lst, rec_lst)
+	       }
+	    }
+	 else if ="NEWSFEED" then {
+	    view.newsfeed_tree.set_root_node(&null)
+	    ici_newsfeed.on_login_newsfeed_creation()
+	    }
+	 else
+	    if ="\\inform" & (avtname := tab(find(" leaves"))) &
+		=" leaves " & (onn := tab(find(" and enters "))) &
+		=" and enters " & (nnn := trim(tab(0))) then {
+	       }
+	    else
+	       world.nsh_dialog.write_to_chat_win(args)
+	    }
+   end
+   #
+   # Start VoIP
+   #
+   method do_vwho(args)
+      world.nsh_dialog.Voice.UpdateDisplayList(args)
+   end
+   method do_vrequest(args)
+      if /session.VoiceSession then
+	 session.Write("\\tell " || args ||
+		       " Sorry, The Cell Phone is OFF !!!" )
+      else
+	 world.nsh_dialog.Voice.UpdateDialingInList(args)
+   end
+   method do_vaccept(args)
+      if find("undef", args) then {
+	 world.nsh_dialog.write_to_chat_win("vaccept : undef")
+	 }
+      else {
+	 VAttrib(session.VoiceSession,"cast+="||args)
+	 world.nsh_dialog.write_to_chat_win("adding "||args||
+					    " to your voipcast")
+	 world.nsh_dialog.Voice.FromDialingOut_to_Linelist(args)
+      }
+   end
+   method do_vuhold(args)
+      if find("undef", args) then {
+	 world.nsh_dialog.write_to_chat_win("vuhold : undef")
+	 }
+      else {
+	 VAttrib(session.VoiceSession, "cast+=" || args)
+	 world.nsh_dialog.Voice.FromHoldlist_to_LineList(args)
+	 }
+   end
+   method do_vstate(args)
+      world.nsh_dialog.write_to_chat_win( "vstate=" || args)
+   end
+   method do_aftroom(args)
+      world.nsh_dialog.write_to_chat_win( "avtroom=" || args )
+      world.nsh_dialog.Voice.LocalRoom_UpdateUsers(args)
+   end
+   method do_vlend(args)
+      world.nsh_dialog.write_to_chat_win( "vlend=" || args )
+      world.nsh_dialog.Voice.LocalRoom_deleteActiveUser(args)
+   end
+   method do_vchroom(args)
+      if \session.VoiceSession then {
+	 if session.VoiceState === "Local" then {
+	    world.nsh_dialog.Voice.LocalRoom_Update(args)
+	    }
+	 else
+	    world.nsh_dialog.write_to_chat_win("Nothing to do with Voice")
+	 }
+      else
+	 if chat_filter_flag =="low" then
+	    world.nsh_dialog.write_to_chat_win("Nothing to do with Voice")
+   end
+   method do_vtalk(args)
+      if find("undef",args) then {
+	 world.nsh_dialog.write_to_chat_win("vaccept : undef ---"||args)
+	 }
+      else {
+	 world.nsh_dialog.Voice.Talkto(args)
+	 }
+   end
+   method do_vend(args)
+      world.nsh_dialog.write_to_chat_win(
+		" I just disconnected the VoIP with "|| args)
+      VAttrib(session.VoiceSession, "cast-=" || args)
+   end
+   method do_logout(args)
+      world.nsh_dialog.write_to_chat_win( args )
+      user_logout()
+   end
+   #
+   # NewsFeed commands
+   #
+   method do_addFeed(args)
+   local feedlst := [], userID, ppriority, feed_lbl
+      args ? {
+	 userID := tab(find(" "))
+	 move(1)
+	 ppriority := tab(find(" "))
+	 move(1)
+	 feed_lbl := tab(0)
+	 }
+      if userID ~== view.user_me then
+	 ici_newsfeed.mycreate_post(feed_lbl, , 0, ppriority)
+   end
+   method do_removeFeed(args)
+   local feed_lbl, reply_lbl
+      args ? {
+	 feed_lbl := tab(find("@@"))
+	 move(2)
+	 reply_lbl := tab(find("@@"))
+	 move(2)
+	 flag := tab(0)
+	 }
+      ici_newsfeed.del_node(feed_lbl, reply_lbl, flag)
+   end
+   method do_groupInvite(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_addFriend(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_makesig(args)
+   local sigName, sigOwner
+      args ? {
+	 sigName := tab(find(" "))
+	 move(1)
+	 sigOwner:= tab(0)
+	 }
+      ici_groups.create_group(sigName, sigOwner, 0)
+   end
+   method do_groupremove(args)
+      ici_groups.delete_node_from_group_tree(args, "", 1)
+   end
+   method do_groupWall(args)
+   local objName, objType, objInfo, postName, postContents, postsLst, l,
+      wall_contents
+      args ? {
+	 objName := tab(find(" "))
+	 move(1)
+	 objType := tab(find(" "))
+	 move(1)
+	 number_of_posts := tab(find("{"))
+	 move(1)
+	 objInfo := tab(find("}"))
+	 move(1)
+	 wall_contents := tab(0)
+	 }
+      postsTbl := table()
+      wall_contents ? {
+	 while not (pos(0)) do {
+	    postName := tab(find("<<<")) | &null
+	    if /postName then break
+	    move(3)
+	    postContents := tab(find(">>>"))
+	    move(3)
+	    postsLst := []
+	    if \postContents then
+	       if *postContents > 3 then {
+		  postContents ? {
+		     while not(pos(0)) do {
+			l := tab(find("@@@")) | &null
+			if /l then break
+			move(3)
+			put(postsLst, l)
+			}
+		     }
+		  postsTbl[postName] := postsLst
+		  }
+	       }
+	    }
+	 if \number_of_posts then
+	    ici_groups.wall_tabitem(objName, objType, postsTbl,
+				    number_of_posts, objInfo)
+   end
+   method do_refreshWall(args)
+   local objName, objType, objInfo, wall_contents, postName, postContents,
+       postsLst, l
+      args ? {
+	 objName := tab(find(" "))
+	 move(1)
+	 objType := tab(find(" "))
+	 move(1)
+	 number_of_posts := tab(find("{"))
+	 move(1)
+	 objInfo := tab(find("}"))
+	 move(1)
+	 wall_contents := tab(0)
+	 }
+      postsTbl := table()
+      wall_contents ? {
+	 while not (pos(0)) do {
+	    postName := tab(find("<<<")) | &null
+	    if /postName then break
+	    move(3)
+	    postContents := tab(find(">>>"))
+	    move(3)
+	    postsLst := []
+	    if \postContents then
+	       if *postContents > 3 then {
+		  postContents ? {
+		     while not(pos(0)) do {
+			l := tab(find("@@@")) | &null
+			if /l then break
+			move(3)
+			put(postsLst, l)
+			}
+		     }
+		  postsTbl[postName] := postsLst
+	       }
+	    }
+	 }
+      if \number_of_posts then
+	 ici_groups.wallRefresh(objName, objType, postsTbl,
+				number_of_posts, objInfo)
+   end
+   method do_groupJoin(args)
+   local margs
+      args ? {
+	 flag := integer(tab(find(" ")))
+	 move(1)
+	 margs := tab(0)
+	 }
+      if flag = 0 then
+	 ici_groups.accept_group_join_request(margs)
+      else ici_pendings.ide_pendings(margs)
+   end
+   method do_groupLeave(args)
+   local userID, sigName
+      args ? {
+	 userID := tab(find(" "))
+	 move(1)
+	 sigName:= tab(0)
+	 }
+      ici_groups.delete_node_from_group_tree(sigName, userID, 0)
+   end
+   method do_sciAdduser(args)
+   local command, objType, userID, objName, objOwner
+      args ? {
+	 command := tab(find(" "))
+	 move(1)
+	 objType := tab(find(" "))
+	 move(1)
+	 userID  := tab(find(" "))
+	 move(1)
+	 objName := tab(find(" "))
+	 move(1)
+	 objOwner:= tab(0)
+	 }
+      if objType == "sig" then {
+	 ici_groups.on_add_user_to_group(objName, userID, "online")
+         }
+   end
+   method do_changeStatus(args)
+   local userID, ustatus
+      args ? {
+	 userID := tab(find(" "))
+	 move(1)
+	 ustatus := tab(0)
+	 }
+      world.all_registered_users [userID] := ustatus
+   end
+   method do_userAvailability(args)
+   local objType, userID, ava_str
+      args ? {
+	 objType := tab(find(" "))
+	 move(1)
+	 userID := tab(find("~"))
+	 move(1)
+	 ava_str := tab(0)
+	 }
+      view.plot_availability(objType, userID, ava_str)
+   end
+   method do_memberProjectsList(args)
+   local projName
+      args ? {
+	 while not(pos(0)) do {
+	    if not (projName := tab(find("~~"))) then fail
+	    move(2)
+            if \projName & projName ~== "" then
+	       insert(member_proj_set, projName)
+	    }
+	 }
+   end
+   method do_myProjectsList(args)
+   local projName
+      myprojectslst := set()
+      args ? {
+	 while not(pos(0)) do {
+	    projName := tab(find("~~"))
+	    move(2)
+	    if \projName & projName ~== "" then
+	       insert(myprojectslst, projName)
+	    }
+	 }
+   end
+   method do_myFriendsList(args)
+   local uName
+      myfriendsslst := set()
+      args ? {
+	 while not(pos(0)) do {
+	    uName := tab(find("~~"))
+	    move(2)
+            if \uName & uName ~== "" then
+	       insert(myfriendsslst, uName)
+	    }
+	 }
+   end
+   method do_myPartnersList(args)
+   local uName
+      mypartnersslst := set()
+      args ? {
+	 while not(pos(0)) do {
+	    uName := tab(find("~~"))
+	    move(2)
+            if \uName & uName ~== "" then
+	       insert(mypartnersslst, uName)
+	    }
+	 }
+   end
+   method do_projectDelete(args)
+	projectdlg.delete_node_from_project_tree(args, "", 1)
+   end
+   method do_projfileOpen(args)
+   local openedFile_contents := [], fileName, projName, l
+      args ? {
+	 fileName := tab(find(" "))
+	 move(1)
+	 projName := tab(find(" "))
+	 move(1)
+	 project_access_time := tab(find(" "))
+	 move(1)
+	 file_access_time := tab(find(" "))
+	 move(1)
+	 file_contents    := tab(0)
+	 }
+      file_contents ? {
+	 while not (pos(0)) do {
+	    l := tab(find("xx1e"))
+	    put(openedFile_contents, l)
+	    move(4)
+	    }
+	 }
+      openedprojfileTable[fileName] := projName
+      updatedsdfilelines [projName||":"||fileName] := ""
+      ide.new_tabitem(, 1, fileName, openedFile_contents, projName)
+      activity_tabset_setup()
+   end
+   method do_projfileAdd(args)
+   local projName, fileName
+      args ? {
+	 projName := tab(find(" "))
+	 move(1)
+	 fileName := tab(0)
+	 }
+      projectdlg.on_add_file_to_project(projName, fileName)
+   end
+   method do_readytoCommit(args)
+   local fileName, projName, currentlyworkingrecords, previouslychangedrecords,
+      allfilesstr
+   
+      args ? {
+	 fileName := tab(find(" "))
+	 move(1)
+	 projName := tab(find(" "))
+	 move(1)
+	 currentlyworkingrecords := tab(find("^^^"))
+	 move(3)
+	 previouslychangedrecords := tab(find("^^^"))
+	 move(3)
+	 allfilesstr := tab(0)
+	 }
+      projectdlg.readytoCheckOut(projName, fileName, currentlyworkingrecords,
+	   previouslychangedrecords, allfilesstr)
+   end
+   method do_commitChanges(args)
+   local fileName, projName, currentlyworkingrecords, previouslychangedrecords
+      args ? {
+	 fileName := tab(find(" "))
+	 move(1)
+	 projName := tab(find(" "))
+	 move(1)
+	 currentlyworkingrecords := tab(find("^^^"))
+	 move(3)
+	 previouslychangedrecords := tab(0)
+	 }
+      # obviously unimplemented
+   end
+   method do_checkdiff(args)
+   local l, difflst := []
+      args ? {
+	 while not (pos(0)) do {
+	    l := tab(find("\x1e"))
+	    put(difflst, l)
+	    move(1)
+	    }
+	 }
+      projectdlg.diff_results_etl.set_contents(difflst)
+   end
+   method do_projActivity(args)
+      if args === "PROJ_ACTIVITY" then {
+	 projActivitylst := []
+	 }
+      else {
+	 put(projActivitylst, args)
+	 world.nsh_dialog.write_to_chat_win(args)
+	 }
+   end
+   method do_getDescription(args)
+   local l, descr_lst := []
+      args ? {
+	 while not(pos(0)) do {
+	    l := tab(find("NEWLINE"))
+	    move(7)
+	    put(descr_lst, l)
+	    }
+	 }
+      obj_desc.set_descr_contents(descr_lst)
+   end
+   method do_sessionActivity(args)
+      if args === "SESSION_ACTIVITY" then {
+	 sessionActivitylst := []
+	 }
+      else {
+	 put(sessionActivitylst, args)
+	 world.nsh_dialog.write_to_chat_win(args)
+	 }
+   end
+   method do_membersColorList(args)
+   local tooltip_msg, projName, mem_color_lst, l, userID, ucolor
+      membersColorTable := table("")
+      tooltip_msg := ""
+
+      args ? {
+	 projName := tab(find(" "))
+	 move(1)
+	 mem_color_lst := tab(0)
+	 }
+      mem_color_lst ? {
+	 while not(pos(0)) do {
+	    l := tab(find(","))
+	    move(1)
+	    \l ? {
+	       userID := tab(find(":"))
+	       move(1)
+	       ucolor := tab(0)
+	       tooltip_msg ||:= userID||" : "||ucolor ||"\n"
+	       membersColorTable[projName||":"||userID]:= ucolor
+	       }
+	    }
+	 }
+      world.nsh_dialog.projects_tree.set_tooltip("Members: \n" || tooltip_msg)
+   end
+   method do_userTimeSpent(args)
+   local projName, info_lst
+      args ? {
+	 projName := tab(find("~"))
+	 move(1)
+	 info_lst := tab(0)
+	 }
+      if \projName then {
+	 world.nsh_dialog.activity_chart(args)
+         }
+      else {
+	 world.nsh_dialog.set_member_not_active()
+	 }
+   end
+   method do_userProgress(args)
+   local userID, info_lst, projName
+      args ? {
+	 userID := tab(find("~"))
+	 move(1)
+	 info_lst := tab(0)
+	 }
+      #There is an issue with the 3D overlaps the 2D subwindow
+      if \userID then
+	 ici_profile.progress_chart(args)
+   end
+   method do_projTooltip(args)
+   local projName, projDeadline, mem_color_lst, most_active_info, cw_msg,
+      fa_msg, tooltip_msg, l, userID, ucolor, time_spent, active_percent,
+      cw_tt, fa_tt
+
+      membersColorTable := table("")
+      args ? {
+	 flag := tab(find(" "))
+	 move(1)
+	 projName := tab(find("$$"))
+	 move(2)
+	 projDeadline := tab(find("$$"))
+	 move(2)
+	 mem_color_lst := tab(find("$$"))
+	 move(2)
+	 if integer(flag) == 2 then {
+	    most_active_info := tab(0)
+	    }
+	 if integer(flag) == 3 then {
+	    cw_msg := tab(find("$$"))
+	    move(2)
+	    fa_msg := tab(0)
+	    }
+	 }
+
+      if integer(flag) == 2 then {
+	 tooltip_msg := "Members: \n"
+	 mem_color_lst ? {
+	    while not(pos(0)) do {
+	       l := tab(find(","))
+	       move(1)
+	       \l ? {
+		  userID := tab(find(":"))
+		  move(1)
+		  ucolor := tab(0)
+		  tooltip_msg ||:= userID||" : "||ucolor ||"\n"
+		  membersColorTable[projName||":"||userID]:= ucolor
+		  }
+	       }
+	    }
+	 most_active_info ? {
+	    userID := tab(find(" "))
+	    move(1)
+	    time_spent := tab(find(" "))
+	    move(1)
+	    active_percent := tab(0)
+	    tooltip_msg ||:= "\n"||repl("-",25) || "\nMost Active: "||userID||
+		"\nSpent : "||time_spent|| "\nActive: "||active_percent
+	    }
+	 tooltip_msg ||:= "\n" || projDeadline
+	 }
+      else if integer(flag) == 3 then {
+	 cw_tt := fa_tt := "\n----------------------\n"
+	 cw_msg ? {
+	    while not(pos(0)) do {
+	       l := tab(find(" ~ "))
+	       move(3)
+               cw_tt ||:= l || "\n"
+	       }
+	    }
+	 fa_msg ? {
+	    while not(pos(0)) do {
+	       l := tab(find(" ~ "))
+	       move(3)
+               fa_tt ||:= l || "\n"
+	       }
+	    }           
+	  tooltip_msg := "Activity: \n"||cw_tt||fa_tt
+	  }
+	world.nsh_dialog.projects_tree.set_tooltip(tooltip_msg)
+   end
+   method do_sessionTooltip(args)
+   local s_tt, sessionName, tooltip_msg, l
+      s_tt := ""
+      args ? {
+	 sessionName := tab(find("$$"))
+	 move(2)
+	 tooltip_msg := tab(0)
+	 }
+      tooltip_msg ? {
+	 while not(pos(0)) do {
+	    l := tab(find("~"))
+	    move(3)
+	    s_tt ||:= l || "\n"
+	    }
+	 }           
+      world.nsh_dialog.ide_session_tree.set_tooltip(s_tt)
+   end
+   method do_checkMemberColor(args)
+   local projName, colorfound
+      args ? {
+	 projName := tab(find(" "))
+	 move(1)
+	 colorfound := integer(tab(0))
+	 }
+      projectdlg.on_set_member_color(projName, colorfound)
+   end
+   method do_checkMode(args)
+      write("unsupported checkMode network command.")
+   end
+   method do_getUpdatedLines(args)
+   local projName, fileName, updatedlines_str
+      changed_file_line_Table := table("")
+      args ? {
+	 projName := tab(find(" "))
+	 move(1)
+	 fileName := tab(find(" "))
+	 move(1)
+	 updatedlines_str := tab(0)
+	 }
+      changed_file_line_Table[projName||":"||fileName] := updatedlines_str
+   end
+   method do_getChangedLines(args)
+   local lineno, users_str, set_tooltip
+      args ? {
+	 lineno := tab(find(" "))
+	 move(1)
+	 users_str := tab(0)
+	 }
+      set_tooltip("Line # "||lineno||" is modified by: "||users_str)
+   end
+   method do_memberActivity(args)
+      if args === "MEMBER_ACTIVITY" then {
+	 memberActivitylst := [""]
+	 }
+      else {
+	 put(memberActivitylst, args)
+	 world.nsh_dialog.write_to_chat_win(args)
+	 }
+   end
+   method do_getAccessedProjFiles(args)
+   local f, accessedfiles_msg, addedfiles_msg, cwfiles_msg
+	cwfiles_set := set()
+	addedfiles_set := set()
+	accessedfiles_set := set()
+
+	args ? {
+	   cwfiles_msg := tab(find("&"))
+	   move(1)
+	   accessedfiles_msg := tab(find("&"))
+	   move(1)
+	   addedfiles_msg := tab(0)
+	   cwfiles_msg ? {
+	      while not(pos(0)) do {
+	         f := tab(find(" "))
+	         insert(cwfiles_set, f)
+	         move(1)
+	         }
+	      }
+	   accessedfiles_msg ? {
+	      while not(pos(0)) do {
+	         f := tab(find(" "))
+	         insert(accessedfiles_set, f)
+	         move(1)
+	         }
+	      }
+	   addedfiles_msg ? {
+	      while not(pos(0)) do {
+	         f := tab(find(" "))
+	         insert(addedfiles_set, f)
+	         move(1)
+	         }
+	      }
+	   }
+	on_selected_project_pop3D()
+   end
+   method do_projMembersLst(args)
+   local u
+      projMembersSet := set()
+      args ? {
+	 while not(pos(0)) do {
+	    u := tab(find(","))
+	    move(1)
+	    if u ~== "" then
+	       insert(projMembersSet, u)
+	    }
+	 }
+   end
+   method do_getExpertsList(args)
+   local u
+      expertsList := []
+      args ? {
+	 while not(pos(0)) do {
+	    u := tab(find(":"))
+	    move(1)
+	    if u ~== "" then
+	      put(expertsList, u)
+	    }
+	 }
+      view.uide.on_add_experts_menu_items(expertsList)
+   end
+   method do_projectInvite(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_projectJoin(args)
+	ici_pendings.ide_pendings(args)
+	ici_notifications.ide_pendings(args)
+   end
+   method do_sendtoGroup(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_getEmail(args)
+   local msg, sav
+      \args ? {
+	 msgfrom := tab(find(" --> "))
+	 move(5)
+	 fwdrply_action := tab(find(" --> "))
+	 move(5)
+	 msg := tab(0)
+	 msg ? {
+	    while line := tab(find("NEWLINE")) do {
+	       move(7)
+	       put(msg_txt, line)
+	       }
+	    line := tab(0)
+	    if line ~== "" then
+	       put(msg_txt, line)
+	    }
+	 }
+      &window  := &null
+      showEmaildlg.show_modal()
+      showEmaildlg.set_attribs("label=Read Email ("||msgfrom||")")
+      showEmaildlg.sendto_msg_box.set_contents(msg_txt)
+      &window := sav
+   end
+   method do_ADDPending(args)
+   local pinv
+      pinv := pending_invitation()
+      args ? {
+	 pinv.pid := tab(find(","))
+	 =", "
+	 pinv.uname := tab(find(","))
+	 =", "
+	 pinv.psubject := tab(find(","))
+	 =", "
+	 pinv.ppriority := tab(find(","))
+	 =", "
+	 pinv.pdate := tab(find(","))
+	 =", "
+	 pinv.pcomment := tab(0) | ""
+	 } # line
+      world.user_inventory.add_new_pinv(pinv)
+$ifdef chech_later
+      if find("IDE Session" | "IDE: Take Turn" |
+	      "Forward IDE Session" , pinv.psubject) then {
+	   if \member(onlineusers_set, pinv.uname) then
+	      world.user_inventory.add_new_pinv(pinv)
+	   }
+	else world.user_inventory.add_new_pinv(pinv)
+$endif
+   end
+
+   #
+   # Start Collaborative IDE commands
+   #
+   method do_CETLOpen(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_CETLevent(args)
+      idesession.Receive_CETL_Event(args, 0, 1)
+   end
+   method do_SHLevent(args)
+      idesession.Receive_CETL_Event(args, 0, 2)
+   end
+   method do_CETLmouse(args)
+      idesession.Receive_CETL_Event(args, 1, 1)
+   end
+   method do_SHLmouse(args)
+      idesession.Receive_CETL_Event(args, 1, 2)
+   end
+   method do_CETLkey(args)
+      idesession.Receive_CETL_Event(args, 1, 1)
+   end
+   method do_SHLkey(args)
+      idesession.Receive_CETL_Event(args, 2, 2)
+   end
+   method do_CETLscrol(args)
+      idesession.Receive_CETL_Event(args, 3, 1)
+   end
+   method do_SHLscrol(args)
+      idesession.Receive_CETL_Event(args, 3, 2)
+   end
+   method do_CETLcompile(args)
+      projMenu.on_msgs_50()
+      ide.Receive_Compile_message(args)
+   end
+   method do_Whoami(args)
+   local userID, isdisabled
+      args ? {
+	 userID := tab(find(" "))
+	 move(1)
+	 isdisabled := integer(tab(0))
+	 }
+      if \isdisabled = 1 then
+	 world.nsh_dialog.chat_input.set_is_shaded()
+      world.nsh_dialog.Whoami(userID)
+   end
+   method do_CETLLock(args)
+      ici_pendings.ide_pendings(args)
+      ici_notifications.ide_pendings(args)
+   end
+   method do_CETLLockTransfer(args)
+      world.nsh_dialog.write_to_user_chat_win(
+           "Your Take Turn request is accepted.")
+      idesession.Transfer_IDE_Lock(args)
+   end
+   method do_SHLHighlight(args)
+   local msg, s
+      msg := args
+      s := find(" ",args)
+      highlightline := msg[s+1:0]
+      ide.CurrentEditBox().highlight_line(highlightline)
+   end
+   method do_CETLPaste(args)
+   local msg, s, l
+      msg := args
+      s := find(" ",msg)
+      clipboard_contents := msg[s+1:0]
+
+      clipboard_list := ""
+      \msg ? {
+	 tab(find("\"")+1)
+	 while not(pos(-1)) do {
+	    l := tab(find("\\n" )|-1)
+	    move(2)
+	    if not(pos(-1)) then clipboard_list ||:= l || "\n"
+	    else clipboard_list ||:= l
+	    }
+	 }
+      get_clipboard().set_content(clipboard_list)
+   end
+
+   #
+   # end Collaborative IDE commands
+   #
+   method do_allusers(args)
+   local l, u, loc, npc_str, others_str, friends_str
+      args ? {
+	 if not (friends_str := tab(find("~~"))) then {
+	    world.nsh_dialog.write_to_chat_win("allusers/friends_str " ||
+						image(tab(0)))
+	    fail
+	    }
+	 move(2)
+	 npc_str := tab(find("~~"))
+	 move(2)
+	 if not (others_str := tab(0)) then {
+	    world.nsh_dialog.write_to_chat_win("allusers/others_str " ||
+						image(tab(0)))
+	    fail
+	    }
+	 }
+      if \friends_str then
+	 friends_str ? {
+	    while l := tab(find(",")) do {
+	       l ? {
+		  u := tab(find(":"))
+		  move(1)
+		  loc := tab(0)
+		  }
+	       insert(world.all_registered_users, u, u)
+	       insert(world.all_friends_location, u, loc)
+	       move(1)
+	       }
+	    }
+      if \npc_str then
+	 npc_str ? {
+	    while l := tab(find(",")) do {
+	       l ? {
+		  u := tab(find(":"))
+		  move(1)
+		  loc := tab(0)
+		  }
+	       insert(world.all_npc_users, u, u)
+	       insert(world.all_npc_location, u, loc)
+	       move(1)
+	       }
+	    }
+      if \others_str then
+	 others_str ? {
+	    while l := tab(find(",")) do {
+	       l ? {
+		  u := tab(find(":"))
+		  move(1)
+		  loc := tab(0)
+		  }
+	       insert(world.all_other_users, u, u)
+	       insert(world.all_others_location, u, loc)
+	       move(1)
+	       }
+	    }
+      /showonline_checked := 1
+      view.all_users()
+   end
+   # known to be bogus -- who does fileXfers?  Not session!
+   method do_upload(args)
+       session.fileXferPerform(args)
+   end
+   # Handle Door motion due to  other user
+   method do_doorMotion(args)
+   local userarglist, doorName, whichDoor
+      userarglist := world.nsh_dialog.cmds.SplitArgs( args )
+      doorName := userarglist[1]
+      whichDoor := cltSceneGraph.edgesTable[doorName]
+      moveDoor(whichDoor)
+   end
+   method do_dynstate(args)
+   static glinfo_done
+   local t1, TupdatedAvatars := table(), TupdatedNodes := table()
+      if chat_filter_flag =="low" then
+	 world.write_chat("received ", *args,
+			  " bytes dynamic state info from server")
+      #
+      # If no dynamic data received populate from the client scene graph
+      #
+      if args == "NOUPDATE" then
+	 args := cltSceneGraph.getAdjDynamicStateForNode(
+		    world.curr_room.name,MAX_RENDER_LEVEL, 1, world.TAvatars)
+
+      #
+      # Update the dynamic state in the graph adjacency
+      # This in the future could be made more intelligent if we could
+      # determine if we need to update a node.
+      #
+      cltSceneGraph.updateDynamicState(args, TupdatedNodes, TupdatedAvatars)
+      #
+      # Now render the updated graph.
+      #
+      # Also add the current room for rendering. This is necessary or funny
+      # things can occur.
+
+      TupdatedNodes[world.curr_room.name] := world.curr_room
+      if chat_filter_flag =="low" then
+	 world.write_chat("Rendering and loading textures...")
+      t1 := &time
+      if \view.user_me then
+	 session.Write("\\updatelocations " || view.user_me)
+      view.all_users()
+       please(world.nsh_dialog.subwin.cwin,TupdatedNodes,TupdatedAvatars)
+      if chat_filter_flag =="low" then
+	 world.write_chat("Rendering done, ", &time-t1, "ms")
+      / (world.cam.avatar) := \ (world.TAvatars) [\ (world.userId)]
+      if \ (world.cam.avatar) then {
+	 world.nsh_dialog.set_label(world.curr_room.name)
+	 gui::dispatcher.cam_turn(0.000001)
+	 world.cam.eye()
+	 }
+      else world.write_chat("no avatar yet")
+
+      if /glinfo_done then {
+	 world.write_chat("3D Graphics info:")
+	 world.write_chat("      version : " || WAttrib("glversion"))
+	 world.write_chat("      vendor  : " || WAttrib("glvendor"))
+	 world.write_chat("      renderer: " || WAttrib("glrenderer"))
+	 glinfo_done := "yes"
+	 }
+   end
+   method do_viewFeed(args)
+   local feed_contents, feed_lbl
+      args ? {
+	 tab(many(' \t'))
+	 feed_lbl := tab(find("@@"))
+	 move(2)
+	 feed_contents := tab(0)
+	 }
+      ici_newsfeed.handle_openfeed(feed_lbl, feed_contents)
+   end
+   method do_replytoFeed(args)
+   local replylst := [], userID, feed_lbl, reply_lbl
+      args ? {
+	 tab(many(' \t'))
+	 userID := tab(find(" "))
+	 move(1)
+	 feed_lbl := tab(find("@@"))
+	 move(2)
+	 reply_lbl:= tab(0)
+	 }
+      if userID ~== view.user_me then
+	 ici_newsfeed.add_reply_node(feed_lbl, reply_lbl)
+   end
+   method do_userRemove(args)
+   local removedUser, sigName
+      args ? {
+	 removedUser := tab(find(" "))
+	 move(1)
+	 sigName:= tab(0)
+	 }
+      ici_groups.delete_node_from_group_tree(sigName, removedUser, 0)
+   end
+   method do_makeProject(args)
+   local projName, projOwner, room_coords
+      args ? {
+	 projName := tab(find(" "))
+	 move(1)
+	 projOwner := tab(find(" "))
+	 move(1)
+	 room_coords := tab(0)
+	 projectdlg.create_project(projName, projOwner, 0)
+	 }
+   end
+   method do_projTeleport(args)
+   local userID, projName
+      args ? {
+	 userID := tab(find(" "))
+	 move(1)
+	 projName := tab(0)
+	 }
+   end
+   method do_projfileDelete(args)
+   local removedFile, projName
+      args ? {
+	 removedFile := tab(find(" "))
+	 move(1)
+	 projName := tab(0)
+	 }
+      projectdlg.on_delete_file_from_project(projName, removedFile)
+   end
+
+method do_netline(buffer)
+   static Tcmds
+   local o_m, parsed, UserCmd
+      initial {
+	 #
+	 # Tcmds is a table mapping command names to [object,method] pairs.
+	 # For those commands handled by this table, the method will be
+	 # called as o.m(cmd, restofargstring). Server uses
+	 # o.m(username, socket, cmd, argv) but client may need different.
+	 #
+	 Tcmds := table()
+	 Tcmds["move"] := [self, self.__m.do_move]
+	 Tcmds["avatar"] := [self, self.__m.do_avatar]
+	 Tcmds["transfer"] := [self, self.__m.do_transfer]
+	 Tcmds["avatlocation"] := [self, self.__m.do_avatlocation]
+	 Tcmds["possess"] := [self, self.__m.do_possess]
+	 Tcmds["unpossess"] := [self, self.__m.do_unpossess]
+	 Tcmds["switchobjectup"] := [self, self.__m.do_switchobjectup]
+	 Tcmds["switchobjectdown"] := [self, self.__m.do_switchobjectdown]
+	 Tcmds["dat"] := [self, self.__m.do_dat]
+	 Tcmds["delavatar"] := [self, self.__m.do_delavatar]
+	 Tcmds["latency"] := [self, self.__m.do_latency]
+	 Tcmds["afk"] := [self, self.__m.do_afk]
+	 Tcmds["back"] := [self, self.__m.do_back]
+	 Tcmds["history"] := [world.nsh_dialog,
+				world.nsh_dialog.__m.write_to_chat_win]
+	 Tcmds["say"] := [world.nsh_dialog,
+				world.nsh_dialog.__m.write_to_user_chat_win]
+	 Tcmds["tell"] := [self, self.__m.do_tell]
+	 Tcmds["npcmsg"] := [self, self.__m.do_npcmsg]
+	 Tcmds["createroom"] := [self, self.__m.do_createroom]
+	 Tcmds["inform"] := [self, self.__m.do_inform]
+	 Tcmds["fetchip"] := [world.nsh_dialog, world.nsh_dialog.__m.fetchIP]
+	 Tcmds["vwho"] := [self, self.__m.do_vwho]
+	 Tcmds["vrequest"] := [self, self.__m.do_vrequest]
+	 Tcmds["vaccept"] := [self, self.__m.do_vaccept]
+	 Tcmds["vreject"] := [world.nsh_dialog.Voice,
+			world.nsh_dialog.Voice.__m.FromDialingOut_to_Holdlist]
+	 Tcmds["vhold"] := [world.nsh_dialog.Voice,
+			world.nsh_dialog.Voice.__m.FromLineList_to_Holdlist]
+	 Tcmds["vuhold"] := [self, self.__m.do_vuhold]
+	 Tcmds["vpend"] := [world.nsh_dialog.Voice, world.nsh_dialog.Voice.__m.FromLineList_to_Trash]
+	 Tcmds["vphone"] := [world.nsh_dialog.Voice,
+				world.nsh_dialog.Voice.__m.UpdateDisplayList]
+	 Tcmds["vstate"] := [self, self.__m.do_vstate]
+	 Tcmds["aftroom"] := [self, self.__m.do_aftroom]
+	 Tcmds["vlocal"] := [world.nsh_dialog.Voice, world.nsh_dialog.Voice.__m.LocalRoom_addActiveUser]
+	 Tcmds["vlend"] := [self, self.__m.do_vlend]
+	 Tcmds["vchroom"] := [self, self.__m.do_vchroom]
+	 Tcmds["vroom"] := [world.nsh_dialog, world.nsh_dialog.__m.write_to_chat_win]
+	 Tcmds["vrtalk"] := [world.nsh_dialog.Voice, world.nsh_dialog.Voice.__m.Talkto_Request]
+	 Tcmds["vtalk"] := [self, self.__m.do_vtalk]
+	 Tcmds["vend"] := [self, self.__m.do_vend]
+	 Tcmds["vgetip"] := [world.nsh_dialog, world.nsh_dialog.__m.GetLocalIP]
+
+	 Tcmds["logout"] := [self, self.__m.do_logout]
+	 Tcmds["WEBopen"] := [world.nsh_dialog, world.nsh_dialog.__m.Recieved_Url]
+	 Tcmds["addFeed"] := [self, self.__m.do_addFeed]
+	 Tcmds["removeFeed"] := [self, self.__m.do_removeFeed]
+	 Tcmds["groupInvite"] := [self, self.__m.do_groupInvite]
+	 Tcmds["addFriend"] := [self, self.__m.do_addFriend]
+	 Tcmds["makesig"] := [self, self.__m.do_makesig]
+	 Tcmds["groupremove"] := [self, self.__m.do_groupremove]
+	 Tcmds["groupWall"] := [self, self.__m.do_groupWall]
+	 Tcmds["refreshWall"] := [self, self.__m.do_refreshWall]
+	 Tcmds["groupJoin"] := [self, self.__m.do_groupJoin]
+	 Tcmds["groupLeave"] := [self, self.__m.do_groupLeave]
+	 Tcmds["sciAdduser"] := [self, self.__m.do_sciAdduser]
+	 Tcmds["userRemove"] := [self, self.__m.do_userRemove]
+	 Tcmds["changeStatus"] := [self, self.__m.do_changeStatus]
+	 Tcmds["userAvailability"] := [self, self.__m.do_userAvailability]
+	 Tcmds["avaReport"] := [world.nsh_dialog,
+					world.nsh_dialog.__m.write_to_chat_win]
+	 Tcmds["usersAvailability"] := [view, view.__m.plot_users_availability]
+	 Tcmds["userProfile"] := [ici_profile, ici_profile.__m.profile_tab]
+	 Tcmds["memberProjectsList"] := [self, self.__m.do_memberProjectsList]
+	 Tcmds["myProjectsList"] := [self, self.__m.do_myProjectsList]
+	 Tcmds["myFriendsList"] := [self, self.__m.do_myFriendsList]
+	 Tcmds["myPartnersList"] := [self, self.__m.do_myPartnersList]
+	 Tcmds["makeProject"] := [self, self.__m.do_makeProject]
+	 Tcmds["projTeleport"] := [self, self.__m.do_projTeleport]
+	 Tcmds["projectDelete"] := [self, self.__m.do_projectDelete]
+	 Tcmds["getProjectInfo"] := [ici_profile,
+					ici_profile.__m.setProject_info]
+	 Tcmds["getAccountSettings"] := [ici_profile,
+					ici_profile.__m.myAccountSettings]
+	 Tcmds["getPrivacySettings"] := [ici_profile,
+					 ici_profile.__m.myPrivacySettings]
+	 Tcmds["projfileOpen"] := [self, self.__m.do_projfileOpen]
+	 Tcmds["projfileAdd"] := [self, self.__m.do_projfileAdd]
+	 Tcmds["readytoCommit"] := [self, self.__m.do_readytoCommit]
+	 Tcmds["commitChanges"] := [self, self.__m.do_commitChanges]
+	 Tcmds["checkdiff"] := [self, self.__m.do_checkdiff]
+	 Tcmds["projActivity"] := [self, self.__m.do_projActivity]
+	 Tcmds["objDescription"] := [world.nsh_dialog,
+				 world.nsh_dialog.__m.write_to_chat_win]
+	 Tcmds["getDescription"] := [self, self.__m.do_getDescription]
+	 Tcmds["sessionActivity"] := [self, self.__m.do_sessionActivity]
+	 Tcmds["membersColorList"] := [self, self.__m.do_membersColorList]
+	 Tcmds["userTimeSpent"] := [self, self.__m.do_userTimeSpent]
+	 Tcmds["userProgress"] := [self, self.__m.do_userProgress]
+	 Tcmds["projTooltip"] := [self, self.__m.do_projTooltip]
+	 Tcmds["sessionTooltip"] := [self, self.__m.do_sessionTooltip]
+	 Tcmds["checkMemberColor"] := [self, self.__m.do_checkMemberColor]
+	 Tcmds["setFont"] := [world.nsh_dialog,
+				world.nsh_dialog.__m.set_to_compatible_font]
+	 Tcmds["checkMode"] := [self, self.__m.do_checkMode]
+	 Tcmds["getUpdatedLines"] := [self, self.__m.do_getUpdatedLines]
+	 Tcmds["getChangedLines"] := [self, self.__m.do_getChangedLines]
+	 Tcmds["memberActivity"] := [self, self.__m.do_memberActivity]
+	 Tcmds["getAccessedProjFiles"] := [self, self.__m.do_getAccessedProjFiles]
+	 Tcmds["projMembersLst"] := [self, self.__m.do_projMembersLst]
+	 Tcmds["getExpertsList"] := [self, self.__m.do_getExpertsList]
+	 Tcmds["projectInvite"] := [self, self.__m.do_projectInvite]
+	 Tcmds["projectJoin"] := [self, self.__m.do_projectJoin]
+	 Tcmds["sendtoGroup"] := [self, self.__m.do_sendtoGroup]
+	 Tcmds["getEmail"] := [self, self.__m.do_getEmail]
+	 Tcmds["ADDPending"] := [self, self.__m.do_ADDPending]
+	 Tcmds["FWDPendingSuggest"] := [fwrddlg, fwrddlg.__m.fwd_suggest]
+	 Tcmds["CETLOpen"] := [self, self.__m.do_CETLOpen]
+	 Tcmds["CETLaccept"] :=
+			 [idesession, idesession.__m.CETL_Received_Accept]
+	 Tcmds["CETLevent"] := [self, self.__m.do_CETLevent]
+	 Tcmds["SHLevent"] := [self, self.__m.do_SHLevent]
+	 Tcmds["CETLmouse"] := [self, self.__m.do_CETLmouse]
+	 Tcmds["SHLmouse"] := [self, self.__m.do_SHLmouse]
+	 Tcmds["CETLkey"] := [self, self.__m.do_CETLkey]
+	 Tcmds["SHLkey"] := [self, self.__m.do_SHLkey]
+	 Tcmds["CETLscrol"] := [self, self.__m.do_CETLscrol]
+	 Tcmds["SHLscrol"] := [self, self.__m.do_SHLscrol]
+	 Tcmds["CETLcompile"] := [self, self.__m.do_CETLcompile]
+	 Tcmds["Addusers"] := [world.nsh_dialog,
+				world.nsh_dialog.__m.add_user_usertab]
+	 Tcmds["DeleteUser"] := [world.nsh_dialog,
+				world.nsh_dialog.__m.delete_user_usertab]
+	 Tcmds["Whoami"] := [self, self.__m.do_Whoami]
+	 Tcmds["CETLDeletefile"] := [idesession,
+					idesession.__m.Remove_User_From_List]
+	 Tcmds["CETLDeleteEntry"] := [idesession,
+				 idesession.__m.Closed_File_Delete_IDE_Session]
+	 Tcmds["CETLSendUser"] := [idesession,
+					idesession.__m.Add_User_To_IDE_Session]
+	 Tcmds["CETLLock"] := [self, self.__m.do_CETLLock]
+	 Tcmds["CETLLockTransfer"] := [self, self.__m.do_CETLLockTransfer]
+	 Tcmds["CETLRemoveUser"] := [idesession,
+					idesession.__m.Delete_User_IDESession]
+	 Tcmds["SHLResize"] := [projMenu, projMenu.__m.on_msgs_50]
+	 Tcmds["SHLHighlight"] := [self, self.__m.do_SHLHighlight]
+	 Tcmds["CETLPaste"] := [self, self.__m.do_CETLPaste]
+	 Tcmds["allusers"] := [self, self.__m.do_allusers]
+	 Tcmds["users"] := [world.nsh_dialog,
+					world.nsh_dialog.__m.UpdateUserList]
+	 Tcmds["upload"] := [self, self.__m.do_upload]
+	 Tcmds["doorMotion"] := [self, self.__m.do_doorMotion]
+	 Tcmds["dynstate"] := [self, self.__m.do_dynstate]
+	 Tcmds["viewFeed"] := [self, self.__m.do_viewFeed]
+	 }
+
+   if buffer ? (="\\say " & tab(many(&letters++'_'++&digits)) &
+        =": nobody to talk to.") then {
+      return
+      }
+
+   #write ("msg:", buffer)
+
+   if parsed := world.nsh_dialog.cmds.ParseCommand( buffer ) then {
+
+      UserCmd := parsed[1]
+      if o_m := \Tcmds[UserCmd] then {
+	 o_m[2](o_m[1], parsed[2])
+         }
+      else
+	 world.nsh_dialog.write_to_chat_win(buffer || " :: from server.")
+      }
+   else
+      fail
+end
+
+   method do_nullstep()
+   static last_attempt
+   local moved, dor, cam, av
+
+   if \ (session.reconnecting) then {
+      if /last_attempt | (&time - last_attempt > 1000) then {
+         projMenu.on_network_connect()
+         last_attempt := &time
+         }
+      }
+
+      moved := 0
+      if xdelta ~= 0 then {
+	 if av := \ (world.cam.avatar) then {
+	    if xdelta > 0 then {
+	       av.actions("move_forward", xdelta)
+	       }
+	    else {
+	       av.actions("move_backward", xdelta)
+	       }
+	    }
+	 else cam_move(xdelta)      # Move Forward
+	 moved +:= 1
+	 }
+      if ydelta ~= 0 then {
+	 if av := \ (world.cam.avatar) then {
+	    if ydelta > 0 then {
+	       av.actions("turn_left", ydelta)
+	       }
+	    else {
+	       av.actions("turn_right", ydelta)
+	       }
+	    }
+	 else cam_turn(ydelta)      # Turn
+	 moved +:= 1
+	 if cam_turn(0.000000001) then
+	     moved +:= 1
+         }
+
+      if lookdelta ~= 0 then {
+	 world.cam.looky +:= lookdelta; moved +:= 1
+	 }
+      every (\((dor := !((\ (world.curr_room)).exits)).delt)) ~= 0 do {
+	 if find("Opening", type(dor)) then {
+	    dor.delt := 0
+	    next
+	    }
+	 if dor.delta() then moved +:= 2
+	 else dor.done_opening()
+	 }
+      if \moved>0 then {
+	 world.cam.eye(moved)
+	 return
+	 }
+   end
+
+method cam_move(delta)
+   local deltax, deltaz, cam, av
+
+   cam := world.cam
+   deltax := delta * cam.lx
+   deltaz := delta * cam.lz
+
+   if world.curr_room.disallows(cam.x+deltax,cam.z+deltaz,cam.y) then {
+
+      deltax := 0
+      if world.curr_room.disallows(cam.x+deltax,cam.z+deltaz,cam.y) then {
+	 deltaz := 0; deltax := delta*cam.lx
+	 if world.curr_room.disallows(cam.x+deltax,cam.z+deltaz,cam.y) then {
+	    # write("cam_move fails")
+	    fail
+	    }
+	 }
+      }
+
+   #calculate new position
+   cam.x +:= deltax
+   cam.z +:= deltaz
+
+   #update look at spot
+   cam.lookx := cam.x + cam.lx
+   cam.lookz := cam.z + cam.lz
+
+   if cam.view_mode ~= 1 then {
+      if \ (av := world.TAvatars[world.userId]) then
+	 av.move(cam.x, cam.y-1.5, cam.z, cam.angle)
+      else {
+	 write("no move on ", image(world.userId))
+	 fail
+	 }
+      }
+   return
+end
+
+#
+# Orient the camera
+#
+method cam_turn(turn)
+local av, cam
+   #update camera angle
+   cam := world.cam
+   cam.angle +:= turn
+
+   if cam.angle >= 2 * &pi then cam.angle -:= 2 * &pi
+   else if cam.angle < 0.0 then cam.angle +:= 2 * &pi
+
+   cam.lx := sin(cam.angle)
+   cam.lz := -cos(cam.angle)
+
+   cam.lookx := cam.x + cam.lx
+   cam.lookz := cam.z + cam.lz
+
+   if cam.view_mode ~= 1 then {
+      if \ (av := world.TAvatars[world.userId]) then {
+	 av.move(av.X, av.Y, av.Z, cam.angle)
+	 }
+      else {
+	 write("no move on ", image(world.userId))
+	 }
+      }
+end
+
+   method moveDoor(door)
+      if \door then {
+	 if 1.0 > door.delt > 0.0 then {
+	    #
+	    # If the openness is 0.03 this will not close the door but
+	    # just make its value 1.0
+	    #
+	    door.delt := 0.0
+	 }
+	 if \(door.delt) = 0 then
+	 {
+	    if door.openness <1 then
+	    {
+	       world.nsh_dialog.write_to_chat_win("Door ", door.id, " is opening")
+	       if find_Audio() then
+	          PlayAudio(SOUNDPATH ||PS||"opendoor.ogg")
+	       door.start_opening()
+	    }
+	    else
+	    {
+	       world.nsh_dialog.write_to_chat_win("Door ", door.id, " is closing")
+	       if find_Audio() then
+	          PlayAudio(SOUNDPATH ||PS||"doorsqueak.ogg")
+	       door.start_closing()
+	    }
+         if \view.user_me then
+            session.Write("\\interactionsIn3D "||view.user_me||
+               " "||"Door Open/Close")
+	 }
+	 else
+	 {
+	    door.done_opening()
+	 }
+	 door.delta()
+      }
+   end
+
+
+   #Checking for Audio facilities
+   #
+   method find_Audio()
+   local k
+      every k := &features do {
+	 if find("Audio",k) then
+	    return 1   # success
+	 }
+      fail
+   end
+
+
+   #
+   # Execute one event worth of motion and update the camera
+   #
+   method do_cve_event()
+   local ev, dor, dist, closest_door, closest_dist, L := Pending(), av, cam
+   local message, e, e1, floor1, floor2
+   local i, tools,ownedObj,objName,objID, dx, dy
+   local picked_door_id, picked_door, picked_avatar, picked_object
+   static left_ispressed, left_y, left_x
+   # if we are behind, let's try and catch up
+   while *Pending()>0 do {
+      ev := Event()
+      #
+      # For Macs, &control or &shift simulates an rpress.
+      # Conversion of control-leftmouse to rightmouse events
+      # has to happen here, not in case statement, to be seen by select3D
+      #
+      if (&control | &shift) & (ev === (&lpress | &ldrag | &lrelease)) then
+	  ev -:= 2
+      select3D.handle_event(ev)
+      case ev of {
+      Key_Up: {
+	 xdelta := 0.15
+	 while L[1]===(Key_Up|Key_Up_Release) & (L[1|4]===Key_Up) do {
+	    Event()
+	    if L[1] === Key_Up then Event()
+	    xdelta +:= 0.15
+	    }
+	 if av := \ (world.cam.avatar) then {
+	    av.actions("move_forward", xdelta)
+	    }
+	 else { cam_move(xdelta) }       # Move Forward
+	 }
+      Key_Down: {
+	xdelta := -0.12
+	while L[1]===(Key_Down|Key_Down_Release) & (L[1|4]===Key_Down) do {
+	   Event()
+	   if L[1] === Key_Down then Event()
+	   xdelta -:= 0.12
+	   }
+	if av := \ (world.cam.avatar) then {
+	   av.actions("move_backward", xdelta)
+	   }
+	else        cam_move(xdelta)        # Move Backward
+	}
+      Key_Left: {
+	 ydelta := 0.05
+	 while L[1]===(Key_Left|Key_Left_Release) & (L[1|4]===Key_Left) do {
+	    Event();
+	    if L[1] === Key_Left then Event()
+	    ydelta +:= 0.05
+	    }
+	if av := \ (world.cam.avatar) then
+	   av.actions("turn_left", ydelta)
+	else
+	   cam_turn(ydelta) # Turn Left
+	}
+      Key_Right: {
+	ydelta := -0.05
+	while L[1]===(Key_Right|Key_Right_Release) & (L[1|4]===Key_Right) do {
+	   Event()
+	   if L[1] === Key_Right then Event()
+	   ydelta -:= 0.05
+	   }
+	if av := \ (world.cam.avatar) then
+	   av.actions("turn_right", ydelta)
+	else
+	   cam_turn(ydelta) # Turn Left
+	}
+      "\^t": {
+	 if /Maps then {
+	    world.nsh_dialog.write_to_chat_win(
+		"teleport disabled; model has no maps?")
+	    fail
+	    }
+	 # need to generalize to handle arbitrary models
+	 floor1:=Maps["floor 1"]
+	 floor2:=Maps["floor 2"]
+	 flag:=0
+	 cam := world.cam
+
+	 every e1:=!Elevators do {
+	    if e1.minx <= cam.x < e1.maxx & e1.minz <= cam.z < e1.maxz then {
+	       e:=e1
+	       flag:=1
+	       }
+	    }
+
+	 if flag==1 then {
+	    if floor1.owns(cam.x,cam.y,cam.z) then {
+	       world.cam.teleport_toroom(e.rooms[2])
+	       world.nsh_dialog.image_5.set_filename(floor2.Filepath)
+	       }
+	    else if floor2.owns(cam.x, cam.y, cam.z) then {
+	       world.cam.teleport_toroom(e.rooms[1])
+	       world.nsh_dialog.image_5.set_filename(floor1.Filepath)
+	       }
+	    }
+	 else
+	    write("Cannot teleport")
+	 }
+     "\^d": {
+	closest_door := &null
+	closest_dist := &null
+	every (dor := !(world.curr_room.exits)) do {
+	   if not find("Door", type(dor)) then next
+	   dist := sqrt((world.cam.x-dor.x)^2+(world.cam.z-dor.z)^2)
+	   if /closest_door | (dist < closest_dist) then {
+	       closest_door := dor; closest_dist := dist
+	      }
+	   }
+	    moveDoor(closest_door)
+	    #
+	    # Inserted to send the later values to the server after null_step()
+	    #
+	    if /(closest_door) then next
+	    if (closest_door.openness = 0.97 & closest_door.delt = 0.03) then {
+	        message := "\\movedoor"||" edge"||closest_door.id||
+	        " 0.0 0 "||closest_door.direction
+	    } else {
+	        message := "\\movedoor"||" edge"||closest_door.id||
+	        " "||closest_door.openness||" "||closest_door.delt||" "||
+	                                                closest_door.direction
+	    }
+	    # Propogate door motion to other clients
+	    #write(message)
+	   # write("ConnID: ",image(connection.connID)," message: ",message)
+	    session.Write(message)
+	}
+     "\^q":  { world.close_cve("closed from quit! command"); exit(0) }
+     Key_PgDn|"\^s":    world.cam.looky +:= (lookdelta := -0.05) #Look Down
+     -65494|-162:      lookdelta := 0.0 #Look Down
+     "\^u" : { (\ (world.cam.avatar)).actions( "raise_right_arm" ,
+						     world.avat_step_move) }
+     "\^e" : { (\ (world.cam.avatar)).actions( "raise_left_arm" ,
+						     world.avat_step_move) }
+     "\^g" : { (\ (world.cam.avatar)).actions( "move_right" ,
+						     world.avat_step_move) }
+     "\^f" : { (\ (world.cam.avatar)).actions( "move_left" ,
+						     world.avat_step_move) }
+     "\^b" : { (\ (world.cam.avatar)).actions( "back_default" ,
+						     world.avat_step_move) }
+     "\^p" : { (\ (world.cam.avatar)).actions( "toggle_pointer",
+						     world.avat_step_move) }
+     "\^z" : { (\ (world.cam.avatar)).actions( "toggle_talk",
+						     world.avat_step_move) }
+     "\^i" : { (\ (world.cam.avatar)).actions( "move_pointer_up",
+						     world.avat_step_move) }
+     "\^k" : { (\ (world.cam.avatar)).actions( "move_pointer_down",
+						     world.avat_step_move)}
+     "\^j" : { (\ (world.cam.avatar)).actions( "move_pointer_right",
+						     world.avat_step_move) }
+     "\^l" : { (\ (world.cam.avatar)).actions( "move_pointer_left",
+						     world.avat_step_move) }
+     "\^v" : { world.cam.toggle_viewmode() }
+     "\^x" : {
+	 ownedObj := 0
+	 i := 1
+	 tools:= world.curr_room.tools
+	 while i <= *tools do {
+	    if tools[i].allows(world.TAvatars[world.userId].getX(),
+			       world.TAvatars[world.userId].getY(),
+			       world.TAvatars[world.userId].getZ())=1 &
+	       tools[i].possessed = 0 then {
+	       (\ (world.cam.avatar)).actions( "possess", tools[i])
+	       #Refresh()
+	       ownedObj := 1
+	       }
+	    i +:= 1
+	    }
+	 if ownedObj = 0  then
+	    world.nsh_dialog.write_to_chat_win( " no object found near by " )
+	 }
+      "\^c":  {
+	 if *(world.TAvatars[world.userId].object) = 0 then
+	    world.nsh_dialog.write_to_chat_win(
+		(\ (world.cam.avatar.a_name)) ,
+		" you are not owned any objects to unpossess " )
+	 else {
+	    (\ (world.cam.avatar)).actions( "unpossess",
+		world.curr_room.tools[world.TAvatars[world.userId].currObjID])
+	    #Refresh()
+	    }
+	 }
+     # This code is commented to avoid sending
+     # "currently you don't possess any objects to switch"
+     # to the server each time a user press return key while
+     # working on the 3D "focus on the 3D"
+$ifdef For_Later
+     "\^n":  {
+	 if  *(world.TAvatars[world.userId].object) = 0 then {
+	    world.nsh_dialog.write_to_chat_win(
+		" SORRY ", (\ (world.cam.avatar.a_name)),
+	        ", currently you don't possess any objects to switch")
+	    }
+	 else {
+	    if *(world.TAvatars[world.userId].object) =
+	       world.TAvatars[world.userId].currObjID then {
+		world.nsh_dialog.write_to_chat_win(
+		   (\ (world.cam.avatar.a_name)),
+		   " you can't switch, you are holding the most recent object")
+	       }
+	    else {
+	       (\ (world.cam.avatar)).actions("switchObjectUp")
+	       #Refresh()
+	       }
+	    }
+	 }
+
+      "\^m": {
+	 if  *(world.TAvatars[world.userId].object) = 0 then
+	    world.nsh_dialog.write_to_chat_win(
+		" SORRY " ,(\ (world.cam.avatar.a_name)) ,
+	        ", currently you don't possess any objects ")
+	 else
+	     if *(world.TAvatars[world.userId].object) > 0 &
+		  world.TAvatars[world.userId].currObjID = 1  then
+		world.nsh_dialog.write_to_chat_win(
+		 (\ (world.cam.avatar.a_name)),
+		 " you can't switch up, you are holding the oldest object ")
+	     else {
+	        (\ (world.cam.avatar)).actions( "switchObjectDown")
+		#Refresh()
+	        }
+	 }
+$endif
+      "\^r":  {
+	 world.nsh_dialog.write_to_chat_win("The list of objects",
+		(\ (world.cam.avatar.a_name)),  "currently have")
+	 objID := 1
+	 every objName :=  !(world.TAvatars[world.userId].object) do {
+	    world.nsh_dialog.write_to_chat_win(" Object "||objID||"   "||
+					objName.color, " color ", objName.name)
+	    objID +:= 1
+	    }
+	 }
+
+      # this will allow us to play a sound for knocking the door with hand.
+      "\^o": {
+         projMenu.on_open_file(ev)
+         }
+      "\^n": {
+	 if find_Audio() then {
+	    world.nsh_dialog.write_to_chat_win("Door knock sound playing !!!")
+	    PlayAudio(SOUNDPATH ||PS||"knock.ogg")
+	    }
+	 else
+	    world.nsh_dialog.write_to_chat_win("Audio unavailable; door knock")
+
+	 }
+
+      # this will allow us to say hello (it is a male voice.)
+      "\^a": {
+	 if find_Audio() then {
+	    world.nsh_dialog.write_to_chat_win("Helo sound is playing !!!")
+	    PlayAudio(SOUNDPATH ||PS||"mhello.ogg")
+	    }
+	 else
+	    world.nsh_dialog.write_to_chat_win("Audio unavailable to say helo")
+	 }
+
+      # this will allow us to say goodbye(It is a female voice)
+      "\^y":  {
+	 if find_Audio() then {
+	    world.nsh_dialog.write_to_chat_win("goodbye sound is playing !!!")
+	    PlayAudio(SOUNDPATH ||PS||"fgoodbye.ogg")
+	    }
+	 else
+	    world.nsh_dialog.write_to_chat_win("Audio unavailable; goodbye")
+	 }
+
+     Key_PgUp|"\^w":     world.cam.looky +:= (lookdelta := 0.05)  #Look Up
+     -65493|-161:      lookdelta := 0.0  # Stop Looking Up
+     Key_Up_Release | Key_Down_Release |
+     -166 | -168 | (-(Key_Up|Key_Down) - 128) : { xdelta := 0 }
+     Key_Left_Release | Key_Right_Release |
+     -165 | -167 | (-(Key_Left|Key_Right) - 128) : {
+	ydelta := 0
+	}
+     -215 | -211 :  lookdelta := 0
+     &lpress: {
+	left_ispressed := 1
+	left_x := &x
+	left_y := &y
+	#if /subwin_in3D then {
+	   #subwin_in3D := SubWin_in3D()
+	   #subwin_in3D.set_size(100, 100)
+	   #subwin_in3D.popup_and_stay()
+	#   }
+
+	if \pop3D then{
+	   if \(pop3D.is_open) then  pop3D.dispose()
+	   pop3D := &null
+	}
+
+      if \pop3DP & /pop3DP.is_ready then {
+	 if \(pop3DP.is_open) then  pop3DP.dispose()
+	 pop3DP := &null
+	 }
+
+      if \pop3DF & /pop3DF.is_ready then {
+	 if \(pop3DF.is_open) then  pop3DF.dispose()
+	 pop3DF := &null
+	 }
+
+
+	if (not &pick) | /&pick then fail
+	picked_object := &pick
+
+	picked_object ? {
+	         if tab(find("door")+4) then
+	            picked_door_id := integer(tab(many(&digits)))
+	         }
+	if /(picked_door_id) then next
+
+	picked_door := world.DoorsTable[picked_door_id]
+	if /(picked_door) then next
+
+	moveDoor(picked_door)
+	#
+	# Inserted to send the later values to the server after null_step()
+	#
+	if (picked_door.openness = 0.97 & picked_door.delt = 0.03) then {
+	    message := "\\movedoor"||" edge"||picked_door.id||
+		       " 0.0 0 "||picked_door.direction
+	    }
+	else {
+	    message := "\\movedoor"||" edge"||picked_door.id||
+	               " "||picked_door.openness||" "||picked_door.delt||" "||
+	               picked_door.direction
+	    }
+	# Propogate door motion to other clients
+	#write(message)
+	# write("ConnID: ",image(connection.connID)," message: ",message)
+	session.Write(message)
+	}
+
+     &ldrag:{
+        \left_ispressed | next
+        dx := &x-left_x
+        left_x := &x
+        dy:=&y-left_y
+        left_y:=&y
+        if abs(dx)>abs(dy) then{
+	  if dx > 2 then
+	    mouse_nav := "left"
+	  else if dx < -2 then
+	    mouse_nav := "right"
+	  }
+	else{
+	  if dy > 2 then
+	    mouse_nav := "forward"
+	  else if dy < -2 then
+	    mouse_nav := "backward"
+	  }
+
+	world.add_for_update(self)
+	next # drag in 3D window skipped for now
+	}
+     &lrelease:{
+	left_ispressed := &null
+	world.remove_from_update(self)
+	mouse_nav := &null
+	next # release in 3D window skipped for now
+	}
+     &rpress:{
+	do_rpress()
+	}
+     -12: next # skip CVE update on plain-old mouse move events
+
+     default: {
+	 if any(&letters++&digits++
+	     '~!@#$%^&*()-_+=[{]}\\|:\"<>?/.,;\' \^j\^m\^h', string(ev)) then {
+	    if ev == ("\^j"|"\^m") then
+	       world.nsh_dialog.chat_input.handle_return(ev)
+	    else if ev == "\^h" then
+	       world.nsh_dialog.chat_input.handle_delete_left(ev)
+	    else
+	       world.nsh_dialog.chat_input.handle_default(ev)
+	    }
+	 #else if not (integer(ev)<0) then
+	   # write(image(ev))
+	 }
+	 }
+
+      cam := world.cam
+      world.cam.eye()
+      }
+   end
+
+   method update()
+
+      if \mouse_nav then{
+	case mouse_nav of{
+	  "left" 	: cam_turn(-0.025)
+	  "right"	: cam_turn(0.025)
+	  "forward"	: cam_move(0.01)
+	  "backward"	: cam_move(-0.01)
+	  }
+	world.cam.eye()
+      }
+
+
+   end
+
+   method do_rpress()
+      if \pop3D & /pop3D.is_ready then {
+	 if \(pop3D.is_open) then  pop3D.dispose()
+	 pop3D := &null
+	 }
+
+      if \pop3DP & /pop3DP.is_ready then {
+	 if \(pop3DP.is_open) then  pop3DP.dispose()
+	 pop3DP := &null
+	 }
+
+      if \pop3DF & /pop3DF.is_ready then {
+	 if \(pop3DF.is_open) then  pop3DF.dispose()
+	 pop3DF := &null
+	 }
+
+      if \pop3D then {
+	 pop3D.is_ready := &null
+	 pop3D.popup()
+	 }
+      if \pop3DP then {
+	 pop3DP.is_ready := &null
+	 pop3DP.popup()
+	 }
+      if \pop3DF then {
+	 pop3DF.is_ready := &null
+	 pop3DF.popup()
+	 }
+   end
+
+   method message_loop(r)
+   local L, dialogwins, x, av_user, fpsticker, skipone
+   local cHour, ch, cm, cs, autosave_ticker
+
+      latency := 1
+      connections := []
+      dialogwins := set()
+      every insert(dialogwins, (!dialogs).win)
+
+      every put(connections, !dialogwins | !subwins | !subwins_2d |
+	 !nets | !ptys) #| key(whiteboards))
+
+      fpsticker:= Ticker()
+      fpsticker.connect(self, "report_fps", TICK_EVENT)
+      fpsticker.start(5000)
+
+      autosave_ticker:= Ticker()
+      autosave_ticker.connect( world.nsh_dialog, "ide_autosave", TICK_EVENT)
+      autosave_ticker.start(4*60*1000)
+
+      idle_sleep := 3
+	    
+      while \r.is_open do {
+	 if *(L := select(connections,1)) > 0 then {
+	    every x := !L do {
+	       if member(subwins, x) then {
+		  &window := x
+		  do_cve_event()
+		  if \(av_user := world.get_avatar() ) then
+		     av_user.update_active_time()
+		  break next
+		  }
+	       else if member(subwins_2d, x) then {
+		  ::Event(x) # throw away for now
+		  break next
+		  }
+	       else if member(dialogwins, x) then {
+		  do_event()
+		  if \(av_user := world.get_avatar() ) then
+		     av_user.update_active_time()
+		  break next
+		  }
+	       else if member(ptys, x) then {
+	          ide.do_pty_event()
+		  break next
+	          }
+	       else if x === !raw_wins then {
+		  # the only thing a raw window does so far, is close on "x"
+		  close(x)
+		  del_raw_win(x)
+		  break next
+	          }
+	       }
+	    every x := !L do {
+	       if member(nets, x) then do_net(x)
+	       else if member(whiteboards, x) then do_whiteboard(x)
+	       else write("unknown selector ", image(x))
+
+	       if *sdprojfilesSet > 1 then {
+                  #projectdlg.update_sdproject_activity()
+                  #\ActivityEditBox.set_contents(projActivitylst)
+	          }
+
+	       # do at least one step per select() for smoother animation
+	       # do_nullstep()
+	       }
+	    }
+	 else {
+            if \skipone then skipone:=&null else skipone:=1 
+	    do_validate() | do_ticker() | do_nullstep() | FPS < 35 | \skipone |  delay(idle_sleep)
+	    }
+
+	world.update()
+
+	 }
+   end
+   
+   method report_fps()
+      #write("FPS:", FPS)
+      FPS_refresh:=1
+      view.fps_label.set_label(string(FPS)||" fps")
+      if /latency_timestamp then{
+	 latency_timestamp:=curr_time_of_day()
+	 session.Write("\\latency " || latency_timestamp  )
+	 }
+   end
+   
+   
+   method activity_tabset_setup()
+      local i, j, L, L1, firststop, secondstop, thirdstop, fourthstop,
+	    firststop2, secondstop2, thirdstop2,
+	    active_proj, user_id, color_lbl, name_lbl, k
+      local firstlst := [], secondlst := [], thirdlst := [],
+	 fourthlst := [],  fifthlst := []
+      local firstlst2 := [], secondlst2 := [],
+	 thirdlst2 := [], fourthlst2 := []
+
+      view.VCSC_tab.set_pos("1%", "1%")
+      view.VCSC_tab.set_size("70%-4", "98%") #"98%", "98%")
+      view.VCSC_tab.resize()
+
+      #
+      # General Activity
+      #
+      i := 1
+      every L := !projActivitylst do {
+	    if find("Currently Working", L) then {
+	       firststop := i
+	       every j:= 2 to firststop - 2 do {
+	          L1 := projActivitylst[j]
+	          if L1 ~== "" then {
+	             put(firstlst, L1)
+	             }
+	          }
+	       }
+	    if find("All File Activities", L) then {
+	       secondstop := i
+	       every j:= firststop + 1 to secondstop - 1 do {
+	          L1 := projActivitylst[j]
+	          if L1 ~== "" then
+	             put(secondlst, projActivitylst[j])
+	          }
+	       }
+	    if find("Most Active Member :", L) then {
+	       thirdstop := i
+	       every j:= secondstop + 1 to thirdstop - 1 do {
+	          L1 := projActivitylst[j]
+	          if L1 ~== "" then
+	             put(thirdlst, projActivitylst[j])
+	          }
+	       }
+	    if find("Other Info", L) then {
+	       fourthstop := i
+	       every j:= thirdstop + 1 to fourthstop - 1 do {
+	          L1 := projActivitylst[j]
+	          if L1 ~== "" then
+	             put(fourthlst, projActivitylst[j])
+	          }
+	       }
+	    i +:= 1
+	 }
+      if \fourthstop then
+      every j:= fourthstop + 1 to *projActivitylst do {
+	 L1 := projActivitylst[j]
+	 if L1 ~== "" then
+	   put(fifthlst, projActivitylst[j])
+	 }
+      #
+      # Member Activity
+      #
+      i := 1
+      every L := !memberActivitylst do {
+	    if find("Files Changed", L) then {
+	       firststop2 := i
+	       every j:= 1 to firststop2 - 1 do {
+	          L1 := memberActivitylst[j]
+	          if L1 ~== "" then
+	             put(firstlst2, memberActivitylst[j])
+	          }
+	       }
+	    if find("Currently Working On", L) then {
+	       secondstop2 := i
+	       every j:= firststop2 + 1 to secondstop2 - 1 do {
+	          L1 := memberActivitylst[j]
+	          if L1 ~== "" then
+	             put(secondlst2, memberActivitylst[j])
+	          }
+	       }
+	    if find("Other Info", L) then {
+	       thirdstop2 := i
+	       every j:= secondstop2 + 1 to thirdstop2 - 1 do {
+	          L1 := memberActivitylst[j]
+	          if L1 ~== "" then
+	             put(thirdlst2, memberActivitylst[j])
+	          }
+	       }
+	    i +:= 1
+	 }
+      if \thirdstop2 then
+      every j:= thirdstop2 + 1 to *memberActivitylst do {
+	 L1 := memberActivitylst[j]
+	 if L1 ~== "" then
+	   put(fourthlst2, memberActivitylst[j])
+	 }
+
+      activity_tabset.set_pos("71%", "1")
+      activity_tabset.set_size("29%", "100%-2")
+      activity_tabset.resize()
+
+      general_info_txtlst.set_contents(firstlst)
+      currentlyworking_txtlst.set_contents(secondlst)
+      all_activities_txtlst.set_contents(thirdlst)
+      mostactive_txtlst.set_contents(fourthlst)
+      otherinfo_txtlst.set_contents(fifthlst)
+
+      general_info2_txtlst.set_contents(firstlst2)
+      fileschanged_txtlst.set_contents(secondlst2)
+      currentlyworking2_txtlst.set_contents(thirdlst2)
+      otherinfo2_txtlst.set_contents(fourthlst2)
+
+$ifdef later
+      color_start_y := 2
+      name_start_y  := 22
+      every k := key(membersColorTable) do {
+	 k ? {
+	   active_proj := tab(find(":"))
+	   move(1)
+	   user_id := tab(0)
+	   }
+
+	 color_lbl := Label()
+	 color_lbl.set_pos("2%", "2%") #color_start_y)
+	 color_lbl.set_size("10%", "5%")
+	 color_lbl.set_attribs("bg=red")#||membersColorTable[k])
+	 color_lbl.set_internal_alignment("l")
+	 color_lbl.set_label("")
+	 member_tab.add(color_lbl)
+	 name_lbl := Label()
+	 name_lbl.set_pos("14%", "2%")
+	 name_lbl.set_size("50%", "5%")
+	 name_lbl.set_internal_alignment("l")
+	 name_lbl.set_label("user_id")
+	 member_tab.add(name_lbl)
+	 color_start_y +:= 5
+	 name_start_y +:= 5
+	 }
+$endif
+      view.VCSC_tab.resize()
+      view.editarea.resize()
+   end
+
+   method on_selected_project_pop3D()
+      local lbl_img, u
+
+      if \pop3DP then{
+	 if \(pop3DP.is_open) then  pop3DP.dispose()
+	    pop3DP := &null
+	 }
+
+      pop3DF := PopupMenu3D()
+      pop3DF.is_ready := 1
+
+      if *cwfiles_set > 0 then {
+	 every u := \(!cwfiles_set) do {
+	    if u ~== "" then {
+	       lbl_img := editorimgs ("red")
+	       pop3DF.add_menu_item(u, self, "on_projfile_menu_item",lbl_img)
+	       }
+	    }
+	 }
+      if *accessedfiles_set > 0 then {
+	 every u := \(!accessedfiles_set) do {
+	    if u ~== "" then {
+	       lbl_img := editorimgs ("blue")
+	       pop3DF.add_menu_item(u, self, "on_projfile_menu_item",lbl_img)
+	       }
+	    }
+	 }
+      if *addedfiles_set > 0 then {
+	 every u := \(!addedfiles_set) do {
+	    if u ~== "" then {
+	       lbl_img := editorimgs ("green")
+	       pop3DF.add_menu_item(u, self, "on_projfile_menu_item",lbl_img)
+	       }
+	    }
+	 }
+   end
+
+   # will open the highlighted file
+   method on_projfile_menu_item()
+   end
+
+initially
+   connections := []
+   xdelta := ydelta := lookdelta := 0
+   ptys := set()
+   subwins := set()
+   subwins_2d := set()
+   nets := set()
+   raw_wins := set()
+   whiteboards := table()
+   self$Dispatcher.initially()
+end

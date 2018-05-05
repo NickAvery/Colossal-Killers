@@ -1,0 +1,27 @@
+#
+# gencity.icn - generate a static "city" model for a (Unicon) program.
+#
+# does not do anything yet.
+#
+
+procedure main(av)
+
+   write("progname ", &progname, " cwd ", chdir())
+   if *av = 0 then stop("usage: gencity sourcefile.icn")
+
+   if not find("cve", chdir()) then
+       stop("gencity has to be run from in a cve distribution")
+   while chdir()[-3:0] ~== "cve" do {
+      chdir("..")
+      if chdir()=="/" then stop("giving up")
+      }
+
+   if upto('\\/', av[1]) then stop("gencity does not support paths yet")
+
+   if stat("dat/" || av[1]) then
+       stop("can't generate a city for ", av[1], ", you've already got one!")
+   else write("trying to create a dat directory for ", av[1])
+
+   if rv := system("mkdir dat/" || av[1]) then
+      write("mkdir returned ", rv)
+end

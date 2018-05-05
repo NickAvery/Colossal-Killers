@@ -1,0 +1,1270 @@
+version	U12.1.00
+uid	unix.u1-1523917891-0
+impl	error
+global	13
+	0,000001,UniconPackage__icontopt,0
+	1,000001,UniconPackage__env,0
+	2,000001,UniconPackage__sysok,0
+	3,000001,UniconPackage__comp,0
+	4,000005,UniconPackage__mysystem,1
+	5,000005,UniconPackage__filename,2
+	6,000005,UniconPackage__cwdfilename,2
+	7,000005,UniconPackage__fileroot,2
+	8,000005,UniconPackage__install,1
+	9,000005,UniconPackage__uninstall,1
+	10,000005,UniconPackage__makeexe,2
+	11,000005,UniconPackage__cdicont,1
+	12,000005,UniconPackage__sysinitialize,0
+
+proc UniconPackage__mysystem
+	local	0,001000,s
+	local	1,000000,UniconPackage__loud
+	local	2,000000,write
+	local	3,000000,system
+	declend
+	filen	unix.icn
+	line	9
+	colm	12
+	synt	any
+	mark	L1
+	line	10
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	10
+	colm	6
+	synt	any
+	nonnull
+	unmark
+	var	2
+	var	0
+	line	10
+	colm	37
+	synt	any
+	invoke	1
+	line	10
+	colm	3
+	synt	endif
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	var	3
+	var	0
+	line	11
+	colm	16
+	synt	any
+	invoke	1
+	line	11
+	colm	3
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	12
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__filename
+	local	0,001000,s
+	local	1,001000,ext
+	local	2,000020,i
+	local	3,000020,path
+	local	4,000000,find
+	con	0,010000,1,057
+	con	1,002000,1,1
+	con	2,002000,1,0
+	declend
+	line	15
+	colm	12
+	synt	any
+	mark	L1
+	line	17
+	colm	3
+	synt	every
+	mark0
+	pnull
+	var	2
+	var	4
+	str	0
+	var	0
+	line	17
+	colm	18
+	synt	any
+	invoke	2
+	line	17
+	colm	11
+	synt	any
+	asgn
+	pop
+lab L2
+	efail
+lab L3
+	line	17
+	colm	3
+	synt	endevery
+	unmark
+lab L1
+	mark	L4
+	line	18
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	18
+	colm	6
+	synt	any
+	nonnull
+	unmark
+	mark	L5
+	pnull
+	var	3
+	pnull
+	var	0
+	int	1
+	pnull
+	var	2
+	int	1
+	line	18
+	colm	29
+	synt	any
+	plus
+	line	18
+	colm	27
+	synt	any
+	synt	any
+	sect
+	line	18
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L5
+	pnull
+	var	0
+	pnull
+	var	0
+	pnull
+	var	2
+	int	1
+	line	18
+	colm	42
+	synt	any
+	plus
+	int	2
+	line	18
+	colm	44
+	synt	any
+	synt	any
+	sect
+	line	18
+	colm	36
+	synt	any
+	asgn
+	line	18
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L6
+	line	20
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	20
+	colm	6
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	0
+	pnull
+	var	3
+	var	0
+	line	20
+	colm	23
+	synt	any
+	cat
+	line	20
+	colm	16
+	synt	any
+	asgn
+	line	20
+	colm	3
+	synt	endif
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	0
+	dup
+	pnull
+	var	1
+	line	21
+	colm	10
+	synt	any
+	nonnull
+	line	21
+	colm	5
+	synt	any
+	cat
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	var	0
+	line	22
+	colm	3
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	23
+	colm	2
+	synt	any
+	pfail
+	end
+proc UniconPackage__cwdfilename
+	local	0,001000,s
+	local	1,001000,ext
+	local	2,000000,tab
+	local	3,000000,find
+	con	0,010000,1,057
+	con	1,002000,1,1
+	con	2,002000,1,0
+	declend
+	line	26
+	colm	12
+	synt	any
+	mark	L1
+lab L2
+	line	27
+	colm	3
+	synt	while
+	mark0
+	pnull
+	var	0
+	sdup
+	line	27
+	colm	11
+	synt	any
+	bscan
+	var	2
+	pnull
+	var	3
+	str	0
+	line	27
+	colm	24
+	synt	any
+	invoke	1
+	int	1
+	line	27
+	colm	29
+	synt	any
+	plus
+	line	27
+	colm	19
+	synt	any
+	invoke	1
+	pop
+	var	2
+	int	2
+	line	27
+	colm	38
+	synt	any
+	invoke	1
+	line	27
+	colm	11
+	synt	any
+	escan
+	asgn
+lab L3
+	unmark
+	goto	L2
+lab L4
+	line	27
+	colm	3
+	synt	endwhile
+	unmark
+lab L1
+	mark	L5
+	pnull
+	var	0
+	dup
+	pnull
+	var	1
+	line	29
+	colm	10
+	synt	any
+	nonnull
+	line	29
+	colm	5
+	synt	any
+	cat
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	var	0
+	line	30
+	colm	3
+	synt	any
+	pret
+lab L7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	31
+	colm	2
+	synt	any
+	pfail
+	end
+proc UniconPackage__fileroot
+	local	0,001000,s
+	local	1,001000,ext
+	con	0,002000,1,0
+	con	1,002000,1,1
+	declend
+	line	35
+	colm	12
+	synt	any
+	mark	L1
+	line	36
+	colm	3
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	pnull
+	pnull
+	var	1
+	line	36
+	colm	10
+	synt	any
+	size
+	line	36
+	colm	8
+	synt	any
+	neg
+	int	0
+	line	36
+	colm	15
+	synt	any
+	synt	any
+	sect
+	var	1
+	line	36
+	colm	20
+	synt	any
+	lexeq
+	unmark
+	mark	L2
+	pnull
+	var	0
+	int	1
+	pnull
+	pnull
+	var	1
+	line	36
+	colm	47
+	synt	any
+	size
+	line	36
+	colm	45
+	synt	any
+	neg
+	line	36
+	colm	43
+	synt	any
+	synt	any
+	sect
+	line	36
+	colm	32
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	36
+	colm	3
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	37
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__install
+	local	0,001000,args
+	local	1,000000,UniconPackage__comp
+	local	2,000000,write
+	local	3,000000,UniconPackage__env
+	local	4,000000,UniconPackage__mysystem
+	local	5,000000,UniconPackage__fout
+	local	6,000000,envopen
+	local	7,000000,close
+	local	8,000000,UniconPackage__cdicont
+	con	0,010000,2,055,164
+	con	1,002000,1,2
+	con	2,010000,31,111,156,163,164,141,154,154,151,156,147,040,151,144,157,154,040,145,156,166,151,162,157,156,155,145,156,164,040,151,156,040
+	con	3,010000,0
+	con	4,010000,6,155,153,144,151,162,040
+	con	5,010000,12,151,137,157,142,152,145,143,164,056,151,143,156
+	con	6,010000,1,167
+	con	7,010000,27,162,145,143,157,162,144,040,151,144,157,154,137,157,142,152,145,143,164,050,137,137,163,054,137,137,155,051
+	con	8,010000,8,151,137,157,142,152,145,143,164
+	declend
+	line	43
+	colm	12
+	synt	any
+	mark	L1
+	line	44
+	colm	3
+	synt	if
+	mark0
+	pnull
+	str	0
+	pnull
+	var	0
+	line	44
+	colm	14
+	synt	any
+	bang
+	line	44
+	colm	11
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	1
+	pnull
+	int	1
+	line	44
+	colm	46
+	synt	any
+	neg
+	line	44
+	colm	44
+	synt	any
+	asgn
+	line	44
+	colm	3
+	synt	endif
+	unmark
+lab L1
+	mark	L2
+	var	2
+	str	2
+	var	3
+	line	45
+	colm	8
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	line	46
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	str	3
+	line	46
+	colm	24
+	synt	any
+	lexne
+	unmark
+	var	4
+	pnull
+	str	4
+	var	3
+	line	46
+	colm	66
+	synt	any
+	cat
+	line	46
+	colm	57
+	synt	any
+	invoke	1
+	line	46
+	colm	3
+	synt	endif
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	5
+	var	6
+	str	5
+	str	6
+	line	47
+	colm	31
+	synt	any
+	invoke	2
+	line	47
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	var	2
+	var	5
+	str	7
+	line	48
+	colm	8
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	mark	L6
+	var	7
+	var	5
+	line	49
+	colm	8
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	5
+	line	50
+	colm	24
+	synt	any
+	keywd	null
+	line	50
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	var	8
+	pnull
+	str	8
+	line	51
+	colm	26
+	synt	any
+	llist	1
+	line	51
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	pnull
+	line	52
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__uninstall
+	local	0,001000,args
+	local	1,000000,UniconPackage__mysystem
+	local	2,000000,UniconPackage__env
+	con	0,010000,6,162,155,040,055,162,040
+	declend
+	line	53
+	colm	12
+	synt	any
+	mark	L1
+	var	1
+	pnull
+	str	0
+	var	2
+	line	54
+	colm	35
+	synt	any
+	cat
+	line	54
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	pnull
+	line	55
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__makeexe
+	local	0,001000,args
+	local	1,001000,i
+	local	2,000020,exe
+	local	3,000000,UniconPackage__icont
+	local	4,000000,UniconPackage__sysok
+	local	5,000000,UniconPackage__mysystem
+	local	6,000000,UniconPackage__exec
+	local	7,000000,write
+	con	0,010000,3,162,155,040
+	con	1,010000,4,056,151,143,156
+	con	2,010000,10,105,170,145,143,165,164,151,156,147,072
+	con	3,002000,1,1
+	con	4,010000,1,040
+	declend
+	line	57
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	var	0
+	var	1
+	line	58
+	colm	18
+	synt	any
+	subsc
+	line	58
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	59
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	3
+	var	2
+	line	59
+	colm	27
+	synt	any
+	invoke	1
+	pnull
+	var	4
+	line	59
+	colm	33
+	synt	any
+	nonnull
+	line	59
+	colm	32
+	synt	any
+	numeq
+	unmark
+	mark	L3
+	var	5
+	pnull
+	pnull
+	str	0
+	var	2
+	line	60
+	colm	36
+	synt	any
+	cat
+	str	1
+	line	60
+	colm	41
+	synt	any
+	cat
+	line	60
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	line	61
+	colm	7
+	synt	ifelse
+	mark	L4
+	pnull
+	var	6
+	line	61
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L6
+	var	7
+	str	2
+	line	62
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	line	63
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	6
+	int	3
+	line	63
+	colm	40
+	synt	any
+	plus
+	pnull
+	var	0
+	line	63
+	colm	45
+	synt	any
+	size
+	push1
+	line	63
+	colm	43
+	synt	any
+	toby
+	line	63
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	2
+	dup
+	pnull
+	str	4
+	pnull
+	var	0
+	var	1
+	line	63
+	colm	70
+	synt	any
+	subsc
+	line	63
+	colm	64
+	synt	any
+	cat
+	line	63
+	colm	57
+	synt	any
+	cat
+	asgn
+	unmark
+lab L8
+	efail
+lab L9
+	line	63
+	colm	10
+	synt	endevery
+	unmark
+lab L7
+	mark	L10
+	var	5
+	var	2
+	line	64
+	colm	40
+	synt	any
+	invoke	1
+	line	64
+	colm	10
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	goto	L5
+lab L4
+	mark	L11
+	pnull
+	line	66
+	colm	12
+	synt	any
+	pret
+lab L11
+	synt	any
+	pfail
+lab L5
+	line	61
+	colm	7
+	synt	endifelse
+	line	59
+	colm	4
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	68
+	colm	1
+	synt	any
+	pfail
+	end
+proc UniconPackage__cdicont
+	local	0,001000,idolfiles
+	local	1,000020,args
+	local	2,000020,rms
+	local	3,000020,ifile
+	local	4,000020,rv
+	local	5,000000,UniconPackage__comp
+	local	6,000000,UniconPackage__trans
+	local	7,000000,UniconPackage__env
+	local	8,000000,UniconPackage__sysok
+	local	9,000000,UniconPackage__mysystem
+	con	0,002000,1,2
+	con	1,010000,0
+	con	2,010000,1,040
+	con	3,010000,4,056,151,143,156
+	con	4,010000,3,143,144,040
+	con	5,010000,2,073,040
+	con	6,010000,5,073,040,162,155,040
+	con	7,002000,1,0
+	declend
+	line	73
+	colm	12
+	synt	any
+	mark	L1
+	line	75
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	5
+	pnull
+	int	0
+	line	75
+	colm	26
+	synt	any
+	neg
+	line	75
+	colm	25
+	synt	any
+	numeq
+	unmark
+	mark	L2
+	pnull
+	line	75
+	colm	34
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	75
+	colm	3
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	pnull
+	var	1
+	str	1
+	line	76
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	2
+	str	1
+	line	77
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	78
+	colm	3
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	0
+	line	78
+	colm	18
+	synt	any
+	bang
+	line	78
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	1
+	dup
+	pnull
+	str	2
+	var	3
+	line	78
+	colm	46
+	synt	any
+	cat
+	line	78
+	colm	37
+	synt	any
+	cat
+	asgn
+	unmark
+lab L6
+	efail
+lab L7
+	line	78
+	colm	3
+	synt	endevery
+	unmark
+lab L5
+	mark	L8
+	line	79
+	colm	3
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	0
+	line	79
+	colm	18
+	synt	any
+	bang
+	line	79
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	2
+	dup
+	pnull
+	pnull
+	str	2
+	var	3
+	line	79
+	colm	46
+	synt	any
+	cat
+	str	3
+	line	79
+	colm	55
+	synt	any
+	cat
+	line	79
+	colm	37
+	synt	any
+	cat
+	asgn
+	unmark
+lab L9
+	efail
+lab L10
+	line	79
+	colm	3
+	synt	endevery
+	unmark
+lab L8
+	mark	L11
+	line	81
+	colm	3
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	var	6
+	var	1
+	pnull
+	pnull
+	str	4
+	var	7
+	line	81
+	colm	44
+	synt	any
+	cat
+	str	5
+	line	81
+	colm	64
+	synt	any
+	cat
+	line	81
+	colm	33
+	synt	any
+	invoke	2
+	line	81
+	colm	10
+	synt	any
+	asgn
+	pnull
+	var	8
+	line	81
+	colm	73
+	synt	any
+	nonnull
+	line	81
+	colm	72
+	synt	any
+	numeq
+	unmark
+	var	9
+	pnull
+	pnull
+	pnull
+	str	4
+	var	7
+	line	82
+	colm	37
+	synt	any
+	cat
+	str	6
+	line	82
+	colm	57
+	synt	any
+	cat
+	var	2
+	line	82
+	colm	66
+	synt	any
+	cat
+	line	82
+	colm	31
+	synt	any
+	invoke	1
+	line	81
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	mark	L13
+	pnull
+	pnull
+	var	4
+	line	83
+	colm	10
+	synt	any
+	nonnull
+	int	7
+	line	83
+	colm	14
+	synt	any
+	numeq
+	line	83
+	colm	3
+	synt	any
+	pret
+lab L13
+	synt	any
+	pfail
+	unmark
+lab L12
+	pnull
+	line	84
+	colm	2
+	synt	any
+	pfail
+	end
+proc UniconPackage__sysinitialize
+	local	0,000000,tab
+	local	1,000000,find
+	local	2,000000,numeric
+	local	3,000000,many
+	local	4,000000,move
+	local	5,000000,UniconPackage__icontopt
+	local	6,000000,UniconPackage__env
+	local	7,000000,getenv
+	local	8,000000,UniconPackage__sysok
+	con	0,010000,8,126,145,162,163,151,157,156,040
+	con	1,002000,3,100
+	con	2,002000,1,1
+	con	3,002000,3,806
+	con	4,010000,1,040
+	con	5,010000,94,040,055,123,143,065,060,060,040,055,123,146,066,060,060,040,055,123,147,066,060,060,040,055,123,151,061,062,060,060,040,055,123,154,064,060,060,040,055,123,156,063,060,060,060,040,055,123,162,062,060,060,060,040,055,123,163,063,060,060,060,060,040,055,123,164,062,060,060,060,060,040,055,123,103,063,060,060,060,060,040,055,123,106,066,060,040,055,123,114,061,060,060,060,040
+	con	6,010000,7,111,104,117,114,105,116,126
+	con	7,010000,8,165,156,151,143,154,141,163,163
+	con	8,002000,1,0
+	declend
+	line	86
+	colm	12
+	synt	any
+	mark	L1
+	line	87
+	colm	3
+	synt	any
+	keywd	version
+	line	87
+	colm	12
+	synt	any
+	bscan
+	mark	L2
+	var	0
+	pnull
+	var	1
+	str	0
+	line	88
+	colm	14
+	synt	any
+	invoke	1
+	pnull
+	str	0
+	line	88
+	colm	28
+	synt	any
+	size
+	line	88
+	colm	26
+	synt	any
+	plus
+	line	88
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	line	89
+	colm	6
+	synt	ifelse
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	2
+	var	0
+	var	3
+	line	89
+	colm	26
+	synt	any
+	keywd	digits
+	line	89
+	colm	25
+	synt	any
+	invoke	1
+	line	89
+	colm	20
+	synt	any
+	invoke	1
+	line	89
+	colm	16
+	synt	any
+	invoke	1
+	int	1
+	line	89
+	colm	37
+	synt	any
+	mult
+	var	4
+	int	2
+	line	90
+	colm	14
+	synt	any
+	invoke	1
+	pop
+	var	2
+	var	0
+	var	3
+	line	90
+	colm	37
+	synt	any
+	keywd	digits
+	line	90
+	colm	36
+	synt	any
+	invoke	1
+	line	90
+	colm	31
+	synt	any
+	invoke	1
+	line	90
+	colm	27
+	synt	any
+	invoke	1
+	line	89
+	colm	43
+	synt	any
+	plus
+	int	3
+	line	90
+	colm	49
+	synt	any
+	numge
+	unmark
+	pnull
+	var	5
+	str	4
+	line	90
+	colm	84
+	synt	any
+	asgn
+	goto	L4
+lab L3
+	pnull
+	var	5
+	str	5
+	line	92
+	colm	32
+	synt	any
+	asgn
+lab L4
+	line	89
+	colm	6
+	synt	endifelse
+	line	87
+	colm	12
+	synt	any
+	escan
+	unmark
+lab L1
+	mark	L5
+	pnull
+	var	6
+	mark	L6
+	var	7
+	str	6
+	line	94
+	colm	29
+	synt	any
+	invoke	1
+	line	94
+	colm	40
+	synt	any
+	esusp
+	goto	L7
+lab L6
+	str	7
+lab L7
+	line	94
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L8
+	pnull
+	var	8
+	int	8
+	line	95
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	line	96
+	colm	2
+	synt	any
+	pfail
+	end

@@ -1,0 +1,11 @@
+Door {
+	id 122
+	x 79.90000000000001
+	y 4.35
+	z 3.56
+	w 0.91
+	height 2.1
+	collide_in 0.8
+	plane 3
+	rooms [freight_elevator_2, floor_2_corridor_necorner]
+}

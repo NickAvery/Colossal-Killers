@@ -1,0 +1,12050 @@
+version	U12.1.00
+uid	session.u1-1523917893-0
+record	IDE_Properties,7
+	0,IDEOwner
+	1,IDE_Tab
+	2,IDE_MsgBox
+	3,IDEFile
+	4,CIDE
+	5,PtyOwner
+	6,Lusers
+record	Session__state,3
+	0,__s
+	1,__m
+	2,name
+record	Session__methods,0
+record	LoginSession__state,18
+	0,__s
+	1,__m
+	2,uid
+	3,server
+	4,port
+	5,connID
+	6,commands
+	7,isP2P
+	8,listen_P2P_sock
+	9,p2pPort
+	10,VoiceState
+	11,VoiceSession
+	12,WhoIsUpList
+	13,IDESession
+	14,usersList
+	15,usersSet
+	16,reconnecting
+	17,name
+record	LoginSession__methods,21
+	0,isuser
+	1,sameuser
+	2,adduser
+	3,deluser
+	4,get_list_of_users
+	5,get_users_status_list
+	6,AssignUid
+	7,NotLogged
+	8,checkP2P
+	9,p2pHandshake
+	10,connect_server
+	11,isUp
+	12,Read
+	13,Write
+	14,connect
+	15,disconnect
+	16,systemlogin
+	17,login
+	18,logout
+	19,initially
+	20,Session
+record	IDESession__state,13
+	0,__s
+	1,__m
+	2,dialog
+	3,shift_pressed
+	4,Tidesession
+	5,ide_filename
+	6,ide_new_filename
+	7,counter
+	8,Table_Index
+	9,IDECounter
+	10,Ownertab
+	11,OwnerMsg
+	12,index_counter
+record	IDESession__methods,22
+	0,White_Background_And_Unlock
+	1,Swap_User_Owner
+	2,Transfer_IDE_Lock
+	3,Unlock_IDE
+	4,Lock_IDE
+	5,Change_IDE_Owner
+	6,Swap
+	7,Remove_User_From_List
+	8,Delete_Tidesession_Entry
+	9,Delete_File_IDESession
+	10,Closed_File_Delete_IDE_Session
+	11,Delete_User_IDESession
+	12,Add_User_To_IDE_Session
+	13,Create_New_IDESession
+	14,Check_Owner
+	15,Check_Session
+	16,Invite_to_IDE
+	17,Receive_CETL_Event
+	18,CETL_Received_Accept
+	19,CETL_SetFileContents
+	20,CETL_SetMsgBoxContents
+	21,initially
+impl	error
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	c:/unicon/uni/lib/undoableedit.u
+link	c:/unicon/uni/lib/compoundedit.u
+link	c:/unicon/uni/lib/undomanager.u
+link	c:/unicon/uni/lib/classcoding.u
+link	c:/unicon/uni/lib/basicclasscoding.u
+link	c:/unicon/uni/lib/method.u
+link	c:/unicon/uni/lib/class.u
+link	c:/unicon/uni/lib/langprocs.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/decode.u
+link	c:/unicon/uni/lib/encode.u
+link	c:/unicon/uni/lib/selectiveclasscoding.u
+link	c:/unicon/uni/lib/runnable.u
+link	c:/unicon/uni/lib/process.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	61
+	0,000001,session,0
+	1,000001,ide_file_contents,0
+	2,000001,ide_msgbox_contents,0
+	3,000011,IDE_Properties,7
+	4,000011,Session__state,3
+	5,000011,Session__methods,0
+	6,000001,Session__oprec,0
+	7,000005,Session,1
+	8,000005,Sessioninitialize,0
+	9,000005,LoginSession_isuser,2
+	10,000005,LoginSession_sameuser,3
+	11,000005,LoginSession_adduser,2
+	12,000005,LoginSession_deluser,2
+	13,000005,LoginSession_get_list_of_users,1
+	14,000005,LoginSession_get_users_status_list,1
+	15,000005,LoginSession_AssignUid,2
+	16,000005,LoginSession_NotLogged,2
+	17,000005,LoginSession_checkP2P,2
+	18,000005,LoginSession_p2pHandshake,2
+	19,000005,LoginSession_connect_server,3
+	20,000005,LoginSession_isUp,1
+	21,000005,LoginSession_Read,1
+	22,000005,LoginSession_Write,-2
+	23,000005,LoginSession_connect,1
+	24,000005,LoginSession_disconnect,1
+	25,000005,LoginSession_systemlogin,1
+	26,000005,LoginSession_login,3
+	27,000005,LoginSession_logout,1
+	28,000005,LoginSession_initially,3
+	29,000011,LoginSession__state,18
+	30,000011,LoginSession__methods,21
+	31,000001,LoginSession__oprec,0
+	32,000005,LoginSession,2
+	33,000005,LoginSessioninitialize,0
+	34,000005,IDESession_White_Background_And_Unlock,2
+	35,000005,IDESession_Swap_User_Owner,3
+	36,000005,IDESession_Transfer_IDE_Lock,2
+	37,000005,IDESession_Unlock_IDE,3
+	38,000005,IDESession_Lock_IDE,3
+	39,000005,IDESession_Change_IDE_Owner,3
+	40,000005,IDESession_Swap,2
+	41,000005,IDESession_Remove_User_From_List,2
+	42,000005,IDESession_Delete_Tidesession_Entry,3
+	43,000005,IDESession_Delete_File_IDESession,4
+	44,000005,IDESession_Closed_File_Delete_IDE_Session,2
+	45,000005,IDESession_Delete_User_IDESession,2
+	46,000005,IDESession_Add_User_To_IDE_Session,2
+	47,000005,IDESession_Create_New_IDESession,10
+	48,000005,IDESession_Check_Owner,4
+	49,000005,IDESession_Check_Session,5
+	50,000005,IDESession_Invite_to_IDE,5
+	51,000005,IDESession_Receive_CETL_Event,4
+	52,000005,IDESession_CETL_Received_Accept,2
+	53,000005,IDESession_CETL_SetFileContents,2
+	54,000005,IDESession_CETL_SetMsgBoxContents,3
+	55,000005,IDESession_initially,1
+	56,000011,IDESession__state,13
+	57,000011,IDESession__methods,22
+	58,000001,IDESession__oprec,0
+	59,000005,IDESession,0
+	60,000005,IDESessioninitialize,0
+
+proc Session
+	local	0,001000,name
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,Session__oprec
+	local	4,000000,Sessioninitialize
+	local	5,000000,Session__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	44
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	26
+	synt	any
+	keywd	null
+	var	3
+	var	0
+	line	10
+	colm	25
+	synt	any
+	invoke	3
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	var	1
+	line	12
+	colm	3
+	synt	any
+	pret
+lab L7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	13
+	colm	1
+	synt	any
+	pfail
+	end
+proc Sessioninitialize
+	local	0,000000,Session__oprec
+	local	1,000000,Session__methods
+	declend
+	line	15
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	line	16
+	colm	45
+	synt	any
+	invoke	0
+	line	16
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	17
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_isuser
+	local	0,001000,self
+	local	1,001000,user
+	local	2,000000,member
+	declend
+	filen	session.icn
+	line	57
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	var	2
+	pnull
+	var	0
+	line	58
+	colm	25
+	synt	any
+	field	usersSet
+	var	1
+	line	58
+	colm	20
+	synt	any
+	invoke	2
+	line	58
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	59
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_sameuser
+	local	0,001000,self
+	local	1,001000,u
+	local	2,001000,s
+	local	3,000000,pos
+	con	0,002000,1,0
+	con	1,010000,1,072
+	declend
+	line	63
+	colm	11
+	synt	any
+	mark	L1
+	var	1
+	line	64
+	colm	9
+	synt	any
+	bscan
+	mark	L2
+	pnull
+	var	2
+	line	65
+	colm	10
+	synt	any
+	tabmat
+	unmark
+lab L2
+	line	66
+	colm	10
+	synt	if
+	mark0
+	mark	L3
+	var	3
+	int	0
+	line	66
+	colm	16
+	synt	any
+	invoke	1
+	line	66
+	colm	19
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	pnull
+	str	1
+	line	66
+	colm	21
+	synt	any
+	tabmat
+lab L4
+	unmark
+	mark	L5
+	pnull
+	line	66
+	colm	31
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	line	66
+	colm	10
+	synt	endif
+	line	64
+	colm	9
+	synt	any
+	escan
+	unmark
+lab L1
+	pnull
+	line	68
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_adduser
+	local	0,001000,self
+	local	1,001000,user
+	local	2,000000,member
+	local	3,000000,insert
+	declend
+	line	70
+	colm	11
+	synt	any
+	mark	L1
+	line	71
+	colm	7
+	synt	if
+	mark0
+	mark	L2
+	var	2
+	pnull
+	var	0
+	line	71
+	colm	25
+	synt	any
+	field	usersSet
+	var	1
+	line	71
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L2
+	pnull
+	unmark
+	mark	L3
+	var	3
+	pnull
+	var	0
+	line	72
+	colm	21
+	synt	any
+	field	usersSet
+	var	1
+	line	72
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	pnull
+	line	73
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	line	71
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	75
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_deluser
+	local	0,001000,self
+	local	1,001000,user
+	local	2,000000,member
+	local	3,000000,delete
+	declend
+	line	77
+	colm	11
+	synt	any
+	mark	L1
+	line	78
+	colm	7
+	synt	if
+	mark0
+	var	2
+	pnull
+	var	0
+	line	78
+	colm	21
+	synt	any
+	field	usersSet
+	var	1
+	line	78
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	mark	L2
+	var	3
+	pnull
+	var	0
+	line	79
+	colm	21
+	synt	any
+	field	usersSet
+	var	1
+	line	79
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	pnull
+	line	80
+	colm	10
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	line	78
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	82
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_get_list_of_users
+	local	0,001000,self
+	local	1,000020,L
+	local	2,000000,put
+	declend
+	line	84
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	line	85
+	colm	18
+	synt	any
+	llist	0
+	line	85
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	86
+	colm	7
+	synt	every
+	mark0
+	var	2
+	var	1
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	25
+	synt	any
+	field	usersSet
+	line	86
+	colm	20
+	synt	any
+	bang
+	line	86
+	colm	16
+	synt	any
+	invoke	2
+	pop
+lab L3
+	efail
+lab L4
+	line	86
+	colm	7
+	synt	endevery
+	unmark
+lab L2
+	mark	L5
+	mark	L6
+	var	1
+	line	87
+	colm	7
+	synt	any
+	pret
+lab L6
+	synt	any
+	pfail
+	unmark
+lab L5
+	pnull
+	line	88
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_get_users_status_list
+	local	0,001000,self
+	local	1,000020,L
+	local	2,000020,u
+	local	3,000020,av
+	local	4,000000,world
+	local	5,000000,put
+	declend
+	line	90
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	line	92
+	colm	12
+	synt	any
+	llist	0
+	line	92
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	93
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	93
+	colm	23
+	synt	any
+	field	usersSet
+	line	93
+	colm	18
+	synt	any
+	bang
+	line	93
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	line	94
+	colm	10
+	synt	ifelse
+	mark	L5
+	pnull
+	pnull
+	var	3
+	pnull
+	var	4
+	line	94
+	colm	26
+	synt	any
+	field	get_avatar
+	var	2
+	line	94
+	colm	37
+	synt	any
+	invoke	1
+	line	94
+	colm	18
+	synt	any
+	asgn
+	line	94
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	var	5
+	var	1
+	pnull
+	pnull
+	var	3
+	line	95
+	colm	22
+	synt	any
+	field	a_name
+	pnull
+	var	3
+	line	95
+	colm	33
+	synt	any
+	field	get_activity_status
+	line	95
+	colm	53
+	synt	any
+	invoke	0
+	line	95
+	colm	29
+	synt	any
+	cat
+	line	95
+	colm	16
+	synt	any
+	invoke	2
+	goto	L6
+lab L5
+	var	5
+	var	1
+	var	2
+	line	97
+	colm	16
+	synt	any
+	invoke	2
+lab L6
+	line	94
+	colm	10
+	synt	endifelse
+	unmark
+lab L3
+	efail
+lab L4
+	line	93
+	colm	7
+	synt	endevery
+	unmark
+lab L2
+	mark	L7
+	mark	L8
+	var	1
+	line	98
+	colm	7
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	99
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_AssignUid
+	local	0,001000,self
+	local	1,001000,test_uid
+	con	0,002000,1,0
+	declend
+	line	104
+	colm	11
+	synt	any
+	mark	L1
+	line	105
+	colm	7
+	synt	ifelse
+	mark	L2
+	pnull
+	pnull
+	var	1
+	line	105
+	colm	10
+	synt	any
+	size
+	int	0
+	line	105
+	colm	20
+	synt	any
+	numgt
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	106
+	colm	14
+	synt	any
+	field	uid
+	var	1
+	line	106
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	line	107
+	colm	10
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	goto	L3
+lab L2
+	line	110
+	colm	10
+	synt	any
+	pfail
+lab L3
+	line	105
+	colm	7
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	111
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_NotLogged
+	local	0,001000,self
+	local	1,001000,usercmd
+	con	0,010000,0
+	con	1,010000,5,154,157,147,151,156
+	declend
+	line	113
+	colm	11
+	synt	any
+	mark	L1
+	line	114
+	colm	7
+	synt	ifelse
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	114
+	colm	14
+	synt	any
+	field	uid
+	str	0
+	line	114
+	colm	18
+	synt	any
+	lexeq
+	pop
+	pnull
+	var	1
+	str	1
+	line	114
+	colm	30
+	synt	any
+	lexeq
+	unmark
+	mark	L4
+	pnull
+	line	115
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	goto	L3
+lab L2
+	line	117
+	colm	10
+	synt	any
+	pfail
+lab L3
+	line	114
+	colm	7
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	118
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_checkP2P
+	local	0,001000,self
+	local	1,001000,msg
+	local	2,000000,find
+	local	3,000000,write
+	con	0,010000,3,120,062,120
+	con	1,010000,5,144,157,156,047,164
+	con	2,010000,30,131,157,165,162,040,143,154,151,145,156,164,040,151,163,040,156,157,164,040,120,062,120,040,143,141,160,141,142,154,145
+	con	3,010000,26,131,157,165,162,040,143,154,151,145,156,164,040,151,163,040,120,062,120,040,143,141,160,141,142,154,145
+	declend
+	line	120
+	colm	11
+	synt	any
+	mark	L1
+	line	121
+	colm	7
+	synt	if
+	mark0
+	var	2
+	str	0
+	var	1
+	line	121
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	line	122
+	colm	10
+	synt	ifelse
+	mark	L2
+	var	2
+	str	1
+	var	1
+	line	122
+	colm	17
+	synt	any
+	invoke	2
+	unmark
+	var	3
+	str	2
+	line	123
+	colm	18
+	synt	any
+	invoke	1
+	goto	L3
+lab L2
+	var	3
+	str	3
+	line	125
+	colm	18
+	synt	any
+	invoke	1
+lab L3
+	line	122
+	colm	10
+	synt	endifelse
+	line	121
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	127
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_p2pHandshake
+	local	0,001000,self
+	local	1,001000,listen_P2P_sock
+	local	2,000020,sock
+	local	3,000020,p2p_sock
+	local	4,000020,buffer
+	local	5,000020,initTime
+	local	6,000000,open
+	local	7,000000,stop
+	local	8,000000,image
+	local	9,000000,sys_errstr
+	con	0,010000,2,116,117
+	con	1,010000,1,072
+	con	2,010000,2,156,154
+	con	3,010000,10,154,157,143,141,154,150,157,163,164,072
+	con	4,010000,1,040
+	con	5,010000,18,040,120,062,120,040,117,160,145,156,040,146,141,151,154,145,144,072,040
+	declend
+	line	132
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	134
+	colm	11
+	synt	any
+	field	isP2P
+	str	0
+	line	134
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	135
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L2
+	mark	L3
+	line	137
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	137
+	colm	10
+	synt	any
+	null
+	unmark
+	pnull
+	var	1
+	mark	L4
+	var	6
+	pnull
+	str	1
+	pnull
+	var	0
+	line	138
+	colm	45
+	synt	any
+	field	p2pPort
+	line	138
+	colm	38
+	synt	any
+	cat
+	str	2
+	line	138
+	colm	33
+	synt	any
+	invoke	2
+	line	138
+	colm	59
+	synt	any
+	esusp
+	goto	L5
+lab L4
+	var	7
+	str	3
+	pnull
+	var	0
+	line	139
+	colm	34
+	synt	any
+	field	p2pPort
+	str	4
+	var	8
+	var	1
+	line	139
+	colm	52
+	synt	any
+	invoke	1
+	str	5
+	var	9
+	line	140
+	colm	44
+	synt	any
+	keywd	errno
+	line	140
+	colm	43
+	synt	any
+	invoke	1
+	line	139
+	colm	15
+	synt	any
+	invoke	6
+lab L5
+	line	138
+	colm	26
+	synt	any
+	asgn
+	line	137
+	colm	7
+	synt	endif
+	unmark
+lab L3
+	pnull
+	line	142
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_connect_server
+	local	0,001000,self
+	local	1,001000,userId
+	local	2,001000,password
+	local	3,000020,avat
+	local	4,000020,message
+	local	5,000020,message2
+	local	6,000020,parsed
+	local	7,000020,servStatus
+	local	8,000020,userarglist
+	local	9,000020,listen_P2P_sock
+	local	10,000020,session_connected
+	local	11,000000,world
+	local	12,000000,write
+	local	13,000000,image
+	local	14,000000,cve_version
+	local	15,000000,read
+	con	0,010000,0
+	con	1,002000,1,1
+	con	2,010000,32,123,171,163,164,145,155,040,105,162,162,157,162,056,040,040,115,165,154,164,151,160,154,145,040,141,166,141,164,141,162,163,056
+	con	3,010000,28,106,141,151,154,145,144,040,164,157,040,143,157,156,156,145,143,164,040,164,157,040,163,145,162,166,145,162,040
+	con	4,010000,1,072
+	con	5,010000,18,154,157,147,151,156,040,146,141,151,154,165,162,145,040,146,157,162,040
+	con	6,010000,5,126,141,154,151,144
+	con	7,010000,14,114,157,147,147,145,144,040,151,156,040,141,163,072,040
+	con	8,002000,1,2
+	con	9,002000,1,7
+	con	10,010000,9,134,166,145,162,163,151,157,156,040
+	con	11,010000,20,166,145,162,163,151,157,156,040,167,162,151,164,145,040,146,141,151,154,145,144
+	declend
+	line	145
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	7
+	str	0
+	line	149
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	150
+	colm	11
+	synt	any
+	field	uid
+	var	1
+	line	150
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	152
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	11
+	line	152
+	colm	12
+	synt	any
+	nonnull
+	line	152
+	colm	19
+	synt	any
+	field	TAvatars
+	line	152
+	colm	10
+	synt	any
+	size
+	int	1
+	line	152
+	colm	29
+	synt	any
+	numgt
+	pop
+	pnull
+	pnull
+	var	0
+	line	152
+	colm	40
+	synt	any
+	field	reconnecting
+	line	152
+	colm	35
+	synt	any
+	null
+	unmark
+	mark	L4
+	pnull
+	var	11
+	line	153
+	colm	15
+	synt	any
+	field	write_chat
+	str	2
+	line	153
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	line	154
+	colm	10
+	synt	any
+	pfail
+	line	152
+	colm	7
+	synt	endif
+	unmark
+lab L3
+	mark	L5
+	line	157
+	colm	7
+	synt	if
+	mark0
+	mark	L6
+	pnull
+	var	0
+	line	157
+	colm	19
+	synt	any
+	field	connect
+	line	157
+	colm	27
+	synt	any
+	invoke	0
+	unmark
+	efail
+lab L6
+	pnull
+	unmark
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	158
+	colm	14
+	synt	any
+	field	uid
+	str	0
+	line	158
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	11
+	line	159
+	colm	11
+	synt	any
+	nonnull
+	line	159
+	colm	19
+	synt	any
+	field	write_chat
+	pnull
+	pnull
+	pnull
+	str	3
+	pnull
+	var	0
+	line	160
+	colm	35
+	synt	any
+	field	server
+	line	159
+	colm	62
+	synt	any
+	cat
+	str	4
+	line	160
+	colm	42
+	synt	any
+	cat
+	pnull
+	var	0
+	line	160
+	colm	53
+	synt	any
+	field	port
+	line	160
+	colm	47
+	synt	any
+	cat
+	line	159
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	line	161
+	colm	10
+	synt	any
+	pfail
+	line	157
+	colm	7
+	synt	endif
+	unmark
+lab L5
+	mark	L9
+	line	165
+	colm	7
+	synt	if
+	mark0
+	mark	L10
+	pnull
+	var	4
+	pnull
+	var	0
+	line	165
+	colm	30
+	synt	any
+	field	login
+	pnull
+	var	0
+	line	165
+	colm	41
+	synt	any
+	field	uid
+	var	2
+	line	165
+	colm	36
+	synt	any
+	invoke	2
+	line	165
+	colm	23
+	synt	any
+	asgn
+	unmark
+	efail
+lab L10
+	pnull
+	unmark
+	mark	L11
+	var	12
+	str	5
+	var	13
+	pnull
+	var	0
+	line	166
+	colm	48
+	synt	any
+	field	uid
+	line	166
+	colm	43
+	synt	any
+	invoke	1
+	line	166
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L11
+	line	167
+	colm	10
+	synt	any
+	pfail
+	line	165
+	colm	7
+	synt	endif
+	unmark
+lab L9
+	mark	L12
+	pnull
+	pnull
+	var	11
+	line	170
+	colm	8
+	synt	any
+	nonnull
+	line	170
+	colm	16
+	synt	any
+	field	write_chat
+	var	4
+	line	170
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	mark	L13
+	line	172
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	6
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	24
+	synt	any
+	field	commands
+	line	172
+	colm	33
+	synt	any
+	field	SplitArgs
+	var	4
+	line	172
+	colm	43
+	synt	any
+	invoke	1
+	line	172
+	colm	17
+	synt	any
+	asgn
+	unmark
+	mark	L14
+	pnull
+	var	7
+	pnull
+	var	6
+	int	1
+	line	173
+	colm	31
+	synt	any
+	subsc
+	line	173
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L14
+	line	174
+	colm	10
+	synt	ifelse
+	mark	L15
+	pnull
+	var	7
+	str	6
+	line	174
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	mark	L17
+	pnull
+	pnull
+	var	11
+	line	175
+	colm	14
+	synt	any
+	nonnull
+	line	175
+	colm	22
+	synt	any
+	field	write_chat
+	pnull
+	str	7
+	pnull
+	var	0
+	line	175
+	colm	59
+	synt	any
+	field	uid
+	line	175
+	colm	52
+	synt	any
+	cat
+	line	175
+	colm	33
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	8
+	pnull
+	var	6
+	int	8
+	int	9
+	line	176
+	colm	36
+	synt	any
+	synt	any
+	sect
+	line	176
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	0
+	line	177
+	colm	17
+	synt	any
+	field	p2pHandshake
+	var	9
+	line	177
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	10
+	int	1
+	line	179
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	var	0
+	line	181
+	colm	17
+	synt	any
+	field	Write
+	pnull
+	str	10
+	var	14
+	line	181
+	colm	49
+	synt	any
+	invoke	0
+	line	181
+	colm	36
+	synt	any
+	cat
+	line	181
+	colm	23
+	synt	any
+	invoke	1
+	line	181
+	colm	52
+	synt	any
+	esusp
+	goto	L22
+lab L21
+	mark	L23
+	var	12
+	str	11
+	line	182
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	line	183
+	colm	16
+	synt	any
+	pfail
+lab L22
+	goto	L16
+lab L15
+	mark	L24
+lab L25
+	line	187
+	colm	13
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	11
+	line	187
+	colm	20
+	synt	any
+	nonnull
+	line	187
+	colm	28
+	synt	any
+	field	write_chat
+	var	15
+	pnull
+	var	0
+	line	187
+	colm	49
+	synt	any
+	field	connID
+	line	187
+	colm	44
+	synt	any
+	invoke	1
+	line	187
+	colm	39
+	synt	any
+	invoke	1
+lab L26
+	unmark
+	goto	L25
+lab L27
+	line	187
+	colm	13
+	synt	endwhile
+	unmark
+lab L24
+	mark	L28
+	pnull
+	var	0
+	line	188
+	colm	17
+	synt	any
+	field	disconnect
+	line	188
+	colm	28
+	synt	any
+	invoke	0
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	189
+	colm	17
+	synt	any
+	field	uid
+	str	0
+	line	189
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L29
+	line	190
+	colm	13
+	synt	any
+	pfail
+lab L16
+	line	174
+	colm	10
+	synt	endifelse
+	line	172
+	colm	7
+	synt	endif
+	unmark
+lab L13
+	mark	L30
+	mark	L31
+	pnull
+	line	193
+	colm	7
+	synt	any
+	pret
+lab L31
+	synt	any
+	pfail
+	unmark
+lab L30
+	pnull
+	line	194
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_isUp
+	local	0,001000,self
+	con	0,010000,6,157,156,154,151,156,145
+	declend
+	line	199
+	colm	11
+	synt	any
+	mark	L1
+	line	200
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	200
+	colm	15
+	synt	any
+	field	connID
+	line	200
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	str	0
+	line	200
+	colm	28
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	200
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	201
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_Read
+	local	0,001000,self
+	local	1,000020,s
+	local	2,000000,read
+	declend
+	line	203
+	colm	11
+	synt	any
+	mark	L1
+	line	205
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	var	2
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	25
+	synt	any
+	field	connID
+	line	205
+	colm	20
+	synt	any
+	nonnull
+	line	205
+	colm	19
+	synt	any
+	invoke	1
+	line	205
+	colm	12
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	1
+	line	205
+	colm	38
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	205
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	206
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_Write
+	local	0,001000,self
+	local	1,001000,argv
+	local	2,000020,built
+	local	3,000000,type
+	local	4,000000,pop
+	local	5,000000,writes
+	con	0,010000,0
+	con	1,010000,6,163,164,162,151,156,147
+	con	2,010000,1,012
+	con	3,010000,4,154,151,163,164
+	declend
+	line	208
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	str	0
+	line	209
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	211
+	colm	7
+	synt	case
+	mark0
+	var	3
+	pnull
+	var	1
+	line	211
+	colm	17
+	synt	any
+	bang
+	line	211
+	colm	16
+	synt	any
+	invoke	1
+	eret
+	mark	L4
+	ccase
+	str	1
+	line	212
+	colm	18
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L5
+lab L6
+	line	212
+	colm	22
+	synt	while
+	mark0
+	pnull
+	var	2
+	dup
+	var	4
+	var	1
+	line	212
+	colm	42
+	synt	any
+	invoke	1
+	line	212
+	colm	34
+	synt	any
+	cat
+	asgn
+lab L7
+	unmark
+	goto	L6
+lab L8
+	line	212
+	colm	22
+	synt	endwhile
+	unmark
+lab L5
+	pnull
+	var	2
+	dup
+	str	2
+	line	212
+	colm	56
+	synt	any
+	cat
+	asgn
+	goto	L3
+lab L4
+	mark	L9
+	ccase
+	str	3
+	line	213
+	colm	16
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L10
+	pnull
+	var	1
+	pnull
+	var	1
+	line	214
+	colm	21
+	synt	any
+	bang
+	line	214
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L10
+	line	215
+	colm	13
+	synt	every
+	mark0
+	pnull
+	var	2
+	dup
+	pnull
+	pnull
+	var	1
+	line	215
+	colm	30
+	synt	any
+	bang
+	str	2
+	line	215
+	colm	36
+	synt	any
+	cat
+	line	215
+	colm	25
+	synt	any
+	cat
+	asgn
+	pop
+lab L11
+	efail
+lab L12
+	line	215
+	colm	13
+	synt	endevery
+	goto	L3
+lab L9
+	efail
+lab L3
+	line	211
+	colm	7
+	synt	endcase
+	unmark
+lab L2
+	mark	L13
+	mark	L14
+	var	5
+	pnull
+	pnull
+	var	0
+	line	223
+	colm	26
+	synt	any
+	field	connID
+	line	223
+	colm	21
+	synt	any
+	nonnull
+	var	2
+	line	223
+	colm	20
+	synt	any
+	invoke	2
+	line	223
+	colm	7
+	synt	any
+	pret
+lab L14
+	synt	any
+	pfail
+	unmark
+lab L13
+	pnull
+	line	224
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_connect
+	local	0,001000,self
+	local	1,000000,world
+	local	2,000000,open
+	local	3,000000,find
+	local	4,000000,type
+	local	5,000000,gui__dispatcher
+	con	0,010000,10,143,157,156,156,145,143,164,151,156,147
+	con	1,010000,1,072
+	con	2,010000,1,156
+	con	3,010000,10,143,157,156,156,145,143,164,040,117,113
+	con	4,010000,12,116,063,104,151,163,160,141,164,143,150,145,162
+	con	5,010000,14,143,157,156,156,145,143,164,040,146,141,151,154,145,144
+	declend
+	line	226
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	1
+	line	227
+	colm	8
+	synt	any
+	nonnull
+	line	227
+	colm	16
+	synt	any
+	field	write_chat
+	str	0
+	line	227
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	line	228
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	228
+	colm	14
+	synt	any
+	field	connID
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	228
+	colm	32
+	synt	any
+	field	server
+	str	1
+	line	228
+	colm	39
+	synt	any
+	cat
+	pnull
+	var	0
+	line	228
+	colm	50
+	synt	any
+	field	port
+	line	228
+	colm	44
+	synt	any
+	cat
+	str	2
+	line	228
+	colm	27
+	synt	any
+	invoke	2
+	line	228
+	colm	21
+	synt	any
+	asgn
+	unmark
+	mark	L3
+	pnull
+	pnull
+	var	1
+	line	229
+	colm	11
+	synt	any
+	nonnull
+	line	229
+	colm	19
+	synt	any
+	field	write_chat
+	str	3
+	line	229
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	line	234
+	colm	10
+	synt	if
+	mark0
+	var	3
+	str	4
+	var	4
+	var	5
+	line	234
+	colm	38
+	synt	any
+	invoke	1
+	line	234
+	colm	17
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	5
+	line	235
+	colm	28
+	synt	any
+	field	add_net
+	pnull
+	var	0
+	line	235
+	colm	41
+	synt	any
+	field	connID
+	line	235
+	colm	36
+	synt	any
+	invoke	1
+	line	234
+	colm	10
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	236
+	colm	21
+	synt	any
+	field	connID
+	line	236
+	colm	10
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	line	228
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L6
+	pnull
+	pnull
+	var	1
+	line	238
+	colm	8
+	synt	any
+	nonnull
+	line	238
+	colm	16
+	synt	any
+	field	write_chat
+	str	5
+	line	238
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	pnull
+	line	239
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_disconnect
+	local	0,001000,self
+	local	1,000000,close
+	local	2,000000,find
+	local	3,000000,type
+	local	4,000000,gui__dispatcher
+	con	0,010000,12,116,063,104,151,163,160,141,164,143,150,145,162
+	declend
+	line	241
+	colm	11
+	synt	any
+	mark	L1
+	line	242
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	242
+	colm	15
+	synt	any
+	field	connID
+	line	242
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	var	1
+	pnull
+	var	0
+	line	243
+	colm	21
+	synt	any
+	field	connID
+	line	243
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	line	244
+	colm	10
+	synt	if
+	mark0
+	var	2
+	str	0
+	var	3
+	var	4
+	line	244
+	colm	38
+	synt	any
+	invoke	1
+	line	244
+	colm	17
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	4
+	line	245
+	colm	28
+	synt	any
+	field	del_net
+	pnull
+	var	0
+	line	245
+	colm	41
+	synt	any
+	field	connID
+	line	245
+	colm	36
+	synt	any
+	invoke	1
+	line	244
+	colm	10
+	synt	endif
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	246
+	colm	14
+	synt	any
+	field	connID
+	line	246
+	colm	23
+	synt	any
+	keywd	null
+	line	246
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	line	247
+	colm	10
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	line	242
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	249
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_systemlogin
+	local	0,001000,self
+	local	1,000020,userid
+	local	2,000020,passwd
+	con	0,010000,6,163,171,163,164,145,155
+	con	1,010000,7,165,156,151,143,162,157,156
+	declend
+	line	254
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	str	0
+	line	257
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	str	1
+	line	258
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	mark	L4
+	pnull
+	var	0
+	line	260
+	colm	18
+	synt	any
+	field	login
+	var	1
+	var	2
+	line	260
+	colm	24
+	synt	any
+	invoke	2
+	line	260
+	colm	7
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	unmark
+lab L3
+	pnull
+	line	261
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_login
+	local	0,001000,self
+	local	1,001000,userid
+	local	2,001000,passwd
+	local	3,000020,message
+	local	4,000020,f
+	local	5,000020,cauth
+	local	6,000000,runerr
+	local	7,000000,cypher
+	local	8,000000,world
+	local	9,000000,write
+	local	10,000000,read
+	local	11,000000,match
+	local	12,000000,datopen
+	local	13,000000,WDAT
+	local	14,000000,close
+	con	0,002000,3,501
+	con	1,010000,10,055,143,166,145,143,171,160,150,145,162
+	con	2,010000,1,040
+	con	3,010000,13,154,157,147,147,151,156,147,040,151,156,056,056,056
+	con	4,010000,7,134,154,157,147,151,156,040
+	con	5,010000,18,154,157,147,151,156,040,167,162,151,164,145,040,146,141,151,154,145,144
+	con	6,010000,20,167,141,151,164,151,156,147,040,146,157,162,040,162,145,160,154,171,056,056,056
+	con	7,010000,17,154,157,147,151,156,040,162,145,141,144,040,146,141,151,154,145,144
+	con	8,010000,15,163,145,162,166,145,162,040,162,145,160,154,151,145,144,040
+	con	9,010000,5,126,141,154,151,144
+	con	10,010000,1,134
+	con	11,010000,13,154,141,163,164,154,157,147,151,156,056,144,141,164
+	con	12,010000,1,167
+	con	13,010000,1,012
+	con	14,010000,1,072
+	con	15,010000,6,106,141,151,154,145,144
+	declend
+	line	263
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	1
+	line	265
+	colm	7
+	synt	any
+	nonnull
+	line	265
+	colm	15
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	var	6
+	int	0
+	var	1
+	line	265
+	colm	23
+	synt	any
+	invoke	2
+lab L3
+	unmark
+lab L1
+	mark	L4
+	mark	L5
+	pnull
+	var	2
+	line	266
+	colm	7
+	synt	any
+	nonnull
+	line	266
+	colm	15
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	var	6
+	int	0
+	var	2
+	line	266
+	colm	23
+	synt	any
+	invoke	2
+lab L6
+	unmark
+lab L4
+	mark	L7
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	str	1
+	var	7
+	var	1
+	line	268
+	colm	39
+	synt	any
+	invoke	1
+	line	268
+	colm	29
+	synt	any
+	cat
+	str	2
+	line	268
+	colm	48
+	synt	any
+	cat
+	var	7
+	var	2
+	line	268
+	colm	64
+	synt	any
+	invoke	1
+	line	268
+	colm	55
+	synt	any
+	cat
+	line	268
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	270
+	colm	7
+	synt	ifelse
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	270
+	colm	15
+	synt	any
+	field	connID
+	line	270
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L11
+	pnull
+	pnull
+	var	8
+	line	271
+	colm	11
+	synt	any
+	nonnull
+	line	271
+	colm	19
+	synt	any
+	field	write_chat
+	str	3
+	line	271
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	mark	L13
+	pnull
+	var	0
+	line	272
+	colm	14
+	synt	any
+	field	Write
+	pnull
+	str	4
+	var	5
+	line	272
+	colm	31
+	synt	any
+	cat
+	line	272
+	colm	20
+	synt	any
+	invoke	1
+	line	272
+	colm	39
+	synt	any
+	esusp
+	goto	L14
+lab L13
+	var	9
+	str	5
+	line	273
+	colm	18
+	synt	any
+	invoke	1
+lab L14
+	unmark
+lab L12
+	mark	L15
+	pnull
+	pnull
+	var	8
+	line	275
+	colm	11
+	synt	any
+	nonnull
+	line	275
+	colm	19
+	synt	any
+	field	write_chat
+	str	6
+	line	275
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	3
+	mark	L17
+	var	10
+	pnull
+	var	0
+	line	276
+	colm	30
+	synt	any
+	field	connID
+	line	276
+	colm	25
+	synt	any
+	invoke	1
+	line	276
+	colm	38
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	mark	L19
+	var	9
+	str	7
+	line	277
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	line	278
+	colm	13
+	synt	any
+	pfail
+lab L18
+	line	276
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L20
+	pnull
+	pnull
+	var	8
+	line	281
+	colm	11
+	synt	any
+	nonnull
+	line	281
+	colm	19
+	synt	any
+	field	write_chat
+	pnull
+	str	8
+	var	3
+	line	281
+	colm	49
+	synt	any
+	cat
+	line	281
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	mark	L21
+	line	283
+	colm	10
+	synt	if
+	mark0
+	var	11
+	str	9
+	var	3
+	line	283
+	colm	18
+	synt	any
+	invoke	2
+	unmark
+	line	284
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	4
+	var	12
+	pnull
+	pnull
+	var	13
+	str	10
+	line	284
+	colm	34
+	synt	any
+	cat
+	str	11
+	line	284
+	colm	42
+	synt	any
+	cat
+	str	12
+	line	284
+	colm	28
+	synt	any
+	invoke	2
+	line	284
+	colm	18
+	synt	any
+	asgn
+	unmark
+	mark	L22
+	var	9
+	var	4
+	var	1
+	str	13
+	pnull
+	pnull
+	pnull
+	var	0
+	line	285
+	colm	43
+	synt	any
+	field	server
+	str	14
+	line	285
+	colm	50
+	synt	any
+	cat
+	pnull
+	var	0
+	line	285
+	colm	61
+	synt	any
+	field	port
+	line	285
+	colm	55
+	synt	any
+	cat
+	line	285
+	colm	21
+	synt	any
+	invoke	4
+	unmark
+lab L22
+	var	14
+	var	4
+	line	286
+	colm	21
+	synt	any
+	invoke	1
+	line	284
+	colm	13
+	synt	endif
+	line	283
+	colm	10
+	synt	endif
+	unmark
+lab L21
+	mark	L23
+	var	3
+	line	290
+	colm	10
+	synt	any
+	pret
+lab L23
+	synt	any
+	pfail
+	goto	L10
+lab L9
+	mark	L24
+	str	15
+	line	293
+	colm	10
+	synt	any
+	pret
+lab L24
+	synt	any
+	pfail
+lab L10
+	line	270
+	colm	7
+	synt	endifelse
+	unmark
+lab L8
+	pnull
+	line	294
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_logout
+	local	0,001000,self
+	local	1,000000,delay
+	con	0,010000,0
+	con	1,010000,8,134,154,157,147,157,165,164,040
+	con	2,002000,3,200
+	con	3,010000,7,123,165,143,143,145,163,163
+	con	4,010000,6,106,141,151,154,145,144
+	declend
+	line	296
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	297
+	colm	11
+	synt	any
+	field	uid
+	str	0
+	line	297
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	298
+	colm	7
+	synt	ifelse
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	298
+	colm	15
+	synt	any
+	field	connID
+	line	298
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L5
+	pnull
+	var	0
+	line	299
+	colm	14
+	synt	any
+	field	Write
+	str	1
+	line	299
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	var	1
+	int	2
+	line	300
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	str	3
+	line	301
+	colm	10
+	synt	any
+	pret
+lab L7
+	synt	any
+	pfail
+	goto	L4
+lab L3
+	mark	L8
+	str	4
+	line	304
+	colm	10
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+lab L4
+	line	298
+	colm	7
+	synt	endifelse
+	unmark
+lab L2
+	pnull
+	line	305
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession_initially
+	local	0,001000,self
+	local	1,001000,new_srv
+	local	2,001000,new_port
+	local	3,000000,Commands
+	local	4,000000,session
+	local	5,000000,set
+	con	0,010000,9,154,157,143,141,154,150,157,163,164
+	con	1,002000,4,4500
+	con	2,010000,0
+	con	3,010000,2,116,117
+	con	4,002000,4,4600
+	con	5,010000,3,117,146,146
+	declend
+	line	307
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	308
+	colm	8
+	synt	any
+	field	server
+	mark	L2
+	pnull
+	var	1
+	line	308
+	colm	18
+	synt	any
+	nonnull
+	line	308
+	colm	26
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	str	0
+lab L3
+	line	308
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	309
+	colm	8
+	synt	any
+	field	port
+	mark	L5
+	pnull
+	var	2
+	line	309
+	colm	16
+	synt	any
+	nonnull
+	line	309
+	colm	25
+	synt	any
+	esusp
+	goto	L6
+lab L5
+	int	1
+lab L6
+	line	309
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	310
+	colm	8
+	synt	any
+	field	commands
+	var	3
+	line	310
+	colm	27
+	synt	any
+	invoke	0
+	line	310
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	311
+	colm	8
+	synt	any
+	field	uid
+	str	2
+	line	311
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	4
+	var	0
+	line	312
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	313
+	colm	8
+	synt	any
+	field	isP2P
+	str	3
+	line	313
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	314
+	colm	8
+	synt	any
+	field	p2pPort
+	int	4
+	line	314
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	315
+	colm	8
+	synt	any
+	field	VoiceState
+	str	5
+	line	315
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	316
+	colm	8
+	synt	any
+	field	VoiceSession
+	line	316
+	colm	23
+	synt	any
+	keywd	null
+	line	316
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	317
+	colm	8
+	synt	any
+	field	usersList
+	pnull
+	line	317
+	colm	20
+	synt	any
+	llist	0
+	line	317
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	318
+	colm	8
+	synt	any
+	field	usersSet
+	var	5
+	line	318
+	colm	22
+	synt	any
+	invoke	0
+	line	318
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	pnull
+	line	319
+	colm	7
+	synt	any
+	pret
+lab L17
+	synt	any
+	pfail
+	unmark
+lab L16
+	pnull
+	line	320
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSession
+	local	0,001000,new_srv
+	local	1,001000,new_port
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,LoginSession__oprec
+	local	5,000000,LoginSessioninitialize
+	local	6,000000,Session__oprec
+	local	7,000000,Sessioninitialize
+	local	8,000000,LoginSession__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	54
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	7
+	line	9
+	colm	44
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	pnull
+	pnull
+	var	4
+	line	10
+	colm	22
+	synt	any
+	field	Session
+	var	6
+	line	10
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L6
+	pnull
+	var	2
+	var	8
+	line	12
+	colm	31
+	synt	any
+	keywd	null
+	var	4
+	line	12
+	colm	30
+	synt	any
+	invoke	2
+	line	12
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	13
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	13
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	pnull
+	pnull
+	var	2
+	line	14
+	colm	7
+	synt	any
+	field	__m
+	line	14
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	14
+	colm	21
+	synt	any
+	invoke	3
+	line	14
+	colm	45
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	line	14
+	colm	47
+	synt	any
+	pfail
+lab L10
+	unmark
+lab L8
+	mark	L11
+	mark	L12
+	var	2
+	line	15
+	colm	3
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	unmark
+lab L11
+	pnull
+	line	16
+	colm	1
+	synt	any
+	pfail
+	end
+proc LoginSessioninitialize
+	local	0,000000,LoginSession__oprec
+	local	1,000000,LoginSession__methods
+	local	2,000000,LoginSession_isuser
+	local	3,000000,LoginSession_sameuser
+	local	4,000000,LoginSession_adduser
+	local	5,000000,LoginSession_deluser
+	local	6,000000,LoginSession_get_list_of_users
+	local	7,000000,LoginSession_get_users_status_list
+	local	8,000000,LoginSession_AssignUid
+	local	9,000000,LoginSession_NotLogged
+	local	10,000000,LoginSession_checkP2P
+	local	11,000000,LoginSession_p2pHandshake
+	local	12,000000,LoginSession_connect_server
+	local	13,000000,LoginSession_isUp
+	local	14,000000,LoginSession_Read
+	local	15,000000,LoginSession_Write
+	local	16,000000,LoginSession_connect
+	local	17,000000,LoginSession_disconnect
+	local	18,000000,LoginSession_systemlogin
+	local	19,000000,LoginSession_login
+	local	20,000000,LoginSession_logout
+	local	21,000000,LoginSession_initially
+	declend
+	line	18
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	line	19
+	colm	55
+	synt	any
+	invoke	20
+	line	19
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_White_Background_And_Unlock
+	local	0,001000,self
+	local	1,001000,T
+	con	0,010000,8,142,147,075,167,150,151,164,145
+	declend
+	filen	session.icn
+	line	341
+	colm	11
+	synt	any
+	mark	L1
+	line	342
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	342
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	pnull
+	var	1
+	line	343
+	colm	11
+	synt	any
+	field	IDE_Tab
+	line	343
+	colm	19
+	synt	any
+	field	set_attribs
+	str	0
+	line	343
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	1
+	line	344
+	colm	11
+	synt	any
+	field	IDE_Tab
+	line	344
+	colm	19
+	synt	any
+	field	init
+	line	344
+	colm	24
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	1
+	line	345
+	colm	11
+	synt	any
+	field	IDE_Tab
+	line	345
+	colm	19
+	synt	any
+	field	display
+	line	345
+	colm	27
+	synt	any
+	invoke	0
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	346
+	colm	11
+	synt	any
+	field	IDE_Tab
+	line	346
+	colm	19
+	synt	any
+	field	set_accepts_focus
+	line	346
+	colm	37
+	synt	any
+	invoke	0
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	pnull
+	var	1
+	line	347
+	colm	11
+	synt	any
+	field	IDE_Tab
+	line	347
+	colm	19
+	synt	any
+	field	mouse_locked
+	pnull
+	pnull
+	pnull
+	var	1
+	line	347
+	colm	37
+	synt	any
+	field	IDE_Tab
+	line	347
+	colm	45
+	synt	any
+	field	scroll_locked
+	line	347
+	colm	63
+	synt	any
+	keywd	null
+	line	347
+	colm	60
+	synt	any
+	asgn
+	line	347
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	349
+	colm	11
+	synt	any
+	field	IDE_MsgBox
+	line	349
+	colm	22
+	synt	any
+	field	set_attribs
+	str	0
+	line	349
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	1
+	line	350
+	colm	11
+	synt	any
+	field	IDE_MsgBox
+	line	350
+	colm	22
+	synt	any
+	field	init
+	line	350
+	colm	27
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	1
+	line	351
+	colm	11
+	synt	any
+	field	IDE_MsgBox
+	line	351
+	colm	22
+	synt	any
+	field	display
+	line	351
+	colm	30
+	synt	any
+	invoke	0
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	1
+	line	352
+	colm	11
+	synt	any
+	field	IDE_MsgBox
+	line	352
+	colm	22
+	synt	any
+	field	set_accepts_focus
+	line	352
+	colm	40
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	pnull
+	pnull
+	pnull
+	var	1
+	line	353
+	colm	11
+	synt	any
+	field	IDE_MsgBox
+	line	353
+	colm	22
+	synt	any
+	field	mouse_locked
+	pnull
+	pnull
+	pnull
+	var	1
+	line	353
+	colm	40
+	synt	any
+	field	IDE_MsgBox
+	line	353
+	colm	51
+	synt	any
+	field	scroll_locked
+	line	353
+	colm	69
+	synt	any
+	keywd	null
+	line	353
+	colm	66
+	synt	any
+	asgn
+	line	353
+	colm	36
+	synt	any
+	asgn
+	line	342
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	355
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Swap_User_Owner
+	local	0,001000,self
+	local	1,001000,index
+	local	2,001000,user
+	local	3,000020,Temp
+	local	4,000020,j
+	local	5,000020,found
+	local	6,000000,put
+	local	7,000000,delete
+	con	0,002000,1,1
+	con	1,002000,1,0
+	declend
+	line	357
+	colm	11
+	synt	any
+	mark	L1
+	line	359
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	359
+	colm	18
+	synt	any
+	field	Tidesession
+	var	1
+	line	359
+	colm	30
+	synt	any
+	subsc
+	line	359
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	var	3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	360
+	colm	25
+	synt	any
+	field	Tidesession
+	var	1
+	line	360
+	colm	37
+	synt	any
+	subsc
+	line	360
+	colm	44
+	synt	any
+	field	IDEOwner
+	line	360
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	361
+	colm	17
+	synt	any
+	field	Tidesession
+	var	1
+	line	361
+	colm	29
+	synt	any
+	subsc
+	line	361
+	colm	36
+	synt	any
+	field	IDEOwner
+	var	2
+	line	361
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	var	6
+	pnull
+	pnull
+	pnull
+	var	0
+	line	362
+	colm	21
+	synt	any
+	field	Tidesession
+	var	1
+	line	362
+	colm	33
+	synt	any
+	subsc
+	line	362
+	colm	40
+	synt	any
+	field	Lusers
+	var	3
+	line	362
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	4
+	int	0
+	line	363
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	5
+	int	1
+	line	364
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+lab L8
+	line	365
+	colm	13
+	synt	while
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	365
+	colm	29
+	synt	any
+	field	Tidesession
+	var	1
+	line	365
+	colm	41
+	synt	any
+	subsc
+	line	365
+	colm	48
+	synt	any
+	field	Lusers
+	line	365
+	colm	24
+	synt	any
+	size
+	line	365
+	colm	21
+	synt	any
+	numle
+	pop
+	pnull
+	var	5
+	int	1
+	line	365
+	colm	63
+	synt	any
+	numeq
+	unmark
+	mark	L8
+	mark	L11
+	line	366
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	366
+	colm	23
+	synt	any
+	field	Tidesession
+	var	1
+	line	366
+	colm	35
+	synt	any
+	subsc
+	line	366
+	colm	42
+	synt	any
+	field	Lusers
+	var	4
+	line	366
+	colm	49
+	synt	any
+	subsc
+	var	2
+	line	366
+	colm	52
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	5
+	int	0
+	line	366
+	colm	69
+	synt	any
+	asgn
+	line	366
+	colm	16
+	synt	endif
+	unmark
+lab L11
+	pnull
+	var	4
+	dup
+	int	0
+	line	367
+	colm	18
+	synt	any
+	plus
+	asgn
+lab L9
+	unmark
+	goto	L8
+lab L10
+	line	365
+	colm	13
+	synt	endwhile
+	unmark
+lab L7
+	line	369
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	5
+	int	0
+	line	369
+	colm	22
+	synt	any
+	numeq
+	unmark
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	370
+	colm	27
+	synt	any
+	field	Tidesession
+	var	1
+	line	370
+	colm	39
+	synt	any
+	subsc
+	line	370
+	colm	46
+	synt	any
+	field	Lusers
+	pnull
+	var	4
+	int	0
+	line	370
+	colm	55
+	synt	any
+	minus
+	line	370
+	colm	22
+	synt	any
+	invoke	2
+	line	369
+	colm	13
+	synt	endif
+	line	359
+	colm	10
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	373
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Transfer_IDE_Lock
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,pos
+	local	3,000020,index
+	local	4,000020,user
+	local	5,000020,user_me
+	local	6,000000,find
+	local	7,000000,integer
+	local	8,000000,world
+	con	0,010000,1,040
+	con	1,002000,1,1
+	con	2,002000,1,0
+	con	3,010000,2,157,156
+	declend
+	line	375
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	var	6
+	str	0
+	var	1
+	line	378
+	colm	17
+	synt	any
+	invoke	2
+	line	378
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	var	7
+	pnull
+	var	1
+	int	1
+	var	2
+	line	379
+	colm	29
+	synt	any
+	synt	any
+	sect
+	line	379
+	colm	22
+	synt	any
+	invoke	1
+	line	379
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	4
+	pnull
+	var	1
+	pnull
+	var	2
+	int	1
+	line	380
+	colm	22
+	synt	any
+	plus
+	int	2
+	line	380
+	colm	24
+	synt	any
+	synt	any
+	sect
+	line	380
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	5
+	pnull
+	pnull
+	var	8
+	line	381
+	colm	22
+	synt	any
+	field	nsh_dialog
+	line	381
+	colm	33
+	synt	any
+	field	user_me
+	line	381
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	382
+	colm	6
+	synt	ifelse
+	mark	L6
+	pnull
+	var	4
+	var	5
+	line	382
+	colm	13
+	synt	any
+	lexeq
+	unmark
+	mark	L8
+	pnull
+	var	0
+	line	383
+	colm	13
+	synt	any
+	field	Unlock_IDE
+	pnull
+	pnull
+	pnull
+	var	0
+	line	383
+	colm	29
+	synt	any
+	field	Tidesession
+	var	3
+	line	383
+	colm	41
+	synt	any
+	subsc
+	line	383
+	colm	48
+	synt	any
+	field	IDE_Tab
+	pnull
+	pnull
+	pnull
+	var	0
+	line	383
+	colm	61
+	synt	any
+	field	Tidesession
+	var	3
+	line	383
+	colm	73
+	synt	any
+	subsc
+	line	383
+	colm	80
+	synt	any
+	field	IDE_MsgBox
+	line	383
+	colm	24
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	8
+	line	384
+	colm	14
+	synt	any
+	field	nsh_dialog
+	line	384
+	colm	25
+	synt	any
+	field	Remove_Owner_In_Tree
+	pnull
+	pnull
+	pnull
+	var	0
+	line	384
+	colm	51
+	synt	any
+	field	Tidesession
+	var	3
+	line	384
+	colm	63
+	synt	any
+	subsc
+	line	384
+	colm	70
+	synt	any
+	field	IDEFile
+	pnull
+	pnull
+	pnull
+	var	0
+	line	385
+	colm	51
+	synt	any
+	field	Tidesession
+	var	3
+	line	385
+	colm	63
+	synt	any
+	subsc
+	line	385
+	colm	70
+	synt	any
+	field	IDEOwner
+	line	384
+	colm	46
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	0
+	line	386
+	colm	13
+	synt	any
+	field	Swap_User_Owner
+	var	3
+	var	4
+	line	386
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	line	387
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	387
+	colm	17
+	synt	any
+	field	Tidesession
+	var	3
+	line	387
+	colm	29
+	synt	any
+	subsc
+	line	387
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	387
+	colm	45
+	synt	any
+	field	Tidesession
+	var	3
+	line	387
+	colm	57
+	synt	any
+	subsc
+	line	387
+	colm	64
+	synt	any
+	field	CIDE
+	str	3
+	line	387
+	colm	69
+	synt	any
+	asgn
+	line	387
+	colm	9
+	synt	endif
+	goto	L7
+lab L6
+	mark	L11
+	pnull
+	pnull
+	var	8
+	line	390
+	colm	14
+	synt	any
+	field	nsh_dialog
+	line	390
+	colm	25
+	synt	any
+	field	Remove_Owner_In_Tree
+	pnull
+	pnull
+	pnull
+	var	0
+	line	390
+	colm	51
+	synt	any
+	field	Tidesession
+	var	3
+	line	390
+	colm	63
+	synt	any
+	subsc
+	line	390
+	colm	70
+	synt	any
+	field	IDEFile
+	pnull
+	pnull
+	pnull
+	var	0
+	line	391
+	colm	51
+	synt	any
+	field	Tidesession
+	var	3
+	line	391
+	colm	63
+	synt	any
+	subsc
+	line	391
+	colm	70
+	synt	any
+	field	IDEOwner
+	line	390
+	colm	46
+	synt	any
+	invoke	2
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	8
+	line	392
+	colm	14
+	synt	any
+	field	nsh_dialog
+	line	392
+	colm	25
+	synt	any
+	field	Swap_User_Owner_In_Tree
+	pnull
+	pnull
+	pnull
+	var	0
+	line	392
+	colm	54
+	synt	any
+	field	Tidesession
+	var	3
+	line	392
+	colm	66
+	synt	any
+	subsc
+	line	392
+	colm	73
+	synt	any
+	field	IDEFile
+	var	4
+	line	392
+	colm	49
+	synt	any
+	invoke	2
+	unmark
+lab L12
+	pnull
+	var	0
+	line	394
+	colm	13
+	synt	any
+	field	Swap_User_Owner
+	var	3
+	var	4
+	line	394
+	colm	29
+	synt	any
+	invoke	2
+lab L7
+	line	382
+	colm	6
+	synt	endifelse
+	unmark
+lab L5
+	pnull
+	line	396
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Unlock_IDE
+	local	0,001000,self
+	local	1,001000,T
+	local	2,001000,M
+	declend
+	line	401
+	colm	11
+	synt	any
+	mark	L1
+	line	403
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	403
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	var	1
+	line	404
+	colm	8
+	synt	any
+	field	init
+	line	404
+	colm	13
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	1
+	line	405
+	colm	8
+	synt	any
+	field	display
+	line	405
+	colm	16
+	synt	any
+	invoke	0
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	1
+	line	406
+	colm	8
+	synt	any
+	field	set_accepts_focus
+	line	406
+	colm	26
+	synt	any
+	invoke	0
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	407
+	colm	8
+	synt	any
+	field	mouse_locked
+	line	407
+	colm	25
+	synt	any
+	keywd	null
+	line	407
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L5
+	pnull
+	pnull
+	var	1
+	line	408
+	colm	8
+	synt	any
+	field	scroll_locked
+	line	408
+	colm	26
+	synt	any
+	keywd	null
+	line	408
+	colm	23
+	synt	any
+	asgn
+	line	403
+	colm	4
+	synt	endif
+	unmark
+lab L1
+	mark	L6
+	line	410
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	410
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	mark	L7
+	pnull
+	var	2
+	line	411
+	colm	10
+	synt	any
+	field	init
+	line	411
+	colm	15
+	synt	any
+	invoke	0
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	2
+	line	412
+	colm	10
+	synt	any
+	field	display
+	line	412
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	2
+	line	413
+	colm	10
+	synt	any
+	field	set_accepts_focus
+	line	413
+	colm	28
+	synt	any
+	invoke	0
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	2
+	line	414
+	colm	10
+	synt	any
+	field	mouse_locked
+	line	414
+	colm	27
+	synt	any
+	keywd	null
+	line	414
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L10
+	pnull
+	pnull
+	var	2
+	line	415
+	colm	10
+	synt	any
+	field	scroll_locked
+	line	415
+	colm	28
+	synt	any
+	keywd	null
+	line	415
+	colm	25
+	synt	any
+	asgn
+	line	410
+	colm	4
+	synt	endif
+	unmark
+lab L6
+	pnull
+	line	417
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Lock_IDE
+	local	0,001000,self
+	local	1,001000,Tab
+	local	2,001000,Msg
+	con	0,002000,1,1
+	declend
+	line	422
+	colm	11
+	synt	any
+	mark	L1
+	line	424
+	colm	6
+	synt	if
+	mark0
+	pnull
+	var	1
+	line	424
+	colm	9
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	var	1
+	line	425
+	colm	12
+	synt	any
+	field	init
+	line	425
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	1
+	line	426
+	colm	12
+	synt	any
+	field	has_focus
+	line	426
+	colm	26
+	synt	any
+	keywd	null
+	line	426
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	1
+	line	427
+	colm	12
+	synt	any
+	field	invalidate
+	line	427
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	1
+	line	428
+	colm	12
+	synt	any
+	field	clear_accepts_focus
+	line	428
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	1
+	line	429
+	colm	12
+	synt	any
+	field	mouse_locked
+	int	0
+	line	429
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L6
+	pnull
+	pnull
+	var	1
+	line	430
+	colm	12
+	synt	any
+	field	scroll_locked
+	int	0
+	line	430
+	colm	27
+	synt	any
+	asgn
+	line	424
+	colm	6
+	synt	endif
+	unmark
+lab L1
+	mark	L7
+	line	432
+	colm	6
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	432
+	colm	9
+	synt	any
+	nonnull
+	unmark
+	mark	L8
+	pnull
+	var	2
+	line	433
+	colm	12
+	synt	any
+	field	init
+	line	433
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	2
+	line	434
+	colm	12
+	synt	any
+	field	has_focus
+	line	434
+	colm	26
+	synt	any
+	keywd	null
+	line	434
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	2
+	line	435
+	colm	12
+	synt	any
+	field	invalidate
+	line	435
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	2
+	line	436
+	colm	12
+	synt	any
+	field	clear_accepts_focus
+	line	436
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	2
+	line	437
+	colm	12
+	synt	any
+	field	mouse_locked
+	int	0
+	line	437
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L12
+	pnull
+	pnull
+	var	2
+	line	438
+	colm	12
+	synt	any
+	field	scroll_locked
+	int	0
+	line	438
+	colm	27
+	synt	any
+	asgn
+	line	432
+	colm	6
+	synt	endif
+	unmark
+lab L7
+	pnull
+	line	440
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Change_IDE_Owner
+	local	0,001000,self
+	local	1,001000,user
+	local	2,001000,index
+	local	3,000020,Temp
+	local	4,000020,j
+	local	5,000020,found
+	local	6,000000,world
+	con	0,010000,3,157,146,146
+	declend
+	line	445
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	448
+	colm	11
+	synt	any
+	field	Lock_IDE
+	pnull
+	pnull
+	pnull
+	var	0
+	line	448
+	colm	25
+	synt	any
+	field	Tidesession
+	var	2
+	line	448
+	colm	37
+	synt	any
+	subsc
+	line	448
+	colm	44
+	synt	any
+	field	IDE_Tab
+	pnull
+	pnull
+	pnull
+	var	0
+	line	448
+	colm	57
+	synt	any
+	field	Tidesession
+	var	2
+	line	448
+	colm	69
+	synt	any
+	subsc
+	line	448
+	colm	76
+	synt	any
+	field	IDE_MsgBox
+	line	448
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	0
+	line	449
+	colm	11
+	synt	any
+	field	Swap_User_Owner
+	var	2
+	var	1
+	line	449
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	6
+	line	450
+	colm	12
+	synt	any
+	field	nsh_dialog
+	line	450
+	colm	23
+	synt	any
+	field	Swap_User_Owner_In_Tree
+	pnull
+	pnull
+	pnull
+	var	0
+	line	450
+	colm	52
+	synt	any
+	field	Tidesession
+	var	2
+	line	450
+	colm	64
+	synt	any
+	subsc
+	line	450
+	colm	71
+	synt	any
+	field	IDEFile
+	var	1
+	line	450
+	colm	47
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	line	451
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	451
+	colm	15
+	synt	any
+	field	Tidesession
+	var	2
+	line	451
+	colm	27
+	synt	any
+	subsc
+	line	451
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	452
+	colm	14
+	synt	any
+	field	Tidesession
+	var	2
+	line	452
+	colm	26
+	synt	any
+	subsc
+	line	452
+	colm	33
+	synt	any
+	field	CIDE
+	str	0
+	line	452
+	colm	38
+	synt	any
+	asgn
+	line	451
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	pnull
+	line	454
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Swap
+	local	0,001000,self
+	local	1,001000,i
+	local	2,000020,Temp
+	declend
+	line	458
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	461
+	colm	19
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	461
+	colm	36
+	synt	any
+	field	Table_Index
+	line	461
+	colm	31
+	synt	any
+	subsc
+	line	461
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	462
+	colm	11
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	462
+	colm	28
+	synt	any
+	field	Table_Index
+	line	462
+	colm	23
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	0
+	line	462
+	colm	47
+	synt	any
+	field	Tidesession
+	var	1
+	line	462
+	colm	59
+	synt	any
+	subsc
+	line	462
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	463
+	colm	11
+	synt	any
+	field	Tidesession
+	var	1
+	line	463
+	colm	23
+	synt	any
+	subsc
+	var	2
+	line	463
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L3
+	pnull
+	line	464
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Remove_User_From_List
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,pos
+	local	3,000020,counter
+	local	4,000020,user
+	local	5,000020,j
+	local	6,000020,found
+	local	7,000000,find
+	local	8,000000,integer
+	local	9,000000,delete
+	local	10,000000,world
+	local	11,000000,idesession
+	con	0,010000,1,040
+	con	1,002000,1,1
+	con	2,002000,1,0
+	con	3,002000,1,2
+	declend
+	line	469
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	var	7
+	str	0
+	var	1
+	line	472
+	colm	18
+	synt	any
+	invoke	2
+	line	472
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	var	8
+	pnull
+	var	1
+	int	1
+	var	2
+	line	473
+	colm	33
+	synt	any
+	synt	any
+	sect
+	line	473
+	colm	26
+	synt	any
+	invoke	1
+	line	473
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	4
+	pnull
+	var	1
+	pnull
+	var	2
+	int	1
+	line	474
+	colm	24
+	synt	any
+	plus
+	int	2
+	line	474
+	colm	26
+	synt	any
+	synt	any
+	sect
+	line	474
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	5
+	int	1
+	line	475
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	6
+	int	2
+	line	476
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	477
+	colm	8
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	477
+	colm	16
+	synt	any
+	field	Tidesession
+	var	3
+	line	477
+	colm	28
+	synt	any
+	subsc
+	line	477
+	colm	11
+	synt	any
+	nonnull
+	unmark
+	mark	L7
+lab L8
+	line	478
+	colm	9
+	synt	while
+	mark0
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	478
+	colm	25
+	synt	any
+	field	Tidesession
+	var	3
+	line	478
+	colm	37
+	synt	any
+	subsc
+	line	478
+	colm	46
+	synt	any
+	field	Lusers
+	line	478
+	colm	20
+	synt	any
+	size
+	line	478
+	colm	17
+	synt	any
+	numle
+	pop
+	pnull
+	var	6
+	int	2
+	line	478
+	colm	61
+	synt	any
+	numeq
+	unmark
+	mark	L8
+	mark	L11
+	line	479
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	479
+	colm	19
+	synt	any
+	field	Tidesession
+	var	3
+	line	479
+	colm	31
+	synt	any
+	subsc
+	line	479
+	colm	40
+	synt	any
+	field	Lusers
+	var	5
+	line	479
+	colm	47
+	synt	any
+	subsc
+	var	4
+	line	479
+	colm	50
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	6
+	int	1
+	line	480
+	colm	21
+	synt	any
+	asgn
+	line	479
+	colm	12
+	synt	endif
+	unmark
+lab L11
+	pnull
+	var	5
+	dup
+	int	1
+	line	482
+	colm	14
+	synt	any
+	plus
+	asgn
+lab L9
+	unmark
+	goto	L8
+lab L10
+	line	478
+	colm	9
+	synt	endwhile
+	unmark
+lab L7
+	line	484
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	6
+	int	1
+	line	484
+	colm	18
+	synt	any
+	numeq
+	unmark
+	mark	L12
+	var	9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	485
+	colm	23
+	synt	any
+	field	Tidesession
+	var	3
+	line	485
+	colm	35
+	synt	any
+	subsc
+	line	485
+	colm	44
+	synt	any
+	field	Lusers
+	pnull
+	var	5
+	int	1
+	line	485
+	colm	53
+	synt	any
+	minus
+	line	485
+	colm	18
+	synt	any
+	invoke	2
+	unmark
+lab L12
+	pnull
+	pnull
+	var	10
+	line	486
+	colm	17
+	synt	any
+	field	nsh_dialog
+	line	486
+	colm	28
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	487
+	colm	27
+	synt	any
+	field	Tidesession
+	var	3
+	line	487
+	colm	39
+	synt	any
+	subsc
+	line	487
+	colm	48
+	synt	any
+	field	IDEFile
+	var	4
+	int	3
+	line	486
+	colm	50
+	synt	any
+	invoke	3
+	line	484
+	colm	9
+	synt	endif
+	line	477
+	colm	8
+	synt	endif
+	unmark
+lab L6
+	pnull
+	line	490
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Delete_Tidesession_Entry
+	local	0,001000,self
+	local	1,001000,table_length
+	local	2,001000,counter
+	local	3,000020,target
+	local	4,000000,delete
+	con	0,002000,1,0
+	con	1,002000,1,1
+	declend
+	line	495
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	int	0
+	line	496
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	498
+	colm	8
+	synt	if
+	mark0
+	pnull
+	var	1
+	int	1
+	line	498
+	colm	24
+	synt	any
+	numgt
+	pop
+	pnull
+	var	2
+	var	1
+	line	498
+	colm	36
+	synt	any
+	numne
+	unmark
+	mark	L3
+	pnull
+	var	0
+	line	499
+	colm	16
+	synt	any
+	field	Swap
+	var	2
+	line	499
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	pnull
+	var	3
+	int	1
+	line	500
+	colm	19
+	synt	any
+	asgn
+	line	498
+	colm	8
+	synt	endif
+	unmark
+lab L2
+	mark	L4
+	var	4
+	pnull
+	var	0
+	line	502
+	colm	19
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	502
+	colm	36
+	synt	any
+	field	Table_Index
+	line	502
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	503
+	colm	12
+	synt	any
+	field	Table_Index
+	pnull
+	pnull
+	var	0
+	line	503
+	colm	30
+	synt	any
+	field	Table_Index
+	int	1
+	line	503
+	colm	42
+	synt	any
+	minus
+	line	503
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L5
+	pnull
+	line	504
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Delete_File_IDESession
+	local	0,001000,self
+	local	1,001000,counter
+	local	2,001000,user_me
+	local	3,001000,remove_entry
+	local	4,000020,i
+	local	5,000020,found
+	local	6,000020,j
+	local	7,000020,owner
+	local	8,000020,table_length
+	local	9,000020,target
+	local	10,000000,world
+	local	11,000000,idesession
+	local	12,000000,delete
+	con	0,002000,1,1
+	con	1,002000,1,0
+	declend
+	line	511
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	8
+	pnull
+	var	0
+	line	515
+	colm	29
+	synt	any
+	field	Table_Index
+	line	515
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	516
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	516
+	colm	17
+	synt	any
+	field	Tidesession
+	var	1
+	line	516
+	colm	29
+	synt	any
+	subsc
+	line	516
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	mark	L3
+	pnull
+	pnull
+	var	10
+	line	517
+	colm	18
+	synt	any
+	field	nsh_dialog
+	line	517
+	colm	29
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	518
+	colm	27
+	synt	any
+	field	Tidesession
+	var	1
+	line	518
+	colm	39
+	synt	any
+	subsc
+	line	518
+	colm	48
+	synt	any
+	field	IDEFile
+	var	2
+	int	0
+	line	517
+	colm	51
+	synt	any
+	invoke	3
+	unmark
+lab L3
+	line	519
+	colm	13
+	synt	ifelse
+	mark	L4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	519
+	colm	20
+	synt	any
+	field	Tidesession
+	var	1
+	line	519
+	colm	32
+	synt	any
+	subsc
+	line	519
+	colm	41
+	synt	any
+	field	IDEOwner
+	var	2
+	line	519
+	colm	50
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	0
+	line	520
+	colm	21
+	synt	any
+	field	Delete_Tidesession_Entry
+	var	8
+	var	1
+	line	520
+	colm	46
+	synt	any
+	invoke	2
+	goto	L5
+lab L4
+	line	523
+	colm	14
+	synt	ifelse
+	mark	L6
+	pnull
+	pnull
+	var	3
+	line	523
+	colm	17
+	synt	any
+	nonnull
+	int	0
+	line	523
+	colm	30
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	524
+	colm	22
+	synt	any
+	field	Delete_Tidesession_Entry
+	var	8
+	var	1
+	line	524
+	colm	47
+	synt	any
+	invoke	2
+	goto	L7
+lab L6
+	mark	L8
+	pnull
+	var	6
+	int	0
+	line	527
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	5
+	int	1
+	line	528
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+lab L11
+	line	529
+	colm	18
+	synt	while
+	mark0
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	529
+	colm	35
+	synt	any
+	field	Tidesession
+	var	1
+	line	529
+	colm	47
+	synt	any
+	subsc
+	line	529
+	colm	56
+	synt	any
+	field	Lusers
+	line	529
+	colm	30
+	synt	any
+	size
+	line	529
+	colm	27
+	synt	any
+	numle
+	pop
+	pnull
+	var	5
+	int	1
+	line	529
+	colm	71
+	synt	any
+	numeq
+	unmark
+	mark	L11
+	mark	L14
+	line	530
+	colm	21
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	530
+	colm	28
+	synt	any
+	field	Tidesession
+	var	1
+	line	530
+	colm	40
+	synt	any
+	subsc
+	line	530
+	colm	49
+	synt	any
+	field	Lusers
+	var	6
+	line	530
+	colm	56
+	synt	any
+	subsc
+	var	2
+	line	530
+	colm	59
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	5
+	int	0
+	line	531
+	colm	31
+	synt	any
+	asgn
+	line	530
+	colm	21
+	synt	endif
+	unmark
+lab L14
+	pnull
+	var	6
+	dup
+	int	0
+	line	533
+	colm	23
+	synt	any
+	plus
+	asgn
+lab L12
+	unmark
+	goto	L11
+lab L13
+	line	529
+	colm	18
+	synt	endwhile
+	unmark
+lab L10
+	line	535
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	5
+	int	0
+	line	535
+	colm	26
+	synt	any
+	numeq
+	unmark
+	mark	L15
+	var	12
+	pnull
+	pnull
+	pnull
+	var	0
+	line	536
+	colm	32
+	synt	any
+	field	Tidesession
+	var	1
+	line	536
+	colm	44
+	synt	any
+	subsc
+	line	536
+	colm	53
+	synt	any
+	field	Lusers
+	pnull
+	var	6
+	int	0
+	line	536
+	colm	62
+	synt	any
+	minus
+	line	536
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	line	537
+	colm	21
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	537
+	colm	31
+	synt	any
+	field	Tidesession
+	var	1
+	line	537
+	colm	43
+	synt	any
+	subsc
+	line	537
+	colm	52
+	synt	any
+	field	Lusers
+	line	537
+	colm	26
+	synt	any
+	size
+	int	1
+	line	537
+	colm	59
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	0
+	line	539
+	colm	29
+	synt	any
+	field	Delete_Tidesession_Entry
+	var	8
+	var	1
+	line	539
+	colm	54
+	synt	any
+	invoke	2
+	line	537
+	colm	21
+	synt	endif
+	line	535
+	colm	17
+	synt	endif
+lab L7
+	line	523
+	colm	14
+	synt	endifelse
+lab L5
+	line	519
+	colm	13
+	synt	endifelse
+	line	516
+	colm	9
+	synt	endif
+	unmark
+lab L2
+	pnull
+	line	545
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Closed_File_Delete_IDE_Session
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,i
+	local	3,000020,found
+	local	4,000020,j
+	local	5,000020,owner
+	local	6,000020,table_length
+	local	7,000020,user
+	local	8,000020,counter
+	local	9,000000,integer
+	local	10,000000,world
+	local	11,000000,idesession
+	local	12,000000,delete
+	con	0,002000,1,1
+	declend
+	line	553
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	8
+	var	9
+	var	1
+	line	556
+	colm	24
+	synt	any
+	invoke	1
+	line	556
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	6
+	pnull
+	var	0
+	line	557
+	colm	26
+	synt	any
+	field	Table_Index
+	line	557
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	558
+	colm	6
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	558
+	colm	14
+	synt	any
+	field	Tidesession
+	var	8
+	line	558
+	colm	26
+	synt	any
+	subsc
+	line	558
+	colm	9
+	synt	any
+	nonnull
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	10
+	line	559
+	colm	14
+	synt	any
+	field	nsh_dialog
+	line	559
+	colm	25
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	560
+	colm	27
+	synt	any
+	field	Tidesession
+	var	8
+	line	560
+	colm	39
+	synt	any
+	subsc
+	line	560
+	colm	48
+	synt	any
+	field	IDEFile
+	pnull
+	int	0
+	line	559
+	colm	47
+	synt	any
+	invoke	3
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	0
+	line	561
+	colm	13
+	synt	any
+	field	White_Background_And_Unlock
+	pnull
+	pnull
+	var	0
+	line	561
+	colm	46
+	synt	any
+	field	Tidesession
+	var	8
+	line	561
+	colm	58
+	synt	any
+	subsc
+	line	561
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	line	562
+	colm	12
+	synt	if
+	mark0
+	pnull
+	var	6
+	int	0
+	line	562
+	colm	28
+	synt	any
+	numgt
+	pop
+	pnull
+	var	8
+	var	6
+	line	562
+	colm	40
+	synt	any
+	numne
+	unmark
+	pnull
+	var	0
+	line	563
+	colm	20
+	synt	any
+	field	Swap
+	var	8
+	line	563
+	colm	25
+	synt	any
+	invoke	1
+	line	562
+	colm	12
+	synt	endif
+	unmark
+lab L6
+	mark	L7
+	var	12
+	pnull
+	var	0
+	line	565
+	colm	20
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	565
+	colm	37
+	synt	any
+	field	Table_Index
+	line	565
+	colm	15
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	pnull
+	pnull
+	var	0
+	line	566
+	colm	13
+	synt	any
+	field	Table_Index
+	pnull
+	pnull
+	var	0
+	line	566
+	colm	31
+	synt	any
+	field	Table_Index
+	int	0
+	line	566
+	colm	43
+	synt	any
+	minus
+	line	566
+	colm	25
+	synt	any
+	asgn
+	line	558
+	colm	6
+	synt	endif
+	unmark
+lab L3
+	pnull
+	line	568
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Delete_User_IDESession
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,i
+	local	3,000020,found
+	local	4,000020,j
+	local	5,000020,owner
+	local	6,000020,table_length
+	local	7,000020,user
+	local	8,000020,target
+	local	9,000000,delete
+	local	10,000000,world
+	local	11,000000,idesession
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,002000,1,2
+	declend
+	line	574
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	int	0
+	line	575
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	7
+	var	1
+	line	577
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+lab L4
+	line	578
+	colm	8
+	synt	while
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	578
+	colm	21
+	synt	any
+	field	Table_Index
+	line	578
+	colm	15
+	synt	any
+	numle
+	unmark
+	mark	L4
+	mark	L7
+	pnull
+	var	3
+	int	1
+	line	579
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	4
+	int	0
+	line	580
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	8
+	int	1
+	line	581
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	line	582
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	582
+	colm	20
+	synt	any
+	field	Tidesession
+	var	2
+	line	582
+	colm	32
+	synt	any
+	subsc
+	line	582
+	colm	15
+	synt	any
+	nonnull
+	unmark
+	line	583
+	colm	14
+	synt	ifelse
+	mark	L11
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	583
+	colm	21
+	synt	any
+	field	Tidesession
+	var	2
+	line	583
+	colm	33
+	synt	any
+	subsc
+	line	583
+	colm	36
+	synt	any
+	field	IDEOwner
+	var	7
+	line	583
+	colm	45
+	synt	any
+	lexne
+	unmark
+	mark	L13
+lab L14
+	line	584
+	colm	16
+	synt	while
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	584
+	colm	32
+	synt	any
+	field	Tidesession
+	var	2
+	line	584
+	colm	44
+	synt	any
+	subsc
+	line	584
+	colm	47
+	synt	any
+	field	Lusers
+	line	584
+	colm	27
+	synt	any
+	size
+	line	584
+	colm	24
+	synt	any
+	numle
+	pop
+	pnull
+	var	3
+	int	1
+	line	584
+	colm	62
+	synt	any
+	numeq
+	unmark
+	mark	L14
+	mark	L17
+	line	585
+	colm	20
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	585
+	colm	27
+	synt	any
+	field	Tidesession
+	var	2
+	line	585
+	colm	39
+	synt	any
+	subsc
+	line	585
+	colm	42
+	synt	any
+	field	Lusers
+	var	4
+	line	585
+	colm	49
+	synt	any
+	subsc
+	var	7
+	line	585
+	colm	52
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	3
+	int	0
+	line	586
+	colm	28
+	synt	any
+	asgn
+	line	585
+	colm	20
+	synt	endif
+	unmark
+lab L17
+	pnull
+	var	4
+	dup
+	int	0
+	line	588
+	colm	22
+	synt	any
+	plus
+	asgn
+lab L15
+	unmark
+	goto	L14
+lab L16
+	line	584
+	colm	16
+	synt	endwhile
+	unmark
+lab L13
+	line	590
+	colm	14
+	synt	if
+	mark0
+	pnull
+	var	3
+	int	0
+	line	590
+	colm	23
+	synt	any
+	numeq
+	unmark
+	mark	L18
+	var	9
+	pnull
+	pnull
+	pnull
+	var	0
+	line	591
+	colm	27
+	synt	any
+	field	Tidesession
+	var	2
+	line	591
+	colm	39
+	synt	any
+	subsc
+	line	591
+	colm	42
+	synt	any
+	field	Lusers
+	pnull
+	var	4
+	int	0
+	line	591
+	colm	51
+	synt	any
+	minus
+	line	591
+	colm	22
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	line	592
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	592
+	colm	25
+	synt	any
+	field	Tidesession
+	var	2
+	line	592
+	colm	37
+	synt	any
+	subsc
+	line	592
+	colm	20
+	synt	any
+	nonnull
+	unmark
+	line	593
+	colm	19
+	synt	ifelse
+	mark	L19
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	593
+	colm	29
+	synt	any
+	field	Tidesession
+	var	2
+	line	593
+	colm	41
+	synt	any
+	subsc
+	line	593
+	colm	44
+	synt	any
+	field	Lusers
+	line	593
+	colm	24
+	synt	any
+	size
+	int	1
+	line	593
+	colm	51
+	synt	any
+	numeq
+	unmark
+	mark	L21
+	pnull
+	pnull
+	var	10
+	line	595
+	colm	27
+	synt	any
+	field	nsh_dialog
+	line	595
+	colm	38
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	596
+	colm	46
+	synt	any
+	field	Tidesession
+	var	2
+	line	596
+	colm	58
+	synt	any
+	subsc
+	line	596
+	colm	61
+	synt	any
+	field	IDEFile
+	pnull
+	int	0
+	line	595
+	colm	60
+	synt	any
+	invoke	3
+	unmark
+lab L21
+	mark	L22
+	pnull
+	var	0
+	line	597
+	colm	26
+	synt	any
+	field	White_Background_And_Unlock
+	pnull
+	pnull
+	var	0
+	line	597
+	colm	59
+	synt	any
+	field	Tidesession
+	var	2
+	line	597
+	colm	71
+	synt	any
+	subsc
+	line	597
+	colm	54
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	mark	L23
+	line	598
+	colm	22
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	598
+	colm	30
+	synt	any
+	field	Table_Index
+	int	0
+	line	598
+	colm	42
+	synt	any
+	numgt
+	pop
+	pnull
+	pnull
+	var	0
+	line	598
+	colm	51
+	synt	any
+	field	Table_Index
+	var	2
+	line	598
+	colm	63
+	synt	any
+	numne
+	unmark
+	mark	L24
+	pnull
+	var	0
+	line	600
+	colm	31
+	synt	any
+	field	Swap
+	var	2
+	line	600
+	colm	36
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	pnull
+	var	8
+	int	0
+	line	601
+	colm	33
+	synt	any
+	asgn
+	line	598
+	colm	22
+	synt	endif
+	unmark
+lab L23
+	mark	L25
+	var	9
+	pnull
+	var	0
+	line	603
+	colm	33
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	603
+	colm	50
+	synt	any
+	field	Table_Index
+	line	603
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L25
+	pnull
+	pnull
+	var	0
+	line	604
+	colm	26
+	synt	any
+	field	Table_Index
+	pnull
+	pnull
+	var	0
+	line	604
+	colm	44
+	synt	any
+	field	Table_Index
+	int	0
+	line	604
+	colm	56
+	synt	any
+	minus
+	line	604
+	colm	38
+	synt	any
+	asgn
+	goto	L20
+lab L19
+	pnull
+	pnull
+	var	10
+	line	607
+	colm	24
+	synt	any
+	field	nsh_dialog
+	line	607
+	colm	35
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	608
+	colm	35
+	synt	any
+	field	Tidesession
+	var	2
+	line	608
+	colm	47
+	synt	any
+	subsc
+	line	608
+	colm	50
+	synt	any
+	field	IDEFile
+	var	7
+	int	2
+	line	607
+	colm	57
+	synt	any
+	invoke	3
+lab L20
+	line	593
+	colm	19
+	synt	endifelse
+	line	592
+	colm	16
+	synt	endif
+	line	590
+	colm	14
+	synt	endif
+	goto	L12
+lab L11
+	line	614
+	colm	15
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	614
+	colm	24
+	synt	any
+	field	Tidesession
+	var	2
+	line	614
+	colm	36
+	synt	any
+	subsc
+	line	614
+	colm	19
+	synt	any
+	nonnull
+	unmark
+	mark	L26
+	pnull
+	pnull
+	var	10
+	line	615
+	colm	24
+	synt	any
+	field	nsh_dialog
+	line	615
+	colm	35
+	synt	any
+	field	Delete_Node_From_Tree
+	pnull
+	pnull
+	pnull
+	var	11
+	line	616
+	colm	37
+	synt	any
+	field	Tidesession
+	var	2
+	line	616
+	colm	49
+	synt	any
+	subsc
+	line	616
+	colm	52
+	synt	any
+	field	IDEFile
+	pnull
+	int	0
+	line	615
+	colm	57
+	synt	any
+	invoke	3
+	unmark
+lab L26
+	mark	L27
+	pnull
+	var	0
+	line	617
+	colm	23
+	synt	any
+	field	White_Background_And_Unlock
+	pnull
+	pnull
+	var	0
+	line	617
+	colm	56
+	synt	any
+	field	Tidesession
+	var	2
+	line	617
+	colm	68
+	synt	any
+	subsc
+	line	617
+	colm	51
+	synt	any
+	invoke	1
+	unmark
+lab L27
+	mark	L28
+	line	618
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	618
+	colm	27
+	synt	any
+	field	Table_Index
+	int	0
+	line	618
+	colm	39
+	synt	any
+	numgt
+	pop
+	pnull
+	pnull
+	var	0
+	line	618
+	colm	48
+	synt	any
+	field	Table_Index
+	var	2
+	line	618
+	colm	60
+	synt	any
+	numne
+	unmark
+	mark	L29
+	pnull
+	var	0
+	line	620
+	colm	30
+	synt	any
+	field	Swap
+	var	2
+	line	620
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	pnull
+	var	8
+	int	0
+	line	621
+	colm	32
+	synt	any
+	asgn
+	line	618
+	colm	19
+	synt	endif
+	unmark
+lab L28
+	mark	L30
+	var	9
+	pnull
+	var	0
+	line	623
+	colm	30
+	synt	any
+	field	Tidesession
+	pnull
+	var	0
+	line	623
+	colm	47
+	synt	any
+	field	Table_Index
+	line	623
+	colm	25
+	synt	any
+	invoke	2
+	unmark
+lab L30
+	pnull
+	pnull
+	var	0
+	line	624
+	colm	23
+	synt	any
+	field	Table_Index
+	pnull
+	pnull
+	var	0
+	line	624
+	colm	41
+	synt	any
+	field	Table_Index
+	int	0
+	line	624
+	colm	53
+	synt	any
+	minus
+	line	624
+	colm	35
+	synt	any
+	asgn
+	line	614
+	colm	15
+	synt	endif
+lab L12
+	line	583
+	colm	14
+	synt	endifelse
+	line	582
+	colm	12
+	synt	endif
+	unmark
+lab L10
+	line	628
+	colm	12
+	synt	if
+	mark0
+	pnull
+	var	8
+	int	0
+	line	628
+	colm	22
+	synt	any
+	numne
+	unmark
+	pnull
+	var	2
+	dup
+	int	0
+	line	629
+	colm	16
+	synt	any
+	plus
+	asgn
+	line	628
+	colm	12
+	synt	endif
+lab L5
+	unmark
+	goto	L4
+lab L6
+	line	578
+	colm	8
+	synt	endwhile
+	unmark
+lab L3
+	pnull
+	line	632
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Add_User_To_IDE_Session
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,user_to_add
+	local	3,000020,table_index
+	local	4,000020,pos
+	local	5,000000,find
+	local	6,000000,integer
+	local	7,000000,hostuser
+	local	8,000000,put
+	local	9,000000,world
+	con	0,010000,1,040
+	con	1,002000,1,1
+	con	2,002000,1,0
+	con	3,010000,5,157,167,156,145,162
+	declend
+	line	638
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	var	5
+	str	0
+	var	1
+	line	641
+	colm	18
+	synt	any
+	invoke	2
+	line	641
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	pnull
+	var	1
+	int	1
+	var	4
+	line	642
+	colm	28
+	synt	any
+	synt	any
+	sect
+	line	642
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	3
+	var	6
+	pnull
+	var	1
+	pnull
+	var	4
+	int	1
+	line	643
+	colm	38
+	synt	any
+	plus
+	int	2
+	line	643
+	colm	40
+	synt	any
+	synt	any
+	sect
+	line	643
+	colm	29
+	synt	any
+	invoke	1
+	line	643
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	644
+	colm	7
+	synt	if
+	mark0
+	var	5
+	var	7
+	var	2
+	line	644
+	colm	14
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	2
+	dup
+	str	3
+	line	645
+	colm	22
+	synt	any
+	cat
+	asgn
+	line	644
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	var	8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	647
+	colm	15
+	synt	any
+	field	Tidesession
+	var	3
+	line	647
+	colm	27
+	synt	any
+	subsc
+	line	647
+	colm	40
+	synt	any
+	field	Lusers
+	var	2
+	line	647
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	9
+	line	648
+	colm	12
+	synt	any
+	field	nsh_dialog
+	line	648
+	colm	23
+	synt	any
+	field	Add_Node_To_Tree
+	pnull
+	pnull
+	pnull
+	var	0
+	line	648
+	colm	45
+	synt	any
+	field	Tidesession
+	var	3
+	line	648
+	colm	57
+	synt	any
+	subsc
+	line	648
+	colm	70
+	synt	any
+	field	IDEFile
+	var	2
+	line	648
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L6
+	pnull
+	line	650
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Create_New_IDESession
+	local	0,001000,self
+	local	1,001000,table_index
+	local	2,001000,owner
+	local	3,001000,user
+	local	4,001000,Ownertab
+	local	5,001000,OwnerMsg
+	local	6,001000,fileName
+	local	7,001000,CETL
+	local	8,001000,user_me
+	local	9,001000,Luser
+	local	10,000020,new_colored_tab
+	local	11,000020,foundok
+	local	12,000020,ide_prop
+	local	13,000020,cnum
+	local	14,000020,lnum
+	local	15,000000,IDE_Properties
+	local	16,000000,put
+	con	0,002000,1,1
+	con	1,010000,15,142,147,075,154,151,147,150,164,040,171,145,154,154,157,167
+	con	2,002000,1,0
+	con	3,002000,2,10
+	declend
+	line	655
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	14
+	line	660
+	colm	4
+	synt	any
+	null
+	int	0
+	line	660
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	13
+	line	661
+	colm	4
+	synt	any
+	null
+	int	0
+	line	661
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	663
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	663
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	mark	L4
+	pnull
+	var	4
+	line	664
+	colm	15
+	synt	any
+	field	set_attribs
+	str	1
+	line	664
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	5
+	line	665
+	colm	15
+	synt	any
+	field	set_attribs
+	str	1
+	line	665
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	4
+	line	666
+	colm	15
+	synt	any
+	field	init
+	line	666
+	colm	20
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	5
+	line	667
+	colm	15
+	synt	any
+	field	init
+	line	667
+	colm	20
+	synt	any
+	invoke	0
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	4
+	line	669
+	colm	15
+	synt	any
+	field	display
+	line	669
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	5
+	line	670
+	colm	15
+	synt	any
+	field	display
+	line	670
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L9
+	mark	L10
+	line	671
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	8
+	line	671
+	colm	16
+	synt	any
+	lexne
+	unmark
+	mark	L11
+	pnull
+	var	4
+	line	672
+	colm	18
+	synt	any
+	field	clear_accepts_focus
+	line	672
+	colm	38
+	synt	any
+	invoke	0
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	4
+	line	673
+	colm	18
+	synt	any
+	field	mouse_locked
+	int	0
+	line	673
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	4
+	line	674
+	colm	18
+	synt	any
+	field	scroll_locked
+	int	0
+	line	674
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	5
+	line	675
+	colm	18
+	synt	any
+	field	clear_accepts_focus
+	line	675
+	colm	38
+	synt	any
+	invoke	0
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	5
+	line	676
+	colm	18
+	synt	any
+	field	mouse_locked
+	int	0
+	line	676
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L15
+	pnull
+	pnull
+	var	5
+	line	677
+	colm	18
+	synt	any
+	field	scroll_locked
+	int	0
+	line	677
+	colm	33
+	synt	any
+	asgn
+	line	671
+	colm	7
+	synt	endif
+	unmark
+lab L10
+	mark	L16
+	line	679
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	679
+	colm	15
+	synt	any
+	field	Tidesession
+	var	1
+	line	679
+	colm	27
+	synt	any
+	subsc
+	line	679
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L17
+	pnull
+	var	12
+	var	15
+	var	2
+	var	4
+	var	5
+	var	6
+	var	7
+	var	2
+	pnull
+	line	680
+	colm	81
+	synt	any
+	llist	0
+	line	680
+	colm	36
+	synt	any
+	invoke	7
+	line	680
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L17
+	pnull
+	pnull
+	pnull
+	var	0
+	line	681
+	colm	14
+	synt	any
+	field	Tidesession
+	var	1
+	line	681
+	colm	26
+	synt	any
+	subsc
+	var	12
+	line	681
+	colm	39
+	synt	any
+	asgn
+	line	679
+	colm	7
+	synt	endif
+	unmark
+lab L16
+	mark	L18
+	line	683
+	colm	8
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	9
+	line	683
+	colm	12
+	synt	any
+	nonnull
+	line	683
+	colm	11
+	synt	any
+	size
+	int	2
+	line	683
+	colm	18
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	684
+	colm	17
+	synt	any
+	field	Tidesession
+	var	1
+	line	684
+	colm	29
+	synt	any
+	subsc
+	line	684
+	colm	42
+	synt	any
+	field	Lusers
+	var	9
+	line	684
+	colm	49
+	synt	any
+	asgn
+	line	683
+	colm	8
+	synt	endif
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	686
+	colm	12
+	synt	any
+	field	Table_Index
+	var	1
+	line	686
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	var	16
+	pnull
+	pnull
+	pnull
+	var	0
+	line	687
+	colm	16
+	synt	any
+	field	Tidesession
+	var	1
+	line	687
+	colm	28
+	synt	any
+	subsc
+	line	687
+	colm	41
+	synt	any
+	field	Lusers
+	var	3
+	line	687
+	colm	11
+	synt	any
+	invoke	2
+	unmark
+lab L20
+	mark	L21
+	pnull
+	var	11
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	688
+	colm	24
+	synt	any
+	field	Tidesession
+	var	1
+	line	688
+	colm	36
+	synt	any
+	subsc
+	line	688
+	colm	49
+	synt	any
+	field	Lusers
+	line	688
+	colm	19
+	synt	any
+	size
+	line	688
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	line	689
+	colm	8
+	synt	if
+	mark0
+	pnull
+	var	11
+	int	0
+	line	689
+	colm	18
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	11
+	pnull
+	var	11
+	int	3
+	line	690
+	colm	29
+	synt	any
+	plus
+	line	690
+	colm	19
+	synt	any
+	asgn
+	line	689
+	colm	8
+	synt	endif
+	unmark
+lab L22
+	mark	L23
+	var	11
+	line	692
+	colm	8
+	synt	any
+	pret
+lab L23
+	synt	any
+	pfail
+	line	663
+	colm	4
+	synt	endif
+	unmark
+lab L3
+	pnull
+	line	694
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Check_Owner
+	local	0,001000,self
+	local	1,001000,user_me
+	local	2,001000,file_name
+	local	3,001000,counter
+	local	4,000020,is_owner
+	local	5,000020,i
+	con	0,002000,1,1
+	con	1,002000,1,0
+	declend
+	line	698
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	5
+	int	0
+	line	701
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	int	1
+	line	702
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+lab L4
+	line	703
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	5
+	var	3
+	line	703
+	colm	16
+	synt	any
+	numle
+	pop
+	pnull
+	var	4
+	int	1
+	line	703
+	colm	40
+	synt	any
+	numeq
+	unmark
+	mark	L4
+	mark	L7
+	line	704
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	704
+	colm	18
+	synt	any
+	field	Tidesession
+	var	5
+	line	704
+	colm	30
+	synt	any
+	subsc
+	line	704
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	line	705
+	colm	14
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	705
+	colm	22
+	synt	any
+	field	Tidesession
+	var	5
+	line	705
+	colm	34
+	synt	any
+	subsc
+	line	705
+	colm	37
+	synt	any
+	field	IDEOwner
+	var	1
+	line	705
+	colm	46
+	synt	any
+	lexeq
+	pop
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	706
+	colm	22
+	synt	any
+	field	Tidesession
+	var	5
+	line	706
+	colm	34
+	synt	any
+	subsc
+	line	706
+	colm	37
+	synt	any
+	field	IDEFile
+	var	2
+	line	706
+	colm	45
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	4
+	int	0
+	line	708
+	colm	27
+	synt	any
+	asgn
+	line	705
+	colm	14
+	synt	endif
+	line	704
+	colm	10
+	synt	endif
+	unmark
+lab L7
+	pnull
+	var	5
+	dup
+	int	0
+	line	711
+	colm	13
+	synt	any
+	plus
+	asgn
+lab L5
+	unmark
+	goto	L4
+lab L6
+	line	703
+	colm	7
+	synt	endwhile
+	unmark
+lab L3
+	mark	L8
+	mark	L9
+	var	4
+	line	713
+	colm	7
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	714
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Check_Session
+	local	0,001000,self
+	local	1,001000,invited_user
+	local	2,001000,file_name
+	local	3,001000,counter
+	local	4,001000,which
+	local	5,000020,found
+	local	6,000020,i
+	local	7,000020,j
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,002000,1,2
+	declend
+	line	719
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	6
+	int	0
+	line	721
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	5
+	int	1
+	line	723
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+lab L4
+	line	724
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	6
+	var	3
+	line	724
+	colm	15
+	synt	any
+	numle
+	pop
+	pnull
+	var	5
+	int	1
+	line	724
+	colm	35
+	synt	any
+	numeq
+	unmark
+	mark	L4
+	mark	L7
+	pnull
+	var	7
+	int	0
+	line	725
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	726
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	726
+	colm	18
+	synt	any
+	field	Tidesession
+	var	6
+	line	726
+	colm	30
+	synt	any
+	subsc
+	line	726
+	colm	13
+	synt	any
+	nonnull
+	unmark
+lab L9
+	line	727
+	colm	14
+	synt	while
+	mark0
+	pnull
+	var	7
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	727
+	colm	30
+	synt	any
+	field	Tidesession
+	var	6
+	line	727
+	colm	42
+	synt	any
+	subsc
+	line	727
+	colm	45
+	synt	any
+	field	Lusers
+	line	727
+	colm	25
+	synt	any
+	size
+	line	727
+	colm	22
+	synt	any
+	numle
+	pop
+	pnull
+	var	5
+	int	1
+	line	727
+	colm	60
+	synt	any
+	numeq
+	unmark
+	mark	L9
+	mark	L12
+	line	728
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	728
+	colm	25
+	synt	any
+	field	Tidesession
+	var	6
+	line	728
+	colm	37
+	synt	any
+	subsc
+	line	728
+	colm	40
+	synt	any
+	field	Lusers
+	var	7
+	line	728
+	colm	47
+	synt	any
+	subsc
+	var	1
+	line	728
+	colm	50
+	synt	any
+	lexeq
+	pop
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	729
+	colm	25
+	synt	any
+	field	Tidesession
+	var	6
+	line	729
+	colm	37
+	synt	any
+	subsc
+	line	729
+	colm	40
+	synt	any
+	field	IDEFile
+	var	2
+	line	729
+	colm	48
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	5
+	int	0
+	line	731
+	colm	32
+	synt	any
+	asgn
+	line	728
+	colm	17
+	synt	endif
+	unmark
+lab L12
+	mark	L13
+	line	733
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	2
+	line	733
+	colm	26
+	synt	any
+	numeq
+	unmark
+	line	734
+	colm	21
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	734
+	colm	28
+	synt	any
+	field	Tidesession
+	var	6
+	line	734
+	colm	40
+	synt	any
+	subsc
+	line	734
+	colm	43
+	synt	any
+	field	IDEFile
+	var	2
+	line	734
+	colm	51
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	5
+	int	2
+	line	736
+	colm	35
+	synt	any
+	asgn
+	line	734
+	colm	21
+	synt	endif
+	line	733
+	colm	17
+	synt	endif
+	unmark
+lab L13
+	pnull
+	var	7
+	dup
+	int	0
+	line	739
+	colm	19
+	synt	any
+	plus
+	asgn
+lab L10
+	unmark
+	goto	L9
+lab L11
+	line	727
+	colm	14
+	synt	endwhile
+	line	726
+	colm	10
+	synt	endif
+	unmark
+lab L8
+	pnull
+	var	6
+	dup
+	int	0
+	line	742
+	colm	12
+	synt	any
+	plus
+	asgn
+lab L5
+	unmark
+	goto	L4
+lab L6
+	line	724
+	colm	7
+	synt	endwhile
+	unmark
+lab L3
+	mark	L14
+	mark	L15
+	var	5
+	line	745
+	colm	7
+	synt	any
+	pret
+lab L15
+	synt	any
+	pfail
+	unmark
+lab L14
+	pnull
+	line	746
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Invite_to_IDE
+	local	0,001000,self
+	local	1,001000,user_name
+	local	2,001000,file_name
+	local	3,001000,hostuser
+	local	4,001000,sdp_flag
+	local	5,000020,lst_ln
+	local	6,000020,cnum
+	local	7,000020,lnum
+	local	8,000000,ide
+	local	9,000000,world
+	local	10,000000,ide_file_contents
+	local	11,000000,session
+	local	12,000000,mycompfont
+	local	13,000000,ide_msgbox_contents
+	con	0,002000,1,2
+	con	1,002000,1,1
+	con	2,010000,0
+	con	3,010000,5,105,155,160,164,171
+	con	4,010000,26,101,156,040,111,104,105,040,163,145,163,163,151,157,156,040,151,156,166,151,164,141,164,151,157,156,040
+	con	5,010000,17,150,141,163,040,142,145,145,156,040,163,145,156,164,040,164,157,040
+	con	6,010000,1,056
+	con	7,010000,10,134,103,105,124,114,117,160,145,156,040
+	con	8,010000,1,040
+	con	9,010000,1,174
+	con	10,010000,2,100,100
+	con	11,010000,2,044,044
+	declend
+	line	752
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	5
+	pnull
+	pnull
+	var	8
+	line	756
+	colm	17
+	synt	any
+	field	CurrentEditBox
+	line	756
+	colm	32
+	synt	any
+	invoke	0
+	line	756
+	colm	34
+	synt	any
+	field	get_last_line
+	line	756
+	colm	48
+	synt	any
+	invoke	0
+	line	756
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	7
+	pnull
+	pnull
+	var	8
+	line	757
+	colm	15
+	synt	any
+	field	CurrentEditBox
+	line	757
+	colm	30
+	synt	any
+	invoke	0
+	line	757
+	colm	32
+	synt	any
+	field	cursor_y
+	line	757
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	6
+	pnull
+	pnull
+	var	8
+	line	758
+	colm	15
+	synt	any
+	field	CurrentEditBox
+	line	758
+	colm	30
+	synt	any
+	invoke	0
+	line	758
+	colm	32
+	synt	any
+	field	cursor_x
+	line	758
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	760
+	colm	8
+	synt	any
+	field	Ownertab
+	pnull
+	pnull
+	pnull
+	pnull
+	var	9
+	line	760
+	colm	24
+	synt	any
+	field	nsh_dialog
+	line	760
+	colm	35
+	synt	any
+	field	VCSC_tab
+	line	760
+	colm	44
+	synt	any
+	field	get_which_one
+	line	760
+	colm	58
+	synt	any
+	invoke	0
+	line	760
+	colm	60
+	synt	any
+	field	get_children
+	line	760
+	colm	73
+	synt	any
+	invoke	0
+	line	760
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	761
+	colm	8
+	synt	any
+	field	OwnerMsg
+	pnull
+	pnull
+	var	0
+	line	761
+	colm	23
+	synt	any
+	field	Ownertab
+	int	0
+	line	761
+	colm	32
+	synt	any
+	subsc
+	line	761
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	762
+	colm	8
+	synt	any
+	field	Ownertab
+	pnull
+	pnull
+	var	0
+	line	762
+	colm	23
+	synt	any
+	field	Ownertab
+	int	1
+	line	762
+	colm	32
+	synt	any
+	subsc
+	line	762
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	8
+	line	764
+	colm	7
+	synt	any
+	field	Check_shared_file_contents
+	pnull
+	var	0
+	line	764
+	colm	39
+	synt	any
+	field	Ownertab
+	pnull
+	var	0
+	line	764
+	colm	53
+	synt	any
+	field	OwnerMsg
+	line	764
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	mark	L8
+	line	766
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	10
+	str	2
+	line	766
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	10
+	str	3
+	line	767
+	colm	25
+	synt	any
+	asgn
+	line	766
+	colm	4
+	synt	endif
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	9
+	line	769
+	colm	9
+	synt	any
+	field	nsh_dialog
+	line	769
+	colm	20
+	synt	any
+	field	write_to_chat_win
+	pnull
+	pnull
+	pnull
+	str	4
+	str	5
+	line	769
+	colm	67
+	synt	any
+	cat
+	var	1
+	line	770
+	colm	26
+	synt	any
+	cat
+	str	6
+	line	770
+	colm	37
+	synt	any
+	cat
+	line	769
+	colm	38
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	11
+	line	772
+	colm	11
+	synt	any
+	field	Write
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	7
+	var	12
+	line	772
+	colm	31
+	synt	any
+	cat
+	str	8
+	line	772
+	colm	43
+	synt	any
+	cat
+	var	1
+	line	772
+	colm	48
+	synt	any
+	cat
+	str	8
+	line	772
+	colm	59
+	synt	any
+	cat
+	var	2
+	line	772
+	colm	64
+	synt	any
+	cat
+	str	9
+	line	772
+	colm	75
+	synt	any
+	cat
+	var	10
+	line	773
+	colm	10
+	synt	any
+	cat
+	str	10
+	line	773
+	colm	29
+	synt	any
+	cat
+	var	13
+	line	773
+	colm	35
+	synt	any
+	cat
+	str	11
+	line	773
+	colm	56
+	synt	any
+	cat
+	var	3
+	line	773
+	colm	62
+	synt	any
+	cat
+	str	8
+	line	773
+	colm	72
+	synt	any
+	cat
+	var	4
+	line	774
+	colm	10
+	synt	any
+	cat
+	str	8
+	line	774
+	colm	20
+	synt	any
+	cat
+	var	5
+	line	774
+	colm	25
+	synt	any
+	cat
+	str	8
+	line	774
+	colm	33
+	synt	any
+	cat
+	var	7
+	line	774
+	colm	38
+	synt	any
+	cat
+	str	8
+	line	774
+	colm	44
+	synt	any
+	cat
+	var	6
+	line	774
+	colm	49
+	synt	any
+	cat
+	line	772
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L10
+	pnull
+	line	775
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_Receive_CETL_Event
+	local	0,001000,self
+	local	1,001000,args
+	local	2,001000,event_type
+	local	3,001000,obj_type
+	local	4,000020,mydest
+	local	5,000020,s
+	local	6,000020,pos
+	local	7,000020,user
+	local	8,000020,e
+	local	9,000020,tmp
+	local	10,000020,x_mouse
+	local	11,000020,y_mouse
+	local	12,000020,ev_type
+	local	13,000020,ev_param
+	local	14,000020,mouse_ev
+	local	15,000020,coord_value
+	local	16,000020,new_scrol_event
+	local	17,000020,scroll_only
+	local	18,000020,L
+	local	19,000020,scrol_type
+	local	20,000020,table_index
+	local	21,000020,tab_obj
+	local	22,000020,pos1
+	local	23,000020,tindex
+	local	24,000000,integer
+	local	25,000000,tab
+	local	26,000000,find
+	local	27,000000,move
+	local	28,000000,Enqueue
+	local	29,000000,Pending
+	local	30,000000,push
+	local	31,000000,pull
+	local	32,000000,Event
+	local	33,000000,util__Event
+	local	34,000000,string
+	con	0,002000,1,0
+	con	1,010000,1,040
+	con	2,002000,1,1
+	con	3,010000,1,046
+	con	4,002000,1,2
+	con	5,010000,0
+	con	6,002000,1,3
+	con	7,010000,1,166
+	con	8,010000,1,163
+	con	9,002000,2,12
+	con	10,002000,1,4
+	con	11,010000,2,136,136
+	con	12,002000,2,36
+	con	13,002000,2,35
+	con	14,002000,2,33
+	con	15,002000,2,34
+	con	16,002000,2,38
+	con	17,002000,2,40
+	con	18,002000,2,37
+	con	19,002000,2,39
+	con	20,010000,1,010
+	con	21,010000,2,134,142
+	con	22,010000,4,042,134,142,042
+	con	23,010000,1,015
+	con	24,010000,2,134,162
+	con	25,010000,4,042,134,162,042
+	con	26,010000,1,012
+	con	27,010000,2,134,154
+	con	28,010000,7,144,145,154,114,151,156,145
+	con	29,010000,1,013
+	con	30,010000,3,134,136,153
+	con	31,010000,5,042,134,136,153,042
+	con	32,010000,1,001
+	con	33,010000,3,134,136,141
+	con	34,010000,5,042,134,136,141,042
+	con	35,010000,6,042,134,170,060,061,042
+	con	36,010000,4,134,170,060,061
+	con	37,010000,1,005
+	con	38,010000,3,134,136,145
+	con	39,010000,1,177
+	con	40,010000,1,004
+	con	41,010000,5,042,134,136,144,042
+	con	42,010000,4,042,134,144,042
+	con	43,010000,3,134,136,144
+	con	44,010000,2,134,144
+	con	45,010000,1,030
+	con	46,010000,3,134,136,170
+	con	47,010000,5,042,134,136,170,042
+	con	48,010000,6,042,134,170,061,070,042
+	con	49,010000,4,134,170,061,070
+	con	50,010000,1,003
+	con	51,010000,3,134,136,143
+	con	52,010000,5,042,134,136,143,042
+	con	53,010000,6,042,134,170,060,063,042
+	con	54,010000,4,134,170,060,063
+	con	55,010000,1,026
+	con	56,010000,3,134,136,166
+	con	57,010000,5,042,134,136,166,042
+	con	58,010000,6,042,134,170,061,066,042
+	con	59,010000,4,134,170,061,066
+	con	60,010000,1,032
+	con	61,010000,3,134,136,172
+	con	62,010000,5,042,134,136,172,042
+	con	63,010000,6,042,134,170,061,141,042
+	con	64,010000,4,134,170,061,141
+	con	65,010000,1,031
+	con	66,010000,3,134,136,171
+	con	67,010000,5,042,134,136,171,042
+	con	68,010000,6,042,134,170,061,071,042
+	con	69,010000,4,134,170,061,071
+	con	70,010000,4,055,061,066,062
+	con	71,010000,4,055,061,066,061
+	declend
+	line	781
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	17
+	int	0
+	line	786
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	1
+	line	788
+	colm	9
+	synt	any
+	bscan
+	mark	L3
+	pnull
+	var	20
+	var	24
+	var	25
+	var	26
+	str	1
+	line	789
+	colm	38
+	synt	any
+	invoke	1
+	line	789
+	colm	33
+	synt	any
+	invoke	1
+	line	789
+	colm	29
+	synt	any
+	invoke	1
+	line	789
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	var	27
+	int	2
+	line	790
+	colm	11
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	var	9
+	var	25
+	int	0
+	line	791
+	colm	17
+	synt	any
+	invoke	1
+	line	791
+	colm	11
+	synt	any
+	asgn
+	line	788
+	colm	9
+	synt	any
+	escan
+	unmark
+lab L2
+	mark	L5
+	line	794
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	794
+	colm	12
+	synt	any
+	field	Tidesession
+	var	20
+	line	794
+	colm	24
+	synt	any
+	subsc
+	line	794
+	colm	7
+	synt	any
+	nonnull
+	unmark
+	line	795
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	795
+	colm	15
+	synt	any
+	field	Tidesession
+	var	20
+	line	795
+	colm	27
+	synt	any
+	subsc
+	line	795
+	colm	40
+	synt	any
+	field	IDE_Tab
+	line	795
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L6
+	line	796
+	colm	10
+	synt	ifelse
+	mark	L7
+	pnull
+	var	3
+	int	2
+	line	796
+	colm	22
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	796
+	colm	45
+	synt	any
+	field	Tidesession
+	var	20
+	line	796
+	colm	57
+	synt	any
+	subsc
+	line	796
+	colm	70
+	synt	any
+	field	IDE_Tab
+	line	796
+	colm	38
+	synt	any
+	asgn
+	goto	L8
+lab L7
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	var	0
+	line	797
+	colm	29
+	synt	any
+	field	Tidesession
+	var	20
+	line	797
+	colm	41
+	synt	any
+	subsc
+	line	797
+	colm	54
+	synt	any
+	field	IDE_MsgBox
+	line	797
+	colm	22
+	synt	any
+	asgn
+lab L8
+	line	796
+	colm	10
+	synt	endifelse
+	unmark
+lab L6
+	mark	L9
+	line	798
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	0
+	line	798
+	colm	24
+	synt	any
+	numeq
+	unmark
+	line	799
+	colm	13
+	synt	ifelse
+	mark	L10
+	var	26
+	str	3
+	var	1
+	line	799
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+	mark	L12
+	pnull
+	var	22
+	var	26
+	str	3
+	var	1
+	line	800
+	colm	28
+	synt	any
+	invoke	2
+	line	800
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L12
+	pnull
+	var	8
+	pnull
+	var	1
+	pnull
+	var	22
+	int	2
+	line	801
+	colm	30
+	synt	any
+	plus
+	int	0
+	line	801
+	colm	32
+	synt	any
+	synt	any
+	sect
+	line	801
+	colm	18
+	synt	any
+	asgn
+	goto	L11
+lab L10
+	var	1
+	line	804
+	colm	21
+	synt	any
+	bscan
+	mark	L13
+	pnull
+	var	23
+	var	25
+	var	26
+	str	1
+	line	805
+	colm	37
+	synt	any
+	invoke	1
+	line	805
+	colm	32
+	synt	any
+	invoke	1
+	line	805
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	var	27
+	int	2
+	line	806
+	colm	23
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	pnull
+	var	8
+	var	25
+	int	0
+	line	807
+	colm	27
+	synt	any
+	invoke	1
+	line	807
+	colm	21
+	synt	any
+	asgn
+	line	804
+	colm	21
+	synt	any
+	escan
+lab L11
+	line	799
+	colm	13
+	synt	endifelse
+	line	798
+	colm	10
+	synt	endif
+	unmark
+lab L9
+	mark	L15
+	line	811
+	colm	10
+	synt	ifelse
+	mark	L16
+	pnull
+	var	2
+	int	4
+	line	811
+	colm	24
+	synt	any
+	numeq
+	unmark
+	var	9
+	line	812
+	colm	17
+	synt	any
+	bscan
+	mark	L18
+	pnull
+	var	8
+	var	25
+	var	26
+	str	1
+	line	813
+	colm	29
+	synt	any
+	invoke	1
+	line	813
+	colm	24
+	synt	any
+	invoke	1
+	line	813
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	var	27
+	int	2
+	line	814
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	pnull
+	pnull
+	var	0
+	line	815
+	colm	20
+	synt	any
+	field	shift_pressed
+	var	24
+	var	25
+	int	0
+	line	815
+	colm	47
+	synt	any
+	invoke	1
+	line	815
+	colm	43
+	synt	any
+	invoke	1
+	line	815
+	colm	34
+	synt	any
+	asgn
+	line	812
+	colm	17
+	synt	any
+	escan
+	goto	L17
+lab L16
+	line	818
+	colm	15
+	synt	ifelse
+	mark	L20
+	pnull
+	var	2
+	int	2
+	line	818
+	colm	29
+	synt	any
+	numeq
+	unmark
+	mark	L22
+	var	9
+	line	819
+	colm	17
+	synt	any
+	bscan
+	mark	L23
+	pnull
+	var	8
+	var	24
+	var	25
+	var	26
+	str	1
+	line	820
+	colm	37
+	synt	any
+	invoke	1
+	line	820
+	colm	32
+	synt	any
+	invoke	1
+	line	820
+	colm	28
+	synt	any
+	invoke	1
+	line	820
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	var	27
+	int	2
+	line	821
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	10
+	var	24
+	var	25
+	var	26
+	str	1
+	line	822
+	colm	43
+	synt	any
+	invoke	1
+	line	822
+	colm	38
+	synt	any
+	invoke	1
+	line	822
+	colm	34
+	synt	any
+	invoke	1
+	line	822
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	var	27
+	int	2
+	line	823
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L26
+	pnull
+	var	11
+	var	24
+	var	25
+	int	0
+	line	824
+	colm	38
+	synt	any
+	invoke	1
+	line	824
+	colm	34
+	synt	any
+	invoke	1
+	line	824
+	colm	24
+	synt	any
+	asgn
+	line	819
+	colm	17
+	synt	any
+	escan
+	unmark
+lab L22
+	mark	L27
+	var	28
+	pnull
+	pnull
+	pnull
+	var	0
+	line	827
+	colm	25
+	synt	any
+	field	dialog
+	line	827
+	colm	32
+	synt	any
+	field	parent_dialog
+	line	827
+	colm	46
+	synt	any
+	field	win
+	var	8
+	var	10
+	var	11
+	str	5
+	int	0
+	line	827
+	colm	20
+	synt	any
+	invoke	6
+	unmark
+lab L27
+	mark	L28
+	pnull
+	var	18
+	var	29
+	pnull
+	pnull
+	pnull
+	var	0
+	line	829
+	colm	30
+	synt	any
+	field	dialog
+	line	829
+	colm	37
+	synt	any
+	field	parent_dialog
+	line	829
+	colm	51
+	synt	any
+	field	win
+	line	829
+	colm	25
+	synt	any
+	invoke	1
+	line	829
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	line	830
+	colm	13
+	synt	every
+	mark0
+	pnull
+	int	2
+	int	6
+	push1
+	line	830
+	colm	21
+	synt	any
+	toby
+	pop
+	mark0
+	var	30
+	var	18
+	var	31
+	var	18
+	line	831
+	colm	28
+	synt	any
+	invoke	1
+	line	831
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+lab L30
+	efail
+lab L31
+	line	830
+	colm	13
+	synt	endevery
+	unmark
+lab L29
+	var	32
+	pnull
+	pnull
+	pnull
+	var	0
+	line	832
+	colm	23
+	synt	any
+	field	dialog
+	line	832
+	colm	30
+	synt	any
+	field	parent_dialog
+	line	832
+	colm	44
+	synt	any
+	field	win
+	line	832
+	colm	18
+	synt	any
+	invoke	1
+	goto	L21
+lab L20
+	line	834
+	colm	15
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	6
+	line	834
+	colm	29
+	synt	any
+	numeq
+	unmark
+	mark	L32
+	var	9
+	line	835
+	colm	17
+	synt	any
+	bscan
+	mark	L33
+	pnull
+	var	15
+	var	25
+	var	26
+	str	1
+	line	836
+	colm	39
+	synt	any
+	invoke	1
+	line	836
+	colm	34
+	synt	any
+	invoke	1
+	line	836
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	var	27
+	int	2
+	line	837
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L34
+	mark	L35
+	pnull
+	var	12
+	var	24
+	var	25
+	var	26
+	str	1
+	line	838
+	colm	43
+	synt	any
+	invoke	1
+	line	838
+	colm	38
+	synt	any
+	invoke	1
+	line	838
+	colm	34
+	synt	any
+	invoke	1
+	line	838
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	var	27
+	int	2
+	line	839
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L36
+	mark	L37
+	pnull
+	var	13
+	var	24
+	var	25
+	var	26
+	str	1
+	line	840
+	colm	44
+	synt	any
+	invoke	1
+	line	840
+	colm	39
+	synt	any
+	invoke	1
+	line	840
+	colm	35
+	synt	any
+	invoke	1
+	line	840
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	var	27
+	int	2
+	line	841
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L38
+	pnull
+	var	19
+	var	25
+	int	0
+	line	842
+	colm	33
+	synt	any
+	invoke	1
+	line	842
+	colm	27
+	synt	any
+	asgn
+	line	835
+	colm	17
+	synt	any
+	escan
+	unmark
+lab L32
+	mark	L39
+	line	844
+	colm	13
+	synt	ifelse
+	mark	L40
+	pnull
+	var	19
+	str	7
+	line	844
+	colm	27
+	synt	any
+	lexeq
+	unmark
+	mark	L42
+	pnull
+	var	16
+	var	33
+	var	5
+	var	12
+	var	13
+	line	845
+	colm	46
+	synt	any
+	invoke	3
+	line	845
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L42
+	mark	L43
+	pnull
+	var	16
+	line	846
+	colm	31
+	synt	any
+	field	set_source
+	pnull
+	var	4
+	line	846
+	colm	49
+	synt	any
+	field	vsb
+	line	846
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	pnull
+	var	4
+	line	847
+	colm	22
+	synt	any
+	field	on_vsb
+	var	16
+	var	15
+	int	2
+	line	847
+	colm	29
+	synt	any
+	invoke	3
+	goto	L41
+lab L40
+	mark	L44
+	pnull
+	var	16
+	var	33
+	var	5
+	var	12
+	var	13
+	line	850
+	colm	46
+	synt	any
+	invoke	3
+	line	850
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	var	16
+	line	851
+	colm	31
+	synt	any
+	field	set_source
+	pnull
+	var	4
+	line	851
+	colm	49
+	synt	any
+	field	hsb
+	line	851
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L45
+	pnull
+	var	4
+	line	852
+	colm	22
+	synt	any
+	field	on_hsb
+	var	16
+	var	15
+	int	2
+	line	852
+	colm	29
+	synt	any
+	invoke	3
+lab L41
+	line	844
+	colm	13
+	synt	endifelse
+	unmark
+lab L39
+	pnull
+	var	17
+	int	2
+	line	854
+	colm	25
+	synt	any
+	asgn
+	line	834
+	colm	15
+	synt	endif
+lab L21
+	line	818
+	colm	15
+	synt	endifelse
+lab L17
+	line	811
+	colm	10
+	synt	endifelse
+	unmark
+lab L15
+	line	856
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	17
+	int	0
+	line	856
+	colm	25
+	synt	any
+	numeq
+	unmark
+	mark	L46
+	pnull
+	var	8
+	var	24
+	var	8
+	line	857
+	colm	25
+	synt	any
+	invoke	1
+	line	857
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L46
+	mark	L47
+	line	858
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	4
+	line	858
+	colm	27
+	synt	any
+	numeq
+	unmark
+	line	859
+	colm	16
+	synt	ifelse
+	mark	L48
+	pnull
+	pnull
+	var	0
+	line	859
+	colm	23
+	synt	any
+	field	shift_pressed
+	int	2
+	line	859
+	colm	37
+	synt	any
+	numeq
+	unmark
+	mark	L50
+	pnull
+	pnull
+	var	0
+	line	860
+	colm	23
+	synt	any
+	field	shift_pressed
+	int	0
+	line	860
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L50
+	mark	L51
+	var	28
+	pnull
+	pnull
+	pnull
+	var	0
+	line	861
+	colm	31
+	synt	any
+	field	dialog
+	line	861
+	colm	38
+	synt	any
+	field	parent_dialog
+	line	861
+	colm	52
+	synt	any
+	field	win
+	var	8
+	int	0
+	int	0
+	str	8
+	int	0
+	line	861
+	colm	26
+	synt	any
+	invoke	6
+	unmark
+lab L51
+	mark	L52
+	pnull
+	var	18
+	var	29
+	pnull
+	pnull
+	pnull
+	var	0
+	line	863
+	colm	36
+	synt	any
+	field	dialog
+	line	863
+	colm	43
+	synt	any
+	field	parent_dialog
+	line	863
+	colm	57
+	synt	any
+	field	win
+	line	863
+	colm	31
+	synt	any
+	invoke	1
+	line	863
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L52
+	mark	L53
+	line	864
+	colm	19
+	synt	every
+	mark0
+	pnull
+	int	2
+	int	6
+	push1
+	line	864
+	colm	27
+	synt	any
+	toby
+	pop
+	mark0
+	var	30
+	var	18
+	var	31
+	var	18
+	line	865
+	colm	34
+	synt	any
+	invoke	1
+	line	865
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L54
+	efail
+lab L55
+	line	864
+	colm	19
+	synt	endevery
+	unmark
+lab L53
+	var	32
+	pnull
+	pnull
+	pnull
+	var	0
+	line	866
+	colm	29
+	synt	any
+	field	dialog
+	line	866
+	colm	36
+	synt	any
+	field	parent_dialog
+	line	866
+	colm	50
+	synt	any
+	field	win
+	line	866
+	colm	24
+	synt	any
+	invoke	1
+	goto	L49
+lab L48
+	mark	L56
+	var	28
+	pnull
+	pnull
+	pnull
+	var	0
+	line	869
+	colm	28
+	synt	any
+	field	dialog
+	line	869
+	colm	35
+	synt	any
+	field	parent_dialog
+	line	869
+	colm	49
+	synt	any
+	field	win
+	var	8
+	int	0
+	int	0
+	str	5
+	int	0
+	line	869
+	colm	23
+	synt	any
+	invoke	6
+	unmark
+lab L56
+	mark	L57
+	pnull
+	var	18
+	var	29
+	pnull
+	pnull
+	pnull
+	var	0
+	line	870
+	colm	33
+	synt	any
+	field	dialog
+	line	870
+	colm	40
+	synt	any
+	field	parent_dialog
+	line	870
+	colm	54
+	synt	any
+	field	win
+	line	870
+	colm	28
+	synt	any
+	invoke	1
+	line	870
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L57
+	mark	L58
+	line	871
+	colm	16
+	synt	every
+	mark0
+	pnull
+	int	2
+	int	6
+	push1
+	line	871
+	colm	24
+	synt	any
+	toby
+	pop
+	mark0
+	var	30
+	var	18
+	var	31
+	var	18
+	line	872
+	colm	31
+	synt	any
+	invoke	1
+	line	872
+	colm	23
+	synt	any
+	invoke	2
+	unmark
+lab L59
+	efail
+lab L60
+	line	871
+	colm	16
+	synt	endevery
+	unmark
+lab L58
+	var	32
+	pnull
+	pnull
+	pnull
+	var	0
+	line	873
+	colm	26
+	synt	any
+	field	dialog
+	line	873
+	colm	33
+	synt	any
+	field	parent_dialog
+	line	873
+	colm	47
+	synt	any
+	field	win
+	line	873
+	colm	21
+	synt	any
+	invoke	1
+lab L49
+	line	859
+	colm	16
+	synt	endifelse
+	line	858
+	colm	13
+	synt	endif
+	unmark
+lab L47
+	line	877
+	colm	10
+	synt	ifelse
+	mark	L61
+	pnull
+	var	8
+	mark	L63
+	line	877
+	colm	20
+	synt	any
+	keywd	lpress
+	line	877
+	colm	28
+	synt	any
+	esusp
+	goto	L64
+lab L63
+	mark	L65
+	line	877
+	colm	30
+	synt	any
+	keywd	rpress
+	line	877
+	colm	38
+	synt	any
+	esusp
+	goto	L66
+lab L65
+	mark	L67
+	line	877
+	colm	40
+	synt	any
+	keywd	mpress
+	line	877
+	colm	47
+	synt	any
+	esusp
+	goto	L68
+lab L67
+	pnull
+	int	2
+	line	877
+	colm	48
+	synt	any
+	neg
+lab L68
+lab L66
+lab L64
+	line	877
+	colm	15
+	synt	any
+	eqv
+	unmark
+	pnull
+	var	4
+	line	878
+	colm	19
+	synt	any
+	field	handle_press
+	var	8
+	int	2
+	line	878
+	colm	32
+	synt	any
+	invoke	2
+	goto	L62
+lab L61
+	line	879
+	colm	15
+	synt	ifelse
+	mark	L69
+	pnull
+	var	8
+	mark	L71
+	line	879
+	colm	25
+	synt	any
+	keywd	ldrag
+	line	879
+	colm	32
+	synt	any
+	esusp
+	goto	L72
+lab L71
+	mark	L73
+	line	879
+	colm	34
+	synt	any
+	keywd	rdrag
+	line	879
+	colm	41
+	synt	any
+	esusp
+	goto	L74
+lab L73
+	mark	L75
+	line	879
+	colm	43
+	synt	any
+	keywd	mdrag
+	line	879
+	colm	49
+	synt	any
+	esusp
+	goto	L76
+lab L75
+	pnull
+	int	9
+	line	879
+	colm	50
+	synt	any
+	neg
+lab L76
+lab L74
+lab L72
+	line	879
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pnull
+	var	4
+	line	880
+	colm	19
+	synt	any
+	field	handle_drag
+	var	8
+	int	2
+	line	880
+	colm	31
+	synt	any
+	invoke	2
+	goto	L70
+lab L69
+	line	881
+	colm	15
+	synt	ifelse
+	mark	L77
+	pnull
+	var	8
+	mark	L79
+	line	881
+	colm	25
+	synt	any
+	keywd	lrelease
+	line	881
+	colm	35
+	synt	any
+	esusp
+	goto	L80
+lab L79
+	mark	L81
+	line	881
+	colm	37
+	synt	any
+	keywd	rrelease
+	line	881
+	colm	47
+	synt	any
+	esusp
+	goto	L82
+lab L81
+	mark	L83
+	line	881
+	colm	49
+	synt	any
+	keywd	mrelease
+	line	881
+	colm	58
+	synt	any
+	esusp
+	goto	L84
+lab L83
+	pnull
+	int	10
+	line	881
+	colm	59
+	synt	any
+	neg
+lab L84
+lab L82
+lab L80
+	line	881
+	colm	20
+	synt	any
+	eqv
+	unmark
+	pnull
+	var	4
+	line	882
+	colm	19
+	synt	any
+	field	handle_release
+	var	8
+	int	2
+	line	882
+	colm	34
+	synt	any
+	invoke	2
+	goto	L78
+lab L77
+	line	883
+	colm	15
+	synt	ifelse
+	mark	L85
+	pnull
+	var	8
+	str	11
+	line	883
+	colm	20
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	4
+	line	884
+	colm	19
+	synt	any
+	field	handle_default
+	str	1
+	line	884
+	colm	34
+	synt	any
+	invoke	1
+	goto	L86
+lab L85
+	line	886
+	colm	13
+	synt	case
+	mark0
+	var	8
+	eret
+	mark	L88
+	ccase
+	int	12
+	line	887
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	887
+	colm	41
+	synt	any
+	field	handle_key_home
+	var	8
+	line	887
+	colm	57
+	synt	any
+	invoke	1
+	goto	L87
+lab L88
+	mark	L89
+	ccase
+	int	13
+	line	888
+	colm	41
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	888
+	colm	49
+	synt	any
+	field	handle_key_end
+	var	8
+	line	888
+	colm	64
+	synt	any
+	invoke	1
+	goto	L87
+lab L89
+	mark	L90
+	ccase
+	int	14
+	line	889
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	889
+	colm	41
+	synt	any
+	field	handle_key_page_up
+	var	8
+	line	889
+	colm	60
+	synt	any
+	invoke	1
+	goto	L87
+lab L90
+	mark	L91
+	ccase
+	int	15
+	line	890
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	890
+	colm	41
+	synt	any
+	field	handle_key_page_down
+	var	8
+	line	890
+	colm	62
+	synt	any
+	invoke	1
+	goto	L87
+lab L91
+	mark	L92
+	ccase
+	int	16
+	line	891
+	colm	41
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	891
+	colm	49
+	synt	any
+	field	handle_key_up
+	var	8
+	line	891
+	colm	63
+	synt	any
+	invoke	1
+	goto	L87
+lab L92
+	mark	L93
+	ccase
+	int	17
+	line	892
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	892
+	colm	41
+	synt	any
+	field	handle_key_down
+	var	8
+	line	892
+	colm	57
+	synt	any
+	invoke	1
+	goto	L87
+lab L93
+	mark	L94
+	ccase
+	int	18
+	line	893
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	893
+	colm	41
+	synt	any
+	field	handle_key_left
+	var	8
+	line	893
+	colm	57
+	synt	any
+	invoke	1
+	goto	L87
+lab L94
+	mark	L95
+	ccase
+	int	19
+	line	894
+	colm	33
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	894
+	colm	41
+	synt	any
+	field	handle_key_right
+	var	8
+	line	894
+	colm	58
+	synt	any
+	invoke	1
+	goto	L87
+lab L95
+	mark	L96
+	ccase
+	mark	L97
+	str	20
+	line	895
+	colm	21
+	synt	any
+	esusp
+	goto	L98
+lab L97
+	mark	L99
+	str	21
+	line	895
+	colm	27
+	synt	any
+	esusp
+	goto	L100
+lab L99
+	str	22
+lab L100
+lab L98
+	line	895
+	colm	41
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	895
+	colm	49
+	synt	any
+	field	handle_delete_left
+	var	8
+	line	895
+	colm	68
+	synt	any
+	invoke	1
+	goto	L87
+lab L96
+	mark	L101
+	ccase
+	mark	L102
+	str	23
+	line	896
+	colm	21
+	synt	any
+	esusp
+	goto	L103
+lab L102
+	mark	L104
+	str	24
+	line	896
+	colm	27
+	synt	any
+	esusp
+	goto	L105
+lab L104
+	mark	L106
+	str	25
+	line	896
+	colm	38
+	synt	any
+	esusp
+	goto	L107
+lab L106
+	mark	L108
+	str	26
+	line	896
+	colm	43
+	synt	any
+	esusp
+	goto	L109
+lab L108
+	str	27
+lab L109
+lab L107
+lab L105
+lab L103
+	line	896
+	colm	49
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	896
+	colm	57
+	synt	any
+	field	handle_return
+	var	8
+	line	896
+	colm	71
+	synt	any
+	invoke	1
+	goto	L87
+lab L101
+	mark	L110
+	ccase
+	mark	L111
+	str	28
+	line	897
+	colm	25
+	synt	any
+	esusp
+	goto	L112
+lab L111
+	mark	L113
+	str	29
+	line	897
+	colm	32
+	synt	any
+	esusp
+	goto	L114
+lab L113
+	mark	L115
+	str	30
+	line	897
+	colm	39
+	synt	any
+	esusp
+	goto	L116
+lab L115
+	str	31
+lab L116
+lab L114
+lab L112
+	line	897
+	colm	57
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	897
+	colm	65
+	synt	any
+	field	handle_delete_line
+	var	8
+	line	897
+	colm	84
+	synt	any
+	invoke	1
+	goto	L87
+lab L110
+	mark	L117
+	ccase
+	mark	L118
+	str	32
+	line	898
+	colm	21
+	synt	any
+	esusp
+	goto	L119
+lab L118
+	mark	L120
+	str	33
+	line	898
+	colm	28
+	synt	any
+	esusp
+	goto	L121
+lab L120
+	mark	L122
+	str	34
+	line	898
+	colm	39
+	synt	any
+	esusp
+	goto	L123
+lab L122
+	mark	L124
+	str	35
+	line	898
+	colm	51
+	synt	any
+	esusp
+	goto	L125
+lab L124
+	str	36
+lab L125
+lab L123
+lab L121
+lab L119
+	line	898
+	colm	59
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	899
+	colm	22
+	synt	any
+	field	handle_select_all
+	var	8
+	line	899
+	colm	40
+	synt	any
+	invoke	1
+	goto	L87
+lab L117
+	mark	L126
+	ccase
+	mark	L127
+	str	37
+	line	900
+	colm	21
+	synt	any
+	esusp
+	goto	L128
+lab L127
+	str	38
+lab L128
+	line	900
+	colm	41
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	900
+	colm	49
+	synt	any
+	field	handle_end_of_line
+	var	8
+	line	900
+	colm	68
+	synt	any
+	invoke	1
+	goto	L87
+lab L126
+	mark	L129
+	ccase
+	mark	L130
+	str	39
+	line	901
+	colm	21
+	synt	any
+	esusp
+	goto	L131
+lab L130
+	mark	L132
+	str	40
+	line	901
+	colm	29
+	synt	any
+	esusp
+	goto	L133
+lab L132
+	mark	L134
+	str	41
+	line	901
+	colm	40
+	synt	any
+	esusp
+	goto	L135
+lab L134
+	mark	L136
+	str	42
+	line	901
+	colm	50
+	synt	any
+	esusp
+	goto	L137
+lab L136
+	mark	L138
+	str	43
+	line	901
+	colm	57
+	synt	any
+	esusp
+	goto	L139
+lab L138
+	str	44
+lab L139
+lab L137
+lab L135
+lab L133
+lab L131
+	line	901
+	colm	63
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	902
+	colm	22
+	synt	any
+	field	handle_delete_right
+	var	8
+	line	902
+	colm	42
+	synt	any
+	invoke	1
+	goto	L87
+lab L129
+	mark	L140
+	ccase
+	mark	L141
+	str	45
+	line	903
+	colm	22
+	synt	any
+	esusp
+	goto	L142
+lab L141
+	mark	L143
+	str	46
+	line	903
+	colm	29
+	synt	any
+	esusp
+	goto	L144
+lab L143
+	mark	L145
+	str	47
+	line	903
+	colm	40
+	synt	any
+	esusp
+	goto	L146
+lab L145
+	mark	L147
+	str	48
+	line	903
+	colm	52
+	synt	any
+	esusp
+	goto	L148
+lab L147
+	str	49
+lab L148
+lab L146
+lab L144
+lab L142
+	line	903
+	colm	62
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	904
+	colm	22
+	synt	any
+	field	handle_cut
+	var	8
+	line	904
+	colm	33
+	synt	any
+	invoke	1
+	goto	L87
+lab L140
+	mark	L149
+	ccase
+	mark	L150
+	str	50
+	line	905
+	colm	21
+	synt	any
+	esusp
+	goto	L151
+lab L150
+	mark	L152
+	str	51
+	line	905
+	colm	28
+	synt	any
+	esusp
+	goto	L153
+lab L152
+	mark	L154
+	str	52
+	line	905
+	colm	39
+	synt	any
+	esusp
+	goto	L155
+lab L154
+	mark	L156
+	str	53
+	line	905
+	colm	51
+	synt	any
+	esusp
+	goto	L157
+lab L156
+	str	54
+lab L157
+lab L155
+lab L153
+lab L151
+	line	905
+	colm	61
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	906
+	colm	22
+	synt	any
+	field	handle_copy
+	var	8
+	line	906
+	colm	34
+	synt	any
+	invoke	1
+	goto	L87
+lab L149
+	mark	L158
+	ccase
+	mark	L159
+	str	55
+	line	907
+	colm	21
+	synt	any
+	esusp
+	goto	L160
+lab L159
+	mark	L161
+	str	56
+	line	907
+	colm	28
+	synt	any
+	esusp
+	goto	L162
+lab L161
+	mark	L163
+	str	57
+	line	907
+	colm	39
+	synt	any
+	esusp
+	goto	L164
+lab L163
+	mark	L165
+	str	58
+	line	907
+	colm	51
+	synt	any
+	esusp
+	goto	L166
+lab L165
+	str	59
+lab L166
+lab L164
+lab L162
+lab L160
+	line	907
+	colm	61
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	908
+	colm	22
+	synt	any
+	field	handle_paste
+	var	8
+	line	908
+	colm	35
+	synt	any
+	invoke	1
+	goto	L87
+lab L158
+	mark	L167
+	ccase
+	mark	L168
+	str	60
+	line	909
+	colm	21
+	synt	any
+	esusp
+	goto	L169
+lab L168
+	mark	L170
+	str	61
+	line	909
+	colm	28
+	synt	any
+	esusp
+	goto	L171
+lab L170
+	mark	L172
+	str	62
+	line	909
+	colm	39
+	synt	any
+	esusp
+	goto	L173
+lab L172
+	mark	L174
+	str	63
+	line	909
+	colm	51
+	synt	any
+	esusp
+	goto	L175
+lab L174
+	str	64
+lab L175
+lab L173
+lab L171
+lab L169
+	line	909
+	colm	61
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	910
+	colm	22
+	synt	any
+	field	handle_undo
+	var	8
+	line	910
+	colm	34
+	synt	any
+	invoke	1
+	goto	L87
+lab L167
+	mark	L176
+	ccase
+	mark	L177
+	str	65
+	line	911
+	colm	21
+	synt	any
+	esusp
+	goto	L178
+lab L177
+	mark	L179
+	str	66
+	line	911
+	colm	28
+	synt	any
+	esusp
+	goto	L180
+lab L179
+	mark	L181
+	str	67
+	line	911
+	colm	39
+	synt	any
+	esusp
+	goto	L182
+lab L181
+	mark	L183
+	str	68
+	line	911
+	colm	51
+	synt	any
+	esusp
+	goto	L184
+lab L183
+	str	69
+lab L184
+lab L182
+lab L180
+lab L178
+	line	911
+	colm	61
+	synt	any
+	eqv
+	unmark
+	pop
+	pnull
+	var	4
+	line	912
+	colm	22
+	synt	any
+	field	handle_redo
+	var	8
+	line	912
+	colm	34
+	synt	any
+	invoke	1
+	goto	L87
+lab L176
+	pop
+	mark	L185
+	pnull
+	var	8
+	var	34
+	var	8
+	line	914
+	colm	30
+	synt	any
+	invoke	1
+	line	914
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L185
+	line	915
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	8
+	str	70
+	line	915
+	colm	24
+	synt	any
+	lexne
+	pop
+	pnull
+	var	8
+	str	71
+	line	916
+	colm	24
+	synt	any
+	lexne
+	unmark
+	pnull
+	var	4
+	line	917
+	colm	28
+	synt	any
+	field	handle_default
+	var	8
+	line	917
+	colm	43
+	synt	any
+	invoke	1
+	line	915
+	colm	19
+	synt	endif
+lab L87
+	line	886
+	colm	13
+	synt	endcase
+lab L86
+	line	883
+	colm	15
+	synt	endifelse
+lab L78
+	line	881
+	colm	15
+	synt	endifelse
+lab L70
+	line	879
+	colm	15
+	synt	endifelse
+lab L62
+	line	877
+	colm	10
+	synt	endifelse
+	line	856
+	colm	10
+	synt	endif
+	line	795
+	colm	7
+	synt	endif
+	line	794
+	colm	4
+	synt	endif
+	unmark
+lab L5
+	pnull
+	line	926
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_CETL_Received_Accept
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,pos
+	local	3,000020,owner
+	local	4,000020,oldwindow
+	local	5,000020,file_name
+	local	6,000020,ide_prop
+	local	7,000020,slave
+	local	8,000020,user_me
+	local	9,000020,found
+	local	10,000020,idesession_node
+	local	11,000020,fsize
+	local	12,000020,lnum
+	local	13,000020,cnum
+	local	14,000020,lst_ln
+	local	15,000000,tab
+	local	16,000000,find
+	local	17,000000,move
+	local	18,000000,integer
+	local	19,000000,sdp_flag
+	local	20,000000,myide_sessions
+	local	21,000000,view
+	local	22,000000,world
+	con	0,010000,1,040
+	con	1,002000,1,1
+	con	2,002000,1,0
+	con	3,010000,13,111,104,105,040,123,145,163,163,151,157,156,163,050
+	con	4,010000,1,051
+	con	5,010000,2,157,156
+	declend
+	line	932
+	colm	11
+	synt	any
+	mark	L1
+	var	1
+	line	936
+	colm	12
+	synt	any
+	bscan
+	mark	L2
+	pnull
+	var	11
+	var	15
+	var	16
+	str	0
+	line	937
+	colm	27
+	synt	any
+	invoke	1
+	line	937
+	colm	22
+	synt	any
+	invoke	1
+	line	937
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	17
+	int	1
+	line	938
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	3
+	var	15
+	var	16
+	str	0
+	line	939
+	colm	27
+	synt	any
+	invoke	1
+	line	939
+	colm	22
+	synt	any
+	invoke	1
+	line	939
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	var	17
+	int	1
+	line	940
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	941
+	colm	14
+	synt	any
+	field	index_counter
+	var	18
+	var	15
+	var	16
+	str	0
+	line	941
+	colm	46
+	synt	any
+	invoke	1
+	line	941
+	colm	41
+	synt	any
+	invoke	1
+	line	941
+	colm	37
+	synt	any
+	invoke	1
+	line	941
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	var	17
+	int	1
+	line	942
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	5
+	var	15
+	var	16
+	str	0
+	line	943
+	colm	31
+	synt	any
+	invoke	1
+	line	943
+	colm	26
+	synt	any
+	invoke	1
+	line	943
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	var	17
+	int	1
+	line	944
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	7
+	var	15
+	var	16
+	str	0
+	line	945
+	colm	27
+	synt	any
+	invoke	1
+	line	945
+	colm	22
+	synt	any
+	invoke	1
+	line	945
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	var	17
+	int	1
+	line	946
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	19
+	var	15
+	var	16
+	str	0
+	line	947
+	colm	30
+	synt	any
+	invoke	1
+	line	947
+	colm	25
+	synt	any
+	invoke	1
+	line	947
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	var	17
+	int	1
+	line	948
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	14
+	var	18
+	var	15
+	var	16
+	str	0
+	line	949
+	colm	36
+	synt	any
+	invoke	1
+	line	949
+	colm	31
+	synt	any
+	invoke	1
+	line	949
+	colm	27
+	synt	any
+	invoke	1
+	line	949
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	var	17
+	int	1
+	line	950
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	12
+	var	18
+	var	15
+	var	16
+	str	0
+	line	951
+	colm	34
+	synt	any
+	invoke	1
+	line	951
+	colm	29
+	synt	any
+	invoke	1
+	line	951
+	colm	25
+	synt	any
+	invoke	1
+	line	951
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	var	17
+	int	1
+	line	952
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	pnull
+	var	13
+	var	18
+	var	15
+	int	2
+	line	953
+	colm	29
+	synt	any
+	invoke	1
+	line	953
+	colm	25
+	synt	any
+	invoke	1
+	line	953
+	colm	15
+	synt	any
+	asgn
+	line	936
+	colm	12
+	synt	any
+	escan
+	unmark
+lab L1
+	mark	L18
+	pnull
+	var	20
+	dup
+	int	1
+	line	955
+	colm	22
+	synt	any
+	plus
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	10
+	pnull
+	pnull
+	var	21
+	line	956
+	colm	30
+	synt	any
+	field	ide_session_tree
+	line	956
+	colm	47
+	synt	any
+	field	get_root_node
+	line	956
+	colm	61
+	synt	any
+	invoke	0
+	line	956
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	10
+	line	957
+	colm	22
+	synt	any
+	field	label
+	pnull
+	pnull
+	str	3
+	var	20
+	line	957
+	colm	47
+	synt	any
+	cat
+	str	4
+	line	957
+	colm	63
+	synt	any
+	cat
+	line	957
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	var	8
+	pnull
+	pnull
+	var	22
+	line	959
+	colm	23
+	synt	any
+	field	nsh_dialog
+	line	959
+	colm	34
+	synt	any
+	field	user_me
+	line	959
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	pnull
+	var	9
+	pnull
+	var	0
+	line	960
+	colm	20
+	synt	any
+	field	Create_New_IDESession
+	pnull
+	var	0
+	line	960
+	colm	47
+	synt	any
+	field	index_counter
+	var	3
+	var	7
+	pnull
+	var	0
+	line	960
+	colm	78
+	synt	any
+	field	Ownertab
+	pnull
+	var	0
+	line	961
+	colm	40
+	synt	any
+	field	OwnerMsg
+	var	5
+	str	5
+	var	8
+	line	960
+	colm	42
+	synt	any
+	invoke	8
+	line	960
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	var	22
+	line	962
+	colm	12
+	synt	any
+	field	nsh_dialog
+	line	962
+	colm	23
+	synt	any
+	field	Create_Session_Tree
+	var	3
+	var	7
+	var	8
+	var	5
+	var	9
+	line	962
+	colm	43
+	synt	any
+	invoke	5
+	unmark
+lab L23
+	pnull
+	line	963
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_CETL_SetFileContents
+	local	0,001000,self
+	local	1,001000,FileBuffer
+	local	2,000020,L
+	local	3,000020,line_contents
+	local	4,000000,ide_file_contents
+	local	5,000000,pos
+	local	6,000000,tab
+	local	7,000000,find
+	local	8,000000,put
+	local	9,000000,move
+	con	0,010000,0
+	con	1,002000,1,0
+	con	2,010000,5,130,044,176,044,130
+	con	3,002000,1,5
+	declend
+	line	968
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	line	969
+	colm	19
+	synt	any
+	llist	0
+	line	969
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	str	0
+	line	969
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	4
+	pnull
+	line	971
+	colm	29
+	synt	any
+	llist	0
+	line	971
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	var	1
+	line	972
+	colm	19
+	synt	any
+	bscan
+lab L5
+	line	973
+	colm	11
+	synt	while
+	mark0
+	mark	L8
+	var	5
+	int	1
+	line	973
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+	efail
+lab L8
+	pnull
+	unmark
+	mark	L5
+	mark	L9
+	pnull
+	var	3
+	var	6
+	var	7
+	str	2
+	line	974
+	colm	39
+	synt	any
+	invoke	1
+	line	974
+	colm	34
+	synt	any
+	invoke	1
+	line	974
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	var	8
+	var	2
+	var	3
+	line	975
+	colm	17
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	var	9
+	int	3
+	line	976
+	colm	18
+	synt	any
+	invoke	1
+lab L6
+	unmark
+	goto	L5
+lab L7
+	line	973
+	colm	11
+	synt	endwhile
+	line	972
+	colm	19
+	synt	any
+	escan
+	unmark
+lab L4
+	mark	L11
+	pnull
+	var	4
+	var	2
+	line	979
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L11
+	pnull
+	line	980
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_CETL_SetMsgBoxContents
+	local	0,001000,self
+	local	1,001000,MsgBoxBuffer
+	local	2,001000,flag
+	local	3,000020,M
+	local	4,000020,i
+	local	5,000020,pos1
+	local	6,000020,pos2
+	local	7,000020,line_contents
+	local	8,000020,pos2str
+	local	9,000000,ide_msgbox_contents
+	local	10,000000,find
+	local	11,000000,put
+	con	0,002000,1,0
+	con	1,002000,1,1
+	con	2,010000,0
+	con	3,010000,1,036
+	con	4,010000,2,136,156
+	con	5,002000,2,31
+	con	6,002000,1,2
+	declend
+	line	983
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	pnull
+	line	984
+	colm	19
+	synt	any
+	llist	0
+	line	984
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	int	0
+	line	984
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	5
+	int	0
+	line	984
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	6
+	int	1
+	line	984
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	7
+	str	2
+	line	984
+	colm	64
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	9
+	pnull
+	line	986
+	colm	31
+	synt	any
+	llist	0
+	line	986
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	987
+	colm	8
+	synt	ifelse
+	mark	L8
+	pnull
+	var	2
+	int	0
+	line	987
+	colm	16
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	8
+	str	3
+	line	987
+	colm	33
+	synt	any
+	asgn
+	goto	L9
+lab L8
+	pnull
+	var	8
+	str	4
+	line	988
+	colm	21
+	synt	any
+	asgn
+lab L9
+	line	987
+	colm	8
+	synt	endifelse
+	unmark
+lab L7
+	mark	L10
+	pnull
+	var	5
+	var	10
+	pnull
+	line	989
+	colm	21
+	synt	any
+	keywd	ascii
+	int	5
+	line	989
+	colm	27
+	synt	any
+	subsc
+	var	1
+	line	989
+	colm	20
+	synt	any
+	invoke	2
+	line	989
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	991
+	colm	8
+	synt	every
+	mark0
+	pnull
+	var	6
+	var	10
+	var	8
+	var	1
+	line	991
+	colm	25
+	synt	any
+	invoke	2
+	line	991
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L14
+	line	992
+	colm	11
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	0
+	line	992
+	colm	19
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	5
+	dup
+	int	1
+	line	992
+	colm	33
+	synt	any
+	minus
+	asgn
+	line	992
+	colm	11
+	synt	endif
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	7
+	pnull
+	var	1
+	pnull
+	var	5
+	int	6
+	line	993
+	colm	45
+	synt	any
+	plus
+	var	6
+	line	993
+	colm	47
+	synt	any
+	synt	any
+	sect
+	line	993
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	line	994
+	colm	11
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	0
+	line	994
+	colm	15
+	synt	any
+	numgt
+	unmark
+	var	11
+	var	3
+	var	7
+	line	994
+	colm	26
+	synt	any
+	invoke	2
+	line	994
+	colm	11
+	synt	endif
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	5
+	var	6
+	line	995
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L17
+	pnull
+	var	4
+	dup
+	int	1
+	line	996
+	colm	13
+	synt	any
+	plus
+	asgn
+	unmark
+lab L12
+	efail
+lab L13
+	line	991
+	colm	8
+	synt	endevery
+	unmark
+lab L11
+	mark	L18
+	pnull
+	var	9
+	var	3
+	line	998
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L18
+	pnull
+	line	999
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession_initially
+	local	0,001000,self
+	local	1,000000,table
+	con	0,002000,1,0
+	con	1,010000,4,116,157,156,145
+	declend
+	line	1001
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	1002
+	colm	8
+	synt	any
+	field	counter
+	pnull
+	pnull
+	var	0
+	line	1002
+	colm	22
+	synt	any
+	field	IDECounter
+	pnull
+	pnull
+	var	0
+	line	1002
+	colm	39
+	synt	any
+	field	index_counter
+	pnull
+	pnull
+	var	0
+	line	1002
+	colm	59
+	synt	any
+	field	shift_pressed
+	pnull
+	pnull
+	var	0
+	line	1002
+	colm	79
+	synt	any
+	field	Table_Index
+	int	0
+	line	1002
+	colm	91
+	synt	any
+	asgn
+	line	1002
+	colm	73
+	synt	any
+	asgn
+	line	1002
+	colm	53
+	synt	any
+	asgn
+	line	1002
+	colm	33
+	synt	any
+	asgn
+	line	1002
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	1003
+	colm	8
+	synt	any
+	field	ide_filename
+	str	1
+	line	1003
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	1004
+	colm	8
+	synt	any
+	field	Tidesession
+	var	1
+	line	1004
+	colm	27
+	synt	any
+	invoke	0
+	line	1004
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	mark	L5
+	pnull
+	line	1005
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	1006
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESession
+	local	0,000020,self
+	local	1,000020,clone
+	local	2,000000,IDESession__oprec
+	local	3,000000,IDESessioninitialize
+	local	4,000000,IDESession__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	2
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	3
+	line	8
+	colm	50
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	0
+	var	4
+	line	10
+	colm	29
+	synt	any
+	keywd	null
+	var	2
+	line	10
+	colm	28
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	0
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	0
+	pnull
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	29
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	31
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	0
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc IDESessioninitialize
+	local	0,000000,IDESession__oprec
+	local	1,000000,IDESession__methods
+	local	2,000000,IDESession_White_Background_And_Unlock
+	local	3,000000,IDESession_Swap_User_Owner
+	local	4,000000,IDESession_Transfer_IDE_Lock
+	local	5,000000,IDESession_Unlock_IDE
+	local	6,000000,IDESession_Lock_IDE
+	local	7,000000,IDESession_Change_IDE_Owner
+	local	8,000000,IDESession_Swap
+	local	9,000000,IDESession_Remove_User_From_List
+	local	10,000000,IDESession_Delete_Tidesession_Entry
+	local	11,000000,IDESession_Delete_File_IDESession
+	local	12,000000,IDESession_Closed_File_Delete_IDE_Session
+	local	13,000000,IDESession_Delete_User_IDESession
+	local	14,000000,IDESession_Add_User_To_IDE_Session
+	local	15,000000,IDESession_Create_New_IDESession
+	local	16,000000,IDESession_Check_Owner
+	local	17,000000,IDESession_Check_Session
+	local	18,000000,IDESession_Invite_to_IDE
+	local	19,000000,IDESession_Receive_CETL_Event
+	local	20,000000,IDESession_CETL_Received_Accept
+	local	21,000000,IDESession_CETL_SetFileContents
+	local	22,000000,IDESession_CETL_SetMsgBoxContents
+	local	23,000000,IDESession_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	line	17
+	colm	51
+	synt	any
+	invoke	22
+	line	17
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

@@ -1,0 +1,332 @@
+Room {
+name JEB328
+x 31.6
+y 16.4
+z 11.3
+w 10.67
+h 3.5
+l 6.929
+texture jeb328wall.jpg
+floor Wall {
+texture floor.gif
+}
+ceiling Wall {
+texture jeb328ceiling.gif
+}
+decorations [
+   Wall { texture jeb328clock.gif
+          coords [42.2,19.2,12.3,
+		  42.2,19.7,12.3,
+		  42.2,19.7,12.6,
+		  42.2,19.2,12.6]
+      }
+   Wall { texture jeb328whiteboard3.gif
+          coords [42.2,17.4,11.8,
+		  42.2,19.1,11.8,
+		  42.2,19.1,17.5,
+		  42.2,17.4,17.5]
+      }
+   Wall { texture jeb328switch2.gif
+          coords [42.25,17.9,11.4,
+		  42.25,18.3,11.4,
+		  42.25,18.3,11.7,
+		  42.25,17.9,11.7]
+      }
+
+   Wall { texture jeb328switch.gif
+          coords [38.1,17.7,18.21,
+		  38.1,17.9,18.21,
+		  38.4,17.9,18.21,
+		  38.4,17.7,18.21]
+      }
+
+   Wall { texture jeb328bulletin.gif
+          coords [36.6,17.5,18.21,
+		  36.6,18.6,18.21,
+		  38.0,18.6,18.21,
+		  38.0,17.5,18.21]
+      }
+
+   Wall { texture jeb328bulletin2.gif
+          coords [39.5,17.5,18.21,
+		  39.5,18.6,18.21,
+		  40.9,18.6,18.21,
+		  40.9,17.5,18.21]
+      }
+   Wall { texture jeb328Windows.gif
+          coords [36.5,18.2,11.31,
+		  36.5,19.6,11.31,
+		  39.9,19.6,11.31,
+		  39.9,18.2,11.31]
+      }
+   Wall { texture jeb328Windows.gif
+          coords [31.9,18.2,11.31,
+		  31.9,19.6,11.31,
+		  35.9,19.6,11.31,
+		  35.9,18.2,11.31]
+      }
+   Wall { texture jeb328radiator.gif
+          coords [32.5,16.4,11.31,
+		  32.5,17.6,11.31,
+		  35.2,17.6,11.31,
+		  35.2,16.4,11.31]
+      }  
+   Wall { texture jeb328radiator.gif
+          coords [37.1,16.4,11.31,
+		  37.1,17.6,11.31,
+		  39.2,17.6,11.31,
+		  39.2,16.4,11.31]
+      }
+]
+obstacles [
+#    Box {
+#      Wall {coords [29.55,12.3,11.3, 29.55,15.8,11.3, 29.55,15.8,11.5, 29.55,12.3,11.5]}
+#      Wall {coords [29.55,12.3,11.5, 29.55,15.8,11.5, 29.75,15.8,11.5, 29.75,12.3,11.5]}
+#       }
+   Table {
+         coords [39.75,16.4,12.3]
+   	 position 90
+	 color light grey
+	 type  lab
+       }
+   Chair {
+         coords [32.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [32.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [32.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [32.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [33.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [33.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [33.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [33.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [34.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [34.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [34.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [34.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [35.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [35.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [35.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [35.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [36.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [36.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [36.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [36.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [37.75,16.4,11.9]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [37.75,16.4,13.7]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [37.75,16.4,15.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+   Chair {
+         coords [37.75,16.4,17.6]
+   	 position 90
+	 color light yellow
+	 type desk
+       }
+]
+}
+
+#Room {
+#name columnBackNorth 328
+#x 31.6
+#y 16.4
+#z 11.3
+#w 0.2
+#h 3.5
+#l 0.2
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name columnBackSouth 328
+#x 31.6
+#y 16.4
+#z 18.0
+#w 0.2
+#h 3.5
+#l 0.2
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name columnMiddleNorth 328
+#x 35.9
+#y 16.4
+#z 11.3
+#w 0.6
+#h 3.5
+#l 0.3
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name columnMiddleSouth 328
+#x 35.9
+#y 16.4
+#z 18.0
+#w 0.6
+#h 3.5
+#l 0.3
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name columnFrontNorth 328
+#x 41.0
+#y 16.4
+#z 11.3
+#w 1.2
+#h 3.5
+#l 0.1
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name columnFrontSouth 328
+#x 41.0
+#y 16.4
+#z 18.2
+#w 1.2
+#h 3.5
+#l 0.1
+#texture jeb328wall.gif
+#}
+#
+#Room {
+#name stage 328
+#x 40.2
+#y 16.4
+#z 11.3
+#w 2.0
+#h 0.3
+#l 6.96
+#texture floor.gif
+#floor Wall {
+#texture floor.gif
+#}
+#ceiling Wall {
+#texture floor.gif
+#}
+#}
+
+Door {
+id 328
+x 38.6
+y 16.4
+z 18.23
+w 0.8
+height 2.2
+collide_in 1.2
+plane 3
+rooms [JEB328 , FLOOR3COR]
+}

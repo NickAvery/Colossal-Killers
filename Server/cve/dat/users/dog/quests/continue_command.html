@@ -1,0 +1,66 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Continue Command
+<dt> Summary
+<dd> Learn the basics of GDB's breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about GDB's break command.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 14; Linux: 1
+<dt> Reading
+<dd> 
+<p>Continuing means resuming program execution until your program completes 
+normally. Your program may stop even sooner, due to a breakpoint
+
+<dd> 
+<p>continue [ignore-count]
+<p>c [ignore-count]
+<p>fg [ignore-count]
+<p>
+Resume program execution, at the address where your program last stopped; any 
+breakpoints set at that address are bypassed. The optional argument ignore-count 
+allows you to specify a further number of times to ignore a breakpoint at this 
+location; its effect is like that of ignore (see section Break Conditions).
+<p>
+The argument ignore-count is meaningful only when your program stopped due to a 
+breakpoint. At other times, the argument to continue is ignored.
+<p>
+The synonyms c and fg (for foreground, as the debugged program is deemed to be 
+the foreground program) are provided purely for convenience, and have exactly 
+the same behavior as continue.
+<p>
+A typical technique for using stepping is to set a breakpoint at the beginning 
+of the function or the section of your program where a problem is believed to 
+lie, run your program until it stops at that breakpoint, and then examine the 
+variables that are interesting.
+
+<dt> Quiz (4/4)
+<dd>
+<dl>
+<dt>What does the continue command do? (Multiple Choice)
+<dd> resumes the execution of the program (TRUE)
+<dd> exits GDB
+<dd> re-run the program from the beginning
+<dd> none of the above;
+<dt>Does the continue command work without arguments? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Does the continue command has any synonyms? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>What are the synonyms of the continue command? (Multiple Choice)
+<dd> c
+<dd> cont
+<dd> fg
+<dd> all of the above (TRUE)
+</dl>
+</dl>

@@ -1,0 +1,16 @@
+procedure main()
+   # create a list containing various shape instances
+   scribble := [Rectangle(10, 20, 5, 6), Circle(15, 25, 8)];
+
+   # iterate through the list and handle shapes polymorphically
+   every each := !scribble do {
+      each.draw();
+      each.rMoveTo(100, 100);
+      each.draw();
+   }
+
+   # access a rectangle specific function
+   rect := Rectangle(0, 0, 15, 15);
+   rect.setWidth(30);
+   rect.draw();
+end

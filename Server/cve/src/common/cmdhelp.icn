@@ -1,0 +1,84 @@
+$include "defaults.icn"
+
+class cmdHelper(helpfile, logger, Tsyntax, Tdescription)
+
+   method loadHelpFile(this_file)
+      local fd, file_contents, cmd, meat, syntax, description, field, element
+
+      if not (fd := open(this_file)) then {
+	 logger.logit("loadHelpFile(): failed to open help file " ||
+		      image(this_file))
+	 fail
+	 }
+
+      file_contents := ""
+      while (file_contents ||:= read(fd))
+      close(fd)
+
+      file_contents ? {
+	 while cmd := trim(tab(find("{")), ' ', 0) do {
+            move(1)
+            meat := tab(find("}")) | { 
+               logger.logit("loadHelpFile(): failed parsing; parse error }") 
+               fail
+            }
+            meat ? {
+               while (field := trim(tab(find("(")), ' ', 0)) do {
+                  move(1)
+                  case field of {
+                     "syntax": {
+                        element := trim(tab(find(")")), ' ', 0)
+                        move(1)
+                        Tsyntax[cmd] := element
+                     }
+                     "description": {
+                        element := trim(tab(find(")")), ' ', 0)
+                        move(1)
+                        Tdescription[cmd] := element
+                     }
+                     default: {
+                        logger.logit("loadHelpFile(): failed parsing; _
+                                     unknown field " || field)
+                        fail
+                     }
+                  }
+               }
+               move(1)
+               write (tab(find("}")))         
+            }
+            move(1)
+	}
+
+	 if &pos >= *file_contents then {
+	    logger.logit("loadHelpFile(): help file loaded successfully" ||
+			 " (" || this_file || ") " || *key(Tsyntax) ||
+			 " commands have been registered")
+	    return
+            }
+	 else {
+	    logger.logit("loadHelpFile(): failed parsing; parse error {")
+	    fail
+            }
+      }
+   end
+
+   method getSyntax(cmd)
+      if member(Tsyntax, cmd) then
+         return Tsyntax[cmd]
+      else
+         return "no syntax assistance is associated with command: " || cmd
+   end
+
+   method getDescription(cmd)
+      if member(Tdescription, cmd) then
+         return Tdescription[cmd]
+      else
+         return "no further description is associated with command: " || cmd
+   end
+
+initially(logHandler)
+   helpfile := HELP_FILE
+   logger := logHandler
+   Tsyntax := Tdescription := table()
+   loadHelpFile(helpfile)
+end

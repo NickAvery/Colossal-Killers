@@ -1,0 +1,14 @@
+say {
+syntax ( \say Hello Mollie! )
+description ( this command broadcasts messages to all users )
+}
+
+tell {
+syntax ( \tell kosta Hello Mollie! )
+description ( this command directs the given message to the specificed user )
+}
+
+quit {
+syntax ( \quit )
+description ( logs the current user off and exits the virtual environment )
+}

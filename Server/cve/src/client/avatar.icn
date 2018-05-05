@@ -1,0 +1,2115 @@
+import gui
+
+import graphics3d
+
+$include "../common/defaults.icn"
+$include "guih.icn"
+
+$define AFK_TIME 30
+
+#
+# class: avatar
+#
+# a super class for every avatar model
+#
+class avatar()
+   abstract method render()
+   abstract method derender()
+   abstract method actions(action_name, option)
+   abstract method move(x,y,z,angle)
+   abstract method movePartComplex(part_name,x,y,z)
+   abstract method parser(avatar_name)
+end # class avatar
+
+global Objects
+global currObjsID
+
+procedure texture_or_color(tc)
+   if /tc then fail
+   if map(tc[-4:0]) == ".gif" then {
+      WAttrib("texmode=on")
+      if not (Texture(tc)) then {
+	 WAttrib("texmode=off")
+	 Fg("white")
+	 }
+      }
+      else {
+	 WAttrib("texmode=off")
+	 Fg(tc)
+      }
+end
+
+#
+# Class: avatron
+# This is a class that renders a humanoid avatar
+# NOT VALID ANY MORE! -> The ( X, y, origz) is located at the intersection
+# of the neck and body.
+#
+class avatron : avatar ( X,Y,Z,              # avatar's coordinates
+   angle,
+   sex, ro,mv,h,b,c,la,ra,lg,rg,face,
+   xsize,ysize,zsize,height,color,
+   face_path,
+   a_name,
+   scolor,   #   Shirt color
+   pcolor,   #   Pants color
+   shcolor,  #   Shoes color
+   hdchoice,
+   ps,
+   moveuid,
+   moveuidbody,
+
+   last_active_time,
+   activity_status,		#  "Online", "Offline" , "Away", "Busy"
+   afk,
+
+   isNPC,
+   NPCQuestWS,
+   ROThalo,
+   questWS,
+   isHavingQuest,
+   npchaloT,
+
+   # from the OLD avatar class
+   uid,
+
+   lx, lz,                 #  in view mode 2
+   fint,  rarm,  larm,
+   avatarWS,
+   grouping,
+   render_set,
+   isRendered,
+   vertical_ptr,horizontal_ptr, # angles for pointing
+   isPointing,
+   object,
+   chair,
+   sittingDown,
+   body_part,
+   currObjID,
+   model3d,
+   model3d_filename
+)
+
+   method initialize()
+      face_path := world.avatar_path
+      parser( world.avatar_path || uid || PS || uid || ".avt")
+      if \model3d_filename then
+         load3dmodel()
+      setup( X, Y, Z, angle)
+   end
+
+   method load3dmodel()
+   local fullfilename, mdl3d, i , model3d_path
+      model3d_path := MODEL3D_PATH
+
+      if  exists(world.avatar_path || uid || PS || model3d_filename) then
+         fullfilename := world.avatar_path || uid || PS || model3d_filename
+      else if exists( model3d_path || model3d_filename) then {
+         fullfilename := model3d_path ||model3d_filename
+         }
+      else if exists( model3d_path || "warrior.x") then {
+         write(&errout, "3d model file was not found. _
+	       A standard model will be loaded instead ")
+         fullfilename := model3d_path || "warrior.x"
+         }
+      else{
+         writes(&errout, "3d model file is not available in")
+         write(&errout, image(world.avatar_path || uid || PS), " or ",
+			 image(model3d_path))
+	 if model3d_filename ~=== "warrior.x" then
+	    write(&errout, "No ", image(model3d_filename),
+		  ", no warrior.x default either")
+	 else
+	    write(&errout, "No warrior.x default model")
+         fail
+         }
+
+      model3d := SkinnedModelObject3D(a_name, "bone_mesh_final")
+      if model3d.load(fullfilename, "walk") then{
+
+         }
+      else{
+         write("error loading 3d model for avatar:",a_name,
+	       " filename:", image(fullfilename))
+         model3d := &null
+         fail
+         }
+         #model3d.set_size_to(3.4)
+         #model3d.normalize(2.5)
+      return
+   end
+
+   method update_active_time(s)
+      /s := activity_status
+      last_active_time := &now
+      if is_afk() then{
+	 #activity_status := s
+	 afk:=&null
+	 session.Write("\\back " || activity_status )
+	 view.all_users()
+	 }
+   end
+
+   method is_afk()
+      if \afk then return
+   end
+
+   method is_not_afk()
+      if /afk then return
+   end
+
+   method set_afk(t)
+      /t:=30
+      if is_not_afk() then{
+	 afk := 1
+	 last_active_time := &now-t
+	 view.all_users()
+	 }
+   end
+
+   method is_status(s)
+      return activity_status==s
+   end
+
+   method is_status_not(s)
+      return activity_status~==s
+   end
+
+   method set_activity_status(act )
+      /act := activity_status
+      if is_afk() then{
+	 afk := &null
+	 activity_status := act
+	 view.all_users()
+	 }
+      else if activity_status~==act then{
+	 activity_status := act
+	 view.all_users()
+	 }
+
+      if a_name==world.userId then
+	 session.Write("\\back " || activity_status)
+   end
+
+   method get_activity_status()
+      if is_afk() & is_status("Online") then
+	 return "Away"
+      else
+	 return activity_status
+   end
+
+   method report_activity_status()
+      local t
+      t := &now
+      if (t-last_active_time > 30) then{
+	 set_afk()
+	 session.Write("\\afk " || activity_status)
+	 }
+      else
+	 session.Write("\\back " || activity_status)
+   end
+
+   method derender()
+      local len, i, item, win3d, dispList
+
+     # If room is not rendered then return
+     #Use WSection function to skip this list from rendering
+
+     if \avatarWS then
+        avatarWS.skip := 1
+     #if (\h.headWS) then {
+     # 	h.headWS.skip := b.bodyWS.skip := la.armWS.skip := 1
+     # 	ra.armWS.skip:= lg.legWS.skip := rg.legWS.skip := 1
+     # }
+     # If room is not rendered then return
+     if /(isRendered) then return
+     isRendered := &null
+     world.NeedsRefresh()
+     return
+   end # method derender()
+
+   #
+   # flush pending net output
+   #
+   method flushnet()
+      if session.isUp() then {
+         session.Write(grouping)
+         grouping := list()
+	 }
+   end
+   #
+   #  move_part(Name, Dir, Angle)
+   #  Purpose: to move a particular body part
+   #  Parameters: Name - name of the part to be moved
+   #              Dir - direction in which it is to move
+   #              Angle - angle for which it is to be rotated
+   #
+   method move_part(name, dir, ang)
+      case name of {
+	 "right_arm" : ra.setAngle(ang, dir)
+	 "left_arm" :  la.setAngle(ang, dir)
+	 "right_leg" : rg.setAngle(ang, dir)
+	 "left_leg" :  lg.setAngle(ang, dir)
+         }
+      world.NeedsRefresh()
+      if (self === world.cam.avatar) & session.isUp() then {
+	 put(grouping, moveuid || "part " ||  name || " " || dir || " " || ang)
+         }
+   end
+   #
+   #  move_part_complex(name,x,z)
+   #  Purpose: to move a body part in x,z direction freely
+   #           USED for pointing
+   #  Parameters: name - name of the body part to be moved
+   #              x - angle along the x-axis
+   #              z - angle along the z-axis
+   #
+   method move_part_complex(name,x,y,z)
+      local msg
+
+      case name of {
+         "right_arm" : ra.setAngleComplex(x,y,z)
+         "head"      : h.setAngleComplex(x,y,z)
+         "left_arm"  : la.setAngleComplex(x,y,z)
+         "right_leg" : rg.setAngleComplex(x,y,z)
+	 "left_leg"  : lg.setAngleComplex(x,y,z)
+         }
+      world.NeedsRefresh()
+      if (self === world.cam.avatar) & session.isUp() then {
+	 msg := moveuid || "part2 " ||  name || " " || x || " " || y || " " ||z
+	 put(grouping, msg)
+	 }
+   end
+
+   #
+   #  move(X,Y,Z,angle)
+   #  Purpose: to move the avatar
+   #  Parameters: [X,Y,Z] - current x, y, z coordinates
+   #              Angle - angle in which the avatar should be turned
+   #
+   method move(posx,posy,posz,ang)
+      local degree
+
+      X := posx
+      Y := posy
+      Z := posz
+      angle := ang
+
+      if self === world.cam.avatar then {
+	 if world.cam.view_mode > 1 then {
+	    cam_follows() # avatar==cam
+	    }
+	 broadcast_move()
+         }
+
+      world.NeedsRefresh()
+
+      if /ro then fail
+      if \model3d then {
+          model3d.calc_animation()
+	  if model3d.get_current_animation()~=="Walk" then return
+	  #model3d.update()
+	}
+
+      degree := rtod(angle) # use internal fn for conversion
+
+      mv.x := X
+      mv.y := Y + 2*height
+      mv.z := Z
+      ro.angle:=degree    # update the angle of rotation matrix (e.g. ro)
+
+      if *object > 0 then
+	 object[currObjID].moveAlongAvatar(mv.x,posy,mv.z,degree)
+     #  the view - is too jerky - this fixes it
+       if world.cam.view_mode = 2 then     #  over shoulder
+         world.NeedsRefresh()
+
+   end
+
+   #
+   # sets avatar talking state to true
+   #
+   method isTalking()
+      h.isTalking()
+      if (self === world.cam.avatar) & session.isUp() then {
+	 put(grouping, moveuid || "mouth")
+	 }
+   end
+
+   #
+   # sets avatar talking state to  state="ON" or "OFF"
+   #
+   method SetTalkState(state)
+      h.SetTalkState(state)
+      if (self === world.cam.avatar) & session.isUp() then {
+	 put(grouping, moveuid || "mouth")
+	 }
+   end
+
+   #
+   #  setup()
+   #  Purpose: to set up each part of avatar by instantiating
+   #           the body part
+   #
+   method setup(x,y,z,ang)
+      X := x; Y := y; Z := z; angle := ang
+      h := head()
+      b := body()
+      la := arm()
+      ra := arm()
+      lg := leg()
+      rg := leg()
+   end
+   #
+   #  render()
+   #  Purpose: to render graphics of each part thus a whole
+   #           avatar
+   #
+   method render()
+     local oldwin
+
+      if \isRendered then {
+	 # could check mv and ro to see if they need updating
+	 return
+	 }
+      isRendered := 1
+      oldwin := &window
+      &window := !gui::dispatcher.subwins
+      actual_render()
+      &window := oldwin
+   end
+
+   method update()
+      if \ROThalo then{
+         ROThalo.angle +:= 4.0
+         world.NeedsRefresh()
+      }
+   end
+
+   #
+   # actual_render() depends on &window being set to the subwindow
+   #
+   method actual_render()
+      local S, select_id
+      select_id := select3D.selectable("avatar:"||a_name, "on3d_avatar",
+                                       select3D.LEFT_CLICK, self)
+
+      #select3D.add_action(select_id, "on3d_avatar",
+      #                    select3D.RIGHT_CLICK, self)
+      select3D.add_action(select_id, "on3d_avatar_right",
+                          select3D.RIGHT_CLICK, self)
+
+      avatarWS := WSection(select_id)
+      PushMatrix()
+      height := 0.5
+
+      mv := Translate(X , Y + 2*height , Z )
+      ro := Rotate(rtod(angle),0,1,0)
+      Scale(xsize, height , zsize)
+
+      renderHalo()
+
+      if \model3d then {
+         Translate(0.0, -2.0, 0.0)
+         Scale(0.03, 0.04, 0.03)
+	 model3d.render()
+         model3d.pick_animation("Walk")
+         every 1 to 2 do model3d.animationc.faster()
+         #model3d.start_anim_thread()
+         #Scale(1.0/12.0, 1.0/12.0, 1.0/12.0)
+         Scale(0.01, 0.01, 0.01)
+         }
+
+      h.render(face_path || uid || PS || face, color, hdchoice)
+      b.render(a_name, scolor, sex, pcolor,
+	       "dat" || PS || "images" || PS || "letters", ps)
+      la.render("l", color, scolor)
+      ra.render("r", color, scolor)
+      lg.render("l", pcolor, shcolor)
+      rg.render("r", pcolor, shcolor)
+      PopMatrix()
+      WAttrib("texmode=on")
+      WSection()
+   end
+
+method showQuestHalo()
+   isHavingQuest := 1
+   \ro | fail
+   if /isNPC then
+      \questWS.skip := 0
+   else
+      \NPCQuestWS.skip := 0
+end
+
+####################################################################
+#
+#	mouse event handling methods on the 3D Avatar
+#
+###################################################################
+
+#
+# 3D selection event handling, click on avatar
+#
+method on3d_avatar()
+   Event()
+   world.nsh_dialog.write_to_chat_win("This is: ", image(a_name) )
+   #on3d_avatar_right()
+end
+
+method on3d_avatar_right()
+   local m, s, t, lbl_img
+   if \pop3D then {
+      if \(pop3D.is_open) then pop3D.dispose()
+         pop3D := &null
+      }
+
+   if \pop3DP then {
+      if \(pop3DP.is_open) then pop3DP.dispose()
+         pop3DP := &null
+      }
+   if \pop3DF then {
+      if \(pop3DF.is_open) then pop3DP.dispose()
+         pop3DF := &null
+      }
+
+   # get the avatar projects' list
+   if \view.user_me then {
+      session.Write("\\memberProjectsList "||a_name||" "||view.user_me)
+
+      /pop3D := PopupMenu3D()
+      pop3D.is_ready := 1
+      if a_name ~== view.user_me then
+         pop3D.add_menu_item("Tell "  || a_name||" Hello", self, "on_menu_tell")
+      if is_afk() then {
+         t := &now - last_active_time
+         m := t / 60
+         s := t % 60
+         if m<10 then m := "0"||m
+         if s<10 then s := "0"||s
+         pop3D.add_separator()
+         pop3D.add_menu_item("Away for " ||m||":"||s )
+         }
+
+      pop3D.add_separator()
+      pop3D.add_menu_item("Animation ", self, "on_menu_animation")
+      pop3D.add_menu_item("History ", self, "on_menu_history")
+      pop3D.add_menu_item("Active Quests ", self, "on_menu_active_quests")
+      pop3D.add_menu_item("Completed Quests ", self, "on_menu_completed_quests")
+      lbl_img := "" #editorimgs("file")
+      if /isNPC then {
+         pop3D.add_menu_item("Project Activity", self,
+            "on_avat_project_activity",lbl_img)
+         if a_name ~== view.user_me then
+           pop3D.add_menu_item("Invite(IDE Session)", self,
+           "on_invite_to_ide_session",lbl_img)
+         if a_name === view.user_me then
+            pop3D.add_menu_item("Teleport", self, "on_teleport")
+      }
+   }
+end
+
+method on_menu_tell(e)
+   session.Write("\\interactionsIn3D "||a_name||" "||"Greeting")
+   world.nsh_dialog.write_to_chat_win("\\tell "|| a_name || " Hello " || a_name)
+   session.Write("\\tell "|| a_name || " Hello " || a_name)
+
+  if \model3d then model3d.pick_animation("Idle")
+end
+
+method on_menu_animation(e)
+  if \model3d then
+     model3d.pick_animation()
+end
+
+method on_menu_active_quests(e)
+   session.Write("\\history " || a_name || " QuestActive")
+end
+
+method on_menu_completed_quests(e)
+   session.Write("\\history " || a_name || " QuestDone")
+end
+
+method on_menu_history(e)
+   session.Write("\\history " || a_name)
+end
+
+method on_avat_project_activity(ev)
+   local u, p, plist := []
+
+   if \pop3D then {
+      if \(pop3D.is_open) then  pop3D.dispose()
+         pop3D := &null
+       }
+
+   session.Write("\\interactionsIn3D "||a_name||" "||"ViewActivity")
+
+   # get the avatar projects' list
+   if \view.user_me then
+      session.Write("\\memberProjectsList "||a_name||" "||view.user_me)
+   every p := !member_proj_set do
+      if \p ~== "" then put(plist, p)
+
+   if *plist > 0 then {
+      pop3DP := PopupMenu3D()
+      pop3DP.is_ready := 1
+
+      every u := !plist do {
+        if \u ~== "" then {
+            pop3DP.add_menu_item(u, self, "on_selected_project_activity","")
+            }
+         }
+      }
+   else
+      world.nsh_dialog.write_to_chat_win(a_name||" have no projects.")
+end
+
+method on_invite_to_ide_session()
+   local u, myflist, ti,i
+   myflist := []
+   if \pop3D then {
+      if \(pop3D.is_open) then pop3D.dispose()
+         pop3D := &null
+      }
+
+   session.Write("\\interactionsIn3D "||a_name||" "||"IDESession")
+
+   # get the avatar projects' list
+   ti := view.VCSC_tab | stop("no tab set")
+   every i := 1 to *(ti.children) do {
+      if find(".icn"|".cpp" |".c"| ".txt"|".log"|".java",
+	      (ti.children[i]).label) then {
+         put(myflist, (ti.children[i]).label)
+         }
+      }
+
+   if *myflist > 0 then {
+      pop3DP := PopupMenu3D()
+      pop3DP.is_ready := 1
+      every pop3DP.add_menu_item(!myflist, self, "on_ide_session","")
+      }
+end
+
+method on_ide_session(ev)
+   local fileName, ti, ch
+   fileName := trim((ev.get_source()).label, " ", 0)
+
+   ti := view.VCSC_tab | stop("no tab set")
+   every ch := !(ti.children) do {
+      if ch.label === fileName then
+         view.VCSC_tab.set_which_one(ch)
+      }
+   view.resize_3DView()
+   world.nsh_dialog.on_user_invitation_btn(ev, a_name, fileName, 0, 0)
+end
+
+method on_teleport(ev)
+   local u, p, plist := []
+   if \pop3D then {
+      if \(pop3D.is_open) then  pop3D.dispose()
+         pop3D := &null
+       }
+
+   session.Write("\\interactionsIn3D "||a_name||" "||"Teleport")
+
+   # get the avatar projects' list
+   if \view.user_me then
+      session.Write("\\memberProjectsList "||a_name||" "||view.user_me)
+
+   every p := !member_proj_set do
+      if \p & p ~== "" then put(plist, p)
+
+   if *plist > 0 then {
+      pop3DP := PopupMenu3D()
+      pop3DP.is_ready := 1
+
+      every u := !plist do {
+         if \u ~== "" then {
+            pop3DP.add_menu_item(u, self, "on_teleport_to_project_room","")
+            }
+         }
+      }
+   else
+      world.nsh_dialog.write_to_chat_win(a_name||" have no projects.")
+end
+
+method on_teleport_to_project_room(ev)
+   local projRoom := trim((ev.get_source()).label, " ", 0)
+
+   world.nsh_dialog.chat_input.set_contents("\\teleport " || projRoom)
+   world.nsh_dialog.on_chat(ev)
+   world.nsh_dialog.chat_input.set_contents("\\say " ||
+      "You have been teleported to room " || projRoom)
+   world.nsh_dialog.on_chat(ev)
+end
+
+method on_selected_project_activity(ev)
+   local active_projName := trim((ev.get_source()).label, " ", 0)
+
+   if \view.user_me then
+      session.Write("\\getAccessedProjFiles "||view.user_me||" "||
+		    active_projName||" "||a_name)
+end
+
+#
+# 3D selection event handling, click on npc halo
+#
+method on3d_npchalo()
+   session.Write("\\npcmsg "|| a_name || " Quest LookFor")
+end
+
+method on3d_npchalo_right()
+   on3d_avatar_right()
+   pop3D.add_separator()
+   pop3D.add_menu_item("history ", self, "on_menu_history" )
+end
+
+method on3d_dragnpchalo()
+   static oldx, oldy
+   initial {
+      oldx := npchaloT.x
+      oldy := npchaloT.y
+      }
+
+   npchaloT.x +:= (&x - oldx)/500.0
+   npchaloT.y +:= (oldy-&y)/500.0
+
+   oldx := &x
+   oldy := &y
+
+   #world.nsh_dialog.write_to_chat_win(" Dragging ", a_name )
+end
+
+#
+# 3D selection event handling, click on npc halo
+#
+method on3d_npcquest()
+      session.Write("\\npcmsg "|| a_name || " Quest GiveMe")
+      hideQuestHalo()
+end
+####################################################################
+
+method renderHalo()
+   local select_id
+      if \isNPC then{
+         WAttrib("texmode=off")
+	 select_id := select3D.selectable("npchalo", "on3d_npchalo",
+					   select3D.LEFT_CLICK, self)
+	 select3D.add_action(select_id, "on3d_dragnpchalo",
+			      select3D.LEFT_DRAG, self)
+
+	 select3D.add_action(select_id, "on3d_npchalo_right",
+					select3D.RIGHT_CLICK, self)
+
+         WSection(select_id)
+            Fg("diffuse translucent yellow")
+            PushMatrix()
+	    npchaloT := Translate(0, h.headx+h.headr*3, 0)
+            ROThalo := Rotate(0.0, 0, 1.0, 0)
+            DrawTorus(0, 0, 0, 0.1, h.headr*0.3)
+	    #Rotate(90.0, 1.0, 0.0, 0)
+	    #DrawTorus(0, 0, 0, 0.1, h.headr*0.3)
+            #DrawSphere(0, h.headx+h.headr*3, h.headr*0.6, h.headr*0.2  )
+            PopMatrix()
+         WSection()
+	 select_id := select3D.selectable("npcquest", "on3d_npcquest",
+					   select3D.LEFT_CLICK, self)
+         NPCQuestWS := WSection(select_id)
+            PushMatrix()
+               Translate(0, h.headx+h.headr*4, 0)
+               Scale(1.0, 2.0, 1.0)
+               Rotate(45.0, 1.0, 0.0, 0.0)
+               Rotate(45.0, 0.0, 0.0, 1.0)
+               #Fg("light blue")
+	       Fg("diffuse red")
+	       DrawSphere(0, 0, 0, 0.1)
+               #LLL := WindowContents()
+               #LLL[-1] := ["Noop", 496]
+            PopMatrix()
+         WSection()
+         NPCQuestWS.skip := 1
+         world.add_for_update(self)
+         }
+      else{
+         questWS := WSection("havequest")
+#          PushMatrix()
+#             Translate(0, h.headx+h.headr*5, 0)
+#             Scale(1.0, 3.0, 1.0)
+#             Rotate(45.0, 1.0, 0.0, 0.0)
+#             Rotate(45.0, 0.0, 0.0, 1.0)
+#             DrawCube(0, 0, 0, 0.2)
+#          PopMatrix()
+         WSection()
+         }
+end
+
+method hideQuestHalo()
+   isHavingQuest := &null
+   \ro | fail
+   if /isNPC then
+      \questWS.skip := 1
+   else
+      \NPCQuestWS.skip := 1
+end
+
+   #
+   # parse(File)
+   # Purpose: Takes a file and parse each line and set them to their
+   #          appropriate variables
+   #
+   method parser(file_name)
+      local line, file, i, nm, val
+
+      if not (file := datopen(file_name)) then {
+	 write(&errout, "avatarparser can't open ", file_name)
+	 a_name := file_name
+	 sex := "m"
+	 color := "pale pink"
+	 scolor := "black"
+	 pcolor := "blue"
+	 shcolor := "white"
+	 hdchoice := "block"
+	 face := "dat" || PS || "textures" || PS || "smily.gif"
+	 fail
+	 stop("Avatarparser: can't open ", file_name)
+	 }
+
+      while line := trim(read(file)) do {
+         if line[1]~=="#" then {
+            if not (i := find("=", line) + 1) then {
+	       write("avt file format error in ", image(line))
+	       break
+	       }
+	    nm := map(line[1:i-1])
+	    if *(val := line[i:0]) = 0 then next
+	    case nm of {
+	       "name": a_name := val
+	       "gender": sex := val
+	       "skin color": color := val
+	       "shirt color": scolor := val
+	       "pants color": pcolor := val
+	       "shoes color": shcolor := val
+	       "head shape": hdchoice := val
+	       "3d model": {
+	           model3d_filename := val
+	           write(" 3d model file name: ",image(val))
+	           }
+	       "face picture": {
+		   face := val
+                   #write("facepic ", image(face))
+		   }
+	       default : {
+		   self[nm] := val
+		  }
+	       }
+            }
+         }
+      close(file)
+   end
+
+   #
+   # getcolor()
+   #
+   # This returns the color of the avatar, when invoked.
+   #
+   method getcolor()
+     return color
+   end
+
+$define MINDELTA 0.08
+
+   method test_new_pos(step,deltax, deltaz, y,mov)
+      local olddeltax := deltax, olddeltaz := deltaz, room, rdl, typ
+      room := world.curr_room
+
+      # rdl means "room disallows list"
+      if (rdl := room.disallows(X+deltax, Z+deltaz,y)) & (/(rdl|rdl[1])) then {
+	  deltax := 0
+	  if rdl := room.disallows(X, Z+deltaz, y) & (/(rdl|rdl[1])) then {
+	      deltaz := 0
+	      deltax := olddeltax
+	      if rdl := room.disallows( X+deltax, Z, y) & (/(rdl|rdl[1])) then{
+		  # try a smaller move
+		  if abs(deltax|deltaz) > MINDELTA then
+		      return test_new_pos(step,deltax*0.8,deltaz*0.8, y ,mov)
+		  fail
+	          }
+	      }
+          }
+
+   typ := (\rdl)[1]
+
+   # this mov parameter is just plain poor and idiotic coding.
+   # 1 = forward, 2 = backward, 3 = right, 4 = left or some such
+   if mov = (1|3|4) then {
+
+      # typ 1 = northsouth, 2 = eastwest, 3 = flat, 4 = steps (eastwest)
+      # math here (Varma) is just all wrong.
+
+      if /typ then
+	 return [X+deltax, Z+deltaz, room.y]
+      else if typ = 1 then
+	 return [X+deltax, Z+(deltaz), y+(0.33*deltaz)]
+      else if typ = 2 then
+	 return [X+(deltax), Z+deltaz, y+(0.33*deltax)]
+      else if typ = 3 & y < 1 then {
+	 y := 1
+	 return [X+deltax, Z+deltaz, y]
+	 }
+      else if typ=3 & y=1 then
+	 return [X+deltax, Z+deltaz, y]
+      else if typ = 4 then {
+	 return [X+deltax, Z+deltaz,rdl[3]]
+         }
+      }
+   else {
+      if /typ then
+	 return [X+deltax, Z+deltaz,room.y]
+      else if typ = 1 then
+	 return [X+deltax, Z+(deltaz), y+(0.33*deltaz)]
+      else if typ = 2 then
+	 return [X+(deltax), Z+deltaz, y+(0.33*deltax)]
+      else if y >= 1 & typ = 3 then
+	 return [X+deltax, Z+deltaz, y]
+      else if y < 1 & typ = 3 then
+	 return [ X, Z+deltaz, y+1]
+      else if typ = 4 then {
+	 return [X+deltax, Z+deltaz,rdl[3]]
+         }
+      }
+   end
+
+   method actions(act, step )
+   local deltax, deltaz, newpos
+      case act of {
+	 "move_forward": {
+	    lx     := sin(angle)
+	    lz     := cos(angle)
+	    deltax := step * lx
+	    deltaz := step * lz
+
+	    #
+	    # ask test_new_pos if we can move where we want.
+	    # if it succeeds, it returns our new [x, z] location.
+	    # either deltax or deltaz may get dropped if out of bounds.
+	    #
+	    if newpos := test_new_pos( step, deltax, deltaz, Y, 1 ) then {
+	       X := newpos[1]
+	       Z := newpos[2]
+               Y := newpos[3]
+# world.nsh_dialog.image_5.movearrow(a_name,x,y,z)
+
+	       move(X, Y, Z, angle)
+
+	       if fint < 3 then {
+		  if rarm = 0 & isPointing = 0 then {
+		     move_part("right_arm", "fb", 10)
+		     }
+		  move_part("left_leg", "fb", 10)
+		  if larm = 0 then {
+		     move_part("left_arm", "fb", -10)
+		     }
+		  move_part("right_leg", "fb", -10)
+		  fint +:= 1
+	          }
+	       else {
+		  if rarm = 0 & isPointing = 0 then {
+		     move_part("right_arm", "fb", -10)
+		     }
+		  move_part("left_leg", "fb", -10)
+		  if larm = 0 then {
+		     move_part("left_arm", "fb", 10)
+		     }
+		  move_part("right_leg", "fb", 10)
+		  fint +:= 1
+		  if fint = 6 then fint := 0
+		  }
+	       }
+            }
+	 "move_pointer_up" : {
+	    if isPointing = 1 then {
+	       if vertical_ptr > 210 then
+		  vertical_ptr -:= 1
+		  move_part_complex("right_arm", vertical_ptr, 0,
+				    horizontal_ptr)
+                  move_part_complex("head", vertical_ptr-270,
+				    horizontal_ptr, 0)
+		  }
+	       }
+
+	 "move_backward" : {
+	    #
+	    #  move BACKWARD - moon-walk style
+	    #
+	    lx     := sin(angle)
+	    lz     := cos(angle)
+	    deltax := step * lx
+	    deltaz := step * lz
+
+	    #  write("avatar move x,y,z, angle ",x," ",y," ",z," ",angle)
+	    if newpos := test_new_pos( step, deltax, deltaz, Y ,2 ) then {
+	       X := newpos[1]
+	       Z := newpos[2]
+	       Y := newpos[3]
+
+	       move(X, Y, Z, angle)
+
+	       if fint < 3 then {
+		  if rarm = 0 & isPointing = 0 then {
+		     move_part("right_arm", "fb", 10)
+		     }
+		  move_part("left_leg", "fb", 10)
+		  if larm = 0 then {
+		     move_part("left_arm", "fb", -10)
+		     }
+		  move_part("right_leg", "fb", -10)
+		  fint +:= 1
+		  }
+	       else {
+		  if rarm = 0 & isPointing = 0 then {
+		     move_part("right_arm", "fb", -10)
+		     }
+		  move_part("left_leg", "fb", -10)
+		  if larm = 0 then {
+		     move_part("left_arm", "fb", 10)
+		     }
+		  move_part("right_leg", "fb", 10)
+		  fint +:= 1
+		  if fint = 6 then fint := 0
+		  }
+	       }
+            }
+	 "move_pointer_down" : {
+	    if isPointing = 1 then {
+	       if vertical_ptr < 330 then
+		  vertical_ptr +:= 1
+               move_part_complex("right_arm", vertical_ptr, 0, horizontal_ptr)
+	       move_part_complex("head", vertical_ptr-270, horizontal_ptr, 0)
+               }
+	    }
+	 "raise_right_arm" : {
+	    #
+	    # Raising Right Arm
+	    #
+            isPointing := 1
+            move_part_complex("right_arm",0,0,0)
+	    move_part_complex("head",0,0,0)
+	    if rarm = 0 then {
+	       rarm := 1
+	       move_part("right_arm", "fb", -180, 1)
+	       }
+	    else {
+	       rarm := 0
+	       move_part("right_arm", "fb", 10, 1)
+	       }
+            }
+
+	 "raise_left_arm" : {
+	    #
+	    # Raising Left Arm
+	    #
+	    if larm = 0 then {
+	       larm := 1
+	       move_part("left_arm", "fb", -180, 1) # -10 ?
+	       }
+	    else {
+	       larm := 0
+	       move_part("left_arm", "fb", 10, 1)
+	       }
+	    } # end case 4
+
+	 "move_right" : {
+	    #
+	    # move SIDEWAY-right
+	    #
+	    #  x := x - sin(1.571-angle)*0.1
+	    #  z := z + cos(1.571-angle)*0.1
+
+	    #  should these be updated ???
+	    #  lx     := sin(1.571-angle)
+	    #  lz     := cos(1.571-angle)
+	    deltax := step * ( -sin(1.571-angle) )
+	    deltaz := step * (  cos(1.571-angle))
+
+	    # write("avatar move x,y,z, angle ",x," ",y," ",z," ", angle)
+	    if newpos := test_new_pos( step, deltax, deltaz, Y, 3 ) then {
+	       X := newpos[1]
+	       Z := newpos[2]
+               Y := newpos[3]
+
+	       lx +:= deltax
+	       lz +:= deltaz
+
+	       if fint < 3 then {
+		  move_part("right_leg", "s", -10)
+		  move(X, Y, Z, angle)
+		  fint +:= 1
+		  }
+	       else {
+		  move_part("right_leg", "s", 0)
+		  fint +:= 1
+		  if fint = 6 then { fint := 0 }
+		  }
+	       }
+            }
+	 "move_pointer_right" : {
+	    if isPointing = 1 then {
+	       if horizontal_ptr > -30 then
+		  horizontal_ptr -:= 1
+	       move_part_complex("right_arm", vertical_ptr, 0, horizontal_ptr)
+	       move_part_complex("head", vertical_ptr-270, horizontal_ptr, 0)
+	       }
+	    }
+	 "move_left" : {
+	    #
+	    # move SIDEWAY-left
+	    #
+
+	    #      x := x + sin(1.571-angle)*0.1
+	    #      z := z - cos(1.571-angle)*0.1
+	    deltax := step * (  sin(1.571-angle))
+	    deltaz := step * ( -cos(1.571-angle))
+
+	    # write("avatar move x,y,z, angle ",x," ",y," ",z," ", angle)
+	    if newpos := test_new_pos( step, deltax, deltaz, Y, 4) then {
+	       X := newpos[1]
+	       Z := newpos[2]
+               Y := newpos[3]
+	       lx +:= deltax
+	       lz +:= deltaz
+
+	       if fint < 3 then {
+		  move_part("left_leg", "s", 10)
+		  move( X, Y, Z, angle)
+		  fint +:= 1
+		  }
+	       else {
+		  move_part("left_leg", "s", 0)
+		  fint +:= 1
+		  if fint = 6 then fint := 0
+		  }
+	       }
+            }
+	 "move_pointer_left" : {
+	    if isPointing = 1 then {
+	       if horizontal_ptr < 30 then
+		  horizontal_ptr +:= 1
+               move_part_complex("right_arm", vertical_ptr,0,horizontal_ptr)
+               move_part_complex("head", vertical_ptr-270,horizontal_ptr, 0)
+	       }
+	    }
+	 "turn_left" : {
+	    #
+	    # turn LEFT
+	    #
+	    angle +:= step
+
+	    if angle >= 2 * &pi then  angle -:= 2 * &pi
+	    else if angle < 0 then  angle +:= 2 * &pi
+
+	    move( X, Y, Z, angle)
+	    }
+
+	 "turn_right" : {
+	    #
+	    # turn RIGHT
+	    #
+	    angle +:= step
+
+	    if angle >= 2 * &pi then  angle -:= 2 * &pi
+	    else if angle < 0 then  angle +:= 2 * &pi
+
+	    move( X, Y, Z, angle)
+	    }
+
+	 #
+	 #  back to NORMAL
+	 #
+	 "back_default" : {
+	    move_part_complex("head", 0, 0, 0)
+	    move_part_complex("body", 0, 0, 0)
+	    move_part_complex("right_arm", 0, 0, 0)
+	    move_part_complex("left_leg", 0, 0, 0)
+	    move_part_complex("left_arm", 0, 0, 0)
+	    move_part_complex("right_leg", 0, 0, 0)
+	    }
+
+	 #
+	 # pointing
+	 #
+	 "toggle_pointer" : {
+	    if isPointing = 0 then {
+	       # Everything goes back to normal
+	       move_part("right_arm", "fb", 0)
+	       move_part("left_leg", "fb", 0)
+	       move_part("left_arm", "fb", 0)
+	       move_part("right_leg", "fb", 0)
+	       vertical_ptr := 270
+	       horizontal_ptr := 0
+	       move_part("right_arm", "fb", 270)
+	       isPointing := 1
+	       }
+	    else {
+	       move_part_complex("right_arm",0,0,0)
+	       move_part_complex("head",0,0,0)
+	       isPointing := 0
+	       }
+	    }
+	 "toggle_talk": {
+	    isTalking()
+	    world.NeedsRefresh()
+	    }
+	 "set_talk_on": {
+	    SetTalkState("ON")
+	    world.NeedsRefresh()
+	    }
+	 "set_talk_off": {
+	    SetTalkState("OFF")
+	    world.NeedsRefresh()
+	    }
+	 "possess" : {
+	    if \step then {
+	       possess(step)
+	       }
+	    step := &null
+	    }
+	 "unpossess" : {
+	    if \step then {
+		  # write("calling unpossess")
+                   unpossess(step) }
+		else
+		   #write("No object is found")
+		step:=&null
+	    }
+            "switchObjectUp" : {
+		if /step then  {
+                   #write("calling switchObjUp method")
+                   switchObjectUp()
+                 }
+	    }
+            "switchObjectDown" : {
+		if /step then  {
+                  # write("calling switchObjDown method")
+                   switchObjectDown()
+                 }
+             }
+          } # end case
+      flushnet()
+   end # method actions()
+
+   method possess(object1)
+      local ownedObj,objCol
+
+      if *object > 0 then {
+         self.object[currObjID].deRender()
+	 case self.object[currObjID].getPlacedAt() of {
+         "hand" : { la.unpossess()}
+         "back" : { b.unpossess() }
+	 }
+	 }
+      currObjID := currObjID + 1
+      #write(" CURROBJID = ",currObjID)
+      put(self.object,object1)
+      self.object[currObjID].owner:=name
+      self.object[currObjID].possessed:=1
+
+      move_part("right_arm", "fb", 0)
+      move_part("left_leg", "fb", 0)
+      move_part("left_arm", "fb", 0)
+      move_part("right_leg", "fb", 0)
+
+      if (self === world.cam.avatar) & session.isUp() then {
+	 put(grouping, "\\possess " || self.object[currObjID].Id || " " ||
+	     a_name || " " || world.curr_room.name)
+         }
+      self.object[currObjID].setSize(xsize,height,zsize)
+      self.object[currObjID].setPosAvatar(X, Y, Z,angle)
+
+      Objects := object
+      currObjsID := currObjID
+      move(X, Y, Z,angle)
+      if *object > 0 then {
+         case object[currObjID].getPlacedAt() of {
+            "hand" : { la.possess(object[currObjID])}
+            "back" : { b.possess(object[currObjID]) }
+         }
+      }
+      #write(" CURROBJID = ",currObjID)
+      ownedObj := object[currObjID].name
+      objCol :=   object[currObjID].color
+      world.nsh_dialog.write_to_chat_win( a_name, " possessed a ",objCol,
+					 " color ", ownedObj)
+
+   end
+
+   method unpossess()
+      local i,ownedObj,objCol,flag
+      flag := 0
+      if *object > 0 then {
+         #write("entered unpossess")
+         object[currObjID].unpossessed(X, Y, Z)
+         object[currObjID].possessed:=0
+         ownedObj := object[currObjID].name
+         objCol :=   object[currObjID].color
+         world.nsh_dialog.write_to_chat_win( a_name, " unpossessed a ",objCol,
+					    " color ", ownedObj)
+	 case object[currObjID].getPlacedAt() of {
+            "hand" : { la.unpossess()}
+            "back" : { b.unpossess() }
+         }
+	 if (self === world.cam.avatar) & session.isUp() then {
+	    put(grouping, "\\unpossess " || self.object[currObjID].Id ||
+		" " || a_name)
+	    }
+         i := currObjID
+         while i < *object do {
+            object[i] := object[i+1] | &null
+            (\(object[i])).possessed := 1
+            i +:= 1
+            }
+	 if  currObjID > 0 then
+            currObjID -:= 1
+
+         #write("currObjID = ",currObjID)
+         pull(object)
+         object[currObjID].reRender(world.curr_room.render_level)
+         case object[currObjID].getPlacedAt() of {
+            "hand" : { la.possess(object[currObjID])}
+            "back" : { b.possess(object[currObjID]) }
+         }
+      Objects := object
+      move( X, Y, Z, angle)
+      /object := []
+      }
+   end
+
+   method switchObjectUp()
+      local switchFrom,switchTo,switchFromCol,switchToCol
+      if currObjID < *object then {
+        # write("called next method")
+         move_part("right_arm", "fb", 0)
+         move_part("left_leg", "fb", 0)
+         move_part("left_arm", "fb", 0)
+         move_part("right_leg", "fb", 0)
+         case self.object[currObjID].getPlacedAt() of {
+            "hand" : { la.unpossess()}
+            "back" : { b.unpossess() }
+         }
+         object[currObjID].deRender()
+         if (self === world.cam.avatar) & session.isUp() then {
+            put(grouping, "\\switchobjectup " || self.object[currObjID].Id ||
+		" " || a_name)
+            }
+         currObjID +:= 1
+         object[currObjID].reRender(world.curr_room.render_level)
+         switchFrom := object[currObjID-1].name
+         switchFromCol := object[currObjID-1].color
+         switchTo :=  object[currObjID].name
+         switchToCol := object[currObjID].color
+         world.nsh_dialog.write_to_chat_win( a_name, " switched from " ,
+					    switchFromCol," color ",
+					    switchFrom, " to ", switchToCol,
+					    " color ", switchFrom)
+         case object[currObjID].getPlacedAt() of {
+            "hand" : { la.possess(object[currObjID])}
+            "back" : { b.possess(object[currObjID]) }
+         }
+      currObjsID := currObjID
+      move(X, Y, Z, angle)
+      }
+   end
+
+   method switchObjectDown()
+      local switchFrom,switchTo,switchFromCol,switchToCol
+      if currObjID > 1 then {
+         #write("called prev method")
+         move_part("right_arm", "fb", 0)
+         move_part("left_leg", "fb", 0)
+         move_part("left_arm", "fb", 0)
+         move_part("right_leg", "fb", 0)
+         case self.object[currObjID].getPlacedAt() of {
+            "hand" : { la.unpossess()}
+            "back" : { b.unpossess() }
+         }
+         object[currObjID].deRender()
+         if (self === world.cam.avatar) & session.isUp() then {
+	    put(grouping, "\\switchobjectdown " || self.object[currObjID].Id ||
+		" " || a_name)
+	    }
+         currObjID -:= 1
+         switchFrom := object[currObjID+1].name
+         switchFromCol := object[currObjID+1].color
+         switchTo :=  object[currObjID].name
+         switchToCol := object[currObjID].color
+         world.nsh_dialog.write_to_chat_win( a_name, " switched from ",
+					    switchFromCol," color ",
+					    switchFrom, " to ", switchToCol,
+					    " color ", switchFrom)
+         object[currObjID].reRender(world.curr_room.render_level)
+         case object[currObjID].getPlacedAt() of {
+            "hand" : { la.possess(object[currObjID])}
+            "back" : { b.possess(object[currObjID]) }
+            }
+	 currObjsID := currObjID
+	 move(X, Y, Z,angle)
+	 }
+   end
+
+   method getX()
+      return X#+la.getX()
+   end
+   method getY()
+      return Y#+la.getY()
+   end
+   method getZ()
+      return Z#+la.getZ()
+   end
+   method getName()
+      return name
+   end
+
+   method cam_follows()
+      local adj_angle, r, owcy
+
+      if world.cam.view_mode = 3 then {
+         r := h.headr
+	 # need:modify hardwired 1.5's here and below to relate to avatar height
+	 owcy := world.cam.y - world.cam.looky
+	 world.cam.y := Y + 1.5
+         world.cam.x := X + r * sin(angle) * .6
+         world.cam.z := Z + r * cos(angle) * .6
+         world.cam.lx := lx
+         world.cam.lz := lz
+
+	 world.cam.lookx := X + 4 * sin(angle)
+         world.cam.looky := Y + 1.5 - owcy
+         world.cam.lookz := Z + 4 * cos(angle)
+	 world.cam.angle := angle
+         return
+         }
+      if world.cam.view_mode = 2 then { # camera over shoulder
+         adj_angle := angle + dtor(210.0)
+         if adj_angle >=  2 * &pi then {  adj_angle -:= 2 * &pi }
+         else if adj_angle < 0 then {  adj_angle +:= 2 * &pi }
+         lx :=  sin( adj_angle )
+         lz :=  cos( adj_angle )
+         world.cam.x     := (X + 2.4 * lx )
+         world.cam.y     := Y + 0.2 + 1.5
+         world.cam.z     := (Z + 2.4 * lz )
+         while not world.curr_room.isinside(world.cam.x, world.cam.z) do {
+	    lx *:= 0.9; lz *:= 0.9
+	    world.cam.x := (X + 2.4 * lx)
+	    world.cam.y := Y
+	    world.cam.z := (Z + 2.4 * lz)
+	    }
+         world.cam.lookx := X - lx
+         /(world.cam.looky) := Y + 1.5
+         world.cam.lookz := Z - lz
+         world.cam.angle := adj_angle
+         world.cam.eye()
+         return
+         }
+   end # method cam_follows()
+
+   #   now called from avatar.move()
+   #    maybe this should be moved to  move????
+   #     ###### cannot seem to access field uid from there - very strange
+   method broadcast_string()
+      return moveuidbody || trncReal(X) || " " ||
+	       trncReal(Y) || " " || trncReal(Z) || " " || trncReal(angle)
+   end
+
+   method broadcast_move()
+      put(grouping, broadcast_string())
+   end
+
+initially(uid_in, x_in, y_in, z_in, ang, isNPC_in) #face_path_in)
+   scolor := pcolor := shcolor := "red"
+   a_name := "guest"
+
+   X := x_in                   # avatar's cooridinates
+   Y := y_in                   #   previously named origx, origy, origx
+   Z := z_in
+
+
+   if isNPC_in==="npc" then {
+      isNPC := "npc"
+      model3d_filename := "warrior.x"
+      }
+   else {
+      isNPC := &null
+      model3d_filename := &null
+      model3d_filename := "warrior.x"
+      }
+
+   xsize := ysize := zsize := height:= 0
+   sex := "m"
+   face_path := &null #face_path_in
+   face := "smily.gif"
+   hdchoice := 1
+   avatarWS := &null
+   model3d := &null
+$ifdef _UNIX
+   ps := "/"
+$else
+   ps := "\\"
+$endif
+   # from the OLD avatar class
+   uid   := uid_in
+   moveuid := "\\move " || uid || " "
+   moveuidbody := moveuid || "body "
+
+   lx := lz := 0.0
+
+   angle := ang #aky                 # avatar orientation angle
+                                #   previously named cam_angle
+   fint  := rarm  := larm  := 0
+   render_set := set()           # capture display list elts for \delavatar
+   isRendered := &null
+   grouping := list()
+
+   isPointing := 0
+   vertical_ptr := 0
+   horizontal_ptr := 0        #  angles for pointing
+
+   # for object interactions
+   /object := []        # object list
+   chair := &null      # chair to sit on
+   sittingDown := 0
+   body_part := ""
+   /currObjID := 0
+   /Objects := []
+   /currObjsID := 0
+
+   last_active_time := &now
+   activity_status := "Online"
+
+   if uid==world.userId then {		# This is my avatar
+      if \ (world.nsh_dialog.avatar_status_ticker) then {
+	 world.nsh_dialog.avatar_status_ticker.connect(self,
+				     "report_activity_status", TICK_EVENT)
+	 world.nsh_dialog.avatar_status_ticker.start(30000) # AFK_TIME is seconds
+	 }
+      }
+
+end
+
+#
+# Class: head
+# This class just renders head and neck
+#
+class head : avatarParts(
+   headx,heady,headz,headr,             # Head coodinate, radius of the head
+   neckx,necky,neckz,neckh,neckt,neckb, # Neck coor. and other info. on neck
+   m1,m2,m3,m4,     # stuff for talking effect
+   counter,
+   ch,
+   romx,romy, romz,  # rotation matrix for x and z axis
+   headWS
+)
+
+   method render(face, color, choice)
+      local f, n, tmp, txcoords, coords, sz, win3d
+
+      ch := choice
+      win3d := !gui::dispatcher.subwins
+      headWS := WSection(win3d, "head")
+      texture_or_color(color)
+
+      DrawCylinder(neckx, necky, neckz, neckh,neckt,neckb)
+      # Egg Shape or Putting picture on a box
+      if choice == 2 then {
+         PushMatrix()
+            initRMatrix()
+            WAttrib("texmode=on")
+            if Texture(face) | Texture(USER_GLOBALPATH ||
+				       PS||"guest" || PS||"guest.gif") then
+	       WAttrib("texcoord=auto")
+	    else
+	       WAttrib("texmode=off")
+
+
+            Rotate(270,1,0,0)
+            Scale(1,1,1.2)
+            #PushMatrix()
+               Translate(headx,0,0.55)
+               DrawSphere(0, 0, 0, headr)
+               WAttrib("texmode=off")
+               Fg("red")
+               Rotate(90,1,0,0)
+               DrawCylinder(-headx,-heady+heady*0.7,0,0.03,0.01,0.01)
+               DrawCylinder(-headx,-heady+heady*0.7,0,0.05,0.015,0.015)
+               DrawCylinder(-headx,-heady+heady*0.7,0,0.08,0.02,0.02)
+               DrawCylinder(-headx,-heady+heady*0.7,0,0.12,0.03,0.03)
+            #PopMatrix()
+         PopMatrix()
+         }
+      else {
+         PushMatrix()
+            Translate(headx, heady, headz)
+            initRMatrix()
+            DrawSphere(0,0,0, headr)
+            # Face cube
+            txcoords    :=  [0.0, 0.0,   0.0, 1.0,   1.0, 1.0,   1.0, 0.0 ]
+            tmp:= txcoords[1] ||","|| txcoords[2] ||","|| txcoords[3] ||","||
+		  txcoords[4] ||","|| txcoords[5] ||","|| txcoords[6] ||","||
+		  txcoords[7] ||","|| txcoords[8]
+
+            sz := headr*1.3 / 2.0
+            coords := [ 0     , 0,      0,
+                        0     , 2 * sz, 0,
+                        2* sz , 2 * sz, 0,
+                        2* sz , 0,      0 ]
+
+            # Face polygon # formerly a cube
+            PushMatrix()
+               Translate( -sz, -heady/2, headr )
+               WAttrib("texmode=on")
+               if Texture(face) then {
+		  WAttrib("texcoord=" || tmp)
+		  FillPolygon ! coords
+		  }
+	       WAttrib("texmode=off")
+            PopMatrix()
+            Fg("red")
+            DrawCylinder(-headx,-heady+heady*0.7,0,0.03,0.01,0.01)
+            DrawCylinder(-headx,-heady+heady*0.7,0,0.05,0.015,0.015)
+            DrawCylinder(-headx,-heady+heady*0.7,0,0.08,0.02,0.02)
+            DrawCylinder(-headx,-heady+heady*0.7,0,0.12,0.03,0.03)
+         PopMatrix()
+         }
+      WAttrib("texmode=off")
+      WSection(win3d)
+   end
+   method isTalking()
+      if /m1 then fail
+      if /m2 then fail
+      if /m3 then fail
+      if /m4 then fail
+      if counter=0 then {
+         #m1.z:=0.5 #m2.z:=0.55
+         #m3.z:=0.6 #m4.z:=0.68
+        SetTalkState("ON")
+        counter := 1
+      }
+      else {
+         #m1.z:=0  #m2.z:=0
+         #m3.z:=0 #m4.z:=0
+         SetTalkState("OFF")
+         counter := 0
+      }
+   end
+
+   method SetTalkState(state)  # state can be "ON" or "OFF"
+      if /m1 then fail
+      if /m2 then fail
+      if /m3 then fail
+      if /m4 then fail
+      if state === "ON" then {
+         m1.z := 0.5
+         m2.z := 0.55
+         m3.z := 0.6
+         m4.z := 0.68
+         }
+      else {  # if state === "OFF"
+         m1.z := 0
+         m2.z := 0
+         m3.z := 0
+         m4.z := 0
+     }
+   end
+
+initially()
+   counter := 0
+   ch := 1
+   headx := 0
+   heady := 0.6
+   headz := 0
+   headr := 0.5
+   neckx := 0
+   necky := 0
+   neckz := 0
+   neckh := 0.3
+   neckt := 0.1
+   neckb := 0.1
+end
+
+#
+# Class: body
+# This class just renders the body
+#
+class body : avatarParts(
+   bodyx,bodyy,bodyz,bodyh,bodyt,bodyb,
+   chestx,chesty,chestz,chestr,bodyWS
+)
+   method render(name, scolor, sex, pcolor, letter_path, ps)
+      local win3d
+
+      win3d := !gui::dispatcher.subwins
+      bodyWS := WSection(win3d, "body")
+      PushMatrix()
+         Scale(1,1,0.7)
+         PushMatrix()
+	    texture_or_color(pcolor)
+            Translate(0,-bodyh,0)
+            Scale(1,0.5,1)
+            DrawSphere(0,0,0,bodyt-0.01)
+         PopMatrix()
+
+	 texture_or_color(scolor)
+         PushMatrix()
+            Scale(1,0.1,1)
+            DrawSphere(0,0,0,bodyb)
+         PopMatrix()
+         DrawCylinder(0, -bodyh, 0, bodyh, bodyt, bodyb)
+         if sex == "w" then {
+            PushMatrix()
+               Translate(0,chesty,chestz)
+               DrawSphere(chestx,0,0, chestr)
+               DrawSphere(-chestx,0,0, chestr)
+            PopMatrix()
+            createNameTag(name,0.8,0,-bodyh+0.15,0.51, letter_path, ps)
+         }
+         else
+            createNameTag(name,0.8,0,-bodyh+0.6,0.51, letter_path, ps)
+      PopMatrix()
+      WSection(win3d)
+   end
+initially()
+   bodyx := 0
+   bodyy := 0
+   bodyz := 0
+   bodyh := 0.9#1.0
+   bodyt := 0.45
+   bodyb := 0.5
+   chestx := 0.175
+   chesty := -0.3
+   chestz := 0.3
+   chestr := 0.3
+end
+
+#
+# Class: arm
+# This class renders the left arm and hand and shoulder
+#
+class arm : avatarParts (
+   sholdx,sholdy,sholdz,sholdr,   #   Shoulder
+   armx,army,armz,armh,armt,armb, #   Arm
+   handx,handy,handz,handr,        #   Hand
+   armWS
+   )
+   #
+   #  render
+   #  Purpose: to render the left arm of the avatar
+   #
+   method render(side,color,scolor)
+      local win3d
+
+      win3d := !gui::dispatcher.subwins
+      armWS := WSection(win3d, "arm")
+      PushMatrix()
+         if side == "l" then
+            Translate(sholdx,sholdy,sholdz)
+         else
+            Translate(-sholdx,sholdy,sholdz)
+         initRMatrix()
+
+	 texture_or_color(scolor)
+         PushMatrix()
+            Scale(1.34,1,1)
+            if side == "l" then
+               DrawSphere(-0.1,-0.05,0, sholdr+0.08)
+            else
+               DrawSphere(0.1,-0.05,0, sholdr+0.08)
+         PopMatrix()
+
+	 texture_or_color(color)
+         DrawCylinder(0, -armh, 0, armh, armt, armb)
+         DrawSphere(0, -handy, 0, handr)
+         # Chicken finger
+         if side == "r" then {
+            DrawCylinder(0.1,-handy-0.25,0.08,0.25,0.06,0.06)
+            DrawSphere(0.1,-handy-0.25,0.08,0.06)
+            }
+      PopMatrix()
+      WSection(win3d)
+   end
+   method getX()
+      return sholdx
+   end
+   method getY()
+      return -handy
+   end
+   method getZ()
+      return sholdz
+   end
+   method possess(object1)
+      self.object := object1
+.     object.setPosPart(sholdx-0.15,0,sholdz-0.04)
+      #object.setPosPart(sholdx-0.15,sholdy,sholdz)
+      #object.setPosObj(0,0,0)
+      object.setPosObj(0,0.47,0)
+      #object.render()
+   end
+   method unpossess()
+      object:=&null
+   end
+
+initially()
+   sholdx := 0.6#0.7
+   sholdy := -0.1
+   sholdz := 0
+   sholdr := 0.12#0.26#0.3
+
+   armx := 0.7
+   army := -0.05
+   armz := 0
+   armh := 1.1#1.2
+   armt := 0.12#0.15
+   armb := 0.12#0.15
+
+   handx := armx
+   handy := (army+armh)*0.95
+   handz := armz
+   handr := 0.21#0.24
+end
+
+#
+# Class: leg
+# This class renders left hip, leg, and foot
+# Please, refer to left_arm method for information
+#
+class leg : avatarParts (
+   hipx,hipy,hipz,hipr,             #  Hip
+   legx,legy,legz,legh,legt,legb,   #  Leg
+   feetx,feety,feetz,feetir,feetor,  #  Feet
+   rot,legWS
+   )
+
+   method render(side,pcolor,shcolor)
+      local win3d
+
+      win3d := !gui::dispatcher.subwins
+      legWS := WSection(win3d, "leg")
+      PushMatrix()
+         if side == "l" then
+            Translate(hipx,-hipy,hipz)
+         else
+            Translate(-hipx,-hipy,hipz)
+         initRMatrix()
+
+	 texture_or_color(pcolor)
+         DrawCylinder(0,-legh, 0, legh, legt, legb)
+         #PushMatrix()
+            Translate(0,-legh,0)
+            rot:=Rotate(0,1,0,0)
+            DrawSphere(0,0,0,legt)
+            DrawCylinder(0,-legh,0,legh,legt,legb)
+	    texture_or_color(shcolor)
+            #PushMatrix()
+               Translate(0,-legh,0.08)
+               Scale(1,0.5,1.6)
+               DrawSphere(0,0,0,0.2)
+            #PopMatrix()
+         PopMatrix()
+         WSection(win3d)
+   end
+   method incrementAngle()
+      rot.angle:=rot.angle+1
+   end
+   method decrementAngle()
+      rot.angle:=rot.angle-1
+   end
+   method setAnglePart(ang)
+      rot.angle:=ang
+   end
+initially()
+   hipx := 0.25
+   hipy := 0.95
+   hipz := 0
+   hipr := 0.195#0.23
+
+   legx := hipx
+   legy := hipy
+   legz := hipz
+   legh := 0.85/2
+   legt := hipr*0.7
+   legb := hipr*0.7
+
+   feetx := legx
+   feety := legy+legh
+   feetz := legz
+   feetir := 0.13
+   feetor := 0.2
+end
+
+class avatarParts (ps,
+   romx, romy, romz, #rotation matrix for setAngleComplex()
+   object,nameTagWS
+)
+   method initRMatrix()
+      romx:=Rotate(0,0,0,0)
+      romy:=Rotate(0,0,0,0)
+      romz:=Rotate(0,0,0,0)
+   end
+   method setAngleComplex(xangle, yangle, zangle)
+      #if *Objects > 0 then {
+         Objects[currObjsID].moveAlongPart(xangle,yangle,zangle)
+      #}
+      if /romx then fail
+      if /romy then fail
+      if /romz then fail
+      romx.angle:=xangle
+      romy.angle:=yangle
+      romz.angle:=zangle
+      romx.x:=1
+      romx.y:=0
+      romx.z:=0
+      romy.x:=0
+      romy.y:=1
+      romy.z:=0
+      romz.x:=0
+      romz.y:=0
+      romz.z:=1
+   end
+
+   #
+   # setAngle (Angle, Dir)
+   # Purpose: to move the arm and hand
+   #
+   method setAngle(angle, dir)
+      #
+      # fb stands for forward-back
+      # s stands for side-side
+      #
+      if /romx then fail
+      if /romy then fail
+      if /romz then fail
+      if dir == "fb" then {
+         if *Objects > 0 then {
+               Objects[currObjsID].moveAlongPart(angle,0,0) }
+
+         romx.angle:=angle  # set the angle
+         romx.x:=1  # update the angle of the arm
+         romx.y:=0  # to be rotated by; along X-
+         romx.z:=0  # axis
+         }
+      else if dir == "s" then {
+         if *Objects > 0 then
+            Objects[currObjsID].moveAlongPart(0,0,angle)
+         romz.angle:=angle  # set the angle
+         romz.x:=0          # update the angle of the arm
+         romz.y:=0          # along Z-axis
+         romz.z:=1
+      }
+   end
+
+   method createNameTag(name,len,x,y,z, letter_path, ps)
+      local i, txcoords, tmp, interval, ls, coords, S, ch,win3d
+
+      letter_path := "dat" || PS || "images" || PS || "letters"
+      i:=0
+      ls:=len / *name
+      interval:=-(x+len/2)
+      WAttrib("texmode=off")
+      while i < *name do {
+         txcoords    :=  [0.0, 0.0,   0.0, 1.0,   1.0, 1.0,   1.0, 0.0 ]
+         tmp := txcoords[1] || "," || txcoords[2] || "," || txcoords[3] ||","||
+	        txcoords[4] || "," || txcoords[5] || "," || txcoords[6] ||","||
+		txcoords[7] || "," || txcoords[8]
+         coords := [ 0 , 0 , 0,
+                     0 , ls, 0,
+                     ls, ls, 0,
+                     ls, 0 , 0 ]
+         PushMatrix()
+            Translate(interval,y,z)
+            ch := map(name[i+1])
+
+	    WAttrib("texmode=on")
+	    if Texture(letter_path||PS||ch||".gif") then{
+	       WAttrib("texcoord="||tmp)
+	       FillPolygon ! coords
+	    }
+            WAttrib("texmode=off")
+            DrawCube(ls/2,ls/2,-ls/2-0.001,ls)
+         PopMatrix()
+         interval:=interval+ls
+         i:=i+1
+         }
+      WAttrib("texmode=off")
+
+   end
+end
+
+#
+#
+#
+class AvatarInventory(
+   quest_done_table,    # key : npc name || ":" || quest title,  value : quest reward
+   quest_active_table,   # key : npc name || ":" || quest title,  value : quest object
+   pending_inv_table
+   )
+
+   method add_new_pinv(pinv)
+      local k, p, notifications := 0, emails := 0, old_emails := 0,
+         notification_item_lbl, email_item_lbl
+
+      pending_inv_table[pinv.pid] := pinv
+      k := pinv.pid
+      every p := key(pending_inv_table) do {
+         if pending_inv_table[p].psubject === ("Message(Email)(New)"|
+            "Group Message(New)") then
+            emails +:= 1
+         else if pending_inv_table[p].psubject === ("Message(Email)(Old)"|
+            "Group Message(Old)") then
+            old_emails +:= 1
+         else notifications +:= 1
+         }
+
+      #view.pendings_btn.set_label("Pendings("||*pending_inv_table||")")
+
+      if pending_inv_table[k].psubject === ("Message(Email)(New)" | 
+         "Group Message(New)") then {
+         view.emails_menu_icn.set_label(""||emails)
+         email_item_lbl := TextMenuItem()
+         email_item_lbl.set_label("You got a "||pending_inv_table[k].psubject||
+            " from "||pending_inv_table[k].uname||" ["||k||"]")
+         email_item_lbl.connect(self, "on_emails_icon", ACTION_EVENT)
+         world.nsh_dialog.emails_menu_icn.add(email_item_lbl)
+         if emails > 0 then
+            world.nsh_dialog.emails_icn.set_attribs("bg=red", "fg=white",
+               "font=serif, bold, 12")
+         else
+            world.nsh_dialog.emails_icn.set_attribs("bg=gray", "fg=white",
+                "font=serif, bold, 12")
+         world.nsh_dialog.resize()
+         world.nsh_dialog.display()
+         }
+      else {
+         if pending_inv_table[k].psubject ~== ("Message(Email)(Old)") &
+            pending_inv_table[k].psubject ~== ("Group Message(old)") then {
+            # update the pending label counter to reflect the new added pinv
+            view.notifications_menu_icn.set_label(""||notifications)
+            notification_item_lbl := TextMenuItem()
+            notification_item_lbl.set_label("You got a "||pending_inv_table[k].psubject||
+               " from "||pending_inv_table[k].uname||" ["||k||"]")
+            notification_item_lbl.connect(self, "on_notifications_icon", ACTION_EVENT)
+            world.nsh_dialog.notifications_menu_icn.add(notification_item_lbl)
+            if notifications > 0 then
+               world.nsh_dialog.notifications_icn.set_attribs("bg=red",
+                  "fg=white", "font=serif, bold, 12")
+            else
+               world.nsh_dialog.notifications_icn.set_attribs("bg=gray",
+                  "fg=white", "font=serif, bold, 12")
+            world.nsh_dialog.resize()
+            world.nsh_dialog.display()
+            }
+         }
+
+      world.nsh_dialog.write_to_chat_win(
+      " a new pending invitation was added successfully to your inventory!" )
+
+      return
+   end
+
+   method on_notifications_icon(ev)
+      local btn_lbl, str, id, avat
+      btn_lbl := (ev.get_source()).label
+      btn_lbl ? {
+         str := tab(find("["))
+         move(1)
+         id := tab(find("]"))
+         move(1)
+         }
+      if \pending_inv_table[id] then {
+         avat := world.get_avatar(pending_inv_table[id].uname)
+         if \avat then
+            pending_inv_table[id].pstatus := avat.get_activity_status()
+         else pending_inv_table[id].pstatus := "Offline"
+
+         p_id := id
+         p_name := pending_inv_table[id].uname
+         p_subject := pending_inv_table[id].psubject
+         p_date := pending_inv_table[id].pdate
+         p_status := pending_inv_table[id].pstatus
+         p_comment := pending_inv_table[id].pcomment
+         ici_notifications.notify_init(p_id, p_name,
+            p_subject, p_date, p_status, p_comment, btn_lbl)
+
+         ici_notifications.show_modal()
+         }
+      view.resize()
+   end
+
+   method on_emails_icon(ev)
+      on_notifications_icon(ev)
+   end
+
+   method add_new_quest(npc_name, quest)
+      local k
+      k := npc_name || ":" ||quest.title
+      if member(quest_done_table, k) then{
+         world.nsh_dialog.write_to_chat_win(
+	 " You have already finished this quest! You can't take it again!" )
+         fail
+         }
+      if member(quest_active_table, k) then{
+         world.nsh_dialog.write_to_chat_win(
+	 " This quest is in your inventory already! You can't take it again!" )
+         fail
+         }
+
+      quest_active_table[k] := quest
+      # append k (the new quest) to the end of current active quests list
+#      view.activequeststl.insert_rows([k], view.activequeststl.get_line_count())
+#      world.nsh_dialog.write_to_chat_win(
+#      " The new quest was added successfully to your inventory!" )
+      return
+   end
+
+   method get_active_quest(questk)
+      return quest_active_table[questk]
+   end
+
+
+   method finish_quest(npc_name, quest, questk)
+      local reward, L, i, k
+      /questk := npc_name || ":" ||quest.title
+      if quest_active_table[questk] then{
+         world.nsh_dialog.write_to_chat_win("you have completed the quest: " ||
+	    quest.title || " from the npc: " || npc_name || " successfully!")
+         delete( quest_active_table, questk )
+
+	 L := view.activequeststl.get_contents()
+	 # linear search to delete the finished quest!
+	 # as long as the list is short it shouldn't be a big problem
+	 every i:=1 to *L do
+	    if L[i]==questk then{
+	       delete(L, i)
+	       break
+	       }
+
+
+	 view.activequeststl.set_contents(L)
+
+         if *quest.Trewards = 0 then{
+            world.nsh_dialog.write_to_chat_win(
+	       "No reward is available for this quest")
+            return 0
+            }
+         world.nsh_dialog.write_to_chat_win(
+	    "You got the following reward(s)...")
+         reward := 0
+         every k := key(quest.Trewards) do{
+            reward +:= quest.Trewards[k]
+            world.nsh_dialog.write_to_chat_win(k || " : " || quest.Trewards[k] )
+            }
+
+         quest_done_table[questk] +:= reward
+      }
+   end
+
+   initially
+      quest_done_table := table(0)
+      quest_active_table := table()
+      pending_inv_table := table()
+end # class AvatarInventory

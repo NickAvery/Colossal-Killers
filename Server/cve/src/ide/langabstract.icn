@@ -1,0 +1,191 @@
+import UniconPackage
+import gui
+import undo
+import lang
+
+$include "guih.icn"
+$include "ytab_h.icn"
+
+
+class LanguageAbstract(language)
+  method token_highlighter(f_name,win,s,last_s_Position,x,y,off)
+     if find (".java",f_name) then {
+        JTok_highlighting(win,s,last_s_Position,x,y,off)
+	language := "Java"
+        }
+     else if find (".cpp"|".c"|".h",f_name) then {
+        CTok_highlighting(win,s,last_s_Position,x,y,off)
+	language := "C/C++"
+        }
+     else if find (".icn",f_name) then {
+        UTok_highlighting(win,s,last_s_Position,x,y,off)
+	language := "Unicon"
+        }
+     else language := &null
+  end
+
+  #
+  # C & C++ Token Highlighting
+  #
+  method CTok_highlighting(win,s,last_s_Position,x,y,off)
+     local ctoken, new_s_Position
+
+     # Get string s tokens
+     while ( (ctoken := UniconPackage::yylex()) ~=== EOFX ) do {
+        # Set token color
+        case ( ctoken ) of { #C++ Keywords and Reserved-words
+           AUTO | BOOL | CHAR | CONST | DOUBLE | FLOAT | 
+           INT | LONG | MUTABLE | REGISTER | SHORT | 
+           SIGNED | STATIC | UNSIGNED | VOID | VOLATILE |
+           WCHAR_T                                           : Fg(\win, "Dark Brown")
+
+           ASM | BREAK | CASE | CATCH | CLASS | 
+           CONST_CAST | CONTINUE | DEFAULT | DELETE | DO |
+           DYNAMIC_CAST | ELSE | ENUM | EXCEPT | EXPLICIT |
+           EXPORT | EXTERN | FALSE | FINALLY | FOR | FRIEND |
+           GOTO | IF | INLINE | NAMESPACE | NEW | OPERATOR |
+           PRIVATE | PROTECTED | PUBLIC | REINTERPRET_CAST |
+           RETURN | SIZEOF | STATIC | STATIC_CAST | STRUCT | 
+           SWITCH | TEMPLATE | THIS | THROW | TRUE | TRY | 
+           TYPEDEF | TYPEID | TYPENAME | UNION | USING | 
+           VIRTUAL | WHILE                                   : Fg(\win, "Dark Blue") #Bold
+
+           default                                           : Fg(\win, "Black")
+           }
+
+        # Get token end position in string s
+        new_s_Position := yytoken["column"] + *yytoken["s"] - 1
+
+        # Print the string
+        DrawString(win, x, y, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the printed text of string s offset
+        off := TextWidth(win, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the new last string s starting position
+        last_s_Position := new_s_Position + 1
+
+        # Add the offset to the x position
+        x +:= off
+        }
+
+        # Draw the rest of the string s that was not a token
+        if \find("#",s[1]) then Fg( win, "Dark Green" )
+        else Fg( win, "green")
+        DrawString( win, x, y, s[ last_s_Position : ( *s + 1 ) ] )
+  end
+  #
+  # Java Token Highlighting
+  #
+
+  method JTok_highlighting(win,s,last_s_Position,x,y,off)
+     local jtoken, new_s_Position
+
+     # Get string s tokens
+     while ( (jtoken := UniconPackage::yylex()) ~=== EOFX ) do {
+        # Set token color
+        case ( jtoken ) of { #Java Keywords and Reserved-words
+           ASSERT                      : Fg(win, "Gray")
+           BOOLEAN | DOUBLE | BYTE | INT |
+           SHORT | CHAR | FINAL | STATIC |
+           VOID | LONG | CONST | FLOAT : Fg(win, "Dark Brown")
+
+           ABSTRACT | CONTINUE | FOR | NEW |
+           SWITCH | DEFAULT | GOTO | PACKAGE |
+           SYNCHRONIZED |DO | IF | PRIVATE | 
+           THIS | BREAK | IMPLEMENTS | PROTECTED |
+           THROW | ELSE | IMPORT | PUBLIC | THROWS |
+           CASE | ENUM | INSTANCEOF | RETURN |
+           TRANSIENT | CATCH | EXTENDS | TRY | 
+           INTERFACE | FINALLY | STRICTFP | VOLATILE |
+           NATIVE | SUPER | WHILE | FALSE | NULL |
+           TRUE | APPLET               : Fg(win, "Black")
+
+           STRING | SYSTEM | EVENT | GRAPHICS |
+           OBJECT | RECTANGLE | BUTTON | EXCEPTION |
+           MATH | COLOR | STRINGBUFFER | IOEXCEPTION | 
+           ENUMERATION                 : Fg(win, "Whitish Blue")
+
+           OUT | PRINT | PRINTLN | MAIN | INIT |
+           CLOSE | CLASS               : Fg(win, "Deep Blue")
+
+           default                     : Fg(win,"Black")
+           }
+
+        # Get token end position in string s
+        new_s_Position := yytoken["column"] + *yytoken["s"] - 1
+
+        # Print the string
+        DrawString(win, x, y, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the printed text of string s offset
+        off := TextWidth(win, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the new last string s starting position
+        last_s_Position := new_s_Position + 1
+
+        # Add the offset to the x position
+        x +:= off
+        }
+
+        # Draw the rest of the string s that was not a token
+        if \find("#",s[1]) then Fg(win, "Dark Green" )
+        else Fg( win, "light green")
+        DrawString( win, x, y, s[ last_s_Position : ( *s + 1 ) ] )
+  end
+  #
+  # Unicon Token Highlighting
+  #
+  method UTok_highlighting(win,s,last_s_Position,x,y,off)
+     local utoken, new_s_Position
+
+     # Get string s tokens
+     while ( (utoken := UniconPackage::yylex()) ~=== EOFX ) do {
+        # Set utoken color
+        case ( utoken ) of {
+           ABSTRACT | BREAK | BY | CASE | CLASS | CREATE |
+           DEFAULT | DO | ELSE | END | EVERY | FAIL |
+           GLOBAL | IF | IMPORT | INITIALLY |
+           iconINITIAL | INVOCABLE | LINK | LOCAL |
+           METHOD | NEXT | NOT | OF | PACKAGE | 
+           PROCEDURE | RECORD | REPEAT | RETURN | STATIC |
+           SUSPEND | THEN | TO | UNTIL | WHILE | GLOBAL
+                                       : Fg(win, "Blue")
+
+           STRINGLIT | CSETLIT         : Fg(win, "Dark Red")
+
+           default                     : Fg(win, "Black")
+           }
+
+        # Get token end position in string s
+        new_s_Position := yytoken["column"] + *yytoken["s"] - 1
+
+        # Print the string
+        DrawString(win, x, y, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the printed text of string s offset
+        off := TextWidth(win, s[ last_s_Position : ( new_s_Position + 1 ) ] )
+
+        # Get the new last string s starting position
+        last_s_Position := new_s_Position + 1
+
+        # Add the offset to the x position
+        x +:= off
+        }
+
+        # Draw the rest of the string s that was not a token
+        Fg(win, "green" ) #Green
+        DrawString(win, x, y, s[ last_s_Position : ( *s + 1 ) ] )
+        Fg(win, "light yellow" ) #Light Green
+  end
+
+  method syntax_chicker()
+
+  end
+
+initially ()
+#   clang := Clanguage()   # C & C++ language class
+#   jlang := Jlanguage()   # Java language class
+#   ulang := Ulanguage()   # Unicon language class
+
+end

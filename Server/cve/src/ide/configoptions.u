@@ -1,0 +1,6553 @@
+version	U12.1.00
+uid	configoptions.u1-1523917891-0
+record	ConfigureOptions__state,129
+	0,__s
+	1,__m
+	2,javaCompilerCmd_txt
+	3,cppCompilerCmd_txt
+	4,cppCompilerFlgs_txt
+	5,cppCompiler_lst
+	6,cppLinkerFlgs_txt
+	7,cppLinker_txt
+	8,javaCompilerCmd_tx
+	9,javaCompilerFlgs_txt
+	10,javaCompiler_lst
+	11,javaLinkerFlgs_txt
+	12,javaLinker_txt
+	13,comp_lbl_5
+	14,comp_lbl_6
+	15,comp_lbl_7
+	16,comp_lbl_8
+	17,compflags_lbl_1
+	18,compflags_lbl_2
+	19,linker_lbl_1
+	20,linker_lbl_2
+	21,linkerflags_lbl_1
+	22,linkerflags_lbl_2
+	23,uniconCompilerCmd_txt_1
+	24,uniconCompilerCmd_txt_2
+	25,uniconCompilerFlgs_txt_1
+	26,uniconCompilerFlgs_txt_2
+	27,uniconCompiler_lst_1
+	28,uniconCompiler_lst_2
+	29,uniconLinkerFlgs_txt_1
+	30,uniconLinkerFlgs_txt_2
+	31,uniconLinker_txt_1
+	32,uniconLinker_txt_2
+	33,ok_btn
+	34,cancel_btn
+	35,text_button_1
+	36,comp_lbl_4
+	37,uniconCompilerCmd_txt
+	38,uniconCompilerFlgs_txt
+	39,uniconCompiler_lst
+	40,uniconLinkerFlgs_txt
+	41,uniconLinker_txt
+	42,comp_lbl
+	43,compflags_lbl
+	44,cpp_tab_options
+	45,java_tab_options
+	46,linker_lbl
+	47,linkerflags_lbl
+	48,list_1
+	49,list_2
+	50,makefileOpts_tabset
+	51,text_field_1
+	52,text_field_2
+	53,unicon_tab_options
+	54,cppCompilerslist
+	55,javaCompilerslist
+	56,uniconCompilerslist
+	57,win
+	58,is_open
+	59,owning_dialog
+	60,child_dialogs
+	61,focus
+	62,unique_flag
+	63,re_process_flag
+	64,buffer_win
+	65,min_width
+	66,min_height
+	67,click_count
+	68,double_click_delay
+	69,repeat_delay
+	70,repeat_rate
+	71,prev_x
+	72,prev_y
+	73,prev_time
+	74,prev_event
+	75,is_blocked_flag
+	76,resize_attrib
+	77,drag_gesture_x
+	78,drag_gesture_y
+	79,curr_drag
+	80,tried_drag
+	81,pointer_component
+	82,pointer_stack
+	83,invokes
+	84,all_valid
+	85,tooltip_ticker
+	86,tooltip_last_obj
+	87,tooltip_state
+	88,tooltip_start_time
+	89,tooltip_end_time
+	90,tooltip_start_delay
+	91,tooltip_end_delay
+	92,tooltip_continue_time
+	93,tooltip_continue_delay
+	94,tooltip_win
+	95,tooltip_x
+	96,tooltip_y
+	97,tooltip_w
+	98,tooltip_h
+	99,x_spec
+	100,y_spec
+	101,w_spec
+	102,h_spec
+	103,x_align
+	104,y_align
+	105,x
+	106,y
+	107,w
+	108,h
+	109,parent_dialog
+	110,attribs
+	111,has_focus
+	112,is_shaded_flag
+	113,cwin
+	114,cbwin
+	115,accepts_focus_flag
+	116,draw_border_flag
+	117,tooltip
+	118,parent
+	119,children
+	120,valid
+	121,accel
+	122,allow_drag_flag
+	123,allow_drop_flag
+	124,pointer
+	125,ticker
+	126,transparent
+	127,auto_refresh
+	128,listeners
+record	ConfigureOptions__methods,187
+	0,component_setup
+	1,end_dialog
+	2,init_dialog
+	3,on_cancel_btn
+	4,on_ok_btn
+	5,on_cppCompiler_lst
+	6,on_javaCompiler_lst
+	7,on_uniconCompiler_lst
+	8,setup
+	9,initially
+	10,invoke_validate
+	11,needs_validate
+	12,is_shaded
+	13,is_unshaded
+	14,is_hidden
+	15,is_unhidden
+	16,block
+	17,unblock
+	18,raise
+	19,get_click_count
+	20,compute_absolutes
+	21,change_pointer
+	22,restore_pointer
+	23,show_child
+	24,show_modeless
+	25,show_modal
+	26,get_win
+	27,resize_win
+	28,init
+	29,open_win
+	30,close_win
+	31,set_min_size
+	32,get_buffer_win
+	33,set_unique
+	34,clear_unique
+	35,set_focus
+	36,clear_focus
+	37,display
+	38,show
+	39,bevel_dispose
+	40,dispose
+	41,consume_same
+	42,process_event
+	43,process_normal
+	44,tooltip_init
+	45,tooltip_dispose
+	46,set_tooltip_start_delay
+	47,set_tooltip_end_delay
+	48,set_tooltip_continue_delay
+	49,show_tooltip
+	50,hide_tooltip
+	51,process_tooltip
+	52,find_tooltip
+	53,synch_pointer
+	54,find_pointer_component
+	55,process_dnd
+	56,process_unique
+	57,check_dnd
+	58,handle_resize
+	59,check_click_count
+	60,get_focus_list
+	61,find_next_focus
+	62,find_previous_focus
+	63,set_double_click_delay
+	64,set_repeat_delay
+	65,set_repeat_rate
+	66,invoke_later
+	67,do_invoke
+	68,set_one
+	69,set_tooltip
+	70,get_tooltip
+	71,set_pointer
+	72,get_pointer
+	73,get_x_reference
+	74,get_y_reference
+	75,get_w_reference
+	76,get_h_reference
+	77,get_cwin_reference
+	78,get_cbwin_reference
+	79,get_parent_dialog_reference
+	80,fatal
+	81,keeps
+	82,do_shading
+	83,accepts_focus
+	84,unique_start
+	85,unique_end
+	86,handle_accel
+	87,handle_event
+	88,do_handle_event
+	89,fire_icon_events_on_mouse
+	90,toggle_is_shaded
+	91,set_auto_refresh
+	92,clear_auto_refresh
+	93,set_transparent
+	94,clear_transparent
+	95,set_is_shaded
+	96,clear_is_shaded
+	97,toggle_draw_border
+	98,set_draw_border
+	99,clear_draw_border
+	100,set_accepts_focus
+	101,clear_accepts_focus
+	102,attrib
+	103,set_attribs
+	104,set_attribs_list
+	105,in_region
+	106,got_focus
+	107,get_parent_win
+	108,get_parent_buffer_win
+	109,lost_focus
+	110,set_pos
+	111,set_size
+	112,set_align
+	113,set_abs_coords
+	114,set_abs_size
+	115,set_accel
+	116,get_accel
+	117,get_parent
+	118,set_parent
+	119,get_parent_dialog
+	120,set_parent_dialog
+	121,firstly
+	122,finally
+	123,parse_pos
+	124,resize
+	125,generate_components
+	126,find_focus
+	127,find_accel
+	128,invalidate
+	129,all_components_valid
+	130,validate
+	131,child_validated
+	132,add
+	133,remove
+	134,is_dialog_open
+	135,get_children
+	136,create_event_and_fire
+	137,set_ticker
+	138,stop_ticker
+	139,retime_ticker
+	140,is_ticking
+	141,tick
+	142,invoke_can_drag
+	143,invoke_drag_event
+	144,invoke_can_drop
+	145,invoke_end_drag
+	146,invoke_drag_reset
+	147,can_drag
+	148,drag_event
+	149,can_drop
+	150,end_drag
+	151,drag_reset
+	152,set_allow_drag
+	153,clear_allow_drag
+	154,set_allow_drop
+	155,clear_allow_drop
+	156,is_attrib
+	157,clone
+	158,to_string
+	159,equals
+	160,hash_code
+	161,get_class_name
+	162,get_id
+	163,get_class
+	164,is_instance
+	165,test_flag
+	166,as_attrib
+	167,int_val
+	168,int_vals
+	169,numeric_val
+	170,numeric_vals
+	171,cset_val
+	172,string_val
+	173,string_vals
+	174,set_fields
+	175,field_error
+	176,genlisteners
+	177,fire
+	178,connect
+	179,disconnect_fromlist
+	180,disconnect_all
+	181,disconnect
+	182,gui__Dialog
+	183,gui__Component
+	184,lang__Object
+	185,util__SetFields
+	186,util__Connectable
+impl	error
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/setfields.u
+link	c:/unicon/uni/lib/connectable.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+link	graphics.u
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	20
+	0,000005,ConfigureOptions_component_setup,1
+	1,000005,ConfigureOptions_end_dialog,1
+	2,000005,ConfigureOptions_init_dialog,1
+	3,000005,ConfigureOptions_on_cancel_btn,2
+	4,000005,ConfigureOptions_on_ok_btn,2
+	5,000005,ConfigureOptions_on_cppCompiler_lst,2
+	6,000005,ConfigureOptions_on_javaCompiler_lst,2
+	7,000005,ConfigureOptions_on_uniconCompiler_lst,2
+	8,000005,ConfigureOptions_setup,1
+	9,000005,ConfigureOptions_initially,1
+	10,000011,ConfigureOptions__state,129
+	11,000011,ConfigureOptions__methods,187
+	12,000001,ConfigureOptions__oprec,0
+	13,000001,gui__Dialog__oprec,0
+	14,000001,gui__Component__oprec,0
+	15,000001,lang__Object__oprec,0
+	16,000001,util__SetFields__oprec,0
+	17,000001,util__Connectable__oprec,0
+	18,000005,ConfigureOptions,127
+	19,000005,ConfigureOptionsinitialize,0
+
+proc ConfigureOptions_component_setup
+	local	0,001000,self
+	declend
+	filen	configoptions.icn
+	line	20
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	21
+	colm	11
+	synt	any
+	field	setup
+	line	21
+	colm	17
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	22
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_end_dialog
+	local	0,001000,self
+	declend
+	line	24
+	colm	11
+	synt	any
+	line	26
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_init_dialog
+	local	0,001000,self
+	con	0,010000,6,165,156,151,143,157,156
+	con	1,010000,6,167,151,143,157,156,164
+	con	2,010000,20,107,116,125,040,103,040,103,157,155,160,151,154,145,162,040,050,107,103,103,051
+	con	3,010000,22,107,116,125,040,103,053,053,040,103,157,155,160,151,154,145,162,040,050,107,053,053,051
+	con	4,010000,5,152,141,166,141,143
+	declend
+	line	27
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	28
+	colm	11
+	synt	any
+	field	uniconCompilerslist
+	pnull
+	str	0
+	str	1
+	line	28
+	colm	33
+	synt	any
+	llist	2
+	line	28
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	29
+	colm	11
+	synt	any
+	field	cppCompilerslist
+	pnull
+	str	2
+	str	3
+	line	29
+	colm	30
+	synt	any
+	llist	2
+	line	29
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	30
+	colm	11
+	synt	any
+	field	javaCompilerslist
+	pnull
+	str	4
+	line	30
+	colm	31
+	synt	any
+	llist	1
+	line	30
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	31
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	line	31
+	colm	30
+	synt	any
+	field	set_selection_list
+	pnull
+	var	0
+	line	31
+	colm	54
+	synt	any
+	field	uniconCompilerslist
+	line	31
+	colm	49
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	32
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	line	32
+	colm	28
+	synt	any
+	field	set_selection_list
+	pnull
+	var	0
+	line	32
+	colm	52
+	synt	any
+	field	javaCompilerslist
+	line	32
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	33
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	line	33
+	colm	27
+	synt	any
+	field	set_selection_list
+	pnull
+	var	0
+	line	33
+	colm	51
+	synt	any
+	field	cppCompilerslist
+	line	33
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	pnull
+	line	34
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_on_cancel_btn
+	local	0,001000,self
+	local	1,001000,ev
+	declend
+	line	36
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	37
+	colm	11
+	synt	any
+	field	dispose
+	line	37
+	colm	19
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	pnull
+	line	38
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_on_ok_btn
+	local	0,001000,self
+	local	1,001000,ev
+	declend
+	line	40
+	colm	11
+	synt	any
+	line	42
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_on_cppCompiler_lst
+	local	0,001000,self
+	local	1,001000,ev
+	con	0,010000,22,107,116,125,040,103,053,053,040,103,157,155,160,151,154,145,162,040,050,107,053,053,051
+	con	1,010000,3,147,053,053
+	con	2,010000,20,107,116,125,040,103,040,103,157,155,160,151,154,145,162,040,050,107,103,103,051
+	con	3,010000,3,147,143,143
+	declend
+	line	43
+	colm	11
+	synt	any
+	mark	L1
+	line	44
+	colm	7
+	synt	ifelse
+	mark	L2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	14
+	synt	any
+	field	cppCompilerslist
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	36
+	synt	any
+	field	cppCompiler_lst
+	line	44
+	colm	52
+	synt	any
+	field	get_selection
+	line	44
+	colm	66
+	synt	any
+	invoke	0
+	line	44
+	colm	31
+	synt	any
+	subsc
+	str	0
+	line	44
+	colm	69
+	synt	any
+	lexeq
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	46
+	colm	14
+	synt	any
+	field	cppCompilerCmd_txt
+	line	46
+	colm	33
+	synt	any
+	field	set_contents
+	str	1
+	line	46
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	47
+	colm	14
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	47
+	colm	34
+	synt	any
+	field	set_contents
+	str	1
+	line	47
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	14
+	synt	any
+	field	cppLinker_txt
+	line	48
+	colm	28
+	synt	any
+	field	set_contents
+	str	1
+	line	48
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	pnull
+	pnull
+	var	0
+	line	49
+	colm	14
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	49
+	colm	32
+	synt	any
+	field	set_contents
+	str	1
+	line	49
+	colm	45
+	synt	any
+	invoke	1
+	goto	L3
+lab L2
+	line	51
+	colm	12
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	19
+	synt	any
+	field	cppCompilerslist
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	41
+	synt	any
+	field	cppCompiler_lst
+	line	51
+	colm	57
+	synt	any
+	field	get_selection
+	line	51
+	colm	71
+	synt	any
+	invoke	0
+	line	51
+	colm	36
+	synt	any
+	subsc
+	str	2
+	line	51
+	colm	74
+	synt	any
+	lexeq
+	unmark
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	14
+	synt	any
+	field	cppCompilerCmd_txt
+	line	53
+	colm	33
+	synt	any
+	field	set_contents
+	str	3
+	line	53
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	54
+	colm	14
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	54
+	colm	34
+	synt	any
+	field	set_contents
+	str	1
+	line	54
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	55
+	colm	14
+	synt	any
+	field	cppLinker_txt
+	line	55
+	colm	28
+	synt	any
+	field	set_contents
+	str	1
+	line	55
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	pnull
+	pnull
+	var	0
+	line	56
+	colm	14
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	56
+	colm	32
+	synt	any
+	field	set_contents
+	str	1
+	line	56
+	colm	45
+	synt	any
+	invoke	1
+	line	51
+	colm	12
+	synt	endif
+lab L3
+	line	44
+	colm	7
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	58
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_on_javaCompiler_lst
+	local	0,001000,self
+	local	1,001000,ev
+	con	0,010000,3,147,053,053
+	declend
+	line	60
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	line	61
+	colm	31
+	synt	any
+	field	set_contents
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	49
+	synt	any
+	field	javaCompilerslist
+	pnull
+	pnull
+	var	0
+	line	61
+	colm	72
+	synt	any
+	field	javaCompiler_lst
+	line	61
+	colm	89
+	synt	any
+	field	get_selection
+	line	61
+	colm	103
+	synt	any
+	invoke	0
+	line	61
+	colm	67
+	synt	any
+	subsc
+	line	61
+	colm	44
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	62
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	62
+	colm	32
+	synt	any
+	field	set_contents
+	str	0
+	line	62
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	63
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	line	63
+	colm	26
+	synt	any
+	field	set_contents
+	str	0
+	line	63
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	64
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	64
+	colm	30
+	synt	any
+	field	set_contents
+	str	0
+	line	64
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	line	65
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_on_uniconCompiler_lst
+	local	0,001000,self
+	local	1,001000,ev
+	con	0,010000,2,055,143
+	con	1,010000,1,040
+	declend
+	line	67
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	68
+	colm	33
+	synt	any
+	field	set_contents
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	51
+	synt	any
+	field	uniconCompilerslist
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	76
+	synt	any
+	field	uniconCompiler_lst
+	line	68
+	colm	95
+	synt	any
+	field	get_selection
+	line	68
+	colm	109
+	synt	any
+	invoke	0
+	line	68
+	colm	71
+	synt	any
+	subsc
+	line	68
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	69
+	colm	34
+	synt	any
+	field	set_contents
+	str	0
+	line	69
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	line	70
+	colm	28
+	synt	any
+	field	set_contents
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	46
+	synt	any
+	field	uniconCompilerslist
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	71
+	synt	any
+	field	uniconCompiler_lst
+	line	70
+	colm	90
+	synt	any
+	field	get_selection
+	line	70
+	colm	104
+	synt	any
+	invoke	0
+	line	70
+	colm	66
+	synt	any
+	subsc
+	line	70
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	71
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	71
+	colm	32
+	synt	any
+	field	set_contents
+	str	1
+	line	71
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	line	72
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_setup
+	local	0,001000,self
+	local	1,000020,button_group_1
+	local	2,000000,gui__TabSet
+	local	3,000000,gui__TabItem
+	local	4,000000,gui__Label
+	local	5,000000,gui__TextField
+	local	6,000000,gui__List
+	local	7,000000,gui__ButtonGroup
+	local	8,000000,gui__TextButton
+	con	0,010000,12,163,151,172,145,075,064,061,063,054,062,070,067
+	con	1,010000,23,154,141,142,145,154,075,103,157,156,146,151,147,165,162,145,040,117,160,164,151,157,156,163
+	con	2,010000,20,146,157,156,164,075,163,145,162,151,146,054,040,142,157,154,144,054,040,061,064
+	con	3,010000,1,065
+	con	4,010000,7,061,060,060,045,055,061,060
+	con	5,010000,3,062,064,064
+	con	6,010000,6,125,156,151,143,157,156
+	con	7,010000,2,062,060
+	con	8,010000,2,066,063
+	con	9,010000,3,061,062,065
+	con	10,010000,2,062,070
+	con	11,010000,1,154
+	con	12,010000,16,103,157,155,160,151,154,145,162,040,103,157,155,155,141,156,144
+	con	13,010000,3,061,063,063
+	con	14,010000,14,114,151,156,153,145,162,040,103,157,155,155,141,156,144
+	con	15,010000,3,061,066,070
+	con	16,010000,12,114,151,156,153,145,162,040,106,154,141,147,163
+	con	17,010000,2,071,070
+	con	18,010000,14,103,157,155,160,151,154,145,162,040,106,154,141,147,163
+	con	19,010000,3,061,067,064
+	con	20,010000,3,062,060,060
+	con	21,010000,0
+	con	22,010000,21,157,156,137,165,156,151,143,157,156,103,157,155,160,151,154,145,162,137,154,163,164
+	con	23,002000,2,40
+	con	24,010000,6,165,156,151,143,157,156
+	con	25,010000,15,125,156,151,143,157,156,040,103,157,155,160,151,154,145,162
+	con	26,010000,4,112,141,166,141
+	con	27,010000,13,112,141,166,141,040,103,157,155,160,151,154,145,162
+	con	28,010000,19,157,156,137,152,141,166,141,103,157,155,160,151,154,145,162,137,154,163,164
+	con	29,010000,5,152,141,166,141,143
+	con	30,010000,12,112,141,166,141,040,103,157,155,155,141,156,144
+	con	31,010000,3,103,053,053
+	con	32,010000,12,103,053,053,040,103,157,155,160,151,154,145,162
+	con	33,010000,18,157,156,137,143,160,160,103,157,155,160,151,154,145,162,137,154,163,164
+	con	34,010000,22,107,116,125,040,103,053,053,040,103,157,155,160,151,154,145,162,040,050,107,053,053,051
+	con	35,010000,3,061,061,070
+	con	36,010000,3,062,065,064
+	con	37,010000,2,070,060
+	con	38,010000,9,157,156,137,157,153,137,142,164,156
+	con	39,002000,2,60
+	con	40,010000,2,117,113
+	con	41,010000,1,143
+	con	42,002000,3,225
+	con	43,002000,3,254
+	con	44,010000,13,157,156,137,143,141,156,143,145,154,137,142,164,156
+	con	45,010000,6,103,141,156,143,145,154
+	declend
+	line	74
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	76
+	colm	11
+	synt	any
+	field	set_attribs
+	str	0
+	str	1
+	str	2
+	line	76
+	colm	23
+	synt	any
+	invoke	3
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	78
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	var	2
+	line	78
+	colm	44
+	synt	any
+	invoke	0
+	line	78
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	79
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	79
+	colm	31
+	synt	any
+	field	set_pos
+	str	3
+	str	3
+	line	79
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	80
+	colm	31
+	synt	any
+	field	set_size
+	str	4
+	str	5
+	line	80
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	81
+	colm	31
+	synt	any
+	field	set_attribs
+	str	2
+	line	81
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	var	3
+	line	82
+	colm	44
+	synt	any
+	invoke	0
+	line	82
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	83
+	colm	30
+	synt	any
+	field	set_label
+	str	6
+	line	83
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	84
+	colm	11
+	synt	any
+	field	comp_lbl
+	var	4
+	line	84
+	colm	32
+	synt	any
+	invoke	0
+	line	84
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	85
+	colm	11
+	synt	any
+	field	comp_lbl
+	line	85
+	colm	20
+	synt	any
+	field	set_pos
+	str	7
+	str	8
+	line	85
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	11
+	synt	any
+	field	comp_lbl
+	line	86
+	colm	20
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	86
+	colm	29
+	synt	any
+	invoke	2
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	87
+	colm	11
+	synt	any
+	field	comp_lbl
+	line	87
+	colm	20
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	87
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	88
+	colm	11
+	synt	any
+	field	comp_lbl
+	line	88
+	colm	20
+	synt	any
+	field	set_label
+	str	12
+	line	88
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	89
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	89
+	colm	39
+	synt	any
+	field	comp_lbl
+	line	89
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	90
+	colm	11
+	synt	any
+	field	linker_lbl
+	var	4
+	line	90
+	colm	34
+	synt	any
+	invoke	0
+	line	90
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	11
+	synt	any
+	field	linker_lbl
+	line	91
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	13
+	line	91
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	92
+	colm	11
+	synt	any
+	field	linker_lbl
+	line	92
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	92
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L16
+	mark	L17
+	pnull
+	pnull
+	var	0
+	line	93
+	colm	11
+	synt	any
+	field	linker_lbl
+	line	93
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	93
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	mark	L18
+	pnull
+	pnull
+	var	0
+	line	94
+	colm	11
+	synt	any
+	field	linker_lbl
+	line	94
+	colm	22
+	synt	any
+	field	set_label
+	str	14
+	line	94
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	95
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	95
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	95
+	colm	39
+	synt	any
+	field	linker_lbl
+	line	95
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	mark	L20
+	pnull
+	pnull
+	var	0
+	line	96
+	colm	11
+	synt	any
+	field	linkerflags_lbl
+	var	4
+	line	96
+	colm	39
+	synt	any
+	invoke	0
+	line	96
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	0
+	line	97
+	colm	11
+	synt	any
+	field	linkerflags_lbl
+	line	97
+	colm	27
+	synt	any
+	field	set_pos
+	str	7
+	str	15
+	line	97
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	var	0
+	line	98
+	colm	11
+	synt	any
+	field	linkerflags_lbl
+	line	98
+	colm	27
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	98
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	var	0
+	line	99
+	colm	11
+	synt	any
+	field	linkerflags_lbl
+	line	99
+	colm	27
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	99
+	colm	50
+	synt	any
+	invoke	1
+	unmark
+lab L23
+	mark	L24
+	pnull
+	pnull
+	var	0
+	line	100
+	colm	11
+	synt	any
+	field	linkerflags_lbl
+	line	100
+	colm	27
+	synt	any
+	field	set_label
+	str	16
+	line	100
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L24
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	101
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	101
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	101
+	colm	39
+	synt	any
+	field	linkerflags_lbl
+	line	101
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	102
+	colm	11
+	synt	any
+	field	compflags_lbl
+	var	4
+	line	102
+	colm	37
+	synt	any
+	invoke	0
+	line	102
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	pnull
+	pnull
+	var	0
+	line	103
+	colm	11
+	synt	any
+	field	compflags_lbl
+	line	103
+	colm	25
+	synt	any
+	field	set_pos
+	str	7
+	str	17
+	line	103
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	104
+	colm	11
+	synt	any
+	field	compflags_lbl
+	line	104
+	colm	25
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	104
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L28
+	mark	L29
+	pnull
+	pnull
+	var	0
+	line	105
+	colm	11
+	synt	any
+	field	compflags_lbl
+	line	105
+	colm	25
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	105
+	colm	48
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	mark	L30
+	pnull
+	pnull
+	var	0
+	line	106
+	colm	11
+	synt	any
+	field	compflags_lbl
+	line	106
+	colm	25
+	synt	any
+	field	set_label
+	str	18
+	line	106
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L30
+	mark	L31
+	pnull
+	pnull
+	var	0
+	line	107
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	107
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	107
+	colm	39
+	synt	any
+	field	compflags_lbl
+	line	107
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L31
+	mark	L32
+	pnull
+	pnull
+	var	0
+	line	108
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	var	5
+	line	108
+	colm	50
+	synt	any
+	invoke	0
+	line	108
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	pnull
+	var	0
+	line	109
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	109
+	colm	34
+	synt	any
+	field	set_pos
+	str	19
+	str	17
+	line	109
+	colm	42
+	synt	any
+	invoke	2
+	unmark
+lab L33
+	mark	L34
+	pnull
+	pnull
+	var	0
+	line	110
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	110
+	colm	34
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	110
+	colm	43
+	synt	any
+	invoke	2
+	unmark
+lab L34
+	mark	L35
+	pnull
+	pnull
+	var	0
+	line	111
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	111
+	colm	34
+	synt	any
+	field	set_draw_border
+	line	111
+	colm	50
+	synt	any
+	invoke	0
+	unmark
+lab L35
+	mark	L36
+	pnull
+	pnull
+	var	0
+	line	112
+	colm	11
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	112
+	colm	34
+	synt	any
+	field	set_contents
+	str	21
+	line	112
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L36
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	113
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	113
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	113
+	colm	39
+	synt	any
+	field	uniconCompilerFlgs_txt
+	line	113
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L37
+	mark	L38
+	pnull
+	pnull
+	var	0
+	line	114
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	var	5
+	line	114
+	colm	48
+	synt	any
+	invoke	0
+	line	114
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	115
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	115
+	colm	32
+	synt	any
+	field	set_pos
+	str	19
+	str	15
+	line	115
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L39
+	mark	L40
+	pnull
+	pnull
+	var	0
+	line	116
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	116
+	colm	32
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	116
+	colm	41
+	synt	any
+	invoke	2
+	unmark
+lab L40
+	mark	L41
+	pnull
+	pnull
+	var	0
+	line	117
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	117
+	colm	32
+	synt	any
+	field	set_draw_border
+	line	117
+	colm	48
+	synt	any
+	invoke	0
+	unmark
+lab L41
+	mark	L42
+	pnull
+	pnull
+	var	0
+	line	118
+	colm	11
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	118
+	colm	32
+	synt	any
+	field	set_contents
+	str	21
+	line	118
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L42
+	mark	L43
+	pnull
+	pnull
+	var	0
+	line	119
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	119
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	119
+	colm	39
+	synt	any
+	field	uniconLinkerFlgs_txt
+	line	119
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L43
+	mark	L44
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	var	6
+	line	120
+	colm	41
+	synt	any
+	invoke	0
+	line	120
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L44
+	mark	L45
+	pnull
+	pnull
+	var	0
+	line	121
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	line	121
+	colm	30
+	synt	any
+	field	set_pos
+	str	19
+	str	10
+	line	121
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L45
+	mark	L46
+	pnull
+	pnull
+	var	0
+	line	122
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	line	122
+	colm	30
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	122
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L46
+	mark	L47
+	pnull
+	pnull
+	var	0
+	line	123
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	line	123
+	colm	30
+	synt	any
+	field	connect
+	var	0
+	str	22
+	int	23
+	line	123
+	colm	38
+	synt	any
+	invoke	3
+	unmark
+lab L47
+	mark	L48
+	pnull
+	pnull
+	var	0
+	line	124
+	colm	11
+	synt	any
+	field	uniconCompiler_lst
+	line	124
+	colm	30
+	synt	any
+	field	set_selection_list
+	pnull
+	str	24
+	line	124
+	colm	50
+	synt	any
+	llist	1
+	line	124
+	colm	49
+	synt	any
+	invoke	1
+	unmark
+lab L48
+	mark	L49
+	pnull
+	pnull
+	var	0
+	line	125
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	125
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	125
+	colm	39
+	synt	any
+	field	uniconCompiler_lst
+	line	125
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L49
+	mark	L50
+	pnull
+	pnull
+	var	0
+	line	126
+	colm	11
+	synt	any
+	field	comp_lbl_4
+	var	4
+	line	126
+	colm	34
+	synt	any
+	invoke	0
+	line	126
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L50
+	mark	L51
+	pnull
+	pnull
+	var	0
+	line	127
+	colm	11
+	synt	any
+	field	comp_lbl_4
+	line	127
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	10
+	line	127
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L51
+	mark	L52
+	pnull
+	pnull
+	var	0
+	line	128
+	colm	11
+	synt	any
+	field	comp_lbl_4
+	line	128
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	128
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L52
+	mark	L53
+	pnull
+	pnull
+	var	0
+	line	129
+	colm	11
+	synt	any
+	field	comp_lbl_4
+	line	129
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	129
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L53
+	mark	L54
+	pnull
+	pnull
+	var	0
+	line	130
+	colm	11
+	synt	any
+	field	comp_lbl_4
+	line	130
+	colm	22
+	synt	any
+	field	set_label
+	str	25
+	line	130
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L54
+	mark	L55
+	pnull
+	pnull
+	var	0
+	line	131
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	131
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	131
+	colm	39
+	synt	any
+	field	comp_lbl_4
+	line	131
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L55
+	mark	L56
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	var	5
+	line	132
+	colm	44
+	synt	any
+	invoke	0
+	line	132
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L56
+	mark	L57
+	pnull
+	pnull
+	var	0
+	line	133
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	line	133
+	colm	28
+	synt	any
+	field	set_pos
+	str	19
+	str	13
+	line	133
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L57
+	mark	L58
+	pnull
+	pnull
+	var	0
+	line	134
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	line	134
+	colm	28
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	134
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L58
+	mark	L59
+	pnull
+	pnull
+	var	0
+	line	135
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	line	135
+	colm	28
+	synt	any
+	field	set_draw_border
+	line	135
+	colm	44
+	synt	any
+	invoke	0
+	unmark
+lab L59
+	mark	L60
+	pnull
+	pnull
+	var	0
+	line	136
+	colm	11
+	synt	any
+	field	uniconLinker_txt
+	line	136
+	colm	28
+	synt	any
+	field	set_contents
+	str	21
+	line	136
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L60
+	mark	L61
+	pnull
+	pnull
+	var	0
+	line	137
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	137
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	137
+	colm	39
+	synt	any
+	field	uniconLinker_txt
+	line	137
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L61
+	mark	L62
+	pnull
+	pnull
+	var	0
+	line	138
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	var	5
+	line	138
+	colm	49
+	synt	any
+	invoke	0
+	line	138
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L62
+	mark	L63
+	pnull
+	pnull
+	var	0
+	line	139
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	139
+	colm	33
+	synt	any
+	field	set_pos
+	str	19
+	str	8
+	line	139
+	colm	41
+	synt	any
+	invoke	2
+	unmark
+lab L63
+	mark	L64
+	pnull
+	pnull
+	var	0
+	line	140
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	140
+	colm	33
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	140
+	colm	42
+	synt	any
+	invoke	2
+	unmark
+lab L64
+	mark	L65
+	pnull
+	pnull
+	var	0
+	line	141
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	141
+	colm	33
+	synt	any
+	field	set_draw_border
+	line	141
+	colm	49
+	synt	any
+	invoke	0
+	unmark
+lab L65
+	mark	L66
+	pnull
+	pnull
+	var	0
+	line	142
+	colm	11
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	142
+	colm	33
+	synt	any
+	field	set_contents
+	str	21
+	line	142
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L66
+	mark	L67
+	pnull
+	pnull
+	var	0
+	line	143
+	colm	11
+	synt	any
+	field	unicon_tab_options
+	line	143
+	colm	30
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	143
+	colm	39
+	synt	any
+	field	uniconCompilerCmd_txt
+	line	143
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L67
+	mark	L68
+	pnull
+	pnull
+	var	0
+	line	144
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	144
+	colm	31
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	144
+	colm	40
+	synt	any
+	field	unicon_tab_options
+	line	144
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L68
+	mark	L69
+	pnull
+	pnull
+	var	0
+	line	145
+	colm	11
+	synt	any
+	field	java_tab_options
+	var	3
+	line	145
+	colm	42
+	synt	any
+	invoke	0
+	line	145
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L69
+	mark	L70
+	pnull
+	pnull
+	var	0
+	line	146
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	146
+	colm	28
+	synt	any
+	field	set_label
+	str	26
+	line	146
+	colm	38
+	synt	any
+	invoke	1
+	unmark
+lab L70
+	mark	L71
+	pnull
+	pnull
+	var	0
+	line	147
+	colm	11
+	synt	any
+	field	comp_lbl_7
+	var	4
+	line	147
+	colm	34
+	synt	any
+	invoke	0
+	line	147
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L71
+	mark	L72
+	pnull
+	pnull
+	var	0
+	line	148
+	colm	11
+	synt	any
+	field	comp_lbl_7
+	line	148
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	10
+	line	148
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L72
+	mark	L73
+	pnull
+	pnull
+	var	0
+	line	149
+	colm	11
+	synt	any
+	field	comp_lbl_7
+	line	149
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	149
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L73
+	mark	L74
+	pnull
+	pnull
+	var	0
+	line	150
+	colm	11
+	synt	any
+	field	comp_lbl_7
+	line	150
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	150
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L74
+	mark	L75
+	pnull
+	pnull
+	var	0
+	line	151
+	colm	11
+	synt	any
+	field	comp_lbl_7
+	line	151
+	colm	22
+	synt	any
+	field	set_label
+	str	27
+	line	151
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L75
+	mark	L76
+	pnull
+	pnull
+	var	0
+	line	152
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	152
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	152
+	colm	37
+	synt	any
+	field	comp_lbl_7
+	line	152
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L76
+	mark	L77
+	pnull
+	pnull
+	var	0
+	line	153
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	var	6
+	line	153
+	colm	39
+	synt	any
+	invoke	0
+	line	153
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L77
+	mark	L78
+	pnull
+	pnull
+	var	0
+	line	154
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	line	154
+	colm	28
+	synt	any
+	field	set_pos
+	str	19
+	str	10
+	line	154
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L78
+	mark	L79
+	pnull
+	pnull
+	var	0
+	line	155
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	line	155
+	colm	28
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	155
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L79
+	mark	L80
+	pnull
+	pnull
+	var	0
+	line	156
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	line	156
+	colm	28
+	synt	any
+	field	connect
+	var	0
+	str	28
+	int	23
+	line	156
+	colm	36
+	synt	any
+	invoke	3
+	unmark
+lab L80
+	mark	L81
+	pnull
+	pnull
+	var	0
+	line	158
+	colm	11
+	synt	any
+	field	javaCompiler_lst
+	line	158
+	colm	28
+	synt	any
+	field	set_selection_list
+	pnull
+	str	29
+	line	158
+	colm	48
+	synt	any
+	llist	1
+	line	158
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L81
+	mark	L82
+	pnull
+	pnull
+	var	0
+	line	159
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	159
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	159
+	colm	37
+	synt	any
+	field	javaCompiler_lst
+	line	159
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L82
+	mark	L83
+	pnull
+	pnull
+	var	0
+	line	160
+	colm	11
+	synt	any
+	field	comp_lbl_8
+	var	4
+	line	160
+	colm	34
+	synt	any
+	invoke	0
+	line	160
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L83
+	mark	L84
+	pnull
+	pnull
+	var	0
+	line	161
+	colm	11
+	synt	any
+	field	comp_lbl_8
+	line	161
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	8
+	line	161
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L84
+	mark	L85
+	pnull
+	pnull
+	var	0
+	line	162
+	colm	11
+	synt	any
+	field	comp_lbl_8
+	line	162
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	162
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L85
+	mark	L86
+	pnull
+	pnull
+	var	0
+	line	163
+	colm	11
+	synt	any
+	field	comp_lbl_8
+	line	163
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	163
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L86
+	mark	L87
+	pnull
+	pnull
+	var	0
+	line	164
+	colm	11
+	synt	any
+	field	comp_lbl_8
+	line	164
+	colm	22
+	synt	any
+	field	set_label
+	str	30
+	line	164
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L87
+	mark	L88
+	pnull
+	pnull
+	var	0
+	line	165
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	165
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	165
+	colm	37
+	synt	any
+	field	comp_lbl_8
+	line	165
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L88
+	mark	L89
+	pnull
+	pnull
+	var	0
+	line	166
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	var	5
+	line	166
+	colm	47
+	synt	any
+	invoke	0
+	line	166
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L89
+	mark	L90
+	pnull
+	pnull
+	var	0
+	line	167
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	line	167
+	colm	31
+	synt	any
+	field	set_pos
+	str	19
+	str	8
+	line	167
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L90
+	mark	L91
+	pnull
+	pnull
+	var	0
+	line	168
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	line	168
+	colm	31
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	168
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L91
+	mark	L92
+	pnull
+	pnull
+	var	0
+	line	169
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	line	169
+	colm	31
+	synt	any
+	field	set_draw_border
+	line	169
+	colm	47
+	synt	any
+	invoke	0
+	unmark
+lab L92
+	mark	L93
+	pnull
+	pnull
+	var	0
+	line	170
+	colm	11
+	synt	any
+	field	javaCompilerCmd_txt
+	line	170
+	colm	31
+	synt	any
+	field	set_contents
+	str	21
+	line	170
+	colm	44
+	synt	any
+	invoke	1
+	unmark
+lab L93
+	mark	L94
+	pnull
+	pnull
+	var	0
+	line	171
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	171
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	171
+	colm	37
+	synt	any
+	field	javaCompilerCmd_txt
+	line	171
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L94
+	mark	L95
+	pnull
+	pnull
+	var	0
+	line	172
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	var	5
+	line	172
+	colm	48
+	synt	any
+	invoke	0
+	line	172
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L95
+	mark	L96
+	pnull
+	pnull
+	var	0
+	line	173
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	173
+	colm	32
+	synt	any
+	field	set_pos
+	str	19
+	str	17
+	line	173
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L96
+	mark	L97
+	pnull
+	pnull
+	var	0
+	line	174
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	174
+	colm	32
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	174
+	colm	41
+	synt	any
+	invoke	2
+	unmark
+lab L97
+	mark	L98
+	pnull
+	pnull
+	var	0
+	line	175
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	175
+	colm	32
+	synt	any
+	field	set_draw_border
+	line	175
+	colm	48
+	synt	any
+	invoke	0
+	unmark
+lab L98
+	mark	L99
+	pnull
+	pnull
+	var	0
+	line	176
+	colm	11
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	176
+	colm	32
+	synt	any
+	field	set_contents
+	str	21
+	line	176
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L99
+	mark	L100
+	pnull
+	pnull
+	var	0
+	line	177
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	177
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	177
+	colm	37
+	synt	any
+	field	javaCompilerFlgs_txt
+	line	177
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L100
+	mark	L101
+	pnull
+	pnull
+	var	0
+	line	178
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	var	5
+	line	178
+	colm	42
+	synt	any
+	invoke	0
+	line	178
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L101
+	mark	L102
+	pnull
+	pnull
+	var	0
+	line	179
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	line	179
+	colm	26
+	synt	any
+	field	set_pos
+	str	19
+	str	13
+	line	179
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L102
+	mark	L103
+	pnull
+	pnull
+	var	0
+	line	180
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	line	180
+	colm	26
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	180
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L103
+	mark	L104
+	pnull
+	pnull
+	var	0
+	line	181
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	line	181
+	colm	26
+	synt	any
+	field	set_draw_border
+	line	181
+	colm	42
+	synt	any
+	invoke	0
+	unmark
+lab L104
+	mark	L105
+	pnull
+	pnull
+	var	0
+	line	182
+	colm	11
+	synt	any
+	field	javaLinker_txt
+	line	182
+	colm	26
+	synt	any
+	field	set_contents
+	str	21
+	line	182
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L105
+	mark	L106
+	pnull
+	pnull
+	var	0
+	line	183
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	183
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	183
+	colm	37
+	synt	any
+	field	javaLinker_txt
+	line	183
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L106
+	mark	L107
+	pnull
+	pnull
+	var	0
+	line	184
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	var	5
+	line	184
+	colm	46
+	synt	any
+	invoke	0
+	line	184
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L107
+	mark	L108
+	pnull
+	pnull
+	var	0
+	line	185
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	185
+	colm	30
+	synt	any
+	field	set_pos
+	str	19
+	str	15
+	line	185
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L108
+	mark	L109
+	pnull
+	pnull
+	var	0
+	line	186
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	186
+	colm	30
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	186
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L109
+	mark	L110
+	pnull
+	pnull
+	var	0
+	line	187
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	187
+	colm	30
+	synt	any
+	field	set_draw_border
+	line	187
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L110
+	mark	L111
+	pnull
+	pnull
+	var	0
+	line	188
+	colm	11
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	188
+	colm	30
+	synt	any
+	field	set_contents
+	str	21
+	line	188
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L111
+	mark	L112
+	pnull
+	pnull
+	var	0
+	line	189
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	189
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	189
+	colm	37
+	synt	any
+	field	javaLinkerFlgs_txt
+	line	189
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L112
+	mark	L113
+	pnull
+	pnull
+	var	0
+	line	190
+	colm	11
+	synt	any
+	field	compflags_lbl_2
+	var	4
+	line	190
+	colm	39
+	synt	any
+	invoke	0
+	line	190
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L113
+	mark	L114
+	pnull
+	pnull
+	var	0
+	line	191
+	colm	11
+	synt	any
+	field	compflags_lbl_2
+	line	191
+	colm	27
+	synt	any
+	field	set_pos
+	str	7
+	str	17
+	line	191
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L114
+	mark	L115
+	pnull
+	pnull
+	var	0
+	line	192
+	colm	11
+	synt	any
+	field	compflags_lbl_2
+	line	192
+	colm	27
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	192
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L115
+	mark	L116
+	pnull
+	pnull
+	var	0
+	line	193
+	colm	11
+	synt	any
+	field	compflags_lbl_2
+	line	193
+	colm	27
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	193
+	colm	50
+	synt	any
+	invoke	1
+	unmark
+lab L116
+	mark	L117
+	pnull
+	pnull
+	var	0
+	line	194
+	colm	11
+	synt	any
+	field	compflags_lbl_2
+	line	194
+	colm	27
+	synt	any
+	field	set_label
+	str	18
+	line	194
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L117
+	mark	L118
+	pnull
+	pnull
+	var	0
+	line	195
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	195
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	195
+	colm	37
+	synt	any
+	field	compflags_lbl_2
+	line	195
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L118
+	mark	L119
+	pnull
+	pnull
+	var	0
+	line	196
+	colm	11
+	synt	any
+	field	linkerflags_lbl_2
+	var	4
+	line	196
+	colm	41
+	synt	any
+	invoke	0
+	line	196
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L119
+	mark	L120
+	pnull
+	pnull
+	var	0
+	line	197
+	colm	11
+	synt	any
+	field	linkerflags_lbl_2
+	line	197
+	colm	29
+	synt	any
+	field	set_pos
+	str	7
+	str	15
+	line	197
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L120
+	mark	L121
+	pnull
+	pnull
+	var	0
+	line	198
+	colm	11
+	synt	any
+	field	linkerflags_lbl_2
+	line	198
+	colm	29
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	198
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L121
+	mark	L122
+	pnull
+	pnull
+	var	0
+	line	199
+	colm	11
+	synt	any
+	field	linkerflags_lbl_2
+	line	199
+	colm	29
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	199
+	colm	52
+	synt	any
+	invoke	1
+	unmark
+lab L122
+	mark	L123
+	pnull
+	pnull
+	var	0
+	line	200
+	colm	11
+	synt	any
+	field	linkerflags_lbl_2
+	line	200
+	colm	29
+	synt	any
+	field	set_label
+	str	16
+	line	200
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L123
+	mark	L124
+	pnull
+	pnull
+	var	0
+	line	201
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	201
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	201
+	colm	37
+	synt	any
+	field	linkerflags_lbl_2
+	line	201
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L124
+	mark	L125
+	pnull
+	pnull
+	var	0
+	line	202
+	colm	11
+	synt	any
+	field	linker_lbl_2
+	var	4
+	line	202
+	colm	36
+	synt	any
+	invoke	0
+	line	202
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L125
+	mark	L126
+	pnull
+	pnull
+	var	0
+	line	203
+	colm	11
+	synt	any
+	field	linker_lbl_2
+	line	203
+	colm	24
+	synt	any
+	field	set_pos
+	str	7
+	str	13
+	line	203
+	colm	32
+	synt	any
+	invoke	2
+	unmark
+lab L126
+	mark	L127
+	pnull
+	pnull
+	var	0
+	line	204
+	colm	11
+	synt	any
+	field	linker_lbl_2
+	line	204
+	colm	24
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	204
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L127
+	mark	L128
+	pnull
+	pnull
+	var	0
+	line	205
+	colm	11
+	synt	any
+	field	linker_lbl_2
+	line	205
+	colm	24
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	205
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L128
+	mark	L129
+	pnull
+	pnull
+	var	0
+	line	206
+	colm	11
+	synt	any
+	field	linker_lbl_2
+	line	206
+	colm	24
+	synt	any
+	field	set_label
+	str	14
+	line	206
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L129
+	mark	L130
+	pnull
+	pnull
+	var	0
+	line	207
+	colm	11
+	synt	any
+	field	java_tab_options
+	line	207
+	colm	28
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	207
+	colm	37
+	synt	any
+	field	linker_lbl_2
+	line	207
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L130
+	mark	L131
+	pnull
+	pnull
+	var	0
+	line	208
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	208
+	colm	31
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	208
+	colm	40
+	synt	any
+	field	java_tab_options
+	line	208
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L131
+	mark	L132
+	pnull
+	pnull
+	var	0
+	line	209
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	var	3
+	line	209
+	colm	41
+	synt	any
+	invoke	0
+	line	209
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L132
+	mark	L133
+	pnull
+	pnull
+	var	0
+	line	210
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	210
+	colm	27
+	synt	any
+	field	set_label
+	str	31
+	line	210
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L133
+	mark	L134
+	pnull
+	pnull
+	var	0
+	line	211
+	colm	11
+	synt	any
+	field	comp_lbl_5
+	var	4
+	line	211
+	colm	34
+	synt	any
+	invoke	0
+	line	211
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L134
+	mark	L135
+	pnull
+	pnull
+	var	0
+	line	212
+	colm	11
+	synt	any
+	field	comp_lbl_5
+	line	212
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	10
+	line	212
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L135
+	mark	L136
+	pnull
+	pnull
+	var	0
+	line	213
+	colm	11
+	synt	any
+	field	comp_lbl_5
+	line	213
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	213
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L136
+	mark	L137
+	pnull
+	pnull
+	var	0
+	line	214
+	colm	11
+	synt	any
+	field	comp_lbl_5
+	line	214
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	214
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L137
+	mark	L138
+	pnull
+	pnull
+	var	0
+	line	215
+	colm	11
+	synt	any
+	field	comp_lbl_5
+	line	215
+	colm	22
+	synt	any
+	field	set_label
+	str	32
+	line	215
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L138
+	mark	L139
+	pnull
+	pnull
+	var	0
+	line	216
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	216
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	216
+	colm	36
+	synt	any
+	field	comp_lbl_5
+	line	216
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L139
+	mark	L140
+	pnull
+	pnull
+	var	0
+	line	217
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	var	6
+	line	217
+	colm	38
+	synt	any
+	invoke	0
+	line	217
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L140
+	mark	L141
+	pnull
+	pnull
+	var	0
+	line	218
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	line	218
+	colm	27
+	synt	any
+	field	set_pos
+	str	19
+	str	10
+	line	218
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L141
+	mark	L142
+	pnull
+	pnull
+	var	0
+	line	219
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	line	219
+	colm	27
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	219
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L142
+	mark	L143
+	pnull
+	pnull
+	var	0
+	line	220
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	line	220
+	colm	27
+	synt	any
+	field	connect
+	var	0
+	str	33
+	int	23
+	line	220
+	colm	35
+	synt	any
+	invoke	3
+	unmark
+lab L143
+	mark	L144
+	pnull
+	pnull
+	var	0
+	line	222
+	colm	11
+	synt	any
+	field	cppCompiler_lst
+	line	222
+	colm	27
+	synt	any
+	field	set_selection_list
+	pnull
+	str	34
+	line	222
+	colm	47
+	synt	any
+	llist	1
+	line	222
+	colm	46
+	synt	any
+	invoke	1
+	unmark
+lab L144
+	mark	L145
+	pnull
+	pnull
+	var	0
+	line	223
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	223
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	223
+	colm	36
+	synt	any
+	field	cppCompiler_lst
+	line	223
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L145
+	mark	L146
+	pnull
+	pnull
+	var	0
+	line	224
+	colm	11
+	synt	any
+	field	comp_lbl_6
+	var	4
+	line	224
+	colm	34
+	synt	any
+	invoke	0
+	line	224
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L146
+	mark	L147
+	pnull
+	pnull
+	var	0
+	line	225
+	colm	11
+	synt	any
+	field	comp_lbl_6
+	line	225
+	colm	22
+	synt	any
+	field	set_pos
+	str	7
+	str	8
+	line	225
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L147
+	mark	L148
+	pnull
+	pnull
+	var	0
+	line	226
+	colm	11
+	synt	any
+	field	comp_lbl_6
+	line	226
+	colm	22
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	226
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L148
+	mark	L149
+	pnull
+	pnull
+	var	0
+	line	227
+	colm	11
+	synt	any
+	field	comp_lbl_6
+	line	227
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	227
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L149
+	mark	L150
+	pnull
+	pnull
+	var	0
+	line	228
+	colm	11
+	synt	any
+	field	comp_lbl_6
+	line	228
+	colm	22
+	synt	any
+	field	set_label
+	str	12
+	line	228
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L150
+	mark	L151
+	pnull
+	pnull
+	var	0
+	line	229
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	229
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	229
+	colm	36
+	synt	any
+	field	comp_lbl_6
+	line	229
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L151
+	mark	L152
+	pnull
+	pnull
+	var	0
+	line	230
+	colm	11
+	synt	any
+	field	cppCompilerCmd_txt
+	var	5
+	line	230
+	colm	46
+	synt	any
+	invoke	0
+	line	230
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L152
+	mark	L153
+	pnull
+	pnull
+	var	0
+	line	231
+	colm	11
+	synt	any
+	field	cppCompilerCmd_txt
+	line	231
+	colm	30
+	synt	any
+	field	set_pos
+	str	19
+	str	8
+	line	231
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L153
+	mark	L154
+	pnull
+	pnull
+	var	0
+	line	232
+	colm	11
+	synt	any
+	field	cppCompilerCmd_txt
+	line	232
+	colm	30
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	232
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L154
+	mark	L155
+	pnull
+	pnull
+	var	0
+	line	233
+	colm	11
+	synt	any
+	field	cppCompilerCmd_txt
+	line	233
+	colm	30
+	synt	any
+	field	set_draw_border
+	line	233
+	colm	46
+	synt	any
+	invoke	0
+	unmark
+lab L155
+	mark	L156
+	pnull
+	pnull
+	var	0
+	line	234
+	colm	11
+	synt	any
+	field	cppCompilerCmd_txt
+	line	234
+	colm	30
+	synt	any
+	field	set_contents
+	str	21
+	line	234
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L156
+	mark	L157
+	pnull
+	pnull
+	var	0
+	line	235
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	235
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	235
+	colm	36
+	synt	any
+	field	cppCompilerCmd_txt
+	line	235
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L157
+	mark	L158
+	pnull
+	pnull
+	var	0
+	line	236
+	colm	11
+	synt	any
+	field	compflags_lbl_1
+	var	4
+	line	236
+	colm	39
+	synt	any
+	invoke	0
+	line	236
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L158
+	mark	L159
+	pnull
+	pnull
+	var	0
+	line	237
+	colm	11
+	synt	any
+	field	compflags_lbl_1
+	line	237
+	colm	27
+	synt	any
+	field	set_pos
+	str	7
+	str	17
+	line	237
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L159
+	mark	L160
+	pnull
+	pnull
+	var	0
+	line	238
+	colm	11
+	synt	any
+	field	compflags_lbl_1
+	line	238
+	colm	27
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	238
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+lab L160
+	mark	L161
+	pnull
+	pnull
+	var	0
+	line	239
+	colm	11
+	synt	any
+	field	compflags_lbl_1
+	line	239
+	colm	27
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	239
+	colm	50
+	synt	any
+	invoke	1
+	unmark
+lab L161
+	mark	L162
+	pnull
+	pnull
+	var	0
+	line	240
+	colm	11
+	synt	any
+	field	compflags_lbl_1
+	line	240
+	colm	27
+	synt	any
+	field	set_label
+	str	18
+	line	240
+	colm	37
+	synt	any
+	invoke	1
+	unmark
+lab L162
+	mark	L163
+	pnull
+	pnull
+	var	0
+	line	241
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	241
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	241
+	colm	36
+	synt	any
+	field	compflags_lbl_1
+	line	241
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L163
+	mark	L164
+	pnull
+	pnull
+	var	0
+	line	242
+	colm	11
+	synt	any
+	field	cppCompilerFlgs_txt
+	var	5
+	line	242
+	colm	47
+	synt	any
+	invoke	0
+	line	242
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L164
+	mark	L165
+	pnull
+	pnull
+	var	0
+	line	243
+	colm	11
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	243
+	colm	31
+	synt	any
+	field	set_pos
+	str	19
+	str	17
+	line	243
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L165
+	mark	L166
+	pnull
+	pnull
+	var	0
+	line	244
+	colm	11
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	244
+	colm	31
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	244
+	colm	40
+	synt	any
+	invoke	2
+	unmark
+lab L166
+	mark	L167
+	pnull
+	pnull
+	var	0
+	line	245
+	colm	11
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	245
+	colm	31
+	synt	any
+	field	set_draw_border
+	line	245
+	colm	47
+	synt	any
+	invoke	0
+	unmark
+lab L167
+	mark	L168
+	pnull
+	pnull
+	var	0
+	line	246
+	colm	11
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	246
+	colm	31
+	synt	any
+	field	set_contents
+	str	21
+	line	246
+	colm	44
+	synt	any
+	invoke	1
+	unmark
+lab L168
+	mark	L169
+	pnull
+	pnull
+	var	0
+	line	247
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	247
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	247
+	colm	36
+	synt	any
+	field	cppCompilerFlgs_txt
+	line	247
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L169
+	mark	L170
+	pnull
+	pnull
+	var	0
+	line	248
+	colm	11
+	synt	any
+	field	linker_lbl_1
+	var	4
+	line	248
+	colm	36
+	synt	any
+	invoke	0
+	line	248
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L170
+	mark	L171
+	pnull
+	pnull
+	var	0
+	line	249
+	colm	11
+	synt	any
+	field	linker_lbl_1
+	line	249
+	colm	24
+	synt	any
+	field	set_pos
+	str	7
+	str	13
+	line	249
+	colm	32
+	synt	any
+	invoke	2
+	unmark
+lab L171
+	mark	L172
+	pnull
+	pnull
+	var	0
+	line	250
+	colm	11
+	synt	any
+	field	linker_lbl_1
+	line	250
+	colm	24
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	250
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L172
+	mark	L173
+	pnull
+	pnull
+	var	0
+	line	251
+	colm	11
+	synt	any
+	field	linker_lbl_1
+	line	251
+	colm	24
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	251
+	colm	47
+	synt	any
+	invoke	1
+	unmark
+lab L173
+	mark	L174
+	pnull
+	pnull
+	var	0
+	line	252
+	colm	11
+	synt	any
+	field	linker_lbl_1
+	line	252
+	colm	24
+	synt	any
+	field	set_label
+	str	14
+	line	252
+	colm	34
+	synt	any
+	invoke	1
+	unmark
+lab L174
+	mark	L175
+	pnull
+	pnull
+	var	0
+	line	253
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	253
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	253
+	colm	36
+	synt	any
+	field	linker_lbl_1
+	line	253
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L175
+	mark	L176
+	pnull
+	pnull
+	var	0
+	line	254
+	colm	11
+	synt	any
+	field	cppLinker_txt
+	var	5
+	line	254
+	colm	41
+	synt	any
+	invoke	0
+	line	254
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L176
+	mark	L177
+	pnull
+	pnull
+	var	0
+	line	255
+	colm	11
+	synt	any
+	field	cppLinker_txt
+	line	255
+	colm	25
+	synt	any
+	field	set_pos
+	str	19
+	str	13
+	line	255
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L177
+	mark	L178
+	pnull
+	pnull
+	var	0
+	line	256
+	colm	11
+	synt	any
+	field	cppLinker_txt
+	line	256
+	colm	25
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	256
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+lab L178
+	mark	L179
+	pnull
+	pnull
+	var	0
+	line	257
+	colm	11
+	synt	any
+	field	cppLinker_txt
+	line	257
+	colm	25
+	synt	any
+	field	set_draw_border
+	line	257
+	colm	41
+	synt	any
+	invoke	0
+	unmark
+lab L179
+	mark	L180
+	pnull
+	pnull
+	var	0
+	line	258
+	colm	11
+	synt	any
+	field	cppLinker_txt
+	line	258
+	colm	25
+	synt	any
+	field	set_contents
+	str	21
+	line	258
+	colm	38
+	synt	any
+	invoke	1
+	unmark
+lab L180
+	mark	L181
+	pnull
+	pnull
+	var	0
+	line	259
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	259
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	259
+	colm	36
+	synt	any
+	field	cppLinker_txt
+	line	259
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L181
+	mark	L182
+	pnull
+	pnull
+	var	0
+	line	260
+	colm	11
+	synt	any
+	field	linkerflags_lbl_1
+	var	4
+	line	260
+	colm	41
+	synt	any
+	invoke	0
+	line	260
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L182
+	mark	L183
+	pnull
+	pnull
+	var	0
+	line	261
+	colm	11
+	synt	any
+	field	linkerflags_lbl_1
+	line	261
+	colm	29
+	synt	any
+	field	set_pos
+	str	7
+	str	15
+	line	261
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L183
+	mark	L184
+	pnull
+	pnull
+	var	0
+	line	262
+	colm	11
+	synt	any
+	field	linkerflags_lbl_1
+	line	262
+	colm	29
+	synt	any
+	field	set_size
+	str	9
+	str	10
+	line	262
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L184
+	mark	L185
+	pnull
+	pnull
+	var	0
+	line	263
+	colm	11
+	synt	any
+	field	linkerflags_lbl_1
+	line	263
+	colm	29
+	synt	any
+	field	set_internal_alignment
+	str	11
+	line	263
+	colm	52
+	synt	any
+	invoke	1
+	unmark
+lab L185
+	mark	L186
+	pnull
+	pnull
+	var	0
+	line	264
+	colm	11
+	synt	any
+	field	linkerflags_lbl_1
+	line	264
+	colm	29
+	synt	any
+	field	set_label
+	str	16
+	line	264
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L186
+	mark	L187
+	pnull
+	pnull
+	var	0
+	line	265
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	265
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	265
+	colm	36
+	synt	any
+	field	linkerflags_lbl_1
+	line	265
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L187
+	mark	L188
+	pnull
+	pnull
+	var	0
+	line	266
+	colm	11
+	synt	any
+	field	cppLinkerFlgs_txt
+	var	5
+	line	266
+	colm	45
+	synt	any
+	invoke	0
+	line	266
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L188
+	mark	L189
+	pnull
+	pnull
+	var	0
+	line	267
+	colm	11
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	267
+	colm	29
+	synt	any
+	field	set_pos
+	str	19
+	str	15
+	line	267
+	colm	37
+	synt	any
+	invoke	2
+	unmark
+lab L189
+	mark	L190
+	pnull
+	pnull
+	var	0
+	line	268
+	colm	11
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	268
+	colm	29
+	synt	any
+	field	set_size
+	str	20
+	str	10
+	line	268
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+lab L190
+	mark	L191
+	pnull
+	pnull
+	var	0
+	line	269
+	colm	11
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	269
+	colm	29
+	synt	any
+	field	set_draw_border
+	line	269
+	colm	45
+	synt	any
+	invoke	0
+	unmark
+lab L191
+	mark	L192
+	pnull
+	pnull
+	var	0
+	line	270
+	colm	11
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	270
+	colm	29
+	synt	any
+	field	set_contents
+	str	21
+	line	270
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L192
+	mark	L193
+	pnull
+	pnull
+	var	0
+	line	271
+	colm	11
+	synt	any
+	field	cpp_tab_options
+	line	271
+	colm	27
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	271
+	colm	36
+	synt	any
+	field	cppLinkerFlgs_txt
+	line	271
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L193
+	mark	L194
+	pnull
+	pnull
+	var	0
+	line	272
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	272
+	colm	31
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	272
+	colm	40
+	synt	any
+	field	cpp_tab_options
+	line	272
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L194
+	mark	L195
+	pnull
+	pnull
+	var	0
+	line	273
+	colm	11
+	synt	any
+	field	makefileOpts_tabset
+	line	273
+	colm	31
+	synt	any
+	field	set_which_one
+	pnull
+	var	0
+	line	273
+	colm	50
+	synt	any
+	field	unicon_tab_options
+	line	273
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L195
+	mark	L196
+	pnull
+	var	0
+	line	274
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	274
+	colm	20
+	synt	any
+	field	makefileOpts_tabset
+	line	274
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L196
+	mark	L197
+	pnull
+	var	1
+	var	7
+	line	275
+	colm	41
+	synt	any
+	invoke	0
+	line	275
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L197
+	mark	L198
+	pnull
+	pnull
+	var	0
+	line	276
+	colm	11
+	synt	any
+	field	ok_btn
+	var	8
+	line	276
+	colm	35
+	synt	any
+	invoke	0
+	line	276
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L198
+	mark	L199
+	pnull
+	pnull
+	var	0
+	line	277
+	colm	11
+	synt	any
+	field	ok_btn
+	line	277
+	colm	18
+	synt	any
+	field	set_pos
+	str	35
+	str	36
+	line	277
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+lab L199
+	mark	L200
+	pnull
+	pnull
+	var	0
+	line	278
+	colm	11
+	synt	any
+	field	ok_btn
+	line	278
+	colm	18
+	synt	any
+	field	set_size
+	str	37
+	str	10
+	line	278
+	colm	27
+	synt	any
+	invoke	2
+	unmark
+lab L200
+	mark	L201
+	pnull
+	pnull
+	var	0
+	line	279
+	colm	11
+	synt	any
+	field	ok_btn
+	line	279
+	colm	18
+	synt	any
+	field	connect
+	var	0
+	str	38
+	int	39
+	line	279
+	colm	26
+	synt	any
+	invoke	3
+	unmark
+lab L201
+	mark	L202
+	pnull
+	pnull
+	var	0
+	line	280
+	colm	11
+	synt	any
+	field	ok_btn
+	line	280
+	colm	18
+	synt	any
+	field	clear_toggles
+	line	280
+	colm	32
+	synt	any
+	invoke	0
+	unmark
+lab L202
+	mark	L203
+	pnull
+	var	1
+	line	281
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	281
+	colm	30
+	synt	any
+	field	ok_btn
+	line	281
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L203
+	mark	L204
+	pnull
+	pnull
+	var	0
+	line	282
+	colm	11
+	synt	any
+	field	ok_btn
+	line	282
+	colm	18
+	synt	any
+	field	set_label
+	str	40
+	line	282
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L204
+	mark	L205
+	pnull
+	pnull
+	var	0
+	line	283
+	colm	11
+	synt	any
+	field	ok_btn
+	line	283
+	colm	18
+	synt	any
+	field	set_internal_alignment
+	str	41
+	line	283
+	colm	41
+	synt	any
+	invoke	1
+	unmark
+lab L205
+	mark	L206
+	pnull
+	var	0
+	line	284
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	284
+	colm	20
+	synt	any
+	field	ok_btn
+	line	284
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L206
+	mark	L207
+	pnull
+	pnull
+	var	0
+	line	285
+	colm	11
+	synt	any
+	field	cancel_btn
+	var	8
+	line	285
+	colm	39
+	synt	any
+	invoke	0
+	line	285
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L207
+	mark	L208
+	pnull
+	pnull
+	var	0
+	line	286
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	286
+	colm	22
+	synt	any
+	field	set_pos
+	int	42
+	int	43
+	line	286
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L208
+	mark	L209
+	pnull
+	pnull
+	var	0
+	line	287
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	287
+	colm	22
+	synt	any
+	field	set_size
+	str	37
+	str	10
+	line	287
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+lab L209
+	mark	L210
+	pnull
+	pnull
+	var	0
+	line	288
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	288
+	colm	22
+	synt	any
+	field	connect
+	var	0
+	str	44
+	int	39
+	line	288
+	colm	30
+	synt	any
+	invoke	3
+	unmark
+lab L210
+	mark	L211
+	pnull
+	pnull
+	var	0
+	line	289
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	289
+	colm	22
+	synt	any
+	field	clear_toggles
+	line	289
+	colm	36
+	synt	any
+	invoke	0
+	unmark
+lab L211
+	mark	L212
+	pnull
+	var	1
+	line	290
+	colm	21
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	290
+	colm	30
+	synt	any
+	field	cancel_btn
+	line	290
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L212
+	mark	L213
+	pnull
+	pnull
+	var	0
+	line	291
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	291
+	colm	22
+	synt	any
+	field	set_label
+	str	45
+	line	291
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L213
+	mark	L214
+	pnull
+	pnull
+	var	0
+	line	292
+	colm	11
+	synt	any
+	field	cancel_btn
+	line	292
+	colm	22
+	synt	any
+	field	set_internal_alignment
+	str	41
+	line	292
+	colm	45
+	synt	any
+	invoke	1
+	unmark
+lab L214
+	mark	L215
+	pnull
+	var	0
+	line	293
+	colm	11
+	synt	any
+	field	add
+	pnull
+	var	0
+	line	293
+	colm	20
+	synt	any
+	field	cancel_btn
+	line	293
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L215
+	pnull
+	line	294
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions_initially
+	local	0,001000,self
+	declend
+	line	296
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	297
+	colm	8
+	synt	any
+	field	gui__Dialog
+	line	297
+	colm	20
+	synt	any
+	field	initially
+	line	297
+	colm	30
+	synt	any
+	invoke	0
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	298
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	299
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptions
+	local	0,001000,javaCompilerCmd_txt
+	local	1,001000,cppCompilerCmd_txt
+	local	2,001000,cppCompilerFlgs_txt
+	local	3,001000,cppCompiler_lst
+	local	4,001000,cppLinkerFlgs_txt
+	local	5,001000,cppLinker_txt
+	local	6,001000,javaCompilerCmd_tx
+	local	7,001000,javaCompilerFlgs_txt
+	local	8,001000,javaCompiler_lst
+	local	9,001000,javaLinkerFlgs_txt
+	local	10,001000,javaLinker_txt
+	local	11,001000,comp_lbl_5
+	local	12,001000,comp_lbl_6
+	local	13,001000,comp_lbl_7
+	local	14,001000,comp_lbl_8
+	local	15,001000,compflags_lbl_1
+	local	16,001000,compflags_lbl_2
+	local	17,001000,linker_lbl_1
+	local	18,001000,linker_lbl_2
+	local	19,001000,linkerflags_lbl_1
+	local	20,001000,linkerflags_lbl_2
+	local	21,001000,uniconCompilerCmd_txt_1
+	local	22,001000,uniconCompilerCmd_txt_2
+	local	23,001000,uniconCompilerFlgs_txt_1
+	local	24,001000,uniconCompilerFlgs_txt_2
+	local	25,001000,uniconCompiler_lst_1
+	local	26,001000,uniconCompiler_lst_2
+	local	27,001000,uniconLinkerFlgs_txt_1
+	local	28,001000,uniconLinkerFlgs_txt_2
+	local	29,001000,uniconLinker_txt_1
+	local	30,001000,uniconLinker_txt_2
+	local	31,001000,ok_btn
+	local	32,001000,cancel_btn
+	local	33,001000,text_button_1
+	local	34,001000,comp_lbl_4
+	local	35,001000,uniconCompilerCmd_txt
+	local	36,001000,uniconCompilerFlgs_txt
+	local	37,001000,uniconCompiler_lst
+	local	38,001000,uniconLinkerFlgs_txt
+	local	39,001000,uniconLinker_txt
+	local	40,001000,comp_lbl
+	local	41,001000,compflags_lbl
+	local	42,001000,cpp_tab_options
+	local	43,001000,java_tab_options
+	local	44,001000,linker_lbl
+	local	45,001000,linkerflags_lbl
+	local	46,001000,list_1
+	local	47,001000,list_2
+	local	48,001000,makefileOpts_tabset
+	local	49,001000,text_field_1
+	local	50,001000,text_field_2
+	local	51,001000,unicon_tab_options
+	local	52,001000,cppCompilerslist
+	local	53,001000,javaCompilerslist
+	local	54,001000,uniconCompilerslist
+	local	55,001000,win
+	local	56,001000,is_open
+	local	57,001000,owning_dialog
+	local	58,001000,child_dialogs
+	local	59,001000,focus
+	local	60,001000,unique_flag
+	local	61,001000,re_process_flag
+	local	62,001000,buffer_win
+	local	63,001000,min_width
+	local	64,001000,min_height
+	local	65,001000,click_count
+	local	66,001000,double_click_delay
+	local	67,001000,repeat_delay
+	local	68,001000,repeat_rate
+	local	69,001000,prev_x
+	local	70,001000,prev_y
+	local	71,001000,prev_time
+	local	72,001000,prev_event
+	local	73,001000,is_blocked_flag
+	local	74,001000,resize_attrib
+	local	75,001000,drag_gesture_x
+	local	76,001000,drag_gesture_y
+	local	77,001000,curr_drag
+	local	78,001000,tried_drag
+	local	79,001000,pointer_component
+	local	80,001000,pointer_stack
+	local	81,001000,invokes
+	local	82,001000,all_valid
+	local	83,001000,tooltip_ticker
+	local	84,001000,tooltip_last_obj
+	local	85,001000,tooltip_state
+	local	86,001000,tooltip_start_time
+	local	87,001000,tooltip_end_time
+	local	88,001000,tooltip_start_delay
+	local	89,001000,tooltip_end_delay
+	local	90,001000,tooltip_continue_time
+	local	91,001000,tooltip_continue_delay
+	local	92,001000,tooltip_win
+	local	93,001000,tooltip_x
+	local	94,001000,tooltip_y
+	local	95,001000,tooltip_w
+	local	96,001000,tooltip_h
+	local	97,001000,x_spec
+	local	98,001000,y_spec
+	local	99,001000,w_spec
+	local	100,001000,h_spec
+	local	101,001000,x_align
+	local	102,001000,y_align
+	local	103,001000,x
+	local	104,001000,y
+	local	105,001000,w
+	local	106,001000,h
+	local	107,001000,parent_dialog
+	local	108,001000,attribs
+	local	109,001000,has_focus
+	local	110,001000,is_shaded_flag
+	local	111,001000,cwin
+	local	112,001000,cbwin
+	local	113,001000,accepts_focus_flag
+	local	114,001000,draw_border_flag
+	local	115,001000,tooltip
+	local	116,001000,parent
+	local	117,001000,children
+	local	118,001000,valid
+	local	119,001000,accel
+	local	120,001000,allow_drag_flag
+	local	121,001000,allow_drop_flag
+	local	122,001000,pointer
+	local	123,001000,ticker
+	local	124,001000,transparent
+	local	125,001000,auto_refresh
+	local	126,001000,listeners
+	local	127,000020,self
+	local	128,000020,clone
+	local	129,000000,ConfigureOptions__oprec
+	local	130,000000,ConfigureOptionsinitialize
+	local	131,000000,gui__Dialog__oprec
+	local	132,000000,gui__Dialoginitialize
+	local	133,000000,gui__Component__oprec
+	local	134,000000,gui__Componentinitialize
+	local	135,000000,lang__Object__oprec
+	local	136,000000,lang__Objectinitialize
+	local	137,000000,util__SetFields__oprec
+	local	138,000000,util__SetFieldsinitialize
+	local	139,000000,util__Connectable__oprec
+	local	140,000000,util__Connectableinitialize
+	local	141,000000,ConfigureOptions__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	129
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	130
+	line	8
+	colm	62
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	131
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	132
+	line	9
+	colm	52
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	129
+	line	10
+	colm	26
+	synt	any
+	field	gui__Dialog
+	var	131
+	line	10
+	colm	39
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	11
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	133
+	line	11
+	colm	6
+	synt	any
+	null
+	unmark
+	var	134
+	line	11
+	colm	58
+	synt	any
+	invoke	0
+	line	11
+	colm	3
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	129
+	line	12
+	colm	26
+	synt	any
+	field	gui__Component
+	var	133
+	line	12
+	colm	42
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	13
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	135
+	line	13
+	colm	6
+	synt	any
+	null
+	unmark
+	var	136
+	line	13
+	colm	54
+	synt	any
+	invoke	0
+	line	13
+	colm	3
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	129
+	line	14
+	colm	26
+	synt	any
+	field	lang__Object
+	var	135
+	line	14
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	15
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	137
+	line	15
+	colm	6
+	synt	any
+	null
+	unmark
+	var	138
+	line	15
+	colm	60
+	synt	any
+	invoke	0
+	line	15
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	129
+	line	16
+	colm	26
+	synt	any
+	field	util__SetFields
+	var	137
+	line	16
+	colm	43
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	17
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	139
+	line	17
+	colm	6
+	synt	any
+	null
+	unmark
+	var	140
+	line	17
+	colm	64
+	synt	any
+	invoke	0
+	line	17
+	colm	3
+	synt	endif
+	unmark
+lab L13
+	pnull
+	pnull
+	var	129
+	line	18
+	colm	26
+	synt	any
+	field	util__Connectable
+	var	139
+	line	18
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L14
+	pnull
+	var	127
+	var	141
+	line	20
+	colm	35
+	synt	any
+	keywd	null
+	var	129
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	line	20
+	colm	34
+	synt	any
+	invoke	129
+	line	20
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	127
+	line	21
+	colm	7
+	synt	any
+	field	__s
+	var	127
+	line	21
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	pnull
+	pnull
+	var	127
+	line	22
+	colm	7
+	synt	any
+	field	__m
+	line	22
+	colm	11
+	synt	any
+	field	initially
+	var	127
+	line	22
+	colm	21
+	synt	any
+	invoke	1
+	line	22
+	colm	28
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	line	22
+	colm	30
+	synt	any
+	pfail
+lab L18
+	unmark
+lab L16
+	mark	L19
+	mark	L20
+	var	127
+	line	23
+	colm	3
+	synt	any
+	pret
+lab L20
+	synt	any
+	pfail
+	unmark
+lab L19
+	pnull
+	line	24
+	colm	1
+	synt	any
+	pfail
+	end
+proc ConfigureOptionsinitialize
+	local	0,000000,ConfigureOptions__oprec
+	local	1,000000,ConfigureOptions__methods
+	local	2,000000,ConfigureOptions_component_setup
+	local	3,000000,ConfigureOptions_end_dialog
+	local	4,000000,ConfigureOptions_init_dialog
+	local	5,000000,ConfigureOptions_on_cancel_btn
+	local	6,000000,ConfigureOptions_on_ok_btn
+	local	7,000000,ConfigureOptions_on_cppCompiler_lst
+	local	8,000000,ConfigureOptions_on_javaCompiler_lst
+	local	9,000000,ConfigureOptions_on_uniconCompiler_lst
+	local	10,000000,ConfigureOptions_setup
+	local	11,000000,ConfigureOptions_initially
+	local	12,000000,gui__Dialog_invoke_validate
+	local	13,000000,gui__Dialog_needs_validate
+	local	14,000000,gui__Dialog_is_shaded
+	local	15,000000,gui__Dialog_is_unshaded
+	local	16,000000,gui__Dialog_is_hidden
+	local	17,000000,gui__Dialog_is_unhidden
+	local	18,000000,gui__Dialog_block
+	local	19,000000,gui__Dialog_unblock
+	local	20,000000,gui__Dialog_raise
+	local	21,000000,gui__Dialog_get_click_count
+	local	22,000000,gui__Dialog_compute_absolutes
+	local	23,000000,gui__Dialog_change_pointer
+	local	24,000000,gui__Dialog_restore_pointer
+	local	25,000000,gui__Dialog_show_child
+	local	26,000000,gui__Dialog_show_modeless
+	local	27,000000,gui__Dialog_show_modal
+	local	28,000000,gui__Dialog_get_win
+	local	29,000000,gui__Dialog_resize_win
+	local	30,000000,gui__Dialog_init
+	local	31,000000,gui__Dialog_open_win
+	local	32,000000,gui__Dialog_close_win
+	local	33,000000,gui__Dialog_set_min_size
+	local	34,000000,gui__Dialog_get_buffer_win
+	local	35,000000,gui__Dialog_set_unique
+	local	36,000000,gui__Dialog_clear_unique
+	local	37,000000,gui__Dialog_set_focus
+	local	38,000000,gui__Dialog_clear_focus
+	local	39,000000,gui__Dialog_display
+	local	40,000000,gui__Dialog_show
+	local	41,000000,gui__Dialog_bevel_dispose
+	local	42,000000,gui__Dialog_dispose
+	local	43,000000,gui__Dialog_consume_same
+	local	44,000000,gui__Dialog_process_event
+	local	45,000000,gui__Dialog_process_normal
+	local	46,000000,gui__Dialog_tooltip_init
+	local	47,000000,gui__Dialog_tooltip_dispose
+	local	48,000000,gui__Dialog_set_tooltip_start_delay
+	local	49,000000,gui__Dialog_set_tooltip_end_delay
+	local	50,000000,gui__Dialog_set_tooltip_continue_delay
+	local	51,000000,gui__Dialog_show_tooltip
+	local	52,000000,gui__Dialog_hide_tooltip
+	local	53,000000,gui__Dialog_process_tooltip
+	local	54,000000,gui__Dialog_find_tooltip
+	local	55,000000,gui__Dialog_synch_pointer
+	local	56,000000,gui__Dialog_find_pointer_component
+	local	57,000000,gui__Dialog_process_dnd
+	local	58,000000,gui__Dialog_process_unique
+	local	59,000000,gui__Dialog_check_dnd
+	local	60,000000,gui__Dialog_handle_resize
+	local	61,000000,gui__Dialog_check_click_count
+	local	62,000000,gui__Dialog_get_focus_list
+	local	63,000000,gui__Dialog_find_next_focus
+	local	64,000000,gui__Dialog_find_previous_focus
+	local	65,000000,gui__Dialog_set_double_click_delay
+	local	66,000000,gui__Dialog_set_repeat_delay
+	local	67,000000,gui__Dialog_set_repeat_rate
+	local	68,000000,gui__Dialog_invoke_later
+	local	69,000000,gui__Dialog_do_invoke
+	local	70,000000,gui__Dialog_set_one
+	local	71,000000,gui__Component_set_tooltip
+	local	72,000000,gui__Component_get_tooltip
+	local	73,000000,gui__Component_set_pointer
+	local	74,000000,gui__Component_get_pointer
+	local	75,000000,gui__Component_get_x_reference
+	local	76,000000,gui__Component_get_y_reference
+	local	77,000000,gui__Component_get_w_reference
+	local	78,000000,gui__Component_get_h_reference
+	local	79,000000,gui__Component_get_cwin_reference
+	local	80,000000,gui__Component_get_cbwin_reference
+	local	81,000000,gui__Component_get_parent_dialog_reference
+	local	82,000000,gui__Component_fatal
+	local	83,000000,gui__Component_keeps
+	local	84,000000,gui__Component_do_shading
+	local	85,000000,gui__Component_accepts_focus
+	local	86,000000,gui__Component_unique_start
+	local	87,000000,gui__Component_unique_end
+	local	88,000000,gui__Component_handle_accel
+	local	89,000000,gui__Component_handle_event
+	local	90,000000,gui__Component_do_handle_event
+	local	91,000000,gui__Component_fire_icon_events_on_mouse
+	local	92,000000,gui__Component_toggle_is_shaded
+	local	93,000000,gui__Component_set_auto_refresh
+	local	94,000000,gui__Component_clear_auto_refresh
+	local	95,000000,gui__Component_set_transparent
+	local	96,000000,gui__Component_clear_transparent
+	local	97,000000,gui__Component_set_is_shaded
+	local	98,000000,gui__Component_clear_is_shaded
+	local	99,000000,gui__Component_toggle_draw_border
+	local	100,000000,gui__Component_set_draw_border
+	local	101,000000,gui__Component_clear_draw_border
+	local	102,000000,gui__Component_set_accepts_focus
+	local	103,000000,gui__Component_clear_accepts_focus
+	local	104,000000,gui__Component_attrib
+	local	105,000000,gui__Component_set_attribs
+	local	106,000000,gui__Component_set_attribs_list
+	local	107,000000,gui__Component_in_region
+	local	108,000000,gui__Component_got_focus
+	local	109,000000,gui__Component_get_parent_win
+	local	110,000000,gui__Component_get_parent_buffer_win
+	local	111,000000,gui__Component_lost_focus
+	local	112,000000,gui__Component_set_pos
+	local	113,000000,gui__Component_set_size
+	local	114,000000,gui__Component_set_align
+	local	115,000000,gui__Component_set_abs_coords
+	local	116,000000,gui__Component_set_abs_size
+	local	117,000000,gui__Component_set_accel
+	local	118,000000,gui__Component_get_accel
+	local	119,000000,gui__Component_get_parent
+	local	120,000000,gui__Component_set_parent
+	local	121,000000,gui__Component_get_parent_dialog
+	local	122,000000,gui__Component_set_parent_dialog
+	local	123,000000,gui__Component_firstly
+	local	124,000000,gui__Component_finally
+	local	125,000000,gui__Component_parse_pos
+	local	126,000000,gui__Component_resize
+	local	127,000000,gui__Component_generate_components
+	local	128,000000,gui__Component_find_focus
+	local	129,000000,gui__Component_find_accel
+	local	130,000000,gui__Component_invalidate
+	local	131,000000,gui__Component_all_components_valid
+	local	132,000000,gui__Component_validate
+	local	133,000000,gui__Component_child_validated
+	local	134,000000,gui__Component_add
+	local	135,000000,gui__Component_remove
+	local	136,000000,gui__Component_is_dialog_open
+	local	137,000000,gui__Component_get_children
+	local	138,000000,gui__Component_create_event_and_fire
+	local	139,000000,gui__Component_set_ticker
+	local	140,000000,gui__Component_stop_ticker
+	local	141,000000,gui__Component_retime_ticker
+	local	142,000000,gui__Component_is_ticking
+	local	143,000000,gui__Component_tick
+	local	144,000000,gui__Component_invoke_can_drag
+	local	145,000000,gui__Component_invoke_drag_event
+	local	146,000000,gui__Component_invoke_can_drop
+	local	147,000000,gui__Component_invoke_end_drag
+	local	148,000000,gui__Component_invoke_drag_reset
+	local	149,000000,gui__Component_can_drag
+	local	150,000000,gui__Component_drag_event
+	local	151,000000,gui__Component_can_drop
+	local	152,000000,gui__Component_end_drag
+	local	153,000000,gui__Component_drag_reset
+	local	154,000000,gui__Component_set_allow_drag
+	local	155,000000,gui__Component_clear_allow_drag
+	local	156,000000,gui__Component_set_allow_drop
+	local	157,000000,gui__Component_clear_allow_drop
+	local	158,000000,gui__Component_is_attrib
+	local	159,000000,lang__Object_clone
+	local	160,000000,lang__Object_to_string
+	local	161,000000,lang__Object_equals
+	local	162,000000,lang__Object_hash_code
+	local	163,000000,lang__Object_get_class_name
+	local	164,000000,lang__Object_get_id
+	local	165,000000,lang__Object_get_class
+	local	166,000000,lang__Object_is_instance
+	local	167,000000,util__SetFields_test_flag
+	local	168,000000,util__SetFields_as_attrib
+	local	169,000000,util__SetFields_int_val
+	local	170,000000,util__SetFields_int_vals
+	local	171,000000,util__SetFields_numeric_val
+	local	172,000000,util__SetFields_numeric_vals
+	local	173,000000,util__SetFields_cset_val
+	local	174,000000,util__SetFields_string_val
+	local	175,000000,util__SetFields_string_vals
+	local	176,000000,util__SetFields_set_fields
+	local	177,000000,util__SetFields_field_error
+	local	178,000000,util__Connectable_genlisteners
+	local	179,000000,util__Connectable_fire
+	local	180,000000,util__Connectable_connect
+	local	181,000000,util__Connectable_disconnect_fromlist
+	local	182,000000,util__Connectable_disconnect_all
+	local	183,000000,util__Connectable_disconnect
+	declend
+	line	26
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	var	127
+	var	128
+	var	129
+	var	130
+	var	131
+	var	132
+	var	133
+	var	134
+	var	135
+	var	136
+	var	137
+	var	138
+	var	139
+	var	140
+	var	141
+	var	142
+	var	143
+	var	144
+	var	145
+	var	146
+	var	147
+	var	148
+	var	149
+	var	150
+	var	151
+	var	152
+	var	153
+	var	154
+	var	155
+	var	156
+	var	157
+	var	158
+	var	159
+	var	160
+	var	161
+	var	162
+	var	163
+	var	164
+	var	165
+	var	166
+	var	167
+	var	168
+	var	169
+	var	170
+	var	171
+	var	172
+	var	173
+	var	174
+	var	175
+	var	176
+	var	177
+	var	178
+	var	179
+	var	180
+	var	181
+	var	182
+	var	183
+	line	27
+	colm	63
+	synt	any
+	invoke	182
+	line	27
+	colm	35
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end

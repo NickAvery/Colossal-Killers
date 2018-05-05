@@ -1,0 +1,396 @@
+Room {
+	name  SH_102
+	x 83.90000000000001
+	y 0
+	z 32.4
+	w 10.3
+	h 3.05
+	l 15.9
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				94.2, 0, 34.64,
+				94.2, 3.5, 34.64,
+				93.80, 3.5, 34.64,
+				93.80, 0, 34.64
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 34.64,
+				93.80, 3.5, 34.64,
+				93.8, 3.5, 35.19,
+				93.8, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.8, 0, 35.19,
+				93.8, 3.5, 35.19,
+				94.2, 3.5, 35.19,
+				94.2, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 34.64,
+				93.80, 3.5, 34.64,
+				93.8, 3.5, 35.19,
+				93.8, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.8, 0, 35.19,
+				93.8, 3.5, 35.19,
+				94.2, 3.5, 35.19,
+				94.2, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				94.2, 0, 37.2,
+				94.2, 3.5, 37.2,
+				93.8, 3.5, 37.2,
+				93.8, 0, 37.2
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.8, 0, 37.2,
+				93.8, 3.5, 37.2,
+				93.8, 3.5, 37.75,
+				93.8, 0, 37.75
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.8, 0, 37.75,
+				93.8, 3.5, 37.75,
+				94.2, 3.5, 37.75,
+				94.2, 0, 37.75
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				94.2, 0, 39.74,
+				94.2, 3.5, 39.74,
+				93.8, 3.5, 39.74,
+				93.8, 0, 39.74
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 39.74,
+				93.80, 3.5, 39.74,
+				93.8, 3.5, 40.29,
+				93.8, 0, 40.29
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 40.29,
+				93.8, 3.5, 40.29,
+				94.2, 3.5, 40.29,
+				94.2, 0, 40.29
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				94.2, 0, 42.28,
+				94.2, 3.5, 42.28,
+				93.8, 3.5, 42.28,
+				93.8, 0, 42.28
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 42.28,
+				93.80, 3.5, 42.28,
+				93.8, 3.5, 42.83,
+				93.8, 0, 42.83
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 42.83,
+				93.80, 3.5, 42.83,
+				94.2, 3.5, 42.83,
+				94.2, 0, 42.83
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				94.2, 0, 44.82,
+				94.2, 3.5, 44.82,
+				93.8, 3.5, 44.82,
+				93.8, 0, 44.82
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 44.82,
+				93.80, 3.5, 44.82,
+				93.8, 3.5, 45.37,
+				93.8, 0, 45.37
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				93.80, 0, 45.37,
+				93.80, 3.5, 45.37,
+				94.2, 3.5, 45.37,
+				94.2, 0, 45.37
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				83.9, 0, 34.64,
+				83.9, 3.5, 34.64,
+				84.3, 3.5, 34.64,
+				84.3, 0, 34.64
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 34.64,
+				84.3, 3.5, 34.64,
+				84.3, 3.5, 35.19,
+				84.3, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 35.19,
+				84.3, 3.5, 35.19,
+				83.9, 3.5, 35.19,
+				83.9, 0, 35.19
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				83.9, 0, 37.2,
+				83.9, 3.5, 37.2,
+				84.3, 3.5, 37.2,
+				84.3, 0, 37.2
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 37.2,
+				84.3, 3.5, 37.2,
+				84.3, 3.5, 37.75,
+				84.3, 0, 37.75
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 37.75,
+				84.3, 3.5, 37.75,
+				83.9, 3.5, 37.75,
+				83.9, 0, 37.75
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				83.9, 0, 39.74,
+				83.9, 3.5, 39.74,
+				84.3, 3.5, 39.74,
+				84.3, 0, 39.74
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 39.74,
+				84.3, 3.5, 39.74,
+				84.3, 3.5, 40.29,
+				84.3, 0, 40.29
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 40.29,
+				84.3, 3.5, 40.29,
+				83.9, 3.5, 40.29,
+				83.9, 0, 40.29
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				83.9, 0, 42.28,
+				83.9, 3.5, 42.28,
+				84.3, 3.5, 42.28,
+				84.3, 0, 42.28
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 42.28,
+				84.3, 3.5, 42.28,
+				84.3, 3.5, 42.83,
+				84.3, 0, 42.83
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 42.83,
+				84.3, 3.5, 42.83,
+				83.9, 3.5, 42.83,
+				83.9, 0, 42.83
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				83.9, 0, 44.82,
+				83.9, 3.5, 44.82,
+				84.3, 3.5, 44.82,
+				84.3, 0, 44.82
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 44.82,
+				84.3, 3.5, 44.82,
+				84.3, 3.5, 45.37,
+				84.3, 0, 45.37
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/walltest.gif
+			coords [
+				84.3, 0, 45.37,
+				84.3, 3.5, 45.37,
+				83.9, 3.5, 45.37,
+				83.9, 0, 45.37
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/glass_1.gif
+			coords [
+				87.9, 0.8, 32.6,
+				87.9, 2.4, 32.6,
+				93.00, 2.4, 32.6,
+				93, 0.8, 32.6
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/p.gif
+			coords [
+				94, 1.6, 36.2,
+				94, 2.0, 36.2,
+				94, 2.0, 36.8,
+				94, 1.6, 36.8
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/speaker_1.gif
+			coords [
+				94, 2.2, 38.5,
+				94, 2.6, 38.5,
+				94, 2.6, 39,
+				94, 2.2, 39
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/lite.gif
+			coords [
+				94, 2.2, 40.9,
+				94, 2.6, 40.9,
+				94, 2.6, 41.4,
+				94, 2.2, 41.4
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/nosmokin.gif
+			coords [
+				94, 1.6, 43.4,
+				94, 2.0, 43.4,
+				94, 2.0, 43.9,
+				94, 1.6, 43.9
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/p.gif
+			coords [
+				84.1, 1.6, 36.8,
+				84.1, 2.0, 36.8,
+				84.1, 2.0, 36.2,
+				84.1, 1.6, 36.2
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/speaker_1.gif
+			coords [
+				84.1, 2.2, 39,
+				84.1, 2.6, 39,
+				84.1, 2.6, 38.5,
+				84.1, 2.2, 38.5
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/lite.gif
+			coords [
+				84.1, 2.2, 41.4,
+				84.1, 2.6, 41.4,
+				84.1, 2.6, 40.9,
+				84.1, 2.2, 40.9
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/nosmokin.gif
+			coords [
+				84.1, 1.6, 43.9,
+				84.1, 2.0, 43.9,
+				84.1, 2.0, 43.4,
+				84.1, 1.6, 43.4
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/blackb.gif
+			coords [
+				85.9, 1, 47.8,
+				85.9, 2.4, 47.8,
+				92.3, 2.4, 47.8,
+				92.3, 1, 47.8
+			]
+		}
+	]
+	tools [
+	]
+}

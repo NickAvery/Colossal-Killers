@@ -1,0 +1,546 @@
+import UniconPackage
+
+#  syntaxetl.icn - modified editabletextlist
+
+import gui
+import undo
+import lang
+
+$include "guih.icn"
+$include "ytab_h.icn"
+
+link "../ide/langabstract"
+
+class SyntaxETL : EditableTextList(
+   contents,
+   cursor_x,                #
+   cursor_y,                #
+   long_line,               #
+   old_mw,
+   changed,
+   donedrag, # Takent from old-version editabletextlist
+   highlightcolor, # Takent from buffertextlist
+   autoindent, # Takent from buffertextlist
+   scroll_y,  # Takent from buffertextlist
+   errorLineNumber,
+   doReparse,
+   labstracts
+   )
+  #
+  #
+  #
+  method handle_select_str(e, first_x, second_x, y_position)
+     start_handle(e)
+     mark_x := first_x
+     mark_y := cursor_y := y_position
+     cursor_x := second_x
+     end_handle(e)
+  end
+  #
+  #
+  #
+  method handle_return()
+     local tlbl
+     #self.EditableTextList.handle_return(e)
+      if \autoindent then{ 
+	 str := contents[cursor_y - 1]
+	 i := 1
+
+         while i < *str + 1  do {	    
+            case str[i] of { 
+               " "     : handle_default(" ")
+               "\t"    : handle_tab_text("\t")
+               default : i := *str +2
+               }
+            i +:= 1
+	    }
+        }
+      # Reparse code when the cursor moves in the Y axis
+      tlbl := ide.CurrentTabItem().label
+
+      if find(".icn", tlbl) then ReparseCode()
+      #set_line_color_table()
+   end
+
+   method handle_save(e)
+      ide.on_save_btn(e)
+   end
+
+   method handle_event(e)
+      local old_contents_size, old_mw, E
+
+      if E := (\vsb).handle_event(e) then {
+         #
+         # Handled by VSB; amend line number and refresh contents
+         #
+         constrain_cursor()
+         refresh()
+         text_area_to_high()
+         } 
+      else if E := (\hsb).handle_event(e) then {
+         #
+         # Handled by HSB; amend left offset and refresh
+         #
+         constrain_cursor()
+         refresh()
+         text_area_to_high() 
+         }
+      else {
+         if e === -11 then fail # window closed, nothing to do?
+         old_contents_size := *contents
+         #old_mw := TextWidth(cwin, contents[long_line])
+         changed := moved := &null
+         every i:= 1 to *contents do
+            if contents[i] == contents[cursor_y] then {
+               selected_line := i
+               }
+         
+         if integer(e) = (&lpress ) then
+            handle_press(e)
+         else if integer(e) = (&ldrag ) then
+            handle_drag(e)
+         else if integer(e) = &mpress then
+            simulate_wheelbutton()
+         else if integer(e) = (&lrelease ) then
+            handle_release(e)
+         else if \has_focus then {
+            case e of {
+               Key_Home : handle_key_home(e)
+               Key_End : handle_key_end(e)
+               Key_PgUp : handle_key_page_up(e)
+               Key_PgDn : handle_key_page_down(e)
+               Key_Up : handle_key_up(e)
+               Key_Down : handle_key_down(e)
+               Key_Left :    handle_key_left(e)
+               Key_Right : handle_key_right(e)
+               #"\t" : handle_tab_text(e)    #not working
+               "\b" : handle_delete_left(e)
+               "\r" | "\l": handle_return(e)
+               "\^k" : handle_delete_line() 
+               "\^h" : handle_start_of_line(e)
+               "\^e" : handle_end_of_line(e)
+               "\d" | "\^d" : handle_delete_right(e)
+               "\^x" :  handle_cut(e)
+               "\^c" :  handle_copy(e)
+               "\^v" :  handle_paste(e)
+               "\^z" :  handle_undo(e)
+               "\^y" :  handle_redo(e)
+               "\^s" :  handle_save()
+               "\^f" :  ide.handle_files()
+               "\^n" :  ide.find_next()
+               "\^p" :  projMenu.on_replace(e)
+               "\^g" :  projMenu.on_goto_line(e)
+               "\^a" :  projMenu.on_select_all(e)
+               "\^b":  ide.on_makeexe_btn(e)
+               "\^r" :  ide.on_run_btn(e)
+               "\^o" :  projMenu.on_open_file(e)
+               default : handle_default(e)    #not working
+               }
+            }
+         if \moved then {
+            #
+            # Cursor moved.  Make sure still on screen; update scrollbars,
+            # and refresh text.
+            #
+
+    	    # Reparse code when the cursor moves in the Y axis
+	    case e of {
+               Key_PgUp | Key_PgDn | Key_Up | Key_Down | Key_Home | Key_End : {
+                  # Clear line error since the cursor moved
+                  ReparseCode()
+		  }	
+	       }
+            constrain_line()
+            refresh(1)
+            text_area_to_high()
+
+            return _Event(e, self, 0)
+            } 
+         else if \changed then {
+            if (*contents ~= old_contents_size) | \long_line |
+               (old_mw ~= TextWidth(cwin, contents[long_line])) then {
+               #
+               # Contents changed.  Re-compute all internal fields, ensure
+               # on screen and re-display whole object.
+               #
+               set_internal_fields()
+               constrain_line()
+               display()
+
+               # Set reparse flag
+	       doReparse := 1
+
+               #text_area_to_high()
+               }
+            else {
+               constrain_line()
+               refresh(1)
+               text_area_to_high()
+               }
+            return _Event(e, self, 0)
+            }
+         }
+   end
+
+   method draw(subject_x, subject_y, vx, vy, vw, vh)
+      local rev, first_line, last_line, xp, yp, i, line_off
+
+      #
+      # Which lines to draw
+      #
+      first_line := get_first_line()
+      last_line := get_last_line()
+      last_line >:= get_line_count()
+
+      #
+      # Where to draw them
+      #
+      yp := vy + line_height / 2
+
+      #
+      # Left offset
+      #
+      xp := vx - subject_x
+
+      rev := Clone(cbwin, "drawop=reverse")
+
+      #
+      # Write the lines
+      #
+      every i := first_line to last_line do {
+	 line_off := TextWidth(cwin,detab(*contents, tab_width + 1)) + 3
+	 draw_line(xp + line_off, yp + 5, i, rev)
+	 yp +:= line_height
+	 }
+
+      Uncouple(rev)
+      rev := &null
+      return
+   end
+
+   method set_line_color_table()
+      local str, line, userID, lines_str, line_num, ma_file := set()
+      members_accessed_file := []
+      line_color_table := table("pale greyish white")
+      if \active_projName & \active_fileName then {
+	 str := changed_file_line_Table[active_projName||":"|| active_fileName]
+	 \str ? {
+	    while not(pos(0)) do {
+	       line := tab(find("&"))
+	       move(1)
+	       line ? {
+		  line_num := integer(tab(find(":")))
+		  move(1)
+		  userID := tab(0)
+		  line_color_table [line_num] := 
+		      membersColorTable[active_projName||":"||userID]
+		  insert(ma_file, userID)
+		  lines_str := tab(0)
+		  }
+	       }
+	    }
+	 }
+      every put(members_accessed_file, !ma_file)
+   end
+
+   method draw_line(xp, yp, i, rev)
+      local si, s, off, off1, off2, v, r, fh, 
+         asc, desc, line_off, k, projName, userID
+
+      fh := WAttrib(cbwin, "fheight")
+      asc := WAttrib(cbwin, "ascent")
+      desc := WAttrib(cbwin, "descent")
+      v := view_list[i]
+      s := v.str
+      si := cursor_x - v.first + 1
+
+      left_string(cbwin, xp, yp, detab(s, tab_width + 1))
+      set_line_color_table()
+      Fg(cbwin, line_color_table[i])  #rectangle color
+      yp2 :=  yp + ((asc - desc)/2) - asc
+      line_off := TextWidth(cwin,detab(*contents, tab_width + 1))+3
+      FillRectangle(cbwin, xp - line_off, yp2, line_off, fh)#rectangle pos
+      Fg(cbwin, "weak greyish blue")#line_num color
+
+      #check who changed this line
+      every k := key(membersColorTable) do
+         if membersColorTable[k] === line_color_table[i] then {
+            k ? {
+              projName := tab(find(":"))
+              move(1)
+              userID   := tab(0)
+              }
+            }
+
+      #line_num pos
+      if \userID ~== world.nsh_dialog.user_me then
+         left_string(cbwin, xp - TextWidth(cwin, 
+            detab(i, tab_width + 10)) - 3 , yp, i||"*")
+      else
+         left_string(cbwin, xp - TextWidth(cwin, 
+            detab(i, tab_width + 10)) - 3 , yp, i)
+
+
+      Fg(cbwin, "black")
+
+      # Check if an error line has been set.
+      if \errorLineNumber then {
+         # Check if this string belong to the error line
+	 if i = errorLineNumber then {
+            # Set error line color (red)
+            Fg( cbwin, "Red" )
+         }
+      }
+
+      left_string_unicon ( cbwin, xp, yp, detab(s, tab_width + 1), i )
+
+      if (v.index= \cursor_y) & (v.first<= \cursor_x <= v.last) then {
+         if \has_focus then {
+            cw := Clone(cbwin, "bg=red", "fg=white")
+            off := TextWidthEx(cbwin, s, 1, si, tab_width)
+            EraseRectangle(cw, xp + off, 1 + yp - line_height / 2,
+                           CharWidth(cbwin, s[si]), line_height)
+
+            if s[si] ~== "\t" then
+               left_string(cw, xp + off, yp, detab(s[si], tab_width + 1))
+
+            Uncouple(cw)
+         } else {
+            cw := Clone(cbwin, "fg=red")
+            Rectangle(cw, xp + TextWidthEx(cbwin, s, 1, si, tab_width),
+                      1 + yp - line_height / 2,
+                      CharWidth(cbwin, s[si]),line_height)
+            Uncouple(cw)
+         }
+      }
+
+      if \mark_y then {
+         if (mark_y < v.index < cursor_y) |
+	     (mark_y > v.index > cursor_y) then {
+            # Whole line selected
+            r := [v.first, v.last]
+         } else if v.index = mark_y = cursor_y then {
+            # Part of line
+            if mark_x < cursor_x then {
+               r := range(v.first, v.last, mark_x, cursor_x)
+            }
+            else if mark_x > cursor_x then {
+               r := range(v.first, v.last, cursor_x + 1 , mark_x)
+            }
+         } else if v.index = mark_y then {
+            if mark_y < cursor_y then {
+               r := range(v.first, v.last, mark_x, *contents[v.index] + 1)
+            } else {
+               r := range(v.first, v.last, 1, mark_x)
+            }
+         } else if v.index = cursor_y then {
+            if mark_y > cursor_y then {
+               r := range(v.first, v.last, cursor_x + 1, *contents[v.index] +1)
+            } else {
+               r := range(v.first, v.last, 1, cursor_x)
+            }
+         }
+         if \r then {
+            off1 := TextWidthEx(cbwin, s, 1, r[1] - v.first + 1, tab_width)
+            off2 := TextWidthEx(cbwin, s, 1, r[2] - v.first + 1, tab_width)
+            FillRectangle(rev, xp + off1, 1 + yp - line_height / 2,
+			  off2 - off1, line_height)
+         }
+      }
+
+   end
+
+#
+# New left_string for the UniconTextList
+#
+   method left_string_unicon(win, x, y, s, currentLine)
+      local i, last_s_Position, new_s_Position, off
+
+      y +:= (WAttrib(win, "ascent") - WAttrib(win, "descent")) / 2
+
+      # Check if an error line has been set.
+      if \errorLineNumber then {
+         # Check if this string belong to the error line
+         if currentLine = errorLineNumber then {
+            # Set error line color (red)
+            Fg( win, "Red" )
+            # Print the string
+            DrawString( win, x, y, s )
+            # Exit this method
+            return
+	    }
+	 }		
+		
+      # Reinitialize error counter in the yyerror function.  This is done in
+      # order to avoid the istop function being called from within the yyerror
+      # function when the merr error counter gets to 10.  This is only helpful
+      # within this syntax coloring procedure.
+      UniconPackage::yyerror( "reinitilize merr errors" )
+
+      # Reinitialize lexical analyzer
+      yyin := s
+      UniconPackage::yylex_reinit()
+
+      # Initialize string s position variables
+      off             := 0
+      new_s_Position  := 1
+      last_s_Position := 1
+      labstracts.token_highlighter(ide.CurrentTabItem().label,win,s,
+				   last_s_Position,x,y,off)
+   end
+
+   method SetErrorLineNumber ( lineNumber )
+      if lineNumber > *contents then
+         errorLineNumber := *contents
+      else errorLineNumber := lineNumber
+   end
+
+   method ReparseCode ()
+      local s, rv, x, errorObject, timeElapsed, lineNumberOffset
+      if doReparse == 1 then {
+         # Get time spent in reparsing the code
+         timeElapsed := &time
+
+         # Clear errors
+         SetErrorLineNumber ( 0 )
+
+         # Initialize preprocessor variables
+         uni_predefs := predefs()
+
+         # Get the line number offset and the code
+         s := []
+         x := 1
+         s |||:= GetCode()
+
+         # Extract the line number offset		
+         lineNumberOffset := s[1]
+
+         # Remove the line number offset from the list
+         pop( s )
+
+         # Call the preprocessor but instead of passing a file name, 
+         # we will pass a list containing the code
+         yyin := ""
+         every yyin ||:= preprocessor(s, uni_predefs) do yyin ||:= "\n"
+
+         # Reinitialize lexical analyzer
+         yylex_reinit()
+
+         # Initialize variables
+         /yydebug := 0
+         parsingErrors := []
+
+         # Reparse the code
+         rv := UniconPackage::yyparse()
+
+         # Display errors	
+         if errors + yynerrs > 0 then {
+            #write ("(" || *parsingErrors ||") Errors found")
+            every errorObject := !parsingErrors do {
+               # Add error object line number the line number offset
+               errorObject.lineNumber +:= lineNumberOffset
+               SetErrorLineNumber( errorObject.lineNumber )
+               }
+	    }
+         doReparse := 0
+	}
+   end
+
+   method GetCode()
+      local codeSubStringList, originalPositionY, currentPositionY,
+	  startPositionY, endPositionY, token
+
+      # Initialize positions	
+      startPositionY := 0
+      endPositionY := 0
+
+      # Search up for the enclosing procedure, method or class
+      originalPositionY := currentPositionY := cursor_y
+      while currentPositionY > 0 do {
+         # Reinitialize lexical analyzer
+         yyin := contents[currentPositionY]
+         yylex_reinit()
+
+         # Get string s tokens
+         while (token := yylex()) ~=== EOFX do {
+            # Get tokens
+            case token of {
+               METHOD | PROCEDURE | CLASS : {
+                  startPositionY := currentPositionY
+                  break 
+                  }
+               END : {
+                  if originalPositionY ~= currentPositionY then {
+                     startPositionY := currentPositionY + 1
+                     break
+                     }
+                  }
+               default : break
+               }
+            }
+
+            if startPositionY ~= 0 then break
+            # go up
+            currentPositionY -:= 1 
+	}
+        # Search down for the enclosing end
+        currentPositionY := cursor_y
+        while currentPositionY < *contents + 1 do {
+           # Reinitilize lexical analyze
+           yyin := contents[ currentPositionY ]
+           yylex_reinit()
+
+           # Get string s tokens
+           while (token := yylex()) ~=== EOFX do {
+              # Get tokens
+              case token of {
+                 END : {
+                    endPositionY := currentPositionY
+                    break
+                    }
+                CLASS | PROCEDURE | METHOD : {
+                   endPositionY := currentPositionY - 1
+                   break
+                   }
+                default : break
+                }
+              }
+           if endPositionY ~= 0 then break
+           # go down
+           currentPositionY +:= 1 
+          }
+
+        # Check if a valid enclosing end was found
+        if endPositionY = 0 then {
+           # Return all code
+           codeSubStringList := [ 0 ] ||| contents
+           return codeSubStringList
+           }
+
+        # Send only the enclosing sub string list
+        if startPositionY = 0 then startPositionY := 1
+        codeSubStringList := [ startPositionY ] |||
+	    contents[ startPositionY : endPositionY + 1 ]
+        # Return the sub string list
+        return codeSubStringList
+   end
+
+   initially
+      self$EditableTextList.initially()
+      labstracts := LanguageAbstract()
+
+      highlightcolor := "65535,65535,32428"
+      autoindent := &null
+      scroll_y := 1
+
+      errorLineNumber := 0
+      doReparse := 0
+
+      # This variable comes from the unilex.icn file
+      errors := 0
+end
+
+
+
+
+

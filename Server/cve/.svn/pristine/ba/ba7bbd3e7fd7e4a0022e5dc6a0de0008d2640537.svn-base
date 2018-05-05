@@ -1,0 +1,437 @@
+################################################################
+#   File:     newsfeed.icn
+#   Subject:  Contains all the newsfeed management methods.
+#
+#   Author:   Hani Bani-Salameh
+#   Date:     February 18, 2010
+################################################################
+
+import gui
+$include "guih.icn"
+
+global dlg_type
+
+class ICINewsFeed (add_reply, del_reply, add_post, post_dlg,
+   del_post, tree_pop, view_post, sep_1, p_menu, newsfeed_lbl, 
+   xpos, ypos
+   )
+
+  method newsfeed_popup()
+     local t, selected_node, selected_node_depth
+
+
+     tree_pop := PopupMenu()
+
+     p_menu := Menu()
+
+     tree_pop.set_menu(p_menu)
+
+     selected_node := view.newsfeed_tree.object_get_cursor().get_label()
+     selected_node := trim(selected_node, " ", 0)
+     selected_node_depth := (view.newsfeed_tree.object_get_cursor()).depth
+
+  if selected_node_depth == 1 then {
+     add_post := TextMenuItem()
+     add_post.set_label("Add Post")
+     add_post.connect(self, "on_add_post", ACTION_EVENT)
+     p_menu.add(add_post)
+     }
+  if selected_node_depth == 2 then {
+     add_reply := TextMenuItem()
+     add_reply.set_label("Add Reply")
+     add_reply.connect(self, "on_add_reply", ACTION_EVENT)
+     p_menu.add(add_reply)
+     sep_1 := MenuSeparator()
+     sep_1.set_is_shaded()
+     p_menu.add(sep_1)
+     del_post := TextMenuItem()
+     del_post.set_label("Delete Post")
+     del_post.connect(self, "on_delete_post", ACTION_EVENT)
+     p_menu.add(del_post)
+     view_post := TextMenuItem()
+     view_post.set_label("View Post")
+     view_post.connect(self, "on_view_post", ACTION_EVENT)
+     p_menu.add(view_post)
+     }
+  if selected_node_depth == 3 then {
+     del_reply := TextMenuItem()
+     del_reply.set_label("Delete Reply")
+     del_reply.connect(self, "on_delete_reply", ACTION_EVENT)
+     p_menu.add(del_reply)
+     }
+     world.nsh_dialog.add(tree_pop)
+     tree_pop.init()
+     tree_pop.resize()
+     tree_pop.popup()
+  end
+  #
+  #
+  #
+  method create_post(post_contents, repliesnum, flag, ppriority)
+     local r, pcontents := "", feed_lbl, cdir, f, node
+
+     if string(post_contents) then
+        pcontents := post_contents
+     else every pcontents ||:= !post_contents || "$$"
+
+     if *pcontents >= 30 then
+        feed_lbl := trim(pcontents[1:30], "$", 0)
+     else feed_lbl := trim(pcontents, "$", 0)
+
+     r := world.nsh_dialog.newsfeed_tree.get_root_node()
+     node := Node("label="||feed_lbl||"[ALL]")
+     node.set_bmps([editorimgs("newsfeed_"||ppriority),
+        editorimgs("newsfeed_"||ppriority), editorimgs("newsfeed_"||ppriority)])
+     r.add(node)
+
+     world.nsh_dialog.newsfeed_tree.expand()
+     world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+     session.Write("\\addFeed "||world.nsh_dialog.user_me||" "||
+        pcontents||"@@"||flag||" "||"ALL:ALL")
+  end
+  #
+  #
+  #
+  method mycreate_post(feed_lbl, repliesnum, flag, ppriority)
+     local r, pcontents := "", p, cdir, f, node
+     r := world.nsh_dialog.newsfeed_tree.get_root_node()
+     node:=Node("label="||feed_lbl)
+     node.set_bmps([editorimgs("newsfeed_"||ppriority),
+        editorimgs("newsfeed_"||ppriority), editorimgs("newsfeed_"||ppriority)])
+     r.add(node)
+     world.nsh_dialog.newsfeed_tree.expand()
+     world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+  end
+  #
+  #
+  #
+  method on_add_reply(ev, post_lbl, reply_contents, flag:0)
+     local r, oldwindow, postnode, rcontents := "", f, reply_lbl
+     dlg_type := "reply"
+
+     if flag = 0 then {
+        /reply_contents := ""
+        post_dlg := postDialog()
+        post_dlg.show_modal()
+        }
+  end
+  #
+  # Add the new reply to the newsfeed node
+  #
+  method add_reply_node(post_lbl, reply_lbl)
+     local node,child,r, rcontents := "", rcontents_lbl
+
+     r := world.nsh_dialog.newsfeed_tree.get_root_node()
+     node := world.nsh_dialog.Search_Tree(post_lbl,r)
+     child := Node("label="||\reply_lbl)
+     if /node then node := r
+     node.add(child)
+     world.nsh_dialog.newsfeed_tree.expand()
+     world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+  end
+  #
+  # Delete the node from the NewsFeed tree
+  #
+  method del_node(feed_lbl, reply_lbl, flag)
+     local node, child, r, r2
+
+     r:= world.nsh_dialog.newsfeed_tree.get_root_node()
+     if flag = 1 then { #Remove the post from the tree
+        node:=world.nsh_dialog.Search_Tree(feed_lbl, r)
+
+        r.delete_node(node)
+        }
+     else { #Remove the reply from the post node
+        node := world.nsh_dialog.Search_Tree(feed_lbl, r)
+        r2 := world.nsh_dialog.Search_Tree(reply_lbl, node)
+        node.delete_node(r2)
+        }
+     world.nsh_dialog.newsfeed_tree.expand()
+     world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+  end
+  #
+  #
+  #
+  method on_add_post(ev)
+     local oldwindow
+     
+     dlg_type := "post"
+     post_dlg := postDialog()
+     post_dlg.show_modal()
+  end
+  #
+  #
+  #
+  method on_delete_post(ev)
+     local feednode, feed_lbl, reply_lbl, flag := 1, f_lbl, userID
+
+     feednode := world.nsh_dialog.newsfeed_tree.object_get_selections()[1]
+     feed_lbl := feednode.get_label()
+
+     reply_lbl := ""
+     #del_node(feed_lbl, reply_lbl, flag)
+     session.Write("\\removeFeed "||feed_lbl||"@@"||
+                   reply_lbl||"@@"||flag||" "||world.nsh_dialog.user_me)
+  end
+  #
+  #
+  #
+  method handle_openfeed(feed_lbl, feed_contents)
+     local tab_id
+     local feed_label, feed_tab_item, EditBox,
+           fcontents_lst := [""]
+
+     feed_label :=  file_name(feed_lbl)
+     feed_tab_item := BufferTabItem()
+     feed_tab_item.set_label(feed_label)
+
+     feed_contents ? {
+        while not pos(0) do {
+           line := tab(find("$$"))
+           put(fcontents_lst, line)
+           move(2)
+           }
+        }
+
+     # A loop to check whether or not the file ifiles already open
+     # or if there is a different file open with the same name
+
+     # Will be changed later
+
+     # We don't have a files open with the same name, so 
+     # add a new tab with the file name
+
+     EditBox := EditableTextList()
+     EditBox.set_pos("2", "8.5%")
+     EditBox.set_size("100%-4", "90%")
+     EditBox.set_attribs("bg=white","font=serif,bold, 16", "fg=dark blue")
+     EditBox.set_contents(fcontents_lst)
+     EditBox.set_wrap_mode(90)
+     feed_tab_item.add(EditBox) 
+     world.nsh_dialog.VCSC_tab.add(feed_tab_item)
+     feed_tab_item.init()
+
+     world.nsh_dialog.resize()
+     world.nsh_dialog.is_subwin_hidden()
+  end
+  #
+  #
+  #
+  method on_view_post(ev)
+     local feednode, feed_lbl, userID, f_lbl
+
+     feednode := world.nsh_dialog.newsfeed_tree.object_get_selections()[1]
+     feed_lbl := feednode.get_label()
+     session.Write("\\viewFeed "||world.nsh_dialog.user_me||" "||feed_lbl)
+  end
+  #
+  #
+  #
+  method on_delete_reply(ev)
+     local replynode, feednode, feed_lbl, reply_lbl, flag := 0
+
+     replynode := world.nsh_dialog.newsfeed_tree.object_get_selections()[1]
+     feednode  := replynode.get_parent_node()
+     feed_lbl  := feednode.get_label()
+     reply_lbl := replynode.get_label()
+
+     del_node(feed_lbl, reply_lbl, flag)
+     session.Write("\\removeFeed "||feed_lbl||"@@"||
+                   reply_lbl||"@@"||flag||" "||world.nsh_dialog.user_me)
+  end
+  #
+  #
+  #
+  method on_login_newsfeed_creation()
+      local feedName, log1, reply_lbl, feed_lbl, feeds_lbl, allfeedslst,
+         fName, fpriority, userID
+      allfeedslst := []
+      world.nsh_dialog.newsfeed_tree.set_root_node(&null)
+      feeds_lbl := Node("label=NewsFeed")
+      world.nsh_dialog.newsfeed_tree.set_root_node(feeds_lbl)
+      tab(many(' '))
+      while not (pos(0)) do {
+	 feedName := tab(upto('{'))
+         move(1)
+         if \feedName then {
+         feedName ? {
+            userID := tab(find(" "))
+            move(1)
+            fpriority := tab(find(" "))
+            move(1)
+            fName := tab(0)
+            }
+
+         feedName := userID ||" "||fName
+         if \feedName ~== "" then {
+            put(allfeedslst, feedName)
+            create_newsfeed(feedName, ,1, fpriority)
+            }
+         while not pos(0) & not(="}") do{
+            tab(many(' '))
+            reply_lbl := tab(find("@@"))
+	    move(2)
+	    if \reply_lbl then
+               on_add_reply_to_feed(feedName, reply_lbl, "low")
+	    }
+	 world.nsh_dialog.newsfeed_tree.expand()
+	 world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+         move(1)
+         tab(many(' '))
+         }
+	 }
+  end
+
+  method create_newsfeed(feedName, feedOwner, flag, ppriority)
+     local r, feedNode
+     r := world.nsh_dialog.newsfeed_tree.get_root_node()
+     feedNode:=Node("label="||feedName)
+     feedNode.set_bmps([editorimgs("newsfeed_"||ppriority),editorimgs("newsfeed_"||ppriority),
+                     editorimgs("newsfeed_"||ppriority)])
+     r.add(feedNode)
+     if flag = 0 then
+        session.Write("\\say "||" new feed "|| feedName ||" is added")
+     world.nsh_dialog.newsfeed_tree.expand()
+     world.nsh_dialog.newsfeed_tree.tree_structure_changed()
+  end
+   #
+   # On add user to a group
+   #
+   method on_add_reply_to_feed(feedName, reply_lbl, ppriority)
+      local feedNode
+      if /feedName then {
+         feedNode := \world.nsh_dialog.newsfeed_tree.object_get_selections()[1]
+         feedName := \feedNode.get_label()
+         }
+      add_reply_node(feedName, reply_lbl)
+   end
+
+   initially
+      post_dlg := postDialog()
+end
+
+class postDialog : Dialog(
+    contents_lbl, post_etl, border_1, border_2, cancel_btn, 
+    ok_btn, priority_lbl, priority_lst, priorityList
+    )
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog()
+      priorityList := ["low", "medium", "high"]
+      post_etl.set_contents([""])
+      if dlg_type === "post" then
+         contents_lbl.set_label("Post Contents:")
+      else {
+         contents_lbl.set_label("Reply Contents:")
+         priority_lst.set_is_shaded()
+         }
+   end
+   
+   method on_priority_lst(ev)
+      local post_priority
+
+      post_priority := priorityList[priority_lst.get_selection()]
+   end
+
+   method on_cancel_btn(ev)
+      dispose()
+   end
+
+   method on_ok_btn(ev)
+      local post_contents, post_priority, rcontents,
+         r, postnode, post_lbl, reply_contents, reply_lbl
+
+      post_priority := priorityList[priority_lst.get_selection()]
+      /post_priority := "low"
+      if dlg_type === "post" then {
+         /post_contents := ""
+         post_contents := post_etl.get_contents()
+
+         ici_newsfeed.create_post(post_contents, ,0, post_priority)
+         post_etl.set_contents([""])
+         }
+      else if dlg_type === "reply" then {
+         r:=world.nsh_dialog.newsfeed_tree.get_root_node()
+         postnode := \world.nsh_dialog.newsfeed_tree.object_get_selections()[1]
+         /post_lbl := \postnode.get_label()
+
+         /rcontents := "" 
+         reply_contents := post_etl.get_contents()
+
+         every rcontents ||:= !reply_contents || "$$"
+
+         if *rcontents >= 30 then
+            reply_lbl := trim(rcontents[1:30], "$", 0)
+         else reply_lbl := trim(rcontents, "$", 0)
+
+         ici_newsfeed.add_reply_node(post_lbl, reply_lbl)
+         session.Write("\\replytoFeed "||world.nsh_dialog.user_me||" "||
+            post_lbl||"@@"||rcontents)
+         post_etl.set_contents([""])
+         }
+      self.dispose()
+   end
+
+   method setup()
+      self.set_attribs("size=500,199")
+      border_1 := Border()
+      border_1.set_pos("80%-5", "1")
+      border_1.set_size("20%+5", "80%")
+      border_1.set_internal_alignment("l")
+      priority_lbl := Label()
+      priority_lbl.set_pos("4", "4")
+      priority_lbl.set_size("85%", "10%")
+      priority_lbl.set_internal_alignment("l")
+      priority_lbl.set_label("Priority")
+      border_1.add(priority_lbl)
+      priority_lst := List()
+      priority_lst.set_pos("4", "10%+5")
+      priority_lst.set_size("85%", "15%")
+      priority_lst.connect(self, "on_priority_lst", SELECTION_CHANGED_EVENT)
+      priority_lst.set_selection_list(["low", "medium", "high"])
+      border_1.add(priority_lst)
+      self.add(border_1)
+      border_2 := Border()
+      border_2.set_pos("1", "1")
+      border_2.set_size("80%-6", "80%")
+      border_2.set_internal_alignment("l")
+      post_etl := EditableTextList()
+      post_etl.set_pos("4", "10%+4")
+      post_etl.set_size("100%-8", "90%-8")
+      post_etl.set_draw_border()
+      post_etl.set_wrap_mode(70)
+      post_etl.set_contents([""])
+      border_2.add(post_etl)
+      contents_lbl := Label()
+      contents_lbl.set_pos("4", "4")
+      contents_lbl.set_size("50%", "10%")
+      contents_lbl.set_internal_alignment("l")
+      contents_lbl.set_label("Post Contents:")
+      border_2.add(contents_lbl)
+      self.add(border_2)
+      cancel_btn := TextButton()
+      cancel_btn.set_pos("55%", "85%")
+      cancel_btn.set_size("15%", "10%")
+      cancel_btn.connect(self, "on_cancel_btn", ACTION_EVENT)
+      cancel_btn.clear_toggles()
+      cancel_btn.set_label("Cancel")
+      cancel_btn.set_internal_alignment("c")
+      self.add(cancel_btn)
+      ok_btn := TextButton()
+      ok_btn.set_pos("35%", "85%")
+      ok_btn.set_size("15%", "10%")
+      ok_btn.connect(self, "on_ok_btn", ACTION_EVENT)
+      ok_btn.clear_toggles()
+      ok_btn.set_label("OK")
+      ok_btn.set_internal_alignment("c")
+      self.add(ok_btn)
+   end
+
+   initially
+      self.Dialog.initially()
+end

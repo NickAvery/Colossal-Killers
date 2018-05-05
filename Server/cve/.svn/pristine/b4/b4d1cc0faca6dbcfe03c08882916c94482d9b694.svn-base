@@ -1,0 +1,68 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> About GDB
+<dt> Summary
+<dd> Learn about GDB on Linux.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about GDB.
+<li> Pass a quiz on GDB.
+</ol>
+<dt> Rewards
+<dd> GDB: 1; Linux: 1
+<dt> Reading
+<dd>
+
+Debugging is the process of removing bugs from computer programs. The
+simplest debugging process is to stare at your source code until you locate
+the bug. The second most primitive debugging process is to litter your
+program with print/write statements that tell that values of interesting
+variables where your program is executing. However, debugging is more
+efficient when you use another program called debugger to help you look at
+your program execution.
+
+<p>
+
+GDB is a very popular debugger. It is free software, protected by the GNU
+General Public License (GPL).
+
+<p>
+The purpose of a debugger such as GDB is to allow you to see what is going on 
+inside another program while it executes, or what it was doing at 
+the moment it crashed. GDB can do four main kinds of things (plus other things 
+in support of these) to help you catch bugs in the act:
+<p>
+* Start your program, specifying anything that might affect its behavior.
+<p>
+* Make your program stop on specified conditions.
+<p>
+* Examine what has happened, when your program has stopped.
+<p>
+* Change things in your program, so you can experiment with correcting the 
+effects of one bug and go on to learn about another.
+<p> You can use GDB to debug programs written in C and C++.
+     
+<dt> Quiz (4/6)
+<dd>
+<dl>
+<dt> What is a debugger?
+<dd> a program that runs other programs
+<dt> What is GDB?
+<dd> A Debugger.
+<dt> What kind of debugger is GDB?
+<dd> source-level
+<dt> Do you have to pay money to use GDB?
+<dd> No, GDB is free.
+<dt> Can GDB run your program? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> Can you stop a program running under GDB? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> What languages does GDB support?
+<dd> C, C++, Java
+</dl>
+</dl>

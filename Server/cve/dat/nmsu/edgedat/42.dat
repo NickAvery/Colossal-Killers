@@ -1,0 +1,11 @@
+Door {
+	id 42
+	x 3.36
+	y 0
+	z 7.8
+	w 1.0
+	height 2.3
+	collide_in 0.8
+	plane 1
+	rooms [SH_153, cooridoor_west]
+}

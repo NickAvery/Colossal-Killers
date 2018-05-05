@@ -1,0 +1,3255 @@
+version	U12.1.00
+uid	buffertabitem.u1-1523917886-0
+record	BufferTabItem__state,37
+	0,__s
+	1,__m
+	2,filename
+	3,label
+	4,label_x
+	5,line_no
+	6,label_w
+	7,x_spec
+	8,y_spec
+	9,w_spec
+	10,h_spec
+	11,x_align
+	12,y_align
+	13,x
+	14,y
+	15,w
+	16,h
+	17,parent_dialog
+	18,attribs
+	19,has_focus
+	20,is_shaded_flag
+	21,cwin
+	22,cbwin
+	23,accepts_focus_flag
+	24,draw_border_flag
+	25,tooltip
+	26,parent
+	27,children
+	28,valid
+	29,accel
+	30,allow_drag_flag
+	31,allow_drop_flag
+	32,pointer
+	33,ticker
+	34,transparent
+	35,auto_refresh
+	36,listeners
+record	BufferTabItem__methods,133
+	0,setfilename
+	1,get_label
+	2,set_label
+	3,getfilename
+	4,display_tab
+	5,initially
+	6,check_label
+	7,is_hidden
+	8,is_unhidden
+	9,set_one
+	10,set_tooltip
+	11,get_tooltip
+	12,set_pointer
+	13,get_pointer
+	14,get_x_reference
+	15,get_y_reference
+	16,get_w_reference
+	17,get_h_reference
+	18,get_cwin_reference
+	19,get_cbwin_reference
+	20,get_parent_dialog_reference
+	21,fatal
+	22,keeps
+	23,is_shaded
+	24,is_unshaded
+	25,do_shading
+	26,accepts_focus
+	27,unique_start
+	28,unique_end
+	29,handle_accel
+	30,handle_event
+	31,do_handle_event
+	32,fire_icon_events_on_mouse
+	33,toggle_is_shaded
+	34,set_auto_refresh
+	35,clear_auto_refresh
+	36,set_transparent
+	37,clear_transparent
+	38,set_is_shaded
+	39,clear_is_shaded
+	40,toggle_draw_border
+	41,set_draw_border
+	42,clear_draw_border
+	43,set_accepts_focus
+	44,clear_accepts_focus
+	45,display
+	46,attrib
+	47,set_attribs
+	48,set_attribs_list
+	49,in_region
+	50,got_focus
+	51,get_parent_win
+	52,get_parent_buffer_win
+	53,lost_focus
+	54,set_pos
+	55,set_size
+	56,set_align
+	57,set_abs_coords
+	58,set_abs_size
+	59,set_accel
+	60,get_accel
+	61,get_parent
+	62,set_parent
+	63,init
+	64,get_parent_dialog
+	65,set_parent_dialog
+	66,firstly
+	67,finally
+	68,parse_pos
+	69,resize
+	70,compute_absolutes
+	71,generate_components
+	72,find_focus
+	73,find_accel
+	74,invalidate
+	75,all_components_valid
+	76,validate
+	77,child_validated
+	78,add
+	79,remove
+	80,is_dialog_open
+	81,get_children
+	82,create_event_and_fire
+	83,set_ticker
+	84,stop_ticker
+	85,retime_ticker
+	86,is_ticking
+	87,tick
+	88,invoke_can_drag
+	89,invoke_drag_event
+	90,invoke_can_drop
+	91,invoke_end_drag
+	92,invoke_drag_reset
+	93,can_drag
+	94,drag_event
+	95,can_drop
+	96,end_drag
+	97,drag_reset
+	98,set_allow_drag
+	99,clear_allow_drag
+	100,set_allow_drop
+	101,clear_allow_drop
+	102,is_attrib
+	103,clone
+	104,to_string
+	105,equals
+	106,hash_code
+	107,get_class_name
+	108,get_id
+	109,get_class
+	110,is_instance
+	111,test_flag
+	112,as_attrib
+	113,int_val
+	114,int_vals
+	115,numeric_val
+	116,numeric_vals
+	117,cset_val
+	118,string_val
+	119,string_vals
+	120,set_fields
+	121,field_error
+	122,genlisteners
+	123,fire
+	124,connect
+	125,disconnect_fromlist
+	126,disconnect_all
+	127,disconnect
+	128,gui__TabItem
+	129,gui__Component
+	130,lang__Object
+	131,util__SetFields
+	132,util__Connectable
+impl	error
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/lib/object.u
+link	c:/unicon/uni/lib/setfields.u
+link	c:/unicon/uni/lib/connectable.u
+link	graphics.u
+link	posix.u
+link	c:/unicon/uni/gui/dispatcher.u
+link	c:/unicon/uni/gui/drag.u
+link	c:/unicon/uni/gui/guiprocs.u
+link	c:/unicon/uni/gui/ticker.u
+link	c:/unicon/uni/gui/component.u
+link	c:/unicon/uni/gui/panel.u
+link	c:/unicon/uni/gui/border.u
+link	c:/unicon/uni/gui/toggle.u
+link	c:/unicon/uni/gui/button.u
+link	c:/unicon/uni/gui/buttongroup.u
+link	c:/unicon/uni/gui/checkbox.u
+link	c:/unicon/uni/gui/checkboxgroup.u
+link	c:/unicon/uni/gui/menucomponent.u
+link	c:/unicon/uni/gui/checkboxmenuitem.u
+link	c:/unicon/uni/gui/iconbutton.u
+link	c:/unicon/uni/gui/label.u
+link	c:/unicon/uni/gui/circulate.u
+link	c:/unicon/uni/gui/clipboard.u
+link	c:/unicon/uni/gui/scrollbar.u
+link	c:/unicon/uni/gui/scrollarea.u
+link	c:/unicon/uni/gui/componentscrollarea.u
+link	c:/unicon/uni/gui/dialog.u
+link	c:/unicon/uni/gui/drawscrollarea.u
+link	c:/unicon/uni/gui/linebasedscrollarea.u
+link	c:/unicon/uni/gui/displayscrollarea.u
+link	c:/unicon/uni/gui/selectablescrollarea.u
+link	c:/unicon/uni/gui/textlist.u
+link	c:/unicon/uni/gui/dropdown.u
+link	c:/unicon/uni/gui/textfield.u
+link	c:/unicon/uni/gui/textbutton.u
+link	c:/unicon/uni/gui/stddlg.u
+link	c:/unicon/uni/gui/editabletextlist.u
+link	c:/unicon/uni/gui/editlist.u
+link	c:/unicon/uni/gui/spin.u
+link	c:/unicon/uni/gui/editspin.u
+link	c:/unicon/uni/gui/filedialog.u
+link	c:/unicon/uni/gui/tabset.u
+link	c:/unicon/uni/gui/tabitem.u
+link	c:/unicon/uni/gui/table.u
+link	c:/unicon/uni/gui/tablecolumn.u
+link	c:/unicon/uni/gui/printdlg.u
+link	c:/unicon/uni/gui/icon.u
+link	c:/unicon/uni/gui/image.u
+link	c:/unicon/uni/gui/line.u
+link	c:/unicon/uni/gui/list.u
+link	c:/unicon/uni/gui/staticspin.u
+link	c:/unicon/uni/gui/listspin.u
+link	c:/unicon/uni/gui/submenu.u
+link	c:/unicon/uni/gui/menu.u
+link	c:/unicon/uni/gui/menubar.u
+link	c:/unicon/uni/gui/menubutton.u
+link	c:/unicon/uni/gui/menuseparator.u
+link	c:/unicon/uni/gui/node.u
+link	c:/unicon/uni/gui/overlayitem.u
+link	c:/unicon/uni/gui/overlayset.u
+link	c:/unicon/uni/gui/popupmenu.u
+link	c:/unicon/uni/gui/progressbar.u
+link	c:/unicon/uni/gui/rangespin.u
+link	c:/unicon/uni/gui/sizer.u
+link	c:/unicon/uni/gui/slider.u
+link	c:/unicon/uni/gui/textdisplay.u
+link	c:/unicon/uni/gui/textmenuitem.u
+link	c:/unicon/uni/gui/toggleiconbutton.u
+link	c:/unicon/uni/gui/toggletextbutton.u
+link	c:/unicon/uni/gui/toolbar.u
+link	c:/unicon/uni/gui/tree.u
+link	c:/unicon/uni/gui/migration.u
+link	c:/unicon/uni/gui/treetable.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	17
+	0,000005,BufferTabItem_setfilename,2
+	1,000005,BufferTabItem_get_label,1
+	2,000005,BufferTabItem_set_label,2
+	3,000005,BufferTabItem_getfilename,1
+	4,000005,BufferTabItem_display_tab,1
+	5,000005,BufferTabItem_initially,1
+	6,000011,BufferTabItem__state,37
+	7,000011,BufferTabItem__methods,133
+	8,000001,BufferTabItem__oprec,0
+	9,000001,gui__TabItem__oprec,0
+	10,000001,gui__Component__oprec,0
+	11,000001,lang__Object__oprec,0
+	12,000001,util__SetFields__oprec,0
+	13,000001,util__Connectable__oprec,0
+	14,000005,BufferTabItem,35
+	15,000005,BufferTabIteminitialize,0
+	16,000005,BevelRoundedRectangle,6
+
+proc BufferTabItem_setfilename
+	local	0,001000,self
+	local	1,001000,x
+	local	2,000000,gui__file_name
+	con	0,010000,1,040
+	declend
+	filen	buffertabitem.icn
+	line	25
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	0
+	line	26
+	colm	11
+	synt	any
+	field	set_label
+	line	26
+	colm	22
+	synt	ifelse
+	mark	L2
+	pnull
+	var	1
+	line	26
+	colm	24
+	synt	any
+	nonnull
+	unmark
+	var	2
+	var	1
+	line	26
+	colm	46
+	synt	any
+	invoke	1
+	goto	L3
+lab L2
+	str	0
+lab L3
+	line	26
+	colm	22
+	synt	endifelse
+	line	26
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	27
+	colm	18
+	synt	any
+	field	filename
+	var	1
+	line	27
+	colm	27
+	synt	any
+	asgn
+	line	27
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem_get_label
+	local	0,001000,self
+	declend
+	line	30
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	31
+	colm	18
+	synt	any
+	field	label
+	line	31
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	32
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem_set_label
+	local	0,001000,self
+	local	1,001000,x
+	declend
+	line	34
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	35
+	colm	18
+	synt	any
+	field	label
+	var	1
+	line	35
+	colm	24
+	synt	any
+	asgn
+	line	35
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	36
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem_getfilename
+	local	0,001000,self
+	declend
+	line	38
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	39
+	colm	18
+	synt	any
+	field	filename
+	line	39
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	40
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem_display_tab
+	local	0,001000,self
+	local	1,000020,xpw
+	local	2,000020,pslh
+	local	3,000020,updown
+	local	4,000020,ypos
+	local	5,000020,cw
+	local	6,000000,Clone
+	local	7,000000,Fg
+	local	8,000000,DrawLine
+	local	9,000000,Uncouple
+	local	10,000000,FillRectangle
+	local	11,000000,BevelRoundedRectangle
+	local	12,000000,TextWidth
+	local	13,000000,gui__left_string
+	local	14,000000,gui__FilterRectangle
+	con	0,002000,1,1
+	con	1,010000,5,142,154,141,143,153
+	con	2,002000,1,2
+	con	3,010000,5,167,150,151,164,145
+	con	4,010000,18,160,141,154,145,040,147,162,145,171,151,163,150,040,167,150,151,164,145
+	con	5,002000,1,4
+	con	6,010000,19,154,151,147,150,164,040,147,162,145,171,151,163,150,040,167,150,151,164,145
+	con	7,010000,13,147,162,145,171,151,163,150,040,167,150,151,164,145
+	con	8,010000,9,160,141,154,145,040,147,162,145,171
+	con	9,002000,1,8
+	con	10,002000,1,6
+	con	11,002000,1,3
+	declend
+	line	45
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	20
+	synt	any
+	field	line_no
+	int	0
+	line	48
+	colm	28
+	synt	any
+	minus
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	36
+	synt	any
+	field	parent
+	line	48
+	colm	43
+	synt	any
+	field	line_h
+	line	48
+	colm	31
+	synt	any
+	mult
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	55
+	synt	any
+	field	parent
+	line	48
+	colm	62
+	synt	any
+	field	y
+	line	48
+	colm	50
+	synt	any
+	plus
+	line	48
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	5
+	var	6
+	pnull
+	pnull
+	var	0
+	line	49
+	colm	23
+	synt	any
+	field	parent
+	line	49
+	colm	30
+	synt	any
+	field	cbwin
+	line	49
+	colm	18
+	synt	any
+	invoke	1
+	line	49
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	18
+	synt	any
+	field	label_x
+	pnull
+	var	0
+	line	51
+	colm	31
+	synt	any
+	field	label_w
+	line	51
+	colm	26
+	synt	any
+	plus
+	line	51
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	52
+	colm	19
+	synt	any
+	field	parent
+	line	52
+	colm	26
+	synt	any
+	field	line_h
+	line	52
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	var	7
+	var	5
+	str	1
+	line	54
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L5
+	mark	L6
+	var	8
+	var	5
+	pnull
+	var	1
+	int	0
+	line	55
+	colm	24
+	synt	any
+	minus
+	var	4
+	pnull
+	var	1
+	int	0
+	line	55
+	colm	39
+	synt	any
+	minus
+	pnull
+	pnull
+	var	4
+	var	2
+	line	55
+	colm	49
+	synt	any
+	plus
+	int	0
+	line	55
+	colm	56
+	synt	any
+	minus
+	line	55
+	colm	15
+	synt	any
+	invoke	5
+	unmark
+lab L6
+	mark	L7
+	var	8
+	var	5
+	pnull
+	var	1
+	int	2
+	line	56
+	colm	24
+	synt	any
+	minus
+	pnull
+	var	4
+	int	0
+	line	56
+	colm	34
+	synt	any
+	plus
+	pnull
+	var	1
+	int	2
+	line	56
+	colm	43
+	synt	any
+	minus
+	pnull
+	pnull
+	var	4
+	var	2
+	line	56
+	colm	53
+	synt	any
+	plus
+	int	2
+	line	56
+	colm	60
+	synt	any
+	minus
+	line	56
+	colm	15
+	synt	any
+	invoke	5
+	unmark
+lab L7
+	mark	L8
+	var	8
+	var	5
+	pnull
+	var	0
+	line	57
+	colm	24
+	synt	any
+	field	label_x
+	pnull
+	pnull
+	var	4
+	var	2
+	line	57
+	colm	37
+	synt	any
+	plus
+	int	0
+	line	57
+	colm	42
+	synt	any
+	minus
+	pnull
+	var	0
+	line	57
+	colm	50
+	synt	any
+	field	label_x
+	var	4
+	pnull
+	var	1
+	int	0
+	line	57
+	colm	67
+	synt	any
+	minus
+	var	4
+	line	57
+	colm	15
+	synt	any
+	invoke	7
+	unmark
+lab L8
+	mark	L9
+	var	7
+	var	5
+	str	3
+	line	59
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	mark	L10
+	var	8
+	var	5
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	24
+	synt	any
+	field	label_x
+	int	0
+	line	60
+	colm	32
+	synt	any
+	plus
+	pnull
+	pnull
+	var	4
+	var	2
+	line	60
+	colm	39
+	synt	any
+	plus
+	int	2
+	line	60
+	colm	45
+	synt	any
+	minus
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	54
+	synt	any
+	field	label_x
+	int	0
+	line	60
+	colm	62
+	synt	any
+	plus
+	pnull
+	var	4
+	int	0
+	line	61
+	colm	15
+	synt	any
+	plus
+	pnull
+	var	1
+	int	2
+	line	61
+	colm	24
+	synt	any
+	minus
+	pnull
+	var	4
+	int	0
+	line	61
+	colm	35
+	synt	any
+	plus
+	line	60
+	colm	15
+	synt	any
+	invoke	7
+	unmark
+lab L10
+	mark	L11
+	var	9
+	var	5
+	line	62
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	67
+	colm	17
+	synt	any
+	field	parent
+	line	67
+	colm	24
+	synt	any
+	field	cbwin
+	line	67
+	colm	10
+	synt	any
+	nonnull
+	str	3
+	line	67
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L12
+	mark	L13
+	var	10
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	25
+	synt	any
+	field	parent
+	line	68
+	colm	32
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	68
+	colm	43
+	synt	any
+	field	label_x
+	pnull
+	pnull
+	var	4
+	int	2
+	line	69
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	69
+	colm	36
+	synt	any
+	minus
+	int	2
+	line	69
+	colm	41
+	synt	any
+	div
+	line	69
+	colm	28
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	50
+	synt	any
+	field	label_w
+	int	2
+	line	69
+	colm	58
+	synt	any
+	minus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	69
+	colm	66
+	synt	any
+	minus
+	int	2
+	line	69
+	colm	70
+	synt	any
+	div
+	line	68
+	colm	20
+	synt	any
+	invoke	5
+	unmark
+lab L13
+	mark	L14
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	17
+	synt	any
+	field	parent
+	line	70
+	colm	24
+	synt	any
+	field	cbwin
+	line	70
+	colm	10
+	synt	any
+	nonnull
+	str	4
+	line	70
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L14
+	mark	L15
+	var	10
+	pnull
+	pnull
+	var	0
+	line	71
+	colm	25
+	synt	any
+	field	parent
+	line	71
+	colm	32
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	71
+	colm	43
+	synt	any
+	field	label_x
+	pnull
+	pnull
+	var	4
+	int	2
+	line	72
+	colm	24
+	synt	any
+	plus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	72
+	colm	36
+	synt	any
+	minus
+	int	2
+	line	72
+	colm	41
+	synt	any
+	div
+	line	72
+	colm	28
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	72
+	colm	50
+	synt	any
+	field	label_w
+	int	2
+	line	72
+	colm	58
+	synt	any
+	minus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	72
+	colm	66
+	synt	any
+	minus
+	int	5
+	line	72
+	colm	70
+	synt	any
+	div
+	line	71
+	colm	20
+	synt	any
+	invoke	5
+	unmark
+lab L15
+	mark	L16
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	73
+	colm	17
+	synt	any
+	field	parent
+	line	73
+	colm	24
+	synt	any
+	field	cbwin
+	line	73
+	colm	10
+	synt	any
+	nonnull
+	str	6
+	line	73
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L16
+	mark	L17
+	var	10
+	pnull
+	pnull
+	var	0
+	line	74
+	colm	25
+	synt	any
+	field	parent
+	line	74
+	colm	32
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	74
+	colm	43
+	synt	any
+	field	label_x
+	pnull
+	var	4
+	int	2
+	line	74
+	colm	56
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	75
+	colm	23
+	synt	any
+	field	label_w
+	int	2
+	line	75
+	colm	31
+	synt	any
+	minus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	75
+	colm	39
+	synt	any
+	minus
+	int	2
+	line	75
+	colm	43
+	synt	any
+	div
+	line	74
+	colm	20
+	synt	any
+	invoke	5
+	unmark
+lab L17
+	mark	L18
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	76
+	colm	17
+	synt	any
+	field	parent
+	line	76
+	colm	24
+	synt	any
+	field	cbwin
+	line	76
+	colm	10
+	synt	any
+	nonnull
+	str	7
+	line	76
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	var	10
+	pnull
+	pnull
+	var	0
+	line	77
+	colm	25
+	synt	any
+	field	parent
+	line	77
+	colm	32
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	77
+	colm	43
+	synt	any
+	field	label_x
+	pnull
+	var	4
+	int	2
+	line	77
+	colm	56
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	78
+	colm	25
+	synt	any
+	field	label_w
+	int	2
+	line	78
+	colm	33
+	synt	any
+	minus
+	pnull
+	pnull
+	var	2
+	int	2
+	line	78
+	colm	41
+	synt	any
+	minus
+	int	5
+	line	78
+	colm	45
+	synt	any
+	div
+	line	77
+	colm	20
+	synt	any
+	invoke	5
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	3
+	pnull
+	int	0
+	line	80
+	colm	17
+	synt	any
+	neg
+	line	80
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	line	81
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	14
+	synt	any
+	field	parent
+	line	81
+	colm	21
+	synt	any
+	field	which_one
+	var	0
+	line	81
+	colm	31
+	synt	any
+	eqv
+	unmark
+	pnull
+	var	3
+	int	0
+	line	81
+	colm	51
+	synt	any
+	asgn
+	line	81
+	colm	7
+	synt	endif
+	unmark
+lab L21
+	mark	L22
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	17
+	synt	any
+	field	parent
+	line	83
+	colm	24
+	synt	any
+	field	cbwin
+	line	83
+	colm	10
+	synt	any
+	nonnull
+	str	8
+	line	83
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L22
+	mark	L23
+	var	11
+	pnull
+	pnull
+	var	0
+	line	84
+	colm	33
+	synt	any
+	field	parent
+	line	84
+	colm	40
+	synt	any
+	field	cbwin
+	pnull
+	pnull
+	pnull
+	var	0
+	line	85
+	colm	14
+	synt	any
+	field	label_x
+	int	9
+	line	85
+	colm	22
+	synt	any
+	plus
+	int	0
+	line	85
+	colm	24
+	synt	any
+	minus
+	pnull
+	pnull
+	var	4
+	int	10
+	line	85
+	colm	31
+	synt	any
+	minus
+	pnull
+	var	2
+	int	2
+	line	85
+	colm	40
+	synt	any
+	div
+	line	85
+	colm	34
+	synt	any
+	plus
+	var	12
+	pnull
+	pnull
+	var	0
+	line	86
+	colm	24
+	synt	any
+	field	parent
+	line	86
+	colm	31
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	86
+	colm	42
+	synt	any
+	field	label
+	line	86
+	colm	19
+	synt	any
+	invoke	2
+	pnull
+	int	11
+	pnull
+	pnull
+	var	2
+	int	2
+	line	86
+	colm	57
+	synt	any
+	minus
+	int	2
+	line	86
+	colm	60
+	synt	any
+	div
+	line	86
+	colm	51
+	synt	any
+	plus
+	var	3
+	line	84
+	colm	28
+	synt	any
+	invoke	6
+	unmark
+lab L23
+	mark	L24
+	var	7
+	pnull
+	pnull
+	pnull
+	var	0
+	line	88
+	colm	17
+	synt	any
+	field	parent
+	line	88
+	colm	24
+	synt	any
+	field	cbwin
+	line	88
+	colm	10
+	synt	any
+	nonnull
+	str	1
+	line	88
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L24
+	mark	L25
+	var	13
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	28
+	synt	any
+	field	parent
+	line	89
+	colm	35
+	synt	any
+	field	cbwin
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	46
+	synt	any
+	field	label_x
+	int	9
+	line	89
+	colm	54
+	synt	any
+	plus
+	pnull
+	var	4
+	pnull
+	var	2
+	int	2
+	line	90
+	colm	22
+	synt	any
+	div
+	line	90
+	colm	15
+	synt	any
+	plus
+	pnull
+	var	0
+	line	90
+	colm	31
+	synt	any
+	field	label
+	line	89
+	colm	23
+	synt	any
+	invoke	4
+	unmark
+lab L25
+	mark	L26
+	line	92
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	0
+	line	92
+	colm	14
+	synt	any
+	field	is_shaded
+	line	92
+	colm	24
+	synt	any
+	invoke	0
+	unmark
+	var	14
+	pnull
+	pnull
+	var	0
+	line	93
+	colm	35
+	synt	any
+	field	parent
+	line	93
+	colm	42
+	synt	any
+	field	cbwin
+	pnull
+	var	0
+	line	93
+	colm	53
+	synt	any
+	field	label_x
+	pnull
+	var	4
+	int	2
+	line	93
+	colm	66
+	synt	any
+	plus
+	pnull
+	pnull
+	var	0
+	line	94
+	colm	17
+	synt	any
+	field	label_w
+	int	2
+	line	94
+	colm	25
+	synt	any
+	minus
+	pnull
+	var	2
+	int	0
+	line	94
+	colm	32
+	synt	any
+	minus
+	line	93
+	colm	30
+	synt	any
+	invoke	5
+	line	92
+	colm	7
+	synt	endif
+	unmark
+lab L26
+	pnull
+	line	95
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem_initially
+	local	0,001000,self
+	declend
+	line	97
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	98
+	colm	12
+	synt	any
+	field	__m
+	line	98
+	colm	16
+	synt	any
+	field	gui__TabItem
+	line	98
+	colm	29
+	synt	any
+	field	initially
+	var	0
+	line	98
+	colm	40
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	99
+	colm	11
+	synt	any
+	field	filename
+	line	99
+	colm	22
+	synt	any
+	keywd	null
+	line	99
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	mark	L4
+	pnull
+	line	100
+	colm	7
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	unmark
+lab L3
+	pnull
+	line	101
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabItem
+	local	0,001000,filename
+	local	1,001000,label
+	local	2,001000,label_x
+	local	3,001000,line_no
+	local	4,001000,label_w
+	local	5,001000,x_spec
+	local	6,001000,y_spec
+	local	7,001000,w_spec
+	local	8,001000,h_spec
+	local	9,001000,x_align
+	local	10,001000,y_align
+	local	11,001000,x
+	local	12,001000,y
+	local	13,001000,w
+	local	14,001000,h
+	local	15,001000,parent_dialog
+	local	16,001000,attribs
+	local	17,001000,has_focus
+	local	18,001000,is_shaded_flag
+	local	19,001000,cwin
+	local	20,001000,cbwin
+	local	21,001000,accepts_focus_flag
+	local	22,001000,draw_border_flag
+	local	23,001000,tooltip
+	local	24,001000,parent
+	local	25,001000,children
+	local	26,001000,valid
+	local	27,001000,accel
+	local	28,001000,allow_drag_flag
+	local	29,001000,allow_drop_flag
+	local	30,001000,pointer
+	local	31,001000,ticker
+	local	32,001000,transparent
+	local	33,001000,auto_refresh
+	local	34,001000,listeners
+	local	35,000020,self
+	local	36,000020,clone
+	local	37,000000,BufferTabItem__oprec
+	local	38,000000,BufferTabIteminitialize
+	local	39,000000,gui__TabItem__oprec
+	local	40,000000,gui__TabIteminitialize
+	local	41,000000,gui__Component__oprec
+	local	42,000000,gui__Componentinitialize
+	local	43,000000,lang__Object__oprec
+	local	44,000000,lang__Objectinitialize
+	local	45,000000,util__SetFields__oprec
+	local	46,000000,util__SetFieldsinitialize
+	local	47,000000,util__Connectable__oprec
+	local	48,000000,util__Connectableinitialize
+	local	49,000000,BufferTabItem__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	mark	L4
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	37
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	38
+	line	8
+	colm	56
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	line	9
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	39
+	line	9
+	colm	6
+	synt	any
+	null
+	unmark
+	var	40
+	line	9
+	colm	54
+	synt	any
+	invoke	0
+	line	9
+	colm	3
+	synt	endif
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	37
+	line	10
+	colm	23
+	synt	any
+	field	gui__TabItem
+	var	39
+	line	10
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	11
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	41
+	line	11
+	colm	6
+	synt	any
+	null
+	unmark
+	var	42
+	line	11
+	colm	58
+	synt	any
+	invoke	0
+	line	11
+	colm	3
+	synt	endif
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	37
+	line	12
+	colm	23
+	synt	any
+	field	gui__Component
+	var	41
+	line	12
+	colm	39
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	line	13
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	43
+	line	13
+	colm	6
+	synt	any
+	null
+	unmark
+	var	44
+	line	13
+	colm	54
+	synt	any
+	invoke	0
+	line	13
+	colm	3
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	37
+	line	14
+	colm	23
+	synt	any
+	field	lang__Object
+	var	43
+	line	14
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	15
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	45
+	line	15
+	colm	6
+	synt	any
+	null
+	unmark
+	var	46
+	line	15
+	colm	60
+	synt	any
+	invoke	0
+	line	15
+	colm	3
+	synt	endif
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	37
+	line	16
+	colm	23
+	synt	any
+	field	util__SetFields
+	var	45
+	line	16
+	colm	40
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	17
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	47
+	line	17
+	colm	6
+	synt	any
+	null
+	unmark
+	var	48
+	line	17
+	colm	64
+	synt	any
+	invoke	0
+	line	17
+	colm	3
+	synt	endif
+	unmark
+lab L13
+	pnull
+	pnull
+	var	37
+	line	18
+	colm	23
+	synt	any
+	field	util__Connectable
+	var	47
+	line	18
+	colm	42
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L14
+	pnull
+	var	35
+	var	49
+	line	20
+	colm	32
+	synt	any
+	keywd	null
+	var	37
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	line	20
+	colm	31
+	synt	any
+	invoke	37
+	line	20
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	35
+	line	21
+	colm	7
+	synt	any
+	field	__s
+	var	35
+	line	21
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	mark	L17
+	pnull
+	pnull
+	var	35
+	line	22
+	colm	7
+	synt	any
+	field	__m
+	line	22
+	colm	11
+	synt	any
+	field	initially
+	var	35
+	line	22
+	colm	21
+	synt	any
+	invoke	1
+	line	22
+	colm	28
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	line	22
+	colm	30
+	synt	any
+	pfail
+lab L18
+	unmark
+lab L16
+	mark	L19
+	mark	L20
+	var	35
+	line	23
+	colm	3
+	synt	any
+	pret
+lab L20
+	synt	any
+	pfail
+	unmark
+lab L19
+	pnull
+	line	24
+	colm	1
+	synt	any
+	pfail
+	end
+proc BufferTabIteminitialize
+	local	0,000000,BufferTabItem__oprec
+	local	1,000000,BufferTabItem__methods
+	local	2,000000,BufferTabItem_setfilename
+	local	3,000000,BufferTabItem_get_label
+	local	4,000000,BufferTabItem_set_label
+	local	5,000000,BufferTabItem_getfilename
+	local	6,000000,BufferTabItem_display_tab
+	local	7,000000,BufferTabItem_initially
+	local	8,000000,gui__TabItem_check_label
+	local	9,000000,gui__TabItem_is_hidden
+	local	10,000000,gui__TabItem_is_unhidden
+	local	11,000000,gui__TabItem_set_one
+	local	12,000000,gui__Component_set_tooltip
+	local	13,000000,gui__Component_get_tooltip
+	local	14,000000,gui__Component_set_pointer
+	local	15,000000,gui__Component_get_pointer
+	local	16,000000,gui__Component_get_x_reference
+	local	17,000000,gui__Component_get_y_reference
+	local	18,000000,gui__Component_get_w_reference
+	local	19,000000,gui__Component_get_h_reference
+	local	20,000000,gui__Component_get_cwin_reference
+	local	21,000000,gui__Component_get_cbwin_reference
+	local	22,000000,gui__Component_get_parent_dialog_reference
+	local	23,000000,gui__Component_fatal
+	local	24,000000,gui__Component_keeps
+	local	25,000000,gui__Component_is_shaded
+	local	26,000000,gui__Component_is_unshaded
+	local	27,000000,gui__Component_do_shading
+	local	28,000000,gui__Component_accepts_focus
+	local	29,000000,gui__Component_unique_start
+	local	30,000000,gui__Component_unique_end
+	local	31,000000,gui__Component_handle_accel
+	local	32,000000,gui__Component_handle_event
+	local	33,000000,gui__Component_do_handle_event
+	local	34,000000,gui__Component_fire_icon_events_on_mouse
+	local	35,000000,gui__Component_toggle_is_shaded
+	local	36,000000,gui__Component_set_auto_refresh
+	local	37,000000,gui__Component_clear_auto_refresh
+	local	38,000000,gui__Component_set_transparent
+	local	39,000000,gui__Component_clear_transparent
+	local	40,000000,gui__Component_set_is_shaded
+	local	41,000000,gui__Component_clear_is_shaded
+	local	42,000000,gui__Component_toggle_draw_border
+	local	43,000000,gui__Component_set_draw_border
+	local	44,000000,gui__Component_clear_draw_border
+	local	45,000000,gui__Component_set_accepts_focus
+	local	46,000000,gui__Component_clear_accepts_focus
+	local	47,000000,gui__Component_display
+	local	48,000000,gui__Component_attrib
+	local	49,000000,gui__Component_set_attribs
+	local	50,000000,gui__Component_set_attribs_list
+	local	51,000000,gui__Component_in_region
+	local	52,000000,gui__Component_got_focus
+	local	53,000000,gui__Component_get_parent_win
+	local	54,000000,gui__Component_get_parent_buffer_win
+	local	55,000000,gui__Component_lost_focus
+	local	56,000000,gui__Component_set_pos
+	local	57,000000,gui__Component_set_size
+	local	58,000000,gui__Component_set_align
+	local	59,000000,gui__Component_set_abs_coords
+	local	60,000000,gui__Component_set_abs_size
+	local	61,000000,gui__Component_set_accel
+	local	62,000000,gui__Component_get_accel
+	local	63,000000,gui__Component_get_parent
+	local	64,000000,gui__Component_set_parent
+	local	65,000000,gui__Component_init
+	local	66,000000,gui__Component_get_parent_dialog
+	local	67,000000,gui__Component_set_parent_dialog
+	local	68,000000,gui__Component_firstly
+	local	69,000000,gui__Component_finally
+	local	70,000000,gui__Component_parse_pos
+	local	71,000000,gui__Component_resize
+	local	72,000000,gui__Component_compute_absolutes
+	local	73,000000,gui__Component_generate_components
+	local	74,000000,gui__Component_find_focus
+	local	75,000000,gui__Component_find_accel
+	local	76,000000,gui__Component_invalidate
+	local	77,000000,gui__Component_all_components_valid
+	local	78,000000,gui__Component_validate
+	local	79,000000,gui__Component_child_validated
+	local	80,000000,gui__Component_add
+	local	81,000000,gui__Component_remove
+	local	82,000000,gui__Component_is_dialog_open
+	local	83,000000,gui__Component_get_children
+	local	84,000000,gui__Component_create_event_and_fire
+	local	85,000000,gui__Component_set_ticker
+	local	86,000000,gui__Component_stop_ticker
+	local	87,000000,gui__Component_retime_ticker
+	local	88,000000,gui__Component_is_ticking
+	local	89,000000,gui__Component_tick
+	local	90,000000,gui__Component_invoke_can_drag
+	local	91,000000,gui__Component_invoke_drag_event
+	local	92,000000,gui__Component_invoke_can_drop
+	local	93,000000,gui__Component_invoke_end_drag
+	local	94,000000,gui__Component_invoke_drag_reset
+	local	95,000000,gui__Component_can_drag
+	local	96,000000,gui__Component_drag_event
+	local	97,000000,gui__Component_can_drop
+	local	98,000000,gui__Component_end_drag
+	local	99,000000,gui__Component_drag_reset
+	local	100,000000,gui__Component_set_allow_drag
+	local	101,000000,gui__Component_clear_allow_drag
+	local	102,000000,gui__Component_set_allow_drop
+	local	103,000000,gui__Component_clear_allow_drop
+	local	104,000000,gui__Component_is_attrib
+	local	105,000000,lang__Object_clone
+	local	106,000000,lang__Object_to_string
+	local	107,000000,lang__Object_equals
+	local	108,000000,lang__Object_hash_code
+	local	109,000000,lang__Object_get_class_name
+	local	110,000000,lang__Object_get_id
+	local	111,000000,lang__Object_get_class
+	local	112,000000,lang__Object_is_instance
+	local	113,000000,util__SetFields_test_flag
+	local	114,000000,util__SetFields_as_attrib
+	local	115,000000,util__SetFields_int_val
+	local	116,000000,util__SetFields_int_vals
+	local	117,000000,util__SetFields_numeric_val
+	local	118,000000,util__SetFields_numeric_vals
+	local	119,000000,util__SetFields_cset_val
+	local	120,000000,util__SetFields_string_val
+	local	121,000000,util__SetFields_string_vals
+	local	122,000000,util__SetFields_set_fields
+	local	123,000000,util__SetFields_field_error
+	local	124,000000,util__Connectable_genlisteners
+	local	125,000000,util__Connectable_fire
+	local	126,000000,util__Connectable_connect
+	local	127,000000,util__Connectable_disconnect_fromlist
+	local	128,000000,util__Connectable_disconnect_all
+	local	129,000000,util__Connectable_disconnect
+	declend
+	line	26
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	var	17
+	var	18
+	var	19
+	var	20
+	var	21
+	var	22
+	var	23
+	var	24
+	var	25
+	var	26
+	var	27
+	var	28
+	var	29
+	var	30
+	var	31
+	var	32
+	var	33
+	var	34
+	var	35
+	var	36
+	var	37
+	var	38
+	var	39
+	var	40
+	var	41
+	var	42
+	var	43
+	var	44
+	var	45
+	var	46
+	var	47
+	var	48
+	var	49
+	var	50
+	var	51
+	var	52
+	var	53
+	var	54
+	var	55
+	var	56
+	var	57
+	var	58
+	var	59
+	var	60
+	var	61
+	var	62
+	var	63
+	var	64
+	var	65
+	var	66
+	var	67
+	var	68
+	var	69
+	var	70
+	var	71
+	var	72
+	var	73
+	var	74
+	var	75
+	var	76
+	var	77
+	var	78
+	var	79
+	var	80
+	var	81
+	var	82
+	var	83
+	var	84
+	var	85
+	var	86
+	var	87
+	var	88
+	var	89
+	var	90
+	var	91
+	var	92
+	var	93
+	var	94
+	var	95
+	var	96
+	var	97
+	var	98
+	var	99
+	var	100
+	var	101
+	var	102
+	var	103
+	var	104
+	var	105
+	var	106
+	var	107
+	var	108
+	var	109
+	var	110
+	var	111
+	var	112
+	var	113
+	var	114
+	var	115
+	var	116
+	var	117
+	var	118
+	var	119
+	var	120
+	var	121
+	var	122
+	var	123
+	var	124
+	var	125
+	var	126
+	var	127
+	var	128
+	var	129
+	line	27
+	colm	57
+	synt	any
+	invoke	128
+	line	27
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc BevelRoundedRectangle
+	local	0,001000,win
+	local	1,001000,x
+	local	2,001000,y
+	local	3,001000,w
+	local	4,001000,h
+	local	5,001000,bw
+	local	6,000020,b
+	local	7,000020,upper
+	local	8,000020,lower
+	local	9,000020,xx
+	local	10,000020,yy
+	local	11,000020,r
+	local	12,000020,a
+	local	13,000020,cx
+	local	14,000020,cy
+	local	15,000020,cw
+	local	16,000020,cr
+	local	17,000020,oldfg1
+	local	18,000020,oldfg2
+	local	19,000040,type
+	local	20,000000,proc
+	local	21,000000,FillRectangle
+	local	22,000000,FillCircle
+	local	23,000000,BevelRectangle
+	local	24,000000,runerr
+	local	25,000000,bev_lookup
+	local	26,000000,WAttrib
+	local	27,000000,Fg
+	local	28,000000,DrawLine
+	local	29,000000,DrawCircle
+	con	0,010000,4,164,171,160,145
+	con	1,002000,1,0
+	con	2,002000,1,2
+	con	3,002000,1,1
+	con	4,010000,6,167,151,156,144,157,167
+	con	5,002000,3,140
+	con	6,010000,2,144,170
+	con	7,010000,2,144,171
+	con	8,010000,5,167,151,144,164,150
+	con	9,010000,6,150,145,151,147,150,164
+	con	10,004000,.5
+	con	11,010000,5,167,150,151,164,145
+	con	12,010000,9,144,141,162,153,040,147,162,145,171
+	declend
+	filen	buffertabitem.icn
+	line	108
+	colm	12
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	19
+	var	20
+	str	0
+	int	1
+	line	112
+	colm	24
+	synt	any
+	invoke	2
+	line	112
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	line	114
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	5
+	int	1
+	line	114
+	colm	10
+	synt	any
+	numge
+	unmark
+	mark	L5
+	var	21
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	line	115
+	colm	20
+	synt	any
+	invoke	5
+	unmark
+lab L5
+	mark	L6
+	var	22
+	var	0
+	var	1
+	pnull
+	var	2
+	pnull
+	var	4
+	int	2
+	line	116
+	colm	31
+	synt	any
+	div
+	line	116
+	colm	27
+	synt	any
+	plus
+	pnull
+	pnull
+	var	4
+	int	2
+	line	116
+	colm	37
+	synt	any
+	div
+	int	3
+	line	116
+	colm	40
+	synt	any
+	minus
+	line	116
+	colm	17
+	synt	any
+	invoke	4
+	unmark
+lab L6
+	var	22
+	var	0
+	pnull
+	var	1
+	var	3
+	line	117
+	colm	24
+	synt	any
+	plus
+	pnull
+	var	2
+	pnull
+	var	4
+	int	2
+	line	117
+	colm	35
+	synt	any
+	div
+	line	117
+	colm	31
+	synt	any
+	plus
+	pnull
+	pnull
+	var	4
+	int	2
+	line	117
+	colm	41
+	synt	any
+	div
+	int	3
+	line	117
+	colm	44
+	synt	any
+	minus
+	line	117
+	colm	17
+	synt	any
+	invoke	4
+	line	114
+	colm	4
+	synt	endif
+	unmark
+lab L4
+	mark	L7
+	line	120
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	19
+	var	0
+	line	120
+	colm	11
+	synt	any
+	invoke	1
+	str	4
+	line	120
+	colm	17
+	synt	any
+	lexne
+	unmark
+	mark	L8
+	var	23
+	mark	L9
+	pnull
+	line	121
+	colm	31
+	synt	any
+	keywd	window
+	line	121
+	colm	30
+	synt	any
+	nonnull
+	line	121
+	colm	39
+	synt	any
+	esusp
+	goto	L10
+lab L9
+	var	24
+	int	5
+	line	121
+	colm	47
+	synt	any
+	invoke	1
+lab L10
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	line	121
+	colm	28
+	synt	any
+	invoke	6
+	line	121
+	colm	7
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	line	120
+	colm	4
+	synt	endif
+	unmark
+lab L7
+	mark	L11
+	pnull
+	var	6
+	var	25
+	var	0
+	line	122
+	colm	19
+	synt	any
+	invoke	1
+	line	122
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	1
+	line	124
+	colm	4
+	synt	any
+	null
+	pnull
+	var	26
+	var	0
+	str	6
+	line	124
+	colm	18
+	synt	any
+	invoke	2
+	line	124
+	colm	10
+	synt	any
+	neg
+	line	124
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	2
+	line	125
+	colm	4
+	synt	any
+	null
+	pnull
+	var	26
+	var	0
+	str	7
+	line	125
+	colm	18
+	synt	any
+	invoke	2
+	line	125
+	colm	10
+	synt	any
+	neg
+	line	125
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	3
+	line	126
+	colm	4
+	synt	any
+	null
+	pnull
+	var	26
+	var	0
+	str	8
+	line	126
+	colm	17
+	synt	any
+	invoke	2
+	pnull
+	var	1
+	var	26
+	var	0
+	str	6
+	line	126
+	colm	46
+	synt	any
+	invoke	2
+	line	126
+	colm	37
+	synt	any
+	plus
+	line	126
+	colm	32
+	synt	any
+	minus
+	line	126
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	pnull
+	var	4
+	line	127
+	colm	4
+	synt	any
+	null
+	pnull
+	var	26
+	var	0
+	str	9
+	line	127
+	colm	17
+	synt	any
+	invoke	2
+	pnull
+	var	2
+	var	26
+	var	0
+	str	7
+	line	127
+	colm	47
+	synt	any
+	invoke	2
+	line	127
+	colm	38
+	synt	any
+	plus
+	line	127
+	colm	33
+	synt	any
+	minus
+	line	127
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	line	129
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	3
+	int	1
+	line	129
+	colm	9
+	synt	any
+	numlt
+	unmark
+	pnull
+	var	1
+	dup
+	pnull
+	var	3
+	pnull
+	var	3
+	line	130
+	colm	19
+	synt	any
+	neg
+	line	130
+	colm	16
+	synt	any
+	asgn
+	line	130
+	colm	9
+	synt	any
+	minus
+	asgn
+	line	129
+	colm	4
+	synt	endif
+	unmark
+lab L16
+	mark	L17
+	line	131
+	colm	4
+	synt	if
+	mark0
+	pnull
+	var	4
+	int	1
+	line	131
+	colm	9
+	synt	any
+	numlt
+	unmark
+	pnull
+	var	2
+	dup
+	pnull
+	var	4
+	pnull
+	var	4
+	line	132
+	colm	19
+	synt	any
+	neg
+	line	132
+	colm	16
+	synt	any
+	asgn
+	line	132
+	colm	9
+	synt	any
+	minus
+	asgn
+	line	131
+	colm	4
+	synt	endif
+	unmark
+lab L17
+	mark	L18
+	pnull
+	var	17
+	var	27
+	pnull
+	var	6
+	line	134
+	colm	17
+	synt	any
+	field	hilite
+	line	134
+	colm	15
+	synt	any
+	invoke	1
+	line	134
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	18
+	var	27
+	pnull
+	var	6
+	line	135
+	colm	17
+	synt	any
+	field	shadow
+	line	135
+	colm	15
+	synt	any
+	invoke	1
+	line	135
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	11
+	pnull
+	pnull
+	var	4
+	int	2
+	line	137
+	colm	11
+	synt	any
+	div
+	real	10
+	line	137
+	colm	15
+	synt	any
+	minus
+	line	137
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	var	5
+	line	139
+	colm	4
+	synt	any
+	null
+	int	2
+	line	139
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	line	140
+	colm	4
+	synt	ifelse
+	mark	L23
+	pnull
+	var	5
+	int	1
+	line	140
+	colm	10
+	synt	any
+	numge
+	unmark
+	mark	L25
+	pnull
+	var	7
+	pnull
+	var	6
+	line	141
+	colm	17
+	synt	any
+	field	hilite
+	line	141
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	var	8
+	pnull
+	var	6
+	line	142
+	colm	17
+	synt	any
+	field	shadow
+	line	142
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	var	27
+	pnull
+	var	6
+	line	143
+	colm	11
+	synt	any
+	field	hilite
+	str	11
+	line	143
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L27
+	var	27
+	pnull
+	var	6
+	line	144
+	colm	11
+	synt	any
+	field	shadow
+	str	12
+	line	144
+	colm	9
+	synt	any
+	invoke	2
+	goto	L24
+lab L23
+	mark	L28
+	pnull
+	var	7
+	pnull
+	var	6
+	line	147
+	colm	17
+	synt	any
+	field	shadow
+	line	147
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	pnull
+	var	8
+	pnull
+	var	6
+	line	148
+	colm	17
+	synt	any
+	field	hilite
+	line	148
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L29
+	mark	L30
+	pnull
+	var	5
+	pnull
+	var	5
+	line	149
+	colm	13
+	synt	any
+	neg
+	line	149
+	colm	10
+	synt	any
+	asgn
+	unmark
+lab L30
+	mark	L31
+	var	27
+	pnull
+	var	6
+	line	150
+	colm	11
+	synt	any
+	field	hilite
+	str	11
+	line	150
+	colm	9
+	synt	any
+	invoke	2
+	unmark
+lab L31
+	var	27
+	pnull
+	var	6
+	line	151
+	colm	11
+	synt	any
+	field	shadow
+	str	12
+	line	151
+	colm	9
+	synt	any
+	invoke	2
+lab L24
+	line	140
+	colm	4
+	synt	endifelse
+	unmark
+lab L22
+	mark	L32
+	pnull
+	var	9
+	pnull
+	var	1
+	var	3
+	line	154
+	colm	12
+	synt	any
+	plus
+	line	154
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L32
+	mark	L33
+	pnull
+	var	10
+	pnull
+	var	2
+	var	4
+	line	155
+	colm	12
+	synt	any
+	plus
+	line	155
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L33
+	mark	L34
+	pnull
+	var	12
+	pnull
+	pnull
+	line	156
+	colm	10
+	synt	any
+	keywd	pi
+	line	156
+	colm	9
+	synt	any
+	neg
+	int	2
+	line	156
+	colm	14
+	synt	any
+	div
+	line	156
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L34
+	mark	L35
+	pnull
+	var	13
+	var	1
+	line	158
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	var	14
+	var	2
+	line	159
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	pnull
+	var	15
+	var	3
+	line	160
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L37
+	mark	L38
+	pnull
+	var	16
+	var	11
+	line	161
+	colm	7
+	synt	any
+	asgn
+	unmark
+lab L38
+	mark	L39
+	var	21
+	var	8
+	var	1
+	var	10
+	var	3
+	pnull
+	var	5
+	line	163
+	colm	35
+	synt	any
+	neg
+	line	163
+	colm	17
+	synt	any
+	invoke	5
+	unmark
+lab L39
+	mark	L40
+lab L41
+	line	165
+	colm	4
+	synt	while
+	mark0
+	pnull
+	pnull
+	var	5
+	dup
+	int	3
+	line	165
+	colm	14
+	synt	any
+	minus
+	asgn
+	int	1
+	line	165
+	colm	21
+	synt	any
+	numge
+	unmark
+	mark	L41
+	mark	L44
+	var	28
+	var	7
+	var	1
+	var	2
+	pnull
+	var	9
+	dup
+	int	3
+	line	166
+	colm	32
+	synt	any
+	minus
+	asgn
+	var	2
+	line	166
+	colm	15
+	synt	any
+	invoke	5
+	unmark
+lab L44
+	mark	L45
+	var	29
+	var	7
+	pnull
+	var	13
+	int	3
+	line	167
+	colm	27
+	synt	any
+	plus
+	pnull
+	var	14
+	var	16
+	line	167
+	colm	33
+	synt	any
+	plus
+	var	11
+	pnull
+	var	12
+	line	167
+	colm	45
+	synt	any
+	keywd	pi
+	line	167
+	colm	43
+	synt	any
+	plus
+	line	167
+	colm	50
+	synt	any
+	keywd	pi
+	line	167
+	colm	17
+	synt	any
+	invoke	6
+	unmark
+lab L45
+	mark	L46
+	var	29
+	var	8
+	pnull
+	pnull
+	var	13
+	var	15
+	line	168
+	colm	27
+	synt	any
+	plus
+	int	3
+	line	168
+	colm	30
+	synt	any
+	minus
+	pnull
+	var	14
+	var	16
+	line	168
+	colm	36
+	synt	any
+	plus
+	var	11
+	var	12
+	line	168
+	colm	47
+	synt	any
+	keywd	pi
+	line	168
+	colm	17
+	synt	any
+	invoke	6
+	unmark
+lab L46
+	mark	L47
+	pnull
+	var	11
+	dup
+	int	3
+	line	170
+	colm	9
+	synt	any
+	minus
+	asgn
+	unmark
+lab L47
+	mark	L48
+	pnull
+	var	1
+	dup
+	int	3
+	line	171
+	colm	9
+	synt	any
+	plus
+	asgn
+	unmark
+lab L48
+	pnull
+	var	2
+	dup
+	int	3
+	line	172
+	colm	9
+	synt	any
+	plus
+	asgn
+lab L42
+	unmark
+	goto	L41
+lab L43
+	line	165
+	colm	4
+	synt	endwhile
+	unmark
+lab L40
+	mark	L49
+	var	27
+	pnull
+	var	6
+	line	175
+	colm	8
+	synt	any
+	field	hilite
+	var	17
+	line	175
+	colm	6
+	synt	any
+	invoke	2
+	unmark
+lab L49
+	mark	L50
+	var	27
+	pnull
+	var	6
+	line	176
+	colm	8
+	synt	any
+	field	shadow
+	var	18
+	line	176
+	colm	6
+	synt	any
+	invoke	2
+	unmark
+lab L50
+	mark	L51
+	mark	L52
+	var	0
+	line	177
+	colm	4
+	synt	any
+	pret
+lab L52
+	synt	any
+	pfail
+	unmark
+lab L51
+	pnull
+	line	178
+	colm	2
+	synt	any
+	pfail
+	end

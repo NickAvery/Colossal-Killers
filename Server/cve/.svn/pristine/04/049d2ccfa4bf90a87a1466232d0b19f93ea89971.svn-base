@@ -1,0 +1,835 @@
+import gui
+$include "guih.icn"
+
+class QuestDialog : Dialog(quest, user_choice, border_1, cancelbtn, titlelbl,
+   answeretl, nextbtn, previousbtn, questionlbl, questiontl, confirmanswerbtn, 
+   label_9, okbtn, resultlbl, border_2, submitbtn, label_11, progresslbl,
+   progress_step, border_3, border_end_screen, border_option_list, visible_set,
+   chk1, chk_list, chk2, chk3, chk4,chktmp, check_box_group_1 ,  answerlbl, rate_lbl,
+   difficult_lbl, fun_lbl, learn_lbl,
+   difficult_list, fun_list, learn_list,
+   difficult_group, fun_group, learn_group)
+
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog()
+      local q , qn, d
+      if /quest then {
+         write("Error: No Quest to Show!")
+         dispose()
+         }
+      
+      titlelbl.set_label(\(quest.title) || " Quest"  | "Quest Screen")
+      
+      if quest.which_type=="short answer" then{
+         if quest.set_quest_source("quiz") then
+	    init_short_answer_quest()
+	 else{
+	     quest.consider_it_completed()
+	     self.remove(border_1)
+	     init_end_screen()
+	     }
+         }
+      else if quest.which_type==("java"|"session") then
+         init_submit_quest()
+      
+      user_choice := "cancel"
+
+      self.init()
+      self.resize()
+   end
+   
+   method init_MC(ans)
+      local L, i, ch
+      static old_ans
+      L := quest.get_current_question_answer_list()
+      if /L then fail 
+      
+      every i:=1 to *L do{
+	 chk_list[i].set_label(L[i])
+	 visible_set_add( chk_list[i],border_option_list)
+	 }
+
+      if *L < 4  then
+	 every i:=*L+1 to 4 do
+	    visible_set_remove( chk_list[i],border_option_list)
+
+
+      if /ans then
+	 check_box_group_1.set_which_one(chktmp)
+      else if  0 < ans <= *L then
+	 check_box_group_1.set_which_one(chk_list[ans])
+      else
+	 check_box_group_1.set_which_one(chktmp)
+
+   end
+   
+   method visible_set_add(obj, from)
+      if member(visible_set, obj) then return
+      /from := border_1
+       from.add(obj)
+       insert(visible_set, obj)
+   end
+   
+   method visible_set_remove(obj, from)
+      if not(member(visible_set, obj)) then return
+      /from := border_1
+       from.remove(obj)
+       delete(visible_set, obj)
+   end
+   
+   method init_short_answer_quest()
+   local q, qn, d
+      q := quest.get_current_question() | quest.get_next_question()
+      if /q then{
+         questiontl.set_contents(["This quest is not available currently"])
+         fail
+         }
+      questiontl.set_contents([q])
+      
+      q := quest.get_user_answer()
+      
+      visible_set := set( answeretl,border_option_list, chk1, chk2, chk3, chk4)
+      
+      chktmp := CheckBox()
+      chktmp.set_pos("1000", "1000")
+      chktmp.set_size(2, 2)
+      chktmp.set_toggles()
+      
+      check_box_group_1.add(chktmp)
+      
+      chk_list := []
+      put(chk_list, chk1)
+      put(chk_list, chk2)
+      put(chk_list, chk3)
+      put(chk_list, chk4)      
+      
+      if quest.is_current_question_MC() then{
+	 visible_set_remove(answeretl)
+	 visible_set_add(border_option_list)
+	 init_MC(q)
+      }
+      else{
+	 visible_set_remove(border_option_list)
+	 visible_set_add(answeretl)
+	 if \q then
+	    answeretl.set_contents([q])
+      }
+            
+      qn := quest.question_count()
+      if qn>0 then
+         progress_step := (border_2.w-4) / qn
+      
+      if (d:=quest.get_current_question_index())>0 then
+         progresslbl.set_size(string(integer(d*progress_step)), "100%-4")
+      else
+         progresslbl.set_size("2", "100%-4")
+      
+      label_11.set_label("Quest Progress("|| 
+			string(d) || "/" || string(qn) ||")")
+      
+      self.init()
+      self.resize()
+
+   end
+   
+   method on_submitbtn(ev)
+   
+      if view.editor_tab()==="no" then fail
+      
+      if quest.which_type=="java" then{ 
+	 if find(".",ide.CurrentTabItem().label) then 
+	    ide.save_file(ide.CurrentTabItem().label)
+	 else 
+	    ide.saveas()
+	 
+	 ide.on_makeexe_btn()
+	 }
+
+      
+      
+      self.remove(border_3)
+      init_end_screen()
+   
+   end
+   
+   method init_submit_quest()
+      border_3 := Border()
+      border_3.set_pos(0, 1)
+      border_3.set_size("100%+2", "100%+2")
+      border_3.set_attribs("bg=pale blue")
+      border_3.set_internal_alignment("l")
+      
+      submitbtn := TextButton()
+      submitbtn.set_pos("50%-68", "50%+150")
+      submitbtn.set_size("135", 31)
+      submitbtn.set_attribs("font=serif,bold,18")
+
+      submitbtn.connect(self, "on_submitbtn", ACTION_EVENT)
+      submitbtn.clear_toggles()
+      submitbtn.set_label("Submit")
+      submitbtn.set_internal_alignment("c")
+      
+      resultlbl := Label()
+      resultlbl.set_pos("50%", "50%")
+      resultlbl.set_size("100%-12", "200")
+      resultlbl.set_align("c", "c")
+      resultlbl.set_internal_alignment("c")
+      resultlbl.set_attribs("bg=whitish yellow", "font=serif,bold,14")
+
+      if view.editor_tab()==="no" then{ 
+         resultlbl.set_label("You should have an active "||
+	    (if quest.which_type=="java" then "file" else "session") || 
+	       " in the ide to run this quest")
+	 }
+      else{
+         resultlbl.set_label(" The current "||
+	    (if quest.which_type=="java" then "file" else "session") || 
+	       " in the ide will be submitted for this quest")
+         border_3.add(submitbtn)
+       }
+
+      border_3.add(resultlbl)
+      border_3.add(cancelbtn)
+      border_3.add(titlelbl)
+      
+      
+      self.remove(border_1)
+      self.add(border_3)
+      
+      self.init()
+      self.resize()
+
+
+      
+   end
+   
+   method init_rating()
+      local i, chk, basex, basey
+      basey := 150
+      
+      rate_lbl := Label()
+      rate_lbl.set_pos(30, basey+100)
+      rate_lbl.set_size(430, 50)
+      #rate_lbl.set_draw_border()
+      rate_lbl.set_attribs("font=serif, 18")
+      rate_lbl.set_internal_alignment("l")
+      rate_lbl.set_label("What do you think about this quest? (1:Low, 5:High)")
+      border_end_screen.add(rate_lbl)
+      
+      fun_lbl := Label()
+      fun_lbl.set_pos(30, basey+150)
+      fun_lbl.set_size(100, 30)
+      #fun_lbl.set_draw_border()
+      fun_lbl.set_attribs("font=serif, 16")
+      fun_lbl.set_internal_alignment("l")
+      fun_lbl.set_label("Funosity")
+      border_end_screen.add(fun_lbl)
+      
+      learn_lbl := Label()
+      learn_lbl.set_pos(30, basey+190)
+      learn_lbl.set_size(100, 30)
+      #learn_lbl.set_draw_border()
+      learn_lbl.set_attribs("font=serif, 16")
+      learn_lbl.set_internal_alignment("l")
+      learn_lbl.set_label("Learnosity")
+      border_end_screen.add(learn_lbl)
+      
+      difficult_lbl := Label()
+      difficult_lbl.set_pos(30, basey+240)
+      difficult_lbl.set_size(100, 30)
+      #difficult_lbl.set_draw_border()
+      difficult_lbl.set_attribs("font=serif, 16")
+      difficult_lbl.set_internal_alignment("l")
+      difficult_lbl.set_label("Difficulty")
+      border_end_screen.add(difficult_lbl)
+      
+      difficult_list := []
+      learn_list := []
+      fun_list := []
+      
+      difficult_group := CheckBoxGroup()
+      learn_group := CheckBoxGroup()
+      fun_group := CheckBoxGroup()
+      
+      basex := 120
+      basey+:=10
+      
+      every i:=1 to 5 do{
+	 chk := CheckBox()
+	 chk.set_pos(basex+i*50, basey+150)
+	 chk.set_toggles()
+	 chk.set_label(string(i))
+	 border_end_screen.add(chk)
+	 fun_group.add(chk)
+	 put(fun_list, chk)
+	 
+	 chk := CheckBox()
+	 chk.set_pos(basex+i*50, basey+190)
+	 chk.set_toggles()
+	 chk.set_label(string(i))
+	 border_end_screen.add(chk)
+	 learn_group.add(chk)
+	 put(learn_list, chk)
+	 
+	 chk := CheckBox()
+	 chk.set_pos(basex +i*50, basey+240)
+	 chk.set_toggles()
+	 chk.set_label(string(i))
+	 border_end_screen.add(chk)
+	 difficult_group.add(chk)
+	 put(difficult_list, chk)
+	 }
+   
+   end
+   
+   method init_end_screen()
+      local L, no_error
+
+      border_end_screen := Border()
+      border_end_screen.set_pos(0, 1)
+      border_end_screen.set_size("100%+2", "100%+2")
+      border_end_screen.set_attribs("bg=pale blue")
+      border_end_screen.set_internal_alignment("l")
+
+      
+      okbtn := TextButton()
+      okbtn.set_pos(240, 450)
+      okbtn.set_size("135", 31)
+      okbtn.connect(self, "on_okbtn", ACTION_EVENT)
+      okbtn.clear_toggles()
+      okbtn.set_label("OK")
+      okbtn.set_internal_alignment("c")
+
+      resultlbl := Label()
+      resultlbl.set_pos("50%", 150)
+      resultlbl.set_size("100%-12", "100")
+      resultlbl.set_align("c", "c")
+      resultlbl.set_attribs("bg=whitish yellow", "font=serif,bold,18")
+      resultlbl.set_internal_alignment("c")
+      resultlbl.set_label("")
+
+      if quest.which_type=="java" then{
+         if \(ide.last_compile_has_errors) then{
+	    no_error := 1
+            resultlbl.set_label(" Error at line: "|| 
+			      string(ide.last_compile_has_errors)||
+			      "  The quest is not completed!")
+	    }
+         else{
+            ide.run("no console")
+            if \(L := \ide.CurrentMsgBox().get_contents()) then
+                 quest.check_program_output(L[2:0])
+	    }
+         }
+	 else if quest.which_type=="session" then{
+	    if \(L := \ide.CurrentMsgBox().get_contents()) then
+	       quest.check_program_output(L[2:0])
+	 }
+	 
+      if /no_error then{
+      if quest.is_completed() then{
+	 resultlbl.set_label("Congratulations! You have completed this quest")
+	 init_rating()
+      }
+      else
+	 if quest.which_type=="short answer" then
+	    resultlbl.set_label(
+	    "The quest is not completed! you can try it again ")
+	 else
+	    resultlbl.set_label(
+	       " incorrect output! The quest is not completed!")
+      }
+	    
+      border_end_screen.add(okbtn )
+      border_end_screen.add(resultlbl)
+      border_end_screen.add(titlelbl)
+      
+
+      
+      self.add(border_end_screen)
+
+      self.init()
+      self.resize()
+
+   end
+
+   method on_cancelbtn(ev)
+      user_choice := "cancel"
+      dispose()
+   end
+
+   method new_question(q)
+      local d
+      static qn
+      initial qn := string(quest.question_count())
+          
+      #if /q then fail
+      questiontl.set_contents([q])
+      
+      q := quest.get_user_answer()
+      
+      if quest.is_current_question_MC() then{
+	 visible_set_remove(answeretl)
+	 visible_set_add(border_option_list)
+	 init_MC(q)
+         }
+      else{
+	 visible_set_remove(border_option_list)
+	 visible_set_add(answeretl)
+	 /q:=""
+	 answeretl.set_contents([q])
+         }
+	 
+      if (d:=quest.get_current_question_index())>0 then{
+	 progresslbl.set_size(string(integer(d*progress_step)), "100%-4")
+         }
+	 
+      label_11.set_label("Quest Progress("|| string(d) || "/" || qn ||")")
+      self.init()
+      self.resize()
+      #border_1.display()
+
+   end
+   
+   method check_answer()
+      local q, L, ans, s, d, i
+      
+      q := quest.get_answer()
+      if /q then fail
+      
+      if quest.is_current_question_MC() then{
+	 ans := 0
+	 every i:=1 to *chk_list do
+	    if chk_list[i].is_checked() then{
+	       ans := i
+	       break;
+	       }
+         }
+      else{
+	 L := answeretl.get_contents()
+	 ans := ""
+	 every s:=!L  do
+         ans ||:= s || " "
+	 ans := trim(ans, " ", 0)
+        }
+      
+      quest.check_answer(ans)
+   end
+
+   method on_nextbtn(ev)
+      local q
+      check_answer()
+      q := quest.get_next_question()
+      if /q  then
+	 if nextbtn.is_unshaded() then nextbtn.set_is_shaded()
+	    
+      if previousbtn.is_shaded() then
+	 previousbtn.clear_is_shaded()
+	 
+      if /q then fail 
+	 
+      new_question(q)
+   end
+
+   method on_previousbtn(ev)
+      local q
+      check_answer()
+      q := quest.get_previous_question()
+      if /q  then{
+	 if previousbtn.is_unshaded() then previousbtn.set_is_shaded()
+	 fail
+      }
+      
+      if nextbtn.is_shaded() then
+	 nextbtn.clear_is_shaded()	 
+	 
+      if /q then fail   
+	 
+      new_question(q)
+   end
+   
+   method on_okbtn(ev)
+      user_choice := "ok"
+      dispose()
+   end
+
+   method on_confirmanswerbtn(ev)
+      check_answer()
+      self.remove(border_1)
+      init_end_screen()
+   end
+
+   method setup()
+      self.set_attribs("size=640,583", "label=Quest Screen")
+      border_1 := Border()
+      border_1.set_pos("-1", "-1")
+      border_1.set_size("100%+2", "100%+2")
+      border_1.set_attribs("bg=pale blue")
+      border_1.set_internal_alignment("l")
+      border_option_list := Border()
+      border_option_list.set_pos("50%", "264")
+      border_option_list.set_size("100%-10", "172")
+      border_option_list.set_align("c", "t")
+      border_option_list.set_internal_alignment("l")
+      check_box_group_1 := CheckBoxGroup()
+      chk1 := CheckBox()
+      chk1.set_pos("16", 10)
+      chk1.set_size(556, 37)
+      chk1.set_toggles()
+      check_box_group_1.add(chk1)
+      chk1.set_label("CheckBox")
+      border_option_list.add(chk1)
+      chk2 := CheckBox()
+      chk2.set_pos("17", "53")
+      chk2.set_size(556, 38)
+      chk2.set_toggles()
+      check_box_group_1.add(chk2)
+      chk2.set_label("CheckBox")
+      border_option_list.add(chk2)
+      chk3 := CheckBox()
+      chk3.set_pos("16", "90")
+      chk3.set_size(556, 38)
+      chk3.set_toggles()
+      check_box_group_1.add(chk3)
+      chk3.set_label("CheckBox")
+      border_option_list.add(chk3)
+      chk4 := CheckBox()
+      chk4.set_pos("16", "126")
+      chk4.set_size(556, 38)
+      chk4.set_toggles()
+      check_box_group_1.add(chk4)
+      chk4.set_label("CheckBox")
+      border_option_list.add(chk4)
+      border_1.add(border_option_list)
+       answerlbl := Label()
+       answerlbl.set_pos(6, 229)
+       answerlbl.set_size("83", "25")
+       answerlbl.set_attribs("bg=whitish blue")
+       answerlbl.set_internal_alignment("l")
+       answerlbl.set_label(" Your Answer ")
+      border_1.add( answerlbl)
+      previousbtn := TextButton()
+      previousbtn.set_pos("42", "442")
+      previousbtn.set_size(184, 39)
+      previousbtn.set_attribs("font=serif,bold,20")
+      previousbtn.connect(self, "on_previousbtn", ACTION_EVENT)
+      previousbtn.clear_toggles()
+      previousbtn.set_label("Previous Question")
+      previousbtn.set_internal_alignment("c")
+      border_1.add(previousbtn)
+      cancelbtn := TextButton()
+      cancelbtn.set_pos("50%", "524")
+      cancelbtn.set_size("154", "39")
+      cancelbtn.set_align("c", "t")
+      cancelbtn.set_attribs("font=serif,bold,20")
+      cancelbtn.connect(self, "on_cancelbtn", ACTION_EVENT)
+      cancelbtn.clear_toggles()
+      cancelbtn.set_label("Continue Later")
+      cancelbtn.set_internal_alignment("c")
+      border_1.add(cancelbtn)
+      titlelbl := Label()
+      titlelbl.set_pos("50%", "12")
+      titlelbl.set_size("100%-50", "48")
+      titlelbl.set_align("c", "t")
+      titlelbl.set_draw_border()
+      titlelbl.set_attribs("bg=whitish blue", "font=serif,bold,22")
+      titlelbl.set_internal_alignment("c")
+      titlelbl.set_label("Quest Screen")
+      border_1.add(titlelbl)
+      questiontl := TextList()
+      questiontl.set_pos("50%", "141")
+      questiontl.set_size("100%-10", "83")
+      questiontl.set_align("c", "t")
+      questiontl.set_draw_border()
+      questiontl.set_attribs("bg=light yellow", "font=serif,16")
+      questiontl.set_contents(["Question"])
+      border_1.add(questiontl)
+      questionlbl := Label()
+      questionlbl.set_pos(6, 115)
+      questionlbl.set_size("60", "24")
+      questionlbl.set_attribs("bg=whitish blue")
+      questionlbl.set_internal_alignment("l")
+      questionlbl.set_label(" Question")
+      border_1.add(questionlbl)
+      nextbtn := TextButton()
+      nextbtn.set_pos(412, 443)
+      nextbtn.set_size(184, 39)
+      nextbtn.set_attribs("font=serif,bold,20")
+      nextbtn.connect(self, "on_nextbtn", ACTION_EVENT)
+      nextbtn.clear_toggles()
+      nextbtn.set_label("Next Question")
+      nextbtn.set_internal_alignment("c")
+      border_1.add(nextbtn)
+      confirmanswerbtn := TextButton()
+      confirmanswerbtn.set_pos("50%", "479")
+      confirmanswerbtn.set_size("135", "39")
+      confirmanswerbtn.set_align("c", "t")
+      confirmanswerbtn.set_attribs("font=serif,bold,20")
+      confirmanswerbtn.connect(self, "on_confirmanswerbtn", ACTION_EVENT)
+      confirmanswerbtn.clear_toggles()
+      confirmanswerbtn.set_label("Finish Now")
+      confirmanswerbtn.set_internal_alignment("c")
+      border_1.add(confirmanswerbtn)
+      label_9 := Label()
+      label_9.set_pos("50%", "462")
+      label_9.set_size("104", "13")
+      label_9.set_align("c", "t")
+      label_9.set_internal_alignment("l")
+      label_9.set_label(" Submit the Quest")
+      border_1.add(label_9)
+      border_2 := Border()
+      border_2.set_pos("50%", 74)
+      border_2.set_size("265", "29")
+      border_2.set_align("c", "t")
+      border_2.set_attribs("bg=white")
+      border_2.set_internal_alignment("l")
+      progresslbl := Label()
+      progresslbl.set_pos("2", "2")
+      progresslbl.set_size("2", "100%-4")
+      progresslbl.set_attribs("bg=dark green")
+      progresslbl.set_internal_alignment("l")
+      progresslbl.set_label("")
+      border_2.add(progresslbl)
+      border_1.add(border_2)
+      label_11 := Label()
+      label_11.set_pos(50, 75)
+      label_11.set_size(126, 30)
+      label_11.set_internal_alignment("l")
+      label_11.set_label("Quest Progress")
+      border_1.add(label_11)
+      answeretl := EditableTextList()
+      answeretl.set_pos("50%", "255")
+      answeretl.set_size("100%-10", "110")
+      answeretl.set_align("c", "t")
+      answeretl.set_draw_border()
+      answeretl.set_attribs("bg=white", "font=serif,16")
+      self.set_focus(answeretl)
+      answeretl.set_contents([""])
+      border_1.add(answeretl)
+      self.add(border_1)
+   end
+
+   initially
+      self.Dialog.initially()
+end
+
+
+
+### Ivib-v2 layout ##
+#class|Canvas|17|Name Table|table|integer|0|21|string|border|integer|3|
+#string|check_box|integer|4|string|check_box_group|integer|2|string|chk
+#|integer|3|string|editable_text_list|integer|2|string|label|integer|11
+#|string|maxprogresslbl|integer|1|string|namecontentslbl|integer|2|stri
+#ng|namelbl|integer|5|string|on_previousbtn|integer|1|string|on_takeque
+#stbtn|integer|1|string|previous|integer|1|string|previousbtn|integer|1
+#|string|questiontl|integer|1|string|scroll_bar|integer|1|string|summar
+#ycontentetl|integer|1|string|summarylbl|integer|1|string|takequestbtn|
+#integer|1|string|text_button|integer|1|string|text_field|integer|1|str
+#ing|text_list|integer|1|SuperClass Name|string|Dialog|Import Name|stri
+#ng|gui|Button Groups|class|ButtonGroupSet|2|Parent Canvas|1|Boxes|list
+#|0|Checkbox Groups|class|CheckBoxGroupSet|2|Parent Canvas|1|Boxes|list
+#|2|class|CanvasCheckBoxGroup|6|Name|string|check_box_group_1|Number|in
+#teger|1|Class Name|string|CheckBoxGroup|Import Name|string|gui|Class V
+#ariable|integer|1|Which One|null|class|CanvasCheckBoxGroup|6|Name|stri
+#ng|check_box_group_2|Number|integer|2|Class Name|string|CheckBoxGroup|
+#Import Name|string|gui|Class Variable|null|Which One|null|Gen Indent|i
+#nteger|3|Gen Main|integer|1|Gen Component Setup|integer|1|Gen Init Dia
+#log|integer|1|Gen Initially|integer|1|Dialog Struct|class|CDialog|4|Mi
+#n Width|null|Min Height|null|Ticker Rate|null|Attribs|list|1|string|la
+#bel=Quest Screen|Name|string|QuestDialog|Width|integer|640|Height|inte
+#ger|583|Items|list|1|class|CanvasBorder|28|Parent Canvas|1|Name|string
+#|border_1|Class Name|string|Border|Import Name|string|gui|X Fix|null|Y
+# Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|s
+#tring|-1|Y Spec|string|-1|W Spec|string|100%+2|H Spec|string|100%+2|X 
+#Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null
+#|Draw Border|null|Attribs|list|1|string|bg=pale blue|Tooltip|null|Acce
+#l|null|Event Handlers|list|0|Class Variable|integer|1|Parent Component
+#|1|Internal Alignment|string|l|Children|list|13|class|CanvasBorder|28|
+#Parent Canvas|1|Name|string|border_option_list|Class Name|string|Borde
+#r|Import Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|null|H Fix|n
+#ull|W Default|null|H Default|null|X Spec|string|50%|Y Spec|string|264|
+#W Spec|string|100%-10|H Spec|string|172|X Align|string|c|Y Align|strin
+#g|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|li
+#st|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|inte
+#ger|1|Parent Component|12|Internal Alignment|string|l|Children|list|4|
+#class|CanvasCheckBox|35|Parent Canvas|1|Name|string|chk1|Class Name|st
+#ring|CheckBox|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|
+#H Fix|null|W Default|null|H Default|null|X Spec|string|16|Y Spec|integ
+#er|10|W Spec|integer|556|H Spec|integer|37|X Align|string|l|Y Align|st
+#ring|t|Is shaded|null|Is Button Subclass|integer|1|Draw Border|null|At
+#tribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class Varia
+#ble|integer|1|Parent Component|16|Label|string|CheckBox|No Keyboard|nu
+#ll|Img Up|string|(0=shadow;1=hilite;~=trans)13,c6,~~~~~~1~~~~~~~~~~~11
+#1~~~~~~~~~11~11~~~~~~~11~~~11~~~~~11~~~~~11~~~11~~~~~~~11~11~~~~~~~~~1
+#1~00~~~~~~~00~~~00~~~~~00~~~~~00~~~00~~~~~~~00~00~~~~~~~~~000~~~~~~~~~
+#~~0~~~~~~|Img Down|string|(b=black;0=shadow;1=hilite;~=trans)13,c6,~~~
+#~~~0~~~~~~~~~~~000~~~~~~~~~00~00~~~~~~~00~b~00~~~~~00~bbb~00~~~00~bbbb
+#b~00~00~bbbbbbb~00~11~bbbbb~11~~~11~bbb~11~~~~~11~b~11~~~~~~~11~11~~~~
+#~~~~~111~~~~~~~~~~~1~~~~~~|Img Width|integer|13|Img Height|integer|13|
+#Is Checked Flag|null|Is Checkbox Flag|integer|1|Parent CheckBoxGroup|7
+#|Parent Button Group|null|class|CanvasCheckBox|35|Parent Canvas|1|Name
+#|string|chk2|Class Name|string|CheckBox|Import Name|string|gui|X Fix|n
+#ull|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X S
+#pec|string|17|Y Spec|string|53|W Spec|integer|556|H Spec|integer|38|X 
+#Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|inte
+#ger|1|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event Ha
+#ndlers|list|0|Class Variable|integer|1|Parent Component|16|Label|strin
+#g|CheckBox|No Keyboard|null|Img Up|string|(0=shadow;1=hilite;~=trans)1
+#3,c6,~~~~~~1~~~~~~~~~~~111~~~~~~~~~11~11~~~~~~~11~~~11~~~~~11~~~~~11~~
+#~11~~~~~~~11~11~~~~~~~~~11~00~~~~~~~00~~~00~~~~~00~~~~~00~~~00~~~~~~~0
+#0~00~~~~~~~~~000~~~~~~~~~~~0~~~~~~|Img Down|string|(b=black;0=shadow;1
+#=hilite;~=trans)13,c6,~~~~~~0~~~~~~~~~~~000~~~~~~~~~00~00~~~~~~~00~b~0
+#0~~~~~00~bbb~00~~~00~bbbbb~00~00~bbbbbbb~00~11~bbbbb~11~~~11~bbb~11~~~
+#~~11~b~11~~~~~~~11~11~~~~~~~~~111~~~~~~~~~~~1~~~~~~|Img Width|integer|
+#13|Img Height|integer|13|Is Checked Flag|null|Is Checkbox Flag|integer
+#|1|Parent CheckBoxGroup|7|Parent Button Group|null|class|CanvasCheckBo
+#x|35|Parent Canvas|1|Name|string|chk3|Class Name|string|CheckBox|Impor
+#t Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Defaul
+#t|null|H Default|null|X Spec|string|16|Y Spec|string|90|W Spec|integer
+#|556|H Spec|integer|38|X Align|string|l|Y Align|string|t|Is shaded|nul
+#l|Is Button Subclass|integer|1|Draw Border|null|Attribs|list|0|Tooltip
+#|null|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Parent
+# Component|16|Label|string|CheckBox|No Keyboard|null|Img Up|string|(0=
+#shadow;1=hilite;~=trans)13,c6,~~~~~~1~~~~~~~~~~~111~~~~~~~~~11~11~~~~~
+#~~11~~~11~~~~~11~~~~~11~~~11~~~~~~~11~11~~~~~~~~~11~00~~~~~~~00~~~00~~
+#~~~00~~~~~00~~~00~~~~~~~00~00~~~~~~~~~000~~~~~~~~~~~0~~~~~~|Img Down|s
+#tring|(b=black;0=shadow;1=hilite;~=trans)13,c6,~~~~~~0~~~~~~~~~~~000~~
+#~~~~~~~00~00~~~~~~~00~b~00~~~~~00~bbb~00~~~00~bbbbb~00~00~bbbbbbb~00~1
+#1~bbbbb~11~~~11~bbb~11~~~~~11~b~11~~~~~~~11~11~~~~~~~~~111~~~~~~~~~~~1
+#~~~~~~|Img Width|integer|13|Img Height|integer|13|Is Checked Flag|null
+#|Is Checkbox Flag|integer|1|Parent CheckBoxGroup|7|Parent Button Group
+#|null|class|CanvasCheckBox|35|Parent Canvas|1|Name|string|chk4|Class N
+#ame|string|CheckBox|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix
+#|null|H Fix|null|W Default|null|H Default|null|X Spec|string|16|Y Spec
+#|string|126|W Spec|integer|556|H Spec|integer|38|X Align|string|l|Y Al
+#ign|string|t|Is shaded|null|Is Button Subclass|integer|1|Draw Border|n
+#ull|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class
+# Variable|integer|1|Parent Component|16|Label|string|CheckBox|No Keybo
+#ard|null|Img Up|string|(0=shadow;1=hilite;~=trans)13,c6,~~~~~~1~~~~~~~
+#~~~~111~~~~~~~~~11~11~~~~~~~11~~~11~~~~~11~~~~~11~~~11~~~~~~~11~11~~~~
+#~~~~~11~00~~~~~~~00~~~00~~~~~00~~~~~00~~~00~~~~~~~00~00~~~~~~~~~000~~~
+#~~~~~~~~0~~~~~~|Img Down|string|(b=black;0=shadow;1=hilite;~=trans)13,
+#c6,~~~~~~0~~~~~~~~~~~000~~~~~~~~~00~00~~~~~~~00~b~00~~~~~00~bbb~00~~~0
+#0~bbbbb~00~00~bbbbbbb~00~11~bbbbb~11~~~11~bbb~11~~~~~11~b~11~~~~~~~11~
+#11~~~~~~~~~111~~~~~~~~~~~1~~~~~~|Img Width|integer|13|Img Height|integ
+#er|13|Is Checked Flag|null|Is Checkbox Flag|integer|1|Parent CheckBoxG
+#roup|7|Parent Button Group|null|Title Obj|null|class|CanvasLabel|27|Pa
+#rent Canvas|1|Name|string| answerlbl|Class Name|string|Label|Import Na
+#me|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|nu
+#ll|H Default|null|X Spec|integer|6|Y Spec|integer|229|W Spec|string|83
+#|H Spec|string|25|X Align|string|l|Y Align|string|t|Is shaded|null|Is 
+#Button Subclass|null|Draw Border|null|Attribs|list|1|string|bg=whitish
+# blue|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|int
+#eger|1|Parent Component|12|Label|string| Your Answer |Internal Align|s
+#tring|l|class|CanvasTextButton|36|Parent Canvas|1|Name|string|previous
+#btn|Class Name|string|TextButton|Import Name|string|gui|X Fix|null|Y F
+#ix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|str
+#ing|42|Y Spec|string|442|W Spec|integer|184|H Spec|integer|39|X Align|
+#string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|integer|1|
+#Draw Border|null|Attribs|list|1|string|font=serif,bold,20|Tooltip|null
+#|Accel|null|Event Handlers|list|1|list|2|string|ACTION_EVENT|string|on
+#_previousbtn|Class Variable|integer|1|Parent Component|12|Label|string
+#|Previous Question|No Keyboard|null|Img Up|null|Img Down|null|Img Widt
+#h|null|Img Height|null|Is Checked Flag|null|Is Checkbox Flag|null|Pare
+#nt CheckBoxGroup|null|Parent Button Group|null|Internal Align|string|c
+#|class|CanvasTextButton|36|Parent Canvas|1|Name|string|cancelbtn|Class
+# Name|string|TextButton|Import Name|string|gui|X Fix|integer|1|Y Fix|n
+#ull|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|string|
+#50%|Y Spec|string|524|W Spec|string|154|H Spec|string|39|X Align|strin
+#g|c|Y Align|string|t|Is shaded|null|Is Button Subclass|integer|1|Draw 
+#Border|null|Attribs|list|1|string|font=serif,bold,20|Tooltip|null|Acce
+#l|null|Event Handlers|list|1|list|2|string|ACTION_EVENT|string|on_canc
+#elbtn|Class Variable|integer|1|Parent Component|12|Label|string|Contin
+#ue Later|No Keyboard|null|Img Up|null|Img Down|null|Img Width|null|Img
+# Height|null|Is Checked Flag|null|Is Checkbox Flag|null|Parent CheckBo
+#xGroup|null|Parent Button Group|null|Internal Align|string|c|class|Can
+#vasLabel|27|Parent Canvas|1|Name|string|titlelbl|Class Name|string|Lab
+#el|Import Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|null|H Fix|
+#null|W Default|null|H Default|null|X Spec|string|50%|Y Spec|string|12|
+#W Spec|string|100%-50|H Spec|string|48|X Align|string|c|Y Align|string
+#|t|Is shaded|null|Is Button Subclass|null|Draw Border|integer|1|Attrib
+#s|list|2|string|bg=whitish blue|string|font=serif,bold,22|Tooltip|null
+#|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Parent Comp
+#onent|12|Label|string|Quest Screen|Internal Align|string|c|class|Canva
+#sTextList|29|Parent Canvas|1|Name|string|questiontl|Class Name|string|
+#TextList|Import Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|null|
+#H Fix|null|W Default|null|H Default|null|X Spec|string|50%|Y Spec|stri
+#ng|141|W Spec|string|100%-10|H Spec|string|83|X Align|string|c|Y Align
+#|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|integer|1
+#|Attribs|list|2|string|bg=light yellow|string|font=serif,16|Tooltip|nu
+#ll|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Parent Co
+#mponent|12|Select One|null|Select Many|null|Checked|list|1|null|Conten
+#ts|list|1|string|Question|class|CanvasLabel|27|Parent Canvas|1|Name|st
+#ring|questionlbl|Class Name|string|Label|Import Name|string|gui|X Fix|
+#null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X 
+#Spec|integer|6|Y Spec|integer|115|W Spec|string|60|H Spec|string|24|X 
+#Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null
+#|Draw Border|null|Attribs|list|1|string|bg=whitish blue|Tooltip|null|A
+#ccel|null|Event Handlers|list|0|Class Variable|integer|1|Parent Compon
+#ent|12|Label|string| Question|Internal Align|string|l|class|CanvasText
+#Button|36|Parent Canvas|1|Name|string|nextbtn|Class Name|string|TextBu
+#tton|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|nul
+#l|W Default|null|H Default|null|X Spec|integer|412|Y Spec|integer|443|
+#W Spec|integer|184|H Spec|integer|39|X Align|string|l|Y Align|string|t
+#|Is shaded|null|Is Button Subclass|integer|1|Draw Border|null|Attribs|
+#list|1|string|font=serif,bold,20|Tooltip|null|Accel|null|Event Handler
+#s|list|1|list|2|string|ACTION_EVENT|string|on_nextbtn|Class Variable|i
+#nteger|1|Parent Component|12|Label|string|Next Question|No Keyboard|nu
+#ll|Img Up|null|Img Down|null|Img Width|null|Img Height|null|Is Checked
+# Flag|null|Is Checkbox Flag|null|Parent CheckBoxGroup|null|Parent Butt
+#on Group|null|Internal Align|string|c|class|CanvasTextButton|36|Parent
+# Canvas|1|Name|string|confirmanswerbtn|Class Name|string|TextButton|Im
+#port Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|null|H Fix|null|
+#W Default|null|H Default|null|X Spec|string|50%|Y Spec|string|479|W Sp
+#ec|string|135|H Spec|string|39|X Align|string|c|Y Align|string|t|Is sh
+#aded|null|Is Button Subclass|integer|1|Draw Border|null|Attribs|list|1
+#|string|font=serif,bold,20|Tooltip|null|Accel|null|Event Handlers|list
+#|1|list|2|string|ACTION_EVENT|string|on_confirmanswerbtn|Class Variabl
+#e|integer|1|Parent Component|12|Label|string|Finish Now|No Keyboard|nu
+#ll|Img Up|null|Img Down|null|Img Width|null|Img Height|null|Is Checked
+# Flag|null|Is Checkbox Flag|null|Parent CheckBoxGroup|null|Parent Butt
+#on Group|null|Internal Align|string|c|class|CanvasLabel|27|Parent Canv
+#as|1|Name|string|label_9|Class Name|string|Label|Import Name|string|gu
+#i|X Fix|integer|1|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H De
+#fault|null|X Spec|string|50%|Y Spec|string|462|W Spec|string|104|H Spe
+#c|string|13|X Align|string|c|Y Align|string|t|Is shaded|null|Is Button
+# Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null
+#|Event Handlers|list|0|Class Variable|integer|1|Parent Component|12|La
+#bel|string| Submit the Quest|Internal Align|string|l|class|CanvasBorde
+#r|28|Parent Canvas|1|Name|string|border_2|Class Name|string|Border|Imp
+#ort Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|null|H Fix|null|W
+# Default|null|H Default|null|X Spec|string|50%|Y Spec|integer|74|W Spe
+#c|string|265|H Spec|string|29|X Align|string|c|Y Align|string|t|Is sha
+#ded|null|Is Button Subclass|null|Draw Border|null|Attribs|list|1|strin
+#g|bg=white|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variabl
+#e|integer|1|Parent Component|12|Internal Alignment|string|l|Children|l
+#ist|1|class|CanvasLabel|27|Parent Canvas|1|Name|string|progresslbl|Cla
+#ss Name|string|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fi
+#x|null|H Fix|null|W Default|null|H Default|null|X Spec|string|2|Y Spec
+#|string|2|W Spec|string|2|H Spec|string|100%-4|X Align|string|l|Y Alig
+#n|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Att
+#ribs|list|1|string|bg=dark green|Tooltip|null|Accel|null|Event Handler
+#s|list|0|Class Variable|integer|1|Parent Component|65|Label|string||In
+#ternal Align|string|l|Title Obj|null|class|CanvasLabel|27|Parent Canva
+#s|1|Name|string|label_11|Class Name|string|Label|Import Name|string|gu
+#i|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default
+#|null|X Spec|integer|50|Y Spec|integer|75|W Spec|integer|126|H Spec|in
+#teger|30|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Su
+#bclass|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Ev
+#ent Handlers|list|0|Class Variable|integer|1|Parent Component|12|Label
+#|string|Quest Progress|Internal Align|string|l|class|CanvasTextList|29
+#|Parent Canvas|1|Name|string|answeretl|Class Name|string|EditableTextL
+#ist|Import Name|string|gui|X Fix|integer|1|Y Fix|null|W Fix|integer|1|
+#H Fix|null|W Default|null|H Default|null|X Spec|string|50%|Y Spec|stri
+#ng|255|W Spec|string|100%-10|H Spec|string|110|X Align|string|c|Y Alig
+#n|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|integer|
+#1|Attribs|list|2|string|bg=white|string|font=serif,16|Tooltip|null|Acc
+#el|null|Event Handlers|list|0|Class Variable|integer|1|Parent Componen
+#t|12|Select One|null|Select Many|null|Checked|list|1|null|Contents|lis
+#t|1|string||Title Obj|null|Initial Focus|75|Event Handlers|list|0|

@@ -1,0 +1,150 @@
+$include "../common/defaults.icn"
+
+global logHandler 
+
+procedure main(av)
+   local sleeptime := 5000
+   local idaho_port, nmsu_port
+   
+      idaho_port := 4500
+      nmsu_port := 4600
+
+   trap("SIGINT", SIGINT_handler)
+   
+   logHandler := Logger()
+
+   logHandler.logit("watchdog: cved watchdog monitoring initiated")
+
+   change_dir()
+
+   repeat {
+      # if the cved server on localhost
+      # is showing signs of life then leave
+      # it alone
+      check_server("Idaho", idaho_port)
+      logHandler.logit("watchdog: going to sleep for " ||
+      sleeptime/1000 || " secs")
+      delay(sleeptime)
+      check_server("NMSU", nmsu_port)
+      logHandler.logit("watchdog: going to sleep for " || sleeptime/1000 || " seconds")
+      delay(sleeptime)
+   }
+end
+
+procedure check_server( server_name, port )
+   write("\nchecking cved server: " || server_name || "..." )
+   if heartbeat(port, getserv(server_name)) then {
+      logHandler.logit("watchdog: " || server_name || " server is running and healthy")
+   }
+   else {
+      logHandler.logit("watchdog: " || server_name || " server is not responding")
+      logHandler.logit("watchdog: attempting to kill it")
+      stoping := "sh stop-cved" || server_name      
+      starting := "sh start-cved" || server_name
+      i := system(stoping)
+      logHandler.logit("stop-cved returned " || image(i))
+      
+      logHandler.logit("watchdog: attempting to restart it")
+      ii := system(starting)
+      logHandler.logit("start-cved returned " || image(ii))
+   }
+end
+
+procedure heartbeat(port: 4500, machine: "localhost")
+   local connID, uptime
+   
+   if not find(":", machine) then machine ||:= ":" || port
+   write("heartbeat for ", machine)
+   if connID := open( machine, "n" ) then {
+      logHandler.logit("heartbeat(): some network entity responded")
+
+      logHandler.logit("heartbeat(): probing to find out if it is cved")
+      if uptime := login(connID, "system", "unicron") then {
+         logHandler.logit("heartbeat(): cved identity confirmed; _
+			  uptime follows")
+         logHandler.logit("heartbeat(): " || uptime)
+         return
+      }     
+   }
+
+   fail
+end
+
+procedure login(connID, userid, passwd)
+   local message, f
+   \userid | runerr(501, userid)
+   \passwd | runerr(501, passwd)
+   
+   if \connID then {
+      write(connID, "\\login " || userid || " " || passwd) |
+         logHandler.logit("login(): write to connID failed")
+
+$define SECONDS_TO_WAIT_FOR_LOGIN 4
+
+      if every i := 1 to SECONDS_TO_WAIT_FOR_LOGIN * 2 do {
+	 delay(500)
+	 if message := trim(ready(connID),'\n') then {
+	    break &null
+	    }
+	 }
+      then {
+#	  write("got message ", image(message), " after ",
+#		if i % 2 then (i/2)||".5" else (i/2), " seconds")
+	 }
+      else {
+         logHandler.logit("login(): login read failed")
+         fail
+	 }
+
+      if message == "Valid" then {
+         logHandler.logit("login(): login successfull")
+         write(connID, "\\uptime ") | 
+            logHandler.logit("login(): write to cved failed")
+
+         if not (uptime := read(connID)) then {
+	    logHandler.logit("net reset when uptime was requested")
+	    close(connID)
+	    fail
+	    }
+         if logout(connID) then
+            return uptime
+      }
+   }
+
+   fail
+end
+
+procedure logout(connID)
+
+   if \connID then {
+      write(connID, "\\logout ")
+      close(connID)
+      logHandler.logit("logout(): logout successfull")
+      return
+   }
+   else
+      fail
+end
+
+procedure change_dir()
+   local cwd
+
+   cwd := chdir()
+   if cwd[-3:0]=="bin" then 
+      chdir("..")
+   else if cwd[-10:0] == ("src" || PS || "server") then {
+      chdir(".."); chdir("..")
+    }
+   else write("didn't see where I was to chdir to; staying put in ", cwd)
+
+   chdir("bin/")
+end
+
+#
+# SIGINT_handler: handles CTRL-Cs to this process
+#
+procedure SIGINT_handler(s)
+   logHandler.logit("watchdog: process monitoring stops here")
+   logHandler.terminate()
+   stop()
+end

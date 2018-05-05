@@ -1,0 +1,27 @@
+Room {
+	name  courtyard
+	x 17.6
+	y 0
+	z 8.5
+	w 7.6
+	h 10.0
+	l 12.9
+	texture dat/nmsu/texsmall/walltest.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/wall2.gif
+			coords [
+				17.6, 9.9, 8.5,
+				25.2, 9.9, 8.5,
+				25.2, 9.9, 21.4,
+				17.6, 9.9, 21.4
+			]
+		}
+	]
+	tools [
+	]
+}

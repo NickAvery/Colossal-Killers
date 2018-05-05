@@ -1,0 +1,153 @@
+Room {
+	name  cooridoor_nw
+	x 5.3
+	y 0
+	z 3.9
+	w 26.1
+	h 3.05
+	l 2.5
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/fireext.gif
+			coords [
+				31.2, 1.0, 6.3,
+				31.2, 2.5, 6.3,
+				30.0, 2.5, 6.3,
+				30.0, 1.0, 6.3
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/c158.gif
+			coords [
+				11.6, 1.5, 6.3,
+				11.6, 1.6, 6.3,
+				11.5, 1.6, 6.3,
+				11.5, 1.5, 6.3
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				26.3, 1.0, 4.0,
+				26.3, 2.0, 4.0,
+				26.5, 2.0, 4.0,
+				26.5, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH165.gif
+			coords [
+				26.1, 1.5, 4.0,
+				26.1, 1.6, 4.0,
+				26.2, 1.6, 4.0,
+				26.2, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				22.2, 1.0, 4.0,
+				22.2, 2.0, 4.0,
+				22.4, 2.0, 4.0,
+				22.4, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH163.gif
+			coords [
+				22.5, 1.5, 4.0,
+				22.5, 1.6, 4.0,
+				22.6, 1.6, 4.0,
+				22.6, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				14.8, 1.0, 4.0,
+				14.8, 2.0, 4.0,
+				15.0, 2.0, 4.0,
+				15.0, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH161.gif
+			coords [
+				15.1, 1.5, 4.0,
+				15.1, 1.6, 4.0,
+				15.2, 1.6, 4.0,
+				15.2, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				11.3, 1.0, 4.0,
+				11.3, 2.0, 4.0,
+				11.1, 2.0, 4.0,
+				11.1, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH157.gif
+			coords [
+				9.8, 1.5, 4.0,
+				9.8, 1.6, 4.0,
+				9.9, 1.6, 4.0,
+				9.9, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				8.1, 1.0, 4.0,
+				8.1, 2.0, 4.0,
+				8.2, 2.0, 4.0,
+				8.2, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH155.gif
+			coords [
+				8.3, 1.5, 4.0,
+				8.3, 1.6, 4.0,
+				8.4, 1.6, 4.0,
+				8.4, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/noticeboard.gif
+			coords [
+				4.8, 1.0, 4.0,
+				4.8, 2.0, 4.0,
+				5.0, 2.0, 4.0,
+				5.0, 1.0, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/SH154.gif
+			coords [
+				4.6, 1.5, 4.0,
+				4.6, 1.6, 4.0,
+				4.7, 1.6, 4.0,
+				4.7, 1.5, 4.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/exit1.gif
+			coords [
+				5.6, 2.1, 4.9,
+				5.6, 2.3, 4.9,
+				5.6, 2.3, 5.2,
+				5.6, 2.1, 5.2
+			]
+		}
+	]
+	tools [
+	]
+}

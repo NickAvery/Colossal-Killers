@@ -1,0 +1,258 @@
+<title>CVE To Do List</title>
+<body bgcolor="#000000" link="#FFFF60" vlink="#40FFFF" text="#FFFFFF">
+
+<h1> The CVE Big Board (to-do list) </h1>
+
+Jobs are numbered chronologically, which may not be an ideal organization.
+
+<table>
+<tr><th>#<th>Job<th>Person<th>Status
+<tr><td>3<td>Avatars' heads should show who is talking
+    <td><td> in avatar class but not called, use for VOIP status, prototyped by Ziad
+<tr><td>9<td>Turn rooms' data from previous CS 579 courses into .dat format
+    <td><td>2nd 579 CVE course data mostly done already
+<tr><td>11<td>Get ssh tunnel mechanism working
+    <td><td>launching tunnel from inside unicron doesn't work yet
+<tr><td>13<td>dynamic state and server forwarding for whiteboards/blackboards
+    <td><td>Use SVG subset? Develop/adopt generic dynamic state update protocol
+<tr><td>14<td>add white/blackboard drawing to client
+    <td><td>a "whiteboard session" tab
+<tr><td>20<td>client needs automatic reconnect to server when connection drops <td><td>In recent, client was not hung after connection dropped.
+<tr><td>25<td>refine local (photo-based) textures
+    <td><td>replace GIFs with JPG's, but not until G5 is solved
+<tr><td>26<td>try out UDP for avatar motion<td><td>
+<tr><td>26<td>add interesting virtual objects
+    <td><td>followup Shyam's graphical implementation with dynamic behavior
+<tr><td>28<td>add avatar orientation to persistent server state
+    <td><td> angle is saved but not yet getting restored
+<tr><td>30<td>add user statistics to persistent server state
+    <td><td> so we can remember what users have done what for how long
+<tr><td>43<td>server log forwarding<td>
+   <td>(limited) ability for admin users to request that logs be copied to them
+<tr><td>45<td>client and server hang after guest login<td><td>
+<tr><td>48<td>add a way for end users to change their password<td><td>
+<tr><td>50<td>session recorder so clients can remember their own sessions<td>
+    <td>remember conversations and instructions delivered via chat; chat recorded to Moodle has been prototyped
+<tr><td>54<td>check # of parameters to commands
+    <td><td>issue "usage: ..." message when user gives wrong # of arguments
+<tr><td>63<td>re-enable mode 1 out of body movement
+    <td><td> command line option or internal command
+<tr><td>66<td>fix walls so they aren't infinitely thin
+    <td><td>add thickness in a subclass
+<tr><td>70<td>integrate Samat's mapview
+    <td><td> turn it into a "widget" in place of static 2D map
+<tr><td>71<td>add windows to more rooms that have them<td><td>
+<tr><td>72<td>control keys in chat widgets should route to 3D window commands
+    <td><td>
+<tr><td>75<td>avatar's heads should rotate to match how much "up" or "down" they are looking<td><td>optional extra parameter of a \move command?
+<tr><td>76<td>NMSU classroom wing decorations should be raised 1 meter<td><td>
+<tr><td>78<td>add version # check to protocol login
+    <td><td>added to server; not checked by client yet
+<tr><td>79<td>avatar jump command
+    <td><td>look in Shyam/Anil CVE class project?
+<tr><td>81<td>avatar (conservative) collision detection<td><td>
+<tr><td>83<td>watchdog needs to survive broken pipe errors<td><td>
+<tr><td>88<td>\who should tell where each person is and what they are doing
+    <td><td>with some privacy options
+<tr><td>89<td>moving backwards needs to be smoother, like forwards<td><td>
+<tr><td>91<td>doors should be able to stop in between open and closed
+    <td><td>this used to work fine
+<tr><td>96<td>switch to JPEG faces (and other textures?)
+    <td><td>&gt; 256 colors makes a big difference on faces; can't do until G5
+<tr><td>98<td>Suck in "live" whiteboard content from hi-res webcam
+    <td><td>
+<tr><td>100<td>save a snapshot of the whiteboard prior to each Erase op<td><td>
+<tr><td>101<td>define low-bandwidth graphics language
+    <td><td>SVG replacement?
+<tr><td>102<td>add faint lines at corners so they're more visible<td><td>
+<tr><td>104<td>graphical model.dat editor<td><td>or "live" in-CVE world editing
+<tr><td>105<td>render (more) as needed when a door opens<td><td>
+<tr><td>106<td>make Client window resizable<td>
+    <td>almost works, needs equivalent of clicking on current tab after resize
+<tr><td>108<td>add collaborative compile message viewing<td><td>
+<tr><td>109<td>add collaborative executing/debugging<td><td>
+<tr><td>110<td>add away-from-keyboard accounting in server<td><td>
+<tr><td>111<td>server does not always recognize logouts<td><td>
+<tr><td>113<td>add "now serving" queues to instructors
+    <td><td>so students can see who is busy
+<tr><td>115<td>file transfer mechanism
+    <td><td>extend earlier mechanism to handle longer files
+<tr><td>117<td>fix spelling of "corridor"<td><td>
+<tr><td>118<td>autocreate missing avatars from guest.avt/guest.gif<td><td>
+<tr><td>120<td>implement a voice tunnel
+    <td><td> tunnel our voice UDP via Unicron TCP?
+             or other workaround for clients without valid IP #'s.
+<tr><td>121<td>Quit shortcut (ctrl-Q) should ask if you are sure first<td><td>
+<tr><td>122<td>prevent/detect/recover multiple .state files on server
+    <td><td>ziad.state in 3 different rooms, for example
+<tr><td>123<td>create an autorun.inf file to launch our installer from the CD
+    <td><td> see <A href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/autorun/autoplay_cmds.asp"> microsoft's references</A>
+<tr><td>124<td>add -no3D option
+    <td><td>CVE should be able to run on 2D-only clients
+<tr><td>125<td>avatar eye height should be computed from avatar height
+    <td><td>not hardwired to 1.5m
+<tr><td>126<td>fix third person view "y" bug<td><td>
+<tr><td>127<td>IDE mouse click should set focus and does not
+    <td><td>workaround is to press an arrow key
+<tr><td>129<td>watchdog "probing to find out if it is unicrond" can hang
+    <td><td>
+<tr><td>130<td>coordinate warps view out and away from building for no reason
+    <td><td>
+<tr><td>132<td>upgrade teleport<td><td>support teleporting to rooms or users
+<tr><td>133<td>doors' dynamic state should include locked/unlocked<td><td>
+<tr><td>134<td>add virtual keys<td><td>
+<tr><td>135<td>room-based autosharing of documents
+    <td><td>IDE autoinvite/autoaccept
+<tr><td>136<td>add command for server-download of whole virtual world<td><td>
+<tr><td>137<td>add commands for virtual world edits<td><td>\addroom etc
+<tr><td>138<td>user.state files' x coordinate should be trimmed when written
+    <td><td>
+<tr><td>140<td>WINDOWS face file uploads are corrupted/bad<td><td>
+<tr><td>141<td>texture resize bug
+    <td><td>on linux x86, textures that are not power-of-2 mess up
+<tr><td>143<td>fix door initialization
+    <td><td>they look "open" but don't work until closed/opened, etc.
+<tr><td>144<td>avatars on ramps should appear raised to other users<td><td>
+<tr><td>145<td>ramps should support colors/textures<td><td>
+<tr><td>146<td>ramps should be able to rise west and north
+    <td><td>not just east and south
+<tr><td>147<td>screen goes white when new user logs in or logs out<td><td>
+<tr><td>148<td>avatars and ramps need to use WSection()
+    <td><td> (check for any others?)
+<tr><td>149<td>add \collect and \memory commands
+    <td><td>improve remote info and administration
+<tr><td>150<td>amaker dies when server is down
+    <td><td> needs to check server is up before it even runs, and handle crashes without losing user avatar data.
+<tr><td>151<td>NMSU's foyer/atrium needs improving<td><td>
+</table>
+
+Server can die reporting
+a failed attempt to read a file not open for reading, reporting a
+read(file(:4500)), as if its possible for a listener to get promoted to
+regular mode when select() returned it, but it wasn't actually opened yet?
+Or maybe the file gets closed after select() has returned it.  If an
+open network connection gets closed at the other end, maybe it should
+cause read()/sysread() to fail, instead of runerr?
+
+
+<h3> Unicon Language / OpenGL / 3D Facilities To Do List </h3>
+
+<table>
+<tr><th>#<th>Job<th>Person<th>Status
+<tr><td>U1<td>Font support<td>Omar<td> done; alpha testing
+<tr><td>U2<td>Improve transparency support<td><td>
+<tr><td>U5<td>JPG texture support
+    <td><td> needs retesting, known bug on Windows
+<tr><td>U6<td>Fix FillPolygon to handle concave polygons
+    <td><td>See GLU tesselation
+<tr><td>U7<td>detect when we run out of texture memory<td><td>
+<tr><td>U8<td>add automatic mipmapping<td><td>on big video cards, anyhow
+<tr><td>U10<td>detect graphics hardware specifications
+    <td><td>can tell video ram on most machines
+<tr><td>U11<td>debug or rewrite calls to gluScaleImage()
+    <td><td>isn't this too slow?
+<tr><td>U12<td>WriteImage() should support subwindows and/or 3D windows
+    <td><td>code can be borrowed from where Texture() turns a 3D window into a texture
+<tr><td>U13<td>add ability to free textures when no longer used <td>
+    <td>see glDeleteTextures(); maybe done, at least textures can be replaced
+<tr><td>U15<td>create a more direct writeable texture type
+    <td><td>opengl-native in-client-memory representation
+<tr><td>U16<td>add (read-only) 3D platform attributes
+    <td><td>glGetString() can return us glversion, glvendor, glrenderer, glextensions
+<tr><td>U17<td>texturing in bad format should fail, not runtime error
+    <td><td>and if a .JPG is in a file named .GIF, we should just succeed as JPG
+<tr><td>U18<td>3D object selection support <td><td>
+<tr><td>U19<td>Unicon language should auto-catch broken pipe errors
+    <td><td> and turn them into eof / failure
+<tr><td>U20<td>add open(...,"m", timeout) <td><td>
+</table>
+
+<h3> Done List </h3>
+
+<table>
+<tr><td>1<td>Merge 3D window and chat window into GUI.<td>Dr. J<td>
+<tr><td>2<td>Visible names on avatars<td>Yo<td>
+<tr><td>4<td>Convert please11 to FHN coordinates<td><td>see please12
+<tr><td>5<td>Create 3-room 3D model for please13 (167, hall, 125)<td>Dr J<td>
+<tr><td>6<td>Update UI to IVIB V2<td>Nolan<td>
+<tr><td>7<td>Add UI source snapshot to CVE CVS<td>Hani<td>at least partly done
+<tr><td>8<td>Merge CVE GUI into UI as "tab" widgets<td>Hani<td>
+<tr><td>12<td>Streamline Account Creation and Guest Creation<td>Kosta<td>
+<tr><td>15<td>Suck in "live" whiteboard content from XML/SVG service<td><td>
+<tr><td>16<td>move connection logic from chat window to session class, etc. <td>Dr. J<td>done when we got rid of chat window...
+<tr><td>17<td>Client should "remember" last username, use as default in login dialog <td><td>
+<tr><td>18<td>server needs to not die with "Broken Pipe" when client terminates suddenly <td>Kosta<td> due to chatwin resize (1), due to "Broken Pipe" (3)
+<tr><td>19<td>server needs watchdog daemon to keep it up 24/7 <td>Kosta<td>maybe done
+<tr><td>21<td>add help window invoked by F1 key and menu option <td>Hani<td>
+<tr><td>22<td>integrate voice chat capability<td>Ziad<td>
+<tr><td>23<td>integrate sound effects<td>Anil<td>door opening is in CVS, along with many sounds to integrate
+<tr><td>24<td>render-on-demand (only what is visible to user)<td>Akshay<td>
+<tr><td>27<td>login dialog: pressing carriage return from the user or password field should log on<td>jeffery<td>
+<tr><td>29<td>add server record of: how long the server has been up<td>Kosta<td>
+<tr><td>31<td>remove network code from model.icn<td>Dr. J<td>restructured classes
+<tr><td>32<td>add texture class<td>Rashmi<td>maybe needs some debugging yet
+<tr><td>33<td>add a command to change user's password<td>Kosta<td>
+<tr><td>34<td>server logline short timestamp<td>Kosta<td>(2/3/05 22:06) instead of (Thursday, February 3, 2005  10:06pm), etc.
+<tr><td>35<td>sort list of users in accountadmin<td>Kosta<td>
+<tr><td>36<td>messages from server should not say they are from user<td>Dr. J<td>
+<tr><td>37<td>Use Texture() and Texcoord() instead of using WAttrib() everywhere<td><td>added WAttrib() that generates its displaylist elems
+<tr><td>38<td>Make Room / Model dynamic data instead of code <td><td> see please13.icn and sh167.dat
+<tr><td>39<td>default command <td>Dr.J<td> repeat previous command, e.g. say
+<tr><td>40<td>when someone moves, chatwin output hung up until you click in your window and back in your chatwin<td>Dr. J<td> got rid of chatwin
+<tr><td>41<td>client goes into pathological garbage collecting loop when server dies.<td><td>loses connection message, fairly gracefully
+<tr><td>42<td>support multiple names as aliases<td>Kosta<td>#17 solves what this was about
+<tr><td>44<td>doors look awful<td><td>some non-textured doors...
+<tr><td>46<td>add all the major cooridoors<td>Dr. J<td>
+<tr><td>47<td>add door state to the persistent server state<td>Akshay<td>
+<tr><td>49<td>change model.icn room datafile parser to infer floor coordinates from room dimensions<td><td>this works already. improved floor parser code might allow different floor types.
+<tr><td>51<td>third-person camera should not back through a wall behind avatar<td>Dr. J<td>
+<tr><td>52<td>prevent same user from logging in twice<td>Kosta<td>
+<tr><td>53<td>fix bogus face texture<td><td>sometimes blank, sometimes shows wrong person's face; should check if a texture fails and revert to a default
+<tr><td>55<td>room change messages when in CVE by oneself<td><td> suppress "nobody to talk to"
+<tr><td>56<td>server generate avatar create remote's on login<td>Akshay (Dr. J)<td>
+<tr><td>57<td>remove .txt files<td>Yo (Dr. J)<td>
+<tr><td>58<td>client seems to hang if server is not up<td><td>after connection fails, movement was frozen
+<tr><td>59<td>guest creation falsely reports authentication failure if server is not up<td>Kosta<td>
+<tr><td>60<td>fix filename truncating in nsh using explicit \avatar wynn<td>Wynn<td>hasn't reappeared, not sure about it
+<tr><td>61<td>fix patcher to not update splash.gif spuriously<td>Dr. J<td>
+<tr><td>62<td>fix server crashes on null passed into select<td>Dr. J<td>
+<tr><td>64<td>fix .gif's that are checked into CVS in non-binary mode<td>Kosta<td>
+<tr><td>65<td>if client dies abruptly, server thinks user is still logged in<td>Dr. J<td> see #52. At present, server logs out old login when new valid login is presented.
+<tr><td>67<td>truncate real #'s passed to \move<td>Dr. J<td>17.59354878 should go to net as 17.59
+<tr><td>68<td>investigate unicrond startup time<td><td>I am not seeing a problem at present
+<tr><td>69<td>avatar should turn when camera turns<td>Dr. J<td>
+<tr><td>73<td>plaintext keys in 3d window should route to text input widget<td>Dr. J<td>
+<tr><td>74<td>bundle/piggyback avatar body part motions into single packets<td><td>
+<tr><td>77<td>fix over-the-shoulder mode camera jitter<td>Dr. J<td>
+<tr><td>80<td>chat should not repeat your utterances in the log window twice<td><td>
+<tr><td>82<td>doors should not autoopen, at least not by default<td><td>
+<tr><td>84<td>responding to window events needs higher priority than net events<td><td>maybe has been mostly addressed by now
+<tr><td>85<td>several textures not in CVS in binary mode<td>Rashmi (Dr. J)<td>seems these got taken care of
+<tr><td>86<td>modify model.dat and model/ code to allow different wall textures in different rooms<td><td>
+<tr><td>87<td>window label/title should indicate current room<td>Dr. J<td>
+<tr><td>90<td>typing a blank line causes a server crash?<td><td>[Invalid mesage not sent to server]
+<tr><td>92<td>add to model.dat a Title field
+    <td><td>so we can make other worlds besides NMSU Science Hall
+<tr><td>93<td>get rid of DBM databases<td><td>they are a portability hazard<td><td>done by now?
+<tr><td>94<td>eliminate redundancy of nodechange and inform events<td>Dr.J<td>server should gen informs when it receives a nodechange
+<tr><td>95<td>camera's up/down angle needs to persist across turns/moves<td>Dr. J<td>
+<tr><td>97<td>fix derendering leak<td><td>display list grows indefinitely as you move; related to #37
+<tr><td>99<td>"fix" avatars<td>Yo<td> start with shoulders, and feet
+<tr><td>103<td>fix doors so they open the way they do in real life<td>varma<td>so doors do not open out into the corridors
+<tr><td>107<td>add collaborative source code editing<td>iyad<td>
+<tr><td>112<td>add a "listener" port to clients for P2P<td><td>tried, with bad results
+<tr><td>114<td>merge model.dat and static.dat
+    <td><td>for easier transportation/sharing of model files
+<tr><td>128<td>\inform messages should begin better than "\inform"
+    <td><td> I am not sure if we have to hear about every single room change.
+<tr><td>131<td>add multiplatform pseudotty to Unicon<td><td>
+<tr><td>139<td>maximize -- subwindow doesn't resize for maximize<td>Dr. J<td>seems fixed
+<tr><td>142<td>on initial startup, fix to not be looking upward
+    <td><td>this appeared in standalone mode
+<tr><td>152<td>fix to not be looking upward
+    <td><td>after events like switching tabs - pulled camera out of dialog to avoid .y conflict
+<tr><td>U3<td>Add miscellaneous polygon mesh modes<td><td> done; testing
+<tr><td>U4<td>Add built-in textures<td>Omar<td>
+<tr><td>U9<td>tune performance of traversefunctionlist<td>Omar <td>
+<tr><td>U14<td>add peephole optimizer to display list<td><td>possible but no longer planned
+</table>

@@ -1,0 +1,1116 @@
+version	U12.1.00
+uid	cmdhelp.u1-1523917587-0
+record	cmdHelper__state,6
+	0,__s
+	1,__m
+	2,helpfile
+	3,logger
+	4,Tsyntax
+	5,Tdescription
+record	cmdHelper__methods,4
+	0,loadHelpFile
+	1,getSyntax
+	2,getDescription
+	3,initially
+impl	error
+global	9
+	0,000005,cmdHelper_loadHelpFile,2
+	1,000005,cmdHelper_getSyntax,2
+	2,000005,cmdHelper_getDescription,2
+	3,000005,cmdHelper_initially,2
+	4,000011,cmdHelper__state,6
+	5,000011,cmdHelper__methods,4
+	6,000001,cmdHelper__oprec,0
+	7,000005,cmdHelper,1
+	8,000005,cmdHelperinitialize,0
+
+proc cmdHelper_loadHelpFile
+	local	0,001000,self
+	local	1,001000,this_file
+	local	2,000020,fd
+	local	3,000020,file_contents
+	local	4,000020,cmd
+	local	5,000020,meat
+	local	6,000020,syntax
+	local	7,000020,description
+	local	8,000020,field
+	local	9,000020,element
+	local	10,000000,open
+	local	11,000000,image
+	local	12,000000,read
+	local	13,000000,close
+	local	14,000000,trim
+	local	15,000000,tab
+	local	16,000000,find
+	local	17,000000,move
+	local	18,000000,write
+	local	19,000000,key
+	con	0,010000,41,154,157,141,144,110,145,154,160,106,151,154,145,050,051,072,040,146,141,151,154,145,144,040,164,157,040,157,160,145,156,040,150,145,154,160,040,146,151,154,145,040
+	con	1,010000,0
+	con	2,010000,1,173
+	con	3,020000,1,040
+	con	4,002000,1,0
+	con	5,002000,1,1
+	con	6,010000,1,175
+	con	7,010000,45,154,157,141,144,110,145,154,160,106,151,154,145,050,051,072,040,146,141,151,154,145,144,040,160,141,162,163,151,156,147,073,040,160,141,162,163,145,040,145,162,162,157,162,040,175
+	con	8,010000,1,050
+	con	9,010000,6,163,171,156,164,141,170
+	con	10,010000,1,051
+	con	11,010000,11,144,145,163,143,162,151,160,164,151,157,156
+	con	12,010000,46,154,157,141,144,110,145,154,160,106,151,154,145,050,051,072,040,146,141,151,154,145,144,040,160,141,162,163,151,156,147,073,040,165,156,153,156,157,167,156,040,146,151,145,154,144,040
+	con	13,010000,45,154,157,141,144,110,145,154,160,106,151,154,145,050,051,072,040,150,145,154,160,040,146,151,154,145,040,154,157,141,144,145,144,040,163,165,143,143,145,163,163,146,165,154,154,171
+	con	14,010000,2,040,050
+	con	15,010000,2,051,040
+	con	16,010000,30,040,143,157,155,155,141,156,144,163,040,150,141,166,145,040,142,145,145,156,040,162,145,147,151,163,164,145,162,145,144
+	con	17,010000,45,154,157,141,144,110,145,154,160,106,151,154,145,050,051,072,040,146,141,151,154,145,144,040,160,141,162,163,151,156,147,073,040,160,141,162,163,145,040,145,162,162,157,162,040,173
+	declend
+	filen	cmdhelp.icn
+	line	5
+	colm	11
+	synt	any
+	mark	L1
+	line	8
+	colm	7
+	synt	if
+	mark0
+	mark	L2
+	pnull
+	var	2
+	var	10
+	var	1
+	line	8
+	colm	25
+	synt	any
+	invoke	1
+	line	8
+	colm	18
+	synt	any
+	asgn
+	unmark
+	efail
+lab L2
+	pnull
+	unmark
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	9
+	colm	14
+	synt	any
+	field	logger
+	line	9
+	colm	21
+	synt	any
+	field	logit
+	pnull
+	str	0
+	var	11
+	var	1
+	line	10
+	colm	28
+	synt	any
+	invoke	1
+	line	9
+	colm	71
+	synt	any
+	cat
+	line	9
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	line	11
+	colm	10
+	synt	any
+	pfail
+	line	8
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	pnull
+	var	3
+	str	1
+	line	14
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+lab L6
+	line	15
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	3
+	dup
+	var	12
+	var	2
+	line	15
+	colm	37
+	synt	any
+	invoke	1
+	line	15
+	colm	28
+	synt	any
+	cat
+	asgn
+lab L7
+	unmark
+	goto	L6
+lab L8
+	line	15
+	colm	7
+	synt	endwhile
+	unmark
+lab L5
+	mark	L9
+	var	13
+	var	2
+	line	16
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	mark	L10
+	var	3
+	line	18
+	colm	21
+	synt	any
+	bscan
+	mark	L11
+lab L12
+	line	19
+	colm	10
+	synt	while
+	mark0
+	pnull
+	var	4
+	var	14
+	var	15
+	var	16
+	str	2
+	line	19
+	colm	36
+	synt	any
+	invoke	1
+	line	19
+	colm	31
+	synt	any
+	invoke	1
+	cset	3
+	int	4
+	line	19
+	colm	27
+	synt	any
+	invoke	3
+	line	19
+	colm	20
+	synt	any
+	asgn
+	unmark
+	mark	L12
+	mark	L15
+	var	17
+	int	5
+	line	20
+	colm	17
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	5
+	mark	L17
+	var	15
+	var	16
+	str	6
+	line	21
+	colm	29
+	synt	any
+	invoke	1
+	line	21
+	colm	24
+	synt	any
+	invoke	1
+	line	21
+	colm	36
+	synt	any
+	esusp
+	goto	L18
+lab L17
+	mark	L19
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	20
+	synt	any
+	field	logger
+	line	22
+	colm	27
+	synt	any
+	field	logit
+	str	7
+	line	22
+	colm	33
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	line	23
+	colm	16
+	synt	any
+	pfail
+lab L18
+	line	21
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L20
+	var	5
+	line	25
+	colm	18
+	synt	any
+	bscan
+	mark	L21
+lab L22
+	line	26
+	colm	16
+	synt	while
+	mark0
+	pnull
+	var	8
+	var	14
+	var	15
+	var	16
+	str	8
+	line	26
+	colm	45
+	synt	any
+	invoke	1
+	line	26
+	colm	40
+	synt	any
+	invoke	1
+	cset	3
+	int	4
+	line	26
+	colm	36
+	synt	any
+	invoke	3
+	line	26
+	colm	29
+	synt	any
+	asgn
+	unmark
+	mark	L22
+	mark	L25
+	var	17
+	int	5
+	line	27
+	colm	23
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	line	28
+	colm	19
+	synt	case
+	mark0
+	var	8
+	eret
+	mark	L27
+	ccase
+	str	9
+	line	29
+	colm	30
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L28
+	pnull
+	var	9
+	var	14
+	var	15
+	var	16
+	str	10
+	line	30
+	colm	49
+	synt	any
+	invoke	1
+	line	30
+	colm	44
+	synt	any
+	invoke	1
+	cset	3
+	int	4
+	line	30
+	colm	40
+	synt	any
+	invoke	3
+	line	30
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L28
+	mark	L29
+	var	17
+	int	5
+	line	31
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L29
+	pnull
+	pnull
+	pnull
+	var	0
+	line	32
+	colm	29
+	synt	any
+	field	Tsyntax
+	var	4
+	line	32
+	colm	37
+	synt	any
+	subsc
+	var	9
+	line	32
+	colm	42
+	synt	any
+	asgn
+	goto	L26
+lab L27
+	mark	L30
+	ccase
+	str	11
+	line	34
+	colm	35
+	synt	any
+	eqv
+	unmark
+	pop
+	mark	L31
+	pnull
+	var	9
+	var	14
+	var	15
+	var	16
+	str	10
+	line	35
+	colm	49
+	synt	any
+	invoke	1
+	line	35
+	colm	44
+	synt	any
+	invoke	1
+	cset	3
+	int	4
+	line	35
+	colm	40
+	synt	any
+	invoke	3
+	line	35
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L31
+	mark	L32
+	var	17
+	int	5
+	line	36
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L32
+	pnull
+	pnull
+	pnull
+	var	0
+	line	37
+	colm	29
+	synt	any
+	field	Tdescription
+	var	4
+	line	37
+	colm	42
+	synt	any
+	subsc
+	var	9
+	line	37
+	colm	47
+	synt	any
+	asgn
+	goto	L26
+lab L30
+	pop
+	mark	L33
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	29
+	synt	any
+	field	logger
+	line	40
+	colm	36
+	synt	any
+	field	logit
+	pnull
+	str	12
+	var	8
+	line	41
+	colm	87
+	synt	any
+	cat
+	line	40
+	colm	42
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	line	42
+	colm	25
+	synt	any
+	pfail
+lab L26
+	line	28
+	colm	19
+	synt	endcase
+lab L23
+	unmark
+	goto	L22
+lab L24
+	line	26
+	colm	16
+	synt	endwhile
+	unmark
+lab L21
+	mark	L34
+	var	17
+	int	5
+	line	46
+	colm	20
+	synt	any
+	invoke	1
+	unmark
+lab L34
+	var	18
+	var	15
+	var	16
+	str	6
+	line	47
+	colm	31
+	synt	any
+	invoke	1
+	line	47
+	colm	26
+	synt	any
+	invoke	1
+	line	47
+	colm	22
+	synt	any
+	invoke	1
+	line	25
+	colm	18
+	synt	any
+	escan
+	unmark
+lab L20
+	var	17
+	int	5
+	line	49
+	colm	17
+	synt	any
+	invoke	1
+lab L13
+	unmark
+	goto	L12
+lab L14
+	line	19
+	colm	10
+	synt	endwhile
+	unmark
+lab L11
+	line	52
+	colm	10
+	synt	ifelse
+	mark	L35
+	pnull
+	line	52
+	colm	13
+	synt	any
+	keywd	pos
+	pnull
+	var	3
+	line	52
+	colm	21
+	synt	any
+	size
+	line	52
+	colm	18
+	synt	any
+	numge
+	unmark
+	mark	L37
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	17
+	synt	any
+	field	logger
+	line	53
+	colm	24
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	13
+	str	14
+	line	53
+	colm	78
+	synt	any
+	cat
+	var	1
+	line	54
+	colm	31
+	synt	any
+	cat
+	str	15
+	line	54
+	colm	44
+	synt	any
+	cat
+	pnull
+	var	19
+	pnull
+	var	0
+	line	54
+	colm	64
+	synt	any
+	field	Tsyntax
+	line	54
+	colm	59
+	synt	any
+	invoke	1
+	line	54
+	colm	55
+	synt	any
+	size
+	line	54
+	colm	52
+	synt	any
+	cat
+	str	16
+	line	54
+	colm	73
+	synt	any
+	cat
+	line	53
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L37
+	mark	L38
+	pnull
+	line	56
+	colm	13
+	synt	any
+	pret
+lab L38
+	synt	any
+	pfail
+	goto	L36
+lab L35
+	mark	L39
+	pnull
+	pnull
+	var	0
+	line	59
+	colm	17
+	synt	any
+	field	logger
+	line	59
+	colm	24
+	synt	any
+	field	logit
+	str	17
+	line	59
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L39
+	line	60
+	colm	13
+	synt	any
+	pfail
+lab L36
+	line	52
+	colm	10
+	synt	endifelse
+	line	18
+	colm	21
+	synt	any
+	escan
+	unmark
+lab L10
+	pnull
+	line	63
+	colm	1
+	synt	any
+	pfail
+	end
+proc cmdHelper_getSyntax
+	local	0,001000,self
+	local	1,001000,cmd
+	local	2,000000,member
+	con	0,010000,49,156,157,040,163,171,156,164,141,170,040,141,163,163,151,163,164,141,156,143,145,040,151,163,040,141,163,163,157,143,151,141,164,145,144,040,167,151,164,150,040,143,157,155,155,141,156,144,072,040
+	declend
+	line	65
+	colm	11
+	synt	any
+	mark	L1
+	line	66
+	colm	7
+	synt	ifelse
+	mark	L2
+	var	2
+	pnull
+	var	0
+	line	66
+	colm	21
+	synt	any
+	field	Tsyntax
+	var	1
+	line	66
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	67
+	colm	21
+	synt	any
+	field	Tsyntax
+	var	1
+	line	67
+	colm	29
+	synt	any
+	subsc
+	line	67
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	goto	L3
+lab L2
+	mark	L5
+	pnull
+	str	0
+	var	1
+	line	69
+	colm	69
+	synt	any
+	cat
+	line	69
+	colm	10
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+lab L3
+	line	66
+	colm	7
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	70
+	colm	1
+	synt	any
+	pfail
+	end
+proc cmdHelper_getDescription
+	local	0,001000,self
+	local	1,001000,cmd
+	local	2,000000,member
+	con	0,010000,51,156,157,040,146,165,162,164,150,145,162,040,144,145,163,143,162,151,160,164,151,157,156,040,151,163,040,141,163,163,157,143,151,141,164,145,144,040,167,151,164,150,040,143,157,155,155,141,156,144,072,040
+	declend
+	line	72
+	colm	11
+	synt	any
+	mark	L1
+	line	73
+	colm	7
+	synt	ifelse
+	mark	L2
+	var	2
+	pnull
+	var	0
+	line	73
+	colm	21
+	synt	any
+	field	Tdescription
+	var	1
+	line	73
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	74
+	colm	21
+	synt	any
+	field	Tdescription
+	var	1
+	line	74
+	colm	34
+	synt	any
+	subsc
+	line	74
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	goto	L3
+lab L2
+	mark	L5
+	pnull
+	str	0
+	var	1
+	line	76
+	colm	71
+	synt	any
+	cat
+	line	76
+	colm	10
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+lab L3
+	line	73
+	colm	7
+	synt	endifelse
+	unmark
+lab L1
+	pnull
+	line	77
+	colm	1
+	synt	any
+	pfail
+	end
+proc cmdHelper_initially
+	local	0,001000,self
+	local	1,001000,logHandler
+	local	2,000000,table
+	con	0,010000,3,144,141,164
+	con	1,010000,1,134
+	con	2,010000,13,143,157,155,155,141,156,144,163,056,151,156,146,157
+	declend
+	line	79
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	8
+	synt	any
+	field	helpfile
+	pnull
+	pnull
+	str	0
+	str	1
+	line	80
+	colm	24
+	synt	any
+	cat
+	str	2
+	line	80
+	colm	30
+	synt	any
+	cat
+	line	80
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	8
+	synt	any
+	field	logger
+	var	1
+	line	81
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	8
+	synt	any
+	field	Tsyntax
+	pnull
+	pnull
+	var	0
+	line	82
+	colm	22
+	synt	any
+	field	Tdescription
+	var	2
+	line	82
+	colm	42
+	synt	any
+	invoke	0
+	line	82
+	colm	35
+	synt	any
+	asgn
+	line	82
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	0
+	line	83
+	colm	8
+	synt	any
+	field	loadHelpFile
+	pnull
+	var	0
+	line	83
+	colm	26
+	synt	any
+	field	helpfile
+	line	83
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	mark	L6
+	pnull
+	line	84
+	colm	7
+	synt	any
+	pret
+lab L6
+	synt	any
+	pfail
+	unmark
+lab L5
+	pnull
+	line	85
+	colm	1
+	synt	any
+	pfail
+	end
+proc cmdHelper
+	local	0,001000,logHandler
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,cmdHelper__oprec
+	local	4,000000,cmdHelperinitialize
+	local	5,000000,cmdHelper__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	48
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	28
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	27
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	var	0
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	39
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	41
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc cmdHelperinitialize
+	local	0,000000,cmdHelper__oprec
+	local	1,000000,cmdHelper__methods
+	local	2,000000,cmdHelper_loadHelpFile
+	local	3,000000,cmdHelper_getSyntax
+	local	4,000000,cmdHelper_getDescription
+	local	5,000000,cmdHelper_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	line	17
+	colm	49
+	synt	any
+	invoke	4
+	line	17
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

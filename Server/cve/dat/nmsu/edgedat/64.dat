@@ -1,0 +1,11 @@
+Opening {
+	id 64
+	x 18.8
+	y 0
+	z 23.3
+	w 5.2
+	height 2.8
+	collide_in 0.8
+	plane 3
+	rooms [cooridoor_se, courtyard_entry_south]
+}

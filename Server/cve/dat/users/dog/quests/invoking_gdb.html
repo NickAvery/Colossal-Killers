@@ -1,0 +1,53 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> Invoking GDB
+<dt> Summary
+<dd> Learn the basics of GDB on Linux.
+<dt> Requires
+<dd> 
+<a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/compiling_for_debugging.html">
+Compiling For Debugging</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about Invoking GDB.
+<li> Pass a quiz.
+</ol>
+<dt> Rewards
+<dd> GDB: 3; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+Invoke GDB by running the program gdb; such as gdb your program. Once 
+started, GDB reads commands from the terminal until you tell it to exit. 
+GDB console provides an interface between you anthe GDB session. 
+You can repeat any GDB command by pressing just ENTER. You can also use 
+the UP/DOWN keys to get GDB to find you a command from the list of the 
+current session command history.
+<p>
+GDB commands can be formed in a single line of input. A command usually 
+starts with a command name, then followed by zero or more arguments. 
+Arguments are based on the command itself, each command has different set 
+of possible arguments. A blank line as input to GDB means to repeat the 
+previous command.
+<p>
+When GDB starts, your program is not actually running. It won't run until 
+you tell GDB how to run it. Whenever the prompt "(gdb)"; appears, you can 
+use the command "run"; to start your program execution.
+     
+<dt> Quiz (3/4)
+<dd>
+<dl>
+<dt> What kind of interface does GDB provide?
+<dd> console
+<dt> What is the GDB prompt?
+<dd> (gdb)
+<dt> Is there a command to run your program? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> How can you run your program under GDB?
+<dd> using the run command
+</dl>
+</dl>
