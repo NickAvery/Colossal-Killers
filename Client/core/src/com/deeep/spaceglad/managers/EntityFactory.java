@@ -329,12 +329,12 @@ public class EntityFactory {
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));
 	    //Nick A for HW#6
--		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
--		{
--			if(entity.getComponent(AnimationComponent.class).getController().current == null)
--				entity.getComponent(AnimationComponent.class).animate("Armature|walk", -1, 3);
--		}
--		//end
+		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
+		{
+			if(entity.getComponent(AnimationComponent.class).getController().current == null)
+				entity.getComponent(AnimationComponent.class).animate("Armature|walk", -1, 3);
+		}
+		//end
         return entity;
     }
 
