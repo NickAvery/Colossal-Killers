@@ -273,6 +273,12 @@ public class EntityFactory {
         entity.add(new PlayerComponent());
         return entity;
     }
+
+    public static Entity createAvatar(BulletSystem bulletSystem, float x, float y, float z) {
+        Entity entity = createCharacter(bulletSystem, x, y, z, 0);
+        entity.add(new AvatarComponent());
+        return entity;
+    }
 	
 	// Handles creating health packs
 	public static Entity createHealthPack(BulletSystem bulletSystem, float x, float y, float z) {
