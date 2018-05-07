@@ -27,7 +27,6 @@ public class EnemyComponent extends Component {
 
      public EnemyComponent(STATE state, int type){
         this.state = state;
-        System.out.println(type-1);
 		switch(type) {
 			case 1: //ankylo
 				health = 100;

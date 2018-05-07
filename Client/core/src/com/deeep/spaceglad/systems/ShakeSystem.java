@@ -25,7 +25,6 @@ public class ShakeSystem extends EntitySystem implements EntityListener {
     }
 
     public void startShake(Vector3 origin, float intensity){
-        System.out.println("startShake");
     	this.origin = origin.cpy();
         this.intensity = intensity;
     	curTime = 0;

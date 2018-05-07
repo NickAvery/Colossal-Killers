@@ -99,7 +99,6 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 			}else{
                 if(!e.getComponent(EnemyComponent.class).footStep.isPlaying()){
                     if(e.getComponent(EnemyComponent.class).dinoType != EnemyComponent.DINOTYPE.RAPTOR){
-                        System.out.println("Sound not playing");
                         gameWorld.shakeSystem.startShake(camera.position, 10/dist);
                     }
                     e.getComponent(EnemyComponent.class).footStep.play();
