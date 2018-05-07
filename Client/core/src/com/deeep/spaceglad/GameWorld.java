@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.bullet.Bullet;
 import com.badlogic.gdx.physics.bullet.DebugDrawer;
 import com.badlogic.gdx.physics.bullet.linearmath.btIDebugDraw;
 import com.deeep.spaceglad.UI.GameUI;
+import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
 import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.components.PlayerComponent;
@@ -151,8 +152,18 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-        createPlayer(0, 3, 0);
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
+        engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
+        createPlayer(0, 1, 0);
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem, -15, 1, -35, 11));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem, -10, 1, -35, 12));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  -5, 1, -35, 13));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,   0, 1, -35, 14));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,   5, 1, -35, 15));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  10, 1, -35, 16));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  15, 1, -35, 17));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  20, 1, -35, 18));
+        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  25, 1, -35, 19));
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -165,137 +176,46 @@ public class GameWorld {
         engine.addEntity(character);
 		engine.addEntity(gun = EntityFactory.loadGun(2.5f, -1.9f, -4));
 		playerSystem.gun = gun;
+        playerSystem.player = character;
 		renderSystem.gun = gun;
+        renderSystem.player = character;
     }
 
     private void createGround() {
-		boolean frontDoor = false;
-		boolean backDoor = false;
-		boolean leftDoor = false;
-		boolean rightDoor = false;
-		//Array<JsonValue> list = json.fromJson(Array.class, Gdx.files.internal("data/rooms.json"));
-		Model tempModel;
-		Texture tempTexture;
-		Material tempMaterial;
-		Texture tempDoorTexture;
-		Material tempDoorMaterial;
-		Rooms = json.fromJson(Array.class, Room.class, Gdx.files.internal("data/rooms.json"));
-		//Doors = json.fromJson(Array.class, Door.class, Gdx.files.internal("data/doors.json"));
-		for(Room r : Rooms){
-			//floor
-			frontDoor = false;
-			backDoor = false;
-			leftDoor = false;
-			rightDoor = false;
-			
-			tempTexture = new Texture(Gdx.files.internal(r.floor.texture));
-			tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-			tempModel = modelBuilder.createBox(r.w, 1, r.l, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-			engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y, r.z, 0f));
-			//ceiling
-			tempTexture = new Texture(Gdx.files.internal(r.ceiling.texture));
-			tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-			tempModel = modelBuilder.createBox(r.w, 1, r.l, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-			engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y+r.h, r.z, 0f));
-			
-			//walls (front and back)
-			tempTexture = new Texture(Gdx.files.internal(r.texture));
-			tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-			
-			for(Door d: r.Doors)
-			{
-				tempDoorTexture = new Texture(Gdx.files.internal(d.texture));
-				tempDoorMaterial =  new Material(TextureAttribute.createDiffuse(tempDoorTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-				tempModel = modelBuilder.createBox(d.w, d.h, 0.5f, tempDoorMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-				
-				switch(d.side) {
-					case 1:
-						frontDoor = true;
-						engine.addEntity(EntityFactory.createDoorEntity(tempModel, d.x, d.y+d.h/2, d.z, 0f, d));
-						tempModel = modelBuilder.createBox(r.w/2-d.w/2, r.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+(((r.w-d.w)/4)+d.w/2), r.y+r.h/2, r.z+r.l/2, 0f));
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-(((r.w-d.w)/4)+d.w/2), r.y+r.h/2, r.z+r.l/2, 0f));
-						tempModel = modelBuilder.createBox(d.w, r.h-d.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y+(r.h/2+d.h/2), r.z+r.l/2, 0f));
-			
-					break;
-					case 2:
-						backDoor = true;
-						engine.addEntity(EntityFactory.createDoorEntity(tempModel, d.x, d.y+d.h/2, d.z, 0f, d));
-						tempModel = modelBuilder.createBox(r.w/2-d.w/2, r.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+(((r.w-d.w)/4)+d.w/2), r.y+r.h/2, r.z-r.l/2, 180f));
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-(((r.w-d.w)/4)+d.w/2), r.y+r.h/2, r.z-r.l/2, 180f));
-						tempModel = modelBuilder.createBox(d.w, r.h-d.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y+(r.h/2+d.h/2), r.z-r.l/2, 180f));
-					break;
-					case 3:
-						leftDoor = true;
-						engine.addEntity(EntityFactory.createDoorEntity(tempModel, d.x, d.y+d.h/2, d.z, 90f, d));
-						tempModel = modelBuilder.createBox(1, r.h, r.l/2-d.w/2, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-r.w/2, r.y+r.h/2, r.z+(((r.l-d.w)/4)+d.w/2), 0f));
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-r.w/2, r.y+r.h/2, r.z-(((r.l-d.w)/4)+d.w/2), 0f));
-						tempModel = modelBuilder.createBox(1, r.h-d.h, d.w, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-r.w/2, r.y+(r.h/2+d.h/2), r.z, 0f));
-					break;
-					case 4:
-						rightDoor = true;
-						engine.addEntity(EntityFactory.createDoorEntity(tempModel, d.x, d.y+d.h/2, d.z, 90f, d));
-						tempModel = modelBuilder.createBox(1, r.h, r.l/2-d.w/2, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+r.w/2, r.y+r.h/2, r.z+(((r.l-d.w)/4)+d.w/2), 0f));
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+r.w/2, r.y+r.h/2, r.z-(((r.l-d.w)/4)+d.w/2), 0f));
-						tempModel = modelBuilder.createBox(1, r.h-d.h, d.w, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-						engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+r.w/2, r.y+(r.h/2+d.h/2), r.z, 0f));
-					break;
-				}
-			}
-			if(!frontDoor)
-			{
-				//front
-				tempModel = modelBuilder.createBox(r.w, r.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-				engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y+r.h/2, r.z+r.l/2, 0f));
-			}
-			if(!backDoor)
-			{
-				//back
-				tempModel = modelBuilder.createBox(r.w, r.h, 1, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-				engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x, r.y+r.h/2, r.z-r.l/2, 180f));
-			}
-			if(!leftDoor)
-			{
-				//left
-				tempModel = modelBuilder.createBox(1, r.h, r.l, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-				engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x-r.w/2, r.y+r.h/2, r.z, 0f));
-			}
-			if(!rightDoor)
-			{
-				//right
-				tempModel = modelBuilder.createBox(1, r.h, r.l, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-				engine.addEntity(EntityFactory.createStaticEntity(tempModel, r.x+r.w/2, r.y+r.h/2, r.z, 0f));
-			}
-		}
-		
-		//for(Door d: Doors)
-		//{
-			//tempTexture = new Texture(Gdx.files.internal(d.texture));
-			//tempMaterial =  new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-			//tempModel = modelBuilder.createBox(d.w, d.h, 0.5f, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-			//engine.addEntity(EntityFactory.createDoorEntity(tempModel, d.x, d.y+d.h/2, d.z, 0f, d));
-		//}
-        //engine.addEntity(EntityFactory.createStaticEntity(groundModel, 0f, 0f, 0f, 0f));
-		//engine.addEntity(EntityFactory.createStaticEntity(ceilingModel, 0f, 25f, 0f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, -20f, 180f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallHorizontal, 0f, 10f, 20f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, 20f, 10f, 0f, 0f));
-        //engine.addEntity(EntityFactory.createStaticEntity(wallVertical, -20f, 10f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.tvModel, 4f, 0.25f, 0f, 0f));
-		engine.addEntity(EntityFactory.createStaticEntity(Assets.chairModel, -4f, 0.25f, 0f, 0f));
-		//engine.addEntity(EntityFactory.createStaticEntity(Assets.playerModel, -4f, 0.25f, 0f, 0f));
+        // Floo
+        Texture tempTexture = new Texture(Gdx.files.internal("data/snow_ground.png"));
+        Material tempMaterial = new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
+        Model tempModel = modelBuilder.createBox(1800, 2, 1800, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+        engine.addEntity(EntityFactory.createStaticEntity(tempModel, 0, 0, 0, 0f));
+
+        // Trees
+        engine.addEntity(EntityFactory.createVisualEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
+        for (int i = 0; i < 50; i++) {
+            float x = 5 * i - 20;
+            float z = i % 4;
+            float y = -i % 8;
+            engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
+        }
+
+        for (int i = 0; i < 50; i++ ) {
+            float x = 5 * i - 20;
+            float z = i & 4 - 45;
+            float y = -i % 8;
+            engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
+        }
+
+        for (int i = 0; i < 10; i++ ) {
+            float z = -i * 5;
+            float y = -i % 8;
+            engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, -20, y, z, 0f));
+        }
     }
 
     private void addSystems(GameUI gameUI) {
         engine = new Engine();
 		
-        //engine.addSystem(new RenderSystem(modelBatch, environment));1
+        //engine.addSystem(new RenderSystem(modelBatch, environment));
+        EntityFactory.renderSystem = renderSystem;
 		
 		engine.addSystem(renderSystem = new RenderSystem());
         engine.addSystem(bulletSystem = new BulletSystem());
@@ -304,7 +224,9 @@ public class GameWorld {
 		//engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
 		
         engine.addSystem(new EnemySystem(this));
+        engine.addSystem(new TeammateSystem(this));
         engine.addSystem(new StatusSystem(this));
+        engine.addSystem(new HealthPackSystem(this));
         engine.addSystem(avatarSystem = new AvatarSystem(this));
 		
 		if (debug)
@@ -321,14 +243,19 @@ public class GameWorld {
     private void checkPause() {
         if (Settings.Paused) {
             engine.getSystem(PlayerSystem.class).setProcessing(false);
-            //engine.getSystem(EnemySystem.class).setProcessing(false);
-            //engine.getSystem(StatusSystem.class).setProcessing(false);
-            //engine.getSystem(BulletSystem.class).setProcessing(false);
+            engine.getSystem(EnemySystem.class).setProcessing(false);
+            engine.getSystem(StatusSystem.class).setProcessing(false);
+            engine.getSystem(BulletSystem.class).setProcessing(false);
+            engine.getSystem(HealthPackSystem.class).setProcessing(false);
+            engine.getSystem(TeammateSystem.class).setProcessing(false);
+            engine.getSystem(AvatarSystem.class).setProcessing(true);
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
+            engine.getSystem(HealthPackSystem.class).setProcessing(true);
+            engine.getSystem(TeammateSystem.class).setProcessing(true);
             engine.getSystem(AvatarSystem.class).setProcessing(true);
         }
     }

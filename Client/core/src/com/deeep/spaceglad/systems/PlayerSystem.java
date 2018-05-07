@@ -23,7 +23,7 @@ import com.badlogic.gdx.audio.Sound;
  * Created by Elmar on 8-8-2015.
  */
 public class PlayerSystem extends EntitySystem implements EntityListener {
-	private Entity player;
+	public Entity player;
 	private PlayerComponent playerComponent;
 
 	public Entity gun;
