@@ -15,20 +15,31 @@ public class EnemyComponent extends Component {
         HUNTING
     }
 
+    public enum DINOTYPE{
+    	RAPTOR,
+    	ANKLO
+    }
+
     public Music footStep;
     public float health;
     public STATE state = STATE.IDLE;
+    public DINOTYPE dinoType;
 
      public EnemyComponent(STATE state, int type){
         this.state = state;
 		switch(type) {
 			case 1: //ankylo
 				health = 100;
-				footStep = Gdx.audio.newMusic(Gdx.files.internal("data/dinoFootstep.mp3"));
+				footStep = Gdx.audio.newMusic(Gdx.files.internal("data/shortDinoStep.mp3"));
+                footStep.setLooping(false);
+                dinoType = DINOTYPE.ANKLO;
+
 			break;
 			case 2: //raptor
 				footStep = Gdx.audio.newMusic(Gdx.files.internal("data/raptor.mp3"));
+                footStep.setLooping(true);
 				health = 50;
+                dinoType = DINOTYPE.RAPTOR;
 			break;
 			default:
 				health = 10;

@@ -93,6 +93,7 @@ public class GameWorld {
     private Entity character, gun;
     public BulletSystem bulletSystem;
 	public PlayerSystem playerSystem;
+	public ShakeSystem shakeSystem;
 	private RenderSystem renderSystem;
 	public AvatarSystem avatarSystem;
     public ModelBuilder modelBuilder = new ModelBuilder();
@@ -214,16 +215,16 @@ public class GameWorld {
     private void addSystems(GameUI gameUI) {
         engine = new Engine();
 		
-        //engine.addSystem(new RenderSystem(modelBatch, environment));
-        EntityFactory.renderSystem = renderSystem;
+		EntityFactory.renderSystem = renderSystem;
 		
 		engine.addSystem(renderSystem = new RenderSystem());
         engine.addSystem(bulletSystem = new BulletSystem());
+        engine.addSystem(shakeSystem = new ShakeSystem(this, renderSystem.perspectiveCamera));
 		engine.addSystem(playerSystem = new PlayerSystem(this, gameUI, renderSystem.perspectiveCamera));
 		
 		//engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
 		
-        engine.addSystem(new EnemySystem(this));
+        engine.addSystem(new EnemySystem(this, renderSystem.perspectiveCamera));
         engine.addSystem(new TeammateSystem(this));
         engine.addSystem(new StatusSystem(this));
         engine.addSystem(new HealthPackSystem(this));
