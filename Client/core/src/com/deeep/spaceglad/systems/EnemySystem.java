@@ -11,6 +11,7 @@ import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.managers.EntityFactory;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Camera;
 import java.lang.Math;
 
 import java.util.Random;
@@ -25,11 +26,13 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     private Quaternion quat = new Quaternion();
     private Engine engine;
     private GameWorld gameWorld;
+    private Camera camera;
     
     ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
-    public EnemySystem(GameWorld gameWorld) {
+    public EnemySystem(GameWorld gameWorld, Camera camera) {
         this.gameWorld = gameWorld;
+        this.camera = camera;
     }
 
     @Override
@@ -95,10 +98,11 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 					e.getComponent(StatusComponent.class).alive = false;
 			}else{
                 if(!e.getComponent(EnemyComponent.class).footStep.isPlaying()){
-                    e.getComponent(EnemyComponent.class).footStep.setLooping(true);
+                    if(e.getComponent(EnemyComponent.class).dinoType != EnemyComponent.DINOTYPE.RAPTOR){
+                        gameWorld.shakeSystem.startShake(camera.position, 10/dist);
+                    }
                     e.getComponent(EnemyComponent.class).footStep.play();
                 }
-    
                 e.getComponent(EnemyComponent.class).footStep.setVolume(10/dist);
             }
         }

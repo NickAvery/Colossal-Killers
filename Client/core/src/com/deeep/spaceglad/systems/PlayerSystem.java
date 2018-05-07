@@ -18,6 +18,8 @@ import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
+import com.badlogic.gdx.graphics.g3d.particles.emitters.RegularEmitter;
 
 /**
  * Created by Elmar on 8-8-2015.
@@ -125,6 +127,13 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		if (rayTestCB.hasHit()) {
 			final btCollisionObject obj = rayTestCB.getCollisionObject();
 			if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
+				ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
+                ((RegularEmitter)effect.getControllers().first().emitter).setEmissionMode(RegularEmitter.EmissionMode.EnabledUntilCycleEnd);
+                effect.setTransform(((Entity) obj.userData).getComponent(ModelComponent.class).instance.transform);
+                effect.scale(3.25f, 1, 1.5f);
+                effect.init();
+                effect.start();
+                RenderSystem.particleSystem.add(effect);
 				((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 				if (gameWorld.game.client != null) {
 					gameWorld.game.client
