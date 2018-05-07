@@ -1,0 +1,313 @@
+#
+# vertex.icn - an NPC to teach graphics.
+#
+
+
+$define THREADS 1
+
+
+$ifdef THREADS
+$include "threadh.icn"
+#import threads
+link "~/unicon/uni/lib/thread"
+$endif
+
+#$include "keysyms.icn"
+
+$define _userid "vertex"
+$define _password "welcome"
+$define _firstname "Vertex"
+$define _lastname "Model"
+$define _emailid "to.jafar@gmail.com"
+$define _affiliation "Graphics"
+$define _vertexhomepage "http://www2.cs.uidaho.edu/~jafar/npc/vertex/"
+$define _taushahomepage "http://www2.cs.uidaho.edu/~jeffery/npc/tausha/"
+$define _tuxhomepage "http://www2.cs.uidaho.edu/~jeffery/npc/tux/"
+$define _sidhomepage "http://www2.cs.uidaho.edu/~hani/npc/Sid/"
+$define _doghomepage "http://www2.cs.uidaho.edu/~zsharif/npc/dog.html"
+
+
+
+$define DEBUG 1
+
+import threads
+
+
+
+
+
+class CustomNPC : ExternalNPC( isMoving, first_teleport, npcthread,
+  # statics
+   moves_range, moves_step, moves_dist,
+
+    latency, latency_timestamp,  totlat, totc,
+    tt, tms, tsec, lfname, lfin, tshut, skip1, TOPP, CVED, dir
+    )
+
+method clean_and_exit()
+   writen("\\logout")
+   flush_commands()
+   write("Done : good bye! serial=", serial())
+   exit(10101)
+end
+
+method do_latency()
+  local t
+  t := microseconds()
+  if userid ~== "vertex" then{
+    if t<tshut then fail
+    clean_and_exit()
+    }
+  if /lfname then{
+   lfname := 1
+   #write("writing to ", lfname)
+   #lfin := open(lfname, "w") | stop("can't create file", lfname )
+   tt := t
+   tshut := t + 50 * 1000 * 1000
+   totlat := 0
+   totc := 0
+
+   }
+
+    if t>tshut then{
+       write("average=", totlat/totc)
+       #write(lfin,"average=", totlat/totc)
+       #close(lfin)
+       clean_and_exit()
+       }
+
+    #s := image(s)
+      if t-tt> tsec * 15 then{
+       latency_timestamp := &null
+       write("no latency answer")
+       #totlat+:=(t-tt)/1000
+       }
+      if /latency_timestamp & t-tt>tsec*3 then{
+	 tt := latency_timestamp:=t
+	 writen("\\latency " || latency_timestamp )
+	 }
+
+end
+
+method  do_command(s)
+   local cmd , commandL, x, y, z, angle, avat, name
+
+    s ? {
+       if ="\\" then
+	  commandL := cmd_to_list(tab(0))
+       else fail
+    }
+
+    cmd := pop(commandL)
+
+    #if userid=="vertex" & cmd~=="move" then write("-------------------received:", s)
+
+    case cmd of{
+       "avatar" :{   # new avatar in the cve
+          name := pop(commandL)
+          if name===userid then{  # if this is my npc then update its information
+             x := real(pop(commandL))  + (?5) - 3
+             y := real(pop(commandL))
+             z := real(pop(commandL))  + (?5) - 3
+             angle := real(pop(commandL))
+	     get_home()
+	     delay(100)
+             first_teleport := 1
+	     prepare_to_go_to_room(,"don't fail")  # triggers teleport home
+             rotatey(&pi/2.0)
+	     if moves_step<0.0 then
+                angle := -&pi/2
+             else 
+                angle := &pi/2
+             }
+          else{
+             add_avatar(name, real(pop(commandL)),
+                                  real(pop(commandL)),
+                                  real(pop(commandL)),
+                                  real(pop(commandL)),
+                                  pop(commandL) )
+	     }
+	     #prepare_to_go_home()
+          }
+       "move" :{
+          name := pop(commandL)
+          if pop(commandL) ==="body" then
+          if name~==userid then{
+             x := real(pop(commandL))
+             y := real(pop(commandL))
+             z := real(pop(commandL))
+             angle := real(pop(commandL))
+             #d := distance_to(x, y, z)
+             avat := NPCAvatar(name, x, y, z, angle)
+             check_nearby(avat)
+             }
+          }
+       "tell" :{
+           conversation(cmd, s[*cmd+2:0])
+           }
+       "npcmsg" :{
+           npc_command(s[*cmd+2:0])
+           }
+       "query" : { 
+	  s ?if tab(find("@Error") + 6) then{
+	    say(tab(0))
+	    if \first_teleport then{
+	      first_teleport := &null
+	      prepare_to_go_to_room("@Random") 
+	      }
+	    fail
+	    }
+	 handle_query(commandL)
+	 }
+      "latency" : {
+         if \latency_timestamp then{
+            if /skip1 then{
+               latency_timestamp:=&null
+               skip1:=1
+               fail
+               }
+            latency := microseconds() - latency_timestamp
+            #write(lfin, latency/1000)
+            latency_timestamp:=&null
+            totlat+:=latency/1000
+            totc+:=1
+            write( "i=", totc, "   latency=", latency/1000, "     average=", totlat/totc)
+            
+	    }
+       }
+}
+
+end
+
+method handle_query(cmdL)
+   if pop(cmdL)=="Room" then{
+	info_card.current_place := pop(cmdL)
+	#DEBUG("room =", info_card.current_place)
+        # if no error then it is the room name, usually it is my home unless 
+	# someone is trying to move me around
+      *cmdL=6 | fail
+      teleport( real(cmdL[1])+real(cmdL[5])/2 + (?0) * 7.0 - 3.5 ,   # center x
+                    real(cmdL[2]),             # at the floor
+		    real(cmdL[3])+real(cmdL[4])/2) (?0) * 4.0 - 2.0    # center z
+      }
+
+end
+
+method idlefunc(force_move)
+   if \isMoving | force_move then
+      handle_moves()
+   #DEBUG(_userid ||" is snoozing")
+   delay(250)
+end
+
+method handle_moves()
+   if moves_dist > moves_range | moves_dist < -moves_range then{
+      moves_step := -moves_step
+      x +:= moves_step*3
+      if moves_step<0.0 then
+        angle := -&pi/2
+      else 
+        angle := &pi/2
+         #rotatey(&pi)
+      }
+  
+   if not collide_with_avatar(x + moves_step, y, z) then{
+      moves_dist +:= moves_step
+      move_relative(moves_step, 0, 0)
+      }
+   else
+      move_relative(0, 0, moves_step/4.0)
+
+   #s := ((?3-2) * ?50)/100.0
+   #if s~=0 then
+   #   rotatey(s)
+      
+end
+
+method run()
+   &random := microseconds()
+   delay(?5000)
+
+$ifdef THREADS
+   Attrib(INBOX_LIMIT, 1024*1024)
+   Attrib(OUTBOX_LIMIT, 4)
+$endif
+
+   login()
+   mainloop()
+end
+
+initially(argv, concurrent, com)
+   local i, arg, port, val
+   i:=1
+   isMoving := 1
+   every i := 1 to *argv do{
+      arg := argv[i]
+      val := trim(argv[i+1],' ',0)
+      case arg of{
+         "-server" : srvport := val
+	 "-p" | "-port" : port := val
+         "-user" : userid := val
+         "-home" | "-homepage" : homepage := val
+         "-password" | "-pw" : password := val
+	 "-move" : isMoving := &null
+         } # case
+      } # while
+
+
+   /srvport :="zapp.cs.uidaho.edu:4500"
+   if not(find(":",srvport)) then{
+      /port := "4500"
+      srvport ||:= ":"||port
+      }
+       
+   /userid := _userid
+   /password := _password
+
+   if /homepage then
+      case map(userid) of {
+         "vertex" : homepage := _vertexhomepage
+         "tux"    : homepage := _tuxhomepage
+         "sid" 	  : homepage := _sidhomepage
+         "tausha" : homepage := _taushahomepage
+         "dog"    : homepage := _doghomepage
+         default : userid ? if ="npc" then  
+            homepage := _vertexhomepage
+         }
+
+
+
+   firstname := _firstname
+   lastname := _lastname
+
+   emailid := _emailid
+   affiliation := _affiliation
+   &random := microseconds()
+
+   self.ExternalNPC.initially()
+
+
+   moves_range := ?0 * 3.0 + 1.0
+   moves_dist := 0
+
+   moves_step := ?0 * 0.8 - 0.4
+   until not(-0.1<moves_step<0.1) do
+      moves_step := ?0 * 0.8 - 0.4
+
+
+   self.localcon := com
+   self.concurrent := concurrent 
+
+  latency := 1
+  tshut := microseconds() + 120 * 1000 * 1000
+  tms := 1000
+  tsec := 1000000
+
+$ifdef THREADS   
+   if \concurrent & &features=="concurrent threads" then
+      npcthread := thread run(concurrent)
+   else
+$endif
+
+      run()
+end

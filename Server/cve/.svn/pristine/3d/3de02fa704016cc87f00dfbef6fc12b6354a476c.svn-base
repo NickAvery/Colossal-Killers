@@ -1,0 +1,79 @@
+# fhn.icn -- frank harary normal coordinate mapper
+link printf
+
+$define PS "/"
+
+procedure main(av)
+    if match("-fpp=", av[1]) then
+	onePixelFt := numeric(pop(av)[6:0])
+    else
+	onePixelFt := 10.33 / 54
+	# 45' / 78 pixels = 0.26 feet per pixel
+        # the default on NMSU's sh1.gif
+#	onePixelFt := 45 / 78.0
+
+    if match("-origin=", av[1]) then {
+	origin := pop(av)[9:0]
+	origin ? {
+	    originx := integer(tab(many(&digits)))
+	    =","
+	    originy := integer(tab(many(&digits)))
+	}
+    }
+    else {
+	originx := 188
+	originy := 60
+    }
+
+
+   if not (fname := av[1]) then {
+
+   # if a directory path is given for program, cd to there
+   if i := upto('/\\', &progname) then {
+      every i <:= upto('/\\', &progname)
+      chdir(&progname[1:i])
+      }
+   cwd := chdir()
+   if (cwd[-3:0]=="bin") | (cwd[-10:0]==".bin.linux") then { chdir("..") }
+   else if cwd[-10:0] == ("src" || PS || "client") then {
+      chdir(".."); chdir("..")
+      }
+   else write("didn't see where I was to chdir to; staying put in ", cwd)
+
+   if f := open("dat/config.cve") then {
+       model := (read(f) ? (="model " & tab(0)))
+       close(f)
+   }
+}
+
+    &window:=open("fhn, v2.1","g", "fg=red",
+		  "label=" || (av[1] | ("dat/" || model || "/images/map.gif")),
+		  "image=" || (av[1]|("dat/" || model || "/images/map.gif"))) |
+	stop("can't open image=", (av[1]|("dat/" || model||"/images/map.gif")))
+
+    DrawSegment(44,19, 46, 21, 46, 19, 44, 21)
+
+    sx1 := 294
+    sy1 := 252
+
+    sx2 := 372
+    sy2 := 252
+
+#    WAttrib("label=Scale: one pixel = " || onePixelFt || " feet")
+#    delay(4000)
+    onePixelMt := onePixelFt / 3.281
+    WAttrib("label=Scale: one pixel = " || onePixelMt || " meters. Click any pixel for its FHN.")
+
+    while (e := Event()) ~=== "q" do {
+	if e === (&ldrag | &rdrag | &mdrag) then next
+	x := (&x - originx)
+	y := (&y - originy)
+	if x === lastx & y === lasty then next
+	# write("FHN(",&x,",",&y,") [base ",x,",",y,"]: ", x * onePixelFt, " , ", y * onePixelFt, " in feet")
+	s := sprintf("(%d,%d)=[%d,%d] is %.2r,%.2r in FHN meters",
+		     &x, &y, x, y, x * onePixelMt, y * onePixelMt)
+	WAttrib("label=" || s)
+	lastx := x
+	lasty := y
+    }
+end

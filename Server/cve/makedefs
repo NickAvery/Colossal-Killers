@@ -1,0 +1,15 @@
+# makefile definitions for CVE
+
+# EXE the executable extension (.exe for windows)
+# COPY command to copy stuff (cp on *nix)
+# DEL command to delete stuff (rm on *nix)
+
+CC = gcc
+CFLAGS = -Wall -g -O2
+EXE = 
+COPY = cp
+DEL = rm -rf
+
+# nothing to configure here yet
+UC=unicon
+UFLAGS=-c -u

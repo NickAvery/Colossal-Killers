@@ -1,0 +1,11 @@
+Door {
+	id 116
+	x 27
+	y 4.35
+	z 23
+	w 0.92
+	height 2.3
+	collide_in 0.8
+	plane 3
+	rooms [library, floor_2_corridor_southwest]
+}

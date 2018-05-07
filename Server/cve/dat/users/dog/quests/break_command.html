@@ -1,0 +1,56 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> GDB: Break Command
+<dt> Summary
+<dd> Learn the basics of GDB's breakpoints.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/command_syntax.html">
+Command Syntax</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about GDB's break command.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 10; Linux: 1
+<dt> Reading
+<dd> 
+<p>break
+<p>When called without any arguments, "break" sets a breakpoint at the next 
+instruction to be executed in the selected stack frame. In any selected frame 
+but the innermost, this makes your program stop as soon as control returns to 
+that frame. This is similar to the effect of a finish command in the frame 
+inside the selected frame--except that finish does not leave an active 
+breakpoint. If you use break without an argument in the innermost frame, GDB 
+stops the next time it reaches the current location; this may be useful inside 
+loops.
+<p>
+GDB normally ignores breakpoints when it resumes execution, until at least one 
+instruction has been executed. If it did not do this, you would be unable to 
+proceed past a breakpoint without first disabling the breakpoint. This rule 
+applies whether or not the breakpoint already existed when your program stopped.
+<br>
+
+<dt> Quiz (4/4)
+<dd>
+<dl>
+<dt>Does the break command work without arguments? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>Is its possible for GDB to ignore breakpoints? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt>When is it possible for GDB to ignore breakpoints? (Multiple Choice)
+<dd> when it resumes the execution until at least one instruction is executed (TRUE)
+<dd> always
+<dd> sometime
+<dd> never
+<dt>What is the effect of the break command without arguments? (Multiple Choice)
+<dd> sets a breakpoint at the next instruction to be executed (TRUE)
+<dd> sets a breakpoint at the next 10 instruction to be executed
+<dd> sets a breakpoint when your program is executed next time
+<dd> has no effect
+</dl>

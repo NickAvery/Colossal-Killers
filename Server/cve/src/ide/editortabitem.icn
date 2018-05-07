@@ -1,0 +1,67 @@
+################################################################
+#
+#   File:         editortabitem.icn
+#
+#   Subject:  Sub Class of Tab Item.
+#
+#   Author:   Nolan Clayton
+#
+#   Date:       May 25, 2004     
+#
+################################################################
+
+$include "guih.icn"
+import gui
+
+#
+# class Editor Tab Item: Used only to overide the display tab method.
+#
+class EditorTabItem : TabItem( )
+   
+   method display_tab()
+      local xpw, pslh, updown, ypos, cw
+      
+      ypos := (line_no - 1) * parent_tab_set.line_h + parent_tab_set.y
+      cw := Clone(parent_tab_set.cbwin)
+
+      xpw := label_x + label_w
+      pslh := parent_tab_set.line_h
+      
+      Fg(cw, "black")
+      DrawLine(cw, xpw - 1, ypos, xpw - 1, ypos + pslh - 1)
+      DrawLine(cw, xpw - 2, ypos + 1, xpw - 2, ypos + pslh - 2)
+      DrawLine(cw, label_x, ypos + pslh - 1, label_x, ypos, xpw - 1, ypos)
+      
+      Fg(cw, "white")
+      DrawLine(cw, label_x + 1, ypos + pslh - 2, label_x + 1, ypos + 1,
+	       xpw - 2, ypos  + 1)
+      Uncouple(cw)
+      
+      #
+      # These  4 rectangles give the tabs a nice look
+      #
+      self.parent_tab_set.set_attribs("fg=white")
+      FillRectangle(parent_tab_set.cbwin, label_x, ypos + 2 + (pslh - 2) / 2,
+		    label_w - 2, (pslh - 2) / 2)
+      parent_tab_set.set_attribs("fg=pale greyish white")
+      FillRectangle(parent_tab_set.cbwin, label_x, ypos + 2 + (pslh - 2) / 2,
+		    label_w - 2, (pslh - 2) / 4)
+      parent_tab_set.set_attribs("fg=light greyish white")
+      FillRectangle(parent_tab_set.cbwin, label_x, ypos + 2 ,
+		    label_w - 2, (pslh - 2) /2 )
+      parent_tab_set.set_attribs("fg=greyish white")
+      FillRectangle(parent_tab_set.cbwin, label_x, ypos + 2 ,
+		    label_w - 2, (pslh - 2) / 4)
+
+      parent_tab_set.set_attribs("fg=black")
+      left_string(parent_tab_set.cbwin, label_x + DEFAULT_TEXT_X_SURROUND,
+		  ypos + pslh / 2, label)
+      
+      if is_shaded() then
+         FilterRectangle(parent_tab_set.cbwin, label_x, ypos + 2,
+			 label_w - 2, pslh - 1)
+   end
+   
+initially
+   self$TabItem.initially()
+end

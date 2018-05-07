@@ -80,7 +80,7 @@ public class RenderSystem extends EntitySystem {
 
 				if(entities.get(i).getComponent(PlayerComponent.class) != null) //-paul
 				{
-					player.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
+					//player.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
 				}
 			}
 			//Nick A for HW#6

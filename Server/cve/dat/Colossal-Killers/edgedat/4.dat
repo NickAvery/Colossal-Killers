@@ -1,0 +1,11 @@
+Opening {
+	id 4
+	x 28.8
+	y 12.3
+	z 18.23
+	w 1.8
+	height 3.5
+	collide_in 0.8
+	plane 3
+	rooms [FLOOR2COR, corridor_230]
+}

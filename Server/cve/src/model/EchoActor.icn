@@ -1,0 +1,9 @@
+class EchoActor : Actor()
+    method told(uid, message)
+       write("Received message from " || image(uid)|| ": " ||image(message))
+       server.tell(uid, message)
+    end
+
+    initially(sceneGraph, server)
+       self$Actor.initially(sceneGraph, server)
+end

@@ -1,0 +1,18 @@
+Room {
+	name  JEBEntryHall
+	x 0
+	y 6.15
+	z 17.55
+	w 14.28
+	h 3.5
+	l 4.3
+	texture dat/uidaho/texsmall/jeb104wall.gif
+	floor Wall { texture dat/uidaho/texsmall/jeb104tile.gif }
+	ceiling Wall { texture dat/uidaho/texsmall/jeb104ceil.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

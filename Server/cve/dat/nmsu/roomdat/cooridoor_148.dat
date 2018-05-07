@@ -1,0 +1,18 @@
+Room {
+	name  cooridoor_148
+	x 3.3
+	y 0
+	z 23.3
+	w 2.0
+	h 3.05
+	l 2.5
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

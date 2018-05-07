@@ -1,0 +1,11 @@
+Opening {
+	id 386
+	x 39.27
+	y 8.2
+	z 27.54
+	w 3
+	height 3
+	collide_in 1.2
+	plane 3
+	rooms [FrontPorch, SeventhStreet]
+}

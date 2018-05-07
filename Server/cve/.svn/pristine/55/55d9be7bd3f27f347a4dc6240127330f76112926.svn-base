@@ -1,0 +1,92 @@
+# markov.pl:  markov chain algorithm for 2-word prefixes
+
+$define MAXGEN 100
+$define NONWORD "\n"
+
+class MarkovActor : Actor(state,statefilename) 
+
+   method told(uid, message)
+   local w1, w2, word, r, i, separators := ' \n\r\t.?;:', response := ""
+
+      w1 := w2 := NONWORD
+      message ? {
+	 while word := tab(upto(separators) | 0 ) & *word > 0 do {
+	    tab(many(separators))
+	    /state[w1] := table()
+	    /state[w1][w2] := []
+	    put(state[w1][w2], word)
+	    w1 := w2
+	    w2 := word
+	    }
+	 }
+
+      /state[w1] := table()
+      /state[w1][w2] := []
+      put(state[w1][w2],NONWORD)
+      w1 := w2 := NONWORD
+
+      every i := 0 to MAXGEN do {
+	 r := ?state[w1][w2]
+	 if r == NONWORD then break
+	 response ||:= r || " "
+	 w1 := w2
+	 w2 := r
+	 }
+      if *response > 0 then
+	 server.tell("markov","\\tell " || uid || " " || response)      
+   end
+
+
+   method startup()
+   local f, line, w1, w2, rest, word
+
+      write("Starting up")
+
+      if f := open(\statefilename, "r") then {
+	 while line := read(f) do {
+	    line ? {
+	       w1 := tab(upto(' '))
+	       tab(many(' '))
+	       w2 := tab(upto(' '))
+	       rest := &subject[&pos:0]
+	       }
+	    }
+	 /state[w1] := table()
+	 /state[w1][w2] := []
+	 every word := tab(rest, upto(' \n\r')) do {
+            write("Associating with ", image(w1), " and ", image(w2),
+		  " word ", image(word))
+	    put(state[w1][w2], word)
+	    }
+	 close(f)
+	 }
+      else {
+	 write("In markov, Unable to open ", image(statefilename))
+	 }
+   end
+
+   method shutdown()
+   local f,w1,w2,s
+
+      if \statefilename then {
+	 f := open(statefilename,"w") | { stop("Unable to write state"); }
+	 every w1 := key(state) do {
+            every w2 := key(state[w1]) do {
+               s := joinsep(state[w1][w2], " ")
+	       write(f, w1, " ", w2, " ", s)
+	       write("Just wrote to f: ", image(w1||" " || w2|| " " || s))
+	       }
+	    }
+	 close(f)
+	 }
+      else
+	 write("No state filename")
+   end
+
+initially(sceneGraph, server,filename)
+   self$Actor.initially(sceneGraph, server)
+   state := table()
+
+   write("Markov: Created with file " || image(filename))
+   statefilename := filename       
+end

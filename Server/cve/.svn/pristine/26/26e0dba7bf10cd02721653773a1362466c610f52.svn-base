@@ -1,0 +1,66 @@
+Room {
+	name  crl_ramps
+	x 71.2
+	y 4.35
+	z 26.2
+	w 13
+	h 4
+	l 2.7
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Ramp {
+			coords [71.2, 4.35, 28.9]
+			color pink
+			texture dat/nmsu/texsmall/blue_tile.gif
+			type 3
+			width 2.7
+			height 0.3
+			length 1
+			numsteps 5
+		}
+		Ramp {
+			coords [72.2, 4.65, 27.55]
+			color pink
+			texture dat/nmsu/texsmall/blue_tile.gif
+			type 2
+			width 4
+			height -0.3
+			length 1.35
+			numsteps 5
+		}
+		Ramp {
+			coords [72.2, 4.65, 28.9]
+			color pink
+			texture dat/nmsu/texsmall/blue_tile.gif
+			type 2
+			width 4
+			height 0.3
+			length 1.35
+			numsteps 5
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/textures/sign2.gif
+			coords [
+				84.15, 5.75, 26.3,
+				84.15, 6.05, 26.3,
+				84.15, 6.05, 26.7,
+				84.15, 5.75, 26.7
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/dec_wall.gif
+			coords [
+				72.2, 4.65, 27.55,
+				72.2, 4.35, 27.55,
+				76.2, 4.35, 27.55,
+				76.2, 4.65, 27.55
+			]
+		}
+	]
+	tools [
+	]
+}

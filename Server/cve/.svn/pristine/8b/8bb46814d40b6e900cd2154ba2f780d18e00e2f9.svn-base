@@ -1,0 +1,101 @@
+Room {
+	name  SH_167
+	x 29.2
+	y 0
+	z 0.2
+	w 6
+	h 3.05
+	l 3.7
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/texsmall/floor2.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+		Box {
+			Wall {
+				coords [
+					34.3, 0, 0.2,
+					34.3, 3.05, 0.2,
+					34.3, 3.05, 0.6,
+					34.3, 0, 0.6
+				]
+			}
+			Wall {
+				coords [
+					34.3, 0, 0.6,
+					34.0, 0, 0.6,
+					34.0, 3.05, 0.6,
+					34.3, 3.05, 0.6
+				]
+			}
+			Wall {
+				coords [
+					34.0, 0, 0.6,
+					34.0, 3.05, 0.6,
+					34.0, 3.05, 0.2,
+					34.0, 0, 0.2
+				]
+			}
+		}
+		Box {
+			Wall {
+				coords [
+					29.2, 0, 0.22,
+					29.2, 1.0, 0.22,
+					35.2, 1.0, 0.22,
+					35.2, 0, 0.22
+				]
+			}
+			Wall {
+				coords [
+					29.2, 1, 0.22,
+					29.2, 1.0, 0.2,
+					35.2, 1.0, 0.2,
+					35.2, 1, 0.22
+				]
+			}
+		}
+		Chair {
+			coords [31.2, 0, 1.4]
+			position 0
+			color red
+			type office
+			movable true
+		}
+		Table {
+			coords [31.4, 0, 2.4]
+			position 180
+			color very dark brown
+			type office
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/wall2.gif
+			coords [
+				29.2, 1.0, 0.22,
+				29.2, 3.2, 0.22,
+				35.2, 3.2, 0.22,
+				35.2, 1.0, 0.22
+			]
+		}
+		Wall {
+			texture dat/nmsu/texsmall/whiteboard.gif
+			coords [
+				29.3, 1.0, 3.7,
+				29.3, 2.5, 3.7,
+				29.3, 2.5, 0.4,
+				29.3, 1.0, 0.4
+			]
+		}
+		Windowblinds {
+			coords [29.2, 1.5, 0.6]
+			angle 90
+			crod blue
+			cblinds very dark purplish brown
+			height 3.05
+			width 6
+		}
+	]
+	tools [
+	]
+}

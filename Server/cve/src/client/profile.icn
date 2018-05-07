@@ -1,0 +1,1296 @@
+################################################################
+#   File:     profile.icn
+#   Subject:  Contains all the user profile methods and widgets setup.
+#
+#   Author:   Hani Bani-Salameh
+#   Date:     February 18, 2010
+################################################################
+
+#
+# User's profile widgets
+#
+
+import gui
+$include "guih.icn"
+$include "keysyms.icn"
+
+global posts_panel, wallpanel, mypanel, profile_border, progress_tab,
+   ava_tab, profile_subwin2d, ava_subwin2d, charts_tabset,
+   avaImage, progImage
+
+class redrawTabItem:TabItem()
+
+   method display()
+      local pane
+      self.TabItem.display()
+      if /prog_and_ava_isReady then fail
+
+      if label === "Availability" then {
+         if \AvWin then {
+            pane := CopyArea(AvWin, avaImage.cbwin,,,,,avaImage.x, avaImage.y)
+            Clip(pane, avaImage.x, avaImage.y, avaImage.w, avaImage.h)
+            }
+         }
+      else {
+         if \progWin then {
+            pane := CopyArea(progWin, progImage.cbwin,,,,,progImage.x, progImage.y)
+            Clip(pane, progImage.x, progImage.y, progImage.w, progImage.h)
+            }
+         }
+   end
+end
+
+class Profile(
+   calendar, image_1,
+   userID, userInfo, friendsLst, groupsLst, interestsLst,
+   projectsLst, line,
+   allusers_num, onlineusers_num, onlineuserslst, allsigsLst,
+   allinterestsLst, allprojectsLst, sigMembersLst,
+   sigName, groups_num, sigMembers, settings_menu_btn, acct_seetings,
+   separater_0, projsList, projMembersLst, projName, projMembers,
+   proj_info, interestsList, intrMembersLst, intrName, wall_lbl,
+   wall_etl, interestgroups_num, intrMembers, intresets_usersTbl,
+   status_lbl, privacy_settings_border, userWall, wallList, wline,
+
+   proj_usersTbl, infolst, sigsTable, sigsList, sig_usersTbl,
+   interests_usersTbl,
+   friendslst, groupslst, projectslst, interestslst, grplst,
+   fddlist, # friends drop-down list
+   gddlist, # groups drop-down list
+   pddlist, # project drop-down list
+   iddlist, # interests drop-down list
+   info_etl, friends_etl, groups_etl, projects_etl, interests_etl,
+   newsfeed_etl,   info_lbl, friends_lbl, groups_lbl, p_groups_lbl,
+   projects_lbl, interests_lbl, newsfeed_lbl, projects_tabset, proj_files,
+   exit_menu,
+   acct_settings_lbl,
+   profile_overlay, profile_main_overlay, profile_privacy_settings_overlay,
+   profile_account_settings_overlay,
+   #
+   # Account Settings Overlay Components
+   #
+   acct_settings_border, email_lbl, name_lbl, password_lbl, privacy_lbl,
+   separater_1, separater_2, separater_3, separater_4, separater_5,
+   separater_6, separater_7, separater_8, separater_9, separater_10,
+   username_lbl, email_txt, fullname_txt, password_txt, privacy_txt,
+   username_txt, email_change_btn, name_change_btn, password_change_btn,
+   privacy_change_btn, username_change_btn,
+   settings_menu, acct_settings, privacy_settings,
+   acct_settings_save_btn, privacy_settings_save_btn,
+   privacy_settings_lbl, privacy_settings_save_btn,
+   privacy_lst, projects_lst, groups_lst, newsfeed_lst, status_lst
+   )
+
+   method profile_tab(profile_info)
+      local u
+
+      infolst := []
+      friendslst := []
+      groupslst := []
+      grplst := []
+      projectslst := []
+      interestslst := []
+      allusers_num := 0
+      groups_num := 0
+      onlineusers_num := 0
+      interestgroups_num := 0
+      onlineuserslst := []
+      intresets_usersTbl := table()
+
+      profile_info ? {
+         userID := tab(find("$$"))
+         move(2)
+         userInfo := tab(find("$$"))
+         move(2)
+         friendsLst := tab(find("$$"))
+         move(2)
+         allsigsLst := tab(find("$$"))
+         move(2)
+         allinterestsLst := tab(find("$$"))
+         move(2)
+         allprojectsLst := tab(find("$$"))
+         move(2)
+         userWall := tab(0)
+         }
+
+      profile_tab_item := BufferTabItem()
+      profile_tab_item.set_label(userID || " Profile")
+
+      profile_overlay := OverlaySet()
+      profile_overlay.set_pos("4", "4")
+      profile_overlay.set_size("100%-8", "100%-8")
+
+      profile_main_overlay := OverlayItem()
+
+      profile_border := Border()
+      profile_border.set_pos("1", "1")
+      profile_border.set_size("100%-2", "100%-2")
+      profile_border.set_attribs("bg=pale blue", "font=serif, bold, 12")
+      profile_border.set_internal_alignment("l")
+      profile_main_overlay.add(profile_border)
+      info_lbl := Label()
+      info_lbl.set_pos("4", "4")
+      info_lbl.set_size("32%-2", "5%-2")
+      info_lbl.set_attribs("fg=black")
+      info_lbl.set_internal_alignment("l")
+      info_lbl.set_label("Information")
+      profile_border.add(info_lbl)
+
+      userInfo ? {
+         while not (pos(0)) do {
+            line := tab(find("&&"))
+            move(2)
+            put(infolst, line)
+            }
+         }
+      info_etl := TextList()
+      info_etl.set_pos("4", "5%+2")
+      info_etl.set_size("32%-2", "18%-2")
+      info_etl.set_attribs("font=times, bold, 12", "bg=white")
+      info_etl.set_contents(infolst)
+      profile_border.add(info_etl)
+
+      friendsLst ? {
+         while not (pos(0)) do {
+            line := tab(find(" "))
+            move(1)
+            put(friendslst, line)
+            }
+         }
+      friends_lbl := Label()
+      friends_lbl.set_pos("34%", "4")
+      friends_lbl.set_size("32%-2", "5%-2")
+      friends_lbl.set_attribs("fg=black")
+      friends_lbl.set_internal_alignment("l")
+      friends_lbl.set_label("Friends ("||*friendslst||" total, "||
+         onlineusers_num||" online)")
+      profile_border.add(friends_lbl)
+
+      friends_etl := TextList()
+      friends_etl.set_pos("34%", "5%+2")
+      friends_etl.set_size("32%-2", "18%-2")
+      friends_etl.set_attribs("bg=white")
+      friends_etl.set_contents(friendslst)
+      profile_border.add(friends_etl)
+
+      sigsList := set()
+      allsigsLst ? {
+         while not (pos(0)) do {
+            sigMembersLst := []
+            sigName := trim(tab(find("(")), " ", 0)
+            groups_num +:= 1
+            move(1)
+            sigMembers := tab(find(")"))
+            move(1)
+            sigMembers ? {
+               while not (pos(0)) do {
+                  userID := tab(find(","))
+                  put(sigMembersLst, userID)
+                  move(1)
+                  }
+               }
+            if \sigName then {
+               insert(sigsList,sigName)
+               sig_usersTbl[sigName] := sigMembersLst
+               }
+            }
+         }
+
+      p_groups_lbl := Label()
+      p_groups_lbl.set_pos("68%-2", "4")
+      p_groups_lbl.set_size("32%-4", "5%-2")
+      p_groups_lbl.set_attribs("fg=black")
+      p_groups_lbl.set_internal_alignment("l")
+      if groups_num > 0 then
+         p_groups_lbl.set_label("Groups("||groups_num-1||")")
+      else p_groups_lbl.set_label("Groups("||groups_num||")")
+      profile_border.add(p_groups_lbl)
+
+      u := []
+      every put(u, !sigsList)
+
+      gddlist := List()
+      gddlist.set_pos("68%-2", "5%+2")
+      gddlist.set_size("32%-4", "5%")
+      gddlist.set_attribs("bg=white")
+      gddlist.connect(self, "on_groups_drop_down_list",SELECTION_CHANGED_EVENT)
+      gddlist.set_selection_list(u)
+      profile_border.add(gddlist)
+
+      groups_etl := TextList()
+      groups_etl.set_pos("68%-2", "10%")
+      groups_etl.set_size("32%-4", "13%")
+      groups_etl.set_attribs("bg=white")
+      groups_etl.set_contents(u)
+      profile_border.add(groups_etl)
+
+      if openedprofile === world.nsh_dialog.user_me then {
+         settings_menu_btn := MenuButton()
+         settings_menu_btn.set_pos("82%", "4")
+         settings_menu_btn.set_size("18%-4", "5%-2")
+         settings_menu := Menu()
+         settings_menu.set_label("Settings")
+         acct_seetings := TextMenuItem()
+         acct_seetings.set_label("Account Settings")
+         acct_seetings.connect(self, "on_acct_settings", ACTION_EVENT)
+         settings_menu.add(acct_seetings)
+         privacy_settings := TextMenuItem()
+         privacy_settings.set_label("Privacy Settings")
+         privacy_settings.connect(self, "on_privacy_settings", ACTION_EVENT)
+         settings_menu.add(privacy_settings)
+         settings_menu_btn.set_menu(settings_menu)
+         profile_border.add(settings_menu_btn)
+         }
+      separater_0 := TextButton()
+      separater_0.set_pos("2", "23%")
+      separater_0.set_size("100%-4", "8")
+      separater_0.set_attribs("bg=red")
+      separater_0.clear_toggles()
+      separater_0.set_label("")
+      separater_0.set_internal_alignment("c")
+      profile_border.add(separater_0)
+
+      projsList := set()
+      allprojectsLst ? {
+         while not (pos(0)) do {
+            projMembersLst := []
+            projName := trim(tab(find("(")), " ", 0)
+            move(1)
+            projMembers := tab(find(")"))
+            move(1)
+            projMembers ? {
+               while not (pos(0)) do {
+                  userID := tab(find(","))
+                  put(projMembersLst, userID)
+                  move(1)
+                  }
+               }
+            if projName ~== "appropriate_partner.log" then {
+               insert(projsList,projName)
+               proj_usersTbl[projName] := projMembersLst
+               }
+            }
+         }
+
+      projects_lbl := Label()
+      projects_lbl.set_pos("4", "24%+8")
+      projects_lbl.set_size("15%-4", "5%-4")
+      projects_lbl.set_attribs("fg=black")
+      projects_lbl.set_internal_alignment("l")
+      projects_lbl.set_label("Projects ("||*projsList||")")
+      profile_border.add(projects_lbl)
+
+      u := []
+      every put(u, !projsList)
+
+      pddlist := List()
+      pddlist.set_pos("16%", "24%+8")
+      pddlist.set_size("19%", "5%-2")
+      pddlist.set_attribs("bg=white")
+      pddlist.connect(self,"on_projects_drop_down_list",
+         SELECTION_CHANGED_EVENT)
+      pddlist.set_selection_list(u)
+      profile_border.add(pddlist)
+
+      projects_tabset := TabSet()
+      projects_tabset.set_pos("4", "30%+2")
+      projects_tabset.set_size("34%-2", "24%")
+
+      proj_info := TabItem()
+      proj_info.set_label("Project Info")
+      projects_etl := TextList()
+      projects_etl.set_pos("2", "2")
+      projects_etl.set_size("100%-4", "100%-4")
+      projects_etl.set_attribs("bg=white")
+      projects_etl.set_select_one()
+      projects_etl.set_contents(u)
+      proj_info.add(projects_etl)
+      projects_tabset.add(proj_info)
+
+      proj_files := TabItem()
+      proj_files.set_label("Files")
+      projfiles_tree := Tree()
+      projfiles_tree.set_pos("2", "2")
+      projfiles_tree.set_size("100%-4", "100%-4")
+      projfiles_tree.set_attribs("bg=white")
+      projfiles_tree.set_select_one()
+      projfiles_tree.connect(self, "handle_tree_expansion",
+         TREE_NODE_EXPANSION_EVENT)
+
+      proj_files.add(projfiles_tree)
+      projects_tabset.add(proj_files)
+      projects_tabset.set_which_one(proj_info)
+      profile_border.add(projects_tabset)
+
+      interestsList := set()
+      allinterestsLst ? {
+         while not (pos(0)) do {
+            intrMembersLst := []
+            intrName := trim(tab(find("(")), " ", 0)
+
+            interestgroups_num +:= 1
+            move(1)
+            intrMembers := tab(find(")"))
+            move(1)
+            \intrMembers ? {
+               while not (pos(0)) do {
+                  userID := tab(find(","))
+                  put(intrMembersLst, userID)
+                  move(1)
+                  }
+               }
+            insert(interestsList, intrName)
+            if \intrName then
+               intresets_usersTbl[intrName] := intrMembersLst
+            }
+         }
+
+      interests_lbl := Label()
+      interests_lbl.set_pos("36%", "24%+8")
+      interests_lbl.set_size("32%", "5%-4")
+      interests_lbl.set_attribs("fg=black")
+      interests_lbl.set_internal_alignment("l")
+      if interestgroups_num > 0 then
+         interests_lbl.set_label("Interest Groups ("||interestgroups_num-1||")")
+      else
+         interests_lbl.set_label("Interest Groups ("||interestgroups_num||")")
+
+      profile_border.add(interests_lbl)
+      u := []
+      every put(u, !interestsList)
+      iddlist := List()
+      iddlist.set_pos("36%", "29%+4")
+      iddlist.set_size("32%", "5%-2")
+      iddlist.set_attribs("bg=white")
+      iddlist.connect(self,"on_interests_drop_down_list",
+         SELECTION_CHANGED_EVENT)
+      iddlist.set_selection_list(u)
+      profile_border.add(iddlist)
+
+      interests_etl := TextList()
+      interests_etl.set_pos("36%", "34%+2")
+      interests_etl.set_size("32%", "20%")
+      interests_etl.set_attribs("bg=white")
+      interests_etl.set_contents(u)
+      profile_border.add(interests_etl)
+
+      charts_tabset := TabSet()
+      charts_tabset.set_pos("2", "54%+2")
+      charts_tabset.set_size("68%", "44%")
+
+      progress_tab := redrawTabItem()
+      progress_tab.set_label("Progress")
+
+      progImage :=  TempImage()
+      progImage.set_pos("2", "2")
+      progImage.set_size("100%-4", "100%-4")
+      progImage.set_scale_up()
+      progress_tab.add(progImage)
+      charts_tabset.add(progress_tab)
+
+      ava_tab := redrawTabItem()
+      ava_tab.set_label("Availability")
+      avaImage :=  TempImage()
+      avaImage.set_pos("2", "2")
+      avaImage.set_size("100%-4", "100%-4")
+      avaImage.set_scale_up()
+      ava_tab.add(avaImage)
+      charts_tabset.add(ava_tab)
+
+      charts_tabset.set_which_one(ava_tab)
+      profile_border.add(charts_tabset)
+
+      wall_lbl := Label()
+      wall_lbl.set_pos("69%", "24%+8")
+      wall_lbl.set_size("31%-4", "5%-4")
+      wall_lbl.set_attribs("fg=black")
+      wall_lbl.set_internal_alignment("l")
+      wall_lbl.set_label("Wall")
+      profile_border.add(wall_lbl)
+
+      wallList := []
+      userWall ? {
+         while not (pos(0)) do {
+            wline := tab(find("&&"))
+            move(2)
+            put(wallList, wline)
+            }
+         }
+
+      #Call to draw_wall() is commented out till we fix the crash
+      #This will replace the wall_etl object
+      #posts_panel := ComponentScrollArea()
+      #posts_panel.set_pos("68%-2", "39%+2")
+      #posts_panel.set_size("32%-4", "60%-2")
+      #wallpanel := Panel("size=0,0")
+      #posts_panel.set_inner(wallpanel)
+      #profile_border.add(posts_panel)
+      #draw_wall(userWall)
+
+      wall_etl := EditableTextList()
+      wall_etl.set_pos("69%", "30%")
+      wall_etl.set_size("31%-4", "69%")
+      wall_etl.set_draw_border()
+      wall_etl.set_attribs("bg=white")
+      wall_etl.set_contents(wallList)
+      wall_etl.set_wrap_mode("width")
+      profile_border.add(wall_etl)
+
+      profile_overlay.add(profile_main_overlay)
+      profile_overlay.set_which_one(profile_main_overlay)
+
+      #
+      # Begin of Account Settings Overlay Components
+      #
+      profile_account_settings_overlay := OverlayItem()
+
+      acct_settings_lbl := Label()
+      acct_settings_lbl.set_pos("35%", "2%")
+      acct_settings_lbl.set_size("30%", "10%")
+      acct_settings_lbl.set_attribs("font=serif, bold, 20")
+      acct_settings_lbl.set_internal_alignment("c")
+      acct_settings_lbl.set_label("Account Settings")
+      profile_account_settings_overlay.add(acct_settings_lbl)
+
+      acct_settings_save_btn := Label()
+      acct_settings_save_btn.set_pos("40%", "86%+5")
+      acct_settings_save_btn.set_size("20%", "5%")
+      acct_settings_save_btn.set_attribs("font=serif, bold, 20", "fg=dark gray")
+      acct_settings_save_btn.connect(self, "on_acct_settings_save_btn",
+         MOUSE_PRESS_EVENT)
+      acct_settings_save_btn.set_internal_alignment("c")
+      acct_settings_save_btn.set_label("Save Changes")
+      profile_account_settings_overlay.add(acct_settings_save_btn)
+
+      acct_settings_border := Border()
+      acct_settings_border.set_pos("12%", "12%")
+      acct_settings_border.set_size("74%", "74%")
+      acct_settings_border.set_attribs("bg=pale gray")
+      acct_settings_border.set_internal_alignment("l")
+
+      separater_1 := TextButton()
+      separater_1.set_pos("2", "10%-1")
+      separater_1.set_size("100%-4", "6")
+      separater_1.set_attribs("bg=red")
+      separater_1.clear_toggles()
+      separater_1.set_label("")
+      separater_1.set_internal_alignment("c")
+      acct_settings_border.add(separater_1)
+
+      separater_2 := TextButton()
+      separater_2.set_pos("2", "30%-3")
+      separater_2.set_size("100%-4", "6")
+      separater_2.set_attribs("bg=red")
+      separater_2.clear_toggles()
+      separater_2.set_label("")
+      separater_2.set_internal_alignment("c")
+      acct_settings_border.add(separater_2)
+
+      separater_3 := TextButton()
+      separater_3.set_pos("2", "50%-5")
+      separater_3.set_size("100%-4", "6")
+      separater_3.set_attribs("bg=red")
+      separater_3.clear_toggles()
+      separater_3.set_label("")
+      separater_3.set_internal_alignment("c")
+      acct_settings_border.add(separater_3)
+
+      separater_4 := TextButton()
+      separater_4.set_pos("2", "70%-7")
+      separater_4.set_size("100%-4", "6")
+      separater_4.set_attribs("bg=red")
+      separater_4.clear_toggles()
+      separater_4.set_label("")
+      separater_4.set_internal_alignment("c")
+      acct_settings_border.add(separater_4)
+
+      separater_5 := TextButton()
+      separater_5.set_pos("2", "90%-9")
+      separater_5.set_size("100%-4", "6")
+      separater_5.set_attribs("bg=red")
+      separater_5.clear_toggles()
+      separater_5.set_label("")
+      separater_5.set_internal_alignment("c")
+      acct_settings_border.add(separater_5)
+
+      name_lbl := Label()
+      name_lbl.set_pos("2", "10%-20")
+      name_lbl.set_size("15%", "18")
+      name_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      name_lbl.set_internal_alignment("l")
+      name_lbl.set_label("Name")
+      acct_settings_border.add(name_lbl)
+
+      email_lbl := Label()
+      email_lbl.set_pos("2", "50%-24")
+      email_lbl.set_size("15%", "18")
+      email_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      email_lbl.set_internal_alignment("l")
+      email_lbl.set_label("Email")
+      acct_settings_border.add(email_lbl)
+
+      username_lbl := Label()
+      username_lbl.set_pos("2", "30%-22")
+      username_lbl.set_size("15%", "18")
+      username_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      username_lbl.set_internal_alignment("l")
+      username_lbl.set_label("Username")
+      acct_settings_border.add(username_lbl)
+
+      password_lbl := Label()
+      password_lbl.set_pos("2", "70%-28")
+      password_lbl.set_size("15%", "18")
+      password_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      password_lbl.set_internal_alignment("l")
+      password_lbl.set_label("Password")
+      acct_settings_border.add(password_lbl)
+
+      privacy_lbl := Label()
+      privacy_lbl.set_pos("2", "90%-30")
+      privacy_lbl.set_size("15%", "18")
+      privacy_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      privacy_lbl.set_internal_alignment("l")
+      privacy_lbl.set_label("Privacy")
+      acct_settings_border.add(privacy_lbl)
+
+      fullname_txt := Label()
+      fullname_txt.set_pos("50%", "10%+4")
+      fullname_txt.set_size("50%-10", "18")
+      fullname_txt.set_attribs("font=serif, bold, 16", "fg=dark gray")
+      fullname_txt.set_internal_alignment("l")
+      fullname_txt.set_label("Name")
+      acct_settings_border.add(fullname_txt)
+
+      username_txt := Label()
+      username_txt.set_pos("50%", "30%+4")
+      username_txt.set_size("50%-10", "18")
+      username_txt.set_attribs("font=serif, bold, 16", "fg=dark gray")
+      username_txt.set_internal_alignment("l")
+      username_txt.set_label("Username")
+      acct_settings_border.add(username_txt)
+
+      email_txt := Label()
+      email_txt.set_pos("50%", "50%")
+      email_txt.set_size("50%-10", "18")
+      email_txt.set_attribs("font=serif, bold, 16", "fg=dark gray")
+      email_txt.set_internal_alignment("l")
+      email_txt.set_label("Email")
+      acct_settings_border.add(email_txt)
+
+      password_txt := Label()
+      password_txt.set_pos("50%", "70%-2")
+      password_txt.set_size("50%-10", "18")
+      password_txt.set_attribs("font=serif, bold, 16", "fg=dark gray")
+      password_txt.set_internal_alignment("l")
+      password_txt.set_label("Password")
+      acct_settings_border.add(password_txt)
+
+      privacy_txt := Label()
+      privacy_txt.set_pos("50%", "90%-4")
+      privacy_txt.set_size("50%-10", "18")
+      privacy_txt.set_attribs("font=serif, bold, 16", "fg=dark gray")
+      privacy_txt.set_internal_alignment("l")
+      privacy_txt.set_label("Privacy")
+      acct_settings_border.add(privacy_txt)
+
+      name_change_btn := TextButton()
+      name_change_btn.set_pos("90%-15", "10%-19")
+      name_change_btn.set_size("10%+10", "18")
+      name_change_btn.set_attribs("fg=blue")
+      name_change_btn.connect(self, "on_name_change_btn", ACTION_EVENT)
+      name_change_btn.clear_toggles()
+      name_change_btn.set_label("Change")
+      name_change_btn.set_internal_alignment("c")
+      acct_settings_border.add(name_change_btn)
+
+      username_change_btn := TextButton()
+      username_change_btn.set_pos("90%-15", "30%-20")
+      username_change_btn.set_size("10%+10", "18")
+      username_change_btn.set_attribs("fg=blue")
+      username_change_btn.connect(self, "on_username_change_btn", ACTION_EVENT)
+      username_change_btn.clear_toggles()
+      username_change_btn.set_label("Change")
+      username_change_btn.set_internal_alignment("c")
+      acct_settings_border.add(username_change_btn)
+
+      email_change_btn := TextButton()
+      email_change_btn.set_pos("90%-15", "50%-21")
+      email_change_btn.set_size("10%+10", "18")
+      email_change_btn.set_attribs("fg=blue")
+      email_change_btn.connect(self, "on_email_change_btn", ACTION_EVENT)
+      email_change_btn.clear_toggles()
+      email_change_btn.set_label("Change")
+      email_change_btn.set_internal_alignment("c")
+      acct_settings_border.add(email_change_btn)
+
+      password_change_btn := TextButton()
+      password_change_btn.set_pos("90%-15", "70%-23")
+      password_change_btn.set_size("10%+10", "18")
+      password_change_btn.set_attribs("fg=blue")
+      password_change_btn.connect(self, "on_password_change_btn", ACTION_EVENT)
+      password_change_btn.clear_toggles()
+      password_change_btn.set_label("Change")
+      password_change_btn.set_internal_alignment("c")
+      acct_settings_border.add(password_change_btn)
+
+      privacy_change_btn := TextButton()
+      privacy_change_btn.set_pos("90%-15", "90%-25")
+      privacy_change_btn.set_size("10%+10", "22")
+      privacy_change_btn.set_attribs("fg=blue")
+      privacy_change_btn.connect(self, "on_privacy_change_btn", ACTION_EVENT)
+      privacy_change_btn.clear_toggles()
+      privacy_change_btn.set_label("Change")
+      privacy_change_btn.set_internal_alignment("c")
+      acct_settings_border.add(privacy_change_btn)
+
+      profile_account_settings_overlay.add(acct_settings_border)
+      profile_overlay.add(profile_account_settings_overlay)
+      #
+      # End of Account Settings Overlay
+      #
+      #---------------------------------------------
+      #
+      # Begin of Privacy Settings Overlay Components
+      #
+      profile_privacy_settings_overlay := OverlayItem()
+
+      privacy_settings_lbl := Label()
+      privacy_settings_lbl.set_pos("35%", "2%")
+      privacy_settings_lbl.set_size("30%", "10%")
+      privacy_settings_lbl.set_attribs("font=serif, bold, 20")
+      privacy_settings_lbl.set_internal_alignment("c")
+      privacy_settings_lbl.set_label("Account Settings")
+      profile_privacy_settings_overlay.add(privacy_settings_lbl)
+
+      privacy_settings_border := Border()
+      privacy_settings_border.set_pos("15%", "15%")
+      privacy_settings_border.set_size("70%", "70%")
+      privacy_settings_border.set_attribs("bg=pale gray")
+      privacy_settings_border.set_internal_alignment("l")
+      separater_6 := TextButton()
+      separater_6.set_pos("2", "12%-1")
+      separater_6.set_size("100%-4", "6")
+      separater_6.set_attribs("bg=red")
+      separater_6.clear_toggles()
+      separater_6.set_label("")
+      separater_6.set_internal_alignment("c")
+      privacy_settings_border.add(separater_6)
+
+      separater_7 := TextButton()
+      separater_7.set_pos("2", "30%-3")
+      separater_7.set_size("100%-4", "6")
+      separater_7.set_attribs("bg=red")
+      separater_7.clear_toggles()
+      separater_7.set_label("")
+      separater_7.set_internal_alignment("c")
+      privacy_settings_border.add(separater_7)
+
+      separater_8 := TextButton()
+      separater_8.set_pos("2", "48%-5")
+      separater_8.set_size("100%-4", "6")
+      separater_8.set_attribs("bg=red")
+      separater_8.clear_toggles()
+      separater_8.set_label("")
+      separater_8.set_internal_alignment("c")
+      privacy_settings_border.add(separater_8)
+
+      separater_9 := TextButton()
+      separater_9.set_pos("2", "66%-7")
+      separater_9.set_size("100%-4", "6")
+      separater_9.set_attribs("bg=red")
+      separater_9.clear_toggles()
+      separater_9.set_label("")
+      separater_9.set_internal_alignment("c")
+      privacy_settings_border.add(separater_9)
+
+      separater_10 := TextButton()
+      separater_10.set_pos("2", "84%-9")
+      separater_10.set_size("100%-4", "6")
+      separater_10.set_attribs("bg=red")
+      separater_10.clear_toggles()
+      separater_10.set_label("")
+      separater_10.set_internal_alignment("c")
+      privacy_settings_border.add(separater_10)
+
+      privacy_lbl := Label()
+      privacy_lbl.set_pos("10%", "12%-20")
+      privacy_lbl.set_size("25%", "18")
+      privacy_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      privacy_lbl.set_internal_alignment("l")
+      privacy_lbl.set_label("Privacy")
+      privacy_settings_border.add(privacy_lbl)
+      projects_lbl := Label()
+      projects_lbl.set_pos("10%", "30%-22")
+      projects_lbl.set_size("25%", "18")
+      projects_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      projects_lbl.set_internal_alignment("l")
+      projects_lbl.set_label("Projects")
+      privacy_settings_border.add(projects_lbl)
+      groups_lbl := Label()
+      groups_lbl.set_pos("10%", "48%-24")
+      groups_lbl.set_size("25%", "18")
+      groups_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      groups_lbl.set_internal_alignment("l")
+      groups_lbl.set_label("Groups")
+      privacy_settings_border.add(groups_lbl)
+      newsfeed_lbl := Label()
+      newsfeed_lbl.set_pos("10%", "66%-28")
+      newsfeed_lbl.set_size("25%", "18")
+      newsfeed_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      newsfeed_lbl.set_internal_alignment("l")
+      newsfeed_lbl.set_label("News Feed")
+      privacy_settings_border.add(newsfeed_lbl)
+      status_lbl := Label()
+      status_lbl.set_pos("10%", "84%-30")
+      status_lbl.set_size("25%", "18")
+      status_lbl.set_attribs("font=serif, bold, 16", "fg=dark black")
+      status_lbl.set_internal_alignment("l")
+      status_lbl.set_label("Status")
+      privacy_settings_border.add(status_lbl)
+      privacy_lst := List()
+      privacy_lst.set_pos("60%", "12%-22")
+      privacy_lst.set_size("30%", "20")
+      privacy_lst.connect(self, "on_privacy_lst", ACTION_EVENT)
+      privacy_lst.set_selection_list(["Everyone", "Friends Only",
+         "Groups Only", "Projects Only"])
+      privacy_settings_border.add(privacy_lst)
+      projects_lst := List()
+      projects_lst.set_pos("60%", "30%-24")
+      projects_lst.set_size("30%", "20")
+      projects_lst.connect(self, "on_projects_lst", ACTION_EVENT)
+      projects_lst.set_selection_list(["Everyone", "Friends Only",
+         "Groups Only", "Projects Only"])
+      privacy_settings_border.add(projects_lst)
+      groups_lst := List()
+      groups_lst.set_pos("60%", "48%-26")
+      groups_lst.set_size("30%", "20")
+      groups_lst.connect(self, "on_groups_lst", ACTION_EVENT)
+      groups_lst.set_selection_list(["Everyone", "Friends Only",
+         "Groups Only", "Projects Only"])
+      privacy_settings_border.add(groups_lst)
+      newsfeed_lst := List()
+      newsfeed_lst.set_pos("60%", "66%-28")
+      newsfeed_lst.set_size("30%", "20")
+      newsfeed_lst.connect(self, "on_newsfeed_lst", ACTION_EVENT)
+      newsfeed_lst.set_selection_list(["Everyone", "Friends Only",
+         "Groups Only", "Projects Only"])
+      privacy_settings_border.add(newsfeed_lst)
+      status_lst := List()
+      status_lst.set_pos("60%", "84%-30")
+      status_lst.set_size("30%", "20")
+      status_lst.connect(self, "on_status_lst", ACTION_EVENT)
+      status_lst.set_selection_list(["Everyone", "Friends Only",
+         "Groups Only", "Projects Only"])
+      privacy_settings_border.add(status_lst)
+      privacy_settings_save_btn := Label()
+      privacy_settings_save_btn.set_pos("35%", "86%+5")
+      privacy_settings_save_btn.set_size("30%", "5%")
+      privacy_settings_save_btn.set_attribs("font=serif, bold, 20", "fg=dark gray")
+      privacy_settings_save_btn.connect(self, "on_privacy_settings_save_btn",
+         MOUSE_PRESS_EVENT)
+      privacy_settings_save_btn.set_internal_alignment("c")
+      privacy_settings_save_btn.set_label("Save Changes")
+      privacy_settings_border.add(privacy_settings_save_btn)
+
+      profile_privacy_settings_overlay.add(privacy_settings_border)
+      profile_overlay.add(profile_privacy_settings_overlay)
+      #
+      # End of Privacy Settings Overlay
+      #
+
+      if \view.user_me then {
+         session.Write("\\updateMode "||world.nsh_dialog.user_me||
+            " "||"Profile")
+         }
+      profile_tab_item.add(profile_overlay)
+      world.nsh_dialog.VCSC_tab.add(profile_tab_item)
+      profile_tab_item.set_label(\infolst[1] || " Profile")
+      profile_tab_item.init()
+      world.nsh_dialog.resize()
+      world.nsh_dialog.VCSC_tab.set_which_one(profile_tab_item)
+   end
+
+   method draw_wall(userWall)
+      local i, postList := [], wallList := [], k
+
+      userWall ? {
+         while not (pos(0)) do {
+            wline := tab(find("&&"))
+            move(2)
+            put(wallList, wline)
+            }
+         }
+      postList := []
+
+      every i := 1 to 30 do {
+         k := i + (*wallList - 30)
+         if (i % 3) ~= 0 then
+            put(postList, wallList[k])
+         else {
+            if *postList > 0 then
+               on_add(postList, integer((i-3)/3))
+            postList := []
+            }
+         }
+   end
+
+   method on_add(lst, y_pos)
+      local wall_etl
+      mypanel := wallpanel.get_children()[-1]
+
+      /lst := [""]
+      wall_etl := EditableTextList()
+      wall_etl.set_draw_border()
+      wall_etl.set_attribs("bg=white")
+
+      if /mypanel then {
+         wall_etl.set_pos(0, 0)
+         wall_etl.set_size(100, 60)
+         }
+      else {
+         wall_etl.set_pos(0, (y_pos * 60) + 10)
+         wall_etl.set_size(100, 60)
+         }
+
+      wallpanel.add(wall_etl)
+      wall_etl.set_contents(lst)
+      wall_etl.init()
+      view.resize()
+
+      change_size(y_pos * 60)
+   end
+
+   method change_size(h_val)
+      mypanel := wallpanel.get_children()[-1]
+
+      if /mypanel then
+         wallpanel.set_size(0,0)
+      else
+         wallpanel.set_size(500, h_val+100)
+      wallpanel.resize()
+      posts_panel.inner_resized()
+   end
+
+   method progress_chart(info_str)
+      local proj_time_tbl, proj_color_tbl, proj_total_time_tbl,
+         projName, info_lst, l, uId, uColor, time_spent, total_time
+      proj_time_tbl := table(0)
+      proj_total_time_tbl := table(0)
+      proj_color_tbl := table(0)
+
+      info_str ? {
+         uId := tab(find("~"))
+         move(1)
+         info_lst := tab(0)
+         }
+
+      if info_lst ~== "" then {
+         info_lst ? {
+            while not(pos(0)) do {
+               l :=  tab(find(","))
+               move(1)
+               if l ~== "" then {
+                  l ? {
+                     projName := tab(find(":"))
+                     move(1)
+                     uColor := tab(find(":"))
+                     move(1)
+                     time_spent := tab(find(":"))
+                     move(1)
+                     total_time := tab(0)
+                     }
+                  proj_time_tbl[projName] := time_spent
+                  proj_total_time_tbl[projName] := total_time
+                  proj_color_tbl[projName] := uColor
+                  }
+               }
+            }
+         }
+      plot_progress_figure(proj_time_tbl, proj_total_time_tbl,
+         proj_color_tbl, uId)
+   end
+
+   method plot_progress_figure(proj_time_tbl, proj_total_time_tbl,
+      proj_color_tbl, userID)
+      local xscale := 0.0, yscale := 0.0, maxi, t_spent, p, k,
+         pname, total_time, cwidth, maxlength, drawing_shift,
+         made_progress := 0, colors := colormap()
+
+      progWin := open("Users' Progress", "g", "height=174",
+         "width=480", "bg=white", "canvas=hidden") | stop("can't open window")
+
+      #rectangle drawing
+      WAttrib(progWin, "fg=blue")
+      DrawRectangle(progWin, 0, 0, 478, 172)
+
+      WAttrib(progWin, "fg=black")
+      CenterString(progWin, 235, 05, "Progress of ("||userID||")")
+      CenterString(progWin, 235, 20, "in all ["||*proj_time_tbl||"] projects.")
+      CenterString(progWin, 235, 35, "--------------------")
+
+      maxlength := 0  #stores the max length of the file names
+      every p := key(proj_time_tbl) do {
+         if *p > maxlength then maxlength := *p
+         }
+      # maxlength * char_width
+      drawing_shift := maxlength * WAttrib("fwidth") + 2
+
+      every pname := key(proj_total_time_tbl) do {
+         if proj_total_time_tbl[pname] > 0 then
+            made_progress := 1
+         }
+      if made_progress = 0 then {
+         WAttrib(progWin, "fg=black")
+         CenterString(progWin, 235, 50, "SCI shows no progress.")
+         }
+      else
+      {
+      every pname := key(proj_total_time_tbl) do {
+      if proj_total_time_tbl[pname] > 0 then {
+         xscale := (200.0/(*proj_total_time_tbl))
+         yscale := 0.8
+
+         k := 1
+         every p := key(proj_time_tbl) do {
+            #percentage time spent
+            if proj_total_time_tbl[p] > 0 then
+               t_spent := round(((proj_time_tbl[p] * 1.0) / (proj_total_time_tbl[p] * 1.0)) * 100.0)
+            else t_spent := 0
+
+            WAttrib(progWin, "fg=black")
+            DrawString(progWin, 1, 160-(k*(xscale/2)-(xscale/4)+15), p)
+            WAttrib(progWin, "fg="||proj_color_tbl[p])
+            FillRectangle(progWin, drawing_shift,
+               160-(k*(xscale/2)+15)-3, yscale*t_spent, xscale/2)
+            WAttrib(progWin, "fg=blue")
+            DrawString(progWin, (yscale*t_spent)+ drawing_shift,
+               160-(k*(xscale/2)-(xscale/4)+15), t_spent ||"%")
+            k +:= 1
+            }
+         }
+       }
+       }
+   end
+   #
+   # Begin of Account Settings Overlay Methods
+   #
+   method on_email_change_btn(ev)
+   end
+
+   method on_name_change_btn(ev)
+   end
+
+   method on_password_change_btn(ev)
+   end
+
+   method on_privacy_change_btn(ev)
+   end
+
+   method on_username_change_btn(ev)
+   end
+
+   method on_acct_settings_save_btn()
+      local fcontents
+      fcontents := fullname_txt.label || "&&" ||
+         username_txt.label || "&&" || email_txt.label  || "&&" ||
+         password_txt.label || "&&" || privacy_txt.label
+
+      session.Write("\\setAccountSettings "|| world.nsh_dialog.user_me||
+         "&&"||fcontents)
+      profile_overlay.set_which_one(profile_main_overlay)
+   end
+   #
+   # End of Account Settings Overlay Methods
+   #
+
+   #
+   # Begin of Privacy Settings Overlay Methods
+   #
+   method on_groups_lst(ev)
+   end
+
+   method on_newsfeed_lst(ev)
+   end
+
+   method on_privacy_lst(ev)
+   end
+
+   method on_projects_lst(ev)
+   end
+
+   method on_status_lst(ev)
+   end
+   #
+   # Check the order of the item "ddl_item"
+   # in the drop-down list
+   #
+   method getOrder(ddl_item)
+      local L := ["Everyone", "Friends Only", "Groups Only", "Projects Only"]
+      local i, index := 1
+      every i := 1 to *L do
+         if ddl_item === L[i] then
+            index := i
+      return index
+   end
+
+   method myPrivacySettings(buffer)
+      local line, t
+      buffer ? {
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            privacy_lst.set_one("selection", getOrder(tab(0)))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            projects_lst.set_one("selection", getOrder(tab(0)))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            groups_lst.set_one("selection", getOrder(tab(0)))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            newsfeed_lst.set_one("selection", getOrder(tab(0)))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            status_lst.set_one("selection", getOrder(tab(0)))
+            }
+         move(2)
+         }
+   end
+
+   method myAccountSettings(buffer)
+      local line, t
+      buffer ? {
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            fullname_txt.set_label(tab(0))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            username_txt.set_label(tab(0))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            email_txt.set_label(tab(0))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            password_txt.set_label(tab(0))
+            }
+         move(2)
+         line := tab(find("&&"))
+         line ? {
+            t := tab(find(" = "))
+            move(3)
+            privacy_txt.set_label(tab(0))
+            }
+         move(2)
+         }
+   end
+
+   method on_privacy_settings_save_btn()
+      local fcontents
+      fcontents := privacy_lst.selection_list[privacy_lst.get_selection()] ||
+         "&&" || projects_lst.selection_list[projects_lst.get_selection()] ||
+         "&&" || groups_lst.selection_list[groups_lst.get_selection()] ||
+         "&&" || newsfeed_lst.selection_list[newsfeed_lst.get_selection()] ||
+         "&&" || status_lst.selection_list[status_lst.get_selection()]
+      session.Write("\\setPrivacySettings "|| world.nsh_dialog.user_me||
+         "&&"||fcontents)
+      profile_overlay.set_which_one(profile_main_overlay)
+   end
+   #
+   # End of Privacy Settings Overlay Methods
+   #
+   #
+   # User's profile : on friends drop-down list change/select
+   #
+   method on_friends_drop_down_list(ev)
+      local userID
+      userID := fddlist.selection_list[fddlist.get_selection()]
+
+      if \userID then
+         ici_groups.on_view_profile(ev, userID)
+   end
+
+   method acct_settings_setup()
+   end
+
+   method on_projects_tree(ev)
+     #local selecteProjFileID := 2
+     if ev.get_param() = -6 then
+        projectdlg.project_popup_menu()
+   end
+
+   #
+   # User's profile : on groups drop-down list change/select
+   #
+   method on_groups_drop_down_list(ev)
+      local sigName  # selected group
+
+      sigName := gddlist.selection_list[gddlist.get_selection()]
+      p_groups_lbl.set_label(groups_num-1||" Groups["||sigName||":"||
+                           *(sig_usersTbl[sigName])||" Member(s)]")
+      groups_etl.set_contents(sig_usersTbl[sigName])
+   end
+   #
+   # User's profile : on projects drop-down list change/select
+   #
+   method on_projects_drop_down_list(ev)
+      sProject := pddlist.selection_list[pddlist.get_selection()]
+      session.Write("\\getProjectInfo "||sProject||" "||
+         world.nsh_dialog.user_me)
+   end
+
+   method setProject_info(info)
+      local projName, projOwner, projMembers, projFiles, projDate,
+            projDeadline, projPrivacy, projs_lbl, n, uprojFiles
+      fileslst := []
+      info ? {
+         projName    := tab(find("&&"))
+         move(2)
+         projOwner   := tab(find("&&"))
+         move(2)
+         projMembers := trim(tab(find("&&")), ",", 0)
+         move(2)
+         projFiles   := trim(tab(find("&&")), ",", 0)
+         move(2)
+         projDate    := trim(tab(find("&&")), ",", 0)
+         move(2)
+         projDeadline:= trim(tab(find("&&")), ",", 0)
+         move(2)
+         projPrivacy := tab(0)
+         }
+      uprojFiles := ""
+      projFiles ? {
+         while not(pos(0)) do {
+            n :=  tab(find("$$"))
+            uprojFiles ||:= n ||","
+            put(fileslst, n)
+            move(2)
+            }
+         }
+      trim(uprojFiles, ',', 0)
+      projects_etl.set_contents(
+        ["Name     : "||projName,
+         "Owner    : "||projOwner, "Members  : "||projMembers,
+         "Files    : "||uprojFiles, projDate, projDeadline,
+         projPrivacy])
+
+      my_load_tree(fileslst)
+   end
+
+   #
+   # Given a Node n, load its children with the sub-directories.
+   #
+   method my_load_tree(fileslst)
+      local projs_lbl, name, fname, flist,
+            r1, r2, new_root, files
+
+      projs_lbl := Node("label="||sProject)
+      projfiles_tree.set_root_node(projs_lbl)
+
+      projs_lbl.clear_children()
+      every name := !fileslst do {
+         if find("[dir]", name) then {
+            name ? {
+               fname := tab(find("[dir]["))
+               r1 := Node("always_expandable=t")
+               r1.set_label(fname)
+               projs_lbl.add(r1)
+               move(6)
+               flist := tab(0)[1:-1]
+               }
+            flist ? {
+               while not(pos(0)) do {
+                  fname := tab(find(":"))
+                  move(1)
+                  r1 := projfiles_tree.get_root_node()
+                  new_root:= world.nsh_dialog.Search_Tree(fname,r1)
+                  r2 := Node()
+                  r2.set_label(fname)
+                  r2.set_bmps([editorimgs("file"),editorimgs("file"),
+                               editorimgs("file")])
+                  new_root.add(r2)
+                  }
+               }
+            }
+         else {
+            r1 := Node()
+            r1.set_label(name)
+
+            r1.set_bmps([editorimgs("file"),editorimgs("file"),
+                         editorimgs("file")])
+            projs_lbl.add(r1)
+            }
+         }
+      projfiles_tree.expand()
+      projfiles_tree.tree_structure_changed()
+
+   end
+
+   method handle_tree_expansion()
+      local n := projfiles_tree.get_last_expanded()
+   end
+
+   method on_privacy_settings(ev)
+      if \profile_subwin2d then
+         view.resize2D()
+
+      session.Write("\\getPrivacySettings "|| world.nsh_dialog.user_me)
+      profile_overlay.set_which_one(profile_privacy_settings_overlay)
+   end
+
+   method on_acct_settings(ev)
+      if \profile_subwin2d then
+         view.resize2D()
+
+      session.Write("\\getAccountSettings "|| world.nsh_dialog.user_me)
+      profile_overlay.set_which_one(profile_account_settings_overlay)
+  end
+
+   #
+   # User's profile : on interests drop-down list change/select
+   #
+   method on_interests_drop_down_list(ev)
+      local sInterest  # selected sig
+
+      sInterest := iddlist.selection_list[iddlist.get_selection()]
+
+      interests_lbl.set_label(interestgroups_num-1||" SIGs"||", ["||sInterest||
+         " : "||*(intresets_usersTbl[sInterest])||" Member(s)]")
+      interests_etl.set_contents(intresets_usersTbl[sInterest])
+   end
+
+   initially()
+      sig_usersTbl := table()
+      proj_usersTbl := table()
+      interests_usersTbl := table()
+end

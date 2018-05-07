@@ -1,0 +1,76 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> Starting your program under GDB
+<dt> Summary
+<dd> Learn the basics of GDB on Linux.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/quitting_gdb.html">
+Quitting GDB</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about GDB and GDB commands.
+<li> Pass a quiz on GDB commands.
+</ol>
+<dt> Rewards
+<dd> GDB: 5; Linux: 1
+<dt> Reading
+<dd> 
+<p>
+Use the run command to start your program under GDB. You must first specify 
+the program name with an argument to GDB.
+<p>
+The execution of a program is affected by certain information it receives 
+from its superior. GDB provides ways to specify this information, which 
+you must do before starting your program. (You can change it after 
+starting your program, but such changes only affect your program the 
+next time you start it.) This information may be divided into four 
+categories.
+<p>
+The arguments.<br>
+Specify the arguments to give your program as the arguments of the run 
+command. If a shell is available on your target, the shell is used to 
+pass the arguments, so that you may use normal conventions (such as 
+wildcard expansion or variable substitution) in describing the 
+arguments. In Unix systems, you can control which shell is used with the 
+SHELL environment variable.
+<p>
+The environment.<br>
+Your program normally inherits its environment from GDB, but you can use 
+the GDB commands set environment and unset environment to change parts 
+of the environment that affect your program.
+<p>
+The working directory.<br>
+Your program inherits its working directory from GDB. You can set the 
+GDB working directory with the cd command in GDB.
+<p>
+The standard input and output.<br>
+Your program normally uses the same device for standard input and 
+standard output as GDB is using. You can redirect input and output in 
+the run command line, or you can use the tty command to set a different 
+device for your program.
+<p>
+<dt> Quiz (7/7)
+<dd>
+<dl>
+<dt> What command is used to run a program under GDB?
+<dd> run
+<dt> Can your run your program with arguments? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> Is there a command to run your program? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> How can you stop the execution of your program at point?
+<dd> using the break command
+<dt> What kind of input/output GDB provides by default?
+<dd> standard input/output
+<dt> Can your redirect the input? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+<dt> Can your redirect the output? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+</dl>

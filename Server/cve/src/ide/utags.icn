@@ -1,0 +1,227 @@
+#################################################################
+#
+#   File:	utags.icn
+#
+#   Subject:	Parse File and Generate Nodes for Class Browser Tree
+#   Author:	Nolan Clayton
+#
+#   Date:	May 26, 04
+#
+##################################################################
+
+$include "guih.icn"
+import gui
+
+global line
+
+#
+# class  Tag : is a subclass of Node used only to keep 
+#  track of Node attribs
+#
+
+procedure utags(contents, parentfile)
+   local  lineno, outlines, notid, word, javaKeywords, x, gword, CKeywords,
+      ch1, index, g
+
+      CKeywords := ["bool", "char", "class", "const", "const_cast",
+		   "double", "explicit", "extern", "float", "friend",
+		   "inline", "int", "long", "namespace", "private",
+		   "protected", "public", "short", "signed", "static",
+		   "string", "template", "unsigned", "using", "void"]
+
+      javaKeywords := ["abstract", "boolean", "byte",
+                       "char", "class", "const", "double",
+                       "extends", "final", "finally", "float",
+                       "generic", "implements", "import", "inner",
+                       "int", "interface", "long", "native",
+                       "operator", "outer", "package",
+                       "private", "protected", "public",
+                       "short", "static", "String",
+                       "super", "synchronized", "void"]
+
+
+   notid := &cset -- &letters -- &digits -- '_'
+
+   lineno := 1
+   outlines   := []
+
+   every line := !contents do {
+
+      line[upto('#',line):0] := ""
+      line[find("*/",line):0] := ""
+      line[find("/*",line):0] := ""
+      line[find("//",line):0] := ""
+
+   line ? {
+      getword3(line) # discard name
+      ### Unicon Tags ###
+
+      if find(".icn", parentfile) then {    #Unicon and C++ Tags
+         gword := getword()
+         tab(many(' ')) 
+
+	 case gword of {
+	    "procedure" | "class":
+	       put(outlines, Tag(gword, getword(), lineno, parentfile))
+	     
+	 }
+
+         if gword === "method" then
+	       outlines[-1].add( Tag("method", getword(), lineno, parentfile))
+
+         if gword === "initially" then
+	       outlines[-1].add(Tag("initially","initially",lineno,parentfile))
+
+         if gword === "link" then
+            every  word := getword()  do
+               put(outlines, Tag("link", word, lineno, parentfile) )
+
+         if gword === "import" then
+            every  word := getword()  do
+               put(outlines, Tag("import", word, lineno, parentfile) )
+
+         if gword === "include" then
+            every  word := getword()  do
+               put(outlines, Tag("$include", word, lineno, parentfile) )
+
+         if gword === "package" then
+            every  word := getword()  do
+               put(outlines, Tag("package", word, lineno, parentfile) )
+
+       }
+
+      ### C++ Tags ###
+      else if find(".cpp"|".h", parentfile) then {    #Unicon and C++ Tags
+         gword := getword()
+
+         if \gword then gword := getword3(line)
+         else gword := &null
+         tab(many(' '|"::"))
+
+         if gword === "procedure" then
+	       put(outlines, Tag("procedure", getword(), lineno, parentfile))
+
+         if find("::", gword)then {
+            ch1 := 0
+            every c := !gword do {
+               ch1 +:= 1
+               if  c == ":" then {
+                 index := ch1
+                 break
+                }
+            }
+            g := gword[\index+2:*gword+1]
+            gword := g
+	    put(outlines, Tag("procedure", gword, lineno, parentfile))
+
+          }
+
+         if gword === "class" then
+	       put(outlines, Tag("class", getword(), lineno, parentfile))
+
+         if gword === "method" then
+	       outlines[-1].add( Tag("method", getword(), lineno, parentfile))
+
+         if gword === "initially" then
+	       outlines[-1].add(Tag("initially","initially",lineno,parentfile))
+
+         if gword === "link" then
+            every  word := getword()  do
+               put(outlines, Tag("link", word, lineno, parentfile) )
+
+         if gword === "import" then
+            every  word := getword()  do
+               put(outlines, Tag("import", word, lineno, parentfile) )
+
+         if find("include", gword) then
+            every  word := getword()  do
+               put(outlines, Tag("$include", word, lineno, parentfile) )
+
+         if gword === "package" then
+            every  word := getword()  do
+               put(outlines, Tag("package", word, lineno, parentfile) )
+
+       }
+
+      ### Java Tags ###
+      else if find(".java", parentfile) then {    #Java Tags
+
+         x := getword()
+         if \x then gword := getword3(line)
+         else gword := &null
+
+         tab(many(' '))
+
+#         if gword === member(javaKeywords,gword) then {
+#            every  word := getword()  do
+#            put(outlines, Tag("class", gword, lineno, parentfile) )
+#          }
+#         if x === "class" then
+#            put(outlines, Tag("class", gword, lineno, parentfile) )
+#         if gword === "package" then 
+#            every  word := getword()  do
+#               put(outlines, Tag("package", gword, lineno, parentfile) )
+#         if gword === "public" | gword==="static" |
+#            gword === "void" | gword=== "main" then
+
+         if x === ("import"|"package") then {
+           word := getword()
+           put(outlines, Tag("link", \word, lineno, parentfile) )
+         }
+
+         else if x === "public" then {
+           word := getword3(line)
+           if \word then {
+
+             if member(javaKeywords,word) then
+               word := getword()
+             else put(outlines, Tag("method", word, lineno, parentfile))
+           }
+         }
+      }
+         lineno +:= 1
+   }
+}
+   return outlines
+end
+
+
+#
+# procedures' names are self explanatory.  Taken from itags. #
+#
+
+procedure getword()
+   local word
+   static letts, ids
+   initial {
+      letts := &letters ++ '({'
+      ids := &letters ++ &digits ++ '_.:'
+      }
+
+   while tab(upto(letts)) do {
+      word := tab(many(ids))
+      suspend word
+      }
+end
+
+procedure getword3(line)
+   local i, c, ch1 := 0, ch2, index1, index2, word
+    every c := !line do {
+      ch1 +:= 1
+      if  c == ("(" | "{") then {
+	 index2 := ch1
+	 break
+	 }
+      }
+
+   #
+   # returns the index of the location of 
+   # the first blank before the method name.
+   #
+   i := \index2 - 2
+   while line[\i] ~== " " do
+      i -:= 1
+   index1 := i
+   word := line[\index1 : \index2] 
+   suspend word
+end

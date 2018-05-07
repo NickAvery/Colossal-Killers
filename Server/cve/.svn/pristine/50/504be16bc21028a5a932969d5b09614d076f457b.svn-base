@@ -1,0 +1,239 @@
+$define NSRamp   1
+$define EWRamp   2
+$define Platform 3
+$define EWStair  4
+
+# not implemented yet: NorthSouth stair
+$define NSStair  5
+
+class Ramp: Obstacle ( 
+      ramptype,
+        coords,
+    color_ramp,
+    render_set,
+          minx,
+          maxx,
+          minz,
+          maxz,
+          miny,
+          maxy,
+             x,
+             y,
+             z,
+         width,
+        height,
+        length,
+          type,
+	  toptexture,
+	  sidetexture,
+	  numsteps # at present this is for type 4 only
+                      )
+
+method render(render_level)
+local i, j, wstair, hstair, xback, x2, y2
+
+   # type 1 appears to be north-south
+   if type=1 then {
+      WAttrib("dim=3")
+      WAttrib("texmode=on")
+      WAttrib("texture=" || toptexture) |
+	 write("texture=" || toptexture || " failed")
+      Fg(color_ramp)
+      FillPolygon(x-length,y,z,x-length,y+height,z+width,
+		  x,y+height,z+width,x,y,z)
+      FillPolygon(x-length,y+height,z+width,x,y+height,z+width,
+		  x,y,z+width,x-length,y,z+width)
+      FillPolygon(x-length,y+height,z+width,x-length,y,z+width,
+		  x-length,y,z,x-length,y,z)
+      FillPolygon(x,y+height,z+width,x,y,z+width,x,y,z,x,y,z)
+      }
+   # type 2 appears to be east-west
+   else if type=2 then {
+      WAttrib("dim=3", "texmode=on")
+      WAttrib("texture=" || toptexture) |
+	 write("texture="|| toptexture ||" failed")
+      Fg(color_ramp)
+
+      # main ramp walking area
+      FillPolygon(x,y,z-length, x+width,y+height,z-length,
+		  x+width,y+height,z ,x,y,z)
+
+      # flat square, back of ramp
+      if height > 0 then xback := x + width else xback := x
+      FillPolygon(xback,y+height,z-length, xback,y+height,z,
+		  xback,y,z, xback,y,z-length)
+
+      if height > 0 then {
+	 FillPolygon(x,y,z, x+width,y+height,z, x+width,y,z)
+	 FillPolygon(x,y,z-length,  x+width,y+height,z-length,
+		     x+width,y,z-length, x,y,z-length)
+	 }
+      else {
+	  FillPolygon(x,y,z, x+width,y+height,z, x,y+height,z)
+	  FillPolygon(x,y,z-length,  x+width,y+height,z-length,
+		      x,y+height,z-length)
+	  }
+      }
+   # type 3, flat ramp = a raised platform
+   else if type=3 then {
+      WAttrib("dim=3", "texmode=on")
+      WAttrib("texture=" || DAT || "/textures/floor.gif") |
+	 write("texture=" || DAT || "/textures/floor.gif failed")
+      Fg(color_ramp)
+
+      #top
+      DrawPolygon(x,y+height,z-width, x+length,y+height,z-width,
+		  x+length,y+height,z, x,y+height,z)
+      FillPolygon(x,y+height,z-width, x+length,y+height,z-width,
+		  x+length,y+height,z ,x,y+height,z)
+
+      WAttrib("texture=" || DAT || "/textures/wood9.gif") |
+	 write("texture="||DAT||"/textures/wood9.gif failed")
+
+      #back
+      DrawPolygon(x+length,y+height,z-width, x+length,y+height,z,
+		  x+length,y,z, x+length,y,z-width)
+      FillPolygon(x+length,y+height,z-width, x+length,y+height,z,
+		  x+length,y,z, x+length,y,z-width)
+
+      #front
+      DrawPolygon(x,y+height,z-width, x,y+height,z, x,y,z, x,y,z-width)
+      FillPolygon(x,y+height,z-width, x,y+height,z, x,y,z, x,y,z-width)
+
+      #left
+      DrawPolygon(x,y,z-width, x,y+height,z-width,
+		  x+length,y+height,z-width, x+length,y,z-width)
+      FillPolygon(x,y,z-width, x,y+height,z-width, x+length,y+height,z-width,
+		  x+length,y,z-width)
+
+      #right
+      DrawPolygon(x,y,z, x,y+height,z, x+length,y+height,z, x+length,y,z)
+      FillPolygon(x,y,z, x,y+height,z, x+length,y+height,z, x+length,y,z)
+      }
+   # type 4 = a (eastwest) stair
+   else if type=4 then {
+      WAttrib("dim=3", "texmode=on")
+      WAttrib("texture=" || toptexture) |
+	  write("texture=" || toptexture||" failed")
+      wstair := width/real(numsteps)
+      hstair := height/real(numsteps)
+      i := j := 0
+      x2 := x
+      y2 := y
+      while (i<numsteps-1 & j<numsteps-2) do {
+	 FillPolygon(x2,y2+hstair,z, x2,y2+hstair,z-length,
+		     x2+wstair,y2+hstair,z-length, x2+wstair,y2+hstair,z)
+	 FillPolygon(x2,y2,z, x2,y2,z-length, x2,y2+hstair,z-length,
+		     x2,y2+hstair,z)
+	 x2 +:= wstair
+	 y2 +:= hstair
+	 i +:= 1
+	 j +:= 1
+	 }
+      FillPolygon(x2,y2+hstair,z, x2,y2+hstair,z-length,
+		  x2+wstair+0.8,y2+hstair,z-length, x2+wstair+0.8,y2+hstair,z)
+      FillPolygon(x2,y2,z, x2,y2,z-length, x2,y2+hstair,z-length, x2,y2+hstair,z)
+      }
+   return render_set
+end
+ 
+#
+# Varma completely failed here
+#
+method disallows(x,y,z)
+local tPercent, nHeight, xTotal, yTotal, zTotal
+   if (minx > 0 & maxx < 0) | (minx < 0 & maxx > 0) then 
+      xTotal := abs(minx) + abs(maxx)
+   else
+      xTotal := maxx - minx
+   if (minz > 0 & maxz < 0) | (minz < 0 & maxz > 0) then 
+      zTotal := abs(minz) + abs(maxz)
+   else 
+      yTotal := maxy - miny
+   if (miny > 0 & maxy < 0) | (miny < 0 & maxy > 0) then 
+      yTotal := abs(miny) + abs(maxy)
+   else
+      zTotal := maxz - minz
+
+   if ((minx <= x <= maxx) & (minz <= z <= maxz) & (miny <= y <= maxy)) then {
+      case type of {
+         1: {
+	    tPercent := (z - minz)/zTotal
+	    nHeight := miny + (tPercent * (maxy - miny))
+	    if height < 0 then
+	       nHeight := (yTotal - (nHeight- miny)) + miny
+	    return [4, width, nHeight]
+            }
+         2: {
+	    tPercent := (x - minx)/xTotal
+	    nHeight := miny + (tPercent * (maxy - miny))
+	    if height < 0 then
+	       nHeight := (yTotal - (nHeight- miny)) + miny
+	    return [4, width, nHeight]
+            }
+         3: {
+	    return [4, width, maxy]
+            }
+	 4: {
+	    # suppose height is positive, that means: rising eastward
+	    # this kind of slope calculation is more correct for ramps.
+	    # for stairs we should calculate y changes in discrete steps.
+	    tPercent := (x - minx)/xTotal
+	    nHeight := miny + (tPercent * (maxy - miny))
+	    if height < 0 then
+		nHeight := (yTotal - (nHeight- miny)) + miny
+	    return [4, width, nHeight]
+	    }
+	 default: {
+	    return [type, width, height]
+	    }
+	 }
+      }
+   fail
+end
+
+initially(coords,col,typ,w,h,l, ns, tex)
+   if not find("cved", &progname) then {
+      /tex := world.find_texture("blue_tile.gif")
+      }
+   toptexture := tex
+   /width := w
+   /height := h
+   /x := coords[1]
+   /y := coords[2]
+   /z := coords[3]
+   color_ramp := col
+   /type := typ
+   /length := l
+   /ns := 5
+   numsteps := ns
+
+   if type = 1 then {
+      /minx := x - length
+      /maxx := x + 0.1
+      /minz := z - 0.7
+      /maxz := z + width
+      }
+   else if type = (2|4) then {
+      /minx := x - 0.7
+      /maxx := x + width
+      /minz := z - length
+      /maxz := z + 0.1
+      }
+  #TYPE 3 IS PLATFORM
+   else if type = 3 then {
+      /minx := x - 0.1
+      /maxx := x + length
+      /minz := z - width - 1
+      /maxz := z + 0.1
+      }  
+   if minx > maxx then
+      minx :=: maxx
+   if minz > maxz then
+      minz :=: maxz
+   /miny := y
+   /maxy := y + height
+   if miny > maxy then
+      miny :=: maxy
+  /render_set := set()
+end

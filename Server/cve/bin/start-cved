@@ -1,0 +1,2 @@
+#!/bin/sh
+./start-stop-daemon -b --start --quiet --exec cved -m --pidfile cved.pid

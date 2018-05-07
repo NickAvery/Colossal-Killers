@@ -1,0 +1,11 @@
+# (UIDAHO) Janssen Engineering Building model
+
+default {
+  name Janssen Engineering (JEB)
+  home [28.0, 12.3, 20.0]
+  angle 4.6
+  origin_node FLOOR2COR
+}
+
+include roomdat/roomlist.dat
+include edgedat/edgelist.dat

@@ -1,0 +1,70 @@
+<TITLE>Introduction</TITLE> <!--1 page-->
+
+<font size=7><b>Chapter 1: Introduction</b></font>
+<p>
+
+Collaborative virtual environments are
+networked multi-user 3D persistent virtual worlds.  This software category
+includes multi-user virtual reality systems, but the largest virtual
+environments run on ordinary PC hardware.  This book documents the
+implementation of CVE, a collaborative virtual environment written in
+the Unicon programming language, from www.unicon.org.  CVE was developed
+with the support of an NSF Advanced Technological Education (ATE) award. Its
+goal is to improve Computer Science education opportunities for students
+located at a distance from their instructors.  <p>
+
+The original inspiration for Unicron came after a series of fortunate
+events. In 1999 a student in San Antonio introduced me to collaborative
+virtual environments by means of EverQuest, a leader in the new genre of
+Massively Multiplayer Role Playing Games.  I lost about two years of my
+life playing EverQuest in Las Vegas, partly because it <em>is</em> that
+addicting, and partly because I was in a post-tenure-denial depression.
+<p>
+
+After I moved to New Mexico in 2001 I quit playing EverQuest, but the genre
+had captured my attention.  I believed that this new extremely compelling
+software medium was was ripe for application to many important application
+domains beyond gaming, but was frustrated that I could not undertake any
+software effort that large. There was no reasonable way for me to experiment
+with virtual environments.
+
+<p>
+
+Since my teen years I had wanted to be able to write programs like this, but
+was stymied in two respects: the PC hardware was not capable of achieving
+the vision, and the complexity of such software was enormous.  EverQuest
+proved that PC hardware was ready, but it was a multi-year, multi-million
+dollar venture. The software development cost was a huge barrier to entry
+that precluded the individual or small group from innovating.  The research
+challenge posed by this problem is to lower the cost barriers of entry for
+developing collaborative virtual environments.
+
+<p>
+
+Fortunately, I had spent the past 10 years creating what I felt was
+the ultimate game programming language, called Unicon, and all it lacked
+were the 3D graphics capabilities needed for virtual environments.  From
+2002-2003 a pair of remarkable Hispanic undergraduate students, Naomi
+Martinez and Nolan Clayton, pushed my dream forward. Naomi added high level
+3D graphics built atop OpenGL and Nolan wrote a prototype collaborative
+text editor.  They were funded by
+the Alliance for Minority Participation (AMP) program.  Thanks to Naomi
+and Nolan, when my department suggested doing some kind of grant with
+distance education in 2004, I had a credible idea (a virtual
+environment for distance education) and was able to parlay the prototypes
+into a grant to build CVE.
+<p>
+
+Two years and a dozen or so graduate students later, the book you are now
+reading started to take form.  CVE is still not finished.  It grew from
+5,000 to 30,000 to 45,000
+lines of code, not large by industry standards but large for a Unicon
+program--- large enough that developers need navigational assistance,
+especially new developers joining the team.  The book is a semi-automatic
+blend of developer documentation and source code, reminiscent of a literate
+programming effort but without mixing all of the prose into the source
+code.  Chapters 2 and 3 contain requirements and design documents, while
+Chapters 4-8 present major subsystems of Unicron organized by the source code
+directories and files.  The book itself is incomplete, but I hope it will
+be useful anyhow.
+

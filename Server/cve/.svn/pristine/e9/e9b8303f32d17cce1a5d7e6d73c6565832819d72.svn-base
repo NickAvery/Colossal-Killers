@@ -1,0 +1,38 @@
+<h2> Extensible Multi-User Game Architecture </h2>
+
+What does it take to embed mini-games within a collaborative
+virtual environment?
+
+<dl>
+<dt> 1. game creation
+<dd> a command within the CVE client that says to create a
+     new instance of a game. This is a new collaborative session.
+     A message is sent to the server.  The server issues it a unique ID.
+<dt> game invitation
+<dd> CVE client user interface and network protocol for inviting other users
+     into the game.
+<dt> game state (model)
+<dd> Actual data representation of the game, maintained on the server.
+<dt> game rendering (view)
+<dd> Allocating a graphic resource in the client, associated with the game ID.
+<dt> game input / updating (controller)
+<dd> UI for entering controls. Rules for allowed moves. Locking mechanisms.
+     Network commands for updating state.
+</dl>
+
+<h2> Simplest Example: Tic Tac Toe </h2>
+
+The goal is not just to do Tic Tac Toe, it is to do networked Tic Tac Toe
+within a CVE, in a manner which can be generalized.
+
+<h3> 1. Creating a client command to instantiate/play the minigame </h3>
+
+Options include: (1) adding a /command to the chat window to create the game,
+(2) statically hardwiring a new button or menuitem into the GUI, or
+(3) modifying the GUI to read from a config file or maintain a "game directory"
+that the games register themselves with.
+<p>
+
+The natural progressions are: GUI first, then functionality
+(traditional rapid prototyping), or functionality first, then GUI
+(primordial evolution).

@@ -1,0 +1,18 @@
+Room {
+	name  floor_2_corridor_southwest
+	x 8.6
+	y 4.35
+	z 23
+	w 38.7
+	h 4.11
+	l 2.5
+	texture dat/textures/wall.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

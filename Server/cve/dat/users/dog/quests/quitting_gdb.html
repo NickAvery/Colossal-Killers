@@ -1,0 +1,45 @@
+<title>GDB commands quest</title>
+
+<dl>
+<dt> Name
+<dd> Quitting GDB
+<dt> Summary
+<dd> Learn the basics of GDB on Linux.
+<dt> Requires
+<dd> <a href="http://www2.cs.uidaho.edu/~zsharif/npc/gdb/invoking_gdb.html">
+Invoking GDB</a>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read how to quit GDB.
+<li> Pass a quiz.
+</ol>
+<dt> Rewards
+<dd> GDB: 4; Linux: 1
+<dt> Reading
+<dd>
+<p>
+To exit GDB, use the quit command (abbreviated q), or type an end-of-file 
+character (usually Ctrl-d). If you do not supply expression, GDB will terminate 
+normally; otherwise it will terminate using the result of expression as the 
+error code.
+<p>
+An interrupt (often Ctrl-c) does not exit from GDB, but rather terminates 
+the action of any GDB command that is in progress and returns to GDB 
+command level. It is safe to type the interrupt character at any time 
+because GDB does not allow it to take effect until a time when it is 
+safe.
+          
+<dt> Quiz (2/3)
+<dd>
+<dl>
+<dt> What command can be used to quit GDB?
+<dd> quit or q
+<dt> Does an interrupt (Ctrl+C) cause GDB to quit? (Multiple Choice)
+<dd> No (TRUE)
+<dd> Yes
+<dt> Does an end-of-file character (Ctrl+D) cause GDB to quit? (Multiple Choice)
+<dd> Yes (TRUE)
+<dd> No
+</dl>
+</dl>

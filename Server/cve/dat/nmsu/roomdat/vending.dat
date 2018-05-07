@@ -1,0 +1,54 @@
+Room {
+	name  vending
+	x 85.3
+	y 0
+	z 17.2
+	w 4
+	h 4.05
+	l 6.1
+	texture dat/nmsu/texsmall/wall2.gif
+	floor Wall { texture dat/nmsu/textures/floor.gif }
+	ceiling Wall { texture dat/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+		Wall {
+			texture dat/nmsu/texsmall/Fire.gif
+			coords [
+				85.4, 1.9, 18.6,
+				85.4, 2.0, 18.6,
+				85.4, 2.0, 18.8,
+				85.4, 1.9, 18.8
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/vmachine.gif
+			coords [
+				89.2, 1.05, 18.6,
+				89.2, 3.7, 18.6,
+				89.2, 3.7, 20.0,
+				89.2, 1.05, 20.0
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/vmachine.gif
+			coords [
+				89.2, 1.05, 20.4,
+				89.2, 3.7, 20.4,
+				89.2, 3.7, 21.9,
+				89.2, 1.05, 21.9
+			]
+		}
+		Wall {
+			texture dat/nmsu/textures/vmachine.gif
+			coords [
+				87.2, 1.05, 23.2,
+				87.2, 3.7, 23.2,
+				88.2, 3.7, 23.2,
+				88.2, 1.05, 23.2
+			]
+		}
+	]
+	tools [
+	]
+}

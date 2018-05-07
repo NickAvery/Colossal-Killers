@@ -1,0 +1,49 @@
+#
+# Actor.icn
+#
+# This is a base class for all actors, which are non human-controlled
+# entities which should be capable of semi-independent actions in the
+# system. One way to think of actors is as internal (to the server)
+# agents. The base class consists of a number of default or abstract
+# methods; it is designed to be subclassed from for specific actors.
+#
+# Actors are invoked by the server, not by clients. 
+#
+
+class Actor(name,
+	    sceneGraph, # a connection to the server's scene graph
+	    public,      # non-null if users should be aware of this actor
+            avatar,
+            server
+	    )
+    
+    method heartbeat()
+       # write("Heartbeat")
+    end
+
+    # The actor has seen uid appear in the room. Called for when the
+    # user enters a room
+    method spotted(uid)
+       write("Spotted ", uid, "\nDone looking in scene graph")
+    end
+
+    # the server is shutting down cleanly
+    method shutdown() 
+
+    end
+
+    # Called when all agents have been created, at start up
+    method startup()
+
+    end
+    
+    method told(uid, message)
+       write("Received message from " || image(uid)|| ": " ||image(message))
+    end
+
+initially(sceneGraph, server)
+   self.sceneGraph := sceneGraph
+   self.server := server
+   write("Created an Actor with server as " || image(server))
+   public := 1
+end

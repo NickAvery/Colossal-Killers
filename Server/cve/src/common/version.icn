@@ -1,0 +1,14 @@
+#
+# version.icn - report CVE version
+#
+
+#
+# The client and server need to be compatible, and we need a way of
+# checking this at login.  If a server is built with a newer version
+# number here, the login attempt should fail and the client should
+# tell the user to run the patcher.
+#
+# The version number is a sequence of .-separated 
+procedure cve_version()
+   return "8.9"
+end

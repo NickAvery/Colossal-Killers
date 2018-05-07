@@ -1,0 +1,42 @@
+<title>special files quest</title>
+
+<dl>
+<dt> Name
+<dd> special files
+<dt> Summary
+<dd> Learn about special files
+<dt> Requires
+<dd> <A href="files.html">files</A>.
+<dd> <A href="directories.html">directories</A>.
+<dt> Steps
+<dd>
+<ol>
+<li> Read about special files.
+<li> Pass a quiz on special files.
+</ol>
+<dt> Rewards
+<dd> UNIX: 1
+<dt> Reading
+<dd> The UNIX system interacts with users in either a text (console) mode
+     or a graphical mode. In the text mode, the screen and keyboard are
+     treated by programs as special files. If you write to a special file
+     called the "standard output" it shows up on your screen by default.
+     If you read from a special file called the "standard input", you are
+     reading from the keyboard by default.  There is actually a third special
+     file called the "standard error" file; it writes to the screen and is
+     intended for more serious problems such as program failures.
+     <p>
+     These files, because they correspond to hardware devices, have names
+     in the /dev directory (for example, /dev/stdin).  One other difference
+     between them and most ordinary files is that they are already open and
+     ready for use when a program starts up; regular files have to be opened
+     before access and closed after access.
+<dt> Quiz (2/2)
+<dd>
+<dl>
+<dt> What is the special file that corresponds to input from the keyboard?
+<dd> standard input
+<dt> What is the special file that corresponds to putput to the screen?
+<dd> standard output
+</dl>
+</dl>

@@ -1,0 +1,12 @@
+Door {
+	id 385
+	x 40.8
+	y 8.2
+	z 25.54
+	w 0.93
+	texture frontdoor.gif
+	height 2.15
+	collide_in 1.2
+	plane 3
+	rooms [FrontPorch, MainFoyer]
+}

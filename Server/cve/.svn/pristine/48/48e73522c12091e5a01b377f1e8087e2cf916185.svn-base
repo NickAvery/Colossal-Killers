@@ -1,0 +1,457 @@
+#
+# dehtml.icn - HTML to ASCII (tag remover)
+#
+
+global whites, silent, titleist,cntr,web_result,c,enter_li,subtopic
+
+record htmlnode(tag,         # html tag
+           value,        # attributes/values, e.g. string text
+           parent,
+           children,
+           older,
+           younger)
+
+procedure insert_child(self, kid)
+   kid.parent := self
+   kid.older := self.children[-1]
+   self.children[-1].younger := kid
+   put(self.children, kid)
+end
+
+procedure remove_child(self, kid)
+local i,x
+   kid.older.younger := kid.younger
+   kid.younger.older := kid.older
+   every i := 1 to * self.children do {
+      x := get(self.children)
+      if x ~=== kid then
+         put(self.children, x)
+      }
+end
+
+procedure print_string(s, preformatted)
+   local i,s2
+   if /s then fail
+   if not(string(s)) then {
+      print_string(string(s.value), preformatted)
+      every print_string(!(s.children), preformatted) do 
+         writes(" ")
+      return
+      }
+   while s[find("&amp;", s) +: 5] := "&"
+   while s[find("&lt;", s) +: 4] := "<"
+   while s[find("&gt;", s) +: 4] := ">"
+   while s[find("&quot;", s) +: 6] := "\""
+   while s[find("&copy;", s) +: 6] := "Copyright"
+   while s[find("&nbsp;", s) +: 6] := " "
+
+   every i := *s to 1 by -1 do {
+      if ord(s[i]) > 127 then
+         s[i] := image(s[i])[2:-1]
+      }
+
+   if \preformatted === 1 then {
+      s ? {
+         while s2 := tab(find("\n")) do {
+
+	    if s2 ? (tab(many(' \t')) & ="/") then {
+               print_string(tab(0), preformatted)
+               s2 := ""
+               }
+            if enter_li=1 then {
+               put(web_result,"*"||s2)
+               enter_li:=0
+	       }
+            else if enter_li=2 then {
+               put(web_result,cntr||". "||s2) 
+               enter_li:=0
+               }
+            else
+               put(web_result, s2)
+               
+            move(1)
+            }
+	 s2 := tab(0)
+         if enter_li=1 then {
+	    put(web_result, "*" || s2)
+            enter_li:=0
+            }
+         else if enter_li=2 then {
+	    put(web_result, cntr || ". " || s2)
+	    enter_li:=0
+	    }
+         else
+	    put(web_result, s2)
+	 }
+      }
+   else if \preformatted then {
+      if s := trim(s, ' \t\n') & *s > 0 then {
+	 if enter_li=1 then {
+	    put(web_result, "*" || s)
+	    enter_li:=0
+	    }
+	 else if enter_li=2 then {
+	    put(web_result, cntr || ". " || s)
+	    enter_li := 0
+	    }
+         else
+	    put(web_result, s)
+	 }
+      }
+   else {
+      s ? {
+	 while s2 := tab(find("\n")) do {
+	    s2 ? {
+               tab(many(' \t'))
+               if ="/" then {
+	          print_string(tab(0), preformatted)
+		  s2 := ""
+	          }
+               }
+	    if enter_li=1 then {
+	       put(web_result, "*" || s2 || " ")
+	       enter_li:=0
+	       }
+            else if enter_li=2 then {
+	       put(web_result, cntr || ". " || s2 || " ")
+	       enter_li:=0
+	       }
+	    else
+	       put(web_result,s2||" ")
+	    move(1)
+	    }
+	 if *(s2 := tab(0)) > 0 then {
+	    s2 ? {
+	       tab(many(' \t'))
+	       if ="/" then {
+		  print_string(tab(0), preformatted)
+                  s2 := ""
+                  }
+	       }
+	    if enter_li=1 then {
+	       put(web_result, "*" || s2 || " ")
+               enter_li:=0
+               }
+            else if enter_li=2 then {
+	       put(web_result, cntr || ". " || s2 || " ")
+               enter_li:=0
+               }
+            else
+               put(web_result, s2 || " ")
+           }
+       }
+    }
+end
+
+procedure print(self, preformatted)
+   local i,j,oldest,nam,ref,theref,dot,s,child,lasttitle
+   static listmodestack
+   initial listmodestack := []
+
+   /subtopic := 0
+
+   case self.tag of {
+      "root" | "head": {
+	 every i := 1 to * self.children do
+            print(self.children[i], preformatted)
+	 }
+      "html": {
+	 every i := 1 to * self.children do
+            print(self.children[i], preformatted)
+	 }
+      "body": {
+	 every i := 1 to * self.children do {
+	    child := self.children[i]
+	    if child.tag == ("h1"|"h2"|"h3"|"h4"|"h5"|"h6") then {
+	       j := i + 1
+	       while self.children[j].tag == ("h6"|"hr") do j +:= 1
+	       if self.children[j].tag == ("h1"|"h2"|"h3"|"h4"|"h5"|"h6") then
+		  next
+               }
+	    print(child, preformatted)
+	    }
+	 }
+      "title": { 
+	 lasttitle := self.children[1]
+	 }
+      "h1" | "h2" | "h3" | "h4" : {
+	 oldest := self.children[1] | stop("no oldest")
+	 if /oldest then stop("oldest is null")
+	 if oldest.tag == "a" & \ (nam := oldest.value["NAME"]) then {
+	    nam := nam[2:-1]
+	    nam ? {
+	       if ="anchor" & tab(many(&digits)) & pos(0) then
+		  nam := "referenc"
+	       }
+	    every i := 1 to *self.children do
+	       print_string(self.children[i])
+
+            every i := 1 to *self.children do {
+               print_string(self.children[i])
+               }
+            }
+	 else { # header tag, but not a target of any jumps
+	    if (self.children[1].tag == "string") &
+                   self.children[1].value === titleist then { }
+	    else {
+	       every i := 1 to * self.children do {
+		  print(self.children[i])
+	          }
+	       }
+	    }
+	 }
+      "h5"|"h6": { } # suppress anything this small
+      "var" | "i": {
+	 every i := 1 to * self.children do
+	    print(self.children[i])
+	 put(web_result,"")
+	 }
+      "code" | "tt": {
+         every i := 1 to * self.children do
+            print(self.children[i])
+         put(web_result,"")
+         }
+      "ol": {
+	 push(listmodestack, 0)
+	 cntr := 0
+	 every i := 1 to * self.children do
+	     print(self.children[i], preformatted)
+	 pop(listmodestack)
+	 put(web_result,"")
+	 }
+      "ul": {
+	 push(listmodestack, "ul")
+	 every i := 1 to * self.children do
+	    print(self.children[i], preformatted)
+	 pop(listmodestack)
+	 put(web_result, "")
+	 }
+      "hr": {
+	 }
+      "img": {
+	 }
+      "br": {
+	 put(web_result,"")
+	 }
+      "a": {
+	 if ref := \ (self.value["HREF"]) then {
+	    ref := ref[2:-1]
+	    if match("http"|"mailto"|"ftp", ref) then {
+	       # do nothing w/ remote links
+	       return
+               }
+	    else if ref[-4:0] == (".gif"|".jpg") then {
+	       # do nothing w/ URL's for (non-inlined) images
+	       return
+               }
+            else if self.children[1].value[1] == "[" then {
+               # do nothing w/ [back to home page], and snuff it
+               return
+               }
+            else if i := find("#", ref) then {
+               theref := ref[i+1 : 0]
+               }
+            else {
+               theref := map(ref, "/", "_")
+               every dot := find(".", theref)
+               theref := theref[1 : dot]
+               }
+            if \ (self.children[1].value) ~== "" then {
+               print_string(self.children[1].value)
+               }
+            else
+               print_string(theref)
+            put(web_result,"")
+            }
+         else if ref := \ (self.value["NAME"]) then {
+            # target of jumps, in the middle of nowhere
+            ref := ref [2:-1]
+            ref ? {
+               if ="anchor" & tab(many(&digits)) & pos(0) then
+                  ref := "referenc"
+               }
+
+            if *self.children > 0 then {
+               put(web_result,": ")
+                    
+               every i := 1 to *self.children do
+                  print_string(self.children[i])
+               }
+            every i := 1 to *self.children do {
+               print_string(self.children[i])
+               }
+           }
+           else {
+               every i := 1 to *self.children do
+                   print(self.children[i])
+           }
+       }
+      "li": {
+	 if cntr < 0 then {
+	    enter_li := 1
+	    }
+	 else {
+            cntr +:= 1
+            enter_li:=2
+            }
+         every i := 1 to * self.children do
+            print(self.children[i])
+         cntr:=-2
+	 }
+      "blockquote": {
+	 every i := 1 to * self.children do
+	    print(self.children[i], preformatted)
+	 }
+      "p": {
+	 put(web_result,"") 
+	 every i := 1 to * self.children do
+	    print(self.children[i], preformatted)
+	 }
+      "pre": {
+	 every i := 1 to * self.children do
+	    print(self.children[i], 1)
+	 }
+      "string": {
+         print_string(self.value, preformatted)
+	 }
+      "td": {
+	 if s := string(self.value) then {
+	    print_string(s, preformatted)
+	    }
+	 every i := 1 to * self.children do {
+	    print(self.children[i], preformatted)
+	    }
+	 }
+      "th": {
+	 if s := string(self.value) then {
+	    print_string(s, preformatted)
+	    }
+	 every i := 1 to * self.children do {
+	    print(self.children[i], preformatted)
+	    }
+	 }
+      "tr": {
+	 if s := string(self.value) then {
+	    print_string(s, preformatted)
+	    }
+	 every i := 1 to * self.children do {
+	    print(self.children[i], preformatted)
+	    }
+	 }
+      default: {
+	 if s := string(self.value) then {
+	    print_string(s, preformatted)
+	    }
+	 every i := 1 to * self.children do
+	    print(self.children[i], preformatted)
+	 }
+      }
+end
+
+procedure Node(tag, value)
+   local self
+   self := htmlnode(tag, value)
+   self.children := []
+   return self
+end
+
+global filelist, fileset, basename, firstbase, subtree, nolinks
+
+procedure dehtml(web_list)
+   local root,s,c,i
+
+   cntr:=-2
+   enter_li:=0
+   whites := ' \t\n\^m' 
+               #\t is tab 	\n is newline 		and ctrl-m
+   root := Node("root") #root is list
+
+   s := ""
+   every i:=1 to *web_list do {
+      s ||:= web_list[i]
+      s ||:= "\n"
+      }
+
+   s ? {
+      read_tags(root)
+      }
+
+   web_result := []
+   c := 1
+   print(root)
+end
+
+procedure Value(s)
+   local t,attr,val
+   map(s, "\n\^m", "  ") ? {
+      tab(many(whites))
+      while (attr := tab(many(&letters))) & (tab(many(whites))|1)\1 & ="=" do {
+	 /t := table()
+	 tab(many(whites))
+	 if val := ="\"" then {
+	    while val ||:= move(1) do {
+	       if val[-1] == "\\" then val ||:= move(1)
+	       else if val[-1] == "\"" then break
+	       }
+	    }
+	 else {
+	    val := tab(upto(whites) | 0)
+	    }
+	 t[attr] := val
+	 }
+      if /t then return s
+      else return t
+      }
+end
+
+procedure read_tags(t, inpreformat)
+   local s,tag,value,n
+   while s := tab(find("<")) do {
+      if /inpreformat then {
+	 s ?:= (tab(many(whites)) & tab(0))
+	 s := trim(s, whites)
+	 }
+      if *s > 0 then {
+	 n := Node("string", s)
+	 insert_child(t, n)
+	 }
+      move(1) # past <
+      tab(many(whites))
+      if ="!--" then {
+	 tab(find("-->")+3) |stop("unterminated comment in ", image(tab(0)))
+	 next
+	 }
+      else if ="!DOCTYPE" then {
+	 tab(find(">")+1) | stop("unterminated comment in ", image(tab(0)))
+	 next
+	 }
+      tag := map(tab(many(&letters++&digits++'/'))) | {
+	 insert_child(t, Node("string", "<"))
+	 write(&errout, "warning, no tag after <", &subject[&pos])
+	 next
+	 }
+      tab(many(whites))
+      value := Value(tab(find(">")))
+      move(1) # past >
+
+      if tag[1] == "/" then {
+	 if map(tag[2:0]) == "li" then {
+	    next
+	    }
+	 return
+	 }
+
+      n := Node(tag, value)
+      if (t.tag == tag) & (tag == ("li")) then
+	 insert_child(t.parent, n)
+      else
+	 insert_child(t, n)
+      if tag == ("img" | "br" | "hr") then next
+      if tag == ("html"|"body") then {        }
+      if tag == "pre" then
+	 read_tags(n, 1)
+      else
+	 read_tags(n, inpreformat)
+      if tag == "li" then return
+      }
+end

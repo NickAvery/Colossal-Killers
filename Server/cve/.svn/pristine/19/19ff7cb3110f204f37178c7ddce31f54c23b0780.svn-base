@@ -1,0 +1,189 @@
+
+$include "defaults.icn"
+
+class Logger( out, log_level, logfile, start_time, watch_list )
+
+   #
+   # subscribe(): add oneself to log watching
+   #
+   method subscribe( sock, ip )
+      logit("subscribe(): adding log listener from " || ip)
+      put(watch_list, sock)
+   end
+
+   #
+   # unsubscribe(): remove oneself from log watching
+   #
+   method unsubscribe( sock )
+      local index
+
+      if index := isMember(watch_list, sock) then {
+	 delete(watch_list, index)
+	 logit("unsubscribe(): removing log listener")
+	 return 
+	 }
+      logit("unsubscribe(): user not in log listener")
+      fail
+   end
+
+   #
+   # logit: send strings here to be logged
+   #
+   method logit( msg[] )
+      local message := "", log_message, watcher
+
+	  every message ||:= !msg
+	  
+      log_message := timestamp() || message
+$ifndef _UNIX
+      if (&progname === "cved") | (out ~=== &output) then
+$endif
+      write( out, log_message )
+
+      every watcher := !watch_list do
+	 write (watcher, log_message)
+
+      return message
+   end
+
+   #
+   # timestamp: chronological representation of time
+   #
+   method timestamp()
+      return  "(" || &date || " " || &clock || ") "
+   end
+
+   #
+   # terminate: gracefully close the logfiles
+   #
+   method terminate()
+      if out ~=== &output then {
+	 logit("closing log file: " || logfile)
+	 write(out, "Session End ---------------------------------")
+	 close(out)
+	 }
+      return
+   end
+   
+   #
+   # getUptime(): duh it returns the uptime for the server
+   #
+   method getUptime()
+      local elapsed_time, days, hours, minutes, seconds
+      
+      days := hours := minutes := seconds := 0      
+      elapsed_time := gettimeofday().sec - start_time
+      seconds := elapsed_time % 60
+
+      if elapsed_time >= 60 then
+	 minutes := (elapsed_time-seconds) / 60
+
+      if minutes >= 60 then {
+	 minutes := (elapsed_time - seconds) % 60
+	 hours := (elapsed_time - (minutes*60) - seconds) / (60*60)
+	 }
+      
+      if hours >= 24 then {
+	 hours := (elapsed_time - (minutes*60) - seconds) % (60*60)
+	 days := (elapsed_time - (hours*24) - (minutes*60) - seconds)/(3600*24)
+	 }
+      
+      return logit("Unicrond uptime: " || days || " day(s), " || hours ||
+              " hour(s), " || minutes || " minute(s) " || seconds || " sec(s)")
+   end
+
+   #
+   # isMember(): checks to see if a certain element is in a table
+   #   returns the index at which it is found, or fails
+   #
+   method isMember(L, elem)
+      local i
+      if L[i := key(L)] === elem then
+	 return i
+   end
+   
+   method logUserActivity(uid, message)
+      local fd, logMsg, aday, fname, m_afk, afk_dur
+
+      logMsg  := timestamp() || message
+
+      fname := DAT||PS||"users" ||PS|| uid|| PS || 
+         uid ||".log"
+
+      fd := datopen(fname, "wa") | 
+         {logit("failed to open: ",fname); fail}
+      message ? { 
+	 if ="Logged In" then write(fd)	
+	 }
+      write(fd, logMsg)
+      close(fd)
+
+      logMsg := &dateline
+      logMsg ? {
+        aday := tab(find(",")) #activity day
+        move(1)
+        }
+      logMsg := aday||" "||&clock||" "||message
+
+      fname := DAT||PS||"users" ||PS|| uid|| PS || 
+         "availability.log"
+      fd := datopen(fname, "wa") |
+         {logit("failed to open: ",fname); fail}
+      if find("Logged In"|"Logged Out", message) then
+         write(fd, logMsg)
+      close(fd)
+
+      fname := DAT||PS||"users" ||PS|| uid|| PS || 
+         "afk_activity.log"
+      fd := datopen(fname, "wa") |
+         {logit("failed to open: ",fname); fail}
+      if find("AFK", message) then {
+         message ? { 
+            m_afk := tab(find(":"))
+            move(1)
+            afk_dur := integer(tab(0))
+	    }
+         write(fd, aday||" Logged out at "||&clock||", AFK is ("||afk_dur||")")
+         }
+      close(fd)
+
+      fname := DAT||PS||"users" ||PS|| uid|| PS || 
+         "ide_3d_activity.log"
+      fd := datopen(fname, "wa") |
+         {logit("failed to open: ",fname); fail}
+      if find("3D"|"Map"|"Editor"|"Profile"|"Wall", message) then {
+         write(fd, aday||" "||&clock||" "||message)
+         }
+      close(fd)
+
+   end
+   
+   method logUserActivitySummary(uid, message)
+      local fd 
+      fd := datopen("dat"||PS||"users"||PS||uid||PS||uid ||"_summary.log", "w")
+      write(fd, message)
+      close(fd)
+   end
+
+   initially(log_name)
+
+      static log_level # the loglevel should stay the same throughout execution
+
+      start_time := gettimeofday().sec # Record the start time.
+
+      if \log_name then {
+	 logfile := log_name
+	 write("all logging information stored in " || logfile)
+	 out := datopen(logfile, "wa")
+	 }
+      else
+	 out := &output
+
+      watch_list := list() # list of people tailing logs
+
+      # distinguish a new session
+$ifndef _UNIX
+      if &output ~=== out then
+$endif
+	 write(out, "Session Start ------------------------------------")
+end

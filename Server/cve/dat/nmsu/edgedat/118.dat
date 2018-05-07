@@ -1,0 +1,11 @@
+Opening {
+	id 118
+	x 71.2
+	y 4.35
+	z 26.2
+	w 13
+	height 2.0
+	collide_in 0.8
+	plane 3
+	rooms [crl_ramps, floor_2_corridor_roger]
+}

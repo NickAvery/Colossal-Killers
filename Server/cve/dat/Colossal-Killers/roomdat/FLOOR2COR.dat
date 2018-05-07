@@ -1,0 +1,96 @@
+Room {
+	name  FLOOR2COR
+	x 23.2
+	y 12.3
+	z 18.23
+	w 21.1
+	h 3.6
+	l 3.4
+	texture dat/uidaho/texsmall/wall.gif
+	floor Wall { texture dat/uidaho/texsmall/red_yellow_tile.gif }
+	ceiling Wall { texture dat/uidaho/texsmall/ceilingtile.gif }
+	obstacles [
+		Table {
+			coords [32.4, 12.3, 18.8]
+			position 0
+			color light brown
+			type office
+		}
+	]
+	decorations [
+		Wall {
+			texture dat/uidaho/texsmall/board1.gif
+			coords [
+				39.2, 13.6, 21.62,
+				39.2, 14.4, 21.62,
+				38.4, 14.4, 21.62,
+				38.4, 13.6, 21.62
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/awards.gif
+			coords [
+				34.4, 13.6, 18.24,
+				34.4, 14.4, 18.24,
+				33.2, 14.4, 18.24,
+				33.2, 13.6, 18.24
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/board2.gif
+			coords [
+				32.4, 13.6, 18.24,
+				32.4, 14.4, 18.24,
+				31.2, 14.4, 18.24,
+				31.2, 13.6, 18.24
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/board3.gif
+			coords [
+				27.4, 13.6, 18.24,
+				27.4, 14.4, 18.24,
+				28.2, 14.4, 18.24,
+				28.2, 13.6, 18.24
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/board4.gif
+			coords [
+				31.2, 13.6, 21.62,
+				31.2, 14.4, 21.62,
+				30.4, 14.4, 21.62,
+				30.4, 13.6, 21.62
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/csde.gif
+			coords [
+				42.2, 13.6, 21.62,
+				42.2, 14.4, 21.62,
+				41.4, 14.4, 21.62,
+				41.4, 13.6, 21.62
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/window.gif
+			coords [
+				44.28, 13.6, 18.3,
+				44.28, 14.8, 18.3,
+				44.28, 14.8, 20.0,
+				44.28, 13.6, 20.0
+			]
+		}
+		Wall {
+			texture dat/uidaho/texsmall/csdsdoor.gif
+			coords [
+				44.28, 12.3, 20.3,
+				44.28, 14.8, 20.3,
+				44.28, 14.8, 21.2,
+				44.28, 12.3, 21.2
+			]
+		}
+	]
+	tools [
+	]
+}

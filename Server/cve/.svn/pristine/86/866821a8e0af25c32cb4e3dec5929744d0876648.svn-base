@@ -1,0 +1,11 @@
+Opening {
+	id 63
+	x 14.6
+	y 2.05
+	z 19.3
+	w 2.0
+	height 2.2
+	collide_in 1.2
+	plane 1
+	rooms [corridor_014, ground_stairs]
+}

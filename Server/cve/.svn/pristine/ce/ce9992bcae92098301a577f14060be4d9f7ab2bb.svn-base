@@ -1,0 +1,1310 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List href="sci_files/filelist.xml">
+<link rel=Edit-Time-Data href="sci_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>The Social CDE (SCI) </title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>hani</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>hani</o:LastAuthor>
+  <o:Revision>12</o:Revision>
+  <o:TotalTime>26</o:TotalTime>
+  <o:Created>2010-02-15T23:53:00Z</o:Created>
+  <o:LastSaved>2010-02-16T20:59:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>286</o:Words>
+  <o:Characters>1631</o:Characters>
+  <o:Company>University of Idaho</o:Company>
+  <o:Lines>13</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1914</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=dataStoreItem href="sci_files/item0010.xml"
+target="sci_files/props0011.xml">
+<link rel=themeData href="sci_files/themedata.thmx">
+<link rel=colorSchemeMapping href="sci_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:Times;
+	panose-1:2 2 6 3 5 4 5 2 3 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073711039 9 0 511 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h2
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h3
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 3 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Header Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.25in right 6.5in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Footer Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.25in right 6.5in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+tt
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#5EA226;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#7FD13B;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 3";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#7FD13B;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Header;
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-ascii-font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:Footer;
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-ascii-font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Tahoma;
+	mso-bidi-font-family:Tahoma;}
+p.Default, li.Default, div.Default
+	{mso-style-name:Default;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+span.z-TopofFormChar
+	{mso-style-name:"z-Top of Form Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"z-Top of Form";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	display:none;
+	mso-hide:all;}
+span.z-BottomofFormChar
+	{mso-style-name:"z-Bottom of Form Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"z-Bottom of Form";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Arial","sans-serif";
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	display:none;
+	mso-hide:all;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator:url("sci_files/header.htm") fs;
+	mso-footnote-continuation-separator:url("sci_files/header.htm") fcs;
+	mso-endnote-separator:url("sci_files/header.htm") es;
+	mso-endnote-continuation-separator:url("sci_files/header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-even-header:url("sci_files/header.htm") eh1;
+	mso-header:url("sci_files/header.htm") h1;
+	mso-even-footer:url("sci_files/header.htm") ef1;
+	mso-footer:url("sci_files/header.htm") f1;
+	mso-first-header:url("sci_files/header.htm") fh1;
+	mso-first-footer:url("sci_files/header.htm") ff1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:-2;
+	mso-list-type:simple;
+	mso-list-template-ids:1903956754;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:*;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1
+	{mso-list-id:948464419;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-965413538 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:1381707339;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1859790478 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:1517576021;
+	mso-list-type:hybrid;
+	mso-list-template-ids:910433390 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level1 lfo8
+	{mso-level-numbering:continue;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:0in;
+	margin-left:0in;
+	text-indent:0in;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="10242">
+  <o:colormenu v:ext="edit" fillcolor="none [662]"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor="#FEF0CD" lang=EN-US link=blue vlink=purple style='tab-interval:
+.5in'>
+
+<div class=Section1>
+
+<div align=center>
+
+<table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:1.5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-no-proof:yes'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+   coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+   filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="Picture_x0020_1" o:spid="_x0000_i1029" type="#_x0000_t75"
+   alt="sci_logo.png" style='width:81pt;height:84.75pt;visibility:visible'
+   o:gfxdata="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
+LnBuZ1BLBQYAAAAABgAGAHwBAACxFwAAAAA=
+">
+   <v:imagedata src="sci_files/image001.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+  </v:shape><![endif]--><![if !vml]><img width=108 height=113
+  src="sci_files/image003.gif" alt="sci_logo.png" v:shapes="Picture_x0020_1"><![endif]></span><span
+  style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span style='font-size:18.0pt;font-family:"Times","serif";
+  mso-fareast-font-family:"Times New Roman";mso-bidi-font-family:Arial'>The SCI
+  (Social Collaborative Development Environment)</span><span style='font-family:
+  "Times","serif";mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:1.5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+  style='font-family:"Times","serif"'><o:p>&nbsp;</o:p></span></b></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'></td>
+ </tr>
+</table>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<h1><span style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>SCI
+1.0 !<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span style='font-family:"Times","serif";mso-fareast-font-family:
+"Times New Roman"'>SCI 1.0 lives on cve.sourcforge.net.. It has lots of great
+new features. <o:p></o:p></span></p>
+
+<h2><span style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>The
+Social Collaborative Integrated Development Environment (<a
+href="http://cve.sf.net/">Download</a>)<o:p></o:p></span></h2>
+
+<p class=Default><span style='font-size:11.0pt;font-family:"Times","serif"'>SCI
+is a desktop application written as an extension of ICI. ICI and SCI run on a
+variety operating systems including: Microsoft Windows, Linux, and Mac OS. The
+major components of SCI are:<o:p></o:p></span></p>
+
+<p class=Default><span style='font-size:11.0pt;font-family:"Times","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Collaboration
+Spaces (A). <o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>The
+ChangeBar (B) uses color coding to depict the user who committed the most
+recent updates or changes to each line. <o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Activities
+on the current collaboration space (C). <o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Chatting
+(Text and VoIP) (D). <o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Tabs(E)
+: News Feed Tab, and Activity Tab (that shows both of F and G). <o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l2 level1 lfo2'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Session
+Tree (F). <o:p></o:p></span></p>
+
+<p class=Default style='margin-left:.75in;text-indent:-.25in;mso-list:l3 level1 lfo4'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>Mini
+Tab Set (G): includes Users Tree, Groups Tree, and Projects Tree. <o:p></o:p></span></p>
+
+<p><span style='font-size:11.0pt;font-family:"Times","serif"'>Other features
+include:<o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>User
+Profiles<o:p></o:p></span></p>
+
+<p class=Default style='margin-top:0in;margin-right:0in;margin-bottom:8.25pt;
+margin-left:.75in;text-indent:-.25in;mso-list:l1 level1 lfo6'><![if !supportLists]><span
+style='font-size:11.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:11.0pt;font-family:"Times","serif"'>News
+Feed<o:p></o:p></span></p>
+
+<p class=Default><span style='font-size:11.0pt;font-family:"Times","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=Default align=center style='text-align:center'><span style='font-size:
+11.0pt;font-family:"Times","serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_2" o:spid="_x0000_i1028" type="#_x0000_t75" alt="image005.gif"
+ style='width:596.25pt;height:357pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="sci_files/image002.gif" o:title="image005"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=795 height=476
+src="sci_files/image002.gif" alt=image005.gif v:shapes="Picture_x0020_2"><![endif]></span><span
+style='font-size:11.0pt;font-family:"Times","serif"'><o:p></o:p></span></p>
+
+<p class=Default><span style='font-size:11.0pt;font-family:"Times","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></p>
+
+<div align=center>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;background:#00008C;border:outset 1.5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td style='background:#FFCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>Papers</span></b><span
+  style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td style='background:#FFCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:
+  -.25in;mso-list:l0 level1 lfo8;mso-hyphenate:none;mso-layout-grid-align:none;
+  text-autospace:none'><![if !supportLists]><span style='font-size:11.0pt;
+  font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><u><span style='font-size:11.0pt;font-family:
+  "Times","serif";mso-fareast-font-family:"Times New Roman";mso-bidi-font-family:
+  Arial'>Bani-Salameh, H.</span></u><span style='font-size:11.0pt;font-family:
+  "Times","serif";mso-fareast-font-family:"Times New Roman";mso-bidi-font-family:
+  Arial'>, Jeffery, C., Al-Sharif, Z., Idoush, I.: <b><i>Integrating
+  Collaborative Program Development and Debugging within a Virtual Environment</i></b><i>.
+  </i>14th International Workshop, CRIWG 2008, Omaha, Nebraska, September 2008
+  Proceedings.<o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.5in;text-align:justify;mso-hyphenate:
+  none;mso-layout-grid-align:none;text-autospace:none'><i><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></i></p>
+  <p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:
+  -.25in;mso-hyphenate:none;mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Symbol;color:black'>·<span
+  style='mso-tab-count:1'>     </span></span><u><span style='font-size:11.0pt;
+  font-family:"Times","serif";mso-fareast-font-family:"Times New Roman";
+  mso-bidi-font-family:Arial;color:black'>Bani-Salameh, H</span></u><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Arial;color:black'>., Jeffery, C.,
+  Al-Gharaibeh, J.: <b><i>SCI: Towards a Social Collaborative Integrated
+  Development Environment. </i></b></span><span style='font-size:11.0pt;
+  font-family:"Times","serif";mso-fareast-font-family:"Times New Roman";
+  mso-bidi-font-family:Arial'>Workshop on Social Computing in Education
+  (WSCE09) that held in association with the 2009 International Conference on
+  Social Computing (SocialCom), Vancouver, Canada, August 2009.<i><o:p></o:p></i></span></p>
+  <p class=MsoNormal style='margin-left:.5in;text-align:justify;mso-hyphenate:
+  none;mso-layout-grid-align:none;text-autospace:none'><i><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></i></p>
+  <p class=MsoNormal style='margin-left:.5in;text-align:justify;text-indent:
+  -.25in;mso-hyphenate:none;mso-layout-grid-align:none;text-autospace:none'><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Symbol;color:black'>·<span
+  style='mso-tab-count:1'>     </span></span><u><span style='font-size:11.0pt;
+  font-family:"Times","serif";mso-fareast-font-family:"Times New Roman";
+  mso-bidi-font-family:Arial;color:black'>Bani-Salameh, H</span></u><span
+  style='font-size:11.0pt;font-family:"Times","serif";mso-fareast-font-family:
+  "Times New Roman";mso-bidi-font-family:Arial;color:black'>., Jeffery, C.,
+  Al-Gharaibeh, J.: <b><i>A Social Collaborative Virtual Environment for
+  Software Development. </i></b></span><span style='font-size:11.0pt;
+  font-family:"Times","serif";mso-fareast-font-family:"Times New Roman";
+  mso-bidi-font-family:Arial'>In: 2010 International Symposium on Collaborative
+  Technologies and Systems (CTS 2010), Chicago, Illinois, May 2010.</span><span
+  style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>
+  <o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 align=center style='text-align:center'><span style='font-family:"Times","serif";
+mso-fareast-font-family:"Times New Roman"'>News<o:p></o:p></span></h3>
+
+<div align=center>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;background:#00008C;mso-yfti-tbllook:
+ 1184;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='padding:0in 0in 0in 0in'>
+  <table class=MsoNormalTable border=0 cellspacing=1 cellpadding=0 width="100%"
+   style='width:100.0%;mso-cellspacing:.7pt;background:#6699CC;mso-yfti-tbllook:
+   1184;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+    <td width="8%" style='width:8.92%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'><a
+    name="download_VIDE"></a></td>
+    <td width="90%" style='width:90.86%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'>
+    <p class=MsoNormal align=center style='text-align:center'><span
+    style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman";
+    mso-bidi-font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+    </td>
+   </tr>
+   <tr style='mso-yfti-irow:1'>
+    <td width="8%" style='width:8.92%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+    <td width="90%" style='width:90.86%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+   </tr>
+   <tr style='mso-yfti-irow:2'>
+    <td width="8%" style='width:8.92%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+    <td width="90%" style='width:90.86%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+   </tr>
+   <tr style='mso-yfti-irow:3'>
+    <td width="8%" style='width:8.92%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+    <td width="90%" style='width:90.86%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+   </tr>
+   <tr style='mso-yfti-irow:4;mso-yfti-lastrow:yes'>
+    <td width="8%" style='width:8.92%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+    <td width="90%" style='width:90.86%;background:#FFFFCC;padding:.75pt .75pt .75pt .75pt'></td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p align=center style='text-align:center'><span style='font-family:"Times","serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p align=center style='text-align:center'><span style='font-family:"Times","serif"'>This
+page last updated 15 February 2010<o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-family:"Times","serif";mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p align=center style='text-align:center'><span style='font-size:10.0pt;
+font-family:"Times","serif";mso-bidi-font-family:Arial'>Questions and comments
+to: <i style='mso-bidi-font-style:normal'><a
+href="mailto:hsalameh@vandals.uidaho.edu">hsalameh@vandals.uidaho.edu</a></i>
+and <i><a href="mailto:jefferyc@uidaho.edu">jefferyc@uidaho.edu</a>. </i></span><span
+style='font-family:"Times","serif"'><o:p></o:p></span></p>
+
+</div>
+
+</body">
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+Room {
+	name  JEB_Ground_Bathrooms
+	x 42.6
+	y -6.5
+	z 21.7
+	w 1.7
+	h 3.5
+	l 1.8
+	texture dat/uidaho/texsmall/wall.gif
+	floor Wall { texture dat/uidaho/texsmall/red_yellow_tile.gif }
+	ceiling Wall { texture dat/uidaho/textures/ceiling.gif }
+	obstacles [
+	]
+	decorations [
+	]
+	tools [
+	]
+}

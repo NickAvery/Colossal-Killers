@@ -1,0 +1,1514 @@
+################################################################
+#   File:     projects.icn
+#   Subject:  Contains all the SD projects management methods.
+#
+#   Author:   Hani Bani-Salameh
+#   Date:     February 18, 2010
+################################################################
+
+import gui
+$include "guih.icn"
+
+$ifdef _UNIX
+   $define PS "/"
+$else
+   $define PS  "\\"
+$endif
+
+global active_projName, active_fileName
+
+class Projects : Dialog(
+   ctbl, ptbl, fileName, projName, usrlst, #variables passed
+   fileslst, fcontents,                    #when object created
+   curr_start_date, curr_file, curr_time_spent, curr_user, curr_working,
+   curr_working_tbl, diff_results_etl, files_tabset, prev_changed,
+   prev_changed_tbl, prev_end_date, prev_close_time, prev_file,
+   prev_start_date, prev_open_time, prev_user, files_overlay,
+   files_users_overlay, inspection_lbl, inspection_lst, users_overlay,
+   prev_open_lbl, ok_btn, prev_close_lbl, border_1, label_1, label_2,
+   cancel_btn, inspectchanges_btn, users_lst, compare_lbl, 
+   curr_ver_openedfile_txt, with_lbl, filesversions_lst, 
+   inspectfilechanges_btn, inspectuserchanges_btn, diffresults_lbl, 
+   clear_conflicts, open_conflicts,
+   prev_time_spent)
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog()
+      curr_working_tbl.set_contents(ctbl)
+      prev_changed_tbl.set_contents(ptbl)
+      curr_ver_openedfile_txt.set_contents(fileName)
+      filesversions_lst.set_selection_list(fileslst)
+   end
+
+   method on_ok_btn(ev)
+      local fcontents := "", f
+      every f := !view.uide.CurrentEditBox().get_contents() do
+         fcontents ||:= f || "\x1e"
+
+      session.Write("\\commitChanges " || projName || " " || fileName || " " ||
+                    view.user_me || " " || fcontents)
+      dispose()
+   end
+
+   method on_cancel_btn(ev)
+      dispose()
+   end
+
+   method on_inspectchanges_btn(ev)
+   end
+
+   method on_users_lst(ev)
+   end
+
+   method on_inspection_lst(ev)
+      local u
+      u := inspection_lst.selection_list[inspection_lst.get_selection()]
+      if u == "User" then {
+         users_lst.set_contents(usrlst)
+         files_users_overlay.set_which_one(users_overlay)
+         }
+      else {
+         files_users_overlay.set_which_one(files_overlay)
+         }
+   end
+
+   method on_filesversions_lst(ev)
+   end
+
+   method on_inspectfilechanges_btn(ev)
+      local compare_file, with_file, fcontents := "", f,
+         fileNode, projNode, projName
+
+      compare_file := curr_ver_openedfile_txt.get_contents()
+      with_file    := filesversions_lst.selection_list[
+         filesversions_lst.get_selection()]
+
+      fileNode := \view.projects_tree.object_get_selections()[1]
+      projNode := fileNode.get_parent_node()
+      projName := trim(projNode.get_label(), " ", 0)
+
+      every f := !view.uide.CurrentEditBox().get_contents() do
+         fcontents ||:= f || "\x1e"
+
+      session.Write("\\checkdiff " || projName || " " || view.user_me || " " ||
+                    compare_file || " " || with_file|| " " || fcontents)
+
+   end
+
+   method on_inspectuserchanges_btn(ev)
+   end
+
+   method on_clear_conflicts(ev)
+      diff_results_etl.set_contents([""])
+   end
+
+   method on_open_conflicts(ev)
+      local f, l, cwd
+      cwd := chdir()
+
+      chdir(PROJECT_GLOBALPATH||PS||projName)
+      if f := open(chdir()||PS||"diff_results.txt", "w") then {
+         every l := ! diff_results_etl.get_contents() do
+            write(f, l)
+         }
+      system("emacs "||chdir()||PS||"diff_results.txt")
+      chdir(cwd)
+   end
+
+################## project code ################
+# Start: moved from the class nshdlg.icn       #
+################################################
+
+   method project_popup_menu()
+      local tree_pop, p_menu, project_main, file_main, add_project, 
+         delete_project, invite_project, invited_usr, join_project, 
+         projName, leave_project, add_project_file, open_project_file, 
+         close_project_file, commit_project_file, sep_0, sep_1, sep_2, 
+         sep_3, desc_proj_menu, projects_tree_root, changed_project, 
+         newfile, new_project_name, file_name, userID, ustat, active_usr, 
+         delete_project_file, project_activity_summary, ucolor, uc, avat, 
+         user_activity_summary, p, proj_Set := set(), selected_node_depth,
+         proj_wall_menu, view_desc_proj_menu, edit_desc_proj_menu, prjlst
+
+      selectedProjFileID  := 1
+      tree_pop := PopupMenu()
+      p_menu := Menu()
+      tree_pop.set_menu(p_menu)
+
+      tree_pop.set_attribs("bg=white")
+
+      selected_node := view.projects_tree.object_get_cursor().get_label()
+      selected_node := trim(selected_node, " ", 0)
+      selected_node_depth := (view.projects_tree.object_get_cursor()).depth
+
+   if selected_node_depth == 1 then {
+      project_main := Menu()
+      project_main.set_label("Project")
+      add_project := TextMenuItem()
+      add_project.set_label("Add")
+      add_project.connect(self, "on_add_project", ACTION_EVENT)
+      project_main.add(add_project)
+      p_menu.add(project_main)
+      }
+
+   if selected_node_depth == 2 then 
+     {
+      project_main := Menu()
+      project_main.set_label("Project")
+      add_project := TextMenuItem()
+
+      delete_project := TextMenuItem()
+      delete_project.set_label("Delete")
+      delete_project.connect(self, "on_delete_project", ACTION_EVENT)
+      project_main.add(delete_project)
+
+      invite_project := Menu()
+      invite_project.set_label("Invite")
+
+      every userID := !myfriendsslst do {
+      #every userID := key(world.all_registered_users) do {
+         if \(avat := world.get_avatar(userID)) then {
+	    ustat := avat.get_activity_status()
+            if \ustat == ("Online" | "Away" | "Busy") then {
+            if userID ~== view.user_me then {
+               invited_usr := TextMenuItem()
+               invited_usr.set_label(userID)
+               invited_usr.connect(self, "on_invite_to_project",
+                                   ACTION_EVENT)
+               invite_project.add(invited_usr)
+               }
+               }
+            }
+         }
+
+      project_main.add(invite_project)
+
+      join_project := TextMenuItem()
+      join_project.set_label("Join")
+      join_project.connect(self, "on_join_project", ACTION_EVENT)
+      project_main.add(join_project)
+
+      leave_project := TextMenuItem()
+      leave_project.set_label("Leave")
+      leave_project.connect(self, "on_leave_project", ACTION_EVENT)
+      project_main.add(leave_project)
+
+      p_menu.add(project_main)
+      if selected_node_depth == 2 then {
+         sep_0 := MenuSeparator()
+         sep_0.set_is_shaded()
+         p_menu.add(sep_0)
+         }
+
+      file_main := Menu()
+      file_main.set_label("File")
+
+      add_project_file := Menu() #TextMenuItem()
+      add_project_file.set_label("Add")
+      add_project_file.set_img_left(editorimgs("newfile"))
+      new_project_name := TextMenuItem()
+      new_project_name.set_label("Existing File ....")
+      new_project_name.connect(self, "on_add_existing_file_to_project",
+                           ACTION_EVENT)
+      add_project_file.add(new_project_name)
+
+      projects_tree_root := view.projects_tree.get_root_node()
+      changed_project := (\view.projects_tree.object_get_selections()[1]).get_label()
+
+      if \changed_project then {
+         session.Write("\\membersColorList "||view.user_me||
+                       " "||changed_project)
+         }
+
+      newfile := view.VCSC_tab.get_which_one().label
+      if not find(newfile,"Science Hall" |
+         "Janssen Engineering (JEB)" | "Map" |
+         ".c"|".cpp"|".java"|".icn" | "Untitled") then {
+
+         sep_1 := MenuSeparator()
+         sep_1.set_is_shaded()
+         add_project_file.add(sep_1)
+
+         file_name := TextMenuItem()
+         file_name.set_label(newfile)
+         file_name.connect(self, "on_add_opened_file_to_project",
+                           ACTION_EVENT)
+         add_project_file.add(file_name)
+         sep_2 := MenuSeparator()
+         sep_2.set_is_shaded()
+         add_project_file.add(sep_2)
+         }
+
+      add_project_file.add(new_project_name)
+
+      file_main.add(add_project_file)
+      p_menu.add(file_main)
+
+      sep_3 := MenuSeparator()
+      sep_3.set_is_shaded()
+      p_menu.add(sep_3)
+
+      desc_proj_menu := Menu()
+      desc_proj_menu.set_label("Description")      
+      view_desc_proj_menu := TextMenuItem()
+      view_desc_proj_menu.set_label("View")
+      view_desc_proj_menu.connect(self, "on_view_project_description", ACTION_EVENT)
+      desc_proj_menu.add(view_desc_proj_menu)
+      edit_desc_proj_menu := TextMenuItem()
+      edit_desc_proj_menu.set_label("Edit")
+      edit_desc_proj_menu.connect(self, "on_edit_project_description", ACTION_EVENT)
+      desc_proj_menu.add(edit_desc_proj_menu)
+      p_menu.add(desc_proj_menu)
+
+      proj_wall_menu := TextMenuItem()
+      proj_wall_menu.set_label("Wall ...")
+      proj_wall_menu.connect(self, "on_wall", ACTION_EVENT)
+      p_menu.add(proj_wall_menu)
+
+      project_activity_summary := TextMenuItem()
+      project_activity_summary.set_label("Project Activity")
+      project_activity_summary.connect(self, "on_project_activity", ACTION_EVENT)
+      p_menu.add(project_activity_summary)
+
+      user_activity_summary := Menu()
+      user_activity_summary.set_label("Member Activity")
+
+      prjlst := []
+      every put(prjlst, !projMembersSet)
+      every userID := !prjlst do {
+         active_usr := TextMenuItem()
+         active_usr.set_label(userID)
+         ucolor := membersColorTable[\changed_project||":"||userID]
+         if \ucolor ~== "" then {
+            uc := editorimgs(ucolor)
+            if \uc &
+               uc ~== "" then
+               active_usr.set_img_left(uc)
+            }
+         active_usr.connect(self, "on_proj_member_activity", ACTION_EVENT)
+         user_activity_summary.add(active_usr)
+         }
+      p_menu.add(user_activity_summary)
+      }
+
+   if selected_node_depth == 3 then {
+      file_main := Menu()
+      file_main.set_label("File")
+
+      open_project_file := TextMenuItem()
+      open_project_file.set_label("Open")
+      open_project_file.set_img_left(editorimgs("openfile"))
+      open_project_file.connect(self, "on_open_project_file", ACTION_EVENT)
+      file_main.add(open_project_file)
+
+      close_project_file := TextMenuItem()
+      close_project_file.set_label("Close")
+      close_project_file.connect(self, "on_close_project_file", ACTION_EVENT)
+      close_project_file.set_img_left(editorimgs("closefile"))
+      file_main.add(close_project_file)
+
+      delete_project_file := TextMenuItem()
+      delete_project_file.set_label("Delete")
+      delete_project_file.connect(self, "on_delete_project_file", ACTION_EVENT)
+      file_main.add(delete_project_file)
+
+      commit_project_file := TextMenuItem()
+      commit_project_file.set_label("Commit")
+      commit_project_file.connect(self, "on_commit_project_file", ACTION_EVENT)
+      file_main.add(commit_project_file)
+
+      p_menu.add(file_main)
+      }
+
+      view.add(tree_pop)
+      tree_pop.init()
+      tree_pop.resize()
+      tree_pop.popup()
+   end
+
+   method on_add_project(ev)
+      local oldwindow, makeprojectdlg
+
+      oldwindow := &window
+      &window := view.win
+         makeprojectdlg := makeProject()
+         makeprojectdlg.show_modal()
+      &window := oldwindow
+   end
+
+   #
+   # Create a new group
+   # The server sends a message to the add node to all the online users
+   # group trees.
+   #
+   method create_project(projName, projOwner, flag)
+      local r, node
+      r := view.projects_tree.get_root_node()
+
+      insert(myprojectslst, projName)
+      node := Node("label="||projName)
+      node.set_bmps([editorimgs("editor"),editorimgs("editor"),
+                     editorimgs("editor")])
+      r.add(node)
+      #if flag = 0 then
+      #   session.Write("\\say "||" new project "|| projName ||" is added")
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method on_delete_project(ev)
+      local projName
+
+      projName := view.projects_tree.object_get_cursor().get_label()
+      if \projName then {
+         session.Write("\\projectDelete "|| projName||" "||view.user_me)
+         view.projects_tree.tree_structure_changed()
+         }
+   end
+   #
+   # Delete a project (node)
+   #
+   method delete_node_from_project_tree(projName, fileName, flag)
+      local projNode, r, r2, group_name, user
+
+      r:= view.projects_tree.get_root_node()
+      if flag = 1 then { #Remove the project from the tree
+         delete(myprojectslst, projName)
+         projNode := view.Search_Tree(projName, r)
+         r.delete_node(projNode)
+         }
+      else{ #Remove the user from the group node
+         projNode := view.Search_Tree(projName, r)
+         r2 := view.Search_Tree(fileName, projNode)
+         projNode.delete_node(r2)
+         }
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method on_invite_to_project(ev)
+      local projNode, projName, userID
+
+      projNode := view.projects_tree.object_get_cursor()
+      if \projNode then {
+         projName := trim(projNode.get_label(), " ", 0)
+	 userID := trim((ev.get_source()).label, " ", 0)
+         if (\userID) & (userID ~== world.userId) then
+            session.Write("\\projectInvite " || userID||" "||
+               projName||" "||view.user_me)
+         view.projects_tree.tree_structure_changed()
+         }
+   end
+
+################################################
+# Start: check later                           #
+################################################
+   #
+   # Invite user to join project, and add to project tree once accepted
+   # the invitation
+   #
+   method Invite_to_join_project(args, flag)
+      local index, temp, grphost, userID, projName, projOwner, f
+
+      args ? {
+         userID := tab(find(" "))
+         move(1)
+         projName := tab(find(" "))
+         move(1)
+         grphost := tab(find(" "))
+         move(1)
+         projOwner:= tab(0)
+         }
+
+      if \projOwner == grphost then {
+         if flag == 1 then {
+            session.Write("\\say "||userID||" has accepted to join "||
+                          projName||" project")
+            session.Write("\\sciAdduser "||"project"||" "||userID||" "||
+                          projName||" "||projOwner)
+            session.Write("\\addFeed "||view.user_me||
+               " joined project "||projName||"."||"@@"||0||" "||"Project:"||projName)
+            session.Write("\\writeToWall "||view.user_me||
+               " joined project "||projName||".")
+
+            }
+         else {
+            session.Write("\\say "||userID ||" has rejected to join "||
+                          projName||" project")
+            }
+         }
+   end
+   #
+   # On add user to a project
+   #
+   method on_add_user_to_project(projName, userID, ustatus)
+      local projNode
+      if /projName then {
+         projNode := \view.projects_tree.object_get_selections()[1]
+         projName := \projNode.get_label()
+         }
+      add_node_to_project_tree(projName, userID, ustatus)
+   end
+   #
+   # Add the new user (node) to the group tree
+   #
+   method add_node_to_project_tree(projName, userID, ustatus)
+      local node, child, r, ustat := "offline"
+
+      r := view.projects_tree.get_root_node()
+      node := view.Search_Tree(projName, r)
+      child := Node("label= "||userID)
+      if /node then node := r
+      child.set_bmps([editorimgs(ustatus),editorimgs(ustatus),
+                      editorimgs(ustatus)])
+      node.add(child)
+      view.projects_tree.tree_structure_changed()
+   end
+################################################
+# End: check later                           #
+################################################
+
+   method on_join_project(ev)
+      local projName
+
+      /projName := ""
+
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      session.Write("\\projectJoin " || view.user_me||" "||projName)
+      on_set_member_color(projName, 0)
+   end
+   #
+   # Sends the server once the owner accepted the user request to join
+   # a prject and add the user
+   #
+
+   method accept_project_join_request(args)
+      local userID, projName, projOwner
+
+      args ? {
+         userID := tab(find(" "))
+         move(1)
+         projName := tab(find(" "))
+         move(1)
+         projOwner:= tab(0)
+         }
+      on_set_member_color(projName, 0)
+      session.Write("\\sciAdduser "||"project"||" "||userID||" "||
+         projName||" "||projOwner)
+      session.Write("\\addFeed "||view.user_me||
+         " joined project "||projName||"."||"@@"||0||" "||"Project:"||projName)
+      session.Write("\\writeToWall "||view.user_me||
+         " joined project "||projName||".")
+   end
+
+   method on_leave_project(ev)
+      local projName
+
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      projName := trim(projName, " ", 0)
+
+      session.Write("\\projectLeave "||view.user_me||" "||projName)
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method on_add_existing_file_to_project(ev)
+      local fileName, projNode, projName, fcontents := "", f
+
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      projName := trim(projName, " ", 0)
+
+      ide.handle_openfile(ev,,"sdp", projName)
+      fileName := ide.CurrentTabItem().label
+
+      every f := !ide.CurrentEditBox().get_contents() do
+         fcontents ||:= f || "\x1e"
+
+      session.Write("\\projfileAdd "||projName||" "||fileName||" "||
+                    view.user_me||" "||fcontents)
+   end
+
+   method on_add_opened_file_to_project(ev)
+      local fileName, projNode, projName, fcontents := "", f
+
+      fileName := trim((ev.get_source()).label, " ", 0) | view.tab_label
+
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      projName := trim(projName, " ", 0)
+
+      every f := !view.uide.CurrentEditBox().get_contents() do
+         fcontents ||:= f || "\x1e"
+
+      insert(sdprojfilesSet, projName||":"||fileName)
+
+      session.Write("\\projfileAdd " || projName || " " || fileName || " " ||
+                    view.user_me || " " || fcontents)
+   end
+   #
+   # On delete file from project
+   #
+   method on_delete_project_file(ev)
+      local projNode, projName, removedFile, rf, nrest
+
+      projNode := view.projects_tree.object_get_cursor()
+      projName := projNode.get_parent_node()
+      projName := projName.get_label()
+      removedFile := projNode.get_label()
+
+      if find("(PF)", removedFile) then {
+         removedFile ? {
+           rf := tab(find("(PF)"))
+           move(4)
+           nrest := tab(0)
+           }
+         removedFile := rf
+         }
+
+      session.Write("\\projfileDelete "||removedFile||
+         " "||projName||" "||view.user_me)
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method on_open_project_file(ev)
+      local fileName, projName, node
+
+      projMenu.clear_isShaded()
+
+      if selectedProjFileID == 1 then {
+         node := (\view.projects_tree.object_get_cursor())
+         fileName := trim(node.get_label(), " ", 0)
+         projName := (node.get_parent_node()).get_label()
+         }
+      else {
+         node := (\view.projfiles_tree.object_get_cursor())
+         fileName := trim(node.get_label(), " ", 0)
+         projName := (node.get_parent_node()).get_label()
+         }
+      insert(sdprojfilesSet, projName||":"||fileName)
+
+      active_projName := projName
+      active_fileName := fileName
+
+      session.Write("\\memberActivity " || view.user_me || " " ||
+                    active_projName||" " ||view.user_me)
+      session.Write("\\projActivity " || view.user_me || " " ||projName ||
+                    " " ||fileName)
+      session.Write("\\membersColorList " || view.user_me || " " ||projName)
+
+      #store the previously changed lines in a table
+      session.Write("\\storeChangedLines "||view.user_me||" "||projName||
+	                      " "||fileName)
+
+      session.Write("\\getUpdatedLines " || view.user_me || " " ||projName||
+                    " " ||fileName)
+      session.Write("\\projfileOpen "||projName||" "||fileName||
+                    " "||view.user_me)
+      session.Write("\\checkMemberColor "||projName||" "||view.user_me)
+  end
+
+   method on_set_member_color(projName, colorfound)
+      local mc
+      active_projName := projName
+      if colorfound == 0 then {
+         mc := memberColor(active_projName)
+         mc.show_modal()
+         }
+   end
+
+   method on_close_project_file(ev)
+   local node
+      if selectedProjFileID == 1 then {
+         node := (\view.projects_tree.object_get_cursor())
+         fileName := trim(node.get_label(), " ", 0)
+         projName := (node.get_parent_node()).get_label()
+
+         if \find(fileName, view.uide.CurrentTabItem().label) then {
+            view.uide.handle_closefile()
+            session.Write("\\projfileClose "||projName||" "||fileName||
+               " "||view.user_me)
+            view.VCSC_tab.resize()
+            }
+         else view.write_to_chat_win("No selection made, select file tab ... " )
+         }
+   end
+
+   method on_commit_project_file(ev)
+      local fcontents := "", fileNode, projNode, f
+
+      if selectedProjFileID == 1 then
+         fileNode := \view.projects_tree.object_get_cursor()
+      else
+         fileNode := \view.projfiles_tree.object_get_cursor()
+
+      projNode := fileNode.get_parent_node()
+      fileName := trim(fileNode.get_label(), " ", 0)
+      projName := trim(projNode.get_label(), " ", 0)
+
+      every f := !view.uide.CurrentEditBox().get_contents() do
+         fcontents ||:= f || "\x1e"
+      # Checks if the user is ready to commit
+      session.Write("\\readytoCommit "||projName||" "||fileName||" "||
+                    view.user_me||" "||fcontents)
+   end
+
+   method on_add_file_to_project(projName, fileName)
+      local projNode, r, node, newfile
+
+      if /projName then {
+         projNode := \view.projects_tree.object_get_selections()[1]
+         projName := \projNode.get_label()
+         }
+
+      r := view.projects_tree.get_root_node()
+      node := view.Search_Tree(projName, r)
+      newfile := Node("label= "||fileName) #||"(PF):"||projName)
+      if /node then node := r
+
+      newfile.set_bmps([editorimgs("file"),editorimgs("file"),
+                      editorimgs("file")])
+      node.add(newfile)
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method on_delete_file_from_project(projName, removedFile)
+      local projNode, r, r2
+
+      r := view.projects_tree.get_root_node()
+      projNode := view.Search_Tree(projName, r)
+      r2 := view.Search_Tree(removedFile, projNode)
+      projNode.delete_node(r2)
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method all_projects()
+      local s, name, r1, fileslst, lst, projects_lbl,
+         projlst, ptree, projs_lbl, n
+
+      view.projects_tree.set_root_node(&null)
+      projects_lbl := Node("label=Software Projects")
+      view.projects_tree.set_root_node(projects_lbl)
+
+         while not(pos(0)) do {
+            projlst := tab(find("&&&"))
+            move(3)
+            projlst ? {
+               projName := trim(tab(find("("))," ", 0)
+               if projName ~== "rooms_info.log" &
+                  projName ~== "appropriate_partner.log" &
+                  projName ~== "lastroom.log" then {
+                  put(allprojlst, projName)
+                  ptree := view.projects_tree.get_root_node()
+                  projs_lbl := Node("always_expandable=t")
+                  projs_lbl.set_label(projName)
+                  projs_lbl.set_bmps([editorimgs("editor"),
+                     editorimgs("editor"), editorimgs("editor")])
+                  ptree.add(projs_lbl)
+                  }
+               move(1)
+               fileslst := tab(0)[1:-1]
+               }
+            lst := []
+            fileslst ? {
+               while not(pos(0)) do {
+                  n :=  tab(find(":"))
+                  put(lst, n)
+                  move(1)
+                  }
+               }
+            load_projects_tree (projName, lst)
+            }
+   end
+$ifdef for_later
+   method all_project_members()
+      local projName, memberslst, lst, u, 
+         allprojmember_tbl := table()
+
+      while not(pos(0)) do {
+         projlst := tab(find("&&&"))
+         move(3)
+
+         projlst ? {
+            projName := trim(tab(find("("))," ", 0)
+            move(1)
+            memberslst := tab(0)[1:-1]
+            }
+         lst := []
+         memberslst ? {
+            while not(pos(0)) do {
+               u :=  tab(find(","))
+               put(lst, u)
+               move(1)
+               }
+            }
+         allprojmember_tbl[projName] := lst
+         }
+   end
+$endif
+   #
+   # Given a Node n, load its children with the sub-directories.
+   #
+   method load_projects_tree(projName, fileslst)
+      local r1, r2, r3, r4,
+            new_root, new_root2,
+            name, dname, fileName, files, flist
+
+      r1 := view.projects_tree.get_root_node()
+      new_root:= view.Search_Tree(projName,r1)
+
+      every name := !fileslst do {
+         r2 := Node("label="||name)
+         r2.set_bmps([editorimgs("file"),editorimgs("file"),
+                      editorimgs("file")])
+         if find("[dir]", name) then {
+            name ? {
+               dname := tab(find("[dir]["))
+               move(6)
+               r3 := Node("label="||dname, "always_expandable=t")
+               new_root.add(r3)
+               flist := tab(0)[1:-1]
+
+               new_root2 := view.Search_Tree(dname,new_root)
+
+               flist ? {
+                  while not(pos(0)) do {
+                     fileName := tab(find(","))
+                     move(1)
+                     if name === "diffresults.log" |
+                        \find("_", name) then
+                        write()
+                     else {
+                        r4 := Node("label="||fileName)
+                        r4.set_bmps([editorimgs("file"),editorimgs("file"),
+                                     editorimgs("file")])
+                        new_root2.add(r4)
+                        }
+                     }
+                  }
+               }
+            }
+         else { 
+            if name === "diffresults.log" |
+               \find("_", name) then
+               write()
+            else new_root.add(r2)
+            }
+         }
+      view.projects_tree.tree_structure_changed()
+   end
+
+   method readytoCheckOut(projName, fileName, currworkingrecords,
+      prevchangedrecords, allfilesstr)
+
+      local fcontents := "", currworkinglst, prevchangedlst,
+         currworking := [], prevchanged := [], uset := set(), ulst := [],
+         fileslst := [], curr := "", prev := "", f, u, d, t, od, ot, cd, ct,
+         l, lt, currworkingtbl := [], prevchangedtbl := [], act
+
+      currworkingrecords ? {
+         while not(pos(0)) do {
+            l := tab(find("\x1e"))
+            move(1)
+            currworkinglst := []
+            l ? {
+               f := tab(find(" ")) # File
+               move(1)
+               u := tab(find(" ")) # User
+               move(1)
+               put(currworkinglst, u)
+               d := tab(0)         # Start Time
+               put(currworkinglst, seconds_to_clock(d))
+               insert(uset, u)
+               put(currworkinglst, seconds_to_clock(&now-d))  #Store Time Spent
+               }
+
+            put(currworking, l)
+            put(currworkingtbl, currworkinglst)
+            curr ||:= "---" || l || "\n"
+            }
+         }
+
+      prevchangedrecords ? {
+         while not(pos(0)) do {
+            l := tab(find("\x1e"))
+            move(1)
+            prevchangedlst := []
+            l ? {
+               f := tab(find(" ")) # File
+               move(1)
+               u := tab(find(" ")) # User
+               move(1)
+               put(prevchangedlst, u)
+               od := tab(find(" "))      # Start Time
+               move(1)
+               put(prevchangedlst, seconds_to_clock(od))
+               cd := tab(find(" "))      # End Time
+               move(1)
+
+               if (cd ~== "-----") & 
+                  (cd ~== "Present") then {
+                  put(prevchangedlst, seconds_to_clock(cd))
+                  # Store Time Spent
+                  put(prevchangedlst, seconds_to_clock(cd - od)) 
+                  act := tab(0)       # Action
+                  }
+               insert(uset, u)
+               }
+            put(prevchanged, l)
+            put(prevchangedtbl, prevchangedlst)
+            prev ||:= "---" || l || "\n"
+            }
+         }
+      if \allfilesstr then {
+         allfilesstr ||:= " "
+         allfilesstr ? {
+            while lt := tab(find(" ")) do {
+               put(fileslst, lt)
+               move(1)
+               }
+            }
+         }
+
+      every put(ulst, \(!uset))
+
+      fcontents := view.uide.CurrentEditBox().get_contents()
+
+      projectdlg := Projects(currworkingtbl, prevchangedtbl,
+         fileName, projName, ulst, fileslst, fcontents)
+      projectdlg.show_modal()
+   end
+
+   method on_view_project_description(ev)
+      local projName
+
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      projName := trim(projName, " ", 0)
+
+      if \projName then {
+         session.Write("\\objDescription "||projName||" "||
+            "project"||" "||world.nsh_dialog.user_me)
+         }
+   end
+
+   method on_edit_project_description(ev)
+      local sav
+
+      selected_obj := "project"
+
+      sav := &window
+      &window  := &null
+         obj_desc := objDescEdit()
+         obj_desc.show_modal()
+      &window := sav
+   end
+
+   method on_wall(ev)
+      local projNode, projName, wall_opened := &null, ts, i
+      projMenu.clear_isShaded()
+
+      projNode := \view.projects_tree.object_get_cursor()
+
+      if \projNode then {
+         projName := trim(projNode.get_label(), " ", 0)
+
+         ts :=  world.nsh_dialog.VCSC_tab
+         every i := 1 to *(ts.children) do {
+            if (((ts.children)[i]).label) === ("Project:"||projName) then
+               wall_opened := 1
+            }
+
+         if /wall_opened then
+            session.Write("\\groupWall "|| projName||" "||
+               world.nsh_dialog.user_me||" project")
+         }
+   end
+
+   method on_project_activity(ev)
+      local projName
+      projName := \view.projects_tree.object_get_cursor().get_label()
+      projName := trim(projName, " ", 0)
+      session.Write("\\projActivity " || view.user_me || " " ||
+         projName||" "||"")
+   end
+
+   method seconds_to_clock(t)
+      local s , m , h
+      if (t ~== "-----") & 
+         (t ~== "Present") then {
+         s := t % 60
+         m := (t/60) % 60
+         h := t/3600
+         if s<10 then s:="0"||s
+         if m<10 then m:="0"||m
+         return  h || ":" || m || ":" || s
+         }
+      else return 0
+   end
+
+   method on_proj_member_activity(ev)
+      local active_userName
+      active_userName := trim((ev.get_source()).label, " ", 0)
+      session.Write("\\memberActivity " || view.user_me || " " ||
+         active_projName||" " ||active_userName)
+   end
+################## project code ################
+# End: moved from the class nshdlg.icn         #
+################################################
+
+  method update_sdproject_activity()
+     local u, fileName := "", projName := ""
+
+     (ide.CurrentTabItem().label) ? {
+        fileName := tab(find("(PF):"))
+        move(5)
+        projName := tab(0)
+        }
+     session.Write("\\projActivity " || view.user_me || " " ||projName ||
+                   " " ||fileName)
+  end
+
+  method on_editbox(e)
+     local modified :=1
+  end
+  method on_error_check(ev)
+     view.uide.on_error_check(ev)
+  end
+
+   method setup()
+      self.set_attribs("size=500,347", "bg=pale gray", "fg=very dark red",
+		       "font=serif,bold,12", "label=Commit Changes")
+      files_tabset := TabSet()
+      files_tabset.set_pos("1", "1")
+      files_tabset.set_size("75%-2", "48%-2")
+
+#prev_changed tab item
+      prev_changed := TabItem()
+      prev_changed.set_label("Changed_Added")
+      prev_changed_tbl := Table()
+      prev_changed_tbl.set_pos("2", "15%")
+      prev_changed_tbl.set_size("100%-4", "85%-2")
+      prev_changed_tbl.set_attribs("bg=white")
+      prev_changed_tbl.set_select_one()
+      prev_changed_tbl.set_contents([])
+
+      prev_user := TableColumn()
+      prev_user.set_label("User")
+      prev_user.set_internal_alignment("l")
+      prev_user.set_column_width(90)
+      prev_changed_tbl.add_column(prev_user)
+
+      prev_start_date := TableColumn()
+      prev_start_date.set_label("Start")
+      prev_start_date.set_internal_alignment("l")
+      prev_start_date.set_column_width(90)
+      prev_changed_tbl.add_column(prev_start_date)
+
+      prev_end_date := TableColumn()
+      prev_end_date.set_label("End")
+      prev_end_date.set_internal_alignment("l")
+      prev_end_date.set_column_width(90)
+      prev_changed_tbl.add_column(prev_end_date)
+
+      prev_time_spent := TableColumn()
+      prev_time_spent.set_label("Time Spent")
+      prev_time_spent.set_internal_alignment("l")
+      prev_time_spent.set_column_width(90)
+      prev_changed_tbl.add_column(prev_time_spent)
+
+      prev_changed.add(prev_changed_tbl)
+      files_tabset.add(prev_changed)
+
+#curr_working tab item
+      curr_working := TabItem()
+      curr_working.set_label("Currently Working")
+      curr_working_tbl := Table()
+      curr_working_tbl.set_pos("2", "2")
+      curr_working_tbl.set_size("100%-4", "100%-4")
+      curr_working_tbl.set_attribs("bg=white")
+      curr_working_tbl.set_select_one()
+      curr_working_tbl.set_contents([])
+
+      curr_user := TableColumn()
+      curr_user.set_label("User")
+      curr_user.set_internal_alignment("l")
+      curr_user.set_column_width(110)
+      curr_working_tbl.add_column(curr_user)
+
+      curr_start_date := TableColumn()
+      curr_start_date.set_label("Start")
+      curr_start_date.set_internal_alignment("l")
+      curr_start_date.set_column_width(110)
+      curr_working_tbl.add_column(curr_start_date)
+
+      curr_time_spent := TableColumn()
+      curr_time_spent.set_label("Time Spent")
+      curr_time_spent.set_internal_alignment("l")
+      curr_time_spent.set_column_width(110)
+      curr_working_tbl.add_column(curr_time_spent)
+
+      curr_working.add(curr_working_tbl)
+
+      files_tabset.add(curr_working)
+      files_tabset.set_which_one(prev_changed)
+      self.add(files_tabset)
+
+      diff_results_etl := EditableTextList()
+      diff_results_etl.set_pos("1", "53%")
+      diff_results_etl.set_size("75%-2", "40%-2")
+      diff_results_etl.set_draw_border()
+      diff_results_etl.set_attribs("bg=white")
+      diff_results_etl.set_contents([""])
+      self.add(diff_results_etl)
+
+      inspection_lst := List()
+      inspection_lst.set_pos("75%+2", "7%+2")
+      inspection_lst.set_size("25%-2", "7%")
+      inspection_lst.set_attribs("bg=white")
+      inspection_lst.set_tooltip("Who Changed? What files Changed?")
+      inspection_lst.connect(self, "on_inspection_lst", SELECTION_CHANGED_EVENT)
+      inspection_lst.set_selection_list(["File", "User"])
+      self.add(inspection_lst)
+
+      inspection_lbl := Label()
+      inspection_lbl.set_pos("75%+2", "1")
+      inspection_lbl.set_size("25%-2", "7%")
+      inspection_lbl.set_attribs("bg=pale blue")
+      inspection_lbl.set_internal_alignment("l")
+      inspection_lbl.set_label("View/Inspect")
+      self.add(inspection_lbl)
+
+      files_users_overlay := OverlaySet()
+      files_users_overlay.set_pos("75%+2", "15%")
+      files_users_overlay.set_size("25%-2", "50%")
+      users_overlay := OverlayItem()
+      users_lst := TextList()
+      users_lst.set_pos("1", "1")
+      users_lst.set_size("100%-2", "85%-2")
+      users_lst.set_draw_border()
+      users_lst.set_attribs("bg=white")
+      users_lst.set_tooltip("Users changed the file?")
+      users_lst.connect(self, "on_users_lst", MOUSE_PRESS_EVENT)
+      users_lst.set_select_one()
+      users_lst.set_contents([""])
+      users_overlay.add(users_lst)
+      inspectuserchanges_btn := TextButton()
+      inspectuserchanges_btn.set_pos("2%", "85%")
+      inspectuserchanges_btn.set_size("96%", "15%-2")
+      inspectuserchanges_btn.connect(self, "on_inspectuserchanges_btn", ACTION_EVENT)
+      inspectuserchanges_btn.clear_toggles()
+      inspectuserchanges_btn.set_label("Inspect Changes")
+      inspectuserchanges_btn.set_internal_alignment("c")
+      users_overlay.add(inspectuserchanges_btn)
+      files_users_overlay.add(users_overlay)
+      files_overlay := OverlayItem()
+      compare_lbl := Label()
+      compare_lbl.set_pos("2", "2")
+      compare_lbl.set_size("50%", "10%")
+      compare_lbl.set_attribs("bg=pale blue")
+      compare_lbl.set_internal_alignment("l")
+      compare_lbl.set_label("Compare:")
+      files_overlay.add(compare_lbl)
+      curr_ver_openedfile_txt := TextField()
+      curr_ver_openedfile_txt.set_pos("2", "12%+2")
+      curr_ver_openedfile_txt.set_size("100%-10", "15%")
+      curr_ver_openedfile_txt.set_draw_border()
+      curr_ver_openedfile_txt.set_attribs("bg=white")
+      curr_ver_openedfile_txt.set_contents("")
+      files_overlay.add(curr_ver_openedfile_txt)
+      with_lbl := Label()
+      with_lbl.set_pos("2", "35%")
+      with_lbl.set_size("50%", "10%")
+      with_lbl.set_attribs("bg=pale blue")
+      with_lbl.set_internal_alignment("l")
+      with_lbl.set_label("With:")
+      files_overlay.add(with_lbl)
+      filesversions_lst := List()
+      filesversions_lst.set_pos("2", "45%+2")
+      filesversions_lst.set_size("100%-10", "15%")
+      filesversions_lst.set_attribs("bg=white")
+      filesversions_lst.set_tooltip("File version to compare with?")
+      filesversions_lst.connect(self, "on_filesversions_lst", ACTION_EVENT)
+      filesversions_lst.set_selection_list([""])
+      files_overlay.add(filesversions_lst)
+      inspectfilechanges_btn := TextButton()
+      inspectfilechanges_btn.set_pos("2%", "85%")
+      inspectfilechanges_btn.set_size("96%", "15%-2")
+      inspectfilechanges_btn.connect(self, "on_inspectfilechanges_btn", ACTION_EVENT)
+      inspectfilechanges_btn.clear_toggles()
+      inspectfilechanges_btn.set_label("Inspect Changes")
+      inspectfilechanges_btn.set_internal_alignment("c")
+      files_overlay.add(inspectfilechanges_btn)
+      files_users_overlay.add(files_overlay)
+      files_users_overlay.set_which_one(files_overlay)
+      self.add(files_users_overlay)
+      border_1 := Border()
+      border_1.set_pos("75%+2", "65%")
+      border_1.set_size("25%-2", "35%-2")
+      border_1.set_internal_alignment("l")
+      ok_btn := TextButton()
+      ok_btn.set_pos("2", "77%-4")
+      ok_btn.set_size("50%-4", "23%")
+      ok_btn.connect(self, "on_ok_btn", ACTION_EVENT)
+      ok_btn.clear_toggles()
+      ok_btn.set_label("OK")
+      ok_btn.set_internal_alignment("c")
+      border_1.add(ok_btn)
+      cancel_btn := TextButton()
+      cancel_btn.set_pos("50%+2", "77%-4")
+      cancel_btn.set_size("50%-4", "23%")
+      cancel_btn.connect(self, "on_cancel_btn", ACTION_EVENT)
+      cancel_btn.clear_toggles()
+      cancel_btn.set_label("Cancel")
+      cancel_btn.set_internal_alignment("c")
+      border_1.add(cancel_btn)
+      label_1 := Label()
+      label_1.set_pos("4", "20%")
+      label_1.set_size("100%-8", "20%")
+      label_1.set_internal_alignment("c")
+      label_1.set_label("Are you ready")
+      border_1.add(label_1)
+      label_2 := Label()
+      label_2.set_pos("4", "40%+2")
+      label_2.set_size("100%-8", "20%")
+      label_2.set_internal_alignment("c")
+      label_2.set_label("to commit?")
+      border_1.add(label_2)
+      self.add(border_1)
+      diffresults_lbl := Label()
+      diffresults_lbl.set_pos("1%", "48%")
+      diffresults_lbl.set_size("25%", "5%")
+      diffresults_lbl.set_attribs("bg=pale blue")
+      diffresults_lbl.set_internal_alignment("l")
+      diffresults_lbl.set_label("Commit Conflicts")
+      self.add(diffresults_lbl)
+      open_conflicts := TextButton()
+      open_conflicts.set_pos("25%", "92%+2")
+      open_conflicts.set_size("20%", "6%")
+      open_conflicts.connect(self, "on_open_conflicts", ACTION_EVENT)
+      open_conflicts.clear_toggles()
+      open_conflicts.set_label("Open Conflicts")
+      open_conflicts.set_internal_alignment("c")
+      self.add(open_conflicts)
+      clear_conflicts := TextButton()
+      clear_conflicts.set_pos("45%+2", "92%+2")
+      clear_conflicts.set_size("20%", "6%")
+      clear_conflicts.connect(self, "on_clear_conflicts", ACTION_EVENT)
+      clear_conflicts.clear_toggles()
+      clear_conflicts.set_label("Clear Conflicts")
+      clear_conflicts.set_internal_alignment("c")
+      self.add(clear_conflicts)
+   end
+
+   initially
+
+      self.Dialog.initially()
+end
+
+class memberColor : Dialog(projName, memColor_txt)
+
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog()
+      local permission := "Public"
+   end
+
+   method on_cancel_btn(ev)
+      self.dispose()
+   end
+
+   method on_make_btn(ev)
+      local projName, projMember, memberColor, found := 0, g
+
+      projMember := view.user_me
+      memberColor := memColor_txt.selection_list[memColor_txt.get_selection()]
+
+      session.Write("\\setMemberColor "||active_projName||" "||projMember||
+                    " "||memberColor)
+
+      self.dispose()
+   end
+
+   method setup()
+      local memColor_lbl, make_btn, cancel_btn
+
+      self.set_attribs("size=294,150", "font=serif,bold,13", "label= Member Color", "bg=light gray")
+
+      memColor_lbl := Label()
+      memColor_lbl.set_pos("10", "26")
+      memColor_lbl.set_size("82", "20")
+      memColor_lbl.set_internal_alignment("l")
+      memColor_lbl.set_label("* Owner color:")
+      self.add(memColor_lbl)
+
+      memColor_txt := EditList()
+      memColor_txt.set_pos("100", "26")
+      memColor_txt.set_size("150", "27")
+      #memColor_txt.connect(self, "on_edit_fontcolor", SELECTION_CHANGED_EVENT)
+      memColor_txt.set_selection_list(["black", "red", "green", "blue",
+				       "cyan", "magenta", "yellow", "white"])
+      self.add(memColor_txt)
+
+
+      make_btn := TextButton()
+      make_btn.set_pos("60", "110")
+      make_btn.set_size("65", "28")
+      make_btn.connect(self, "on_make_btn", ACTION_EVENT)
+      make_btn.clear_toggles()
+      make_btn.set_label("Make")
+      make_btn.set_internal_alignment("c")
+      self.add(make_btn)
+      cancel_btn := TextButton()
+      cancel_btn.set_pos("135", "110")
+      cancel_btn.set_size("65", "28")
+      cancel_btn.connect(self, "on_cancel_btn", ACTION_EVENT)
+      cancel_btn.clear_toggles()
+      cancel_btn.set_label("Cancel")
+      cancel_btn.set_internal_alignment("c")
+      self.add(cancel_btn)
+   end
+
+   initially()
+      self.Dialog.initially()
+end
+
+class makeProject : Dialog(friends_chkbox, public_chkbox, desc_lbl, desc_etl,
+   desc_border, private_chkbox, projName_txt, deadline_txt, memColor_txt, 
+   permission, open_chkbox)
+
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog()
+      permission := "Public"
+   end
+
+   method on_private_chkbox(ev)
+      permission := "Private"
+   end
+
+   method on_public_chkbox(ev)
+      permission := "Public"
+   end
+
+   method on_friends_chkbox(ev)
+      permission := "Friends"
+   end
+
+   method on_open_chkbox(ev)
+      permission := "Open"
+   end
+
+   method on_cancel_btn(ev)
+      self.dispose()
+   end
+
+   method on_make_btn(ev)
+      local projName, projOwner, ownerColor, deadline, 
+         found := 0, g, desc_contents, dcontents := "",
+         sav
+
+      projName := trim(projName_txt.get_contents(), ' ', 0)
+      projOwner := view.user_me
+      ownerColor := memColor_txt.selection_list[memColor_txt.get_selection()]
+      
+      if find(" ", projName) then {
+         sav := &window
+         &window  := &null
+            Notice("Check the project name.",
+               "It must have no spaces.")
+          &window := sav
+         }
+      else {
+         if /deadline := deadline_txt.get_contents() then
+            deadline := &date
+         /permission := "Public"
+         every g := !allprojlst do
+            if g == projName then found := 1
+         if found = 0 then {
+            #get_the_last_room_created_coordinates
+
+            desc_contents := desc_etl.get_contents()  
+            every dcontents ||:= !desc_contents || "$$"
+
+            session.Write("\\makeProject "||projName||" "||projOwner||" "||
+               ownerColor||" "||deadline||" "||permission||" "||dcontents)
+            }
+         else
+            session.Write("\\say "||projName||
+               " is already there, try another name")
+         self.dispose()
+         } 
+   end
+
+   method setup()
+      local cancel_btn, check_box_group_3, main_border, make_btn, permissions, 
+         projName_lbl, projName_lbl2, title_lbl, memColor_lbl, deadline_lbl, 
+         deadline_ex_lbl
+
+      self.set_attribs("size=294,415", "font=serif,bold,13", "label=New Project", "bg=light gray")
+      title_lbl := Label()
+      title_lbl.set_pos("10", "1")
+      title_lbl.set_size("200", "20")
+      title_lbl.set_internal_alignment("l")
+      title_lbl.set_label("Project Information:")
+      self.add(title_lbl)
+
+      memColor_lbl := Label()
+      memColor_lbl.set_pos("10", "26")
+      memColor_lbl.set_size("100", "20")
+      memColor_lbl.set_internal_alignment("l")
+      memColor_lbl.set_label("* Owner color:")
+      self.add(memColor_lbl)
+
+      memColor_txt := EditList()
+      memColor_txt.set_pos("112", "25")
+      memColor_txt.set_size("100", "27")
+      memColor_txt.set_attribs("bg=white")
+      memColor_txt.set_selection_list(["black", "red", "green", "blue", 
+         "cyan", "magenta", "yellow", "white"])
+      self.add(memColor_txt)
+
+      projName_lbl := Label()
+      projName_lbl.set_pos("10", "55")
+      projName_lbl.set_size("100", "20")
+      projName_lbl.set_internal_alignment("l")
+      projName_lbl.set_label("* Project name:")
+      self.add(projName_lbl)
+      projName_lbl2 := Label()
+      projName_lbl2.set_pos("110", "80")
+      projName_lbl2.set_size("180", "25")
+      projName_lbl2.set_attribs("font=serif,bold,13", "fg=red")
+      projName_lbl2.set_internal_alignment("l")
+      projName_lbl2.set_label("(NO spaces or special characters.)")
+      self.add(projName_lbl2)
+
+      projName_txt := TextField()
+      projName_txt.set_pos("112", "55")
+      projName_txt.set_size("100", "27")
+      projName_txt.set_draw_border()
+      projName_txt.set_attribs("bg=white")
+      projName_txt.set_contents("")
+      self.add(projName_txt)
+
+      deadline_lbl := Label()
+      deadline_lbl.set_pos("10", "100")
+      deadline_lbl.set_size("100", "20")
+      deadline_lbl.set_internal_alignment("l")
+      deadline_lbl.set_label("Deadline:")
+      self.add(deadline_lbl)
+      deadline_txt := TextField()
+      deadline_txt.set_pos("112", "100")
+      deadline_txt.set_size("100", "27")
+      deadline_txt.set_draw_border()
+      deadline_txt.set_attribs("bg=white")
+      deadline_txt.set_contents("")
+      self.add(deadline_txt)
+      deadline_ex_lbl := Label()
+      deadline_ex_lbl.set_pos("112", "125")
+      deadline_ex_lbl.set_size("100", "25")
+      deadline_ex_lbl.set_attribs("font=serif,bold,13", "fg=red")
+      deadline_ex_lbl.set_internal_alignment("l")
+      deadline_ex_lbl.set_label("Ex: 04/12/1977")
+      self.add(deadline_ex_lbl)
+
+      desc_lbl := Label()
+      desc_lbl.set_pos("10", "140")
+      desc_lbl.set_size("100", "15")
+      desc_lbl.set_internal_alignment("l")
+      desc_lbl.set_label("Description:")
+      self.add(desc_lbl)
+
+      desc_border := Border()
+      desc_border.set_pos("5", "165")
+      desc_border.set_size(285, 100)
+      desc_border.set_internal_alignment("l")
+
+      desc_etl := EditableTextList()
+      desc_etl.set_pos("2", "2")
+      desc_etl.set_size("100%-4", "100%-4")
+      desc_etl.set_attribs("bg=white")
+      desc_etl.set_wrap_mode(38)
+      desc_etl.set_contents([""])
+      desc_border.add(desc_etl)
+
+      self.add(desc_border)
+
+
+      main_border := Border()
+      main_border.set_pos("5", "260")
+      main_border.set_size(285, 115)
+      main_border.set_internal_alignment("l")
+      permissions := Label()
+      permissions.set_pos("10", "5")
+      permissions.set_size("90", "15")
+      permissions.set_internal_alignment("l")
+      permissions.set_label("Permissions:")
+      main_border.add(permissions)
+      check_box_group_3 := CheckBoxGroup()
+      private_chkbox := CheckBox()
+      private_chkbox.set_pos("10", "18")
+      private_chkbox.set_size("250", "20")
+      private_chkbox.connect(self, "on_private_chkbox", ACTION_EVENT)
+      private_chkbox.set_toggles()
+      check_box_group_3.add(private_chkbox)
+      check_box_group_3.set_which_one(private_chkbox)
+      private_chkbox.set_label("Private")
+      main_border.add(private_chkbox)
+      public_chkbox := CheckBox()
+      public_chkbox.set_pos("10", "40")
+      public_chkbox.set_size("250", "20")
+      public_chkbox.connect(self, "on_public_chkbox", ACTION_EVENT)
+      public_chkbox.set_toggles()
+      check_box_group_3.add(public_chkbox)
+      public_chkbox.set_label("Public (Community)")
+      main_border.add(public_chkbox)
+      friends_chkbox := CheckBox()
+      friends_chkbox.set_pos("10", "62")
+      friends_chkbox.set_size("250", "20")
+      friends_chkbox.connect(self, "on_friends_chkbox", ACTION_EVENT)
+      friends_chkbox.set_toggles()
+      check_box_group_3.add(friends_chkbox)
+      friends_chkbox.set_label("Friends")
+      main_border.add(friends_chkbox)
+      open_chkbox := CheckBox()
+      open_chkbox.set_pos("10", "84")
+      open_chkbox.set_size("250", "20")
+      open_chkbox.connect(self, "on_open_chkbox", ACTION_EVENT)
+      open_chkbox.set_toggles()
+      check_box_group_3.add(open_chkbox)
+      open_chkbox.set_label("Open")
+      main_border.add(open_chkbox)
+      self.add(main_border)
+      make_btn := TextButton()
+      make_btn.set_pos("60", "385")
+      make_btn.set_size("65", "28")
+      make_btn.connect(self, "on_make_btn", ACTION_EVENT)
+      make_btn.clear_toggles()
+      make_btn.set_label("Make")
+      make_btn.set_internal_alignment("c")
+      self.add(make_btn)
+      cancel_btn := TextButton()
+      cancel_btn.set_pos("135", "385")
+      cancel_btn.set_size("65", "28")
+      cancel_btn.connect(self, "on_cancel_btn", ACTION_EVENT)
+      cancel_btn.clear_toggles()
+      cancel_btn.set_label("Cancel")
+      cancel_btn.set_internal_alignment("c")
+      self.add(cancel_btn)
+   end
+
+   initially()
+      self.Dialog.initially()
+end
+
+

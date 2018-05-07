@@ -1,0 +1,588 @@
+import gui
+$include "guih.icn"
+
+class ConfigureOptions : Dialog(javaCompilerCmd_txt, cppCompilerCmd_txt,
+   cppCompilerFlgs_txt, cppCompiler_lst, cppLinkerFlgs_txt, cppLinker_txt,
+   javaCompilerCmd_tx, javaCompilerFlgs_txt, javaCompiler_lst,
+   javaLinkerFlgs_txt, javaLinker_txt, comp_lbl_5, comp_lbl_6, comp_lbl_7,
+   comp_lbl_8, compflags_lbl_1, compflags_lbl_2, linker_lbl_1, linker_lbl_2,
+   linkerflags_lbl_1, linkerflags_lbl_2, uniconCompilerCmd_txt_1,
+   uniconCompilerCmd_txt_2, uniconCompilerFlgs_txt_1, uniconCompilerFlgs_txt_2,
+   uniconCompiler_lst_1, uniconCompiler_lst_2, uniconLinkerFlgs_txt_1,
+   uniconLinkerFlgs_txt_2, uniconLinker_txt_1, uniconLinker_txt_2, ok_btn,
+   cancel_btn, text_button_1, comp_lbl_4, uniconCompilerCmd_txt,
+   uniconCompilerFlgs_txt, uniconCompiler_lst, uniconLinkerFlgs_txt,
+   uniconLinker_txt, comp_lbl, compflags_lbl, cpp_tab_options, java_tab_options,
+   linker_lbl, linkerflags_lbl, list_1, list_2, makefileOpts_tabset,
+   text_field_1, text_field_2, unicon_tab_options, cppCompilerslist,
+   javaCompilerslist, uniconCompilerslist
+   )
+   method component_setup()
+      self.setup()
+   end
+
+   method end_dialog()
+   end
+
+   method init_dialog() 
+      uniconCompilerslist := ["unicon", "wicont"]
+      cppCompilerslist := ["GNU C Compiler (GCC)", "GNU C++ Compiler (G++)"]
+      javaCompilerslist := ["javac"]
+      uniconCompiler_lst.set_selection_list(uniconCompilerslist)
+      javaCompiler_lst.set_selection_list(javaCompilerslist)
+      cppCompiler_lst.set_selection_list(cppCompilerslist)
+   end
+
+   method on_cancel_btn(ev)
+      self.dispose()
+   end
+
+   method on_ok_btn(ev)
+   end
+
+   method on_cppCompiler_lst(ev)
+      if cppCompilerslist[cppCompiler_lst.get_selection()] ==
+         "GNU C++ Compiler (G++)" then {
+         cppCompilerCmd_txt.set_contents("g++")
+         cppCompilerFlgs_txt.set_contents("g++")
+         cppLinker_txt.set_contents("g++")
+         cppLinkerFlgs_txt.set_contents("g++")
+         }
+      else if cppCompilerslist[cppCompiler_lst.get_selection()] == 
+	 "GNU C Compiler (GCC)" then {
+         cppCompilerCmd_txt.set_contents("gcc")
+         cppCompilerFlgs_txt.set_contents("g++")
+         cppLinker_txt.set_contents("g++")
+         cppLinkerFlgs_txt.set_contents("g++")
+         }
+   end
+
+   method on_javaCompiler_lst(ev)
+      javaCompilerCmd_txt.set_contents(javaCompilerslist[javaCompiler_lst.get_selection()])
+      javaCompilerFlgs_txt.set_contents("g++")
+      javaLinker_txt.set_contents("g++") 
+      javaLinkerFlgs_txt.set_contents("g++")
+   end
+
+   method on_uniconCompiler_lst(ev)
+      uniconCompilerCmd_txt.set_contents(uniconCompilerslist[uniconCompiler_lst.get_selection()])
+      uniconCompilerFlgs_txt.set_contents("-c")
+      uniconLinker_txt.set_contents(uniconCompilerslist[uniconCompiler_lst.get_selection()]) 
+      uniconLinkerFlgs_txt.set_contents(" ")
+   end
+
+   method setup()
+      local button_group_1
+      self.set_attribs("size=413,287", "label=Configure Options",
+                       "font=serif, bold, 14")
+      makefileOpts_tabset := TabSet()
+      makefileOpts_tabset.set_pos("5", "5")
+      makefileOpts_tabset.set_size("100%-10", "244")
+      makefileOpts_tabset.set_attribs("font=serif, bold, 14")
+      unicon_tab_options := TabItem()
+      unicon_tab_options.set_label("Unicon")
+      comp_lbl := Label()
+      comp_lbl.set_pos("20", "63")
+      comp_lbl.set_size("125", "28")
+      comp_lbl.set_internal_alignment("l")
+      comp_lbl.set_label("Compiler Command")
+      unicon_tab_options.add(comp_lbl)
+      linker_lbl := Label()
+      linker_lbl.set_pos("20", "133")
+      linker_lbl.set_size("125", "28")
+      linker_lbl.set_internal_alignment("l")
+      linker_lbl.set_label("Linker Command")
+      unicon_tab_options.add(linker_lbl)
+      linkerflags_lbl := Label()
+      linkerflags_lbl.set_pos("20", "168")
+      linkerflags_lbl.set_size("125", "28")
+      linkerflags_lbl.set_internal_alignment("l")
+      linkerflags_lbl.set_label("Linker Flags")
+      unicon_tab_options.add(linkerflags_lbl)
+      compflags_lbl := Label()
+      compflags_lbl.set_pos("20", "98")
+      compflags_lbl.set_size("125", "28")
+      compflags_lbl.set_internal_alignment("l")
+      compflags_lbl.set_label("Compiler Flags")
+      unicon_tab_options.add(compflags_lbl)
+      uniconCompilerFlgs_txt := TextField()
+      uniconCompilerFlgs_txt.set_pos("174", "98")
+      uniconCompilerFlgs_txt.set_size("200", "28")
+      uniconCompilerFlgs_txt.set_draw_border()
+      uniconCompilerFlgs_txt.set_contents("")
+      unicon_tab_options.add(uniconCompilerFlgs_txt)
+      uniconLinkerFlgs_txt := TextField()
+      uniconLinkerFlgs_txt.set_pos("174", "168")
+      uniconLinkerFlgs_txt.set_size("200", "28")
+      uniconLinkerFlgs_txt.set_draw_border()
+      uniconLinkerFlgs_txt.set_contents("")
+      unicon_tab_options.add(uniconLinkerFlgs_txt)
+      uniconCompiler_lst := List()
+      uniconCompiler_lst.set_pos("174", "28")
+      uniconCompiler_lst.set_size("200", "28")
+      uniconCompiler_lst.connect(self, "on_uniconCompiler_lst", SELECTION_CHANGED_EVENT)
+      uniconCompiler_lst.set_selection_list(["unicon"])
+      unicon_tab_options.add(uniconCompiler_lst)
+      comp_lbl_4 := Label()
+      comp_lbl_4.set_pos("20", "28")
+      comp_lbl_4.set_size("125", "28")
+      comp_lbl_4.set_internal_alignment("l")
+      comp_lbl_4.set_label("Unicon Compiler")
+      unicon_tab_options.add(comp_lbl_4)
+      uniconLinker_txt := TextField()
+      uniconLinker_txt.set_pos("174", "133")
+      uniconLinker_txt.set_size("200", "28")
+      uniconLinker_txt.set_draw_border()
+      uniconLinker_txt.set_contents("")
+      unicon_tab_options.add(uniconLinker_txt)
+      uniconCompilerCmd_txt := TextField()
+      uniconCompilerCmd_txt.set_pos("174", "63")
+      uniconCompilerCmd_txt.set_size("200", "28")
+      uniconCompilerCmd_txt.set_draw_border()
+      uniconCompilerCmd_txt.set_contents("")
+      unicon_tab_options.add(uniconCompilerCmd_txt)
+      makefileOpts_tabset.add(unicon_tab_options)
+      java_tab_options := TabItem()
+      java_tab_options.set_label("Java")
+      comp_lbl_7 := Label()
+      comp_lbl_7.set_pos("20", "28")
+      comp_lbl_7.set_size("125", "28")
+      comp_lbl_7.set_internal_alignment("l")
+      comp_lbl_7.set_label("Java Compiler")
+      java_tab_options.add(comp_lbl_7)
+      javaCompiler_lst := List()
+      javaCompiler_lst.set_pos("174", "28")
+      javaCompiler_lst.set_size("200", "28")
+      javaCompiler_lst.connect(self, "on_javaCompiler_lst",
+			       SELECTION_CHANGED_EVENT)
+      javaCompiler_lst.set_selection_list(["javac"])
+      java_tab_options.add(javaCompiler_lst)
+      comp_lbl_8 := Label()
+      comp_lbl_8.set_pos("20", "63")
+      comp_lbl_8.set_size("125", "28")
+      comp_lbl_8.set_internal_alignment("l")
+      comp_lbl_8.set_label("Java Command")
+      java_tab_options.add(comp_lbl_8)
+      javaCompilerCmd_txt := TextField()
+      javaCompilerCmd_txt.set_pos("174", "63")
+      javaCompilerCmd_txt.set_size("200", "28")
+      javaCompilerCmd_txt.set_draw_border()
+      javaCompilerCmd_txt.set_contents("")
+      java_tab_options.add(javaCompilerCmd_txt)
+      javaCompilerFlgs_txt := TextField()
+      javaCompilerFlgs_txt.set_pos("174", "98")
+      javaCompilerFlgs_txt.set_size("200", "28")
+      javaCompilerFlgs_txt.set_draw_border()
+      javaCompilerFlgs_txt.set_contents("")
+      java_tab_options.add(javaCompilerFlgs_txt)
+      javaLinker_txt := TextField()
+      javaLinker_txt.set_pos("174", "133")
+      javaLinker_txt.set_size("200", "28")
+      javaLinker_txt.set_draw_border()
+      javaLinker_txt.set_contents("")
+      java_tab_options.add(javaLinker_txt)
+      javaLinkerFlgs_txt := TextField()
+      javaLinkerFlgs_txt.set_pos("174", "168")
+      javaLinkerFlgs_txt.set_size("200", "28")
+      javaLinkerFlgs_txt.set_draw_border()
+      javaLinkerFlgs_txt.set_contents("")
+      java_tab_options.add(javaLinkerFlgs_txt)
+      compflags_lbl_2 := Label()
+      compflags_lbl_2.set_pos("20", "98")
+      compflags_lbl_2.set_size("125", "28")
+      compflags_lbl_2.set_internal_alignment("l")
+      compflags_lbl_2.set_label("Compiler Flags")
+      java_tab_options.add(compflags_lbl_2)
+      linkerflags_lbl_2 := Label()
+      linkerflags_lbl_2.set_pos("20", "168")
+      linkerflags_lbl_2.set_size("125", "28")
+      linkerflags_lbl_2.set_internal_alignment("l")
+      linkerflags_lbl_2.set_label("Linker Flags")
+      java_tab_options.add(linkerflags_lbl_2)
+      linker_lbl_2 := Label()
+      linker_lbl_2.set_pos("20", "133")
+      linker_lbl_2.set_size("125", "28")
+      linker_lbl_2.set_internal_alignment("l")
+      linker_lbl_2.set_label("Linker Command")
+      java_tab_options.add(linker_lbl_2)
+      makefileOpts_tabset.add(java_tab_options)
+      cpp_tab_options := TabItem()
+      cpp_tab_options.set_label("C++")
+      comp_lbl_5 := Label()
+      comp_lbl_5.set_pos("20", "28")
+      comp_lbl_5.set_size("125", "28")
+      comp_lbl_5.set_internal_alignment("l")
+      comp_lbl_5.set_label("C++ Compiler")
+      cpp_tab_options.add(comp_lbl_5)
+      cppCompiler_lst := List()
+      cppCompiler_lst.set_pos("174", "28")
+      cppCompiler_lst.set_size("200", "28")
+      cppCompiler_lst.connect(self, "on_cppCompiler_lst",
+			      SELECTION_CHANGED_EVENT)
+      cppCompiler_lst.set_selection_list(["GNU C++ Compiler (G++)"])
+      cpp_tab_options.add(cppCompiler_lst)
+      comp_lbl_6 := Label()
+      comp_lbl_6.set_pos("20", "63")
+      comp_lbl_6.set_size("125", "28")
+      comp_lbl_6.set_internal_alignment("l")
+      comp_lbl_6.set_label("Compiler Command")
+      cpp_tab_options.add(comp_lbl_6)
+      cppCompilerCmd_txt := TextField()
+      cppCompilerCmd_txt.set_pos("174", "63")
+      cppCompilerCmd_txt.set_size("200", "28")
+      cppCompilerCmd_txt.set_draw_border()
+      cppCompilerCmd_txt.set_contents("")
+      cpp_tab_options.add(cppCompilerCmd_txt)
+      compflags_lbl_1 := Label()
+      compflags_lbl_1.set_pos("20", "98")
+      compflags_lbl_1.set_size("125", "28")
+      compflags_lbl_1.set_internal_alignment("l")
+      compflags_lbl_1.set_label("Compiler Flags")
+      cpp_tab_options.add(compflags_lbl_1)
+      cppCompilerFlgs_txt := TextField()
+      cppCompilerFlgs_txt.set_pos("174", "98")
+      cppCompilerFlgs_txt.set_size("200", "28")
+      cppCompilerFlgs_txt.set_draw_border()
+      cppCompilerFlgs_txt.set_contents("")
+      cpp_tab_options.add(cppCompilerFlgs_txt)
+      linker_lbl_1 := Label()
+      linker_lbl_1.set_pos("20", "133")
+      linker_lbl_1.set_size("125", "28")
+      linker_lbl_1.set_internal_alignment("l")
+      linker_lbl_1.set_label("Linker Command")
+      cpp_tab_options.add(linker_lbl_1)
+      cppLinker_txt := TextField()
+      cppLinker_txt.set_pos("174", "133")
+      cppLinker_txt.set_size("200", "28")
+      cppLinker_txt.set_draw_border()
+      cppLinker_txt.set_contents("")
+      cpp_tab_options.add(cppLinker_txt)
+      linkerflags_lbl_1 := Label()
+      linkerflags_lbl_1.set_pos("20", "168")
+      linkerflags_lbl_1.set_size("125", "28")
+      linkerflags_lbl_1.set_internal_alignment("l")
+      linkerflags_lbl_1.set_label("Linker Flags")
+      cpp_tab_options.add(linkerflags_lbl_1)
+      cppLinkerFlgs_txt := TextField()
+      cppLinkerFlgs_txt.set_pos("174", "168")
+      cppLinkerFlgs_txt.set_size("200", "28")
+      cppLinkerFlgs_txt.set_draw_border()
+      cppLinkerFlgs_txt.set_contents("")
+      cpp_tab_options.add(cppLinkerFlgs_txt)
+      makefileOpts_tabset.add(cpp_tab_options)
+      makefileOpts_tabset.set_which_one(unicon_tab_options)
+      self.add(makefileOpts_tabset)
+      button_group_1 := ButtonGroup()
+      ok_btn := TextButton()
+      ok_btn.set_pos("118", "254")
+      ok_btn.set_size("80", "28")
+      ok_btn.connect(self, "on_ok_btn", ACTION_EVENT)
+      ok_btn.clear_toggles()
+      button_group_1.add(ok_btn)
+      ok_btn.set_label("OK")
+      ok_btn.set_internal_alignment("c")
+      self.add(ok_btn)
+      cancel_btn := TextButton()
+      cancel_btn.set_pos(225, 254)
+      cancel_btn.set_size("80", "28")
+      cancel_btn.connect(self, "on_cancel_btn", ACTION_EVENT)
+      cancel_btn.clear_toggles()
+      button_group_1.add(cancel_btn)
+      cancel_btn.set_label("Cancel")
+      cancel_btn.set_internal_alignment("c")
+      self.add(cancel_btn)
+   end
+
+initially
+   self.Dialog.initially()
+end
+
+### Ivib-v2 layout ##
+#class|Canvas|17|Name Table|table|integer|0|17|string|button_group|inte
+#ger|1|string|comp_lbl|integer|8|string|compflags_lbl|integer|2|string|
+#icon_button|integer|1|string|label|integer|1|string|linker_lbl|integer
+#|2|string|linkerflags_lbl|integer|2|string|list|integer|3|string|tab_i
+#tem|integer|3|string|tab_set|integer|1|string|text_button|integer|2|st
+#ring|text_field|integer|4|string|uniconCompilerCmd_txt|integer|2|strin
+#g|uniconCompilerFlgs_txt|integer|2|string|uniconCompiler_lst|integer|2
+#|string|uniconLinkerFlgs_txt|integer|2|string|uniconLinker_txt|integer
+#|2|SuperClass Name|string|Dialog|Import Name|string|gui|Button Groups|
+#class|ButtonGroupSet|2|Parent Canvas|1|Boxes|list|1|class|CanvasButton
+#Group|5|Name|string|button_group_1|Number|integer|1|Class Name|string|
+#ButtonGroup|Import Name|string|gui|Class Variable|null|Checkbox Groups
+#|class|CheckBoxGroupSet|2|Parent Canvas|1|Boxes|list|0|Gen Indent|inte
+#ger|3|Gen Main|integer|1|Gen Component Setup|integer|1|Gen Init Dialog
+#|integer|1|Gen Initially|integer|1|Dialog Struct|class|CDialog|4|Min W
+#idth|null|Min Height|null|Ticker Rate|null|Attribs|list|2|string|label
+#=Configure Options|string|font=serif, bold, 14|Name|string|ConfigureOp
+#tions|Width|integer|413|Height|integer|287|Items|list|3|class|CanvasTa
+#bSet|27|Parent Canvas|1|Name|string|makefileOpts_tabset|Class Name|str
+#ing|TabSet|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H F
+#ix|null|W Default|null|H Default|null|X Spec|string|5|Y Spec|string|5|
+#W Spec|string|100%-10|H Spec|string|244|X Align|string|l|Y Align|strin
+#g|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|li
+#st|1|string|font=serif, bold, 14|Tooltip|null|Accel|null|Event Handler
+#s|list|0|Class Variable|integer|1|Parent Component|1|Children|list|3|c
+#lass|CanvasTabItem|28|Parent Canvas|1|Name|string|unicon_tab_options|C
+#lass Name|string|TabItem|Import Name|string|gui|X Fix|null|Y Fix|null|
+#W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|integer|0|Y
+# Spec|integer|0|W Spec|string|100%|H Spec|string|100%|X Align|string|l
+#|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|n
+#ull|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|null|Class V
+#ariable|integer|1|Parent Component|11|Label|string|Unicon|Parent TabSe
+#t|11|Children|list|10|class|CanvasLabel|27|Parent Canvas|1|Name|string
+#|comp_lbl|Class Name|string|Label|Import Name|string|gui|X Fix|null|Y 
+#Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|st
+#ring|20|Y Spec|string|63|W Spec|string|125|H Spec|string|28|X Align|st
+#ring|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Bo
+#rder|null|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0
+#|Class Variable|integer|1|Parent Component|15|Label|string|Compiler Co
+#mmand|Internal Align|string|l|class|CanvasLabel|27|Parent Canvas|1|Nam
+#e|string|linker_lbl|Class Name|string|Label|Import Name|string|gui|X F
+#ix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null
+#|X Spec|string|20|Y Spec|string|133|W Spec|string|125|H Spec|string|28
+#|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|n
+#ull|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event Hand
+#lers|list|0|Class Variable|integer|1|Parent Component|15|Label|string|
+#Linker Command|Internal Align|string|l|class|CanvasLabel|27|Parent Can
+#vas|1|Name|string|linkerflags_lbl|Class Name|string|Label|Import Name|
+#string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|
+#H Default|null|X Spec|string|20|Y Spec|string|168|W Spec|string|125|H 
+#Spec|string|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is But
+#ton Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|n
+#ull|Event Handlers|list|0|Class Variable|integer|1|Parent Component|15
+#|Label|string|Linker Flags|Internal Align|string|l|class|CanvasLabel|2
+#7|Parent Canvas|1|Name|string|compflags_lbl|Class Name|string|Label|Im
+#port Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Def
+#ault|null|H Default|null|X Spec|string|20|Y Spec|string|98|W Spec|stri
+#ng|125|H Spec|string|28|X Align|string|l|Y Align|string|t|Is shaded|nu
+#ll|Is Button Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|nul
+#l|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Parent Com
+#ponent|15|Label|string|Compiler Flags|Internal Align|string|l|class|Ca
+#nvasTextField|27|Parent Canvas|1|Name|string|uniconCompilerFlgs_txt|Cl
+#ass Name|string|TextField|Import Name|string|gui|X Fix|null|Y Fix|null
+#|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|string|174
+#|Y Spec|string|98|W Spec|string|200|H Spec|string|28|X Align|string|l|
+#Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|in
+#teger|1|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0|C
+#lass Variable|integer|1|Parent Component|15|Contents|string||Filter St
+#ring|string||class|CanvasTextField|27|Parent Canvas|1|Name|string|unic
+#onLinkerFlgs_txt|Class Name|string|TextField|Import Name|string|gui|X 
+#Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|nul
+#l|X Spec|string|174|Y Spec|string|168|W Spec|string|200|H Spec|string|
+#28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass
+#|null|Draw Border|integer|1|Attribs|list|0|Tooltip|null|Accel|null|Eve
+#nt Handlers|list|0|Class Variable|integer|1|Parent Component|15|Conten
+#ts|string||Filter String|string||class|CanvasList|28|Parent Canvas|1|N
+#ame|string|uniconCompiler_lst|Class Name|string|List|Import Name|strin
+#g|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Def
+#ault|null|X Spec|string|174|Y Spec|string|28|W Spec|string|200|H Spec|
+#string|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button S
+#ubclass|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|E
+#vent Handlers|list|1|list|2|string|SELECTION_CHANGED_EVENT|string|on_u
+#niconCompiler_lst|Class Variable|integer|1|Parent Component|15|Constan
+#t Label|null|Selection|integer|1|Selection List|list|1|string|unicon|c
+#lass|CanvasLabel|27|Parent Canvas|1|Name|string|comp_lbl_4|Class Name|
+#string|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H
+# Fix|null|W Default|null|H Default|null|X Spec|string|20|Y Spec|string
+#|28|W Spec|string|125|H Spec|string|28|X Align|string|l|Y Align|string
+#|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|lis
+#t|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|integ
+#er|1|Parent Component|15|Label|string|Unicon Compiler|Internal Align|s
+#tring|l|class|CanvasTextField|27|Parent Canvas|1|Name|string|uniconLin
+#ker_txt|Class Name|string|TextField|Import Name|string|gui|X Fix|null|
+#Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|
+#string|174|Y Spec|string|133|W Spec|string|200|H Spec|string|28|X Alig
+#n|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Dra
+#w Border|integer|1|Attribs|list|0|Tooltip|null|Accel|null|Event Handle
+#rs|list|0|Class Variable|integer|1|Parent Component|15|Contents|string
+#||Filter String|string||class|CanvasTextField|27|Parent Canvas|1|Name|
+#string|uniconCompilerCmd_txt|Class Name|string|TextField|Import Name|s
+#tring|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H
+# Default|null|X Spec|string|174|Y Spec|string|63|W Spec|string|200|H S
+#pec|string|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Butt
+#on Subclass|null|Draw Border|integer|1|Attribs|list|0|Tooltip|null|Acc
+#el|null|Event Handlers|list|0|Class Variable|integer|1|Parent Componen
+#t|15|Contents|string||Filter String|string||class|CanvasTabItem|28|Par
+#ent Canvas|1|Name|string|java_tab_options|Class Name|string|TabItem|Im
+#port Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Def
+#ault|null|H Default|null|X Spec|integer|0|Y Spec|integer|0|W Spec|stri
+#ng|100%|H Spec|string|100%|X Align|string|l|Y Align|string|t|Is shaded
+#|null|Is Button Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|
+#null|Accel|null|Event Handlers|null|Class Variable|integer|1|Parent Co
+#mponent|11|Label|string|Java|Parent TabSet|11|Children|list|10|class|C
+#anvasLabel|27|Parent Canvas|1|Name|string|comp_lbl_7|Class Name|string
+#|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|n
+#ull|W Default|null|H Default|null|X Spec|string|20|Y Spec|string|28|W 
+#Spec|string|125|H Spec|string|28|X Align|string|l|Y Align|string|t|Is 
+#shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|list|0|To
+#oltip|null|Accel|null|Event Handlers|list|0|Class Variable|integer|1|P
+#arent Component|50|Label|string|Java Compiler|Internal Align|string|l|
+#class|CanvasList|28|Parent Canvas|1|Name|string|javaCompiler_lst|Class
+# Name|string|List|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|n
+#ull|H Fix|null|W Default|null|H Default|null|X Spec|string|174|Y Spec|
+#string|28|W Spec|string|200|H Spec|string|28|X Align|string|l|Y Align|
+#string|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Attri
+#bs|list|0|Tooltip|null|Accel|null|Event Handlers|list|1|list|2|string|
+#SELECTION_CHANGED_EVENT|string|on_javaCompiler_lst|Class Variable|inte
+#ger|1|Parent Component|50|Constant Label|null|Selection|integer|1|Sele
+#ction List|list|1|string|javac|class|CanvasLabel|27|Parent Canvas|1|Na
+#me|string|comp_lbl_8|Class Name|string|Label|Import Name|string|gui|X 
+#Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|nul
+#l|X Spec|string|20|Y Spec|string|63|W Spec|string|125|H Spec|string|28
+#|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|n
+#ull|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event Hand
+#lers|list|0|Class Variable|integer|1|Parent Component|50|Label|string|
+#Java Command|Internal Align|string|l|class|CanvasTextField|27|Parent C
+#anvas|1|Name|string|javaCompilerCmd_txt|Class Name|string|TextField|Im
+#port Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Def
+#ault|null|H Default|null|X Spec|string|174|Y Spec|string|63|W Spec|str
+#ing|200|H Spec|string|28|X Align|string|l|Y Align|string|t|Is shaded|n
+#ull|Is Button Subclass|null|Draw Border|integer|1|Attribs|list|0|Toolt
+#ip|null|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Pare
+#nt Component|50|Contents|string||Filter String|string||class|CanvasTex
+#tField|27|Parent Canvas|1|Name|string|javaCompilerFlgs_txt|Class Name|
+#string|TextField|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|nu
+#ll|H Fix|null|W Default|null|H Default|null|X Spec|string|174|Y Spec|s
+#tring|98|W Spec|string|200|H Spec|string|28|X Align|string|l|Y Align|s
+#tring|t|Is shaded|null|Is Button Subclass|null|Draw Border|integer|1|A
+#ttribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class Vari
+#able|integer|1|Parent Component|50|Contents|string||Filter String|stri
+#ng||class|CanvasTextField|27|Parent Canvas|1|Name|string|javaLinker_tx
+#t|Class Name|string|TextField|Import Name|string|gui|X Fix|null|Y Fix|
+#null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|string
+#|174|Y Spec|string|133|W Spec|string|200|H Spec|string|28|X Align|stri
+#ng|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Bord
+#er|integer|1|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|lis
+#t|0|Class Variable|integer|1|Parent Component|50|Contents|string||Filt
+#er String|string||class|CanvasTextField|27|Parent Canvas|1|Name|string
+#|javaLinkerFlgs_txt|Class Name|string|TextField|Import Name|string|gui
+#|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|
+#null|X Spec|string|174|Y Spec|string|168|W Spec|string|200|H Spec|stri
+#ng|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subcl
+#ass|null|Draw Border|integer|1|Attribs|list|0|Tooltip|null|Accel|null|
+#Event Handlers|list|0|Class Variable|integer|1|Parent Component|50|Con
+#tents|string||Filter String|string||class|CanvasLabel|27|Parent Canvas
+#|1|Name|string|compflags_lbl_2|Class Name|string|Label|Import Name|str
+#ing|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H D
+#efault|null|X Spec|string|20|Y Spec|string|98|W Spec|string|125|H Spec
+#|string|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button 
+#Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|
+#Event Handlers|list|0|Class Variable|integer|1|Parent Component|50|Lab
+#el|string|Compiler Flags|Internal Align|string|l|class|CanvasLabel|27|
+#Parent Canvas|1|Name|string|linkerflags_lbl_2|Class Name|string|Label|
+#Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W D
+#efault|null|H Default|null|X Spec|string|20|Y Spec|string|168|W Spec|s
+#tring|125|H Spec|string|28|X Align|string|l|Y Align|string|t|Is shaded
+#|null|Is Button Subclass|null|Draw Border|null|Attribs|list|0|Tooltip|
+#null|Accel|null|Event Handlers|list|0|Class Variable|integer|1|Parent 
+#Component|50|Label|string|Linker Flags|Internal Align|string|l|class|C
+#anvasLabel|27|Parent Canvas|1|Name|string|linker_lbl_2|Class Name|stri
+#ng|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix
+#|null|W Default|null|H Default|null|X Spec|string|20|Y Spec|string|133
+#|W Spec|string|125|H Spec|string|28|X Align|string|l|Y Align|string|t|
+#Is shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|list|0
+#|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|integer|
+#1|Parent Component|50|Label|string|Linker Command|Internal Align|strin
+#g|l|class|CanvasTabItem|28|Parent Canvas|1|Name|string|cpp_tab_options
+#|Class Name|string|TabItem|Import Name|string|gui|X Fix|null|Y Fix|nul
+#l|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|integer|0
+#|Y Spec|integer|0|W Spec|string|100%|H Spec|string|100%|X Align|string
+#|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Border
+#|null|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|null|Class
+# Variable|integer|1|Parent Component|11|Label|string|C++|Parent TabSet
+#|11|Children|list|10|class|CanvasLabel|27|Parent Canvas|1|Name|string|
+#comp_lbl_5|Class Name|string|Label|Import Name|string|gui|X Fix|null|Y
+# Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|s
+#tring|20|Y Spec|string|28|W Spec|string|125|H Spec|string|28|X Align|s
+#tring|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw B
+#order|null|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|
+#0|Class Variable|integer|1|Parent Component|85|Label|string|C++ Compil
+#er|Internal Align|string|l|class|CanvasList|28|Parent Canvas|1|Name|st
+#ring|cppCompiler_lst|Class Name|string|List|Import Name|string|gui|X F
+#ix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null
+#|X Spec|string|174|Y Spec|string|28|W Spec|string|200|H Spec|string|28
+#|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|n
+#ull|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event Hand
+#lers|list|1|list|2|string|SELECTION_CHANGED_EVENT|string|on_cppCompile
+#r_lst|Class Variable|integer|1|Parent Component|85|Constant Label|null
+#|Selection|integer|1|Selection List|list|1|string|GNU C++ Compiler (G+
+#+)|class|CanvasLabel|27|Parent Canvas|1|Name|string|comp_lbl_6|Class N
+#ame|string|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|nu
+#ll|H Fix|null|W Default|null|H Default|null|X Spec|string|20|Y Spec|st
+#ring|63|W Spec|string|125|H Spec|string|28|X Align|string|l|Y Align|st
+#ring|t|Is shaded|null|Is Button Subclass|null|Draw Border|null|Attribs
+#|list|0|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|i
+#nteger|1|Parent Component|85|Label|string|Compiler Command|Internal Al
+#ign|string|l|class|CanvasTextField|27|Parent Canvas|1|Name|string|cppC
+#ompilerCmd_txt|Class Name|string|TextField|Import Name|string|gui|X Fi
+#x|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|
+#X Spec|string|174|Y Spec|string|63|W Spec|string|200|H Spec|string|28|
+#X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|nu
+#ll|Draw Border|integer|1|Attribs|list|0|Tooltip|null|Accel|null|Event 
+#Handlers|list|0|Class Variable|integer|1|Parent Component|85|Contents|
+#string||Filter String|string||class|CanvasLabel|27|Parent Canvas|1|Nam
+#e|string|compflags_lbl_1|Class Name|string|Label|Import Name|string|gu
+#i|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default
+#|null|X Spec|string|20|Y Spec|string|98|W Spec|string|125|H Spec|strin
+#g|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Button Subcla
+#ss|null|Draw Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event 
+#Handlers|list|0|Class Variable|integer|1|Parent Component|85|Label|str
+#ing|Compiler Flags|Internal Align|string|l|class|CanvasTextField|27|Pa
+#rent Canvas|1|Name|string|cppCompilerFlgs_txt|Class Name|string|TextFi
+#eld|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null
+#|W Default|null|H Default|null|X Spec|string|174|Y Spec|string|98|W Sp
+#ec|string|200|H Spec|string|28|X Align|string|l|Y Align|string|t|Is sh
+#aded|null|Is Button Subclass|null|Draw Border|integer|1|Attribs|list|0
+#|Tooltip|null|Accel|null|Event Handlers|list|0|Class Variable|integer|
+#1|Parent Component|85|Contents|string||Filter String|string||class|Can
+#vasLabel|27|Parent Canvas|1|Name|string|linker_lbl_1|Class Name|string
+#|Label|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|n
+#ull|W Default|null|H Default|null|X Spec|string|20|Y Spec|string|133|W
+# Spec|string|125|H Spec|string|28|X Align|string|l|Y Align|string|t|Is
+# shaded|null|Is Button Subclass|null|Draw Border|null|Attribs|list|0|T
+#ooltip|null|Accel|null|Event Handlers|list|0|Class Variable|integer|1|
+#Parent Component|85|Label|string|Linker Command|Internal Align|string|
+#l|class|CanvasTextField|27|Parent Canvas|1|Name|string|cppLinker_txt|C
+#lass Name|string|TextField|Import Name|string|gui|X Fix|null|Y Fix|nul
+#l|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|string|17
+#4|Y Spec|string|133|W Spec|string|200|H Spec|string|28|X Align|string|
+#l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw Border|
+#integer|1|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|0
+#|Class Variable|integer|1|Parent Component|85|Contents|string||Filter 
+#String|string||class|CanvasLabel|27|Parent Canvas|1|Name|string|linker
+#flags_lbl_1|Class Name|string|Label|Import Name|string|gui|X Fix|null|
+#Y Fix|null|W Fix|null|H Fix|null|W Default|null|H Default|null|X Spec|
+#string|20|Y Spec|string|168|W Spec|string|125|H Spec|string|28|X Align
+#|string|l|Y Align|string|t|Is shaded|null|Is Button Subclass|null|Draw
+# Border|null|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|lis
+#t|0|Class Variable|integer|1|Parent Component|85|Label|string|Linker F
+#lags|Internal Align|string|l|class|CanvasTextField|27|Parent Canvas|1|
+#Name|string|cppLinkerFlgs_txt|Class Name|string|TextField|Import Name|
+#string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix|null|W Default|null|
+#H Default|null|X Spec|string|174|Y Spec|string|168|W Spec|string|200|H
+# Spec|string|28|X Align|string|l|Y Align|string|t|Is shaded|null|Is Bu
+#tton Subclass|null|Draw Border|integer|1|Attribs|list|0|Tooltip|null|A
+#ccel|null|Event Handlers|list|0|Class Variable|integer|1|Parent Compon
+#ent|85|Contents|string||Filter String|string||Which One|15|class|Canva
+#sTextButton|36|Parent Canvas|1|Name|string|ok_btn|Class Name|string|Te
+#xtButton|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|null|H Fix
+#|null|W Default|null|H Default|null|X Spec|string|118|Y Spec|string|25
+#4|W Spec|string|80|H Spec|string|28|X Align|string|l|Y Align|string|t|
+#Is shaded|null|Is Button Subclass|integer|1|Draw Border|null|Attribs|l
+#ist|0|Tooltip|null|Accel|null|Event Handlers|list|1|list|2|string|ACTI
+#ON_EVENT|string|on_ok_btn|Class Variable|integer|1|Parent Component|1|
+#Label|string|OK|No Keyboard|null|Img Up|null|Img Down|null|Img Width|n
+#ull|Img Height|null|Is Checked Flag|null|Is Checkbox Flag|null|Parent 
+#CheckBoxGroup|null|Parent Button Group|5|Internal Align|string|c|class
+#|CanvasTextButton|36|Parent Canvas|1|Name|string|cancel_btn|Class Name
+#|string|TextButton|Import Name|string|gui|X Fix|null|Y Fix|null|W Fix|
+#null|H Fix|null|W Default|null|H Default|null|X Spec|integer|225|Y Spe
+#c|integer|254|W Spec|string|80|H Spec|string|28|X Align|string|l|Y Ali
+#gn|string|t|Is shaded|null|Is Button Subclass|integer|1|Draw Border|nu
+#ll|Attribs|list|0|Tooltip|null|Accel|null|Event Handlers|list|1|list|2
+#|string|ACTION_EVENT|string|on_cancel_btn|Class Variable|integer|1|Par
+#ent Component|1|Label|string|Cancel|No Keyboard|null|Img Up|null|Img D
+#own|null|Img Width|null|Img Height|null|Is Checked Flag|null|Is Checkb
+#ox Flag|null|Parent CheckBoxGroup|null|Parent Button Group|5|Internal 
+#Align|string|c|Initial Focus|null|Event Handlers|list|0|

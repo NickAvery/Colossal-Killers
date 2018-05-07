@@ -1,0 +1,10 @@
+class SessionMC(IDEOwner,IDEFile,CIDE,PtyOwner,Lusers)#has on and off
+   method add(user)
+      put(Lusers, user)
+   end
+initially(own, filen, collab)
+    IDEOwner := PtyOwner := own
+    IDEFile := filen
+    CIDE := collab
+    Lusers := []
+end
