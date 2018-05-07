@@ -28,15 +28,19 @@ public class EnemyComponent extends Component {
      public EnemyComponent(STATE state, int type){
         this.state = state;
         System.out.println(type-1);
-        dinoType = DINOTYPE.values()[type-1];
 		switch(type) {
 			case 1: //ankylo
 				health = 100;
 				footStep = Gdx.audio.newMusic(Gdx.files.internal("data/shortDinoStep.mp3"));
+                footStep.setLooping(false);
+                dinoType = DINOTYPE.ANKLO;
+
 			break;
 			case 2: //raptor
 				footStep = Gdx.audio.newMusic(Gdx.files.internal("data/raptor.mp3"));
+                footStep.setLooping(true);
 				health = 50;
+                dinoType = DINOTYPE.RAPTOR;
 			break;
 			default:
 				health = 10;

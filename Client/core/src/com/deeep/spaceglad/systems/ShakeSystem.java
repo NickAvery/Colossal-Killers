@@ -15,6 +15,7 @@ public class ShakeSystem extends EntitySystem implements EntityListener {
 	private Vector3 origin;
 	private float curTime = 0f;
 	private Camera camera;
+    private float intensity;
 	private Random rand = new Random();
 	private GameWorld gameWorld;
 
@@ -23,23 +24,28 @@ public class ShakeSystem extends EntitySystem implements EntityListener {
         this.gameWorld = gameWorld;
     }
 
-    public void startShake(Vector3 origin){
+    public void startShake(Vector3 origin, float intensity){
+        System.out.println("startShake");
     	this.origin = origin.cpy();
+        this.intensity = intensity;
     	curTime = 0;
     }
 
     public void update(float delta){
-    	System.out.println(delta);
     	curTime += delta;
     	if(curTime < shakeTime){
+            int isNeg = 1;
+            if(rand.nextFloat() > .5f)
+                isNeg = -1;
     		Vector3 tmp = new Vector3();
     		tmp.set(0, 0, 0);
-        	camera.rotate(camera.up, rand.nextFloat() * 1f);
+        	camera.rotate(camera.up, rand.nextFloat() * intensity * isNeg);
+            isNeg = 1;
         	tmp.set(camera.direction).crs(camera.up).nor();
-        	camera.direction.rotate(tmp, rand.nextFloat() * 1f);
+            if(rand.nextFloat() > .5f)
+                isNeg = -1;
+        	camera.direction.rotate(tmp, rand.nextFloat() * intensity * isNeg);
         	tmp.set(0, 0, 0);
-    	}else if(curTime - delta < shakeTime){
-    		camera.lookAt(origin.x, origin.y, origin.z);
     	}
     }
 
