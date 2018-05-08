@@ -62,7 +62,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                 entity.getComponent(EnemyComponent.class).username = "dino" + dinoNumber++;
                 engine.addEntity(entity);
                 if (gameWorld.game.client != null) {
-                    gameWorld.game.client.sendMessage("\\dinospawn" + " " + entity.getComponent(EnemyComponent.class).username + " " + type + " " + scale + " "
+                    gameWorld.game.client.sendMessage("\\dinospawn" + " " + entity.getComponent(EnemyComponent.class).username + " " + type + " " + scale + " " +
                         entity.getComponent(EnemyComponent.class).x + " " + entity.getComponent(EnemyComponent.class).y + " " + entity.getComponent(EnemyComponent.class).z +
                         " " + 0 + "\n");
                 }
