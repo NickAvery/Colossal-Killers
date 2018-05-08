@@ -51,14 +51,16 @@ public class GameScreen implements Screen {
 					case "\\say":
 						gameUI.messageWidget.addChatMessage(msg.substring(5));
 						break;
+					case "\\tell":
+						gameUI.messageWidget.addChatMessage(msg.substring(6));
+						break;
 					case "\\inform":
 						gameUI.messageWidget.addChatMessage("Server: " + msg.substring(8));
 						break;
 						
 					// Login
 					case "\\avatar":
-						// TODO params[5] = max(rotation.y, 1.5)
-						if (params[1] == game.client.username) {
+						if (params[1].equals(game.client.username)) {
 							// TODO restore player position on login
 						} else {
 							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
@@ -92,7 +94,6 @@ public class GameScreen implements Screen {
 							entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
 							entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
 							entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
-							// TODO params[5] = max(rotation.y, 1.5)
 						}
 						break;
 

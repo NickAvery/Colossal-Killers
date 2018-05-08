@@ -13,6 +13,7 @@ import com.deeep.spaceglad.Assets;
 import com.deeep.spaceglad.Core;
 import com.deeep.spaceglad.Settings;
 import com.deeep.spaceglad.screens.GameScreen;
+import com.deeep.spaceglad.screens.MainMenuScreen;
 
 /**
  * Created by scanevaro on 04/08/2015.
@@ -40,7 +41,9 @@ public class PauseWidget extends Actor {
 
 	private void configureWidgets() {
 		window.getTitleTable().add(closeDialog).height(window.getPadTop());
-		window.add(restartButton);
+		if (game.client == null) {
+			window.add(restartButton);
+		}
 		window.add(quitButton);
 	}
 
@@ -70,7 +73,11 @@ public class PauseWidget extends Actor {
 		quitButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent inputEvent, float x, float y) {
-				Gdx.app.exit();
+				if (game.client != null) {
+					game.client.close();
+					game.client = null;
+				}
+				game.setScreen(new MainMenuScreen(game));
 			}
 		});
 	}
