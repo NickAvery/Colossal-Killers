@@ -200,7 +200,7 @@ public class GameWorld {
 
         for (int i = 0; i < 50; i++ ) {
             float x = 5 * i - 20;
-            float z = i & 4 - 45;
+            float z = i % 4 - 45;
             float y = -i % 8;
             engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
         }

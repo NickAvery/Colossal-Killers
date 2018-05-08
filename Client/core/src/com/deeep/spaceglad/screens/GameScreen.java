@@ -42,36 +42,33 @@ public class GameScreen implements Screen {
 				String params[] = msg.split(" ");
 				Entity entity;
 				switch (params[0]) {
+				
+					// Chat Messages
 					case "\\say":
 						gameUI.messageWidget.addChatMessage(msg.substring(5));
 						break;
 					case "\\inform":
 						gameUI.messageWidget.addChatMessage("Server: " + msg.substring(8));
 						break;
+						
+					// Login
 					case "\\avatar":
-						/*
-						 * params[0] = "\\avatar"
-						 * params[1] = username
-						 * params[2] = position.x
-						 * params[3] = position.y
-						 * params[4] = position.z
-						 * params[5] = min( rotation.y, 1.5 )
-						 * params[6] = "user\n"
-						 */
-						if (params[2] != "") {
-							if (params[1].equals(game.client.username)) {
-								// This player
-								// TODO
-							} else {
-								gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
-										Float.parseFloat(params[3]),
-										Float.parseFloat(params[4]));
-							}
+						// TODO params[5] = max(rotation.y, 1.5)
+						if (params[1] == game.client.username) {
+							// TODO restore player position on login
 						} else {
-							// NPC
-							// TODO
+							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
+									Float.parseFloat(params[3]),
+									Float.parseFloat(params[4]));
 						}
 						break;
+						
+					// Logout
+                    case "\\delavatar":
+                        // TODO remove avatar when owner logs out
+                        break;
+                        
+                    // Damage
 					case "\\damage":
 						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null)
 							entity.getComponent(AvatarComponent.class).health -= Integer.parseInt(params[2]);
@@ -79,18 +76,35 @@ public class GameScreen implements Screen {
 							gameWorld.playerSystem.getPlayer().getComponent(PlayerComponent.class).
 									health -= Integer.parseInt(params[2]);
 						break;
+						
+					// Move
 					case "\\move":
 						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
 							entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
 							entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
 							entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
+							// TODO params[5] = max(rotation.y, 1.5)
 						}
-
 						break;
 
+					// Empty Message
+                    case "\n":
+                    	break;
+                    	
+                	// Extraneous Messages
+                    case "\\Whoami":
+                    case "\\vgetip":
+                    case "\\dat":
+                    case "\\dynstate":
+                    case "\\Addusers":
+                    case "\\c":
+                    case "\\Deleteuser":
+                    	// TODO are any of these needed?
+                    	break;
+                    	
+                	// TODO Handle more commands
+					// Unhandled commands are pushed to chat window
 					default:
-						// TODO Handle more commands
-						// Unhandled commands are pushed to chat window
 						gameUI.messageWidget.addChatMessage(msg);
 				}
 			}
