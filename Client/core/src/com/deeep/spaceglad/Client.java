@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 public class Client implements Runnable {
 	private static final Charset ascii = Charset.forName("ASCII");
 
+	//private static final String host = "localhost";
 	private static final String host = "cveworld.com";
 	private static final int port = 4700;
 

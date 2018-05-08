@@ -156,15 +156,6 @@ public class GameWorld {
 		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
         engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
         createPlayer(0, 1, 0);
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem, -15, 1, -35, 11));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem, -10, 1, -35, 12));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  -5, 1, -35, 13));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,   0, 1, -35, 14));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,   5, 1, -35, 15));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  10, 1, -35, 16));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  15, 1, -35, 17));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  20, 1, -35, 18));
-        engine.addEntity(EntityFactory.createTeammate(bulletSystem,  25, 1, -35, 19));
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -225,7 +216,6 @@ public class GameWorld {
 		//engine.addSystem(new PlayerSystem(this, gameUI, perspectiveCamera));
 		
         engine.addSystem(new EnemySystem(this, renderSystem.perspectiveCamera));
-        engine.addSystem(new TeammateSystem(this));
         engine.addSystem(new StatusSystem(this));
         engine.addSystem(new HealthPackSystem(this));
         engine.addSystem(avatarSystem = new AvatarSystem(this));
@@ -250,7 +240,6 @@ public class GameWorld {
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
             engine.getSystem(HealthPackSystem.class).setProcessing(true);
-            engine.getSystem(TeammateSystem.class).setProcessing(true);
             engine.getSystem(AvatarSystem.class).setProcessing(true);
         }
     }

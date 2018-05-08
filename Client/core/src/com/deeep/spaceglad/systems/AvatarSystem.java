@@ -36,7 +36,7 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
             ModelComponent modelComponent = player.getComponent(ModelComponent.class);
             AvatarComponent avatarComponent = player.getComponent(AvatarComponent.class);
             modelComponent.instance.transform.set(avatarComponent.x,
-                    avatarComponent.y, avatarComponent.z, 0, 0, 0, 0);
+                    avatarComponent.y-3, avatarComponent.z, 0, 0, 0, 0); //model.y-3 to stop floating avatar -Paul
         }
     }
 

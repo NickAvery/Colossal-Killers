@@ -343,18 +343,6 @@ public class EntityFactory {
 		//end
         return entity;
     }
-
-    public static Entity createTeammate(BulletSystem bulletSystem, float x, float y, float z, int type11_19) {
-        //type 11 through 19 for the 9 possible teammate avatar models
-        Entity entity = createCharacter(bulletSystem, x,y,z, type11_19);
-        //entity.add(new EnemyComponent(EnemyComponent.STATE.IDLE,1));
-        //entity.add(new StatusComponent());
-        //entity.add(new DieParticleComponent(renderSystem.particleSystem));
-
-        entity.add(new TeammateComponent());
-        entity.add(new StatusComponent());
-        return entity;
-    }
 	
 	public static Entity loadGun(float x, float y, float z)
 	{
