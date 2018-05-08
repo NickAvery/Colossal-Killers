@@ -67,7 +67,7 @@ public class GameScreen implements Screen {
 							// TODO restore player position on login
 						} else {
 							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
-									Float.parseFloat(params[3]),
+									Float.parseFloat(params[3])-50, //subtract 50 so that they "spawn" underground -Paul
 									Float.parseFloat(params[4]), Float.parseFloat(params[5]));
 							//TODO add avatar color int
 						}
