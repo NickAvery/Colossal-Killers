@@ -42,6 +42,10 @@ public class GameScreen implements Screen {
 		if (game.client != null) { // Should only be null if offline
 			while (game.client.getQueueLength() > 0) {
 				String msg = game.client.getNextMessage();
+                if (msg == null) {
+                    // TODO what causes this?
+                    continue;
+                }
 				String params[] = msg.split(" ");
                 
 				// Remove \n
