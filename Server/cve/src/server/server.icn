@@ -9781,17 +9781,17 @@ end
    
    # Create Dino Instances
    
-	every x := 1 to 10 do
-	{
-		D := Dino(position[x])
-		#write(D.name)
+	# every x := 1 to 10 do
+	# {
+		# D := Dino(position[x])
+		# write(D.name)
 		
-		#insert into table
-		Tusername_dino[D.name] := D
+		## insert into table
+		# Tusername_dino[D.name] := D
 
-		#convert non-string value to string
+		## convert non-string value to string
 		#image(D)
-	}
+	# }
    
    Cmds         := Commands() # server commands table & methods
    dynStHandler := StateHandler(logHandler) # Dynamic State Handler

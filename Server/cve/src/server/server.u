@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	server.u1-1525810764-0
+uid	server.u1-1525813165-0
 record	SocketDriver,5
 	0,socket
 	1,user
@@ -117827,21 +117827,16 @@ proc Server_initially
 	local	9,000000,Logger
 	local	10,000000,cmdHelper
 	local	11,000000,table
-	local	12,000000,D
-	local	13,000000,Dino
-	local	14,000000,position
-	local	15,000000,Commands
-	local	16,000000,StateHandler
-	local	17,000000,fileTransfer
-	local	18,000000,AgentHandler
-	local	19,000000,set
+	local	12,000000,Commands
+	local	13,000000,StateHandler
+	local	14,000000,fileTransfer
+	local	15,000000,AgentHandler
+	local	16,000000,set
 	con	0,010000,7,123,111,107,120,111,120,105
 	con	1,002000,4,4500
 	con	2,002000,1,0
-	con	3,002000,1,1
-	con	4,002000,2,10
-	con	5,010000,1,124
-	con	6,010000,1,120
+	con	3,010000,1,124
+	con	4,010000,1,120
 	declend
 	line	9754
 	colm	11
@@ -118152,80 +118147,6 @@ lab L17
 	unmark
 lab L18
 	mark	L19
-	line	9787
-	colm	9
-	synt	every
-	mark0
-	pnull
-	var	5
-	pnull
-	int	3
-	int	4
-	push1
-	line	9787
-	colm	22
-	synt	any
-	toby
-	line	9787
-	colm	17
-	synt	any
-	asgn
-	pop
-	mark0
-	mark	L22
-	pnull
-	var	12
-	var	13
-	pnull
-	var	14
-	var	5
-	line	9789
-	colm	35
-	synt	any
-	subsc
-	line	9789
-	colm	26
-	synt	any
-	invoke	1
-	line	9789
-	colm	19
-	synt	any
-	asgn
-	unmark
-lab L22
-	pnull
-	pnull
-	pnull
-	var	0
-	line	9793
-	colm	21
-	synt	any
-	field	Tusername_dino
-	pnull
-	var	12
-	line	9793
-	colm	38
-	synt	any
-	field	name
-	line	9793
-	colm	36
-	synt	any
-	subsc
-	var	12
-	line	9793
-	colm	44
-	synt	any
-	asgn
-	unmark
-lab L20
-	efail
-lab L21
-	line	9787
-	colm	9
-	synt	endevery
-	unmark
-lab L19
-	mark	L23
 	pnull
 	pnull
 	var	0
@@ -118233,7 +118154,7 @@ lab L19
 	colm	8
 	synt	any
 	field	Cmds
-	var	15
+	var	12
 	line	9799
 	colm	28
 	synt	any
@@ -118243,8 +118164,8 @@ lab L19
 	synt	any
 	asgn
 	unmark
-lab L23
-	mark	L24
+lab L19
+	mark	L20
 	pnull
 	pnull
 	var	0
@@ -118252,7 +118173,7 @@ lab L23
 	colm	8
 	synt	any
 	field	dynStHandler
-	var	16
+	var	13
 	pnull
 	var	0
 	line	9800
@@ -118268,8 +118189,8 @@ lab L23
 	synt	any
 	asgn
 	unmark
-lab L24
-	mark	L25
+lab L20
+	mark	L21
 	pnull
 	pnull
 	var	0
@@ -118277,7 +118198,7 @@ lab L24
 	colm	8
 	synt	any
 	field	fileHandler
-	var	17
+	var	14
 	pnull
 	var	0
 	line	9801
@@ -118293,8 +118214,8 @@ lab L24
 	synt	any
 	asgn
 	unmark
-lab L25
-	mark	L26
+lab L21
+	mark	L22
 	pnull
 	pnull
 	var	0
@@ -118302,7 +118223,7 @@ lab L25
 	colm	8
 	synt	any
 	field	agents
-	var	18
+	var	15
 	var	0
 	line	9802
 	colm	29
@@ -118313,8 +118234,8 @@ lab L25
 	synt	any
 	asgn
 	unmark
-lab L26
-	mark	L27
+lab L22
+	mark	L23
 	pnull
 	pnull
 	var	0
@@ -118322,7 +118243,7 @@ lab L26
 	colm	8
 	synt	any
 	field	local_npc_set
-	var	19
+	var	16
 	line	9805
 	colm	27
 	synt	any
@@ -118332,12 +118253,12 @@ lab L26
 	synt	any
 	asgn
 	unmark
-lab L27
-	mark	L28
+lab L23
+	mark	L24
 	line	9812
 	colm	4
 	synt	ifelse
-	mark	L29
+	mark	L25
 	pnull
 	pnull
 	var	2
@@ -118345,7 +118266,7 @@ lab L27
 	colm	7
 	synt	any
 	nonnull
-	str	5
+	str	3
 	line	9812
 	colm	16
 	synt	any
@@ -118363,8 +118284,8 @@ lab L27
 	colm	48
 	synt	any
 	invoke	2
-	goto	L30
-lab L29
+	goto	L26
+lab L25
 	line	9813
 	colm	9
 	synt	if
@@ -118376,7 +118297,7 @@ lab L29
 	colm	12
 	synt	any
 	nonnull
-	str	6
+	str	4
 	line	9813
 	colm	21
 	synt	any
@@ -118396,24 +118317,24 @@ lab L29
 	line	9813
 	colm	9
 	synt	endif
-lab L30
+lab L26
 	line	9812
 	colm	4
 	synt	endifelse
 	unmark
-lab L28
-	mark	L31
-	mark	L32
+lab L24
+	mark	L27
+	mark	L28
 	pnull
 	line	9814
 	colm	7
 	synt	any
 	pret
-lab L32
+lab L28
 	synt	any
 	pfail
 	unmark
-lab L31
+lab L27
 	pnull
 	line	9815
 	colm	1
