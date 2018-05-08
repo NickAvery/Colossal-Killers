@@ -3,7 +3,7 @@ $include "posix.icn"
 
 $ifdef THREADS
 $include "threadh.icn"
-$endif
+$endiff
 
 link datetime
 link datecomp
@@ -1157,6 +1157,7 @@ $endif
 	 Tcmds["allusers"] := [self, self.__m.do_allusers]
 	 Tcmds["WEBopen"] := [self, self.__m.do_WEBopen]
 	 Tcmds["query"] := [self, self.__m.do_query]
+	 #Tcmds["dinospawn"] := [self]
          }
 
       # A "temporary" table going from sock -> user objects. This is only
@@ -1182,16 +1183,16 @@ $endif
                write(&errout, "received \\fire command")
                }
 			"death":{ # handle \death command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\death command")
 			   }
 			"dinocount":{ #handle \dinocount command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinocount command")
 			   }
 			"dinospawn":{ #handle \dinospawn command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinospawn command")
 			   }
 			"dinowave":{ #handle \dinowave command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinowave command")
 			   }
             "createroom":{
                roomStats := []
