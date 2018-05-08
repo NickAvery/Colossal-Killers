@@ -135,7 +135,9 @@ public class NewUserScreen implements Screen {
 				game.client.sendMessage("\\newuser " + usernameArea.getText() + " " + passwordArea.getText() + " "
 						+ firstNameArea.getText() + " " + lastNameArea.getText() + " " + emailArea.getText() + " "
 						+ affiliationArea.getText() + "\n");
-				while (game.client.isRunning()) {
+				//Time check to prevent client crash if server never sends a message back
+				long startTime = System.currentTimeMillis();
+				while (game.client.isRunning() || ((System.currentTimeMillis() - startTime) < 3000)) {
 					if (game.client.getQueueLength() > 0) {
 						String msg = game.client.getNextMessage();
 						if (msg.equals("")) {

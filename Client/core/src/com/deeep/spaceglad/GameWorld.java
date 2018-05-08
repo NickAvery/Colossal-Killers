@@ -244,12 +244,6 @@ public class GameWorld {
     private void checkPause() {
         if (Settings.Paused) {
             engine.getSystem(PlayerSystem.class).setProcessing(false);
-            engine.getSystem(EnemySystem.class).setProcessing(false);
-            engine.getSystem(StatusSystem.class).setProcessing(false);
-            engine.getSystem(BulletSystem.class).setProcessing(false);
-            engine.getSystem(HealthPackSystem.class).setProcessing(false);
-            engine.getSystem(TeammateSystem.class).setProcessing(false);
-            engine.getSystem(AvatarSystem.class).setProcessing(true);
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
