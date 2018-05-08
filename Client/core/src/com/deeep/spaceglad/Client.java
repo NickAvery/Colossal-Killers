@@ -16,8 +16,9 @@ public class Client implements Runnable {
 	private static final Charset ascii = Charset.forName("ASCII");
 
 	//private static final String host = "localhost";
+	//private static final int port = 4700;
 	private static final String host = "cveworld.com";
-	private static final int port = 4700;
+	private static final int port = 4500;
 
 	private Socket socket;
 	private DataInputStream dis;

@@ -35,9 +35,5 @@
     <orderEntry type="library" exported="" name="gdx-controllers-1.6.4" level="project" />
     <orderEntry type="library" exported="" name="gdx-bullet-1.6.4" level="project" />
     <orderEntry type="library" exported="" name="ashley-1.5.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
   </component>
 </module>
