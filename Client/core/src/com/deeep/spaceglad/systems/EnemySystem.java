@@ -48,12 +48,24 @@ public class EnemySystem extends EntitySystem implements EntityListener {
         if (gameWorld.game.dinoSpawner) {
             if (entities.size() < 2) {
                 Random random = new Random();
-                Entity entity = EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 3, 10, random.nextInt(2) + 1);
+                int type = random.nextInt(2)+1;
+			    float scale = 1.0f;
+			    if (type == 1)
+			    {
+				    scale = (float)random.nextInt(5)+3.0f;
+			    }   
+			    else if(type == 2)
+			    {
+				    scale = (float)random.nextInt(3)+1.0f;
+			    }
+                Entity entity = EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 20, 10, type, scale);
                 entity.getComponent(EnemyComponent.class).username = "dino" + dinoNumber++;
                 engine.addEntity(entity);
-                gameWorld.game.client.sendMessage("\\avatar" + " " + entity.getComponent(EnemyComponent.class).username + " " +
+                if (gameWorld.game.client != null) {
+                    gameWorld.game.client.sendMessage("\\dinospawn" + " " + entity.getComponent(EnemyComponent.class).username + " " + type + " " + scale + " "
                         entity.getComponent(EnemyComponent.class).x + " " + entity.getComponent(EnemyComponent.class).y + " " + entity.getComponent(EnemyComponent.class).z +
                         " " + 0 + "\n");
+                }
             }
             for (Entity e : entities) {
                 ModelComponent mod = e.getComponent(ModelComponent.class);
