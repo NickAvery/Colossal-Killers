@@ -149,6 +149,7 @@ public class GameWorld {
         player.getComponent(AvatarComponent.class).y = y;
         player.getComponent(AvatarComponent.class).z = z;
         player.getComponent(AvatarComponent.class).rotAngle = angle;
+        //TODO add avatar color
     	engine.addEntity(player);
 	}
 

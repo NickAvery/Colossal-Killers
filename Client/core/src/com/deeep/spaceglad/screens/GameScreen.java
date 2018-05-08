@@ -64,6 +64,7 @@ public class GameScreen implements Screen {
 							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
 									Float.parseFloat(params[3]),
 									Float.parseFloat(params[4]), Float.parseFloat(params[5]));
+							//TODO add avatar color int
 						}
 						break;
 						

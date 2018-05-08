@@ -40,8 +40,8 @@
       <file leaf-file-name="GameScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
+            <state relative-caret-position="391">
+              <caret line="66" column="55" lean-forward="false" selection-start-line="66" selection-start-column="55" selection-end-line="66" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -62,6 +62,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AvatarComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -72,23 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AvatarComponent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameWorld.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="231" column="21" lean-forward="false" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+            <state relative-caret-position="281">
+              <caret line="151" column="31" lean-forward="false" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -106,7 +106,6 @@
       <find>move</find>
       <find>compon</find>
       <find>transfor</find>
-      <find>avatar</find>
       <find>character</find>
       <find>addentit</find>
       <find>addplayer</find>
@@ -115,10 +114,13 @@
       <find>playerl</find>
       <find>add</find>
       <find>.x</find>
-      <find>players</find>
       <find>message</find>
-      <find>render</find>
+      <find>animation</find>
+      <find>avatar</find>
+      <find>createava</find>
+      <find>players</find>
       <find>playersl</find>
+      <find>render</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -1352,12 +1354,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/AvatarSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/AvatarSystem.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java" />
       </list>
     </option>
@@ -1634,29 +1636,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="250" column="17" lean-forward="false" selection-start-line="250" selection-start-column="8" selection-end-line="250" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Core.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1668,18 +1652,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AnimationComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="231" column="21" lean-forward="false" selection-start-line="231" selection-start-column="21" selection-end-line="231" selection-end-column="21" />
+        <state relative-caret-position="102">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
+        <state relative-caret-position="281">
+          <caret line="151" column="31" lean-forward="false" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/ModelComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="90" lean-forward="false" selection-start-line="16" selection-start-column="90" selection-end-line="16" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="193" column="14" lean-forward="false" selection-start-line="193" selection-start-column="12" selection-end-line="193" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1693,6 +1693,24 @@
             <element signature="e#4721#4722#0" expanded="true" />
             <element signature="e#8395#8396#0" expanded="true" />
             <element signature="e#8415#8416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="66" column="55" lean-forward="false" selection-start-line="66" selection-start-column="55" selection-end-line="66" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

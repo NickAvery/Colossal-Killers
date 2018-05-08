@@ -11,7 +11,11 @@ public class AvatarComponent extends Component {
     public String username;
     public float health;
 
+    public int color;
+
     public AvatarComponent() {
         health = 100;
+        //default color is red
+        color = 11; //colors 11 through 19 are available for teammates (ROYGBIV G B) -Paul
     }
 }
