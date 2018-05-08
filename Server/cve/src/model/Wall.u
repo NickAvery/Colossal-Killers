@@ -1,0 +1,2315 @@
+version	U12.1.00
+uid	Wall.u1-1525810758-0
+record	Wall__state,19
+	0,__s
+	1,__m
+	2,opMode
+	3,world
+	4,texture
+	5,coords
+	6,minx
+	7,maxx
+	8,miny
+	9,maxy
+	10,minz
+	11,maxz
+	12,xdelta
+	13,ydelta
+	14,zdelta
+	15,plane
+	16,tex_fact
+	17,tex
+	18,tex_dlo
+record	Wall__methods,9
+	0,calc_boundbox
+	1,dist
+	2,UpdateRenderedNode
+	3,render
+	4,settexture
+	5,printwall
+	6,set_plane
+	7,sort_coords
+	8,initially
+impl	error
+global	14
+	0,000005,Wall_calc_boundbox,1
+	1,000005,Wall_dist,7
+	2,000005,Wall_UpdateRenderedNode,1
+	3,000005,Wall_render,4
+	4,000005,Wall_settexture,2
+	5,000005,Wall_printwall,1
+	6,000005,Wall_set_plane,1
+	7,000005,Wall_sort_coords,1
+	8,000005,Wall_initially,-5
+	9,000011,Wall__state,19
+	10,000011,Wall__methods,9
+	11,000001,Wall__oprec,0
+	12,000005,Wall,-4
+	13,000005,Wallinitialize,0
+
+proc Wall_calc_boundbox
+	local	0,001000,self
+	local	1,000020,w
+	local	2,000020,L
+	local	3,000020,i
+	con	0,002000,1,1
+	con	1,002000,1,2
+	con	2,002000,1,3
+	con	3,002000,1,4
+	declend
+	filen	Wall.icn
+	line	7
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	10
+	colm	11
+	synt	any
+	field	maxx
+	pnull
+	pnull
+	var	0
+	line	10
+	colm	22
+	synt	any
+	field	minx
+	pnull
+	pnull
+	var	0
+	line	10
+	colm	33
+	synt	any
+	field	coords
+	int	0
+	line	10
+	colm	40
+	synt	any
+	subsc
+	line	10
+	colm	27
+	synt	any
+	asgn
+	line	10
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	11
+	synt	any
+	field	maxy
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	22
+	synt	any
+	field	miny
+	pnull
+	pnull
+	var	0
+	line	11
+	colm	33
+	synt	any
+	field	coords
+	int	1
+	line	11
+	colm	40
+	synt	any
+	subsc
+	line	11
+	colm	27
+	synt	any
+	asgn
+	line	11
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	11
+	synt	any
+	field	maxz
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	22
+	synt	any
+	field	minz
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	33
+	synt	any
+	field	coords
+	int	2
+	line	12
+	colm	40
+	synt	any
+	subsc
+	line	12
+	colm	27
+	synt	any
+	asgn
+	line	12
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	2
+	pnull
+	var	0
+	line	13
+	colm	16
+	synt	any
+	field	coords
+	line	13
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	15
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	int	3
+	pnull
+	var	2
+	line	15
+	colm	23
+	synt	any
+	size
+	int	2
+	line	15
+	colm	20
+	synt	any
+	toby
+	line	15
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	16
+	colm	10
+	synt	any
+	field	minx
+	dup
+	pnull
+	var	2
+	var	3
+	line	16
+	colm	19
+	synt	any
+	subsc
+	line	16
+	colm	15
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	17
+	colm	10
+	synt	any
+	field	maxx
+	dup
+	pnull
+	var	2
+	var	3
+	line	17
+	colm	19
+	synt	any
+	subsc
+	line	17
+	colm	15
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	10
+	synt	any
+	field	miny
+	dup
+	pnull
+	var	2
+	pnull
+	var	3
+	int	0
+	line	18
+	colm	21
+	synt	any
+	plus
+	line	18
+	colm	19
+	synt	any
+	subsc
+	line	18
+	colm	15
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	19
+	colm	10
+	synt	any
+	field	maxy
+	dup
+	pnull
+	var	2
+	pnull
+	var	3
+	int	0
+	line	19
+	colm	21
+	synt	any
+	plus
+	line	19
+	colm	19
+	synt	any
+	subsc
+	line	19
+	colm	15
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	20
+	colm	10
+	synt	any
+	field	minz
+	dup
+	pnull
+	var	2
+	pnull
+	var	3
+	int	1
+	line	20
+	colm	21
+	synt	any
+	plus
+	line	20
+	colm	19
+	synt	any
+	subsc
+	line	20
+	colm	15
+	synt	any
+	numgt
+	asgn
+	unmark
+lab L12
+	pnull
+	pnull
+	var	0
+	line	21
+	colm	10
+	synt	any
+	field	maxz
+	dup
+	pnull
+	var	2
+	pnull
+	var	3
+	int	1
+	line	21
+	colm	21
+	synt	any
+	plus
+	line	21
+	colm	19
+	synt	any
+	subsc
+	line	21
+	colm	15
+	synt	any
+	numlt
+	asgn
+	unmark
+lab L6
+	efail
+lab L7
+	line	15
+	colm	7
+	synt	endevery
+	unmark
+lab L5
+	pnull
+	line	23
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_dist
+	local	0,001000,self
+	local	1,001000,p1
+	local	2,001000,p2
+	local	3,001000,p3
+	local	4,001000,p4
+	local	5,001000,p5
+	local	6,001000,p6
+	local	7,000000,abs
+	con	0,004000,2.0
+	con	1,004000,0.50
+	declend
+	line	26
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	pnull
+	var	7
+	pnull
+	var	4
+	var	1
+	line	27
+	colm	28
+	synt	any
+	minus
+	line	27
+	colm	23
+	synt	any
+	invoke	1
+	real	0
+	line	27
+	colm	35
+	synt	any
+	power
+	pnull
+	var	7
+	pnull
+	var	5
+	var	2
+	line	28
+	colm	24
+	synt	any
+	minus
+	line	28
+	colm	19
+	synt	any
+	invoke	1
+	real	0
+	line	28
+	colm	31
+	synt	any
+	power
+	line	27
+	colm	43
+	synt	any
+	plus
+	pnull
+	var	7
+	pnull
+	var	6
+	var	3
+	line	29
+	colm	24
+	synt	any
+	minus
+	line	29
+	colm	19
+	synt	any
+	invoke	1
+	real	0
+	line	29
+	colm	31
+	synt	any
+	power
+	line	28
+	colm	39
+	synt	any
+	plus
+	real	1
+	line	29
+	colm	41
+	synt	any
+	power
+	line	27
+	colm	6
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	30
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_UpdateRenderedNode
+	local	0,001000,self
+	local	1,000020,node
+	local	2,000020,i
+	con	0,002000,1,3
+	con	1,002000,1,1
+	con	2,002000,2,12
+	declend
+	line	32
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	34
+	colm	19
+	synt	any
+	field	tex
+	line	34
+	colm	23
+	synt	any
+	field	renderedNode
+	int	0
+	line	34
+	colm	36
+	synt	any
+	subsc
+	line	34
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	35
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	int	1
+	int	2
+	push1
+	line	35
+	colm	20
+	synt	any
+	toby
+	line	35
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	pnull
+	var	1
+	var	2
+	line	37
+	colm	14
+	synt	any
+	subsc
+	pnull
+	pnull
+	var	0
+	line	37
+	colm	25
+	synt	any
+	field	coords
+	var	2
+	line	37
+	colm	32
+	synt	any
+	subsc
+	line	37
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L3
+	efail
+lab L4
+	line	35
+	colm	7
+	synt	endevery
+	unmark
+lab L2
+	pnull
+	line	39
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_render
+	local	0,001000,self
+	local	1,001000,render_level
+	local	2,001000,tile
+	local	3,001000,texok
+	con	0,010000,1,143
+	con	1,010000,1,103
+	declend
+	line	41
+	colm	11
+	synt	any
+	mark	L1
+	line	43
+	colm	5
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	43
+	colm	12
+	synt	any
+	field	opMode
+	mark	L2
+	str	0
+	line	43
+	colm	27
+	synt	any
+	esusp
+	goto	L3
+lab L2
+	str	1
+lab L3
+	line	43
+	colm	20
+	synt	any
+	lexeq
+	unmark
+	line	44
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	14
+	synt	any
+	field	world
+	line	44
+	colm	20
+	synt	any
+	field	current_texture
+	pnull
+	var	0
+	line	44
+	colm	46
+	synt	any
+	field	texture
+	line	44
+	colm	37
+	synt	any
+	neqv
+	unmark
+	pnull
+	pnull
+	pnull
+	var	0
+	line	45
+	colm	14
+	synt	any
+	field	world
+	line	45
+	colm	20
+	synt	any
+	field	current_texture
+	pnull
+	var	0
+	line	45
+	colm	44
+	synt	any
+	field	texture
+	line	45
+	colm	37
+	synt	any
+	asgn
+	line	44
+	colm	7
+	synt	endif
+	line	43
+	colm	5
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	10
+	synt	any
+	field	tex
+	line	48
+	colm	14
+	synt	any
+	field	DrawTexturedRectangle
+	var	2
+	pnull
+	var	0
+	line	48
+	colm	46
+	synt	any
+	field	coords
+	var	3
+	var	0
+	line	48
+	colm	36
+	synt	any
+	invoke	4
+	unmark
+lab L4
+	pnull
+	line	49
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_settexture
+	local	0,001000,self
+	local	1,001000,newtext
+	declend
+	line	51
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	11
+	synt	any
+	field	texture
+	var	1
+	line	53
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	54
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_printwall
+	local	0,001000,self
+	local	1,000020,c
+	local	2,000000,printf
+	local	3,000000,write
+	con	0,010000,54,040,127,141,154,154,072,040,040,045,066,056,062,162,040,045,066,056,062,162,040,045,066,056,062,162,040,040,040,040,040,040,040,040,040,045,066,056,062,162,040,045,066,056,062,162,040,045,066,056,062,162,040,040,012
+	con	1,002000,1,4
+	con	2,002000,1,5
+	con	3,002000,1,6
+	con	4,002000,1,7
+	con	5,002000,1,8
+	con	6,002000,1,9
+	con	7,002000,1,1
+	con	8,002000,1,2
+	con	9,002000,1,3
+	con	10,002000,2,10
+	con	11,002000,2,11
+	con	12,002000,2,12
+	con	13,010000,21,040,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,040
+	declend
+	line	57
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	var	0
+	line	59
+	colm	16
+	synt	any
+	field	coords
+	line	59
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	2
+	str	0
+	pnull
+	var	1
+	int	1
+	line	61
+	colm	10
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	2
+	line	61
+	colm	15
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	3
+	line	61
+	colm	20
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	4
+	line	61
+	colm	25
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	5
+	line	61
+	colm	30
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	6
+	line	61
+	colm	35
+	synt	any
+	subsc
+	line	60
+	colm	13
+	synt	any
+	invoke	7
+	unmark
+lab L2
+	mark	L3
+	var	2
+	str	0
+	pnull
+	var	1
+	int	7
+	line	63
+	colm	10
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	8
+	line	63
+	colm	15
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	9
+	line	63
+	colm	20
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	10
+	line	63
+	colm	25
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	11
+	line	63
+	colm	31
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	12
+	line	63
+	colm	37
+	synt	any
+	subsc
+	line	62
+	colm	13
+	synt	any
+	invoke	7
+	unmark
+lab L3
+	mark	L4
+	var	3
+	str	13
+	line	65
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	pnull
+	line	66
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_set_plane
+	local	0,001000,self
+	local	1,000020,c
+	local	2,000000,write
+	local	3,000000,runerr
+	local	4,000000,max
+	local	5,000000,abs
+	con	0,002000,1,0
+	con	1,002000,2,12
+	con	2,010000,37,163,150,157,162,164,040,167,141,154,154,040,156,145,145,144,163,040,061,062,040,143,157,157,162,144,151,156,141,164,145,163,054,040,150,141,144,040
+	con	3,002000,3,500
+	con	4,002000,1,4
+	con	5,002000,1,1
+	con	6,002000,1,7
+	con	7,002000,2,10
+	con	8,002000,1,5
+	con	9,002000,1,2
+	con	10,002000,1,8
+	con	11,002000,2,11
+	con	12,002000,1,6
+	con	13,002000,1,3
+	con	14,002000,1,9
+	con	15,004000,0.0001
+	con	16,004000,0.05
+	con	17,010000,28,127,141,154,154,040,144,157,145,163,040,156,157,164,040,150,141,166,145,040,141,040,160,154,141,156,145,041,040
+	declend
+	line	68
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	11
+	synt	any
+	field	plane
+	line	70
+	colm	19
+	synt	any
+	keywd	null
+	line	70
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	72
+	colm	7
+	synt	if
+	mark0
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	72
+	colm	15
+	synt	any
+	field	coords
+	line	72
+	colm	10
+	synt	any
+	null
+	line	72
+	colm	22
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	pnull
+	pnull
+	pnull
+	var	0
+	line	72
+	colm	29
+	synt	any
+	field	coords
+	line	72
+	colm	24
+	synt	any
+	size
+	int	0
+	line	72
+	colm	36
+	synt	any
+	numeq
+lab L4
+	unmark
+	line	72
+	colm	44
+	synt	any
+	pfail
+	line	72
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L5
+	pnull
+	var	1
+	pnull
+	var	0
+	line	73
+	colm	16
+	synt	any
+	field	coords
+	line	73
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	74
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	74
+	colm	10
+	synt	any
+	size
+	int	1
+	line	74
+	colm	13
+	synt	any
+	numlt
+	unmark
+	mark	L7
+	var	2
+	line	75
+	colm	13
+	synt	any
+	keywd	errout
+	pnull
+	str	2
+	pnull
+	var	1
+	line	75
+	colm	64
+	synt	any
+	size
+	line	75
+	colm	61
+	synt	any
+	cat
+	line	75
+	colm	12
+	synt	any
+	invoke	2
+	unmark
+lab L7
+	var	3
+	int	3
+	var	1
+	line	76
+	colm	13
+	synt	any
+	invoke	2
+	line	74
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	79
+	colm	11
+	synt	any
+	field	xdelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	4
+	line	79
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	5
+	line	79
+	colm	34
+	synt	any
+	subsc
+	line	79
+	colm	32
+	synt	any
+	minus
+	line	79
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	6
+	line	79
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	4
+	line	79
+	colm	50
+	synt	any
+	subsc
+	line	79
+	colm	48
+	synt	any
+	minus
+	line	79
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	7
+	line	80
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	6
+	line	80
+	colm	32
+	synt	any
+	subsc
+	line	80
+	colm	30
+	synt	any
+	minus
+	line	80
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	7
+	line	80
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	5
+	line	80
+	colm	51
+	synt	any
+	subsc
+	line	80
+	colm	48
+	synt	any
+	minus
+	line	80
+	colm	41
+	synt	any
+	invoke	1
+	line	79
+	colm	23
+	synt	any
+	invoke	4
+	line	79
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	81
+	colm	11
+	synt	any
+	field	ydelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	8
+	line	81
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	9
+	line	81
+	colm	34
+	synt	any
+	subsc
+	line	81
+	colm	32
+	synt	any
+	minus
+	line	81
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	10
+	line	81
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	8
+	line	81
+	colm	50
+	synt	any
+	subsc
+	line	81
+	colm	48
+	synt	any
+	minus
+	line	81
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	11
+	line	82
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	10
+	line	82
+	colm	32
+	synt	any
+	subsc
+	line	82
+	colm	30
+	synt	any
+	minus
+	line	82
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	11
+	line	82
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	9
+	line	82
+	colm	51
+	synt	any
+	subsc
+	line	82
+	colm	48
+	synt	any
+	minus
+	line	82
+	colm	41
+	synt	any
+	invoke	1
+	line	81
+	colm	23
+	synt	any
+	invoke	4
+	line	81
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	pnull
+	var	0
+	line	83
+	colm	11
+	synt	any
+	field	zdelta
+	var	4
+	var	5
+	pnull
+	pnull
+	var	1
+	int	12
+	line	83
+	colm	29
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	13
+	line	83
+	colm	34
+	synt	any
+	subsc
+	line	83
+	colm	32
+	synt	any
+	minus
+	line	83
+	colm	27
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	14
+	line	83
+	colm	45
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	12
+	line	83
+	colm	50
+	synt	any
+	subsc
+	line	83
+	colm	48
+	synt	any
+	minus
+	line	83
+	colm	43
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	1
+	line	84
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	14
+	line	84
+	colm	32
+	synt	any
+	subsc
+	line	84
+	colm	30
+	synt	any
+	minus
+	line	84
+	colm	24
+	synt	any
+	invoke	1
+	var	5
+	pnull
+	pnull
+	var	1
+	int	1
+	line	84
+	colm	43
+	synt	any
+	subsc
+	pnull
+	var	1
+	int	13
+	line	84
+	colm	51
+	synt	any
+	subsc
+	line	84
+	colm	48
+	synt	any
+	minus
+	line	84
+	colm	41
+	synt	any
+	invoke	1
+	line	83
+	colm	23
+	synt	any
+	invoke	4
+	line	83
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	86
+	colm	7
+	synt	ifelse
+	mark	L12
+	pnull
+	pnull
+	pnull
+	real	15
+	line	86
+	colm	10
+	synt	any
+	neg
+	pnull
+	var	0
+	line	86
+	colm	24
+	synt	any
+	field	zdelta
+	line	86
+	colm	18
+	synt	any
+	numlt
+	real	16
+	line	86
+	colm	31
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	87
+	colm	14
+	synt	any
+	field	plane
+	int	13
+	line	87
+	colm	20
+	synt	any
+	asgn
+	goto	L13
+lab L12
+	line	88
+	colm	12
+	synt	ifelse
+	mark	L14
+	pnull
+	pnull
+	pnull
+	real	15
+	line	88
+	colm	15
+	synt	any
+	neg
+	pnull
+	var	0
+	line	88
+	colm	29
+	synt	any
+	field	ydelta
+	line	88
+	colm	23
+	synt	any
+	numlt
+	real	16
+	line	88
+	colm	36
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	89
+	colm	14
+	synt	any
+	field	plane
+	int	9
+	line	89
+	colm	20
+	synt	any
+	asgn
+	goto	L15
+lab L14
+	line	90
+	colm	12
+	synt	ifelse
+	mark	L16
+	pnull
+	pnull
+	pnull
+	real	15
+	line	90
+	colm	15
+	synt	any
+	neg
+	pnull
+	var	0
+	line	90
+	colm	29
+	synt	any
+	field	xdelta
+	line	90
+	colm	23
+	synt	any
+	numlt
+	real	16
+	line	90
+	colm	36
+	synt	any
+	numlt
+	unmark
+	pnull
+	pnull
+	var	0
+	line	91
+	colm	14
+	synt	any
+	field	plane
+	int	5
+	line	91
+	colm	20
+	synt	any
+	asgn
+	goto	L17
+lab L16
+	mark	L18
+	var	2
+	str	17
+	line	93
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	pnull
+	var	0
+	line	94
+	colm	14
+	synt	any
+	field	printwall
+	line	94
+	colm	24
+	synt	any
+	invoke	0
+lab L17
+	line	90
+	colm	12
+	synt	endifelse
+lab L15
+	line	88
+	colm	12
+	synt	endifelse
+lab L13
+	line	86
+	colm	7
+	synt	endifelse
+	unmark
+lab L11
+	pnull
+	line	96
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_sort_coords
+	local	0,001000,self
+	local	1,000020,L
+	local	2,000020,T
+	local	3,000020,d
+	local	4,000020,c
+	local	5,000020,i
+	local	6,000020,j
+	local	7,000020,k
+	local	8,000000,table
+	local	9,000000,copy
+	local	10,000000,sort
+	con	0,002000,1,1
+	con	1,002000,1,3
+	con	2,002000,1,2
+	con	3,004000,0.0
+	con	4,002000,1,4
+	con	5,002000,1,7
+	con	6,002000,1,5
+	declend
+	line	101
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	line	104
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	mark	L3
+	pnull
+	var	2
+	var	8
+	line	106
+	colm	17
+	synt	any
+	invoke	0
+	line	106
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	4
+	var	9
+	pnull
+	var	0
+	line	108
+	colm	21
+	synt	any
+	field	coords
+	line	108
+	colm	16
+	synt	any
+	invoke	1
+	line	108
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	109
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	int	0
+	pnull
+	var	4
+	line	109
+	colm	23
+	synt	any
+	size
+	int	1
+	line	109
+	colm	20
+	synt	any
+	toby
+	line	109
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L8
+	pnull
+	var	3
+	pnull
+	var	0
+	line	110
+	colm	19
+	synt	any
+	field	dist
+	pnull
+	var	4
+	var	5
+	line	110
+	colm	26
+	synt	any
+	subsc
+	pnull
+	var	4
+	pnull
+	var	5
+	int	0
+	line	110
+	colm	33
+	synt	any
+	plus
+	line	110
+	colm	31
+	synt	any
+	subsc
+	pnull
+	var	4
+	pnull
+	var	5
+	int	2
+	line	110
+	colm	40
+	synt	any
+	plus
+	line	110
+	colm	38
+	synt	any
+	subsc
+	real	3
+	real	3
+	real	3
+	line	110
+	colm	24
+	synt	any
+	invoke	6
+	line	110
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	pnull
+	var	2
+	var	5
+	line	111
+	colm	11
+	synt	any
+	subsc
+	var	3
+	line	111
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L6
+	efail
+lab L7
+	line	109
+	colm	7
+	synt	endevery
+	unmark
+lab L5
+	mark	L9
+	pnull
+	var	1
+	var	10
+	var	2
+	int	4
+	line	113
+	colm	16
+	synt	any
+	invoke	2
+	line	113
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	7
+	int	0
+	line	115
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	line	116
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	5
+	mark	L14
+	int	0
+	line	116
+	colm	21
+	synt	any
+	esusp
+	goto	L15
+lab L14
+	mark	L16
+	int	1
+	line	116
+	colm	25
+	synt	any
+	esusp
+	goto	L17
+lab L16
+	mark	L18
+	int	5
+	line	116
+	colm	29
+	synt	any
+	esusp
+	goto	L19
+lab L18
+	int	6
+lab L19
+lab L17
+lab L15
+	line	116
+	colm	15
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L20
+	pnull
+	var	6
+	pnull
+	var	1
+	var	5
+	line	117
+	colm	12
+	synt	any
+	subsc
+	line	117
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L20
+	mark	L21
+	pnull
+	pnull
+	pnull
+	var	0
+	line	118
+	colm	10
+	synt	any
+	field	coords
+	var	7
+	line	118
+	colm	17
+	synt	any
+	subsc
+	pnull
+	var	4
+	var	6
+	line	118
+	colm	23
+	synt	any
+	subsc
+	line	118
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L21
+	mark	L22
+	pnull
+	pnull
+	pnull
+	var	0
+	line	119
+	colm	10
+	synt	any
+	field	coords
+	pnull
+	var	7
+	int	0
+	line	119
+	colm	19
+	synt	any
+	plus
+	line	119
+	colm	17
+	synt	any
+	subsc
+	pnull
+	var	4
+	pnull
+	var	6
+	int	0
+	line	119
+	colm	27
+	synt	any
+	plus
+	line	119
+	colm	25
+	synt	any
+	subsc
+	line	119
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L22
+	mark	L23
+	pnull
+	pnull
+	pnull
+	var	0
+	line	120
+	colm	10
+	synt	any
+	field	coords
+	pnull
+	var	7
+	int	2
+	line	120
+	colm	19
+	synt	any
+	plus
+	line	120
+	colm	17
+	synt	any
+	subsc
+	pnull
+	var	4
+	pnull
+	var	6
+	int	2
+	line	120
+	colm	27
+	synt	any
+	plus
+	line	120
+	colm	25
+	synt	any
+	subsc
+	line	120
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L23
+	pnull
+	var	7
+	dup
+	int	1
+	line	121
+	colm	8
+	synt	any
+	plus
+	asgn
+	unmark
+lab L12
+	efail
+lab L13
+	line	116
+	colm	7
+	synt	endevery
+	unmark
+lab L11
+	pnull
+	line	123
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall_initially
+	local	0,001000,self
+	local	1,001000,opMode
+	local	2,001000,world
+	local	3,001000,t
+	local	4,001000,c
+	local	5,000000,Texture3D
+	con	0,010000,1,143
+	con	1,010000,1,103
+	declend
+	line	125
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	126
+	colm	8
+	synt	any
+	field	opMode
+	var	1
+	line	126
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	127
+	colm	8
+	synt	any
+	field	world
+	var	2
+	line	127
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	128
+	colm	8
+	synt	any
+	field	texture
+	var	3
+	line	128
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	129
+	colm	8
+	synt	any
+	field	coords
+	var	4
+	line	129
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	line	130
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	130
+	colm	11
+	synt	any
+	field	opMode
+	mark	L6
+	str	0
+	line	130
+	colm	26
+	synt	any
+	esusp
+	goto	L7
+lab L6
+	str	1
+lab L7
+	line	130
+	colm	19
+	synt	any
+	lexeq
+	unmark
+	pnull
+	pnull
+	var	0
+	line	131
+	colm	11
+	synt	any
+	field	tex
+	var	5
+	pnull
+	var	0
+	line	131
+	colm	31
+	synt	any
+	field	texture
+	line	131
+	colm	26
+	synt	any
+	invoke	1
+	line	131
+	colm	15
+	synt	any
+	asgn
+	line	130
+	colm	4
+	synt	endif
+	unmark
+lab L5
+	mark	L8
+	pnull
+	var	0
+	line	133
+	colm	8
+	synt	any
+	field	sort_coords
+	line	133
+	colm	20
+	synt	any
+	invoke	0
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	0
+	line	136
+	colm	8
+	synt	any
+	field	set_plane
+	line	136
+	colm	18
+	synt	any
+	invoke	0
+	unmark
+lab L9
+	mark	L10
+	mark	L11
+	pnull
+	line	137
+	colm	7
+	synt	any
+	pret
+lab L11
+	synt	any
+	pfail
+	unmark
+lab L10
+	pnull
+	line	138
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wall
+	local	0,001000,opMode
+	local	1,001000,world
+	local	2,001000,t
+	local	3,001000,c
+	local	4,000020,self
+	local	5,000020,clone
+	local	6,000000,Wall__oprec
+	local	7,000000,Wallinitialize
+	local	8,000000,Wall__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	7
+	line	8
+	colm	38
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	4
+	var	8
+	line	10
+	colm	23
+	synt	any
+	keywd	null
+	var	6
+	line	10
+	colm	22
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	4
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	4
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	4
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	pnull
+	pnull
+	var	4
+	var	0
+	var	1
+	var	2
+	line	12
+	colm	23
+	synt	any
+	llist	4
+	var	3
+	line	12
+	colm	44
+	synt	any
+	lconcat
+	invoke	-1
+	line	12
+	colm	50
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	52
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	4
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Wallinitialize
+	local	0,000000,Wall__oprec
+	local	1,000000,Wall__methods
+	local	2,000000,Wall_calc_boundbox
+	local	3,000000,Wall_dist
+	local	4,000000,Wall_UpdateRenderedNode
+	local	5,000000,Wall_render
+	local	6,000000,Wall_settexture
+	local	7,000000,Wall_printwall
+	local	8,000000,Wall_set_plane
+	local	9,000000,Wall_sort_coords
+	local	10,000000,Wall_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	line	17
+	colm	39
+	synt	any
+	invoke	9
+	line	17
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

@@ -1,0 +1,408 @@
+version	U12.1.00
+uid	Actor.u1-1525810759-0
+record	Actor__state,7
+	0,__s
+	1,__m
+	2,name
+	3,sceneGraph
+	4,public
+	5,avatar
+	6,server
+record	Actor__methods,6
+	0,heartbeat
+	1,spotted
+	2,shutdown
+	3,startup
+	4,told
+	5,initially
+impl	error
+global	11
+	0,000005,Actor_heartbeat,1
+	1,000005,Actor_spotted,2
+	2,000005,Actor_shutdown,1
+	3,000005,Actor_startup,1
+	4,000005,Actor_told,3
+	5,000005,Actor_initially,3
+	6,000011,Actor__state,7
+	7,000011,Actor__methods,6
+	8,000001,Actor__oprec,0
+	9,000005,Actor,2
+	10,000005,Actorinitialize,0
+
+proc Actor_heartbeat
+	local	0,001000,self
+	declend
+	filen	Actor.icn
+	line	20
+	colm	11
+	synt	any
+	line	22
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor_spotted
+	local	0,001000,self
+	local	1,001000,uid
+	local	2,000000,write
+	con	0,010000,8,123,160,157,164,164,145,144,040
+	con	1,010000,28,012,104,157,156,145,040,154,157,157,153,151,156,147,040,151,156,040,163,143,145,156,145,040,147,162,141,160,150
+	declend
+	line	26
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	str	0
+	var	1
+	str	1
+	line	27
+	colm	13
+	synt	any
+	invoke	3
+	unmark
+lab L1
+	pnull
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor_shutdown
+	local	0,001000,self
+	declend
+	line	31
+	colm	11
+	synt	any
+	line	33
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor_startup
+	local	0,001000,self
+	declend
+	line	36
+	colm	11
+	synt	any
+	line	38
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor_told
+	local	0,001000,self
+	local	1,001000,uid
+	local	2,001000,message
+	local	3,000000,write
+	local	4,000000,image
+	con	0,010000,22,122,145,143,145,151,166,145,144,040,155,145,163,163,141,147,145,040,146,162,157,155,040
+	con	1,010000,2,072,040
+	declend
+	line	40
+	colm	11
+	synt	any
+	mark	L1
+	var	3
+	pnull
+	pnull
+	pnull
+	str	0
+	var	4
+	var	1
+	line	41
+	colm	47
+	synt	any
+	invoke	1
+	line	41
+	colm	39
+	synt	any
+	cat
+	str	1
+	line	41
+	colm	52
+	synt	any
+	cat
+	var	4
+	var	2
+	line	41
+	colm	67
+	synt	any
+	invoke	1
+	line	41
+	colm	60
+	synt	any
+	cat
+	line	41
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	pnull
+	line	42
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor_initially
+	local	0,001000,self
+	local	1,001000,sceneGraph
+	local	2,001000,server
+	local	3,000000,write
+	local	4,000000,image
+	con	0,010000,32,103,162,145,141,164,145,144,040,141,156,040,101,143,164,157,162,040,167,151,164,150,040,163,145,162,166,145,162,040,141,163,040
+	con	1,002000,1,1
+	declend
+	line	44
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	45
+	colm	8
+	synt	any
+	field	sceneGraph
+	var	1
+	line	45
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	46
+	colm	8
+	synt	any
+	field	server
+	var	2
+	line	46
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	3
+	pnull
+	str	0
+	var	4
+	var	2
+	line	47
+	colm	53
+	synt	any
+	invoke	1
+	line	47
+	colm	45
+	synt	any
+	cat
+	line	47
+	colm	9
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	48
+	colm	8
+	synt	any
+	field	public
+	int	1
+	line	48
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	mark	L6
+	pnull
+	line	49
+	colm	7
+	synt	any
+	pret
+lab L6
+	synt	any
+	pfail
+	unmark
+lab L5
+	pnull
+	line	50
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actor
+	local	0,001000,sceneGraph
+	local	1,001000,server
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,Actor__oprec
+	local	5,000000,Actorinitialize
+	local	6,000000,Actor__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	40
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	2
+	var	6
+	line	10
+	colm	24
+	synt	any
+	keywd	null
+	var	4
+	line	10
+	colm	23
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	2
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	12
+	colm	21
+	synt	any
+	invoke	3
+	line	12
+	colm	46
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	48
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	2
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Actorinitialize
+	local	0,000000,Actor__oprec
+	local	1,000000,Actor__methods
+	local	2,000000,Actor_heartbeat
+	local	3,000000,Actor_spotted
+	local	4,000000,Actor_shutdown
+	local	5,000000,Actor_startup
+	local	6,000000,Actor_told
+	local	7,000000,Actor_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	17
+	colm	41
+	synt	any
+	invoke	6
+	line	17
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

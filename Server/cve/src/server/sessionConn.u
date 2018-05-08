@@ -1,0 +1,360 @@
+version	U12.1.00
+uid	sessionConn.u1-1525810766-0
+record	sessionConn__state,3
+	0,__s
+	1,__m
+	2,connID
+record	sessionConn__methods,3
+	0,Read
+	1,Write
+	2,initially
+impl	error
+global	8
+	0,000005,sessionConn_Read,1
+	1,000005,sessionConn_Write,-2
+	2,000005,sessionConn_initially,2
+	3,000011,sessionConn__state,3
+	4,000011,sessionConn__methods,3
+	5,000001,sessionConn__oprec,0
+	6,000005,sessionConn,1
+	7,000005,sessionConninitialize,0
+
+proc sessionConn_Read
+	local	0,001000,self
+	local	1,000020,s
+	local	2,000000,read
+	declend
+	filen	sessionConn.icn
+	line	10
+	colm	11
+	synt	any
+	mark	L1
+	line	12
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	var	2
+	pnull
+	pnull
+	var	0
+	line	12
+	colm	25
+	synt	any
+	field	connID
+	line	12
+	colm	20
+	synt	any
+	nonnull
+	line	12
+	colm	19
+	synt	any
+	invoke	1
+	line	12
+	colm	12
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	1
+	line	12
+	colm	38
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	12
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	13
+	colm	1
+	synt	any
+	pfail
+	end
+proc sessionConn_Write
+	local	0,001000,self
+	local	1,001000,argv
+	local	2,000020,s
+	local	3,000000,pop
+	local	4,000000,write
+	con	0,010000,0
+	declend
+	line	15
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	str	0
+	line	16
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+lab L3
+	line	17
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	2
+	dup
+	var	3
+	var	1
+	line	17
+	colm	23
+	synt	any
+	invoke	1
+	line	17
+	colm	15
+	synt	any
+	cat
+	asgn
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	17
+	colm	7
+	synt	endwhile
+	unmark
+lab L2
+	mark	L6
+	mark	L7
+	var	4
+	pnull
+	pnull
+	var	0
+	line	19
+	colm	25
+	synt	any
+	field	connID
+	line	19
+	colm	20
+	synt	any
+	nonnull
+	var	2
+	line	19
+	colm	19
+	synt	any
+	invoke	2
+	line	19
+	colm	7
+	synt	any
+	pret
+lab L7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	20
+	colm	1
+	synt	any
+	pfail
+	end
+proc sessionConn_initially
+	local	0,001000,self
+	local	1,001000,conn
+	declend
+	line	22
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	23
+	colm	11
+	synt	any
+	field	connID
+	var	1
+	line	23
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	24
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	25
+	colm	1
+	synt	any
+	pfail
+	end
+proc sessionConn
+	local	0,001000,conn
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,sessionConn__oprec
+	local	4,000000,sessionConninitialize
+	local	5,000000,sessionConn__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	52
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	30
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	29
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	var	0
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	33
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	35
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc sessionConninitialize
+	local	0,000000,sessionConn__oprec
+	local	1,000000,sessionConn__methods
+	local	2,000000,sessionConn_Read
+	local	3,000000,sessionConn_Write
+	local	4,000000,sessionConn_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	line	17
+	colm	53
+	synt	any
+	invoke	3
+	line	17
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

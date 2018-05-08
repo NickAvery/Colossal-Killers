@@ -1,0 +1,1149 @@
+version	U12.1.00
+uid	services.u1-1525810752-0
+record	Services__state,7
+	0,__s
+	1,__m
+	2,ports
+	3,listen_sockets
+	4,attachs
+	5,handler_table
+	6,arg
+record	Services__methods,5
+	0,handle_pending
+	1,rssify
+	2,associate
+	3,bind
+	4,initially
+impl	error
+global	10
+	0,000005,Services_handle_pending,1
+	1,000005,Services_rssify,3
+	2,000005,Services_associate,4
+	3,000005,Services_bind,2
+	4,000005,Services_initially,2
+	5,000011,Services__state,7
+	6,000011,Services__methods,5
+	7,000001,Services__oprec,0
+	8,000005,Services,1
+	9,000005,Servicesinitialize,0
+
+proc Services_handle_pending
+	local	0,001000,self
+	local	1,000020,sockets
+	local	2,000020,pending
+	local	3,000020,i
+	local	4,000020,j
+	local	5,000020,func
+	local	6,000000,put
+	local	7,000000,select
+	local	8,000000,close
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,002000,1,2
+	con	3,010000,3,162,163,163
+	declend
+	filen	services.icn
+	line	7
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	line	8
+	colm	24
+	synt	any
+	llist	0
+	line	8
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	pnull
+	line	9
+	colm	24
+	synt	any
+	llist	0
+	line	9
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	13
+	colm	7
+	synt	every
+	mark0
+	var	6
+	var	1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	13
+	colm	32
+	synt	any
+	field	listen_sockets
+	line	13
+	colm	27
+	synt	any
+	bang
+	int	0
+	line	13
+	colm	48
+	synt	any
+	subsc
+	line	13
+	colm	16
+	synt	any
+	invoke	2
+	pop
+lab L4
+	efail
+lab L5
+	line	13
+	colm	7
+	synt	endevery
+	unmark
+lab L3
+	mark	L6
+	var	6
+	var	1
+	int	1
+	line	14
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L6
+	mark	L7
+	line	16
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	7
+	var	1
+	invoke	-1
+	line	16
+	colm	18
+	synt	any
+	asgn
+	pop
+	pnull
+	pnull
+	var	2
+	line	16
+	colm	41
+	synt	any
+	size
+	int	1
+	line	16
+	colm	50
+	synt	any
+	numgt
+	unmark
+	line	17
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	int	0
+	pnull
+	var	2
+	line	17
+	colm	26
+	synt	any
+	size
+	push1
+	line	17
+	colm	23
+	synt	any
+	toby
+	line	17
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	line	18
+	colm	13
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	int	0
+	pnull
+	pnull
+	var	0
+	line	18
+	colm	34
+	synt	any
+	field	listen_sockets
+	line	18
+	colm	29
+	synt	any
+	size
+	push1
+	line	18
+	colm	26
+	synt	any
+	toby
+	line	18
+	colm	21
+	synt	any
+	asgn
+	pop
+	mark0
+	line	19
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	19
+	colm	23
+	synt	any
+	field	listen_sockets
+	var	4
+	line	19
+	colm	38
+	synt	any
+	subsc
+	int	0
+	line	19
+	colm	41
+	synt	any
+	subsc
+	pnull
+	var	2
+	var	3
+	line	19
+	colm	54
+	synt	any
+	subsc
+	line	19
+	colm	44
+	synt	any
+	eqv
+	unmark
+	mark	L12
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	20
+	colm	37
+	synt	any
+	field	handler_table
+	line	20
+	colm	32
+	synt	any
+	nonnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	20
+	colm	57
+	synt	any
+	field	listen_sockets
+	var	4
+	line	20
+	colm	72
+	synt	any
+	subsc
+	int	2
+	line	20
+	colm	75
+	synt	any
+	subsc
+	line	20
+	colm	52
+	synt	any
+	subsc
+	line	20
+	colm	28
+	synt	any
+	nonnull
+	line	20
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	21
+	colm	19
+	synt	if
+	mark0
+	pnull
+	var	5
+	str	3
+	line	21
+	colm	27
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	0
+	line	22
+	colm	26
+	synt	any
+	field	rssify
+	pnull
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	38
+	synt	any
+	field	listen_sockets
+	var	4
+	line	22
+	colm	53
+	synt	any
+	subsc
+	int	0
+	line	22
+	colm	56
+	synt	any
+	subsc
+	pnull
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	64
+	synt	any
+	field	listen_sockets
+	var	4
+	line	22
+	colm	79
+	synt	any
+	subsc
+	int	2
+	line	22
+	colm	82
+	synt	any
+	subsc
+	line	22
+	colm	33
+	synt	any
+	invoke	2
+	line	21
+	colm	19
+	synt	endif
+	unmark
+lab L13
+	var	8
+	pnull
+	var	2
+	var	3
+	line	23
+	colm	32
+	synt	any
+	subsc
+	line	23
+	colm	24
+	synt	any
+	invoke	1
+	line	19
+	colm	16
+	synt	endif
+	unmark
+lab L10
+	efail
+lab L11
+	line	18
+	colm	13
+	synt	endevery
+	unmark
+lab L8
+	efail
+lab L9
+	line	17
+	colm	10
+	synt	endevery
+	line	16
+	colm	7
+	synt	endif
+	unmark
+lab L7
+	pnull
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc Services_rssify
+	local	0,001000,self
+	local	1,001000,sock
+	local	2,001000,port
+	local	3,000000,write
+	local	4,000000,close
+	local	5,000000,open
+	local	6,000000,put
+	con	0,010000,117,103,157,156,164,145,156,164,055,124,171,160,145,072,040,164,145,170,164,057,150,164,155,154,012,012,012,074,150,164,155,154,076,074,150,145,141,144,076,074,164,151,164,154,145,076,122,157,157,155,074,057,164,151,164,154,145,076,074,057,150,145,141,144,076,074,142,157,144,171,076,101,156,040,122,104,106,040,166,151,145,167,054,040,151,146,040,171,157,165,040,163,161,165,151,156,164,040,141,164,040,151,164,056,074,057,142,157,144,171,076,074,057,150,164,155,154,076
+	con	1,010000,1,072
+	con	2,010000,2,156,154
+	declend
+	line	30
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	1
+	line	31
+	colm	8
+	synt	any
+	null
+	pnull
+	var	0
+	line	31
+	colm	21
+	synt	any
+	field	arg
+	line	31
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	var	3
+	var	1
+	str	0
+	line	32
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	var	4
+	var	1
+	line	35
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	var	5
+	pnull
+	str	1
+	var	2
+	line	36
+	colm	16
+	synt	any
+	cat
+	str	2
+	line	36
+	colm	12
+	synt	any
+	invoke	2
+	pop
+	var	6
+	pnull
+	var	0
+	line	36
+	colm	40
+	synt	any
+	field	listen_sockets
+	pnull
+	var	1
+	var	2
+	line	36
+	colm	56
+	synt	any
+	llist	2
+	line	36
+	colm	35
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	pnull
+	line	37
+	colm	1
+	synt	any
+	pfail
+	end
+proc Services_associate
+	local	0,001000,self
+	local	1,001000,name
+	local	2,001000,pattern
+	local	3,001000,room
+	local	4,000000,write
+	local	5,000000,image
+	local	6,000000,put
+	con	0,010000,12,101,163,163,157,143,151,141,164,151,156,147,040
+	con	1,010000,5,040,141,156,144,040
+	con	2,010000,11,040,167,151,164,150,040,162,157,157,155,040
+	declend
+	line	39
+	colm	11
+	synt	any
+	mark	L1
+	var	4
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	0
+	var	5
+	var	1
+	line	40
+	colm	35
+	synt	any
+	invoke	1
+	line	40
+	colm	28
+	synt	any
+	cat
+	str	1
+	line	40
+	colm	41
+	synt	any
+	cat
+	var	5
+	var	2
+	line	40
+	colm	57
+	synt	any
+	invoke	1
+	line	40
+	colm	50
+	synt	any
+	cat
+	str	2
+	line	40
+	colm	66
+	synt	any
+	cat
+	var	5
+	var	3
+	line	41
+	colm	34
+	synt	any
+	invoke	1
+	line	41
+	colm	27
+	synt	any
+	cat
+	line	40
+	colm	13
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	pnull
+	pnull
+	var	0
+	line	42
+	colm	14
+	synt	any
+	field	attachs
+	var	1
+	line	42
+	colm	22
+	synt	any
+	subsc
+	line	42
+	colm	8
+	synt	any
+	null
+	pnull
+	line	42
+	colm	31
+	synt	any
+	llist	0
+	line	42
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	6
+	pnull
+	pnull
+	var	0
+	line	43
+	colm	16
+	synt	any
+	field	attachs
+	var	1
+	line	43
+	colm	24
+	synt	any
+	subsc
+	var	3
+	line	43
+	colm	11
+	synt	any
+	invoke	2
+	unmark
+lab L3
+	pnull
+	line	44
+	colm	1
+	synt	any
+	pfail
+	end
+proc Services_bind
+	local	0,001000,self
+	local	1,001000,attachment
+	local	2,000020,sock
+	local	3,000020,port
+	local	4,000020,handler
+	local	5,000000,write
+	local	6,000000,image
+	local	7,000000,open
+	local	8,000000,put
+	con	0,010000,15,164,150,145,040,141,164,164,141,143,150,155,145,156,164,040
+	con	1,010000,13,040,151,163,040,142,157,165,156,144,040,164,157,040
+	con	2,010000,1,072
+	con	3,010000,2,156,154
+	con	4,002000,4,8080
+	con	5,010000,3,162,163,163
+	con	6,010000,4,070,060,070,060
+	con	7,010000,33,101,146,164,145,162,040,142,151,156,144,151,156,147,054,040,154,151,163,164,145,156,137,163,157,143,153,145,164,163,040,151,163,040
+	declend
+	line	46
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	3
+	pnull
+	var	1
+	line	49
+	colm	25
+	synt	any
+	field	port
+	line	49
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	pnull
+	var	1
+	line	50
+	colm	28
+	synt	any
+	field	handler
+	line	50
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	var	5
+	pnull
+	pnull
+	pnull
+	str	0
+	var	6
+	var	1
+	line	52
+	colm	37
+	synt	any
+	invoke	1
+	line	52
+	colm	30
+	synt	any
+	cat
+	str	1
+	line	52
+	colm	49
+	synt	any
+	cat
+	var	6
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	23
+	synt	any
+	field	attachs
+	pnull
+	var	1
+	line	53
+	colm	42
+	synt	any
+	field	name
+	line	53
+	colm	31
+	synt	any
+	subsc
+	line	53
+	colm	18
+	synt	any
+	invoke	1
+	line	52
+	colm	67
+	synt	any
+	cat
+	line	52
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	line	55
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	55
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L5
+	pnull
+	line	55
+	colm	21
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	line	55
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L6
+	pnull
+	var	2
+	var	7
+	pnull
+	str	2
+	var	3
+	line	57
+	colm	24
+	synt	any
+	cat
+	str	3
+	line	57
+	colm	19
+	synt	any
+	invoke	2
+	line	57
+	colm	12
+	synt	any
+	asgn
+	pop
+	var	8
+	pnull
+	var	0
+	line	57
+	colm	49
+	synt	any
+	field	listen_sockets
+	pnull
+	var	2
+	var	3
+	line	57
+	colm	65
+	synt	any
+	llist	2
+	line	57
+	colm	44
+	synt	any
+	invoke	2
+	unmark
+lab L6
+	mark	L7
+	line	58
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	3
+	int	4
+	line	58
+	colm	16
+	synt	any
+	numeq
+	unmark
+	mark	L8
+	pnull
+	var	4
+	str	5
+	line	59
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L8
+	pnull
+	pnull
+	pnull
+	var	0
+	line	60
+	colm	14
+	synt	any
+	field	handler_table
+	str	6
+	line	60
+	colm	28
+	synt	any
+	subsc
+	var	4
+	line	60
+	colm	36
+	synt	any
+	asgn
+	line	58
+	colm	7
+	synt	endif
+	unmark
+lab L7
+	mark	L9
+	var	5
+	pnull
+	str	7
+	var	6
+	pnull
+	var	0
+	line	65
+	colm	60
+	synt	any
+	field	listen_sockets
+	line	65
+	colm	55
+	synt	any
+	invoke	1
+	line	65
+	colm	48
+	synt	any
+	cat
+	line	65
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	pnull
+	line	66
+	colm	1
+	synt	any
+	pfail
+	end
+proc Services_initially
+	local	0,001000,self
+	local	1,001000,ports
+	local	2,000000,table
+	local	3,000000,Attach
+	declend
+	line	68
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	69
+	colm	8
+	synt	any
+	field	listen_sockets
+	pnull
+	line	69
+	colm	25
+	synt	any
+	llist	0
+	line	69
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	70
+	colm	8
+	synt	any
+	field	attachs
+	var	2
+	line	70
+	colm	23
+	synt	any
+	invoke	0
+	line	70
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	72
+	colm	4
+	synt	every
+	mark0
+	pnull
+	var	0
+	line	72
+	colm	14
+	synt	any
+	field	bind
+	var	3
+	pnull
+	pnull
+	var	1
+	line	72
+	colm	28
+	synt	any
+	nonnull
+	line	72
+	colm	27
+	synt	any
+	bang
+	line	72
+	colm	26
+	synt	any
+	invoke	1
+	line	72
+	colm	19
+	synt	any
+	invoke	1
+	pop
+lab L4
+	efail
+lab L5
+	line	72
+	colm	4
+	synt	endevery
+	unmark
+lab L3
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	73
+	colm	8
+	synt	any
+	field	handler_table
+	var	2
+	line	73
+	colm	29
+	synt	any
+	invoke	0
+	line	73
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	mark	L8
+	pnull
+	line	74
+	colm	7
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	75
+	colm	1
+	synt	any
+	pfail
+	end
+proc Services
+	local	0,001000,ports
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,Services__oprec
+	local	4,000000,Servicesinitialize
+	local	5,000000,Services__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	46
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	27
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	26
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	var	0
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	34
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	36
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Servicesinitialize
+	local	0,000000,Services__oprec
+	local	1,000000,Services__methods
+	local	2,000000,Services_handle_pending
+	local	3,000000,Services_rssify
+	local	4,000000,Services_associate
+	local	5,000000,Services_bind
+	local	6,000000,Services_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	line	17
+	colm	47
+	synt	any
+	invoke	5
+	line	17
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

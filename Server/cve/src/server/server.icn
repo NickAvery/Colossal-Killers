@@ -1182,16 +1182,16 @@ $endif
                write(&errout, "received \\fire command")
                }
 			"death":{ # handle \death command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\death command")
 			   }
 			"dinocount":{ #handle \dinocount command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinocount command")
 			   }
 			"dinospawn":{ #handle \dinospawn command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinospawn command")
 			   }
 			"dinowave":{ #handle \dinowave command here
-			   write(&errout, "received \\fire command")
+			   write(&errout, "received \\dinowave command")
 			   }
             "createroom":{
                roomStats := []

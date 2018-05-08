@@ -1,0 +1,797 @@
+version	U12.1.00
+uid	group.u1-1525810765-0
+record	Group__state,8
+	0,__s
+	1,__m
+	2,name
+	3,owner
+	4,members
+	5,membership
+	6,group_db
+	7,file
+record	Group__methods,8
+	0,create_group
+	1,remove_group
+	2,addMember
+	3,removeMember
+	4,memberList
+	5,addFile
+	6,exists
+	7,initially
+impl	error
+global	13
+	0,000005,Group_create_group,1
+	1,000005,Group_remove_group,1
+	2,000005,Group_addMember,2
+	3,000005,Group_removeMember,2
+	4,000005,Group_memberList,1
+	5,000005,Group_addFile,2
+	6,000005,Group_exists,1
+	7,000005,Group_initially,3
+	8,000011,Group__state,8
+	9,000011,Group__methods,8
+	10,000001,Group__oprec,0
+	11,000005,Group,2
+	12,000005,Groupinitialize,0
+
+proc Group_create_group
+	local	0,001000,self
+	local	1,000020,db_fd
+	local	2,000000,open_db
+	local	3,000000,insert
+	local	4,000000,close_db
+	con	0,010000,2,144,142
+	declend
+	filen	group.icn
+	line	20
+	colm	11
+	synt	any
+	mark	L1
+	line	22
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	22
+	colm	15
+	synt	any
+	field	exists
+	line	22
+	colm	22
+	synt	any
+	invoke	0
+	line	22
+	colm	10
+	synt	any
+	null
+	unmark
+	line	23
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	1
+	var	2
+	pnull
+	var	0
+	line	23
+	colm	34
+	synt	any
+	field	group_db
+	str	0
+	line	23
+	colm	29
+	synt	any
+	invoke	2
+	line	23
+	colm	19
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	3
+	var	1
+	pnull
+	var	0
+	line	24
+	colm	31
+	synt	any
+	field	name
+	pnull
+	var	0
+	line	24
+	colm	41
+	synt	any
+	field	group_db
+	line	24
+	colm	19
+	synt	any
+	invoke	3
+	unmark
+lab L2
+	var	4
+	var	1
+	line	25
+	colm	21
+	synt	any
+	invoke	1
+	line	23
+	colm	10
+	synt	endif
+	line	22
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	28
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_remove_group
+	local	0,001000,self
+	local	1,000020,db_fd
+	local	2,000000,open_db
+	local	3,000000,delete
+	local	4,000000,close_db
+	con	0,010000,2,144,142
+	declend
+	line	33
+	colm	11
+	synt	any
+	mark	L1
+	line	36
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	var	2
+	pnull
+	var	0
+	line	36
+	colm	31
+	synt	any
+	field	group_db
+	str	0
+	line	36
+	colm	26
+	synt	any
+	invoke	2
+	line	36
+	colm	16
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	var	3
+	var	1
+	pnull
+	var	0
+	line	37
+	colm	28
+	synt	any
+	field	name
+	line	37
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	var	4
+	var	1
+	line	38
+	colm	18
+	synt	any
+	invoke	1
+	line	36
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	40
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_addMember
+	local	0,001000,self
+	local	1,001000,member1
+	con	0,002000,1,1
+	declend
+	line	45
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	pnull
+	var	0
+	line	46
+	colm	11
+	synt	any
+	field	members
+	var	1
+	line	46
+	colm	19
+	synt	any
+	subsc
+	int	0
+	line	46
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	47
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_removeMember
+	local	0,001000,self
+	local	1,001000,member
+	local	2,000000,delete
+	declend
+	line	52
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	53
+	colm	18
+	synt	any
+	field	members
+	var	1
+	line	53
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	54
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_memberList
+	local	0,001000,self
+	local	1,000020,userlist
+	local	2,000020,user
+	local	3,000000,key
+	local	4,000000,put
+	con	0,010000,0
+	declend
+	line	60
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	line	61
+	colm	25
+	synt	any
+	llist	0
+	line	61
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	2
+	str	0
+	line	62
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	64
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	2
+	var	3
+	pnull
+	var	0
+	line	64
+	colm	29
+	synt	any
+	field	members
+	line	64
+	colm	24
+	synt	any
+	invoke	1
+	line	64
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	var	4
+	var	1
+	var	2
+	line	65
+	colm	13
+	synt	any
+	invoke	2
+	unmark
+lab L4
+	efail
+lab L5
+	line	64
+	colm	7
+	synt	endevery
+	unmark
+lab L3
+	mark	L6
+	mark	L7
+	var	1
+	line	68
+	colm	7
+	synt	any
+	pret
+lab L7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	69
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_addFile
+	local	0,001000,self
+	local	1,001000,fileName
+	declend
+	line	74
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	75
+	colm	11
+	synt	any
+	field	file
+	var	1
+	line	75
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	76
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_exists
+	local	0,001000,self
+	local	1,000020,db_fd
+	local	2,000020,result
+	local	3,000000,open_db
+	local	4,000000,fetch
+	local	5,000000,close_db
+	con	0,010000,2,144,162
+	declend
+	line	84
+	colm	11
+	synt	any
+	mark	L1
+	line	87
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	1
+	var	3
+	pnull
+	var	0
+	line	87
+	colm	31
+	synt	any
+	field	group_db
+	str	0
+	line	87
+	colm	26
+	synt	any
+	invoke	2
+	line	87
+	colm	16
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	pnull
+	var	2
+	var	4
+	var	1
+	pnull
+	var	0
+	line	88
+	colm	37
+	synt	any
+	field	name
+	line	88
+	colm	25
+	synt	any
+	invoke	2
+	line	88
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L2
+	var	5
+	var	1
+	line	89
+	colm	18
+	synt	any
+	invoke	1
+	line	87
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L3
+	mark	L4
+	pnull
+	var	2
+	line	91
+	colm	14
+	synt	any
+	nonnull
+	line	91
+	colm	7
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	unmark
+lab L3
+	pnull
+	line	92
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group_initially
+	local	0,001000,self
+	local	1,001000,grp_name
+	local	2,001000,grp_owner
+	local	3,000000,table
+	local	4,000000,DAT
+	con	0,002000,1,0
+	con	1,010000,1,134
+	con	2,010000,2,144,142
+	con	3,010000,8,147,162,157,165,160,056,144,142
+	con	4,010000,11,156,157,164,137,163,145,164,137,171,145,164
+	declend
+	line	94
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	95
+	colm	8
+	synt	any
+	field	name
+	var	1
+	line	95
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	96
+	colm	8
+	synt	any
+	field	owner
+	var	2
+	line	96
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	97
+	colm	8
+	synt	any
+	field	members
+	var	3
+	line	97
+	colm	23
+	synt	any
+	invoke	0
+	line	97
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	98
+	colm	8
+	synt	any
+	field	membership
+	int	0
+	line	98
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	99
+	colm	8
+	synt	any
+	field	group_db
+	pnull
+	pnull
+	pnull
+	pnull
+	var	4
+	str	1
+	line	99
+	colm	22
+	synt	any
+	cat
+	str	2
+	line	99
+	colm	28
+	synt	any
+	cat
+	str	1
+	line	99
+	colm	34
+	synt	any
+	cat
+	str	3
+	line	99
+	colm	40
+	synt	any
+	cat
+	line	99
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	100
+	colm	8
+	synt	any
+	field	file
+	str	4
+	line	100
+	colm	13
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	mark	L8
+	pnull
+	line	101
+	colm	7
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	102
+	colm	1
+	synt	any
+	pfail
+	end
+proc Group
+	local	0,001000,grp_name
+	local	1,001000,grp_owner
+	local	2,000020,self
+	local	3,000020,clone
+	local	4,000000,Group__oprec
+	local	5,000000,Groupinitialize
+	local	6,000000,Group__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	5
+	line	8
+	colm	40
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	2
+	var	6
+	line	10
+	colm	24
+	synt	any
+	keywd	null
+	var	4
+	line	10
+	colm	23
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	2
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	2
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	2
+	var	0
+	var	1
+	line	12
+	colm	21
+	synt	any
+	invoke	3
+	line	12
+	colm	47
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	49
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	2
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Groupinitialize
+	local	0,000000,Group__oprec
+	local	1,000000,Group__methods
+	local	2,000000,Group_create_group
+	local	3,000000,Group_remove_group
+	local	4,000000,Group_addMember
+	local	5,000000,Group_removeMember
+	local	6,000000,Group_memberList
+	local	7,000000,Group_addFile
+	local	8,000000,Group_exists
+	local	9,000000,Group_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	line	17
+	colm	41
+	synt	any
+	invoke	8
+	line	17
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end

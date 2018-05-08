@@ -1,0 +1,3413 @@
+version	U12.1.00
+uid	fileTransfer.u1-1525810752-0
+record	fileTransfer__state,6
+	0,__s
+	1,__m
+	2,commander
+	3,log
+	4,xm_ports
+	5,connection
+record	fileTransfer__methods,15
+	0,setConnection
+	1,getAvatarFaceFilename
+	2,ackonTransfer
+	3,listenOn
+	4,listenAndWrite
+	5,connectTo
+	6,disconnect
+	7,receiveFile
+	8,createFile
+	9,sendTransfer
+	10,sendFile
+	11,transmitFile
+	12,loadFile
+	13,fileExists
+	14,initially
+impl	error
+link	posix.u
+invocable	posix_rusage
+invocable	posix_message
+invocable	posix_lock
+invocable	posix_servent
+invocable	posix_hostent
+invocable	posix_timeval
+invocable	posix_group
+invocable	posix_passwd
+invocable	posix_stat
+global	20
+	0,000005,fileTransfer_setConnection,2
+	1,000005,fileTransfer_getAvatarFaceFilename,3
+	2,000005,fileTransfer_ackonTransfer,4
+	3,000005,fileTransfer_listenOn,3
+	4,000005,fileTransfer_listenAndWrite,3
+	5,000005,fileTransfer_connectTo,3
+	6,000005,fileTransfer_disconnect,2
+	7,000005,fileTransfer_receiveFile,2
+	8,000005,fileTransfer_createFile,3
+	9,000005,fileTransfer_sendTransfer,3
+	10,000005,fileTransfer_sendFile,2
+	11,000005,fileTransfer_transmitFile,5
+	12,000005,fileTransfer_loadFile,3
+	13,000005,fileTransfer_fileExists,2
+	14,000005,fileTransfer_initially,2
+	15,000011,fileTransfer__state,6
+	16,000011,fileTransfer__methods,15
+	17,000001,fileTransfer__oprec,0
+	18,000005,fileTransfer,1
+	19,000005,fileTransferinitialize,0
+
+proc fileTransfer_setConnection
+	local	0,001000,self
+	local	1,001000,new_conn
+	declend
+	filen	fileTransfer.icn
+	line	15
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	16
+	colm	11
+	synt	any
+	field	connection
+	var	1
+	line	16
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L1
+	pnull
+	line	17
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_getAvatarFaceFilename
+	local	0,001000,self
+	local	1,001000,avatar_def
+	local	2,001000,username
+	local	3,000020,ftmp
+	local	4,000020,line
+	local	5,000020,temp
+	local	6,000000,open
+	local	7,000000,read
+	local	8,000000,find
+	local	9,000000,tab
+	local	10,000000,close
+	con	0,010000,4,056,147,151,146
+	con	1,010000,4,056,152,160,147
+	con	2,010000,13,106,101,103,105,040,120,111,103,124,125,122,105,075
+	con	3,010000,3,144,141,164
+	con	4,010000,1,134
+	con	5,010000,5,165,163,145,162,163
+	con	6,002000,1,0
+	declend
+	line	24
+	colm	11
+	synt	any
+	mark	L1
+	line	27
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	3
+	var	6
+	var	1
+	line	27
+	colm	22
+	synt	any
+	invoke	1
+	line	27
+	colm	15
+	synt	any
+	asgn
+	unmark
+	mark	L2
+lab L3
+	line	28
+	colm	10
+	synt	while
+	mark0
+	pnull
+	var	4
+	var	7
+	var	3
+	line	28
+	colm	29
+	synt	any
+	invoke	1
+	line	28
+	colm	22
+	synt	any
+	asgn
+	unmark
+	mark	L3
+	line	29
+	colm	13
+	synt	if
+	mark0
+	mark	L6
+	var	8
+	str	0
+	var	4
+	line	29
+	colm	21
+	synt	any
+	invoke	2
+	line	29
+	colm	36
+	synt	any
+	esusp
+	goto	L7
+lab L6
+	var	8
+	str	1
+	var	4
+	line	29
+	colm	42
+	synt	any
+	invoke	2
+lab L7
+	unmark
+	var	4
+	line	30
+	colm	21
+	synt	any
+	bscan
+	line	31
+	colm	19
+	synt	if
+	mark0
+	pnull
+	str	2
+	line	31
+	colm	22
+	synt	any
+	tabmat
+	unmark
+	pnull
+	var	5
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	3
+	str	4
+	line	32
+	colm	36
+	synt	any
+	cat
+	str	5
+	line	32
+	colm	42
+	synt	any
+	cat
+	str	4
+	line	32
+	colm	52
+	synt	any
+	cat
+	var	2
+	line	32
+	colm	60
+	synt	any
+	cat
+	str	4
+	line	32
+	colm	72
+	synt	any
+	cat
+	var	9
+	int	6
+	line	32
+	colm	86
+	synt	any
+	invoke	1
+	line	32
+	colm	80
+	synt	any
+	cat
+	line	32
+	colm	27
+	synt	any
+	asgn
+	line	31
+	colm	19
+	synt	endif
+	line	30
+	colm	21
+	synt	any
+	escan
+	line	29
+	colm	13
+	synt	endif
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	28
+	colm	10
+	synt	endwhile
+	unmark
+lab L2
+	mark	L8
+	var	10
+	var	3
+	line	35
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	var	5
+	line	36
+	colm	7
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	line	27
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	38
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_ackonTransfer
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,001000,filesize
+	local	3,001000,ip
+	local	4,000020,port
+	con	0,010000,45,134,146,141,151,154,165,162,145,040,156,157,040,141,166,141,151,154,141,142,154,145,040,160,157,162,164,163,040,164,157,040,164,162,141,156,163,146,145,162,040,146,151,154,145,040
+	con	1,010000,52,141,143,153,157,156,124,162,141,156,163,146,145,162,050,051,072,040,156,157,040,141,166,141,151,154,141,142,154,145,040,160,157,162,164,163,040,164,157,040,164,162,141,156,146,145,162,040,146,151,154,145,040
+	con	2,010000,33,134,146,141,151,154,165,162,145,040,163,145,162,166,145,162,040,141,154,162,145,141,144,171,040,150,141,163,040,146,151,154,145,040
+	con	3,010000,41,141,143,153,157,156,124,162,141,156,163,146,145,162,050,051,072,040,163,145,162,166,145,162,040,141,154,162,145,141,144,171,040,150,141,144,040,146,151,154,145,040
+	con	4,010000,9,134,162,145,161,165,145,163,164,040
+	con	5,010000,1,040
+	con	6,010000,45,141,143,153,157,156,124,162,141,156,163,146,145,162,050,051,072,040,151,156,151,164,151,141,164,151,156,147,040,146,151,154,145,040,164,162,141,156,163,155,151,163,163,151,157,156
+	declend
+	line	47
+	colm	11
+	synt	any
+	mark	L1
+	line	50
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	50
+	colm	24
+	synt	any
+	field	xm_ports
+	line	50
+	colm	33
+	synt	any
+	field	getNextPort
+	line	50
+	colm	45
+	synt	any
+	invoke	0
+	line	50
+	colm	17
+	synt	any
+	asgn
+	line	50
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	51
+	colm	14
+	synt	any
+	field	connection
+	line	51
+	colm	25
+	synt	any
+	field	Write
+	pnull
+	str	0
+	var	1
+	line	51
+	colm	80
+	synt	any
+	cat
+	line	51
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	14
+	synt	any
+	field	log
+	line	53
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	str	1
+	var	1
+	line	53
+	colm	79
+	synt	any
+	cat
+	line	53
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	line	55
+	colm	10
+	synt	any
+	pfail
+	line	50
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	line	59
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	pnull
+	var	0
+	line	59
+	colm	28
+	synt	any
+	field	fileExists
+	var	1
+	line	59
+	colm	39
+	synt	any
+	invoke	1
+	line	59
+	colm	21
+	synt	any
+	asgn
+	line	59
+	colm	10
+	synt	any
+	null
+	unmark
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	62
+	colm	14
+	synt	any
+	field	connection
+	line	62
+	colm	25
+	synt	any
+	field	Write
+	pnull
+	str	2
+	var	1
+	line	62
+	colm	68
+	synt	any
+	cat
+	line	62
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	63
+	colm	14
+	synt	any
+	field	log
+	line	63
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	str	3
+	var	1
+	line	63
+	colm	68
+	synt	any
+	cat
+	line	63
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	line	64
+	colm	10
+	synt	any
+	pfail
+	line	59
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	66
+	colm	11
+	synt	any
+	field	connection
+	line	66
+	colm	22
+	synt	any
+	field	Write
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	4
+	var	1
+	line	66
+	colm	41
+	synt	any
+	cat
+	str	5
+	line	66
+	colm	51
+	synt	any
+	cat
+	var	2
+	line	66
+	colm	56
+	synt	any
+	cat
+	str	5
+	line	66
+	colm	68
+	synt	any
+	cat
+	var	3
+	line	67
+	colm	28
+	synt	any
+	cat
+	str	5
+	line	67
+	colm	34
+	synt	any
+	cat
+	var	4
+	line	67
+	colm	41
+	synt	any
+	cat
+	line	66
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	pnull
+	pnull
+	var	0
+	line	68
+	colm	11
+	synt	any
+	field	log
+	line	68
+	colm	15
+	synt	any
+	field	logit
+	str	6
+	line	68
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	mark	L10
+	var	4
+	line	69
+	colm	7
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	70
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_listenOn
+	local	0,001000,self
+	local	1,001000,port
+	local	2,001000,amount_of_data
+	local	3,000020,listen
+	local	4,000020,ready_when
+	local	5,000020,ready_now
+	local	6,000020,data
+	local	7,000020,destcont
+	local	8,000000,open
+	local	9,000000,write
+	local	10,000000,sys_errstr
+	local	11,000000,select
+	local	12,000000,reads
+	local	13,000000,close
+	con	0,010000,9,154,151,163,164,145,156,117,156,050
+	con	1,010000,40,051,072,040,157,160,145,156,151,156,147,040,154,151,163,164,145,156,145,162,040,141,156,144,040,167,141,151,164,151,156,147,040,146,157,162,040,144,141,164,141
+	con	2,010000,1,072
+	con	3,010000,2,156,154
+	con	4,010000,34,157,160,145,156,145,144,040,154,151,163,164,145,156,145,162,040,146,157,162,040,146,151,154,145,040,164,162,141,156,163,146,145,162,056
+	con	5,010000,31,117,160,145,156,040,146,141,151,154,145,144,040,146,157,162,040,146,151,154,145,040,164,162,141,156,163,146,145,162,072,040
+	con	6,010000,33,163,145,154,145,143,164,040,146,141,151,154,145,144,040,146,157,162,040,146,151,154,145,040,164,162,141,156,163,146,145,162,072,040
+	con	7,002000,1,0
+	con	8,002000,1,1
+	con	9,010000,40,163,145,154,145,143,164,040,162,145,164,165,162,156,145,144,040,145,155,160,164,171,040,146,157,162,040,146,151,154,145,040,164,162,141,156,163,146,145,162,040
+	declend
+	line	77
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	80
+	colm	11
+	synt	any
+	field	log
+	line	80
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	0
+	var	1
+	line	80
+	colm	33
+	synt	any
+	cat
+	str	1
+	line	80
+	colm	39
+	synt	any
+	cat
+	line	80
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	line	81
+	colm	7
+	synt	ifelse
+	mark	L3
+	pnull
+	var	3
+	var	8
+	pnull
+	str	2
+	var	1
+	line	81
+	colm	29
+	synt	any
+	cat
+	str	3
+	line	81
+	colm	24
+	synt	any
+	invoke	2
+	line	81
+	colm	17
+	synt	any
+	asgn
+	unmark
+	var	9
+	line	82
+	colm	16
+	synt	any
+	keywd	errout
+	str	4
+	line	82
+	colm	15
+	synt	any
+	invoke	2
+	goto	L4
+lab L3
+	mark	L5
+	var	9
+	line	85
+	colm	16
+	synt	any
+	keywd	errout
+	str	5
+	var	10
+	line	85
+	colm	71
+	synt	any
+	keywd	errno
+	line	85
+	colm	70
+	synt	any
+	invoke	1
+	line	85
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	line	86
+	colm	10
+	synt	any
+	pfail
+lab L4
+	line	81
+	colm	7
+	synt	endifelse
+	unmark
+lab L2
+	mark	L6
+	line	89
+	colm	7
+	synt	if
+	mark0
+	mark	L7
+	pnull
+	var	4
+	var	11
+	var	3
+	line	89
+	colm	36
+	synt	any
+	invoke	1
+	line	89
+	colm	26
+	synt	any
+	asgn
+	unmark
+	efail
+lab L7
+	pnull
+	unmark
+	var	9
+	line	90
+	colm	16
+	synt	any
+	keywd	errout
+	str	6
+	var	10
+	line	91
+	colm	27
+	synt	any
+	keywd	errno
+	line	91
+	colm	26
+	synt	any
+	invoke	1
+	line	90
+	colm	15
+	synt	any
+	invoke	3
+	line	89
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L8
+	line	94
+	colm	7
+	synt	ifelse
+	mark	L9
+	pnull
+	pnull
+	var	4
+	line	94
+	colm	10
+	synt	any
+	size
+	int	7
+	line	94
+	colm	22
+	synt	any
+	numgt
+	unmark
+	mark	L11
+	pnull
+	var	6
+	var	12
+	pnull
+	var	4
+	int	8
+	line	95
+	colm	34
+	synt	any
+	subsc
+	var	2
+	line	95
+	colm	23
+	synt	any
+	invoke	2
+	line	95
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L11
+	var	13
+	pnull
+	var	4
+	int	8
+	line	96
+	colm	26
+	synt	any
+	subsc
+	line	96
+	colm	15
+	synt	any
+	invoke	1
+	goto	L10
+lab L9
+	var	9
+	line	99
+	colm	16
+	synt	any
+	keywd	errout
+	str	9
+	var	10
+	line	100
+	colm	27
+	synt	any
+	keywd	errno
+	line	100
+	colm	26
+	synt	any
+	invoke	1
+	line	99
+	colm	15
+	synt	any
+	invoke	3
+lab L10
+	line	94
+	colm	7
+	synt	endifelse
+	unmark
+lab L8
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	107
+	colm	11
+	synt	any
+	field	xm_ports
+	line	107
+	colm	20
+	synt	any
+	field	releasePort
+	var	1
+	line	107
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	mark	L13
+	mark	L14
+	var	6
+	line	109
+	colm	7
+	synt	any
+	pret
+lab L14
+	synt	any
+	pfail
+	unmark
+lab L13
+	pnull
+	line	110
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_listenAndWrite
+	local	0,001000,self
+	local	1,001000,port
+	local	2,001000,data
+	local	3,000020,listen
+	local	4,000020,ready_when
+	local	5,000020,ready_now
+	local	6,000020,destcont
+	local	7,000000,open
+	local	8,000000,write
+	local	9,000000,sys_errstr
+	local	10,000000,select
+	local	11,000000,writes
+	local	12,000000,close
+	con	0,010000,15,154,151,163,164,145,156,101,156,144,127,162,151,164,145,050
+	con	1,010000,36,051,072,040,157,160,145,156,151,156,147,040,154,151,163,164,145,156,145,162,040,141,156,144,040,163,145,156,144,151,156,147,040,144,141,164,141
+	con	2,010000,1,072
+	con	3,010000,2,156,154
+	con	4,010000,31,117,160,145,156,040,146,141,151,154,145,144,040,146,157,162,040,146,151,154,145,040,164,162,141,156,163,146,145,162,072,040
+	declend
+	line	116
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	119
+	colm	11
+	synt	any
+	field	log
+	line	119
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	0
+	var	1
+	line	119
+	colm	39
+	synt	any
+	cat
+	str	1
+	line	119
+	colm	45
+	synt	any
+	cat
+	line	119
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	mark	L3
+	var	7
+	pnull
+	str	2
+	var	1
+	line	120
+	colm	26
+	synt	any
+	cat
+	str	3
+	line	120
+	colm	21
+	synt	any
+	invoke	2
+	line	120
+	colm	41
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	mark	L5
+	var	8
+	line	121
+	colm	16
+	synt	any
+	keywd	errout
+	str	4
+	var	9
+	line	121
+	colm	71
+	synt	any
+	keywd	errno
+	line	121
+	colm	70
+	synt	any
+	invoke	1
+	line	121
+	colm	15
+	synt	any
+	invoke	3
+	unmark
+lab L5
+	line	122
+	colm	10
+	synt	any
+	pfail
+lab L4
+	line	120
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L6
+	pnull
+	var	4
+	var	10
+	var	3
+	line	125
+	colm	27
+	synt	any
+	invoke	1
+	line	125
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	126
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	var	4
+	line	126
+	colm	26
+	synt	any
+	bang
+	line	126
+	colm	23
+	synt	any
+	asgn
+	pop
+	mark0
+	var	11
+	var	5
+	var	2
+	line	127
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L8
+	efail
+lab L9
+	line	126
+	colm	7
+	synt	endevery
+	unmark
+lab L7
+	mark	L10
+	var	12
+	var	5
+	line	128
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L10
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	132
+	colm	11
+	synt	any
+	field	xm_ports
+	line	132
+	colm	20
+	synt	any
+	field	releasePort
+	var	1
+	line	132
+	colm	32
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	pnull
+	line	133
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_connectTo
+	local	0,001000,self
+	local	1,001000,ip
+	local	2,001000,port
+	local	3,000000,open
+	con	0,010000,1,072
+	con	1,010000,1,156
+	declend
+	line	139
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	mark	L3
+	var	3
+	pnull
+	pnull
+	var	1
+	str	0
+	line	140
+	colm	24
+	synt	any
+	cat
+	var	2
+	line	140
+	colm	31
+	synt	any
+	cat
+	str	1
+	line	140
+	colm	18
+	synt	any
+	invoke	2
+	line	140
+	colm	47
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	line	140
+	colm	49
+	synt	any
+	pfail
+lab L4
+	line	140
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	141
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_disconnect
+	local	0,001000,self
+	local	1,001000,conn
+	local	2,000000,close
+	declend
+	line	146
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	var	1
+	line	147
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	pnull
+	line	148
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_receiveFile
+	local	0,001000,self
+	local	1,001000,args
+	local	2,000020,parsed_result
+	local	3,000020,packet
+	local	4,000020,tolisten
+	local	5,000020,filename
+	local	6,000020,filesize
+	local	7,000020,sname
+	local	8,000020,receiveFrom
+	local	9,000000,reads
+	local	10,000000,write
+	local	11,000000,image
+	local	12,000000,close
+	con	0,010000,42,150,141,156,144,154,145,106,151,154,145,124,162,141,156,163,146,145,162,050,051,072,040,164,162,171,151,156,147,040,164,157,040,144,157,167,156,154,157,141,144,054,040
+	con	1,002000,1,1
+	con	2,002000,1,2
+	con	3,002000,1,3
+	con	4,002000,1,4
+	con	5,010000,20,162,145,143,145,151,166,145,106,151,154,145,050,051,072,040,146,151,154,145,040
+	con	6,010000,22,040,162,145,143,145,151,166,145,144,040,163,165,143,143,145,163,163,146,165,154,154,171
+	con	7,010000,9,167,141,162,156,151,156,147,054,040
+	con	8,010000,6,040,163,151,172,145,040
+	con	9,010000,16,040,144,157,145,163,040,156,157,164,040,155,141,164,143,150,040
+	con	10,010000,41,134,146,141,151,154,165,162,145,040,163,171,156,164,141,170,040,145,162,162,157,162,040,151,156,040,164,162,141,156,163,146,145,162,040,143,157,155,155,141,156,144
+	declend
+	line	153
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	156
+	colm	11
+	synt	any
+	field	log
+	line	156
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	str	0
+	var	1
+	line	156
+	colm	66
+	synt	any
+	cat
+	line	156
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	line	157
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	var	0
+	line	157
+	colm	31
+	synt	any
+	field	commander
+	line	157
+	colm	41
+	synt	any
+	field	SplitArgs
+	var	1
+	line	157
+	colm	51
+	synt	any
+	invoke	1
+	line	157
+	colm	24
+	synt	any
+	asgn
+	unmark
+	mark	L3
+	pnull
+	var	5
+	pnull
+	var	2
+	int	1
+	line	158
+	colm	35
+	synt	any
+	subsc
+	line	158
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	6
+	pnull
+	var	2
+	int	2
+	line	159
+	colm	35
+	synt	any
+	subsc
+	line	159
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	7
+	pnull
+	var	2
+	int	3
+	line	160
+	colm	32
+	synt	any
+	subsc
+	line	160
+	colm	16
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	162
+	colm	10
+	synt	ifelse
+	mark	L7
+	pnull
+	pnull
+	var	2
+	line	162
+	colm	13
+	synt	any
+	size
+	int	4
+	line	162
+	colm	28
+	synt	any
+	numlt
+	unmark
+	line	166
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	4
+	pnull
+	var	0
+	line	166
+	colm	32
+	synt	any
+	field	ackonTransfer
+	var	5
+	var	6
+	var	7
+	line	166
+	colm	46
+	synt	any
+	invoke	3
+	line	166
+	colm	25
+	synt	any
+	asgn
+	unmark
+	mark	L9
+	line	167
+	colm	16
+	synt	if
+	mark0
+	mark	L10
+	pnull
+	var	3
+	pnull
+	var	0
+	line	167
+	colm	38
+	synt	any
+	field	listenOn
+	var	4
+	var	6
+	line	167
+	colm	47
+	synt	any
+	invoke	2
+	line	167
+	colm	31
+	synt	any
+	asgn
+	unmark
+	efail
+lab L10
+	pnull
+	unmark
+	line	167
+	colm	72
+	synt	any
+	pfail
+	line	167
+	colm	16
+	synt	endif
+	unmark
+lab L9
+	line	168
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	0
+	line	168
+	colm	23
+	synt	any
+	field	createFile
+	var	5
+	var	3
+	line	168
+	colm	34
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	pnull
+	var	0
+	line	169
+	colm	23
+	synt	any
+	field	log
+	line	169
+	colm	27
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	5
+	var	5
+	line	169
+	colm	56
+	synt	any
+	cat
+	str	6
+	line	169
+	colm	66
+	synt	any
+	cat
+	line	169
+	colm	33
+	synt	any
+	invoke	1
+	line	168
+	colm	16
+	synt	endif
+	line	166
+	colm	13
+	synt	endif
+	goto	L8
+lab L7
+	mark	L11
+	pnull
+	var	8
+	pnull
+	var	0
+	line	175
+	colm	32
+	synt	any
+	field	connectTo
+	pnull
+	var	2
+	int	3
+	line	175
+	colm	56
+	synt	any
+	subsc
+	pnull
+	var	2
+	int	4
+	line	175
+	colm	73
+	synt	any
+	subsc
+	line	175
+	colm	42
+	synt	any
+	invoke	2
+	line	175
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	3
+	var	9
+	var	8
+	var	6
+	line	176
+	colm	28
+	synt	any
+	invoke	2
+	line	176
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	177
+	colm	13
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	3
+	line	177
+	colm	16
+	synt	any
+	size
+	var	6
+	line	177
+	colm	24
+	synt	any
+	numne
+	unmark
+	var	10
+	line	178
+	colm	22
+	synt	any
+	keywd	errout
+	str	7
+	var	11
+	var	5
+	line	178
+	colm	49
+	synt	any
+	invoke	1
+	str	8
+	pnull
+	var	3
+	line	178
+	colm	71
+	synt	any
+	size
+	str	9
+	var	6
+	line	178
+	colm	21
+	synt	any
+	invoke	7
+	line	177
+	colm	13
+	synt	endif
+	unmark
+lab L13
+	mark	L14
+	var	12
+	var	8
+	line	179
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	pnull
+	var	0
+	line	180
+	colm	17
+	synt	any
+	field	createFile
+	var	5
+	var	3
+	line	180
+	colm	28
+	synt	any
+	invoke	2
+lab L8
+	line	162
+	colm	10
+	synt	endifelse
+	unmark
+lab L6
+	mark	L15
+	pnull
+	line	182
+	colm	10
+	synt	any
+	pret
+lab L15
+	synt	any
+	pfail
+	line	157
+	colm	7
+	synt	endif
+	unmark
+lab L2
+	mark	L16
+	pnull
+	pnull
+	var	0
+	line	184
+	colm	11
+	synt	any
+	field	connection
+	line	184
+	colm	22
+	synt	any
+	field	Write
+	str	10
+	line	184
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	mark	L17
+	line	185
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L17
+	pnull
+	line	186
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_createFile
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,001000,data
+	local	3,000020,new_file
+	local	4,000000,open
+	local	5,000000,writes
+	local	6,000000,close
+	con	0,010000,1,167
+	con	1,010000,48,146,151,154,145,130,146,145,162,050,051,072,040,143,157,165,154,144,040,156,157,164,040,157,160,145,156,040,164,150,145,040,146,151,154,145,040,146,157,162,040,167,162,151,164,151,156,147,040
+	declend
+	line	193
+	colm	11
+	synt	any
+	mark	L1
+	line	196
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	3
+	var	4
+	var	1
+	str	0
+	line	196
+	colm	28
+	synt	any
+	invoke	2
+	line	196
+	colm	21
+	synt	any
+	asgn
+	line	196
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	var	5
+	var	3
+	var	2
+	line	197
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+lab L2
+	mark	L3
+	var	6
+	var	3
+	line	198
+	colm	15
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	line	199
+	colm	10
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	line	196
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	202
+	colm	11
+	synt	any
+	field	log
+	line	202
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	str	1
+	var	1
+	line	202
+	colm	72
+	synt	any
+	cat
+	line	202
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	line	203
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L6
+	pnull
+	line	204
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_sendTransfer
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,001000,srv
+	local	3,000020,filesize
+	local	4,000020,port
+	local	5,000020,data
+	local	6,000020,xferstring
+	local	7,000000,type
+	local	8,000000,variable
+	con	0,010000,28,163,145,156,144,124,162,141,156,163,146,145,162,050,051,072,040,164,150,145,040,163,151,172,145,040,157,146,040
+	con	1,010000,4,040,151,163,040
+	con	2,010000,7,040,142,171,164,145,163,056
+	con	3,010000,10,134,164,162,141,156,163,146,145,162,040
+	con	4,010000,1,040
+	con	5,010000,6,163,145,162,166,145,162
+	con	6,010000,6,123,145,162,166,145,162
+	con	7,010000,13,123,145,162,166,145,162,137,137,163,164,141,164,145
+	con	8,010000,21,163,145,156,144,124,162,141,156,163,146,145,162,050,051,072,040,146,151,154,145,040
+	con	9,010000,12,040,151,163,040,155,151,163,163,151,156,147,041
+	con	10,010000,46,134,146,141,151,154,165,162,145,040,146,151,154,145,040,144,157,145,163,156,047,164,040,145,170,151,163,164,056,040,141,142,157,162,164,151,156,147,040,164,162,141,156,163,146,145,162
+	declend
+	line	209
+	colm	11
+	synt	any
+	mark	L1
+	line	212
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	3
+	pnull
+	var	0
+	line	212
+	colm	26
+	synt	any
+	field	fileExists
+	var	1
+	line	212
+	colm	37
+	synt	any
+	invoke	1
+	line	212
+	colm	19
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	213
+	colm	14
+	synt	any
+	field	log
+	line	213
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	str	0
+	var	1
+	line	213
+	colm	55
+	synt	any
+	cat
+	str	1
+	line	213
+	colm	65
+	synt	any
+	cat
+	var	3
+	line	214
+	colm	27
+	synt	any
+	cat
+	str	2
+	line	214
+	colm	39
+	synt	any
+	cat
+	line	213
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	6
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	3
+	var	1
+	line	215
+	colm	38
+	synt	any
+	cat
+	str	4
+	line	215
+	colm	50
+	synt	any
+	cat
+	var	3
+	line	215
+	colm	57
+	synt	any
+	cat
+	str	4
+	line	215
+	colm	69
+	synt	any
+	cat
+	var	2
+	line	215
+	colm	76
+	synt	any
+	cat
+	line	215
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L3
+	pnull
+	pnull
+	var	0
+	line	216
+	colm	14
+	synt	any
+	field	connection
+	line	216
+	colm	25
+	synt	any
+	field	Write
+	var	6
+	line	216
+	colm	31
+	synt	any
+	invoke	1
+	line	212
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L4
+	line	218
+	colm	7
+	synt	ifelse
+	mark	L5
+	pnull
+	var	7
+	var	8
+	str	5
+	line	218
+	colm	23
+	synt	any
+	invoke	1
+	line	218
+	colm	14
+	synt	any
+	invoke	1
+	mark	L7
+	str	6
+	line	218
+	colm	47
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	str	7
+lab L8
+	line	218
+	colm	35
+	synt	any
+	lexeq
+	unmark
+	mark	L9
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	219
+	colm	22
+	synt	any
+	field	xm_ports
+	line	219
+	colm	31
+	synt	any
+	field	getNextPort
+	line	219
+	colm	43
+	synt	any
+	invoke	0
+	line	219
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	line	220
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	220
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	mark	L11
+	pnull
+	var	5
+	pnull
+	var	0
+	line	221
+	colm	25
+	synt	any
+	field	loadFile
+	var	1
+	var	3
+	line	221
+	colm	34
+	synt	any
+	invoke	2
+	line	221
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	0
+	line	222
+	colm	24
+	synt	any
+	field	listenAndWrite
+	var	4
+	var	5
+	line	222
+	colm	39
+	synt	any
+	invoke	2
+	line	222
+	colm	13
+	synt	any
+	pret
+lab L12
+	synt	any
+	pfail
+	line	220
+	colm	10
+	synt	endif
+	unmark
+lab L10
+	pnull
+	pnull
+	var	0
+	line	224
+	colm	14
+	synt	any
+	field	log
+	line	224
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	8
+	var	1
+	line	224
+	colm	48
+	synt	any
+	cat
+	str	9
+	line	224
+	colm	58
+	synt	any
+	cat
+	line	224
+	colm	24
+	synt	any
+	invoke	1
+	goto	L6
+lab L5
+	mark	L13
+	line	227
+	colm	10
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	227
+	colm	13
+	synt	any
+	nonnull
+	unmark
+	mark	L14
+	pnull
+	line	228
+	colm	13
+	synt	any
+	pret
+lab L14
+	synt	any
+	pfail
+	line	227
+	colm	10
+	synt	endif
+	unmark
+lab L13
+	mark	L15
+	pnull
+	pnull
+	var	0
+	line	230
+	colm	14
+	synt	any
+	field	connection
+	line	230
+	colm	25
+	synt	any
+	field	Write
+	str	10
+	line	230
+	colm	31
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	pnull
+	pnull
+	var	0
+	line	231
+	colm	14
+	synt	any
+	field	log
+	line	231
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	8
+	var	1
+	line	231
+	colm	48
+	synt	any
+	cat
+	str	9
+	line	231
+	colm	58
+	synt	any
+	cat
+	line	231
+	colm	24
+	synt	any
+	invoke	1
+lab L6
+	line	218
+	colm	7
+	synt	endifelse
+	unmark
+lab L4
+	mark	L16
+	line	233
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L16
+	pnull
+	line	234
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_sendFile
+	local	0,001000,self
+	local	1,001000,file_request
+	local	2,000020,file_to_send
+	local	3,000020,size_to_send
+	local	4,000020,srvr_to_send
+	local	5,000020,port_to_send
+	local	6,000020,parsed_request
+	con	0,010000,7,162,145,161,165,145,163,164
+	con	1,002000,1,1
+	con	2,002000,1,2
+	con	3,002000,1,3
+	con	4,002000,1,4
+	con	5,010000,31,156,145,167,165,163,145,162,050,051,072,040,163,145,156,144,151,156,147,040,167,151,164,150,040,160,141,162,141,155,163,040
+	con	6,010000,1,040
+	con	7,010000,3,040,100,040
+	con	8,010000,1,072
+	con	9,010000,16,156,145,167,165,163,145,162,050,051,072,040,146,151,154,145,040
+	con	10,010000,31,040,144,151,144,040,156,157,164,040,164,162,141,156,163,155,151,164,040,163,165,143,143,145,163,163,146,165,154,154,171,056
+	con	11,010000,36,156,145,167,165,163,145,162,050,051,072,040,164,162,141,156,163,146,145,162,040,162,145,152,145,143,164,145,144,054,040,145,162,162,157,162,040
+	declend
+	line	241
+	colm	11
+	synt	any
+	mark	L1
+	line	245
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	6
+	pnull
+	pnull
+	var	0
+	line	245
+	colm	32
+	synt	any
+	field	commander
+	line	245
+	colm	42
+	synt	any
+	field	commandIs
+	var	1
+	str	0
+	line	245
+	colm	52
+	synt	any
+	invoke	2
+	line	245
+	colm	25
+	synt	any
+	asgn
+	unmark
+	mark	L2
+	pnull
+	var	2
+	pnull
+	var	6
+	int	1
+	line	246
+	colm	40
+	synt	any
+	subsc
+	line	246
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	3
+	pnull
+	var	6
+	int	2
+	line	247
+	colm	40
+	synt	any
+	subsc
+	line	247
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	4
+	pnull
+	var	6
+	int	3
+	line	248
+	colm	40
+	synt	any
+	subsc
+	line	248
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	5
+	pnull
+	var	6
+	int	4
+	line	249
+	colm	40
+	synt	any
+	subsc
+	line	249
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	251
+	colm	14
+	synt	any
+	field	log
+	line	251
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	5
+	var	2
+	line	251
+	colm	58
+	synt	any
+	cat
+	str	6
+	line	251
+	colm	72
+	synt	any
+	cat
+	var	3
+	line	251
+	colm	77
+	synt	any
+	cat
+	str	7
+	line	252
+	colm	32
+	synt	any
+	cat
+	var	4
+	line	252
+	colm	41
+	synt	any
+	cat
+	str	8
+	line	252
+	colm	57
+	synt	any
+	cat
+	var	5
+	line	252
+	colm	64
+	synt	any
+	cat
+	line	251
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L6
+	mark	L7
+	line	254
+	colm	10
+	synt	if
+	mark0
+	mark	L8
+	pnull
+	var	0
+	line	254
+	colm	21
+	synt	any
+	field	transmitFile
+	var	2
+	var	3
+	var	4
+	var	5
+	line	254
+	colm	34
+	synt	any
+	invoke	4
+	unmark
+	efail
+lab L8
+	pnull
+	unmark
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	256
+	colm	17
+	synt	any
+	field	log
+	line	256
+	colm	21
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	9
+	var	2
+	line	256
+	colm	46
+	synt	any
+	cat
+	str	10
+	line	256
+	colm	60
+	synt	any
+	cat
+	line	256
+	colm	27
+	synt	any
+	invoke	1
+	unmark
+lab L9
+	line	258
+	colm	13
+	synt	any
+	pfail
+	line	254
+	colm	10
+	synt	endif
+	unmark
+lab L7
+	mark	L10
+	pnull
+	line	260
+	colm	10
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	line	245
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	263
+	colm	11
+	synt	any
+	field	log
+	line	263
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	str	11
+	var	1
+	line	263
+	colm	60
+	synt	any
+	cat
+	line	263
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	line	264
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L12
+	pnull
+	line	265
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_transmitFile
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,001000,filesize
+	local	3,001000,new_server
+	local	4,001000,new_port
+	local	5,000020,data
+	local	6,000020,sendto
+	local	7,000020,i
+	local	8,000020,j
+	local	9,000020,chunk
+	local	10,000020,flen
+	local	11,000020,remainder
+	local	12,000000,write
+	local	13,000000,delay
+	local	14,000000,writes
+	con	0,002000,1,0
+	con	1,010000,17,163,145,156,144,106,151,154,145,050,051,072,040,141,162,147,163,040
+	con	2,010000,1,040
+	con	3,010000,40,163,145,156,144,106,151,154,145,050,051,072,040,143,157,156,156,145,143,164,151,156,147,040,146,157,162,040,164,162,141,156,163,146,145,162,040,164,157,054,040
+	con	4,010000,1,072
+	con	5,002000,4,1024
+	con	6,002000,1,6
+	con	7,010000,18,164,150,145,040,162,145,155,141,151,156,144,145,162,040,151,163,040,072
+	con	8,002000,1,3
+	con	9,002000,1,1
+	con	10,010000,28,165,156,141,142,154,145,040,164,157,040,163,145,156,144,040,146,151,154,145,040,143,157,156,164,145,156,164,163
+	con	11,010000,26,163,145,156,144,106,151,154,145,050,051,072,040,144,151,163,143,157,156,156,145,143,164,151,156,147,040
+	con	12,010000,17,163,145,156,144,106,151,154,145,050,051,072,040,146,151,154,145,040
+	con	13,010000,25,040,164,162,141,156,163,155,151,164,164,145,144,040,163,165,143,143,145,163,163,146,165,154,154,171
+	declend
+	line	270
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	7
+	int	0
+	line	272
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	273
+	colm	11
+	synt	any
+	field	log
+	line	273
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	pnull
+	str	1
+	var	1
+	line	273
+	colm	41
+	synt	any
+	cat
+	str	2
+	line	273
+	colm	51
+	synt	any
+	cat
+	var	2
+	line	273
+	colm	56
+	synt	any
+	cat
+	str	2
+	line	273
+	colm	68
+	synt	any
+	cat
+	var	3
+	line	273
+	colm	75
+	synt	any
+	cat
+	str	2
+	line	274
+	colm	28
+	synt	any
+	cat
+	var	4
+	line	274
+	colm	35
+	synt	any
+	cat
+	line	273
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	line	275
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	5
+	pnull
+	var	0
+	line	275
+	colm	24
+	synt	any
+	field	loadFile
+	var	1
+	var	2
+	line	275
+	colm	33
+	synt	any
+	invoke	2
+	line	275
+	colm	17
+	synt	any
+	asgn
+	line	275
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	276
+	colm	14
+	synt	any
+	field	log
+	line	276
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	str	3
+	var	3
+	line	276
+	colm	67
+	synt	any
+	cat
+	str	4
+	line	276
+	colm	79
+	synt	any
+	cat
+	var	4
+	line	277
+	colm	18
+	synt	any
+	cat
+	line	276
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	10
+	var	2
+	line	280
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	8
+	pnull
+	var	9
+	pnull
+	int	5
+	int	6
+	line	282
+	colm	28
+	synt	any
+	mult
+	line	282
+	colm	21
+	synt	any
+	asgn
+	line	282
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	283
+	colm	10
+	synt	ifelse
+	mark	L8
+	pnull
+	pnull
+	var	10
+	var	9
+	line	283
+	colm	17
+	synt	any
+	div
+	int	0
+	line	283
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	8
+	pnull
+	var	9
+	var	10
+	line	284
+	colm	24
+	synt	any
+	asgn
+	line	284
+	colm	15
+	synt	any
+	asgn
+	goto	L9
+lab L8
+	mark	L10
+	pnull
+	var	11
+	pnull
+	var	10
+	var	9
+	line	287
+	colm	31
+	synt	any
+	mod
+	line	287
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L10
+	var	12
+	pnull
+	str	7
+	var	11
+	line	288
+	colm	40
+	synt	any
+	cat
+	line	288
+	colm	18
+	synt	any
+	invoke	1
+lab L9
+	line	283
+	colm	10
+	synt	endifelse
+	unmark
+lab L7
+	mark	L11
+	pnull
+	var	6
+	mark	L12
+	pnull
+	var	0
+	line	291
+	colm	24
+	synt	any
+	field	connectTo
+	var	3
+	var	4
+	line	291
+	colm	34
+	synt	any
+	invoke	2
+	line	291
+	colm	55
+	synt	any
+	esusp
+	goto	L13
+lab L12
+	line	291
+	colm	56
+	synt	any
+	pfail
+lab L13
+	line	291
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L14
+lab L15
+	line	292
+	colm	10
+	synt	while
+	mark0
+	pnull
+	var	8
+	var	10
+	line	292
+	colm	18
+	synt	any
+	numle
+	unmark
+	mark	L15
+	mark	L18
+	var	13
+	int	8
+	line	293
+	colm	18
+	synt	any
+	invoke	1
+	unmark
+lab L18
+	mark	L19
+	mark	L20
+	var	14
+	var	6
+	pnull
+	var	5
+	pnull
+	var	7
+	int	9
+	line	294
+	colm	34
+	synt	any
+	plus
+	pnull
+	var	8
+	int	9
+	line	294
+	colm	38
+	synt	any
+	plus
+	line	294
+	colm	36
+	synt	any
+	synt	any
+	sect
+	line	294
+	colm	19
+	synt	any
+	invoke	2
+	line	294
+	colm	43
+	synt	any
+	esusp
+	goto	L21
+lab L20
+	var	12
+	str	10
+	line	295
+	colm	22
+	synt	any
+	invoke	1
+lab L21
+	unmark
+lab L19
+	mark	L22
+	pnull
+	var	7
+	dup
+	var	9
+	line	296
+	colm	15
+	synt	any
+	plus
+	asgn
+	unmark
+lab L22
+	mark	L23
+	line	297
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	7
+	var	10
+	line	297
+	colm	18
+	synt	any
+	numge
+	unmark
+	unmark
+	unmark
+	pnull
+	goto	L17
+	line	297
+	colm	13
+	synt	endif
+	unmark
+lab L23
+	mark	L24
+	pnull
+	var	8
+	dup
+	var	9
+	line	299
+	colm	15
+	synt	any
+	plus
+	asgn
+	unmark
+lab L24
+	line	300
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	8
+	var	10
+	line	300
+	colm	17
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	8
+	pnull
+	pnull
+	var	8
+	var	9
+	line	301
+	colm	22
+	synt	any
+	minus
+	var	11
+	line	301
+	colm	29
+	synt	any
+	plus
+	line	301
+	colm	18
+	synt	any
+	asgn
+	line	300
+	colm	13
+	synt	endif
+lab L16
+	unmark
+	goto	L15
+lab L17
+	line	292
+	colm	10
+	synt	endwhile
+	unmark
+lab L14
+	mark	L25
+	pnull
+	pnull
+	var	0
+	line	304
+	colm	14
+	synt	any
+	field	log
+	line	304
+	colm	18
+	synt	any
+	field	logit
+	str	11
+	line	304
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L25
+	mark	L26
+	pnull
+	pnull
+	var	0
+	line	305
+	colm	14
+	synt	any
+	field	xm_ports
+	line	305
+	colm	23
+	synt	any
+	field	releasePort
+	var	4
+	line	305
+	colm	35
+	synt	any
+	invoke	1
+	unmark
+lab L26
+	mark	L27
+	pnull
+	var	0
+	line	306
+	colm	14
+	synt	any
+	field	disconnect
+	var	6
+	line	306
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L27
+	mark	L28
+	pnull
+	pnull
+	var	0
+	line	308
+	colm	14
+	synt	any
+	field	log
+	line	308
+	colm	18
+	synt	any
+	field	logit
+	pnull
+	pnull
+	str	12
+	var	1
+	line	308
+	colm	44
+	synt	any
+	cat
+	str	13
+	line	308
+	colm	54
+	synt	any
+	cat
+	line	308
+	colm	24
+	synt	any
+	invoke	1
+	unmark
+lab L28
+	mark	L29
+	pnull
+	line	309
+	colm	10
+	synt	any
+	pret
+lab L29
+	synt	any
+	pfail
+	line	275
+	colm	7
+	synt	endif
+	unmark
+lab L3
+	mark	L30
+	line	311
+	colm	7
+	synt	any
+	pfail
+	unmark
+lab L30
+	pnull
+	line	312
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_loadFile
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,001000,filesize
+	local	3,000020,handle
+	local	4,000020,data
+	local	5,000000,open
+	local	6,000000,reads
+	local	7,000000,close
+	con	0,010000,40,154,157,141,144,106,151,154,145,050,051,072,040,141,164,164,145,155,160,164,151,156,147,040,164,157,040,163,165,143,153,040,151,156,040,146,151,154,145,054,040
+	con	1,010000,10,040,157,146,040,163,151,172,145,054,040
+	con	2,010000,2,162,165
+	con	3,010000,32,154,157,141,144,106,151,154,145,050,051,072,040,143,157,165,154,144,040,156,157,164,040,154,157,141,144,040,146,151,154,145,040
+	declend
+	line	319
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	322
+	colm	11
+	synt	any
+	field	log
+	line	322
+	colm	15
+	synt	any
+	field	logit
+	pnull
+	pnull
+	pnull
+	str	0
+	var	1
+	line	322
+	colm	64
+	synt	any
+	cat
+	str	1
+	line	322
+	colm	74
+	synt	any
+	cat
+	var	2
+	line	323
+	colm	30
+	synt	any
+	cat
+	line	322
+	colm	21
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	mark	L3
+	var	5
+	var	1
+	str	2
+	line	324
+	colm	21
+	synt	any
+	invoke	2
+	line	324
+	colm	38
+	synt	any
+	esusp
+	goto	L4
+lab L3
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	325
+	colm	16
+	synt	any
+	field	log
+	line	325
+	colm	20
+	synt	any
+	field	logit
+	pnull
+	str	3
+	var	1
+	line	325
+	colm	61
+	synt	any
+	cat
+	line	325
+	colm	26
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	line	325
+	colm	73
+	synt	any
+	pfail
+lab L4
+	line	324
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L6
+	pnull
+	var	4
+	var	6
+	var	3
+	var	2
+	line	327
+	colm	20
+	synt	any
+	invoke	2
+	line	327
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	var	7
+	var	3
+	line	328
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	mark	L9
+	var	4
+	line	329
+	colm	7
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	330
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_fileExists
+	local	0,001000,self
+	local	1,001000,filename
+	local	2,000020,attribs
+	local	3,000000,stat
+	declend
+	line	335
+	colm	11
+	synt	any
+	mark	L1
+	line	337
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	var	3
+	var	1
+	line	337
+	colm	27
+	synt	any
+	invoke	1
+	line	337
+	colm	20
+	synt	any
+	asgn
+	line	337
+	colm	10
+	synt	any
+	nonnull
+	unmark
+	mark	L2
+	pnull
+	var	2
+	line	338
+	colm	24
+	synt	any
+	field	size
+	line	338
+	colm	10
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	line	337
+	colm	7
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	339
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer_initially
+	local	0,001000,self
+	local	1,001000,logging
+	local	2,000000,Commands
+	local	3,000000,portHandler
+	declend
+	line	341
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	342
+	colm	8
+	synt	any
+	field	commander
+	var	2
+	line	342
+	colm	28
+	synt	any
+	invoke	0
+	line	342
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	343
+	colm	8
+	synt	any
+	field	log
+	var	1
+	line	343
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	344
+	colm	8
+	synt	any
+	field	xm_ports
+	var	3
+	line	344
+	colm	30
+	synt	any
+	invoke	0
+	line	344
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	mark	L5
+	pnull
+	line	345
+	colm	7
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	unmark
+lab L4
+	pnull
+	line	346
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransfer
+	local	0,001000,logging
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,fileTransfer__oprec
+	local	4,000000,fileTransferinitialize
+	local	5,000000,fileTransfer__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	8
+	colm	54
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	10
+	colm	31
+	synt	any
+	keywd	null
+	var	3
+	line	10
+	colm	30
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	var	0
+	line	12
+	colm	21
+	synt	any
+	invoke	2
+	line	12
+	colm	36
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	38
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc fileTransferinitialize
+	local	0,000000,fileTransfer__oprec
+	local	1,000000,fileTransfer__methods
+	local	2,000000,fileTransfer_setConnection
+	local	3,000000,fileTransfer_getAvatarFaceFilename
+	local	4,000000,fileTransfer_ackonTransfer
+	local	5,000000,fileTransfer_listenOn
+	local	6,000000,fileTransfer_listenAndWrite
+	local	7,000000,fileTransfer_connectTo
+	local	8,000000,fileTransfer_disconnect
+	local	9,000000,fileTransfer_receiveFile
+	local	10,000000,fileTransfer_createFile
+	local	11,000000,fileTransfer_sendTransfer
+	local	12,000000,fileTransfer_sendFile
+	local	13,000000,fileTransfer_transmitFile
+	local	14,000000,fileTransfer_loadFile
+	local	15,000000,fileTransfer_fileExists
+	local	16,000000,fileTransfer_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	var	8
+	var	9
+	var	10
+	var	11
+	var	12
+	var	13
+	var	14
+	var	15
+	var	16
+	line	17
+	colm	55
+	synt	any
+	invoke	15
+	line	17
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end
