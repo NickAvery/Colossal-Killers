@@ -40,6 +40,10 @@ public class GameScreen implements Screen {
 			while (game.client.getQueueLength() > 0) {
 				String msg = game.client.getNextMessage();
 				String params[] = msg.split(" ");
+                
+				// Remove \n
+				params[params.length - 1] = params[params.length - 1].substring(0, params[params.length - 1].length() - 1);
+                
 				Entity entity;
 				switch (params[0]) {
 				
@@ -65,8 +69,8 @@ public class GameScreen implements Screen {
 						
 					// Logout
                     case "\\delavatar":
-                        if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1].replace("\n", ""))) != null) {
-                            gameWorld.avatarSystem.getPlayersList().remove(params[2].replace("\n", ""));
+                        if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+                            gameWorld.avatarSystem.getPlayersList().remove(params[1]);
                             gameWorld.remove(entity);
                         }
                         break;
@@ -91,7 +95,7 @@ public class GameScreen implements Screen {
 						break;
 
 					// Empty Message
-                    case "\n":
+                    case "":
                     	break;
                     	
                 	// Extraneous Messages
