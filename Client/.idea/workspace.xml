@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerSystem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="366">
@@ -58,6 +58,16 @@
                 <element signature="e#8395#8396#0" expanded="true" />
                 <element signature="e#8415#8416#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,10 +115,10 @@
       <find>playerl</find>
       <find>add</find>
       <find>.x</find>
-      <find>playersl</find>
       <find>players</find>
       <find>message</find>
       <find>render</find>
+      <find>playersl</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -1343,12 +1353,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/managers/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/GameWorld.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/AvatarSystem.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/screens/GameScreen.java" />
         <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/systems/PlayerSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java" />
       </list>
     </option>
   </component>
@@ -1640,14 +1650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2482">
-          <caret line="166" column="25" lean-forward="false" selection-start-line="166" selection-start-column="22" selection-end-line="166" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/components/AvatarComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1692,6 +1694,14 @@
             <element signature="e#8395#8396#0" expanded="true" />
             <element signature="e#8415#8416#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/deeep/spaceglad/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
