@@ -144,9 +144,13 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                 RenderSystem.particleSystem.add(effect);
 				((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 				if (gameWorld.game.client != null) {
+					//The correct command will look something like this but currently dinos don't have an avatar component so use placeholder fire command below
+					//gameWorld.game.client
+					//		.sendMessage("\\fire " + ((Entity) obj.userData).getComponent(AvatarComponent.class).x + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).y +
+					//				" " + ((Entity) obj.userData).getComponent(AvatarComponent.class).z + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).username + "\n");
 					gameWorld.game.client
-							.sendMessage("\\fire " + ((Entity) obj.userData).getComponent(AvatarComponent.class).x + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).y +
-									" " + ((Entity) obj.userData).getComponent(AvatarComponent.class).z + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).username + "\n");
+							.sendMessage("\\fire " + 0 + " " + 0 +
+									" " + 0 + " " + "dino" + "\n");
 				}
 				if (((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
 					PlayerComponent.score += 100;
