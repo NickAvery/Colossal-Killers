@@ -145,7 +145,8 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 				((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 				if (gameWorld.game.client != null) {
 					gameWorld.game.client
-							.sendMessage("\\fire " + camera.direction + " " + ((Entity) obj.userData).getId() + "\n");
+							.sendMessage("\\fire " + ((Entity) obj.userData).getComponent(AvatarComponent.class).x + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).y +
+									" " + ((Entity) obj.userData).getComponent(AvatarComponent.class).z + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).username + "\n");
 				}
 				if (((Entity) obj.userData).getComponent(EnemyComponent.class).health <= 0)
 					PlayerComponent.score += 100;

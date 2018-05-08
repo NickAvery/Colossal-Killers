@@ -42,96 +42,94 @@ public class GameScreen implements Screen {
 		if (game.client != null) { // Should only be null if offline
 			while (game.client.getQueueLength() > 0) {
 				String msg = game.client.getNextMessage();
-                if (msg == null) {
-                    // TODO what causes this?
-                    continue;
-                }
-				String params[] = msg.split(" ");
-                
-				// Remove \n
-				params[params.length - 1] = params[params.length - 1].substring(0, params[params.length - 1].length() - 1);
-                
-				Entity entity;
-				switch (params[0]) {
-				
-					// Chat Messages
-					case "\\say":
-						gameUI.messageWidget.addChatMessage(msg.substring(5));
-						break;
-					case "\\tell":
-						gameUI.messageWidget.addChatMessage(msg.substring(6));
-						break;
-					case "\\inform":
-						gameUI.messageWidget.addChatMessage("Server: " + msg.substring(8));
-						break;
-						
-					// Login
-					case "\\avatar":
-						if (params[1].equals(game.client.username)) {
-							// TODO restore player position on login
-						} else {
-							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
-									Float.parseFloat(params[3])-50, //subtract 50 so that they "spawn" underground -Paul
-									Float.parseFloat(params[4]), Float.parseFloat(params[5]));
-							//TODO add avatar color int
-						}
-						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
-							entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
-						}
-						break;
-						
-					// Logout
-                    case "\\delavatar":
-                        if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[2].replace("\n", ""))) != null) {
-                            gameWorld.avatarSystem.getPlayersList().remove(params[2].replace("\n", ""));
-                            gameWorld.remove(entity);
-                        }
-                        break;
-                        
-                    // Damage
-					case "\\damage":
-						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null)
-							entity.getComponent(AvatarComponent.class).health -= Integer.parseInt(params[2]);
-						else
-							gameWorld.playerSystem.getPlayer().getComponent(PlayerComponent.class).
-									health -= Integer.parseInt(params[2]);
-						break;
-						
-					// Move
-					case "\\move":
-						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
-							entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
-							entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
-							entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
-							entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
-							//if (moving == false) { //only start animation once.... -Paul
+				if (msg != null) {
+					String params[] = msg.split(" ");
+
+					// Remove \n
+					params[params.length - 1] = params[params.length - 1].substring(0, params[params.length - 1].length() - 1);
+
+					Entity entity;
+					switch (params[0]) {
+
+						// Chat Messages
+						case "\\say":
+							gameUI.messageWidget.addChatMessage(msg.substring(5));
+							break;
+						case "\\tell":
+							gameUI.messageWidget.addChatMessage(msg.substring(6));
+							break;
+						case "\\inform":
+							gameUI.messageWidget.addChatMessage("Server: " + msg.substring(8));
+							break;
+
+						// Login
+						case "\\avatar":
+							if (params[1].equals(game.client.username)) {
+								// TODO restore player position on login
+							} else {
+								gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
+										Float.parseFloat(params[3]) - 50, //subtract 50 so that they "spawn" underground -Paul
+										Float.parseFloat(params[4]), Float.parseFloat(params[5]));
+								//TODO add avatar color int
+							}
+							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+								entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
+							}
+							break;
+
+						// Logout
+						case "\\delavatar":
+							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[2].replace("\n", ""))) != null) {
+								gameWorld.avatarSystem.getPlayersList().remove(params[2].replace("\n", ""));
+								gameWorld.remove(entity);
+							}
+							break;
+
+						// Damage
+						case "\\damage":
+							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null)
+								entity.getComponent(AvatarComponent.class).health -= Integer.parseInt(params[2]);
+							else
+								gameWorld.playerSystem.getPlayer().getComponent(PlayerComponent.class).
+										health -= Integer.parseInt(params[2]);
+							break;
+
+						// Move
+						case "\\move":
+							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+								entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
+								entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
+								entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
+								entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
 								//entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
 								//moving = true;
-							//}
-						}
-						break;
+							}
+							//if (moving == false) { //only start animation once.... -Paul
+							break;
 
-					// Empty Message
-                    case "":
-                    	break;
-                    	
-                	// Extraneous Messages
-                    case "\\Whoami":
-                    case "\\vgetip":
-                    case "\\dat":
-                    case "\\dynstate":
-                    case "\\Addusers":
-                    case "\\c":
-                    case "\\Deleteuser":
-                    	// TODO are any of these needed?
-                    	break;
-                    	
-                	// TODO Handle more commands
-					// Unhandled commands are pushed to chat window
-					default:
-						gameUI.messageWidget.addChatMessage(msg);
+						// Empty Message
+						case "":
+							break;
+
+						// Extraneous Messages
+						case "\\Whoami":
+						case "\\vgetip":
+						case "\\dat":
+						case "\\dynstate":
+						case "\\Addusers":
+						case "\\c":
+						case "\\Deleteuser":
+							// TODO are any of these needed?
+							break;
+
+						// TODO Handle more commands
+						// Unhandled commands are pushed to chat window
+						default:
+							gameUI.messageWidget.addChatMessage(msg);
+					}
 				}
 			}
+
 		}
 
 		/** Updates */
