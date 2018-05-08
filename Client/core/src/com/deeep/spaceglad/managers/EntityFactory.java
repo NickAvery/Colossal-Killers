@@ -341,7 +341,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type, int scale) {
+    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type, float scale) {
         if (type != 1 && type != 2)
 		  type = 1;
 	Entity entity = createCharacter(bulletSystem, x,y,z, type, scale);
