@@ -141,7 +141,7 @@ public class EntityFactory {
         return entity;
        }
 
-    private static Entity createCharacter(BulletSystem bulletSystem, float x, float y, float z, int type) {
+    private static Entity createCharacter(BulletSystem bulletSystem, float x, float y, float z, int type, float dinoScale) {
         Entity entity = new Entity();
 	ModelComponent modelComponent = null;
 	switch(type) {
@@ -181,13 +181,19 @@ public class EntityFactory {
             modelComponent.instance.calculateTransforms();
 		break;
 
-		//Nick A for HW#6
+		//Nick A for final sprint
 			case 1: //anklyo model
 				modelComponent = new ModelComponent(Assets.anklyoModel, x, y, z);
+				for (Node node : modelComponent.instance.nodes) node.scale.scl(dinoScale); // scale the model -Paul
+					modelComponent.instance.transform.rotate(0, 1, 0, 0);
+					modelComponent.instance.calculateTransforms();
 				entity.add(new AnimationComponent(modelComponent.instance));
 			break;
 			case 2: //raptor model	
 				modelComponent = new ModelComponent(Assets.raptorModel, x, y, z);
+				for (Node node : modelComponent.instance.nodes) node.scale.scl(dinoScale); // scale the model -Paul
+					modelComponent.instance.transform.rotate(0, 1, 0, 0);
+					modelComponent.instance.calculateTransforms();
 				entity.add(new AnimationComponent(modelComponent.instance));
 			break;
 			//end
@@ -252,6 +258,11 @@ public class EntityFactory {
         characterComponent.ghostObject = new btPairCachingGhostObject();
         characterComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
         characterComponent.ghostShape = new btCapsuleShape(2f, 2f);
+	//Nick A for final sprint
+	if(type == 1 | type == 2)
+	{
+		characterComponent.ghostShape = new btCapsuleShape((2f*dinoScale)-1f, (2f*dinoScale)-1f);
+	}
         characterComponent.ghostObject.setCollisionShape(characterComponent.ghostShape);
         //characterComponent.ghostObject.setCollisionShape(Bullet.obtainStaticNodeShape(modelComponent.instance.nodes));
         characterComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
@@ -269,13 +280,13 @@ public class EntityFactory {
     }
 
     public static Entity createPlayer(BulletSystem bulletSystem, float x, float y, float z) {
-        Entity entity = createCharacter(bulletSystem, x, y, z, 0);
+        Entity entity = createCharacter(bulletSystem, x, y, z, 0, 0);
         entity.add(new PlayerComponent());
         return entity;
     }
 
     public static Entity createAvatar(BulletSystem bulletSystem, float x, float y, float z) {
-        Entity entity = createCharacter(bulletSystem, x, y, z, 0);
+        Entity entity = createCharacter(bulletSystem, x, y, z, 0, 0);
         entity.add(new AvatarComponent());
         entity.getComponent(AvatarComponent.class).x = x;
         entity.getComponent(AvatarComponent.class).y = y;
@@ -330,10 +341,10 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type) {
+    public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type, float scale) {
         if (type != 1 && type != 2)
 		  type = 1;
-	    Entity entity = createCharacter(bulletSystem, x,y,z, type);
+	Entity entity = createCharacter(bulletSystem, x,y,z, type, scale);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));
