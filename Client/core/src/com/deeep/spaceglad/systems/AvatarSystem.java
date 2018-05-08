@@ -8,6 +8,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.GameWorld;
+import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
 import com.deeep.spaceglad.components.ModelComponent;
 
@@ -45,6 +46,7 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
                     avatarComponent.y-3, avatarComponent.z,
                     avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
         }
+
     }
 
     @Override

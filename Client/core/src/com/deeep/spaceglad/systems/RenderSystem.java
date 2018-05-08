@@ -78,9 +78,9 @@ public class RenderSystem extends EntitySystem {
 				ModelComponent mod = entities.get(i).getComponent(ModelComponent.class);
 				batch.render(mod.instance, environment);
 
-				if(entities.get(i).getComponent(PlayerComponent.class) != null) //-paul
+				if(entities.get(i).getComponent(AvatarComponent.class) != null) //-paul
 				{
-					//player.getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
+					entities.get(i).getComponent(AnimationComponent.class).update(Gdx.graphics.getDeltaTime()); //update animation for avatars -paul
 				}
 			}
 			//Nick A for HW#6

@@ -7,6 +7,7 @@ import com.deeep.spaceglad.Core;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.Settings;
 import com.deeep.spaceglad.UI.GameUI;
+import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
 import com.deeep.spaceglad.components.PlayerComponent;
 
@@ -31,6 +32,8 @@ public class GameScreen implements Screen {
 	@Override
 	public void show() {
 	}
+
+	boolean moving = false;
 
 	@Override
 	public void render(float delta) {
@@ -68,6 +71,9 @@ public class GameScreen implements Screen {
 									Float.parseFloat(params[4]), Float.parseFloat(params[5]));
 							//TODO add avatar color int
 						}
+						if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+							entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
+						}
 						break;
 						
 					// Logout
@@ -94,6 +100,10 @@ public class GameScreen implements Screen {
 							entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
 							entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
 							entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
+							//if (moving == false) { //only start animation once.... -Paul
+								//entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
+								//moving = true;
+							//}
 						}
 						break;
 
