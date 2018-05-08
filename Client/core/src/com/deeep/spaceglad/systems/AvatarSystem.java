@@ -5,6 +5,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.components.AvatarComponent;
 import com.deeep.spaceglad.components.ModelComponent;
@@ -31,12 +33,17 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
         return players;
     }
 
+    Quaternion avatarAngle = new Quaternion(); //-quaternions.... -paul
+    Vector3 yaxis = new Vector3(0,1,0);
+
     public void update(float delta) {
         for(Entity player : players.values()) {
             ModelComponent modelComponent = player.getComponent(ModelComponent.class);
             AvatarComponent avatarComponent = player.getComponent(AvatarComponent.class);
-            modelComponent.instance.transform.set(avatarComponent.x,
-                    avatarComponent.y-3, avatarComponent.z, 0, 0, 0, 0); //model.y-3 to stop floating avatar -Paul
+            avatarAngle.setFromAxisRad(yaxis, avatarComponent.rotAngle); //get quaternion of avatar angle -Paul
+            modelComponent.instance.transform.set (avatarComponent.x,
+                    avatarComponent.y-3, avatarComponent.z,
+                    avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
         }
     }
 

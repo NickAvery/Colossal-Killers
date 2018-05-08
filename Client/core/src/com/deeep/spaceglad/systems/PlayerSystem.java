@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.bullet.collision.ClosestRayResultCallback;
@@ -91,21 +92,28 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		Vector3 translation = new Vector3();
 		characterComponent.ghostObject.getWorldTransform(ghost); // TODO export this
 		ghost.getTranslation(translation);
-		modelComponent.instance.transform.set(translation.x, translation.y, translation.z, camera.direction.x,
-				camera.direction.y, camera.direction.z, 0);
+
+		Quaternion lookAngle = new Quaternion(); //PFM -paul
+		float theta = (float) (Math.atan2(camera.direction.x, camera.direction.z));
+		Quaternion rot = lookAngle.setFromAxis(0, 1, 0, (float) Math.toDegrees(theta));
+
+		modelComponent.instance.transform.set(translation.x, translation.y-3, translation.z,
+				rot.x, rot.y, rot.z, rot.w); //keep avatar rotated where camera rotates -paul
 		camera.position.set(translation.x, translation.y, translation.z);
 		camera.update(true);
 		if (gameWorld.game.client != null) {
 			gameWorld.game.client.sendMessage("\\move " + gameWorld.game.client.username + " " + translation.x + " "
-					+ translation.y + " " + translation.z + " " + "0" + "\n");
+					+ translation.y + " " + translation.z + " " + (theta) + "\n");  //theta for avatar rotation (radians) -paul
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 			characterComponent.characterController.setJumpSpeed(25);
 			characterComponent.characterController.jump();
 		}
 
-		if (Gdx.input.justTouched())
+		if (Gdx.input.justTouched()) {
 			fire(); // mouse fire -Paul
+			//gameUI.messageWidget.addChatMessage(Double.toString(theta+3.1416) + "\n");
+		}
 
 		if (Gdx.input.isKeyPressed(Input.Keys.X))
 			useDoor(delta); // should we change this? -Paul

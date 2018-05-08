@@ -63,7 +63,7 @@ public class GameScreen implements Screen {
 						} else {
 							gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
 									Float.parseFloat(params[3]),
-									Float.parseFloat(params[4]));
+									Float.parseFloat(params[4]), Float.parseFloat(params[5]));
 						}
 						break;
 						
@@ -90,6 +90,7 @@ public class GameScreen implements Screen {
 							entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
 							entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
 							entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
+							entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
 							// TODO params[5] = max(rotation.y, 1.5)
 						}
 						break;

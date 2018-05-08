@@ -142,12 +142,13 @@ public class GameWorld {
 //    private void initModelBatch() {
 //        modelBatch = new ModelBatch();
 //    }
-	public void addPlayer(String username,float x, float y, float z) {
+	public void addPlayer(String username,float x, float y, float z, float angle) {
     	Entity player = (EntityFactory.createAvatar(bulletSystem, x, y, z));
     	player.getComponent(AvatarComponent.class).username = username;
     	player.getComponent(AvatarComponent.class).x = x;
         player.getComponent(AvatarComponent.class).y = y;
         player.getComponent(AvatarComponent.class).z = z;
+        player.getComponent(AvatarComponent.class).rotAngle = angle;
     	engine.addEntity(player);
 	}
 
