@@ -1221,6 +1221,9 @@ $endif
 					write(&output, image(D.dino_size))
 					write(&output, image(D.position))
 					write(&output, image(D.angle))
+					
+					# Add dino instances to the dino table by name
+					Tusername_dino[D.name] := D
 			   }
 			   
 			   }
