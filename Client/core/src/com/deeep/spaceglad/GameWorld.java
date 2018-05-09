@@ -155,6 +155,8 @@ public class GameWorld {
         Entity enemy = (EntityFactory.createEnemy(bulletSystem, x, y, z, type, scale));
         enemy.getComponent(AvatarComponent.class).username = username;
         enemy.getComponent(AvatarComponent.class).rotAngle = angle;
+        enemy.getComponent(AvatarComponent.class).type = type;
+        enemy.getComponent(AvatarComponent.class).getSound();
         engine.addEntity(enemy);
     }
 

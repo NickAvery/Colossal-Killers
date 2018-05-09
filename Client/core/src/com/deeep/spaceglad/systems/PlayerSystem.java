@@ -149,6 +149,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 
 		if (Gdx.input.isKeyPressed(Input.Keys.X))
 			useDoor(delta); // should we change this? -Paul
+		gameWorld.avatarSystem.updatePlayerLoc(camera.position.x, camera.position.y, camera.position.z);
 	}
 
 

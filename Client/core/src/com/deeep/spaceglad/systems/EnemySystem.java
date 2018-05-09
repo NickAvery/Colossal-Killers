@@ -130,7 +130,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                         if (e.getComponent(EnemyComponent.class).dinoType != EnemyComponent.DINOTYPE.RAPTOR) {
                             gameWorld.shakeSystem.startShake(10 / dist);
                         }
-                        e.getComponent(EnemyComponent.class).footStep.play();
+                        //e.getComponent(EnemyComponent.class).footStep.play();
                     }
                     e.getComponent(EnemyComponent.class).footStep.setVolume(10 / dist);
                 }

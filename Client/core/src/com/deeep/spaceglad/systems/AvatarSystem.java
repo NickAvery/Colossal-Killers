@@ -24,12 +24,20 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
     private Engine engine;
     private HashMap<String, Entity> players;
     private HashMap<String, Entity> enemies;
+    private Vector3 playerLoc;
     ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
     public AvatarSystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         players = new HashMap<>();
         enemies = new HashMap<>();
+        playerLoc = new Vector3();
+    }
+
+    public void updatePlayerLoc(float x, float y, float z){
+        playerLoc.x = x;
+        playerLoc.y = y;
+        playerLoc.z = z;
     }
 
     public void addedToEngine(Engine e) {
@@ -75,6 +83,22 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
                 modelComponent.instance.transform.set(avatarComponent.x,
                         avatarComponent.y, avatarComponent.z,
                         avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
+
+                Vector3 enemyPosition = new Vector3(avatarComponent.x, avatarComponent.y, avatarComponent.z);
+
+                float dist = (float) Math.sqrt(Math.pow(playerLoc.x - enemyPosition.x, 2) + Math.pow(playerLoc.y - enemyPosition.y, 2) + Math.pow(playerLoc.z - enemyPosition.z, 2));
+                if (dist < .01f)
+                    dist = .1f;
+
+                if (!enemy.getComponent(AvatarComponent.class).footStep.isPlaying()) {
+                    System.out.print("not playing");   // "5"
+                    if (enemy.getComponent(AvatarComponent.class).type != 2) {
+                        gameWorld.shakeSystem.startShake(10 / dist);
+                        dist = dist/10;
+                    }
+                    enemy.getComponent(AvatarComponent.class).footStep.play();
+                }
+                enemy.getComponent(AvatarComponent.class).footStep.setVolume(10 / dist);
             }
         }
         if(!gameWorld.game.dinoSpawnerOnline) {

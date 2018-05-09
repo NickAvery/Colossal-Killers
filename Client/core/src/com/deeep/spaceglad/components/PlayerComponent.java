@@ -15,7 +15,7 @@ public class PlayerComponent extends Component {
     public float x;
     public float y;
     public float z;
-		public static int weapon;
+	public static int weapon;
 	public static int ammoHeld[] = new int [10]; //allows for 10 different ammo types
 	
     public PlayerComponent() {
