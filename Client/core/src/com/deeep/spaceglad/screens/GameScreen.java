@@ -64,6 +64,12 @@ public class GameScreen implements Screen {
 
 						// Login
 						case "\\avatar":
+							gameUI.messageWidget.addChatMessage(params[0] + " ");
+							gameUI.messageWidget.addChatMessage(params[1] + " ");
+							gameUI.messageWidget.addChatMessage(params[2] + " ");
+							gameUI.messageWidget.addChatMessage(params[3] + " ");
+							gameUI.messageWidget.addChatMessage(params[4] + " ");
+							gameUI.messageWidget.addChatMessage(params[5] + " ");
 						    if(!params[1].contains("dinoSpawner")) {
                                 if (params[1].equals(game.client.username)) {
                                     // TODO restore player position on login

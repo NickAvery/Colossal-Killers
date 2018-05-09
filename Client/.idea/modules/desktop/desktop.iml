@@ -55,6 +55,7 @@
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="core" exported="" />
+    <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="library" exported="" name="gdx-backend-lwjgl-1.6.4" level="project" />
     <orderEntry type="library" exported="" name="gdx-platform-1.6.4-natives-desktop" level="project" />
     <orderEntry type="library" exported="" name="gdx-controllers-desktop-1.6.4" level="project" />

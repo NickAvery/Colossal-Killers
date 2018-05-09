@@ -41,6 +41,7 @@
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="core" exported="" />
+    <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="library" exported="" name="robovm-rt-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="robovm-cocoatouch-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="gdx-backend-robovm-1.6.4" level="project" />

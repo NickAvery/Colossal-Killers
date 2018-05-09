@@ -160,8 +160,28 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-        if(!game.dinoSpawner)
-            createPlayer(0, 100, 0);
+        Random rand = new Random();
+        int spawnPoint = rand.nextInt((9 - 1) + 1) + 1;
+        if(!game.dinoSpawner) {
+            if(spawnPoint == 1)
+                createPlayer(0, 10, 0);
+            else if(spawnPoint == 2)
+                createPlayer(-10, 10, 0);
+            else if(spawnPoint == 3)
+                createPlayer(-20, 10, 0);
+            else if(spawnPoint == 4)
+                createPlayer(10, 10, -10);
+            else if(spawnPoint == 5)
+                createPlayer(20, 10, 0);
+            else if(spawnPoint == 6)
+                createPlayer(0, 10, -10);
+            else if(spawnPoint == 7)
+                createPlayer(0, 10, -20);
+            else if(spawnPoint == 8)
+                createPlayer(0, 10, 10);
+            else //spawnPoint 9
+                createPlayer(0, 10, 20);
+        }
         else
             createPlayer(0, -1000 , 0);
 

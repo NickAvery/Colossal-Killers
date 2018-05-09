@@ -31,6 +31,9 @@ import com.deeep.spaceglad.systems.RenderSystem;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.Assets;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+
+import java.util.Random;
+
 /**
  * Created by Elmar on 7-8-2015.
  */
@@ -288,8 +291,12 @@ public class EntityFactory {
         return entity;
     }
 
+
     public static Entity createAvatar(BulletSystem bulletSystem, float x, float y, float z) {
-        Entity entity = createCharacter(bulletSystem, x, y, z, 0, 0);
+        Random rand = new Random();
+        int color = rand.nextInt((9 - 1) + 1) + 1;
+
+        Entity entity = createCharacter(bulletSystem, x, y, z, color+10, 0);
         entity.add(new AvatarComponent());
         entity.getComponent(AvatarComponent.class).x = x;
         entity.getComponent(AvatarComponent.class).y = y;
