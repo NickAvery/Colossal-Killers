@@ -1,0 +1,94 @@
+# Created by: Kevin Dorscher
+# Date: 04/28/2018
+
+#
+# filename: dino.icn
+#
+# describe the behavior and properites of the
+# DINO entity in the CVE Server 
+#
+
+$include "../common/defaults.icn"
+$define INVENTORY_DIR "inventory"
+$define QUESTS_DIR "quests"
+$define ACTIVEQUESTS_DIR "active"
+$define COMPLETEDQUESTS_DIR "completed"
+
+class Dino(name,
+		   health,
+		   maxHealth,
+		   position,
+		   dino_state,
+		   dino_type,
+		   dino_size,
+		   angle,
+		   target)
+		   
+	initially(N, T, S, X, Y, Z, A)
+		
+		name := N
+		dino_type := T
+		dino_size := S
+		position := [X, Y, Z]
+		angle := A
+		dino_state := &null
+		target := &null
+		
+		if (dino_type = 1) then
+		{
+			health := 250
+			maxHealth := 250
+		}
+		else
+		{
+			health := 200
+			maxHealth := 200
+		}
+		
+		server.Tusername_dino [name] := self
+		
+		# health := 200		# Maybe scale by level later (level * 100)?
+		# maxHealth := 200	# Maybe scale by level later (level * 100)?
+		
+		target := &null
+		
+		# server.Tusername_dino [name] := self
+		# DELETE TABLe
+			# delete(serve.Tusername_dino, name)
+		# LOOKUP
+			#server.Tusername_dino[name]
+		# TABLE SIZE (# of item in Tusername_dino table)
+			#*server.Tusername_dino
+		
+		# position := [L[1], L[2], L[3]]
+		# position := dinoPosition
+		# dino_state := "HUNTING" 
+		
+		# dinoCount +:= 1
+	
+	# getPosition: returns the x y z coordinates for this dino's avatar
+	#
+	# method getPosition()
+		#return position
+	# end
+
+	#
+	# setPosition: sets the x y z coordinates for this user's avatar
+	#
+	# method setPosition(x, y, z, angle, node)
+		# node := map( node, " -" ,"__")
+		# position := [x, y, z, angle, node]
+		# updateAvatarTable()
+	# end
+   
+		#
+		# Dino Attack function passed a player ID
+		#
+	# method dinoAttack (user)
+		#
+		# Calculate damage and return to client
+		#
+		# server.sendtoOne(target, buffer, command, source)
+	# end
+
+end

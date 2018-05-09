@@ -1,13 +1,13 @@
 include ../../makedefs
 
 # makefile for cved, the CVE Server
-SRC=    server.icn group.icn user.icn general.icn \
+SRC=    server.icn group.icn user.icn dino.icn general.icn \
 	StateHandler.icn  \
 	sessionmc.icn sessionConn.icn cved.icn sSceneGr.icn \
 	services.icn \
 	AgentHandler.icn
 
-UFILES= server.u group.u user.u general.u \
+UFILES= server.u group.u user.u dino.u general.u \
 	StateHandler.u \
 	sessionmc.u sessionConn.u cved.u sSceneGr.u \
 	AgentHandler.u

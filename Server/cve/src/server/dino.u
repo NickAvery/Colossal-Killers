@@ -1,0 +1,469 @@
+version	U12.1.00
+uid	dino.u1-1525834657-0
+record	Dino__state,11
+	0,__s
+	1,__m
+	2,name
+	3,health
+	4,maxHealth
+	5,position
+	6,dino_state
+	7,dino_type
+	8,dino_size
+	9,angle
+	10,target
+record	Dino__methods,1
+	0,initially
+impl	error
+global	6
+	0,000005,Dino_initially,8
+	1,000011,Dino__state,11
+	2,000011,Dino__methods,1
+	3,000001,Dino__oprec,0
+	4,000005,Dino,7
+	5,000005,Dinoinitialize,0
+
+proc Dino_initially
+	local	0,001000,self
+	local	1,001000,N
+	local	2,001000,T
+	local	3,001000,S
+	local	4,001000,X
+	local	5,001000,Y
+	local	6,001000,Z
+	local	7,001000,A
+	local	8,000000,server
+	con	0,002000,1,1
+	con	1,002000,3,250
+	con	2,002000,3,200
+	declend
+	filen	dino.icn
+	line	27
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	29
+	colm	21
+	synt	any
+	field	name
+	var	1
+	line	29
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	30
+	colm	21
+	synt	any
+	field	dino_type
+	var	2
+	line	30
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	pnull
+	var	0
+	line	31
+	colm	21
+	synt	any
+	field	dino_size
+	var	3
+	line	31
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	pnull
+	var	0
+	line	32
+	colm	21
+	synt	any
+	field	position
+	pnull
+	var	4
+	var	5
+	var	6
+	line	32
+	colm	32
+	synt	any
+	llist	3
+	line	32
+	colm	30
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	0
+	line	33
+	colm	21
+	synt	any
+	field	angle
+	var	7
+	line	33
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	pnull
+	var	0
+	line	34
+	colm	21
+	synt	any
+	field	dino_state
+	line	34
+	colm	34
+	synt	any
+	keywd	null
+	line	34
+	colm	32
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	pnull
+	var	0
+	line	35
+	colm	21
+	synt	any
+	field	target
+	line	35
+	colm	30
+	synt	any
+	keywd	null
+	line	35
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	37
+	colm	17
+	synt	ifelse
+	mark	L9
+	pnull
+	pnull
+	var	0
+	line	37
+	colm	25
+	synt	any
+	field	dino_type
+	int	0
+	line	37
+	colm	35
+	synt	any
+	numeq
+	unmark
+	mark	L11
+	pnull
+	pnull
+	var	0
+	line	39
+	colm	29
+	synt	any
+	field	health
+	int	1
+	line	39
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L11
+	pnull
+	pnull
+	var	0
+	line	40
+	colm	29
+	synt	any
+	field	maxHealth
+	int	1
+	line	40
+	colm	39
+	synt	any
+	asgn
+	goto	L10
+lab L9
+	mark	L12
+	pnull
+	pnull
+	var	0
+	line	44
+	colm	29
+	synt	any
+	field	health
+	int	2
+	line	44
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L12
+	pnull
+	pnull
+	var	0
+	line	45
+	colm	29
+	synt	any
+	field	maxHealth
+	int	2
+	line	45
+	colm	39
+	synt	any
+	asgn
+lab L10
+	line	37
+	colm	17
+	synt	endifelse
+	unmark
+lab L8
+	mark	L13
+	pnull
+	pnull
+	pnull
+	var	8
+	line	48
+	colm	23
+	synt	any
+	field	Tusername_dino
+	pnull
+	var	0
+	line	48
+	colm	44
+	synt	any
+	field	name
+	line	48
+	colm	39
+	synt	any
+	subsc
+	var	0
+	line	48
+	colm	50
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	0
+	line	53
+	colm	21
+	synt	any
+	field	target
+	line	53
+	colm	30
+	synt	any
+	keywd	null
+	line	53
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	mark	L16
+	pnull
+	line	54
+	colm	7
+	synt	any
+	pret
+lab L16
+	synt	any
+	pfail
+	unmark
+lab L15
+	pnull
+	line	55
+	colm	1
+	synt	any
+	pfail
+	end
+proc Dino
+	local	0,001000,N
+	local	1,001000,T
+	local	2,001000,S
+	local	3,001000,X
+	local	4,001000,Y
+	local	5,001000,Z
+	local	6,001000,A
+	local	7,000020,self
+	local	8,000020,clone
+	local	9,000000,Dino__oprec
+	local	10,000000,Dinoinitialize
+	local	11,000000,Dino__state
+	declend
+	filen	__faux.icn
+	line	5
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	8
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	9
+	line	8
+	colm	6
+	synt	any
+	null
+	unmark
+	var	10
+	line	8
+	colm	38
+	synt	any
+	invoke	0
+	line	8
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	7
+	var	11
+	line	10
+	colm	23
+	synt	any
+	keywd	null
+	var	9
+	line	10
+	colm	22
+	synt	any
+	invoke	2
+	line	10
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	7
+	line	11
+	colm	7
+	synt	any
+	field	__s
+	var	7
+	line	11
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	7
+	line	12
+	colm	7
+	synt	any
+	field	__m
+	line	12
+	colm	11
+	synt	any
+	field	initially
+	var	7
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	line	12
+	colm	21
+	synt	any
+	invoke	8
+	line	12
+	colm	42
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	12
+	colm	44
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	7
+	line	13
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	14
+	colm	1
+	synt	any
+	pfail
+	end
+proc Dinoinitialize
+	local	0,000000,Dino__oprec
+	local	1,000000,Dino__methods
+	local	2,000000,Dino_initially
+	declend
+	line	16
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	line	17
+	colm	39
+	synt	any
+	invoke	1
+	line	17
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	18
+	colm	1
+	synt	any
+	pfail
+	end
