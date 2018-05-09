@@ -6,6 +6,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.deeep.spaceglad.screens.MainMenuScreen;
 
+/* General Information
+ * Dinosaur spawner account information
+ * Username: dinoSpawner Password: dinospawner
+ */
+
 public class Core extends ApplicationAdapter {
 	public static final float VIRTUAL_WIDTH = 960;
 	public static final float VIRTUAL_HEIGHT = 540;

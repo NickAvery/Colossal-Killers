@@ -45,7 +45,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 
     public void update(float delta) {
         //Nick A for HW#6
-        if (gameWorld.game.dinoSpawner) {
+        if (gameWorld.game.dinoSpawner && !gameWorld.avatarSystem.getPlayersList().isEmpty()) {
             if (entities.size() < 2) {
                 Random random = new Random();
                 int type = random.nextInt(2)+1;
@@ -58,8 +58,11 @@ public class EnemySystem extends EntitySystem implements EntityListener {
 			    {
 				    scale = (float)random.nextInt(3)+1.0f;
 			    }
-                Entity entity = EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 20, 10, type, scale);
-                entity.getComponent(EnemyComponent.class).username = "dino" + dinoNumber++;
+			    Entity entity = EntityFactory.createEnemy(gameWorld.bulletSystem, 10, 20, 10, type, scale);
+                Object[] values = gameWorld.avatarSystem.getPlayersList().values().toArray();
+                Entity target = (Entity) values[random.nextInt(values.length)];
+                entity.getComponent(EnemyComponent.class).target = target;
+			    entity.getComponent(EnemyComponent.class).username = "dino" + dinoNumber++;
                 engine.addEntity(entity);
                 if (gameWorld.game.client != null) {
                     gameWorld.game.client.sendMessage("\\dinospawn" + " " + entity.getComponent(EnemyComponent.class).username + " " + type + " " + scale + " " +
@@ -69,7 +72,13 @@ public class EnemySystem extends EntitySystem implements EntityListener {
             }
             for (Entity e : entities) {
                 ModelComponent mod = e.getComponent(ModelComponent.class);
-                ModelComponent playerModel = player.getComponent(ModelComponent.class);
+                if (gameWorld.avatarSystem.getPlayersList().get(e.getComponent(EnemyComponent.class).target.getComponent(AvatarComponent.class).username) == null) {
+                    Random random = new Random();
+                    Object[] values = gameWorld.avatarSystem.getPlayersList().values().toArray();
+                    Entity target = (Entity) values[random.nextInt(values.length)];
+                    e.getComponent(EnemyComponent.class).target = target;
+                }
+                ModelComponent playerModel = e.getComponent(EnemyComponent.class).target.getComponent(ModelComponent.class);
 
                 Vector3 playerPosition = new Vector3();
                 Vector3 enemyPosition = new Vector3();
