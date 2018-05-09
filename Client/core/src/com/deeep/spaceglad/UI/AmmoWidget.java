@@ -1,5 +1,6 @@
 package com.deeep.spaceglad.UI;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,6 +21,8 @@ public class AmmoWidget extends Actor {
     public void act(float delta) {
         label.act(delta);
 		int ammo = PlayerComponent.ammoHeld[PlayerComponent.weapon];
+		String output = Integer.toString(ammo);
+		//Gdx.app.log("Ammo", output);
         label.setText("Ammo : " + ammo);
     }
 
