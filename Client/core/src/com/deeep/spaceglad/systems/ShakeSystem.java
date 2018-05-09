@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class ShakeSystem extends EntitySystem implements EntityListener {
 	private float shakeTime = 1f;
-	private Vector3 origin;
 	private float curTime = 0f;
 	private Camera camera;
     private float intensity;
@@ -24,8 +23,7 @@ public class ShakeSystem extends EntitySystem implements EntityListener {
         this.gameWorld = gameWorld;
     }
 
-    public void startShake(Vector3 origin, float intensity){
-    	this.origin = origin.cpy();
+    public void startShake(float intensity){
         this.intensity = intensity;
     	curTime = 0;
     }

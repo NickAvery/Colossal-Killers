@@ -26,14 +26,12 @@ public class EnemySystem extends EntitySystem implements EntityListener {
     private Quaternion quat = new Quaternion();
     private Engine engine;
     private GameWorld gameWorld;
-    private Camera camera;
     private int dinoNumber = 0;
     
     ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
-    public EnemySystem(GameWorld gameWorld, Camera camera) {
+    public EnemySystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
-        this.camera = camera;
     }
 
     @Override
@@ -131,7 +129,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                 } else {
                     if (!e.getComponent(EnemyComponent.class).footStep.isPlaying()) {
                         if (e.getComponent(EnemyComponent.class).dinoType != EnemyComponent.DINOTYPE.RAPTOR) {
-                            gameWorld.shakeSystem.startShake(camera.position, 10 / dist);
+                            gameWorld.shakeSystem.startShake(10 / dist);
                         }
                         e.getComponent(EnemyComponent.class).footStep.play();
                     }

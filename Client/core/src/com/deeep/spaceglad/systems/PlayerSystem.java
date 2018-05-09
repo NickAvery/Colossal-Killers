@@ -53,6 +53,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 	private Sound laser;
 	private Sound shotgun;
 	private Sound spear;
+	private Sound empty;
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
 	Vector3 rayToLong = new Vector3();
@@ -72,7 +73,8 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
 		laser = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
 		shotgun = Gdx.audio.newSound(Gdx.files.internal("data/shotgun.mp3"));
-		spear = Gdx.audio.newSound(Gdx.files.internal("data/spear.mp3"));																		   
+		spear = Gdx.audio.newSound(Gdx.files.internal("data/spear.mp3"));
+		empty = Gdx.audio.newSound(Gdx.files.internal("data/empty.mp3"));																   
 	}
 
 	@Override
@@ -137,6 +139,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			
 			if(player.getComponent(PlayerComponent.class).ammoHeld[player.getComponent(PlayerComponent.class).weapon] > 0){
 				fire(); // mouse fire -Paul
+			}
+			else{
+				empty.play();
 			}
 			
 			//gameUI.messageWidget.addChatMessage(Double.toString(theta+3.1416) + "\n");
