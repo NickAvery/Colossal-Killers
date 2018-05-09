@@ -81,7 +81,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		updateMovement(delta);
 		updateStatus();
 		checkGameOver();
-
+	}
 
 	private void updateMovement(float delta) {
 		// Updated to mouse controls -Paul
@@ -175,6 +175,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			gun.add(new WeaponComponent(2));
 			player.getComponent(PlayerComponent.class).weapon = 2;
 		gameUI.healthWidget.setValue(playerComponent.health);
+		}
 	}
 
 	private void fire() {
