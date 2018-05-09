@@ -1204,7 +1204,23 @@ $endif
 				every i := 1 to *L do write(L[i])
 				
 				# Create actual instances of the dino class
-				
+					write(&output, "Creating a Dino Instance")
+					
+					D := Dino(L[1], L[2], L[3], L[4], L[5], L[6], L[7])
+					
+					# L[1] = name
+					# L[2] = dino_type
+					# L[3] = dino_size
+					# L[4] = X
+					# L[5] = Y
+					# L[6] = Z
+					# L[7] = angle
+					
+					write(&output, image(D.name))
+					write(&output, image(D.dino_type))
+					write(&output, image(D.dino_size))
+					write(&output, image(D.position))
+					write(&output, image(D.angle))
 			   }
 			   
 			   }
