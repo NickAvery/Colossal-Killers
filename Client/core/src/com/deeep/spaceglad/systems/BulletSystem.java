@@ -76,6 +76,49 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 						entity1.getComponent(HealthPackComponent.class).despawnFlag = true;
 					}
 				}
+				
+				
+				if(entity0.getComponent(WeaponComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null){
+					if(entity1.getComponent(PlayerComponent.class) != null){
+						
+						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SPEAR){ // spear collision
+							if(entity1.getComponent(PlayerComponent.class).ammoHeld[0] == 0){
+								entity1.getComponent(PlayerComponent.class).ammoHeld[0] = 1;
+							}
+						}
+						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.GUN){ // gun collision
+							entity1.getComponent(PlayerComponent.class).ammoHeld[1] += entity0.getComponent(WeaponComponent.class).ammoAmount;
+						}
+						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SHOTGUN){ // shotgun collision
+							entity1.getComponent(PlayerComponent.class).ammoHeld[2] += entity0.getComponent(WeaponComponent.class).ammoAmount;
+						}
+						entity0.getComponent(WeaponComponent.class).state = WeaponComponent.STATE.RESPAWNING;
+						entity0.getComponent(WeaponComponent.class).respawnDelta = 0f;
+						entity0.getComponent(WeaponComponent.class).despawnFlag = true;
+					}
+					
+					
+				}else if(entity1.getComponent(WeaponComponent.class) != null && entity0.getComponent(CharacterComponent.class) != null){
+					if(entity0.getComponent(PlayerComponent.class) != null){
+						
+						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SPEAR){ // spear collision
+							if(entity0.getComponent(PlayerComponent.class).ammoHeld[0] == 0){
+								entity0.getComponent(PlayerComponent.class).ammoHeld[0] = 1;
+							}
+						}
+						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.GUN){ // gun collision
+							entity0.getComponent(PlayerComponent.class).ammoHeld[1] += entity1.getComponent(WeaponComponent.class).ammoAmount;
+						}
+						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SHOTGUN){ // shotgun collision
+							entity0.getComponent(PlayerComponent.class).ammoHeld[2] += entity1.getComponent(WeaponComponent.class).ammoAmount;
+						}
+						
+						
+						entity1.getComponent(WeaponComponent.class).state = WeaponComponent.STATE.RESPAWNING;
+						entity1.getComponent(WeaponComponent.class).respawnDelta = 0f;
+						entity1.getComponent(WeaponComponent.class).despawnFlag = true;
+					}
+				}
             }
         }
     }

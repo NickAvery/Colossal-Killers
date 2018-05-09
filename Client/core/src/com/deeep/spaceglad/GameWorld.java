@@ -156,7 +156,13 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
+
         createPlayer(0, 100, 0);
+
+		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
+		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 40, 2));
+		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 50, 0));
+
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -251,6 +257,7 @@ public class GameWorld {
         engine.addSystem(new EnemySystem(this, renderSystem.perspectiveCamera));
         engine.addSystem(new StatusSystem(this));
         engine.addSystem(new HealthPackSystem(this));
+		engine.addSystem(new WeaponSystem(this));
         engine.addSystem(avatarSystem = new AvatarSystem(this));
 		
 		if (debug)
@@ -267,12 +274,23 @@ public class GameWorld {
     private void checkPause() {
         if (Settings.Paused) {
             engine.getSystem(PlayerSystem.class).setProcessing(false);
+            engine.getSystem(EnemySystem.class).setProcessing(false);
+            engine.getSystem(StatusSystem.class).setProcessing(false);
+            engine.getSystem(BulletSystem.class).setProcessing(false);
+			engine.getSystem(HealthPackSystem.class).setProcessing(false);
+			engine.getSystem(WeaponSystem.class).setProcessing(false);
+            engine.getSystem(AvatarSystem.class).setProcessing(false);
+			
+			
+			
+			
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
-            engine.getSystem(HealthPackSystem.class).setProcessing(true);
+			engine.getSystem(HealthPackSystem.class).setProcessing(true);
+			engine.getSystem(WeaponSystem.class).setProcessing(true);
             engine.getSystem(AvatarSystem.class).setProcessing(true);
         }
     }
