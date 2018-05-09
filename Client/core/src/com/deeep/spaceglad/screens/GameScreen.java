@@ -72,8 +72,8 @@ public class GameScreen implements Screen {
 						
 					// Logout
                     case "\\delavatar":
-                        if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
-                            gameWorld.avatarSystem.getPlayersList().remove(params[1]);
+                        if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[2].replace("\n", ""))) != null) {
+                            gameWorld.avatarSystem.getPlayersList().remove(params[2].replace("\n", ""));
                             gameWorld.remove(entity);
                         }
                         break;
