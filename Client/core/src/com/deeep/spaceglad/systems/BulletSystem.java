@@ -79,7 +79,7 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 				
 				
 				if(entity0.getComponent(WeaponComponent.class) != null && entity1.getComponent(CharacterComponent.class) != null){
-					if(entity1.getComponent(PlayerComponent.class) != null){
+					if(entity1.getComponent(PlayerComponent.class) != null && entity0.getComponent(WeaponComponent.class).despawnFlag == false){
 						
 						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SPEAR){ // spear collision
 							if(entity1.getComponent(PlayerComponent.class).ammoHeld[0] == 0){
@@ -88,6 +88,7 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 						}
 						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.GUN){ // gun collision
 							entity1.getComponent(PlayerComponent.class).ammoHeld[1] += entity0.getComponent(WeaponComponent.class).ammoAmount;
+							Gdx.app.log("Ammo", "picked up");
 						}
 						if(entity0.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SHOTGUN){ // shotgun collision
 							entity1.getComponent(PlayerComponent.class).ammoHeld[2] += entity0.getComponent(WeaponComponent.class).ammoAmount;
@@ -95,11 +96,12 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 						entity0.getComponent(WeaponComponent.class).state = WeaponComponent.STATE.RESPAWNING;
 						entity0.getComponent(WeaponComponent.class).respawnDelta = 0f;
 						entity0.getComponent(WeaponComponent.class).despawnFlag = true;
+
 					}
 					
 					
 				}else if(entity1.getComponent(WeaponComponent.class) != null && entity0.getComponent(CharacterComponent.class) != null){
-					if(entity0.getComponent(PlayerComponent.class) != null){
+					if(entity0.getComponent(PlayerComponent.class) != null && entity1.getComponent(WeaponComponent.class).despawnFlag == false){
 						
 						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SPEAR){ // spear collision
 							if(entity0.getComponent(PlayerComponent.class).ammoHeld[0] == 0){
@@ -108,6 +110,7 @@ public class BulletSystem extends EntitySystem implements EntityListener {
 						}
 						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.GUN){ // gun collision
 							entity0.getComponent(PlayerComponent.class).ammoHeld[1] += entity1.getComponent(WeaponComponent.class).ammoAmount;
+							Gdx.app.log("Ammo", "picked up");
 						}
 						if(entity1.getComponent(WeaponComponent.class).weapon == WeaponComponent.WEAPON.SHOTGUN){ // shotgun collision
 							entity0.getComponent(PlayerComponent.class).ammoHeld[2] += entity1.getComponent(WeaponComponent.class).ammoAmount;

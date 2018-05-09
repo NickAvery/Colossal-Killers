@@ -354,6 +354,9 @@ public class EntityFactory {
 				model = Assets.spearModel;
 			break;
 			case 1:
+				ModelLoader<?> modelLoader = new G3dModelLoader (new JsonReader());
+				ModelData modelData = modelLoader.loadModelData(Gdx.files.internal("data/GUNMODEL.g3dj"));
+				model = new Model(modelData, new TextureProvider.FileTextureProvider());
 				//gun
 			break;
 			case 2: //shotgun
@@ -368,7 +371,7 @@ public class EntityFactory {
 				modelComponent.instance.transform.scale(0.01f, 0.01f, 0.01f);
 			break;
 			case 1:
-				
+				modelComponent.instance.transform.scale(0.25f, 0.25f, 0.25f);
 			break;
 			case 2: // shotgun scale
 				modelComponent.instance.transform.scale(0.01f, 0.01f, 0.01f);

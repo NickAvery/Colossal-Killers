@@ -168,6 +168,7 @@ public class GameWorld {
 		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
 		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 40, 2));
 		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 50, 0));
+		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 60, 1));
 
     }
 
