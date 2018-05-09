@@ -1200,6 +1200,17 @@ $endif
 					write (&output, "After Storing the Fire Command, L Holds: \n")
 					every i := 1 to *L do write(L[i])
 					}
+					
+					# L[1] = X
+					# L[2] = Y
+					# L[3] = Z
+					# L[4] = target object
+					
+					# Look up the dino being shot at
+					target := server.Tusername_dino[L[4]]
+					
+					target.health = target.health - 10
+					
 			   
                }
 			"death":{ # handle \death command here
