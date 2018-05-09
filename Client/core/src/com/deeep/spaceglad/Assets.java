@@ -25,6 +25,8 @@ public class Assets {
 	public static Model level1treemodel;
 	public static Model ramp1model;
 	public static Model healthPackModel;
+	public static Model shotgunModel;
+	public static Model spearModel;
 	public static Model playerModelRed;
 	public static Model playerModelOrange;
 	public static Model playerModelYellow;
@@ -70,6 +72,8 @@ public class Assets {
 		FileHandle grayPlayerPath = Gdx.files.internal("data/avatars/gray.g3db");
 		FileHandle blackPlayerPath = Gdx.files.internal("data/avatars/black.g3db");
 		FileHandle healthPackPath = Gdx.files.internal("data/health_pack.g3db");// health pack - James
+		FileHandle shotgunPath = Gdx.files.internal("data/shotgun.g3db");// shotgun
+		FileHandle spearPath = Gdx.files.internal("data/spear.g3db");// spear
 		UBJsonReader jsonReader = new UBJsonReader();
 		G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 
@@ -96,6 +100,8 @@ public class Assets {
 		playerModelGray = modelLoader.loadModel(grayPlayerPath);
 		playerModelBlack = modelLoader.loadModel(blackPlayerPath);
 		healthPackModel = modelLoader.loadModel(healthPackPath); // health pack - James
+		shotgunModel = modelLoader.loadModel(shotgunPath); // shotgun
+		spearModel = modelLoader.loadModel(spearPath); 
     }
 
     public static void dispose() {

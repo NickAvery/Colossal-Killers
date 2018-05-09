@@ -17,6 +17,7 @@ public class GameUI {
 //  public OxygenWidget oxygenWidget;
 //  public EnergyWidget energyWidget;
     private ScoreWidget scoreWidget;
+	private AmmoWidget ammoWidget;
     private PauseWidget pauseWidget;
     private CrosshairWidget crosshairWidget;
     public GameOverWidget gameOverWidget;
@@ -36,6 +37,7 @@ public class GameUI {
 //      oxygenWidget = new OxygenWidget();
 //      energyWidget = new EnergyWidget();
         scoreWidget = new ScoreWidget();
+		ammoWidget = new AmmoWidget();
         pauseWidget = new PauseWidget(game, stage);
         gameOverWidget = new GameOverWidget(game, stage);
         crosshairWidget = new CrosshairWidget();
@@ -53,6 +55,8 @@ public class GameUI {
 //      energyWidget.setPosition(Core.VIRTUAL_WIDTH / 2 - energyWidget.getWidth() / 2, 60);
         scoreWidget.setSize(140, 25);
         scoreWidget.setPosition(0, Core.VIRTUAL_HEIGHT - scoreWidget.getHeight());
+		ammoWidget.setSize(140, 25);
+		ammoWidget.setPosition(Core.VIRTUAL_WIDTH / 2 - ammoWidget.getWidth() / 2, 30);
         pauseWidget.setSize(64, 64);
         pauseWidget.setPosition(Core.VIRTUAL_WIDTH - pauseWidget.getWidth(), Core.VIRTUAL_HEIGHT - pauseWidget.getHeight());
         gameOverWidget.setSize(280, 100);
@@ -69,6 +73,7 @@ public class GameUI {
 //      stage.addActor(oxygenWidget);
 //      stage.addActor(energyWidget);
         stage.addActor(scoreWidget);
+		stage.addActor(ammoWidget);
         stage.addActor(crosshairWidget);
         stage.setKeyboardFocus(pauseWidget);
         stage.addActor(fpsLabel);

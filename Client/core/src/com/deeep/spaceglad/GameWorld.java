@@ -156,6 +156,10 @@ public class GameWorld {
     private void addEntities() {
         createGround();
         createPlayer(0, 1, 0);
+		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
+		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
+		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 40, 2));
+		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 50, 0));
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -239,7 +243,8 @@ public class GameWorld {
             engine.getSystem(EnemySystem.class).setProcessing(true);
             engine.getSystem(StatusSystem.class).setProcessing(true);
             engine.getSystem(BulletSystem.class).setProcessing(true);
-            engine.getSystem(HealthPackSystem.class).setProcessing(true);
+			engine.getSystem(HealthPackSystem.class).setProcessing(true);
+			engine.getSystem(WeaponSystem.class).setProcessing(true);
             engine.getSystem(AvatarSystem.class).setProcessing(true);
         }
     }
