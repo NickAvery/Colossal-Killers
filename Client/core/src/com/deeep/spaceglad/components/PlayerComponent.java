@@ -23,7 +23,7 @@ public class PlayerComponent extends Component {
 //        oxygen = 100;
         health = 100;
         score = 0;
-		weapon = 0;
+		weapon = 1;
 		ammoHeld[0] = 1;
 		ammoHeld[1] = 20;
 		ammoHeld[2] = 6;
