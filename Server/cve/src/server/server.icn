@@ -1027,7 +1027,13 @@ $endif
       logHandler.subscribe( sock, getIP(sock) )
    end
    method do_avatar(user, sock, cmd, rest)
-      sendtoMany( sock, rest, "avatar", 1 )
+		local x
+		x:= ? 8 - 1
+      sendtoMany(sock, image(x), "avatar", 1)
+	  
+	  ## Original Avatar sendtoMany method call
+	  
+	  # sendtoMany( sock, rest, "avatar", 1 )
    end
    method do_moveavatar(user, sock, cmd, rest)
       moveAvatar(sock, rest)
@@ -1221,6 +1227,9 @@ $endif
 					write(&output, image(D.dino_size))
 					write(&output, image(D.position))
 					write(&output, image(D.angle))
+					
+					# Insert Dino instance into Tusername_dino Table
+					Tusername_dino[D.name] := D
 			   }
 			   
 			   }
