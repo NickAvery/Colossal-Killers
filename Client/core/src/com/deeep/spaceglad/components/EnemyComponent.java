@@ -25,7 +25,8 @@ public class EnemyComponent extends Component {
     public float health;
     public STATE state = STATE.IDLE;
     public DINOTYPE dinoType;
-    public float x, y, z;
+    public int type;
+    public float scale;
     public String username;
     public Entity target;
 

@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
+import com.deeep.spaceglad.components.EnemyComponent;
 import com.deeep.spaceglad.components.ModelComponent;
 
 import java.util.HashMap;
@@ -19,10 +20,12 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
     private GameWorld gameWorld;
     private Engine engine;
     private HashMap<String, Entity> players;
+    private HashMap<String, Entity> enemies;
 
     public AvatarSystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         players = new HashMap<>();
+        enemies = new HashMap<>();
     }
 
     public void addedToEngine(Engine e) {
@@ -32,6 +35,10 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
 
     public HashMap getPlayersList() {
         return players;
+    }
+
+    public HashMap getEnemiesList() {
+        return enemies;
     }
 
     Quaternion avatarAngle = new Quaternion(); //-quaternions.... -paul
@@ -46,13 +53,24 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
                     avatarComponent.y-3, avatarComponent.z,
                     avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
         }
+        for(Entity enemy : enemies.values()) {
+            ModelComponent modelComponent = enemy.getComponent(ModelComponent.class);
+            AvatarComponent avatarComponent = enemy.getComponent(AvatarComponent.class);
+            avatarAngle.setFromAxisRad(yaxis, avatarComponent.rotAngle); //get quaternion of avatar angle -Paul
+            modelComponent.instance.transform.set (avatarComponent.x,
+                    avatarComponent.y, avatarComponent.z,
+                    avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
+        }
 
     }
 
     @Override
     public void entityAdded(Entity entity) {
         if (entity.getComponent(AvatarComponent.class) != null) {
-            players.put(entity.getComponent(AvatarComponent.class).username, entity);
+            if (entity.getComponent(EnemyComponent.class) != null)
+                enemies.put(entity.getComponent(AvatarComponent.class).username, entity);
+            else
+                players.put(entity.getComponent(AvatarComponent.class).username, entity);
         }
     }
 
