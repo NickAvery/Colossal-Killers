@@ -179,6 +179,9 @@ public class EntityFactory {
             for (Node node : modelComponent.instance.nodes) node.scale.scl(3.8f); // scale the model -Paul
             modelComponent.instance.transform.rotate(0, 1, 0, 0);
             modelComponent.instance.calculateTransforms();
+			
+			entity.add(new WeaponComponent(0)); // gives player "spear", for testing
+			
 		break;
 
 		//Nick A for final sprint
@@ -340,6 +343,68 @@ public class EntityFactory {
         
         return entity;
     }
+	
+	public static Entity createWeapon(BulletSystem bulletSystem, float x, float y, float z, int weaponType){
+		Entity entity = new Entity();
+		final BoundingBox boundingBox = new BoundingBox();
+		
+		Model model = new Model();
+		switch(weaponType){
+			case 0://spear
+				model = Assets.spearModel;
+			break;
+			case 1:
+				//gun
+			break;
+			case 2: //shotgun
+				model = Assets.shotgunModel;
+			break;
+		}
+		model.calculateBoundingBox(boundingBox);
+		
+		ModelComponent modelComponent = new ModelComponent(model, x, y, z);
+		switch(weaponType){
+			case 0: // spear scale
+				modelComponent.instance.transform.scale(0.01f, 0.01f, 0.01f);
+			break;
+			case 1:
+				
+			break;
+			case 2: // shotgun scale
+				modelComponent.instance.transform.scale(0.01f, 0.01f, 0.01f);
+			break;
+		}
+		
+		modelComponent.instance.calculateTransforms();
+		
+		WeaponComponent weaponComponent = new WeaponComponent(weaponType);
+		
+		weaponComponent.ghostObject = new btPairCachingGhostObject();
+        weaponComponent.ghostObject.setWorldTransform(modelComponent.instance.transform);
+        weaponComponent.ghostShape = new btCapsuleShape(2f, 2f);
+        weaponComponent.ghostObject.setCollisionShape(weaponComponent.ghostShape);
+        weaponComponent.ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
+		
+		entity.add(weaponComponent);
+		
+		Vector3 tmpV = new Vector3();
+        btCollisionShape col = new btBoxShape(tmpV.set(boundingBox.getWidth() * 0.3f, boundingBox.getHeight() * 0.3f, boundingBox.getDepth() * 0.3f));
+		
+		
+		BulletComponent bulletComponent = new BulletComponent();
+        bulletComponent.bodyInfo = new btRigidBody.btRigidBodyConstructionInfo(0, null, col, Vector3.Zero);
+        bulletComponent.body = new btRigidBody(bulletComponent.bodyInfo);
+        bulletComponent.body.userData = entity;
+        bulletComponent.motionState = new MotionState(modelComponent.instance.transform);
+        ((btRigidBody) bulletComponent.body).setMotionState(bulletComponent.motionState);
+        
+		entity.add(bulletComponent);
+		
+		entity.add(modelComponent);
+		
+		return entity;
+	}
+
 
     public static Entity createEnemy(BulletSystem bulletSystem, float x, float y, float z, int type, float scale) {
         if (type != 1 && type != 2)
@@ -366,13 +431,18 @@ public class EntityFactory {
 	{
 		ModelLoader<?> modelLoader = new G3dModelLoader (new JsonReader());
 		ModelData modelData = modelLoader.loadModelData(Gdx.files.internal("data/GUNMODEL.g3dj"));
+		//ModelData modelData = modelLoader.loadModelData(Gdx.files.internal("data/shotgun.g3dj")); // shotgun model
 		Model model = new Model(modelData, new TextureProvider.FileTextureProvider());
 		ModelComponent modelComponent = new ModelComponent(model, x, y, z);
 		modelComponent.instance.transform.rotate(0, 1, 0, 180);
+		//modelComponent.instance.transform.rotate(0, 1, 0, 90); // For shotgun model
+		//modelComponent.instance.transform.scale(0.03f, 0.03f, 0.03f); // For shotgun model
+		WeaponComponent weaponComponent = new WeaponComponent(1);
 		Entity gunEntity = new Entity();
 		gunEntity.add(modelComponent);
 		gunEntity.add(new GunComponent());
 		gunEntity.add(new AnimationComponent(modelComponent.instance));
+		gunEntity.add(weaponComponent);
 		return gunEntity;
 	}
 
