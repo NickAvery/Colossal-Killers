@@ -118,7 +118,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 				rot.x, rot.y, rot.z, rot.w); //keep avatar rotated where camera rotates -paul
 		camera.position.set(translation.x, translation.y, translation.z);
 		camera.update(true);
-		if (gameWorld.game.client != null) {
+		if (gameWorld.game.client != null && !gameWorld.game.dinoSpawner) {
 			gameWorld.game.client.sendMessage("\\move " + gameWorld.game.client.username + " " + translation.x + " "
 					+ translation.y + " " + translation.z + " " + (theta) + "\n");  //theta for avatar rotation (radians) -paul
 		}
@@ -231,12 +231,12 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                 effect.init();
                 effect.start();
                 RenderSystem.particleSystem.add(effect);
+				((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 				//((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
 				if(shortHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).shortDamage;
 				else if(mediumHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).mediumDamage;
 				else if(longHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).longDamage;
-
-				if (gameWorld.game.client != null) {
+				if (gameWorld.game.client != null && !gameWorld.game.dinoSpawner) {
 					//The correct command will look something like this but currently dinos don't have an avatar component so use placeholder fire command below
 					//gameWorld.game.client
 					//		.sendMessage("\\fire " + ((Entity) obj.userData).getComponent(AvatarComponent.class).x + " " + ((Entity) obj.userData).getComponent(AvatarComponent.class).y +

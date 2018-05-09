@@ -64,19 +64,20 @@ public class GameScreen implements Screen {
 
 						// Login
 						case "\\avatar":
-							if (params[1].equals(game.client.username)) {
-								// TODO restore player position on login
-							} else {
-								gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
-										Float.parseFloat(params[3]) - 50, //subtract 50 so that they "spawn" underground -Paul
-										Float.parseFloat(params[4]), Float.parseFloat(params[5]));
-								//TODO add avatar color int
-							}
-							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
-								entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
-							}
-							break;
-
+						    if(!params[1].equals("dinoSpawner")) {
+                                if (params[1].equals(game.client.username)) {
+                                    // TODO restore player position on login
+                                } else {
+                                    gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
+                                            Float.parseFloat(params[3]) - 50, //subtract 50 so that they "spawn" underground -Paul
+                                            Float.parseFloat(params[4]), Float.parseFloat(params[5]));
+                                    //TODO add avatar color int
+                                }
+                                if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+                                    entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
+                                }
+                                break;
+                            }
 						// Logout
 						case "\\delavatar":
 							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[2].replace("\n", ""))) != null) {

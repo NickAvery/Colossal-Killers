@@ -1,6 +1,7 @@
 package com.deeep.spaceglad.components;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Gdx;
 
@@ -26,6 +27,7 @@ public class EnemyComponent extends Component {
     public DINOTYPE dinoType;
     public float x, y, z;
     public String username;
+    public Entity target;
 
      public EnemyComponent(STATE state, int type){
         this.state = state;
