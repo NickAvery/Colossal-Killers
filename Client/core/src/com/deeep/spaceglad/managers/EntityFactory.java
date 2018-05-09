@@ -180,7 +180,7 @@ public class EntityFactory {
             modelComponent.instance.transform.rotate(0, 1, 0, 0);
             modelComponent.instance.calculateTransforms();
 			
-			entity.add(new WeaponComponent(0)); // gives player "spear", for testing
+			//entity.add(new WeaponComponent(1)); // gives player "spear", for testing
 			
 		break;
 

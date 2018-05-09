@@ -138,6 +138,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 
 
 	private void updateStatus() {
+		gameUI.healthWidget.setValue(playerComponent.health);
+		
+		
 		if (Gdx.input.isKeyPressed(Input.Keys.NUM_1) && player.getComponent(PlayerComponent.class).weapon != 0){
 			Gdx.app.log("Weapon:", "Spear"); // switch to spear
 			//gun.getComponent(ModelComponent.class) = new ModelComponent(Assets.spearModel, 2.5f, -1.9f, -4);
@@ -161,7 +164,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			modelComponent.instance.transform.rotate(0, 1, 0, 180);
 			gun.add(modelComponent); 
 			gun.remove(WeaponComponent.class);
+			gun.remove(AnimationComponent.class);
 			gun.add(new WeaponComponent(1));
+			gun.add(new AnimationComponent(modelComponent.instance));
 			player.getComponent(PlayerComponent.class).weapon = 1;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.NUM_3) && player.getComponent(PlayerComponent.class).weapon != 2){
@@ -174,7 +179,6 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			gun.remove(WeaponComponent.class);
 			gun.add(new WeaponComponent(2));
 			player.getComponent(PlayerComponent.class).weapon = 2;
-		gameUI.healthWidget.setValue(playerComponent.health);
 		}
 	}
 
