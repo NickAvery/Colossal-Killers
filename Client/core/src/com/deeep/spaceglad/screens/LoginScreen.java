@@ -131,7 +131,8 @@ public class LoginScreen implements Screen {
 					game.client.close();
 				}
 				game.client = client;
-
+				if(game.client.username.equals("dinoSpawner"))
+					game.dinoSpawner = true;
 				game.setScreen(new GameScreen(game));
 			}
 			else

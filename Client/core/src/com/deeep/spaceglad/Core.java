@@ -11,6 +11,7 @@ public class Core extends ApplicationAdapter {
 	public static final float VIRTUAL_HEIGHT = 540;
 	Screen screen;
 
+	public boolean dinoSpawner = false;
 	public Client client = null;
 
 	@Override

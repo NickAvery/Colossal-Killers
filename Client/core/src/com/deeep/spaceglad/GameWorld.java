@@ -155,8 +155,6 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-		engine.addEntity(EntityFactory.createEnemy(bulletSystem, 10, 3, 10, 1));
-        engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
         createPlayer(0, 1, 0);
     }
 

@@ -277,6 +277,9 @@ public class EntityFactory {
     public static Entity createAvatar(BulletSystem bulletSystem, float x, float y, float z) {
         Entity entity = createCharacter(bulletSystem, x, y, z, 0);
         entity.add(new AvatarComponent());
+        entity.getComponent(AvatarComponent.class).x = x;
+        entity.getComponent(AvatarComponent.class).y = y;
+        entity.getComponent(AvatarComponent.class).z = z;
         return entity;
     }
 	
@@ -334,6 +337,10 @@ public class EntityFactory {
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));
+        entity.getComponent(EnemyComponent.class).x = x;
+        entity.getComponent(EnemyComponent.class).y = y;
+        entity.getComponent(EnemyComponent.class).z = z;
+        entity.getComponent(EnemyComponent.class).dinoType = EnemyComponent.DINOTYPE.ANKLO;
 	    //Nick A for HW#6
 		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
 		{
