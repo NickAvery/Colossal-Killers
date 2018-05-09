@@ -1,15 +1,18 @@
 package com.deeep.spaceglad.systems;
 
+import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.deeep.spaceglad.GameWorld;
 import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
+import com.deeep.spaceglad.components.CharacterComponent;
 import com.deeep.spaceglad.components.EnemyComponent;
 import com.deeep.spaceglad.components.ModelComponent;
 
@@ -21,6 +24,7 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
     private Engine engine;
     private HashMap<String, Entity> players;
     private HashMap<String, Entity> enemies;
+    ComponentMapper<CharacterComponent> cm = ComponentMapper.getFor(CharacterComponent.class);
 
     public AvatarSystem(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -53,13 +57,31 @@ public class AvatarSystem extends EntitySystem implements EntityListener{
                     avatarComponent.y-3, avatarComponent.z,
                     avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
         }
-        for(Entity enemy : enemies.values()) {
-            ModelComponent modelComponent = enemy.getComponent(ModelComponent.class);
-            AvatarComponent avatarComponent = enemy.getComponent(AvatarComponent.class);
-            avatarAngle.setFromAxisRad(yaxis, avatarComponent.rotAngle); //get quaternion of avatar angle -Paul
-            modelComponent.instance.transform.set (avatarComponent.x,
-                    avatarComponent.y, avatarComponent.z,
-                    avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
+        if(!gameWorld.game.dinoSpawner) {
+            for (Entity enemy : enemies.values()) {
+                ModelComponent modelComponent = enemy.getComponent(ModelComponent.class);
+                AvatarComponent avatarComponent = enemy.getComponent(AvatarComponent.class);
+                cm.get(enemy).characterDirection.set(-1, 0, 0).rot(modelComponent.instance.transform);
+                cm.get(enemy).walkDirection.set(0, 0, 0);
+                cm.get(enemy).walkDirection.add(cm.get(enemy).characterDirection);
+                cm.get(enemy).walkDirection.scl(3f * delta);
+                cm.get(enemy).characterController.setWalkDirection(cm.get(enemy).walkDirection);
+
+                Matrix4 ghost = new Matrix4();
+                Vector3 translation = new Vector3();
+                cm.get(enemy).ghostObject.getWorldTransform(ghost);
+                ghost.getTranslation(translation);
+
+                modelComponent.instance.transform.set(avatarComponent.x,
+                        avatarComponent.y, avatarComponent.z,
+                        avatarAngle.x, avatarAngle.y, avatarAngle.z, avatarAngle.w); //model.y-3 to stop floating avatar -Paul
+            }
+        }
+        if(!gameWorld.game.dinoSpawnerOnline) {
+            for(Entity enemy: enemies.values()) {
+                engine.removeEntity(enemy);
+            }
+            enemies.clear();
         }
 
     }

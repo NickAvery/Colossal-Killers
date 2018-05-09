@@ -17,6 +17,7 @@ public class Core extends ApplicationAdapter {
 	Screen screen;
 
 	public boolean dinoSpawner = false;
+	public boolean dinoSpawnerOnline = false;
 	public Client client = null;
 
 	@Override

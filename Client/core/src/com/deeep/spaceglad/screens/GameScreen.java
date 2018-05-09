@@ -9,7 +9,10 @@ import com.deeep.spaceglad.Settings;
 import com.deeep.spaceglad.UI.GameUI;
 import com.deeep.spaceglad.components.AnimationComponent;
 import com.deeep.spaceglad.components.AvatarComponent;
+import com.deeep.spaceglad.components.EnemyComponent;
 import com.deeep.spaceglad.components.PlayerComponent;
+
+import java.util.HashMap;
 
 
 /**
@@ -75,10 +78,12 @@ public class GameScreen implements Screen {
                                     // TODO restore player position on login
                                 } else if(params[1].contains("dinoava")) {
                                     String dinoParams[] = params[1].split("\'");
-                                    gameWorld.addEnemy(params[1], Float.parseFloat(params[2]),
-                                            Float.parseFloat(params[3]), Float.parseFloat(params[4]),
-                                            Float.parseFloat(params[5]),Integer.parseInt(dinoParams[1]),
-                                            Float.parseFloat(dinoParams[2]));
+                                    if(gameWorld.avatarSystem.getEnemiesList().get(params[1]) == null) {
+                                        gameWorld.addEnemy(params[1], Float.parseFloat(params[2]),
+                                                Float.parseFloat(params[3]), Float.parseFloat(params[4]),
+                                                Float.parseFloat(params[5]), Integer.parseInt(dinoParams[1]),
+                                                Float.parseFloat(dinoParams[2]));
+                                    }
                                 }
                                 else {
                                     gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
@@ -89,11 +94,22 @@ public class GameScreen implements Screen {
                                 if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
                                     entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
                                 }
-
-                                break;
                             }
+                            else if (params[1].contains("dinoSpawner"))
+                                gameWorld.game.dinoSpawnerOnline = true;
+                            if(gameWorld.game.dinoSpawner) {
+                                HashMap enemies = gameWorld.avatarSystem.getEnemiesList();
+                                for (Object enemy : enemies.values()) {
+                                    gameWorld.game.client.sendMessage("\\avatar" + " " + ((Entity) enemy).getComponent(AvatarComponent.class).username + " " +
+                                            ((Entity) enemy).getComponent(AvatarComponent.class).x + " " + ((Entity) enemy).getComponent(AvatarComponent.class).y + " " +
+                                            ((Entity) enemy).getComponent(AvatarComponent.class).z + " " + 0 + "\n");
+                                }
+                            }
+                            break;
 						// Logout
 						case "\\delavatar":
+						    if(params[2].contains("dinoSpawner"))
+						        gameWorld.game.dinoSpawnerOnline = false;
 							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[2].replace("\n", ""))) != null) {
 								gameWorld.avatarSystem.getPlayersList().remove(params[2].replace("\n", ""));
 								gameWorld.remove(entity);
@@ -111,13 +127,20 @@ public class GameScreen implements Screen {
 
 						// Move
 						case "\\move":
-							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null ||
-                                    (entity = (Entity) gameWorld.avatarSystem.getEnemiesList().get(params[1])) != null) {
-							    if(params.length == 6) {
+							if ((entity = (Entity) gameWorld.avatarSystem.getPlayersList().get(params[1])) != null) {
+                                if (params.length == 6) {
                                     entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
                                     entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
                                     entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
                                     entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
+                                }
+                            }
+                              else if  ((entity = (Entity) gameWorld.avatarSystem.getEnemiesList().get(params[1])) != null && !gameWorld.game.dinoSpawner) {
+                                  if(params.length == 6) {
+                                      entity.getComponent(AvatarComponent.class).x = Float.parseFloat(params[2]);
+                                      entity.getComponent(AvatarComponent.class).y = Float.parseFloat(params[3]);
+                                      entity.getComponent(AvatarComponent.class).z = Float.parseFloat(params[4]);
+                                      entity.getComponent(AvatarComponent.class).rotAngle = Float.parseFloat(params[5]);
                                 }
 								//entity.getComponent(AnimationComponent.class).animate("Root|Walk_loop", 100000, 3); //animate the avatar
 								//moving = true;
