@@ -96,6 +96,8 @@ public class LoginScreen implements Screen {
 		playButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				Assets.stopMusic();
+				Assets.playGameMusic();
 				game.setScreen(new GameScreen(game));
 			}
 		});
@@ -108,6 +110,8 @@ public class LoginScreen implements Screen {
 		loginButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				Assets.stopMusic();
+				Assets.playGameMusic();
 				login();
 			}
 		});

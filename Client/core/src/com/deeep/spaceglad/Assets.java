@@ -1,6 +1,7 @@
 package com.deeep.spaceglad;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -38,10 +39,31 @@ public class Assets {
 	public static Model playerModelBlack;
 	public static int avColor;
 
-	public static AssetManager assetManager;	
+	public static AssetManager assetManager;
+
+	public static Music menuMusic;
 	
-	
-    public Assets() {
+	public static void playMenuMusic(){
+		menuMusic.setVolume(1.0f);
+		menuMusic.play();
+	}
+
+	public static void stopMusic(){
+		menuMusic.stop();
+	}
+
+	public static void playGameMusic(){
+		menuMusic.setVolume(0.5f);
+		menuMusic.play();
+	}
+
+    public Assets() {//Royalty Free Music from Bensound
+		//bensound-instinct.mp3
+		//public Music menuMusic;
+		menuMusic = Gdx.audio.newMusic(Gdx.files.internal("data/bensound-instinct.mp3"));
+		menuMusic.setLooping(true);
+		//menuMusic.play();
+
     	avColor = 1; // default to avatar 1, valid selections are 1-9 and correspond to ROYGBIV +gray +black -paul
         skin = new Skin();
         FileHandle fileHandle = Gdx.files.internal("data/uiskin.json");

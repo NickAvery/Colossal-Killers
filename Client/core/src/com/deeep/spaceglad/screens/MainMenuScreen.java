@@ -22,6 +22,8 @@ public class MainMenuScreen implements Screen {
     TextButton playButton, leaderboardsButton, quitButton, avatarButton; //added avatar button -Paul
 
     public MainMenuScreen(Core game) {
+        Assets.playMenuMusic();
+
         this.game = game;
         stage = new Stage(new FitViewport(Core.VIRTUAL_WIDTH, Core.VIRTUAL_HEIGHT));
         setWidgets();
