@@ -62,12 +62,13 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                 Object[] values = gameWorld.avatarSystem.getPlayersList().values().toArray();
                 Entity target = (Entity) values[random.nextInt(values.length)];
                 entity.getComponent(EnemyComponent.class).target = target;
-			    entity.getComponent(EnemyComponent.class).username = "dino" + dinoNumber++;
+			    entity.getComponent(EnemyComponent.class).username = "dinoava" + dinoNumber++ + '\'' + entity.getComponent(EnemyComponent.class).type + '\'' +
+                        entity.getComponent(EnemyComponent.class).scale;
                 engine.addEntity(entity);
                 if (gameWorld.game.client != null) {
-                    gameWorld.game.client.sendMessage("\\dinospawn" + " " + entity.getComponent(EnemyComponent.class).username + " " + type + " " + scale + " " +
-                        entity.getComponent(EnemyComponent.class).x + " " + entity.getComponent(EnemyComponent.class).y + " " + entity.getComponent(EnemyComponent.class).z +
-                        " " + 0 + "\n");
+                    gameWorld.game.client.sendMessage("\\avatar" + " " + entity.getComponent(EnemyComponent.class).username + " " +
+                            entity.getComponent(AvatarComponent.class).x + " " + entity.getComponent(AvatarComponent.class).y + " " +
+                            entity.getComponent(AvatarComponent.class).z + " " + 0 + "\n");
                 }
             }
             for (Entity e : entities) {
@@ -78,6 +79,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                     Entity target = (Entity) values[random.nextInt(values.length)];
                     e.getComponent(EnemyComponent.class).target = target;
                 }
+                System.out.println(e.getComponent(EnemyComponent.class).username + " " + e.getComponent(EnemyComponent.class).target.getComponent(AvatarComponent.class).username);
                 ModelComponent playerModel = e.getComponent(EnemyComponent.class).target.getComponent(ModelComponent.class);
 
                 Vector3 playerPosition = new Vector3();
@@ -112,7 +114,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                 mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
                 if (gameWorld.game.client != null) {
                     gameWorld.game.client.sendMessage("\\move " + e.getComponent(EnemyComponent.class).username + " " + translation.x + " "
-                            + translation.y + " " + translation.z + " " + 0 + "\n");
+                            + translation.y + " " + translation.z + " " + (theta+150) + "\n");
                 }
 
                 if (e.getComponent(EnemyComponent.class).health <= 0) {

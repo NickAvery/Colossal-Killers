@@ -411,12 +411,14 @@ public class EntityFactory {
 		  type = 1;
 	Entity entity = createCharacter(bulletSystem, x,y,z, type, scale);
         entity.add(new EnemyComponent(EnemyComponent.STATE.HUNTING,type));
+        entity.add(new AvatarComponent());
         entity.add(new StatusComponent());
         entity.add(new DieParticleComponent(renderSystem.particleSystem));
-        entity.getComponent(EnemyComponent.class).x = x;
-        entity.getComponent(EnemyComponent.class).y = y;
-        entity.getComponent(EnemyComponent.class).z = z;
-        entity.getComponent(EnemyComponent.class).dinoType = EnemyComponent.DINOTYPE.ANKLO;
+        entity.getComponent(AvatarComponent.class).x = x;
+        entity.getComponent(AvatarComponent.class).y = y;
+        entity.getComponent(AvatarComponent.class).z = z;
+        entity.getComponent(EnemyComponent.class).type = type;
+        entity.getComponent(EnemyComponent.class).scale = scale;
 	    //Nick A for HW#6
 		if(entity.getComponent(AnimationComponent.class) != null && entity.getComponent(AnimationComponent.class).getController() != null)
 		{

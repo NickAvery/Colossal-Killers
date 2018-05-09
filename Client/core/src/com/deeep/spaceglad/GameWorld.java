@@ -146,18 +146,24 @@ public class GameWorld {
 	public void addPlayer(String username,float x, float y, float z, float angle) {
     	Entity player = (EntityFactory.createAvatar(bulletSystem, x, y, z));
     	player.getComponent(AvatarComponent.class).username = username;
-    	player.getComponent(AvatarComponent.class).x = x;
-        player.getComponent(AvatarComponent.class).y = y;
-        player.getComponent(AvatarComponent.class).z = z;
         player.getComponent(AvatarComponent.class).rotAngle = angle;
         //TODO add avatar color
     	engine.addEntity(player);
 	}
 
+	public void addEnemy(String username, float x, float y, float z, float angle, int type, float scale) {
+        Entity enemy = (EntityFactory.createEnemy(bulletSystem, x, y, z, type, scale));
+        enemy.getComponent(AvatarComponent.class).username = username;
+        enemy.getComponent(AvatarComponent.class).rotAngle = angle;
+        engine.addEntity(enemy);
+    }
+
     private void addEntities() {
         createGround();
-
-        createPlayer(0, 100, 0);
+        if(!game.dinoSpawner)
+            createPlayer(0, 100, 0);
+        else
+            createPlayer(0, -1000 , 0);
 
 		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
 		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 40, 2));
@@ -274,16 +280,6 @@ public class GameWorld {
     private void checkPause() {
         if (Settings.Paused) {
             engine.getSystem(PlayerSystem.class).setProcessing(false);
-            engine.getSystem(EnemySystem.class).setProcessing(false);
-            engine.getSystem(StatusSystem.class).setProcessing(false);
-            engine.getSystem(BulletSystem.class).setProcessing(false);
-			engine.getSystem(HealthPackSystem.class).setProcessing(false);
-			engine.getSystem(WeaponSystem.class).setProcessing(false);
-            engine.getSystem(AvatarSystem.class).setProcessing(false);
-			
-			
-			
-			
         } else {
             engine.getSystem(PlayerSystem.class).setProcessing(true);
             engine.getSystem(EnemySystem.class).setProcessing(true);
