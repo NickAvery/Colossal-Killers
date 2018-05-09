@@ -111,7 +111,7 @@ public class EnemySystem extends EntitySystem implements EntityListener {
                 mod.instance.transform.set(translation.x, translation.y, translation.z, rot.x, rot.y, rot.z, rot.w);
                 if (gameWorld.game.client != null) {
                     gameWorld.game.client.sendMessage("\\move " + e.getComponent(AvatarComponent.class).username + " " + translation.x + " "
-                            + translation.y + " " + translation.z + " " + (theta+150) + "\n");
+                            + translation.y + " " + translation.z + " " + (theta+1.5708) + "\n"); //90 degrees is 1.5708 radians -Paul
                 }
 
                 if (e.getComponent(EnemyComponent.class).health <= 0) {
