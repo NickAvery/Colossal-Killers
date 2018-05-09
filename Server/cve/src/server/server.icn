@@ -1027,7 +1027,13 @@ $endif
       logHandler.subscribe( sock, getIP(sock) )
    end
    method do_avatar(user, sock, cmd, rest)
-      sendtoMany( sock, rest, "avatar", 1 )
+		local x
+		x:= ? 8 - 1
+      sendtoMany(sock, image(x), "avatar", 1)
+	  
+	  ## Original Avatar sendtoMany method call
+	  
+	  # sendtoMany( sock, rest, "avatar", 1 )
    end
    method do_moveavatar(user, sock, cmd, rest)
       moveAvatar(sock, rest)
@@ -1180,6 +1186,21 @@ $endif
          case UserCmd of {
             "fire":{ # handle \fire command here
                write(&errout, "received \\fire command")
+			   
+			   write (&output, "Parsed[2] After Fire Command Holds:\n")
+			   write (&output, image(parsed[2]))
+			   
+					L := []
+					if (x := find(" ", parsed[2])) then{
+						while i := find(" ", parsed[2]) do {
+							put (L, parsed[2][1:i])
+							parsed[2] := parsed[2][i+1 : 0]
+						}
+					put (L, parsed[2])
+					write (&output, "After Storing the Fire Command, L Holds: \n")
+					every i := 1 to *L do write(L[i])
+					}
+			   
                }
 			"death":{ # handle \death command here
 			   write(&errout, "received \\death command")
@@ -1200,7 +1221,7 @@ $endif
 						parsed[2] := parsed[2][i+1 : 0]
 					}
 				put (L, parsed[2])
-				write (&output, "After Storing, L Holds: \n")
+				write (&output, "After Storing the Dino's, L Holds: \n")
 				every i := 1 to *L do write(L[i])
 				
 				# Create actual instances of the dino class
@@ -1222,7 +1243,7 @@ $endif
 					write(&output, image(D.position))
 					write(&output, image(D.angle))
 					
-					# Add dino instances to the dino table by name
+					# Insert Dino instance into Tusername_dino Table
 					Tusername_dino[D.name] := D
 			   }
 			   
