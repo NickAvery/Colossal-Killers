@@ -134,7 +134,11 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		}
 
 		if (Gdx.input.justTouched()) {
-			fire(); // mouse fire -Paul
+			
+			if(player.getComponent(PlayerComponent.class).ammoHeld[player.getComponent(PlayerComponent.class).weapon] > 0){
+				fire(); // mouse fire -Paul
+			}
+			
 			//gameUI.messageWidget.addChatMessage(Double.toString(theta+3.1416) + "\n");
 		}
 
@@ -262,7 +266,11 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 					PlayerComponent.score += 100;
 			}
 		}
-
+		
+		//Subtract 1 ammo for every shot EXPECT with spear
+		if(player.getComponent(PlayerComponent.class).weapon != 0){
+			player.getComponent(PlayerComponent.class).ammoHeld[player.getComponent(PlayerComponent.class).weapon] -= 1;
+		}
 		gun.getComponent(AnimationComponent.class).animate("Armature|shoot", 1, 3);
 		gunShot.play(.25f);
 	}
