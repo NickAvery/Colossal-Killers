@@ -19,8 +19,19 @@ import com.deeep.spaceglad.components.*;
 import com.deeep.spaceglad.bullet.MotionState;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
 import com.badlogic.gdx.graphics.g3d.particles.emitters.RegularEmitter;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
+import com.badlogic.gdx.graphics.g3d.model.data.ModelData;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.UBJsonReader;
+import com.badlogic.gdx.assets.loaders.ModelLoader;
+import com.badlogic.gdx.graphics.g3d.utils.TextureProvider;
+import com.deeep.spaceglad.Assets;
 
 /**
  * Created by Elmar on 8-8-2015.
@@ -30,18 +41,24 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 	private PlayerComponent playerComponent;
 
 	public Entity gun;
-
-	private CharacterComponent characterComponent;
-	private ModelComponent modelComponent;
-	private GameUI gameUI;
+	
+    private CharacterComponent characterComponent;
+    private ModelComponent modelComponent;
+    private GameUI gameUI;
 	private final Vector3 tmp = new Vector3();
 	private final Camera camera;
 	private final Vector3 tempVector = new Vector3();
 	private GameWorld gameWorld;
 	private Sound gunShot;
-	Vector3 rayFrom = new Vector3();
-	Vector3 rayTo = new Vector3();
-	ClosestRayResultCallback rayTestCB;
+    Vector3 rayFrom = new Vector3();
+    Vector3 rayTo = new Vector3();
+	Vector3 rayToLong = new Vector3();
+	Vector3 rayToMedium = new Vector3();
+	Vector3 rayToShort = new Vector3();
+    ClosestRayResultCallback rayTestCB;
+	ClosestRayResultCallback rayTestCBLong;
+	ClosestRayResultCallback rayTestCBMedium;
+	ClosestRayResultCallback rayTestCBShort;								
 	private ImmutableArray<Entity> playersList;
 
 	public PlayerSystem(GameWorld gameWorld, GameUI gameUI, Camera camera) {
@@ -49,7 +66,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		this.gameWorld = gameWorld;
 		this.gameUI = gameUI;
 		rayTestCB = new ClosestRayResultCallback(Vector3.Zero, Vector3.Z);
-		gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
+		gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));																				   
 	}
 
 	@Override
@@ -119,20 +136,92 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			useDoor(delta); // should we change this? -Paul
 	}
 
+
 	private void updateStatus() {
+		if (Gdx.input.isKeyPressed(Input.Keys.NUM_1) && player.getComponent(PlayerComponent.class).weapon != 0){
+			Gdx.app.log("Weapon:", "Spear"); // switch to spear
+			//gun.getComponent(ModelComponent.class) = new ModelComponent(Assets.spearModel, 2.5f, -1.9f, -4);
+			gun.remove(ModelComponent.class);
+			ModelComponent modelComponent = new ModelComponent(Assets.spearModel, 2.5f, -1.9f, -4);
+			modelComponent.instance.transform.scale(0.01f, 0.01f, 0.01f);
+			gun.add(modelComponent); 
+			gun.remove(WeaponComponent.class);
+			gun.add(new WeaponComponent(0));
+			player.getComponent(PlayerComponent.class).weapon = 0;
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.NUM_2) && player.getComponent(PlayerComponent.class).weapon != 1){
+			Gdx.app.log("Weapon:", "Gun"); // switch to gun
+			gun.remove(ModelComponent.class);
+			
+			ModelLoader<?> modelLoader = new G3dModelLoader (new JsonReader());
+			ModelData modelData = modelLoader.loadModelData(Gdx.files.internal("data/GUNMODEL.g3dj"));
+			Model model = new Model(modelData, new TextureProvider.FileTextureProvider());
+
+			ModelComponent modelComponent = new ModelComponent(model, 2.5f, -1.9f, -4);
+			modelComponent.instance.transform.rotate(0, 1, 0, 180);
+			gun.add(modelComponent); 
+			gun.remove(WeaponComponent.class);
+			gun.add(new WeaponComponent(1));
+			player.getComponent(PlayerComponent.class).weapon = 1;
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.NUM_3) && player.getComponent(PlayerComponent.class).weapon != 2){
+			Gdx.app.log("Weapon:", "Shotgun"); // switch to shotgun
+			gun.remove(ModelComponent.class);
+			ModelComponent modelComponent = new ModelComponent(Assets.shotgunModel, 2.5f, -1.9f, -4);
+			modelComponent.instance.transform.scale(0.03f, 0.03f, 0.03f);
+			modelComponent.instance.transform.rotate(0, 1, 0, 90);
+			gun.add(modelComponent); 
+			gun.remove(WeaponComponent.class);
+			gun.add(new WeaponComponent(2));
+			player.getComponent(PlayerComponent.class).weapon = 2;
 		gameUI.healthWidget.setValue(playerComponent.health);
+		}
 	}
 
 	private void fire() {
 		Ray ray = camera.getPickRay(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		rayFrom.set(ray.origin);
-		rayTo.set(ray.direction).scl(50f).add(rayFrom);
+		//rayTo.set(ray.direction).scl(50f).add(rayFrom);
+		rayToLong.set(ray.direction).scl(gun.getComponent(WeaponComponent.class).longRange).add(rayFrom);
+		rayToMedium.set(ray.direction).scl(gun.getComponent(WeaponComponent.class).mediumRange).add(rayFrom);
+		rayToShort.set(ray.direction).scl(gun.getComponent(WeaponComponent.class).shortRange).add(rayFrom);			 
 		rayTestCB.setCollisionObject(null);
 		rayTestCB.setClosestHitFraction(1f);
 		rayTestCB.setRayFromWorld(rayFrom);
-		rayTestCB.setRayToWorld(rayTo);
-		gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayTo, rayTestCB);
-		if (rayTestCB.hasHit()) {
+		//rayTestCB.setRayToWorld(rayTo);
+		rayTestCB.setRayToWorld(rayToShort);
+		
+		boolean confirmedHit = false;
+		boolean longHit = false;
+		boolean mediumHit = false;
+		boolean shortHit = false;
+		
+        //gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayTo, rayTestCB);
+		gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayToShort, rayTestCB);
+		if(rayTestCB.hasHit() && !confirmedHit){
+			Gdx.app.log("hit", "short");
+			confirmedHit = true;
+			shortHit = true;
+		}else{
+			rayTestCB.setRayToWorld(rayToMedium);
+			gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayToMedium, rayTestCB);
+		}
+		if(rayTestCB.hasHit() && !confirmedHit){
+			Gdx.app.log("hit", "medium");
+			confirmedHit = true;
+			mediumHit = true;
+		}else{
+			rayTestCB.setRayToWorld(rayToLong);
+			gameWorld.bulletSystem.collisionWorld.rayTest(rayFrom, rayToLong, rayTestCB);
+		}
+		if(rayTestCB.hasHit() && !confirmedHit){
+			Gdx.app.log("hit", "long");
+			confirmedHit = true;
+			longHit = true;
+		}
+		
+		
+        if (rayTestCB.hasHit()) {
 			final btCollisionObject obj = rayTestCB.getCollisionObject();
 			if (((Entity) obj.userData).getComponent(EnemyComponent.class) != null) {
 				ParticleEffect effect = ((Entity) obj.userData).getComponent(DieParticleComponent.class).originalEffect.copy();
@@ -143,6 +232,10 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
                 effect.start();
                 RenderSystem.particleSystem.add(effect);
 				((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
+				//((Entity) obj.userData).getComponent(EnemyComponent.class).health -= 10;
+				if(shortHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).shortDamage;
+				else if(mediumHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).mediumDamage;
+				else if(longHit) ((Entity) obj.userData).getComponent(EnemyComponent.class).health -= gun.getComponent(WeaponComponent.class).longDamage;
 				if (gameWorld.game.client != null && !gameWorld.game.dinoSpawner) {
 					//The correct command will look something like this but currently dinos don't have an avatar component so use placeholder fire command below
 					//gameWorld.game.client

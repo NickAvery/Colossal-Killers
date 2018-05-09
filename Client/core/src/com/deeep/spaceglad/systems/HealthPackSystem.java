@@ -38,7 +38,7 @@ public class HealthPackSystem extends EntitySystem implements EntityListener {
 			if(e != null){
 				if(e.getComponent(HealthPackComponent.class).state == HealthPackComponent.STATE.RESPAWNING){
 					if(e.getComponent(HealthPackComponent.class).despawnFlag == true){
-						e.getComponent(ModelComponent.class).instance.transform.trn(0f,0f,-100f);
+						e.getComponent(ModelComponent.class).instance.transform.trn(0f,-1000f,0f);
 						e.getComponent(ModelComponent.class).instance.calculateTransforms();
 						e.getComponent(HealthPackComponent.class).ghostObject.setWorldTransform(e.getComponent(ModelComponent.class).instance.transform);
 						e.getComponent(BulletComponent.class).motionState.setWorldTransform(e.getComponent(ModelComponent.class).instance.transform);
@@ -58,7 +58,7 @@ public class HealthPackSystem extends EntitySystem implements EntityListener {
 					}
 				}else if(e.getComponent(HealthPackComponent.class).state == HealthPackComponent.STATE.READY){
 					if(e.getComponent(HealthPackComponent.class).respawnFlag == true){
-						e.getComponent(ModelComponent.class).instance.transform.trn(0f,0f,100f);
+						e.getComponent(ModelComponent.class).instance.transform.trn(0f,1000f,0f);
 						e.getComponent(ModelComponent.class).instance.calculateTransforms();
 						e.getComponent(HealthPackComponent.class).ghostObject.setWorldTransform(e.getComponent(ModelComponent.class).instance.transform);
 						e.getComponent(BulletComponent.class).motionState.setWorldTransform(e.getComponent(ModelComponent.class).instance.transform);
