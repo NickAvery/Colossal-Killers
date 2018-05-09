@@ -67,12 +67,6 @@ public class GameScreen implements Screen {
 
 						// Login
 						case "\\avatar":
-							gameUI.messageWidget.addChatMessage(params[0] + " ");
-							gameUI.messageWidget.addChatMessage(params[1] + " ");
-							gameUI.messageWidget.addChatMessage(params[2] + " ");
-							gameUI.messageWidget.addChatMessage(params[3] + " ");
-							gameUI.messageWidget.addChatMessage(params[4] + " ");
-							gameUI.messageWidget.addChatMessage(params[5] + " ");
 						    if(!params[1].contains("dinoSpawner")) {
                                 if (params[1].equals(game.client.username)) {
                                     // TODO restore player position on login
@@ -85,7 +79,7 @@ public class GameScreen implements Screen {
                                                 Float.parseFloat(dinoParams[2]));
                                     }
                                 }
-                                else {
+                                else if (params.length >= 6) {
                                     gameWorld.addPlayer(params[1], Float.parseFloat(params[2]),
                                             Float.parseFloat(params[3]) - 50, //subtract 50 so that they "spawn" underground -Paul
                                             Float.parseFloat(params[4]), Float.parseFloat(params[5]));
@@ -159,7 +153,7 @@ public class GameScreen implements Screen {
 						case "\\dynstate":
 						case "\\Addusers":
 						case "\\c":
-						case "\\Deleteuser":
+						case "\\DeleteUser":
 							// TODO are any of these needed?
 							break;
 
