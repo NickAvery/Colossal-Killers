@@ -50,6 +50,9 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 	private final Vector3 tempVector = new Vector3();
 	private GameWorld gameWorld;
 	private Sound gunShot;
+	private Sound laser;
+	private Sound shotgun;
+	private Sound spear;
     Vector3 rayFrom = new Vector3();
     Vector3 rayTo = new Vector3();
 	Vector3 rayToLong = new Vector3();
@@ -66,7 +69,10 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 		this.gameWorld = gameWorld;
 		this.gameUI = gameUI;
 		rayTestCB = new ClosestRayResultCallback(Vector3.Zero, Vector3.Z);
-		gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));																				   
+		gunShot = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
+		laser = Gdx.audio.newSound(Gdx.files.internal("data/laser.mp3"));
+		shotgun = Gdx.audio.newSound(Gdx.files.internal("data/shotgun.mp3"));
+		spear = Gdx.audio.newSound(Gdx.files.internal("data/spear.mp3"));																		   
 	}
 
 	@Override
@@ -151,6 +157,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			gun.remove(WeaponComponent.class);
 			gun.add(new WeaponComponent(0));
 			player.getComponent(PlayerComponent.class).weapon = 0;
+			gunShot = spear;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.NUM_2) && player.getComponent(PlayerComponent.class).weapon != 1){
 			Gdx.app.log("Weapon:", "Gun"); // switch to gun
@@ -168,6 +175,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			gun.add(new WeaponComponent(1));
 			gun.add(new AnimationComponent(modelComponent.instance));
 			player.getComponent(PlayerComponent.class).weapon = 1;
+			gunShot = laser;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.NUM_3) && player.getComponent(PlayerComponent.class).weapon != 2){
 			Gdx.app.log("Weapon:", "Shotgun"); // switch to shotgun
@@ -179,6 +187,7 @@ public class PlayerSystem extends EntitySystem implements EntityListener {
 			gun.remove(WeaponComponent.class);
 			gun.add(new WeaponComponent(2));
 			player.getComponent(PlayerComponent.class).weapon = 2;
+			gunShot = shotgun;
 		}
 	}
 
