@@ -183,7 +183,7 @@ public class GameWorld {
                 createPlayer(0, 10, 20);
         }
         else
-            createPlayer(0, -1000 , 0);
+            createPlayer(10000, -1000 , 10000);
 
 		engine.addEntity(EntityFactory.createHealthPack(bulletSystem, 0, 2, 30));
 		engine.addEntity(EntityFactory.createWeapon(bulletSystem, 0, 3, 40, 2));
