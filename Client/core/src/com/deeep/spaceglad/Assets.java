@@ -56,8 +56,8 @@ public class Assets {
 		FileHandle playerPath = Gdx.files.internal("data/avatar.g3db"); //Avatar -Paul
 		FileHandle level1groundPath = Gdx.files.internal("data/level1ground.g3db");//level 1 groundmodel JT
 		FileHandle level1skyPath = Gdx.files.internal("data/level1sky.g3db");	//level1 sky model JT
-		FileHandle level1rockPath = Gdx.files.internal("data/rockyoutcrop.g3db");	//levle1 rockyoutcrop JT
-		FileHandle level1treePath = Gdx.files.internal("data/tree1.g3db");
+		FileHandle level1rockPath = Gdx.files.internal("data/rockcliff.g3db");	//levle1 rockyoutcrop JT
+		FileHandle level1treePath = Gdx.files.internal("data/texturedtree.g3db");
 		FileHandle level1rampPath = Gdx.files.internal("data/ramp1.g3db");
 		//FileHandle playerPath = Gdx.files.internal("data/avatars/red.g3db"); //Red avatar -Paul
 		FileHandle redPlayerPath = Gdx.files.internal("data/avatars/red.g3db");

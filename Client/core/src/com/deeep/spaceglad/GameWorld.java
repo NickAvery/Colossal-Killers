@@ -33,6 +33,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.deeep.spaceglad.Logger;
 import com.badlogic.gdx.utils.Array;
 import com.deeep.spaceglad.components.Door;
+import java.util.Random;
 /**
  * Created by scanevaro on 31/07/2015.
  */
@@ -155,7 +156,7 @@ public class GameWorld {
 
     private void addEntities() {
         createGround();
-        createPlayer(0, 1, 0);
+        createPlayer(0, 100, 0);
     }
 
     private void createPlayer(float x, float y, float z) {
@@ -174,33 +175,65 @@ public class GameWorld {
     }
 
     private void createGround() {
-        // Floo
+        
+        // Floor
         Texture tempTexture = new Texture(Gdx.files.internal("data/snow_ground.png"));
         Material tempMaterial = new Material(TextureAttribute.createDiffuse(tempTexture), ColorAttribute.createSpecular(1, 1, 1, 1), FloatAttribute.createShininess(4f));
-        Model tempModel = modelBuilder.createBox(1800, 2, 1800, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
-        engine.addEntity(EntityFactory.createStaticEntity(tempModel, 0, 0, 0, 0f));
+        for (int j = -10; j < 10; j++)
+        {
+            float z = 180 * j;
+        for (int i = -10; i < 10; i++)
+        {
+            float x = 180 * i;
+            Model tempModel = modelBuilder.createBox(180, 2, 180, tempMaterial, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+            engine.addEntity(EntityFactory.createStaticEntity(tempModel, x, 0, z, 0f));
+        }
+        }
 
-        // Trees
-        engine.addEntity(EntityFactory.createVisualEntity(Assets.level1skymodel, 0f, -50f, 0f, 0f));
-        for (int i = 0; i < 50; i++) {
-            float x = 5 * i - 20;
-            float z = i % 4;
+        //rock exterior (bounds the level)
+        for (int i = 0; i < 20; i++)
+        {
+            float z = -1000 +85 * i;
+            float x = -600;
+            engine.addEntity(EntityFactory.createStaticEntity(Assets.level1rockmodel1, x, -20, z, 0f));  
+             x = 600;
+            engine.addEntity(EntityFactory.createStaticEntity(Assets.level1rockmodel1, x, -20, z, 0f)); 
+        }
+
+        //rock map divider
+        for (int i = 0; i < 5; i++)
+        {
+            float z = 150 + 55 * i;
+            float x = 150 + 55 * i;
+            engine.addEntity((EntityFactory.createStaticEntity((Assets.level1rockmodel1), x, -45, z, 0f)));
+            z = -150 - 55 * i;
+            x = -150 - 55 * i;
+            engine.addEntity((EntityFactory.createStaticEntity((Assets.level1rockmodel1), x, -45, z, 0f)));
+        }
+        
+
+        for (int i = 0; i < 20; i++)
+        {
+            float x = -1000 +85 * i;
+            float z = -600;
+            engine.addEntity(EntityFactory.createStaticEntity(Assets.level1rockmodel1, x, -20, z, 0f)); 
+            z = 600;
+            engine.addEntity(EntityFactory.createStaticEntity(Assets.level1rockmodel1, x, -20, z, 0f)); 
+        }
+          
+        
+        engine.addEntity(EntityFactory.createVisualEntity(Assets.level1skymodel, 0f, -25f, 0f, 0f));
+        
+        
+        //Distribute some Trees throughout the game world     
+        for (int i = 0; i < 75; i++) {
+            Random rand = new Random();
+            float x = rand.nextInt(1200)- 600;
+            float z = rand.nextInt(1200)-600;
             float y = -i % 8;
             engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
         }
 
-        for (int i = 0; i < 50; i++ ) {
-            float x = 5 * i - 20;
-            float z = i % 4 - 45;
-            float y = -i % 8;
-            engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, x, y, z, 0f));
-        }
-
-        for (int i = 0; i < 10; i++ ) {
-            float z = -i * 5;
-            float y = -i % 8;
-            engine.addEntity(EntityFactory.createTreeEntity(Assets.level1treemodel, -20, y, z, 0f));
-        }
     }
 
     private void addSystems(GameUI gameUI) {
